@@ -1,6 +1,15 @@
 import os, shutil, sys, re, getopt
-
+'''
+Not Yet Implemented
+def scriptusage ():
+	print ("-h: This Help Messagen")
+	print ("-d: Directory\n")
+	print ("-m: Compute MD5 hash \(NYI\)\n")
+'''
 def filemove (newpath, filename):
+	#Last Subroutine Called.
+	#Used to Move the current file
+	#from the current location to the final location
 	if not os.path.exists(newpath):
 		os.makedirs(newpath)
 	try:
@@ -9,6 +18,7 @@ def filemove (newpath, filename):
 		print("There is a file with the same name at the destination!.")
 
 def iostrain (train, version):
+	#Return a software train.
 	if train.startswith('AA'):
 		version = version + 'AA'
 	elif train.startswith('AX'):
@@ -614,6 +624,7 @@ def iostrain (train, version):
 	return version
 
 def imagelookup (imagecode):
+	#Returns an Image Type
 	if imagecode == 'a2i5k8s':
 		subdirectory = 'IP-ATM PLUS IPSEC 56 NO ISDN'
 	elif imagecode == 'a2i5s':
@@ -1571,6 +1582,7 @@ def imagelookup (imagecode):
 	return subdirectory
 
 def product (prodcode):
+	#Returns a Model Version
 	if prodcode == 'ap801':
 		prodname = 'Aironet AP801 (861W,88xW,1911W Routers)'
 	elif prodcode == 'ap802':
@@ -2228,4 +2240,14 @@ def product (prodcode):
 	else:
 		prodname = 'UNKNOWN'
 	return prodname
+
+
+def mainloop ():
+	#Main Subroutine
+	#Classifies Files based on name 
+	#and information returned from the three lookups.
+	
+
+if __name__ == "__main__":
+	mainloop()
 
