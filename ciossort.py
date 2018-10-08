@@ -1,21 +1,4 @@
 import os, shutil, sys, re, getopt
-'''
-Not Yet Implemented
-def scriptusage ():
-	print ("-h: This Help Messagen")
-	print ("-d: Directory\n")
-	print ("-m: Compute MD5 hash \(NYI\)\n")
-'''
-def filemove (newpath, filename):
-	#Last Subroutine Called.
-	#Used to Move the current file
-	#from the current location to the final location
-	if not os.path.exists(newpath):
-		os.makedirs(newpath)
-	try:
-		shutil.move(filename, newpath)
-	except:
-		print("There is a file with the same name at the destination!.")
 
 def iostrain (train, version):
 	#Return a software train.
@@ -2241,28 +2224,119 @@ def product (prodcode):
 		prodname = 'UNKNOWN'
 	return prodname
 
+
+'''
+Not Yet Implemented
+def scriptusage ():
+	print ("-h: This Help Messagen")
+	print ("-d: Directory\n")
+	print ("-m: Compute MD5 hash \(NYI\)\n")
+'''
+
+
+'''
+Last Subroutine Called.
+Should only be called by the various pathbuilder subroutines.
+Used to Move the current file
+from the current location to the final location
+'''
+def filemove (newpath, filename):
+	if not os.path.exists(newpath):
+		os.makedirs(newpath)
+	try:
+		shutil.move(filename, newpath)
+	except:
+		print("There is a file with the same name at the destination!.")
+'''
+Subroutine that builds the final directory paths.
+The various pathbuilder subroutines are the only subroutines that should
+be calling filemove.
+'''
+def pathbuilder_mainver_fullver_imagecode (filename, model, mainver, fullver, imagecode):
+	filepath = model + '/' + mainver + '/' + fullver + '/' + imagecode
+	filemove (filepath, filename)
+
+def pathbuilder_mainver_fullver (filename, model, mainver, fullver):
+	filepath = model + '/' + mainver + '/' + fullver
+	filemove (filepath, filename)
+
+def pathbuilder_fullver (filename, model, fullver):
+	filepath = model + '/' + fullver
+	filemove (filepath, filename)
+
+
+#Used to join four separate strings into one string.
+#Produces the following format
+# A.B(C)D
+def stitch_4_cisco_standard (a,b,c,d):
+	version = a + '.' + b + '(' + c + ')' + d
+	return version
+
+
+#Used to join four separate strings into one string.
+#Produces the following format
+# A.B.C.D
+def stitch_4_dot (a,b,c,d):
+	version = a + '.' + b + '.' + c + '.' + d
+	return version
+
+#Used to join three separate strings into one string.
+#Produces the following format
+# ABC
+def stitch_3_whole (a,b,c):
+	version = a + b + c
+	return version
+
+#Used to join three separate strings into one string.
+#Produces the following format
+# A.B.C
+def stitch_3_dot (a,b,c):
+	version = a + '.' + b + '.' + c
+	return version
+
+#Used to join two separate strings into one string.
+#Produces the following format
+# A.B
+def stitch_2_dot (a,b):
+	version = a + '.' + b
+	return version
+
+
 def asamastersub(filename):
 	
 	#Determining which ASA Sub function to send to the file to for processing.
-	if name.startswith('asa-restapi'):
+	if filename.startswith('asa-restapi'):
 		asarestapisub(filename)
-	
-	
+
+
 def asasub(filename):
-	
-	
-	
+	splitbydash = filename.split('-')
+
+
 def asavsub(filename):
-	
-	
-	
+	splitbydash = filename.split('-')
+
+
 def asdmsub(filename):
-	
-	
-	
+	splitbydash = filename.split('-')
+
+
 def asarestapisub(filename):
 	splitbydash = filename.split('-')
+	#splitbydash should now have 5 entries (0-4)
+	versionlist = list(splitbydash[2])
+	if len (versionlist) == 6:
+		buildstring = stitch_3_whole (versionlist[3],versionlist[4],versionlist[5])
+		mainver = stitch_2_dot (versionlist[0],versionlist[1])
+		fullver = stitch_4_dot (versionlist[0],versionlist[1],versionlist[2],buildstring)
+		pathbuilder_fullver(filename,"ASA/REST-API",fullver)
+	elif len (versionlist) == 3:
+		mainver = stitch_2_dot (versionlist[0],versionlist[1])
+		fullver = stitch_3_dot (versionlist[0],versionlist[1],versionlist[2])
+		pathbuilder_fullver(filename,"ASA/REST-API",fullver)
 	
+	#stitch_4_cisco_standard
+	#stitch_2_dot
 	
 
 def mainloop (sourcedir):
@@ -2304,9 +2378,9 @@ def mainloop (sourcedir):
 		
 		if name.startswith('asa'):
 			asamastersub(name)
-	#	elif name.startswith('asav')
+	#	elif name.startswith('asav'):
 	#		asamastersub(name)
-		elif name.startswith('asdm')
+		elif name.startswith('asdm'):
 			asamastersub(name)
 	#	elif splitbydash[0] == 'asa' and splitbydash[1] == 'restapi':
 	#		asamastersub(name)
