@@ -2272,12 +2272,18 @@ def stitch_4_cisco_standard (a,b,c,d):
 	version = a + '.' + b + '(' + c + ')' + d
 	return version
 
-
 #Used to join four separate strings into one string.
 #Produces the following format
 # A.B.C.D
 def stitch_4_dot (a,b,c,d):
 	version = a + '.' + b + '.' + c + '.' + d
+	return version
+
+#Used to join four separate strings into one string.
+#Produces the following format
+# A.B(C)
+def stitch_3_cisco_standard (a,b,c):
+	version = a + '.' + b + '(' + c + ')'
 	return version
 
 #Used to join three separate strings into one string.
@@ -2301,24 +2307,87 @@ def stitch_2_dot (a,b):
 	version = a + '.' + b
 	return version
 
+#Used to join two separate strings into one string.
+#Produces the following format
+# AB
+def stitch_2_whole (a,b):
+	version = a + b
+	return version
+
 
 def asamastersub(filename):
 	
 	#Determining which ASA Sub function to send to the file to for processing.
 	if filename.startswith('asa-restapi'):
 		asarestapisub(filename)
+	elif filename.startswith('asav'):
+		asavsub(filename)
+	elif filename.endswith('lfbff-k8.SPA'):
+		asafpsub(filename)
 
-
+#All Other ASA Code
 def asasub(filename):
 	splitbydash = filename.split('-')
 
 
+#ASA with Firepower Services
+def asafpsub(filename):
+	name = filename.lstrip('asa')
+	name = name.rstrip('-lfbff-k8.SPA')
+	#print (name, end='\n')
+	namenumbers = list(name)
+	if len (name) == 5:
+		twoversion = stitch_2_dot (namenumbers[0],namenumbers[1])
+		fullversion = stitch_4_cisco_standard (namenumbers[0],namenumbers[1],namenumbers[2],namenumbers[4])
+		pathbuilder_mainver_fullver (filename,"ASA/ASA-Firepower-Services",twoversion,fullversion)
+	elif len (name) == 6:
+		twoversion = stitch_2_dot (namenumbers[0],namenumbers[1])
+		threeversion = stitch_3_cisco_standard (namenumbers[0],namenumbers[1],namenumbers[2])
+		buildversion = stitch_2_whole (namenumbers[4],namenumbers[5])
+		fullversion = stitch_2_whole (threeversion,buildversion)
+		pathbuilder_mainver_fullver (filename,"ASA/ASA-Firepower-Services",twoversion,fullversion)
+	elif len (name) == 3:
+		twoversion = stitch_2_dot (namenumbers[0],namenumbers[1])
+		threeversion = stitch_3_cisco_standard (namenumbers[0],namenumbers[1],namenumbers[2])
+		pathbuilder_mainver_fullver (filename,"ASA/ASA-Firepower-Services",twoversion,threeversion)
+	elif len (name) == 7:
+		twoversion = stitch_2_dot (namenumbers[0],namenumbers[1])
+		threeversion = stitch_3_cisco_standard (namenumbers[0],namenumbers[1],namenumbers[2])
+		buildversion = stitch_3_whole (namenumbers[4],namenumbers[5],namenumbers[6])
+		fullversion = stitch_2_whole (threeversion,buildversion)
+		pathbuilder_mainver_fullver (filename,"ASA/ASA-Firepower-Services",twoversion,fullversion)
+
+
+#ASA Virtual
 def asavsub(filename):
-	splitbydash = filename.split('-')
-
-
-def asdmsub(filename):
-	splitbydash = filename.split('-')
+	name = filename.lstrip('asav')
+	name = name.rstrip('vhdx')
+	name = name.rstrip('zip')
+	name = name.rstrip('qcow2')
+	name = name.rstrip('ova')
+	name = name.rstrip('.')
+	name = name.strip()
+	namenumbers = list(name)
+	if len (name) == 5:
+		twoversion = stitch_2_dot (namenumbers[0],namenumbers[1])
+		fullversion = stitch_4_cisco_standard (namenumbers[0],namenumbers[1],namenumbers[2],namenumbers[4])
+		pathbuilder_mainver_fullver (filename,"ASA/ASAV",twoversion,fullversion)
+	elif len (name) == 6:
+		twoversion = stitch_2_dot (namenumbers[0],namenumbers[1])
+		threeversion = stitch_3_cisco_standard (namenumbers[0],namenumbers[1],namenumbers[2])
+		buildversion = stitch_2_whole (namenumbers[4],namenumbers[5])
+		fullversion = stitch_2_whole (threeversion,buildversion)
+		pathbuilder_mainver_fullver (filename,"ASA/ASAV",twoversion,fullversion)
+	elif len (name) == 3:
+		twoversion = stitch_2_dot (namenumbers[0],namenumbers[1])
+		threeversion = stitch_3_cisco_standard (namenumbers[0],namenumbers[1],namenumbers[2])
+		pathbuilder_mainver_fullver (filename,"ASA/ASAV",twoversion,threeversion)
+	elif len (name) == 7:
+		twoversion = stitch_2_dot (namenumbers[0],namenumbers[1])
+		threeversion = stitch_3_cisco_standard (namenumbers[0],namenumbers[1],namenumbers[2])
+		buildversion = stitch_3_whole (namenumbers[4],namenumbers[5],namenumbers[6])
+		fullversion = stitch_2_whole (threeversion,buildversion)
+		pathbuilder_mainver_fullver (filename,"ASA/ASAV",twoversion,fullversion)
 
 
 def asarestapisub(filename):
@@ -2334,10 +2403,11 @@ def asarestapisub(filename):
 		mainver = stitch_2_dot (versionlist[0],versionlist[1])
 		fullver = stitch_3_dot (versionlist[0],versionlist[1],versionlist[2])
 		pathbuilder_fullver(filename,"ASA/REST-API",fullver)
-	
-	#stitch_4_cisco_standard
-	#stitch_2_dot
-	
+
+
+def asdmsub(filename):
+	splitbydash = filename.split('-')
+
 
 def mainloop (sourcedir):
 	#Main Subroutine
@@ -2378,13 +2448,8 @@ def mainloop (sourcedir):
 		
 		if name.startswith('asa'):
 			asamastersub(name)
-	#	elif name.startswith('asav'):
-	#		asamastersub(name)
 		elif name.startswith('asdm'):
 			asamastersub(name)
-	#	elif splitbydash[0] == 'asa' and splitbydash[1] == 'restapi':
-	#		asamastersub(name)
-		
 
 if __name__ == "__main__":
 	mainloop(sys.argv[1])
