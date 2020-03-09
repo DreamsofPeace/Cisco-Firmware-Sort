@@ -4,7 +4,7 @@ import os, shutil, sys, re, getopt
 #import iosutils
 from iosutils import product,imagelookup,iostrain,filemove,filepath4,filepath3,stringtolist,util2digit,util3digit,util4digit,util5digit
 from iosutils import messageunknowndev,messageunknownfeat
-from ios_nexus import nexus1000v,nexus5000,nexus7000,
+from ios_nexus import nexus1000v,nexus5000,nexus7000
 from ios_nexus import fileprocessornxosplatform7700v8,fileprocessornxos9kv8later,fileprocessornxos9kv8later,fileprocessornxos9kv7
 
 def asaver (version, num):
