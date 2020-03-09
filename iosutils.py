@@ -1639,6 +1639,10 @@ def imagelookup (imagecode):
 		subdirectory = 'SMU'
 	elif imagecode == 'system':
 		subdirectory = 'SYSTEM'
+	elif imagecode == 'sip':
+		subdirectory = "SIP"
+	elif imagecode == 'sccp':
+		subdirectory = "SCCP"
 	else:
 		subdirectory = 'UNKNOWN'
 	return subdirectory
@@ -2084,6 +2088,8 @@ def product (prodcode):
 		prodname = 'Switches/Catalyst/Catalyst-3500XL'
 	elif prodcode == 'cat4000s12':
 		prodname = 'Switches/Catalyst/Catalyst-4000-SUP-I-II'
+	elif prodcode == 'cat4000':
+		prodname = 'Switches/Catalyst/Catalyst-4000'
 #	elif prodcode == 'cat4000':
 #		prodname = 'Switches/Catalyst/Catalyst-4000-Hybrid-Mode'
 #	elif prodcode == 'cat4000':
@@ -2251,33 +2257,33 @@ def product (prodcode):
 	elif prodcode == 'c5850tb':
 		prodname = 'Universal-Gateway/AS-5850ERSC'
 	elif prodcode == 'c2420':
-		prodname = 'Voice/2420-IAD'
+		prodname = 'Voice/IAD/2420-IAD'
 	elif prodcode == 'c2430':
-		prodname = 'Voice/2430-IAD'
+		prodname = 'Voice/IAD/2430-IAD'
 	elif prodcode == 'c2435':
-		prodname = 'Voice/2435-IAD'
+		prodname = 'Voice/IAD/2435-IAD'
 	elif prodcode == 'vg3x0':
-		prodname = 'Voice/VG-310-320'
+		prodname = 'Voice/Gateway/VG-310-320'
 	elif prodcode == 'vg350':
-		prodname = 'Voice/VG-350'
+		prodname = 'Voice/Gateway/VG-350'
 	elif prodcode == 'vgd':
-		prodname = 'Voice/VGD'
+		prodname = 'Voice/Gateway/VGD'
 	elif prodcode == 'ics7700':
 		prodname = 'Voice/ICS-7700'
 	elif prodcode == 'uc500':
 		prodname = 'Voice/UC-500'
 	elif prodcode == 'vg200':
-		prodname = 'Voice/VG-200'
+		prodname = 'Voice/Gateway/VG-200'
 	elif prodcode == 'vg20x':
-		prodname = 'Voice/VG-202'
+		prodname = 'Voice/Gateway/VG-202'
 	elif prodcode == 'vg20xxm':
-		prodname = 'Voice/VG-20x-XM'
+		prodname = 'Voice/Gateway/VG-20x-XM'
 	elif prodcode == 'vg224':
-		prodname = 'Voice/VG-224'
+		prodname = 'Voice/Gateway/VG-224'
 	elif prodcode == 'vg400':
-		prodname = 'Voice/VG-400'
+		prodname = 'Voice/Gateway/VG-400'
 	elif prodcode == 'vg450':
-		prodname = 'Voice/VG-450'
+		prodname = 'Voice/Gateway/VG-450'
 	elif prodcode == 'c1100':
 		prodname = 'Wireless/Access-Point/Aironet-1100'
 	elif prodcode == 'c1130':
@@ -2396,6 +2402,32 @@ def product (prodcode):
 		prodname = "Routers/ASR/ASR9K"
 	elif prodcode == 'firepower':
 		prodname = "Security/Firepower"
+	elif prodcode == 'ipp3905':
+		prodname = "Voice/IP-Phones/3905"
+	elif prodcode == 'ipp7911_7906':
+		prodname = "Voice/IP-Phones/7906_7911"
+	elif prodcode == 'ipp7914':
+		prodname = "Voice/IP-Phones/7914"
+	elif prodcode == 'ipp7915':
+		prodname = "Voice/IP-Phones/7915"
+	elif prodcode == 'ipp7916':
+		prodname = "Voice/IP-Phones/7916"
+	elif prodcode == 'ipp7921':
+		prodname = "Voice/IP-Phones/7921"
+	elif prodcode == 'ipp7931':
+		prodname = "Voice/IP-Phones/7931"
+	elif prodcode == 'ipp7940_7960':
+		prodname = "Voice/IP-Phones/7940_7960"
+	elif prodcode == 'ipp7941_7961':
+		prodname = "Voice/IP-Phones/7941_7961"
+	elif prodcode == 'ipp7942_7962':
+		prodname = "Voice/IP-Phones/7942_7962"
+	elif prodcode == 'ipp7945_7965':
+		prodname = "Voice/IP-Phones/7945_7965"
+	elif prodcode == 'ipp7970_7971':
+		prodname = "Voice/IP-Phones/7970_7971"
+	elif prodcode == 'ipp7975':
+		prodname = "Voice/IP-Phones/7975"
 	else:
 		prodname = 'UNKNOWN'
 	return prodname

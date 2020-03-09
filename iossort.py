@@ -5,7 +5,7 @@ import os, shutil, sys, re, getopt
 from iosutils import product,imagelookup,iostrain,filemove,filepath3,filepath4,filepath5,stringtolist,util2digit,util3digit,util4digit,util5digit
 from iosutils import messageunknowndev,messageunknownfeat
 from ios_nexus import nexus1000v,nexus5000,nexus7000,fileprocessornxos
-from ios_nexus import fileprocessornxosplatform7700v8,fileprocessornxos9kv8later,fileprocessornxos9kv8later,fileprocessornxos9kv7
+from ios_voice import fileprocessorvoice
 
 def asaver (version, num):
 	versionlist = list(version)
@@ -2301,7 +2301,12 @@ def iosxeclassification (filename,prodname,imagecode):
 
 def iosxevthree (filename,prodname,imagecode):
 	splitbydot = filename.split('.')
-	if (splitbydot[7] == 'pkg' or 
+	if splitbydot[1] == '02':
+		iosmain = splitbydot[1] + '.' + splitbydot[2]
+		iosfull = splitbydot[1] + '.' + splitbydot[2] + '.' + splitbydot[3]
+		filepath = prodname + '/' + iosmain + '/' + iosfull + '/' + imagecode
+		filemove (filepath, filename)
+	elif (splitbydot[7] == 'pkg' or 
 	 splitbydot[7] == 'bin'):
 		iosmain = splitbydot[1] + '.' + splitbydot[2]
 		iosfull = splitbydot[1] + '.' + splitbydot[2] + '.' + splitbydot[3]
@@ -2361,48 +2366,16 @@ def fileprocessorfpgeodb (filename):
 	filepath = filepath4 (prodname,imagecode,splitbydash[1],ver)
 	filemove (filepath, filename)
 
-#def fileprocessornxos9kv8latersmu (filename):
-#	splitbydash = filename.split('-')
-#	splitbydot = filename.split('.')
-#	prodname = product (splitbydot[0])
-#	if splitbydot[1].startswith('CSC'):
-	
 def scriptusage ():
 	print ("-h: This Help Messagen")
 	print ("-d: Directory\n")
 	print ("-h: Compute MD5 hash\n")
-
-#try:
-#    opts, args = getopt.getopt(argv, "hm:d")
-#except getopt.GetoptError:
-#    scriptusage()
-#    sys.exit(2)
-
-#for opt, arg in opts:
-#    if opt in ("-h")
-#        scriptusage()
-#        sys.exit()
-#    elif opt == '-d':
-#        global _debug
-#        _debug = 1
-#    elif opt in ("-g"):
-#        grammar = arg
 
 #def fileprocessorios (filename):
 
 #def fileprocessoriosxe (filename):
 
 #def fileprocessoriosxr (filename):
-
-#	if splitbydot[4] == "bin":
-#		if filename.startswith("n7700"):
-#			fileprocessornxosplatform7700v8(filename)
-#	elif filename.count(splitbydot) == 7:
-#		if splitbydot[6].startswith('CSC'):
-#			imagecode = 'SMU'
-#	elif filename.count(splitbydot) == 5:
-#		if splitbydot[4].startswith('CSC'):
-#			imagecode = 'SMU'
 
 def fileprocessorasa (filename):
 	if filename == 'anyconnect_app_selector_2.0.zip':
@@ -2522,6 +2495,9 @@ def toplevel(filename):
 
 		elif name.startswith('nxos'):
 			filepreprocessor(name)
+
+		elif name.startswith('cmterm'):
+			fileprocessorvoice(name)
 
 		elif name == "nim_vab_phy_fw_A39x3_B39x3_Bond39t.pkg":
 			imagecode = imagelookup ('isr4300')
@@ -2670,6 +2646,8 @@ def toplevel(filename):
 		):
 			prodname = product ('c1100router')
 			imagecode = imagelookup ('DSLFIRMWARE')
+			filepath = prodname + '/' + imagecode
+			filemove (filepath, name)
 
 		elif (name == 'VAE2_A_39x3_B39x3_24o.SSA.bin'
 		 or name == 'VAE2_A_39t_B39d_24m.SSA.bin'):
