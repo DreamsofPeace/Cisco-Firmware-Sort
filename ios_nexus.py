@@ -3,7 +3,6 @@ from iosutils import messageunknowndev,messageunknownfeat
 
 def fileprocessornxos (filename):
 	splitbydot = filename.split('.')
-	splitbydash = filename.split('-')
 	if splitbydot[0] == 'nxos':
 		prodname = product('nxos')
 		if len(splitbydot) == 5:
@@ -117,7 +116,6 @@ def fileprocessornxosplatform7700v8 (filename):
 		filepath = prodname + '/' + iosmain + '/' + iosfull + '/' + imagecode
 
 def fileprocessornxos9kv8later (filename):
-	splitbydash = filename.split('-')
 	splitbydot = filename.split('.')
 	prodname = product (splitbydot[0])
 	imagecode = imagelookup('system')
@@ -127,9 +125,7 @@ def fileprocessornxos9kv8later (filename):
 	filemove (filepath, filename)
 
 def fileprocessornxos9kv7 (filename):
-	splitbydash = filename.split('-')
 	splitbydot = filename.split('.')
-	#if splitbydot[4] == 'I7' or splitbydot[4] == 'i7':
 	prodname = product ('nxosi7')
 	imagecode = imagelookup('system')
 	nxosver = util2digit (splitbydot[1],splitbydot[2])
