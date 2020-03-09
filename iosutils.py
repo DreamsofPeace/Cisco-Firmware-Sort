@@ -1635,6 +1635,10 @@ def imagelookup (imagecode):
 		subdirectory = 'SYSTEM-CAT9200-NPE'
 	elif imagecode == 'cat9k_lite_iosxe':
 		subdirectory = 'SYSTEM-CAT9200'
+	elif imagecode == 'smu':
+		subdirectory = 'SMU'
+	elif imagecode == 'system':
+		subdirectory = 'SYSTEM'
 	else:
 		subdirectory = 'UNKNOWN'
 	return subdirectory
@@ -2423,6 +2427,10 @@ def filepath3 (a,b,c):
 
 def filepath4 (a,b,c,d):
 	z = a + '/' + b + '/' + c + '/' + d
+	return z
+
+def filepath5 (a,b,c,d,e):
+	z = a + '/' + b + '/' + c + '/' + d + '/' + e
 	return z
 
 def messageunknowndev ():

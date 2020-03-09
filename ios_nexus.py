@@ -1,7 +1,11 @@
+from iosutils import product,imagelookup,iostrain,filemove,filepath3,filepath4,filepath5,stringtolist,util2digit,util3digit,util4digit,util5digit
+from iosutils import messageunknowndev,messageunknownfeat
+
 def fileprocessornxos (filename):
 	splitbydot = filename.split('.')
 	splitbydash = filename.split('-')
 	if splitbydot[0] == 'nxos':
+		prodname = product('nxos')
 		if len(splitbydot) == 5:
 			fileprocessornxos9kv8later(filename)
 		elif len(splitbydot) == 7:
@@ -9,7 +13,7 @@ def fileprocessornxos (filename):
 		elif len(splitbydot) == 7:
 			fileprocessornxos9kv7(filename)
 		elif splitbydot[1].startswith('CSC'):
-			fileprocessornxos9kv8smu
+			fileprocessornxos9ksmu(filename,prodname)
 
 def nexus5000 (filename, prodname, imagecode):
 	splitbydot = filename.split('.')
@@ -116,7 +120,7 @@ def fileprocessornxos9kv8later (filename):
 	splitbydash = filename.split('-')
 	splitbydot = filename.split('.')
 	prodname = product (splitbydot[0])
-	imagecode = "SYSTEM"
+	imagecode = imagelookup('system')
 	nxosver = util2digit (splitbydot[1],splitbydot[2])
 	nxosfull = util3digit (splitbydot[1],splitbydot[2],splitbydot[3])
 	filepath = filepath4 (prodname,nxosver,nxosfull,imagecode)
@@ -127,12 +131,39 @@ def fileprocessornxos9kv7 (filename):
 	splitbydot = filename.split('.')
 	#if splitbydot[4] == 'I7' or splitbydot[4] == 'i7':
 	prodname = product ('nxosi7')
-	imagecode = "SYSTEM"
+	imagecode = imagelookup('system')
 	nxosver = util2digit (splitbydot[1],splitbydot[2])
 	nxosfull = util5digit (splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4],splitbydot[5])
 	filepath = filepath4 (prodname,nxosver,nxosfull,imagecode)
 	filemove (filepath, filename)
 
-
-
-
+def fileprocessornxos9ksmu (filename,prodname):
+	splitbydot = filename.split('.')
+	imagecode = imagelookup('smu')
+	csc = splitbydot[1].replace("-n9k_ALL-1","")
+	csc = csc.replace("_EOR-n9k_EOR-1","")
+	csc = csc.replace("_TOR-n9k_TOR-1","")
+	csc = csc.replace("_eth-n9k_TOR-1","")
+	csc = csc.replace("_eth-n9k_EOR-1","")
+	csc = csc.replace("-n9k_EOR-1","")
+	csc = csc.replace("-n9k_TOR-1","")
+	csc = csc.replace("_modular_lc-1","")
+	csc = csc.replace("_modular_sup-1","")
+	csc = csc.replace("01-1","")
+	csc = csc.replace("-1","")
+	if splitbydot[3] == '0-9':
+		digitone = '9'
+	elif splitbydot[3] == '0-8':
+		digitone = '8'
+	elif splitbydot[3] == '0-7':
+		digitone = '7'
+	if digitone == '9':
+		nxosver = util2digit (digitone,splitbydot[4])
+		nxosfull = util3digit (digitone,splitbydot[4],splitbydot[5])
+		filepath = filepath5 (prodname,imagecode,nxosver,nxosfull,csc)
+		filemove (filepath, filename)
+	elif digitone == '7':
+		nxosver = util2digit (digitone,splitbydot[4])
+		nxosfull = util5digit (digitone,splitbydot[4],splitbydot[5],splitbydot[6],splitbydot[7])
+		filepath = filepath5 (prodname,imagecode,nxosver,nxosfull,csc)
+		filemove (filepath, filename)
