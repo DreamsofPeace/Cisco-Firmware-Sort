@@ -2,7 +2,9 @@ import os, shutil, sys, re, getopt
 #Functions (product,imagelookup,iostrain,filemove)
 #import product,imagelookup,iostrain,filemove from iosutils
 #import iosutils
-from iosutils import product,imagelookup,iostrain,filemove,filepath3,filepath4,filepath5,stringtolist,util2digit,util3digit,util4digit,util5digit
+from iosutils import product,imagelookup,iostrain
+from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
+from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat
 from ios_nexus import nexus1000v,nexus5000,nexus7000,fileprocessornxos
 from ios_voice import fileprocessorvoice
@@ -2469,7 +2471,7 @@ def toplevel(filename):
 		elif "srec" in name:
 			fileprocessorrommon(name)
 
-		elif "tsjspgen" in name or "tpcgen" in name or "tpgen" in name or "tpcgenx" in name:
+		elif "tsjspgen" in name or "tpcgen" in name or "tpgen" in name or "tpcgenx" in name or "tscgen" in name or "tscgenx" in name:
 			fileprocessorpagent(name)
 
 		elif "rommon" in name or "promupgrade" in name or "governator" in name or "C7200_NPEG2_RM" in name or "c6880x_rm" in name:
@@ -2667,6 +2669,9 @@ def toplevel(filename):
 		):
 			fileprocessorfirepower(name)
 
+		elif name == "ssd_c400_upgrade_6.1.2.I2.2a.tar":
+			fileprocessornxos(name)
+		
 		elif name.startswith('isr4200_cpld_update'):
 			prodname = product ('isr4200')
 			imagecode = imagelookup ('cpld_update')

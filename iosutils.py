@@ -1643,6 +1643,8 @@ def imagelookup (imagecode):
 		subdirectory = "SIP"
 	elif imagecode == 'sccp':
 		subdirectory = "SCCP"
+	elif imagecode == 'firmware':
+		subdirectory = "FIRMWARE"
 	else:
 		subdirectory = 'UNKNOWN'
 	return subdirectory
@@ -2451,6 +2453,10 @@ def util5digit (a,b,c,d,e):
 
 def stringtolist (a):
 	z = list(a)
+	return z
+
+def filepath2 (a,b):
+	z = a + '/' + b
 	return z
 
 def filepath3 (a,b,c):

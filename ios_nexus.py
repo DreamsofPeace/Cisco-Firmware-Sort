@@ -1,4 +1,6 @@
-from iosutils import product,imagelookup,iostrain,filemove,filepath3,filepath4,filepath5,stringtolist,util2digit,util3digit,util4digit,util5digit
+from iosutils import product,imagelookup,iostrain
+from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
+from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat
 
 def fileprocessornxos (filename):
@@ -13,7 +15,15 @@ def fileprocessornxos (filename):
 			fileprocessornxos9kv7(filename)
 		elif splitbydot[1].startswith('CSC'):
 			fileprocessornxos9ksmu(filename,prodname)
+	elif filename == "ssd_c400_upgrade_6.1.2.I2.2a.tar":
+		imagecode = imagelookup('firmware')
+		nexussinglefile (filename,imagecode)
 
+def nexussinglefile (filename,imagecode):
+	prodname = product('nxos')
+	filepath = filepath2 (prodname,imagecode)
+	filemove (filepath, filename)
+	
 def nexus5000 (filename, prodname, imagecode):
 	splitbydot = filename.split('.')
 	if splitbydot[1] != "9":
