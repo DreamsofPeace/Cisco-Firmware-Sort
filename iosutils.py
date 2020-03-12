@@ -1645,6 +1645,8 @@ def imagelookup (imagecode):
 		subdirectory = "SCCP"
 	elif imagecode == 'firmware':
 		subdirectory = "FIRMWARE"
+	elif imagecode == 'epld':
+		subdirectory = "FIRMWARE-EPLD"
 	else:
 		subdirectory = 'UNKNOWN'
 	return subdirectory

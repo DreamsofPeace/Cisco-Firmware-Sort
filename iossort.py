@@ -2671,6 +2671,9 @@ def toplevel(filename):
 
 		elif name == "ssd_c400_upgrade_6.1.2.I2.2a.tar":
 			fileprocessornxos(name)
+
+		elif name.startswith('n9000-epld'):
+			fileprocessornxos(name)
 		
 		elif name.startswith('isr4200_cpld_update'):
 			prodname = product ('isr4200')

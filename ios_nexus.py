@@ -16,11 +16,19 @@ def fileprocessornxos (filename):
 		elif splitbydot[1].startswith('CSC'):
 			fileprocessornxos9ksmu(filename,prodname)
 	elif filename == "ssd_c400_upgrade_6.1.2.I2.2a.tar":
+		prodname = product('nxos')
 		imagecode = imagelookup('firmware')
-		nexussinglefile (filename,imagecode)
+		nexussinglefile (filename,prodname,imagecode)
+	elif filename == "n9000-epld-secure-boot-update.img":
+		prodname = product('nxos')
+		imagecode = imagelookup('epld')
+		nexussinglefile (filename,prodname,imagecode)
+	elif splitbydot[0] == 'n9000-epld':
+		prodname = product('nxos')
+		imagecode = imagelookup('epld')
+		fileprocessornxosepld (filename,prodname,imagecode)
 
-def nexussinglefile (filename,imagecode):
-	prodname = product('nxos')
+def nexussinglefile (filename,prodname,imagecode):
 	filepath = filepath2 (prodname,imagecode)
 	filemove (filepath, filename)
 	
@@ -125,6 +133,19 @@ def fileprocessornxosplatform7700v8 (filename):
 		iosfull = util3digit (splitbydot[1],splitbydot[2],splitbydot[3])
 		filepath = prodname + '/' + iosmain + '/' + iosfull + '/' + imagecode
 
+def fileprocessornxosepld (filename,prodname,imagecode):
+	splitbydot = filename.split('.')
+	if splitbydot[1] == "6" or splitbydot[1] == "7":
+		nxosver = util2digit (splitbydot[1],splitbydot[2])
+		nxosfull = util5digit (splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4],splitbydot[5])
+		filepath = filepath4 (prodname,imagecode,nxosver,nxosfull)
+		filemove (filepath, filename)
+	else:
+		nxosver = util2digit (splitbydot[1],splitbydot[2])
+		nxosfull = util3digit (splitbydot[1],splitbydot[2],splitbydot[3])
+		filepath = filepath4 (prodname,imagecode,nxosver,nxosfull)
+		filemove (filepath, filename)
+
 def fileprocessornxos9kv8later (filename):
 	splitbydot = filename.split('.')
 	prodname = product (splitbydot[0])
@@ -134,7 +155,7 @@ def fileprocessornxos9kv8later (filename):
 	filepath = filepath4 (prodname,nxosver,nxosfull,imagecode)
 	filemove (filepath, filename)
 
-def fileprocessornxos9kv7 (filename):
+def fileprocessornxos9kv7 (filename,imageinfo):
 	splitbydot = filename.split('.')
 	prodname = product ('nxosi7')
 	imagecode = imagelookup('system')
