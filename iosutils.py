@@ -1462,45 +1462,45 @@ def imagelookup (imagecode):
 	elif imagecode == 'spservicesk9':
 		subdirectory = 'SERVICE-PROVIDER'
 	elif imagecode == 'sup':
-		subdirectory = 'SUP1'
+		subdirectory = 'SUP-1'
 	elif imagecode == 'sup2':
-		subdirectory = 'SUP2'
+		subdirectory = 'SUP-2'
 	elif imagecode == 'sup2cv':
-		subdirectory = 'SUP2-WITH-CISCOVIEW'
+		subdirectory = 'SUP-2-WITH-CISCOVIEW'
 	elif imagecode == 'sup2cvk8':
-		subdirectory = 'SUP2-WITH-CISCOVIEW'
+		subdirectory = 'SUP-2-WITH-CISCOVIEW'
 	elif imagecode == 'sup2cvk9':
-		subdirectory = 'SUP2-WITH-CISCOVIEW-AND-SSH'
+		subdirectory = 'SUP-2-WITH-CISCOVIEW-AND-SSH'
 	elif imagecode == 'sup2k8':
-		subdirectory = 'SUP2'
+		subdirectory = 'SUP-2'
 	elif imagecode == 'sup2k9':
-		subdirectory = 'SUP2-WITH-SSH'
+		subdirectory = 'SUP-2-WITH-SSH'
 	elif imagecode == 'sup32pfc3cvk8':
-		subdirectory = 'SUP32-WITH-CISCOVIEW'
+		subdirectory = 'SUP-32-WITH-CISCOVIEW'
 	elif imagecode == 'sup32pfc3cvk9':
-		subdirectory = 'SUP32-WITH-CISCOVIEW-AND-SSH'
+		subdirectory = 'SUP-32-WITH-CISCOVIEW-AND-SSH'
 	elif imagecode == 'sup32pfc3k8':
-		subdirectory = 'SUP32'
+		subdirectory = 'SUP-32'
 	elif imagecode == 'sup32pfc3k9':
-		subdirectory = 'SUP32-WITH-SSH'
+		subdirectory = 'SUP-32-WITH-SSH'
 	elif imagecode == 'sup720cvk8':
-		subdirectory = 'SUP720-WITH-CISCOVIEW'
+		subdirectory = 'SUP-720-WITH-CISCOVIEW'
 	elif imagecode == 'sup720cvk9':
-		subdirectory = 'SUP720-WITH-CISCOVIEW-AND-SSH'
+		subdirectory = 'SUP-720-WITH-CISCOVIEW-AND-SSH'
 	elif imagecode == 'sup720k8':
-		subdirectory = 'SUP720'
+		subdirectory = 'SUP-720'
 	elif imagecode == 'sup720k9':
-		subdirectory = 'SUP720-WITH-SSH'
+		subdirectory = 'SUP-720-WITH-SSH'
 	elif imagecode == 'supcv':
-		subdirectory = 'SUP1-WITH-CISCOVIEW'
+		subdirectory = 'SUP-1-WITH-CISCOVIEW'
 	elif imagecode == 'supcvk8':
-		subdirectory = 'SUP1-WITH-CISCOVIEW'
+		subdirectory = 'SUP-1-WITH-CISCOVIEW'
 	elif imagecode == 'supcvk9':
-		subdirectory = 'SUP1-WITH-CISCOVIEW-AND-SSH'
+		subdirectory = 'SUP-1-WITH-CISCOVIEW-AND-SSH'
 	elif imagecode == 'supk8':
-		subdirectory = 'SUP1'
+		subdirectory = 'SUP-1'
 	elif imagecode == 'supk9':
-		subdirectory = 'SUP1-WITH-SSH'
+		subdirectory = 'SUP-1-WITH-SSH'
 	elif imagecode == 'sv12y10':
 		subdirectory = 'REDUCED-IP-ANALOG-VOICE-PLUS'
 	elif imagecode == 'sv3y':
@@ -1647,6 +1647,14 @@ def imagelookup (imagecode):
 		subdirectory = "FIRMWARE"
 	elif imagecode == 'epld':
 		subdirectory = "FIRMWARE-EPLD"
+	elif imagecode == 'bios':
+		subdirectory = "BIOS"
+	elif imagecode == 's1':
+		subdirectory = 'SUP-1'
+	elif imagecode == 's2':
+		subdirectory = 'SUP-2'
+	elif imagecode == 's3':
+		subdirectory = 'SUP-3'
 	else:
 		subdirectory = 'UNKNOWN'
 	return subdirectory
@@ -2196,8 +2204,8 @@ def product (prodcode):
 		prodname = 'Switches/Nexus/Nexus-4000'
 	elif prodcode == 'n5000':
 		prodname = 'Switches/Nexus/Nexus-5000'
-	elif prodcode == 'n5600':
-		prodname = 'Switches/Nexus/Nexus-6000-5600'
+#	elif prodcode == 'n5600':
+#		prodname = 'Switches/Nexus/Nexus-6000-5600'
 	elif prodcode == 'n6000':
 		prodname = 'Switches/Nexus/Nexus-6000-5600'
 	elif prodcode == 'n7000':

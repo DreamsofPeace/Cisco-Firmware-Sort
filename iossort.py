@@ -6,7 +6,7 @@ from iosutils import product,imagelookup,iostrain
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat
-from ios_nexus import nexus1000v,nexus5000,nexus7000,fileprocessornxos
+from ios_nexus import fileprocessornxos
 from ios_voice import fileprocessorvoice
 
 def asaver (version, num):
@@ -2483,20 +2483,23 @@ def toplevel(filename):
 		elif name.startswith('firmwareupgrade'):
 			fileprocessorrommon(name)
 
-		elif name.startswith('n6000'):
-			filepreprocessor(name)
-
-		elif name.startswith('n7000'):
-			filepreprocessor(name)
-
-		elif name.startswith('n7700'):
-			filepreprocessor(name)
-
-		elif name.startswith('n9000'):
-			filepreprocessor(name)
-
-		elif name.startswith('nxos'):
-			filepreprocessor(name)
+		elif (
+		name.startswith('n5000') or 
+		name.startswith('n6000') or 
+		name.startswith('n7000') or 
+		name.startswith('n7700') or 
+		name.startswith('n9000') or 
+		name.startswith('nxosv') or 
+		name.startswith('nxos') or 
+		name == "n3k_bios_release_rn.pdf" or 
+		splitbydash[0] == 'Nexus1000v' or 
+		splitbydot[0] == 'Nexus1000v' or 
+		splitbydot[0] == 'Nexus1000V' or 
+		splitbydot[0] == 'Nexus1000V5' or 
+		splitbydot[0] == 'n1000vh-dk9' or 
+		splitbydot[0] == 'nexus-1000v'
+		):
+			fileprocessornxos(name)
 
 		elif name.startswith('cmterm'):
 			fileprocessorvoice(name)
@@ -2822,8 +2825,34 @@ def toplevel(filename):
 			imagecode = imagelookup (splitbydash[1])
 			standardios (name, prodname, imagecode)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		elif chars5 == 'cat9k':
 			cat9k(name)
+
+
+
+
+
+
 
 		elif splitbydash[0] == 'AIR' or classify[0] == 'SWISMK9' or classify[0] == 'SWLC3750K9' or chars3 == 'MFG':
 			wireless(name)
@@ -2991,55 +3020,6 @@ def toplevel(filename):
 			filepath = 'Other'
 			filemove (filepath, name)
 
-		elif splitbydash[0] == 'n5000':
-			if splitbydot[0] == 'n5000-uk9-kickstart':
-				imagecode = "KICKSTART"
-			elif splitbydot[0] == 'n5000-uk9':
-				imagecode = "SYSTEM"
-			prodname = product (splitbydash[0])
-			nexus5000 (name, prodname, imagecode)
-
-		elif splitbydash[0] == 'n6000':
-			if splitbydot[0] == 'n6000-uk9-kickstart':
-				imagecode = "KICKSTART"
-			elif splitbydot[0] == 'n6000-uk9':
-				imagecode = "SYSTEM"
-			prodname = product (splitbydash[0])
-			nexus5000 (name, prodname, imagecode)
-
-		elif splitbydash[0] == 'n3000' or splitbydash[0] == 'n3500':
-			if splitbydot[0] == 'n3000-uk9-kickstart':
-				imagecode = "KICKSTART"
-			elif splitbydot[0] == 'n3000-uk9':
-				imagecode = "SYSTEM"
-			elif splitbydot[0] == 'n3500-uk9-kickstart':
-				imagecode = "KICKSTART"
-			elif splitbydot[0] == 'n3500-uk9':
-				imagecode = "SYSTEM"
-			prodname = product (splitbydash[0])
-			nexus5000 (name, prodname, imagecode)
-
-		elif splitbydash[0] == 'n9000':
-			if splitbydot[0] == 'n9000-epld':
-				imagecode = "EPLD"
-			elif splitbydot[0] == 'n9000-dk9':
-				if splitbydot[6].startswith('CSC'):
-					imagecode = "SMU"
-				else:
-					imagecode = "SYSTEM"
-			prodname = product (splitbydash[0])
-			nexus5000 (name, prodname, imagecode)
-
-		elif splitbydash[0] == 'n7000':
-			prodname = product (splitbydash[0])
-	#		nexus7000 (name, prodname, imagecode)
-			nexus7000 (name, prodname)
-
-		elif splitbydot[0] == 'nxos':
-			prodname = product (splitbydash[0])
-			imagecode = "SYSTEM"
-			nexus5000 (name, prodname, imagecode)
-
 		elif splitbydot[0] == 'spa-fpd':
 			thistemp = splitbydot[0]
 			splitbydashsub = thistemp.split('-')
@@ -3112,9 +3092,6 @@ def toplevel(filename):
 
 		elif splitbydash[0] == 'Acs' or splitbydash[0] == 'ACS':
 			acs(name)
-
-		elif splitbydash[0] == 'Nexus1000v' or splitbydot[0] == 'Nexus1000v' or splitbydot[0] == 'Nexus1000V' or splitbydot[0] == 'Nexus1000V5' or splitbydot[0] == 'n1000vh-dk9' or splitbydot[0] == 'nexus-1000v':
-			nexus1000v(name)
 
 		elif splitbydot[1] == 'SPA':
 			if splitbydash[0] == 'cat4500e':

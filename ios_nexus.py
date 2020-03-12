@@ -4,18 +4,9 @@ from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat
 
 def fileprocessornxos (filename):
+	splitbydash = filename.split('-')
 	splitbydot = filename.split('.')
-	if splitbydot[0] == 'nxos':
-		prodname = product('nxos')
-		if len(splitbydot) == 5:
-			fileprocessornxos9kv8later(filename)
-		elif len(splitbydot) == 7:
-			fileprocessornxos9kv7(filename)
-		elif len(splitbydot) == 7:
-			fileprocessornxos9kv7(filename)
-		elif splitbydot[1].startswith('CSC'):
-			fileprocessornxos9ksmu(filename,prodname)
-	elif filename == "ssd_c400_upgrade_6.1.2.I2.2a.tar":
+	if filename == "ssd_c400_upgrade_6.1.2.I2.2a.tar":
 		prodname = product('nxos')
 		imagecode = imagelookup('firmware')
 		nexussinglefile (filename,prodname,imagecode)
@@ -23,57 +14,50 @@ def fileprocessornxos (filename):
 		prodname = product('nxos')
 		imagecode = imagelookup('epld')
 		nexussinglefile (filename,prodname,imagecode)
+	elif filename == "nxos-n3kbios.bin" or filnename == "n3k_bios_release_rn.pdf":
+		prodname = product('n3000')
+		imagecode = imagelookup('bios')
+		nexussinglefile (filename,prodname,imagecode)
 	elif splitbydot[0] == 'n9000-epld':
 		prodname = product('nxos')
 		imagecode = imagelookup('epld')
-		fileprocessornxosepld (filename,prodname,imagecode)
+		if splitbydot[1] == "6" or splitbydot[1] == "7":
+			fileprocnxosfivedigit (filename,prodname,imagecode)
+		else:
+			fileprocnxosthreedigit(filename,prodname,imagecode)
+	elif splitbydot[0] == 'nxos':
+		prodname = product('nxos')
+		if len(splitbydot) == 5:
+			imagecode = imagelookup('system')
+			fileprocnxosthreedigit(filename,prodname,imagecode)
+		elif len(splitbydot) == 7:
+			imagecode = imagelookup('system')
+			fileprocnxosfivedigit(filename,prodname,imagecode)
+		elif len(splitbydot) == 7:
+			imagecode = imagelookup('system')
+			fileprocnxosfivedigit(filename,prodname,imagecode)
+		elif splitbydot[1].startswith('CSC'):
+			imagecode = imagelookup('smu')
+			fileprocessornxos9ksmu(filename,prodname,imagecode)
+	elif splitbydash[0] == "n5000":
+		prodname = product(splitbydash[0])
+		if splitbydot[0] == "n5000-uk9-kickstart":
+			imagecode = imagelookup('kickstart')
+			fileprocnxosfivedigit(filename,prodname,imagecode)
+		elif splitbydot[0] == "n5000-uk9":
+			imagecode = imagelookup('system')
+			fileprocnxosfivedigit(filename,prodname,imagecode)
+	elif splitbydash[0] == "n6000":
+		prodname = product(splitbydash[0])
+		if splitbydot[0] == "n6000-uk9-kickstart":
+			imagecode = imagelookup('kickstart')
+			fileprocnxosfivedigit(filename,prodname,imagecode)
+		elif splitbydot[0] == "n6000-uk9":
+			imagecode = imagelookup('system')
+			fileprocnxosfivedigit(filename,prodname,imagecode)
 
 def nexussinglefile (filename,prodname,imagecode):
 	filepath = filepath2 (prodname,imagecode)
-	filemove (filepath, filename)
-	
-def nexus5000 (filename, prodname, imagecode):
-	splitbydot = filename.split('.')
-	if splitbydot[1] != "9":
-		mainver = splitbydot[1] + '.' + splitbydot[2]
-		fullver = splitbydot[1] + '.' + splitbydot[2] + '(' + splitbydot[3] + ')' + splitbydot[4] + '(' + splitbydot[5] + ')'
-		filepath = prodname + '/' + mainver + '/' + fullver + '/' + imagecode
-	else:
-		mainver = splitbydot[1] + '.' + splitbydot[2]
-		fullver = splitbydot[1] + '.' + splitbydot[2] + '(' + splitbydot[3] + ')'
-		filepath = prodname + '/' + mainver + '/' + fullver + '/' + imagecode
-	filemove (filepath, filename)
-
-def nexus7000 (filename, prodname):
-	splitbydot = filename.split('.')
-	splitbydash = filename.split('-')
-	if splitbydash[1] == 's1':
-		sup = 'SUP-1'
-	elif splitbydash[1] == 's2':
-		sup = 'SUP-2'
-	if len(splitbydash) == 4:
-		if splitbydash[2] == 'dk9':
-			if splitbydash[3].startswith('npe'):
-				imagecode = 'SYSTEM - NO CRYPTO'
-			else:
-				imagecode = 'SYSTEM'
-		elif splitbydash[2] == 'kickstart':
-			if splitbydash[3].startswith('npe'):
-				imagecode = 'KICKSTART - NO CRYPTO'
-			else:
-				imagecode = 'KICKSTART'
-	elif len(splitbydash) == 3:
-		if splitbydash[2].startswith('dk9'):
-			imagecode = 'SYSTEM'
-		elif splitbydash[2].startswith('kickstart'):
-			imagecode = 'KICKSTART'
-
-	mainver = splitbydot[1] + '.' + splitbydot[2]
-	if len(splitbydot) == 7:
-		fullver = splitbydot[1] + '.' + splitbydot[2] + '(' + splitbydot[3] + ')' + splitbydot[4] + '(' + splitbydot[5] + ')'
-	else:
-		fullver = splitbydot[1] + '.' + splitbydot[2] + '(' + splitbydot[3] + ')'
-	filepath = prodname + '/' + sup + '/' + mainver + '/' + fullver
 	filemove (filepath, filename)
 
 def nexus1000v (filename):
@@ -133,40 +117,28 @@ def fileprocessornxosplatform7700v8 (filename):
 		iosfull = util3digit (splitbydot[1],splitbydot[2],splitbydot[3])
 		filepath = prodname + '/' + iosmain + '/' + iosfull + '/' + imagecode
 
-def fileprocessornxosepld (filename,prodname,imagecode):
+def fileprocnxosthreedigit (filename,prodname,imagecode):
 	splitbydot = filename.split('.')
-	if splitbydot[1] == "6" or splitbydot[1] == "7":
-		nxosver = util2digit (splitbydot[1],splitbydot[2])
-		nxosfull = util5digit (splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4],splitbydot[5])
-		filepath = filepath4 (prodname,imagecode,nxosver,nxosfull)
-		filemove (filepath, filename)
-	else:
-		nxosver = util2digit (splitbydot[1],splitbydot[2])
-		nxosfull = util3digit (splitbydot[1],splitbydot[2],splitbydot[3])
-		filepath = filepath4 (prodname,imagecode,nxosver,nxosfull)
-		filemove (filepath, filename)
-
-def fileprocessornxos9kv8later (filename):
-	splitbydot = filename.split('.')
-	prodname = product (splitbydot[0])
-	imagecode = imagelookup('system')
 	nxosver = util2digit (splitbydot[1],splitbydot[2])
 	nxosfull = util3digit (splitbydot[1],splitbydot[2],splitbydot[3])
-	filepath = filepath4 (prodname,nxosver,nxosfull,imagecode)
+	if imagecode == "EPLD":
+		filepath = filepath4 (prodname,imagecode,nxosver,nxosfull)
+	else:
+		filepath = filepath4 (prodname,nxosver,nxosfull,imagecode)
 	filemove (filepath, filename)
 
-def fileprocessornxos9kv7 (filename,imageinfo):
+def fileprocnxosfivedigit (filename,prodname,imagecode):
 	splitbydot = filename.split('.')
-	prodname = product ('nxosi7')
-	imagecode = imagelookup('system')
 	nxosver = util2digit (splitbydot[1],splitbydot[2])
 	nxosfull = util5digit (splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4],splitbydot[5])
-	filepath = filepath4 (prodname,nxosver,nxosfull,imagecode)
+	if imagecode == "EPLD":
+		filepath = filepath4 (prodname,imagecode,nxosver,nxosfull)
+	else:
+		filepath = filepath4 (prodname,nxosver,nxosfull,imagecode)
 	filemove (filepath, filename)
 
-def fileprocessornxos9ksmu (filename,prodname):
+def fileprocessornxos9ksmu (filename,prodname,imagecode):
 	splitbydot = filename.split('.')
-	imagecode = imagelookup('smu')
 	csc = splitbydot[1].replace("-n9k_ALL-1","")
 	csc = csc.replace("_EOR-n9k_EOR-1","")
 	csc = csc.replace("_TOR-n9k_TOR-1","")
