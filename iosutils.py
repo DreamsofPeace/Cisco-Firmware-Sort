@@ -2392,8 +2392,10 @@ def product (prodcode):
 		prodname = 'Wireless/Controller/2500'
 	elif prodcode == 'C9800':
 		prodname = 'Wireless/Controller/Catalyst-9800'
-	elif prodcode == 'nxos' or prodcode == 'nxosi7':
+	elif prodcode == 'nxos':
 		prodname = 'Switches/Nexus/Nexus-9000-3000'
+	elif prodcode == 'nxosv':
+		prodname = 'Switches/Nexus/Nexus-9000V'
 	elif prodcode == 'cat9k':
 		prodname = "Switches/Catalyst/Catalyst-9000"
 	elif prodcode == 's5400':

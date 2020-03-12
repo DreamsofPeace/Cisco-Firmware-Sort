@@ -14,13 +14,20 @@ def fileprocessornxos (filename):
 		prodname = product('nxos')
 		imagecode = imagelookup('epld')
 		nexussinglefile (filename,prodname,imagecode)
-	elif filename == "nxos-n3kbios.bin" or filnename == "n3k_bios_release_rn.pdf":
+	elif filename == "nxos-n3kbios.bin" or filename == "n3k_bios_release_rn.pdf":
 		prodname = product('n3000')
 		imagecode = imagelookup('bios')
 		nexussinglefile (filename,prodname,imagecode)
 	elif splitbydot[0] == 'n9000-epld':
 		prodname = product('nxos')
 		imagecode = imagelookup('epld')
+		if splitbydot[1] == "6" or splitbydot[1] == "7":
+			fileprocnxosfivedigit (filename,prodname,imagecode)
+		else:
+			fileprocnxosthreedigit(filename,prodname,imagecode)
+	elif splitbydot[0] == 'nxosv-final':
+		prodname = product('nxosv')
+		imagecode = imagelookup('system')
 		if splitbydot[1] == "6" or splitbydot[1] == "7":
 			fileprocnxosfivedigit (filename,prodname,imagecode)
 		else:
@@ -53,6 +60,14 @@ def fileprocessornxos (filename):
 			imagecode = imagelookup('kickstart')
 			fileprocnxosfivedigit(filename,prodname,imagecode)
 		elif splitbydot[0] == "n6000-uk9":
+			imagecode = imagelookup('system')
+			fileprocnxosfivedigit(filename,prodname,imagecode)
+	elif splitbydash[0] == "n3000":
+		prodname = product(splitbydash[0])
+		if splitbydot[0] == "n3000-uk9-kickstart":
+			imagecode = imagelookup('kickstart')
+			fileprocnxosfivedigit(filename,prodname,imagecode)
+		elif splitbydot[0] == "n3000-uk9":
 			imagecode = imagelookup('system')
 			fileprocnxosfivedigit(filename,prodname,imagecode)
 
