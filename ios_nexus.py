@@ -6,18 +6,37 @@ from iosutils import messageunknowndev,messageunknownfeat
 def fileprocessornxos (filename):
 	splitbydash = filename.split('-')
 	splitbydot = filename.split('.')
+
 	if filename == "ssd_c400_upgrade_6.1.2.I2.2a.tar":
 		prodname = product('nxos')
 		imagecode = imagelookup('firmware')
 		nexussinglefile (filename,prodname,imagecode)
+
 	elif filename == "n9000-epld-secure-boot-update.img":
 		prodname = product('nxos')
 		imagecode = imagelookup('epld')
 		nexussinglefile (filename,prodname,imagecode)
+
 	elif filename == "nxos-n3kbios.bin" or filename == "n3k_bios_release_rn.pdf":
 		prodname = product('n3000')
 		imagecode = imagelookup('bios')
 		nexussinglefile (filename,prodname,imagecode)
+
+	elif filename.startswith("n5000_poap_script"):
+		prodname = product('n5000')
+		imagecode = imagelookup('poap')
+		nexussinglefile (filename,prodname,imagecode)
+
+	elif filename.startswith("n6000_poap_script"):
+		prodname = product('n6000')
+		imagecode = imagelookup('poap')
+		nexussinglefile (filename,prodname,imagecode)
+
+	elif filename.startswith("poap_ng"):
+		prodname = product('Nexus')
+		imagecode = imagelookup('poap_ng')
+		nexussinglefile (filename,prodname,imagecode)
+
 	elif splitbydot[0] == 'n9000-epld':
 		prodname = product('nxos')
 		imagecode = imagelookup('epld')
@@ -25,13 +44,33 @@ def fileprocessornxos (filename):
 			fileprocnxosfivedigit (filename,prodname,imagecode)
 		else:
 			fileprocnxosthreedigit(filename,prodname,imagecode)
-	elif splitbydot[0] == 'nxosv-final':
+
+	elif splitbydot[0] == 'n9000-dk9':
+		prodname = product('n9000')
+		if splitbydot[1] == "6" or splitbydot[1] == "7":
+			if splitbydot[6].startswith('CSC'):
+				imagecode = imagelookup('smu')
+				fileprocnxosfivedigit (filename,prodname,imagecode)
+			else:
+				imagecode = imagelookup('system')
+				fileprocnxosfivedigit (filename,prodname,imagecode)
+
+	elif splitbydot[0] == 'n7000-s1-epld' or splitbydot[0] == 'n7000-s2-epld':
+		prodname = product('n7000')
+		imagecode = imagelookup('epld')
+		if splitbydot[1] == "7":
+			fileprocnxosfivedigit (filename,prodname,imagecode)
+		else:
+			fileprocnxosthreedigit(filename,prodname,imagecode)
+
+	elif splitbydot[0] == 'nxosv-final' or splitbydot[0] == 'nxosv':
 		prodname = product('nxosv')
 		imagecode = imagelookup('system')
 		if splitbydot[1] == "6" or splitbydot[1] == "7":
 			fileprocnxosfivedigit (filename,prodname,imagecode)
 		else:
 			fileprocnxosthreedigit(filename,prodname,imagecode)
+
 	elif splitbydot[0] == 'nxos':
 		prodname = product('nxos')
 		if len(splitbydot) == 5:
@@ -46,6 +85,7 @@ def fileprocessornxos (filename):
 		elif splitbydot[1].startswith('CSC'):
 			imagecode = imagelookup('smu')
 			fileprocessornxos9ksmu(filename,prodname,imagecode)
+
 	elif splitbydash[0] == "n5000":
 		prodname = product(splitbydash[0])
 		if splitbydot[0] == "n5000-uk9-kickstart":
@@ -54,6 +94,7 @@ def fileprocessornxos (filename):
 		elif splitbydot[0] == "n5000-uk9":
 			imagecode = imagelookup('system')
 			fileprocnxosfivedigit(filename,prodname,imagecode)
+
 	elif splitbydash[0] == "n6000":
 		prodname = product(splitbydash[0])
 		if splitbydot[0] == "n6000-uk9-kickstart":
@@ -62,6 +103,7 @@ def fileprocessornxos (filename):
 		elif splitbydot[0] == "n6000-uk9":
 			imagecode = imagelookup('system')
 			fileprocnxosfivedigit(filename,prodname,imagecode)
+
 	elif splitbydash[0] == "n3000":
 		prodname = product(splitbydash[0])
 		if splitbydot[0] == "n3000-uk9-kickstart":
@@ -70,6 +112,79 @@ def fileprocessornxos (filename):
 		elif splitbydot[0] == "n3000-uk9":
 			imagecode = imagelookup('system')
 			fileprocnxosfivedigit(filename,prodname,imagecode)
+
+	elif splitbydash[0] == "n7000":
+		prodname = product(splitbydash[0])
+		if splitbydash[1] == "s1":
+			imagecode = imagelookup('s1')
+			nexus7ksliceandice (filename,prodname,imagecode)
+		elif splitbydash[1] == "s2":
+			imagecode = imagelookup('s2')
+			nexus7ksliceandice (filename,prodname,imagecode)
+
+	elif splitbydash[0] == "n7700":
+		prodname = product(splitbydash[0])
+		if splitbydash[1] == "s2":
+			imagecode = imagelookup('s2')
+			nexus7ksliceandice (filename,prodname,imagecode)
+		elif splitbydash[1] == "s3":
+			imagecode = imagelookup('s3')
+			nexus7ksliceandice (filename,prodname,imagecode)
+
+def nexus7ksliceandice (filename,prodname,supcode):
+	splitbydot = filename.split('.')
+	if splitbydot[0] == "n7000-s1-kickstart-npe" or splitbydot[0] == "n7000-s2-kickstart-npe" or splitbydot[0] == "n7700-s2-kickstart-npe" or splitbydot[0] == "n7700-s3-kickstart-npe":
+		prodname = prodname + '/' + supcode
+		imagecode = imagelookup('kickstart-npe')
+		if splitbydot[1] == "7":
+			fileprocnxosfivedigit(filename,prodname,imagecode)
+		else:
+			fileprocnxosthreedigit(filename,prodname,imagecode)
+	elif splitbydot[0] == "n7000-s1-kickstart" or splitbydot[0] == "n7000-s2-kickstart" or splitbydot[0] == "n7700-s2-kickstart" or splitbydot[0] == "n7700-s3-kickstart":
+		prodname = prodname + '/' + supcode
+		imagecode = imagelookup('kickstart')
+		if splitbydot[1] == "7":
+			fileprocnxosfivedigit(filename,prodname,imagecode)
+		else:
+			fileprocnxosthreedigit(filename,prodname,imagecode)
+	elif splitbydot[0] == "n7000-s1-dk9-npe" or splitbydot[0] == "n7000-s2-dk9-npe" or splitbydot[0] == "n7700-s2-dk9-npe" or splitbydot[0] == "n7700-s3-dk9-npe":
+		prodname = prodname + '/' + supcode
+		imagecode = imagelookup('system-npe')
+		if splitbydot[1] == "7":
+			fileprocnxosfivedigit(filename,prodname,imagecode)
+		else:
+			fileprocnxosthreedigit(filename,prodname,imagecode)
+	elif (
+	splitbydot[0] == "n7000-s1-dk9" or 
+	splitbydot[0] == "n7000-s2-dk9" or 
+	splitbydot[0] == "n7700-s2-dk9" or 
+	splitbydot[0] == "n7700-s3-dk9" or 
+	splitbydot[0] == "n7000-s1-epld" or 
+	splitbydot[0] == "n7000-s2-epld" or 
+	splitbydot[0] == "n7700-s2-epld" or 
+	splitbydot[0] == "n7700-s3-epld"
+	):
+		prodname = prodname + '/' + supcode
+		if splitbydot[1] == "7":
+			if splitbydot[6].startswith("CSC"):
+				imagecode = imagelookup('smu')
+				fileprocnxosfivedigit(filename,prodname,imagecode)
+			elif splitbydot[0].endswith("epld"):
+				imagecode = imagelookup('epld')
+				fileprocnxosfivedigit(filename,prodname,imagecode)
+			else:
+				imagecode = imagelookup('system')
+				fileprocnxosfivedigit(filename,prodname,imagecode)
+		else:
+			if splitbydot[4].startswith("CSC"):
+				imagecode = imagelookup('smu')
+				fileprocnxosthreedigit(filename,prodname,imagecode)
+			elif splitbydot[0].endswith("epld"):
+				imagecode = imagelookup('epld')
+				fileprocnxosthreedigit(filename,prodname,imagecode)
+			else:
+				imagecode = imagelookup('system')
+				fileprocnxosthreedigit(filename,prodname,imagecode)
 
 def nexussinglefile (filename,prodname,imagecode):
 	filepath = filepath2 (prodname,imagecode)
@@ -136,8 +251,10 @@ def fileprocnxosthreedigit (filename,prodname,imagecode):
 	splitbydot = filename.split('.')
 	nxosver = util2digit (splitbydot[1],splitbydot[2])
 	nxosfull = util3digit (splitbydot[1],splitbydot[2],splitbydot[3])
-	if imagecode == "EPLD":
+	if imagecode == "FIRMWARE-EPLD":
 		filepath = filepath4 (prodname,imagecode,nxosver,nxosfull)
+	elif imagecode == "SMU":
+		filepath = filepath5 (prodname,imagecode,nxosver,nxosfull,splitbydot[4])
 	else:
 		filepath = filepath4 (prodname,nxosver,nxosfull,imagecode)
 	filemove (filepath, filename)
@@ -146,8 +263,10 @@ def fileprocnxosfivedigit (filename,prodname,imagecode):
 	splitbydot = filename.split('.')
 	nxosver = util2digit (splitbydot[1],splitbydot[2])
 	nxosfull = util5digit (splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4],splitbydot[5])
-	if imagecode == "EPLD":
+	if imagecode == "FIRMWARE-EPLD":
 		filepath = filepath4 (prodname,imagecode,nxosver,nxosfull)
+	elif imagecode == "SMU":
+		filepath = filepath5 (prodname,imagecode,nxosver,nxosfull,splitbydot[6])
 	else:
 		filepath = filepath4 (prodname,nxosver,nxosfull,imagecode)
 	filemove (filepath, filename)

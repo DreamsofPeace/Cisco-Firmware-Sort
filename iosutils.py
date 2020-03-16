@@ -1593,10 +1593,10 @@ def imagelookup (imagecode):
 		subdirectory = 'IP'
 	elif imagecode == 'y7':
 		subdirectory = 'IP-ADSL'
-	elif imagecode == 'n5000_poap_script':
-		subdirectory = 'POWER-ON-AUTO-PROVISIONING'
-	elif imagecode == 'n6000_poap_script':
-		subdirectory = 'POWER-ON-AUTO-PROVISIONING'
+	elif imagecode == 'poap':
+		subdirectory = 'POAP'
+	elif imagecode == 'poap_ng':
+		subdirectory = 'POAP-NG'
 	elif imagecode == 'EHWICCELLATT':
 		subdirectory = 'EHWIC-4G-LTE-A'
 	elif imagecode == 'EHWICCELLVZW':
@@ -1655,6 +1655,18 @@ def imagelookup (imagecode):
 		subdirectory = 'SUP-2'
 	elif imagecode == 's3':
 		subdirectory = 'SUP-3'
+	elif imagecode == 'kickstart-npe':
+		subdirectory = 'KICKSTART-NPE'
+	elif imagecode == 'kickstart':
+		subdirectory = 'KICKSTART'
+	elif imagecode == 'system-npe':
+		subdirectory = 'SYSTEM-NPE'
+	elif imagecode == 'system':
+		subdirectory = 'SYSTEM'
+	elif imagecode == 'mica-modem':
+		subdirectory = 'NextPort-Modem-Firmware'
+	elif imagecode == 'np':
+		subdirectory = 'NextPort-Firmware'
 	else:
 		subdirectory = 'UNKNOWN'
 	return subdirectory
@@ -2212,6 +2224,8 @@ def product (prodcode):
 		prodname = 'Switches/Nexus/Nexus-7000'
 	elif prodcode == 'n7700':
 		prodname = 'Switches/Nexus/Nexus-7700'
+	elif prodcode == 'Nexus':
+		prodname = 'Switches/Nexus/'
 	elif prodcode == 'cgs2520':
 		prodname = 'Switches/Grid/CGS-2520'
 	elif prodcode == 'grwicdes':
@@ -2256,6 +2270,8 @@ def product (prodcode):
 		prodname = 'Universal-Gateway/AS-5300XM'
 	elif prodcode == 'c5350':
 		prodname = 'Universal-Gateway/AS-5350'
+	elif prodcode == 'mica-modem':
+		prodname = 'Universal-Gateway/'
 	elif prodcode == 'c5350XM':
 		prodname = 'Universal-Gateway/AS-5350XM'
 	elif prodcode == 'c5400':
@@ -2394,6 +2410,8 @@ def product (prodcode):
 		prodname = 'Wireless/Controller/Catalyst-9800'
 	elif prodcode == 'nxos':
 		prodname = 'Switches/Nexus/Nexus-9000-3000'
+	elif prodcode == 'n9000':
+		prodname = 'Switches/Nexus/Nexus-9000'
 	elif prodcode == 'nxosv':
 		prodname = 'Switches/Nexus/Nexus-9000V'
 	elif prodcode == 'cat9k':

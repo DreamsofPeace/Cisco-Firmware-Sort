@@ -2450,7 +2450,9 @@ def toplevel(filename):
 			continue
 		elif name.endswith("hash"):
 			continue
-		elif thisstring == "pdf":
+#		elif name.endswith("pdf"):
+#			continue
+		elif name.endswith("part"):
 			continue
 		
 		chars3 = name[0:3]
@@ -2474,14 +2476,21 @@ def toplevel(filename):
 		elif "tsjspgen" in name or "tpcgen" in name or "tpgen" in name or "tpcgenx" in name or "tscgen" in name or "tscgenx" in name:
 			fileprocessorpagent(name)
 
-		elif "rommon" in name or "promupgrade" in name or "governator" in name or "C7200_NPEG2_RM" in name or "c6880x_rm" in name:
+		elif(
+		"rommon" in name or 
+		"ROMMON" in name or 
+		"promupgrade" in name or 
+		"governator" in name or 
+		"C7200_NPEG2_RM" in name or 
+		"c6880x_rm" in name
+		name == "Rommon-123-8r.YH13-notes" or 
+		name == "Rommon-124-22r.YB5-notes" or 
+		name == "Rommon-151-1r.T5-notes" or 
+		name == "Rommon-150-1r.M12-notes" or 
+		name.startswith('firmwareupgrade')
+		):
 			fileprocessorrommon(name)
 
-		elif name == "Rommon-123-8r.YH13-notes" or name == "Rommon-124-22r.YB5-notes" or name == "Rommon-151-1r.T5-notes":
-			fileprocessorrommon(name)
-
-		elif name.startswith('firmwareupgrade'):
-			fileprocessorrommon(name)
 
 		elif (
 		name.startswith('n5000') or 
@@ -2491,6 +2500,9 @@ def toplevel(filename):
 		name.startswith('n9000') or 
 		name.startswith('nxosv') or 
 		name.startswith('nxos') or 
+		name.startswith('n5000_poap_script') or 
+		name.startswith('n6000_poap_script') or 
+		name.startswith('poap_ng') or 
 		name == "n3k_bios_release_rn.pdf" or 
 		splitbydash[0] == 'Nexus1000v' or 
 		splitbydot[0] == 'Nexus1000v' or 
@@ -2658,6 +2670,30 @@ def toplevel(filename):
 		 or name == 'VAE2_A_39t_B39d_24m.SSA.bin'):
 			prodname = product ('c860vae2')
 			imagecode = imagelookup ('DSLFIRMWARE')
+
+		elif (
+		name.startswith('mica-modem-pw') or 
+		name.startswith('mica-pw')
+		):
+			prodname = product ('mica-modem')
+			imagecode = imagelookup ("mica-modem")
+			filepath = prodname + '/' + imagecode
+			filemove (filepath, name)
+
+		elif (
+		name.startswith('np.0.8.11.1.spe') or 
+		name.startswith('np.0.8.11.2.spe') or 
+		name.startswith('np.6.106.spe') or 
+		name.startswith('np.6.93.spe') or 
+		name.startswith('np.7.16.spe') or 
+		name.startswith('np.7.9.spe') or 
+		name.startswith('np.8.8.1.spe') or 
+		name.startswith('np.spe')
+		):
+			prodname = product ('mica-modem')
+			imagecode = imagelookup ("np")
+			filepath = prodname + '/' + imagecode
+			filemove (filepath, name)
 
 		elif (name.startswith('adsl_alc')
 		):
