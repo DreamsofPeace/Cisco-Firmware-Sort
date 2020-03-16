@@ -8,208 +8,7 @@ from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat
 from ios_nexus import fileprocessornxos
 from ios_voice import fileprocessorvoice
-
-def asaver (version, num):
-	versionlist = list(version)
-	if num == '2':
-		version2 = versionlist[0] + '.' + versionlist[1]
-		return version2
-	elif num == '3':
-		version3 = versionlist[0] + '.' + versionlist[1] + '(' + versionlist[2] + ')'
-		return version3
-
-
-def asaclass (filename):
-	filename = filename
-
-def asaclass2 (filename):
-	product = 'ASA'
-	splitbydash = filename.split('-')
-	splitbydot = filename.split('.')
-	nametest = filename[0:4]
-	if nametest == 'asav':
-		version = filename[4:]
-		version = version[:3]
-	elif nametest == 'asa7' or nametest == 'asa8' or nametest == 'asa9':
-		version = filename[3:]
-		version = version[:3]
-	elif nametest == 'asas':
-		return 0
-
-	number = '2'
-	version2 = asaver(version, number)
-	number = '3'
-	version3 = asaver(version, number)
-	if "lfbff" in filename:
-		model = 'ASA-Firepower-Services'
-		if splitbydash[2] == 'lfbff':
-			filepath = product + '/'  + model + '/' + version2 + '/' + version3 + splitbydash[1] + '/'
-			filemove (filepath, filename)
-		elif splitbydash[1] == 'lfbff':
-			filepath = product + '/'  + model + '/' + version2 + '/' + version3 + '/'
-			filemove (filepath, filename)
-	elif "ova" in filename:
-		mylistlen = len(splitbydash)
-		if mylistlen == 1:
-			tempname = filename
-			myeditedname = tempname.rstrip('.ova')
-			filepath = product + '/' + version2 + '/' + version3 + '/'
-			filemove (filepath, filename)
-		else:
-			myeditedname = splitbydash[1].rstrip('.ova')
-			filepath = product + '/' + version2 + '/' + version3 + myeditedname + '/'
-			filemove (filepath, filename)
-	elif "qcow2" in filename:
-		mylistlen = len(splitbydash)
-		if mylistlen == 1:
-			tempname = filename
-			myeditedname = tempname.rstrip('.qcow2')
-			filepath = product + '/' + version2 + '/' + version3 + '/'
-			filemove (filepath, filename)
-		else:
-			myeditedname = splitbydash[1].rstrip('.qcow2')
-			filepath = product + '/' + version2 + '/' + version3 + myeditedname + '/'
-			filemove (filepath, filename)
-	elif "zip" in filename:
-		mylistlen = len(splitbydash)
-		if mylistlen == 1:
-			tempname = filename
-			myeditedname = tempname.rstrip('.zip')
-			filepath = product + '/' + version2 + '/' + version3 + '/'
-			filemove (filepath, filename)
-		else:
-			myeditedname = splitbydash[1].rstrip('.zip')
-			filepath = product + '/' + version2 + '/' + version3 + myeditedname + '/'
-			filemove (filepath, filename)
-	elif "vmdk" in filename:
-		mylistlen = len(splitbydash)
-		if mylistlen == 1:
-			tempname = filename
-			myeditedname = tempname.rstrip('.vmdk')
-			filepath = product + '/' + version2 + '/' + version3 + '/'
-			filemove (filepath, filename)
-		else:
-			myeditedname = splitbydash[1].rstrip('.vmdk')
-			filepath = product + '/' + version2 + '/' + version3 + myeditedname + '/'
-			filemove (filepath, filename)
-	elif "vhdx" in filename:
-		mylistlen = len(splitbydash)
-		if mylistlen == 1:
-			tempname = filename
-			myeditedname = tempname.rstrip('.vhdx')
-			filepath = product + '/' + version2 + '/' + version3 + '/'
-			filemove (filepath, filename)
-		else:
-			myeditedname = splitbydash[1].rstrip('.vhdx')
-			filepath = product + '/' + version2 + '/' + version3 + myeditedname + '/'
-			filemove (filepath, filename)
-	else:
-		mylistlen = len(splitbydash)
-		if mylistlen == 4:
-			filepath = product + '/' + version2 + '/' + version3 + splitbydash[1] + '/'
-			filemove (filepath, filename)
-		elif mylistlen == 3:
-			if splitbydash[1] == 'smp':
-				filepath = product + '/' + version2 + '/' + version3
-				filemove (filepath, filename)
-			else:
-				filepath = product + '/' + version2 + '/' + version3 + splitbydash[1]
-				filemove (filepath, filename)
-		elif mylistlen == 2:
-			filepath = product + '/' + version2 + '/' + version3
-			filemove (filepath, filename)
-
-def pix (filename):
-	product = 'PIX'
-	pixversion = list(filename)
-	pix = pixversion[3] + '.' + pixversion[4] + '(' + pixversion[5] + ')'
-	pixprimary = pixversion[3] + '.' + pixversion[4]
-	filepath = product + '/' + pixprimary + '/' + pix
-	filemove (filepath, filename)
-
-def asdmclass (filename):
-	splitbydot = filename.split('.')
-	endstring = splitbydot[0][-1]
-	if endstring == 'f':
-		product = 'Catalyst-6500-FWSM/ASDM'
-		version = name.lstrip("asdm-")
-		version = version.rstrip("f.bin")
-		version = version.rstrip("f.msi")
-		asdm = list(version)
-		
-		thiscontrol = 0
-		
-		for myasdm in asdm:
-			if thiscontrol == 0:
-				asdmversion = myasdm
-				asdmprimary = myasdm
-				thiscontrol = thiscontrol + 1
-			elif thiscontrol == 1:
-				asdmversion = asdmversion + '.' + myasdm
-				asdmprimary = asdmprimary + '.' + myasdm
-				thiscontrol = thiscontrol + 1
-			elif thiscontrol == 2:
-				asdmversion = asdmversion + '(' + myasdm + ')'
-				thiscontrol = thiscontrol + 1
-			else:
-				asdmversion = asdmversion + myasdm
-				thiscontrol = thiscontrol + 1
-		asdmversion = asdmversion + 'f'
-		filepath = product + '/' + asdmprimary + '/' + asdmversion
-		filemove (filepath, filename)
-	else:
-		product = 'ASA/ASDM'
-		version = filename.lstrip("asdm-")
-		version = version.rstrip(".bin")
-		version = version.rstrip(".msi")
-		asdm = list(version)
-		
-		thiscontrol = 0
-		
-		for myasdm in asdm:
-			if thiscontrol == 0:
-				asdmversion = myasdm
-				asdmprimary = myasdm
-				thiscontrol = thiscontrol + 1
-			elif thiscontrol == 1:
-				asdmversion = asdmversion + '.' + myasdm
-				asdmprimary = asdmprimary + '.' + myasdm
-				thiscontrol = thiscontrol + 1
-			elif thiscontrol == 2:
-				asdmversion = asdmversion + '(' + myasdm + ')'
-				thiscontrol = thiscontrol + 1
-			else:
-				asdmversion = asdmversion + myasdm
-				thiscontrol = thiscontrol + 1
-		filepath = product + '/' + asdmprimary + '/' + asdmversion
-		filemove (filepath, filename)
-
-def fwsmclass (filename):
-	product = 'Security/Firewall/Catalyst-6500-FWSM'
-	version = filename.lstrip("c6svc-fwm-k9.")
-	version = version.rstrip(".bin")
-	#fwsm = list(version)
-	fwsm = version.split("-")
-	
-	thiscontrol = 0
-	
-	for myfwsm in fwsm:
-		if thiscontrol == 0:
-			fwsmversion = myfwsm
-			fwsmprimary = myfwsm
-			thiscontrol = thiscontrol + 1
-		elif thiscontrol == 1:
-			fwsmversion = fwsmversion + '.' + myfwsm
-			fwsmprimary = fwsmprimary + '.' + myfwsm
-			thiscontrol = thiscontrol + 1
-		elif thiscontrol == 2:
-			fwsmversion = fwsmversion + '(' + myfwsm + ')'
-			thiscontrol = thiscontrol + 1
-		else:
-			fwsmversion = fwsmversion + myfwsm
-			thiscontrol = thiscontrol + 1
-	filepath = product + '/' + fwsmprimary + '/' + fwsmversion
-	filemove (filepath, filename)
+from ios_security import fileprocessorsecurity
 
 def cat6knam (filename):
 	product = 'Network-Management/Catalyst-6500-NAM'
@@ -2413,16 +2212,6 @@ def filepreprocessor (filename):
 		fileprocessoriosxr(filename)
 	elif filename.startswith("asa") or filename.startswith("hostscan") or "anyconnect" in filename:
 		fileprocessorasa(filename)
-	elif filename.startswith("n6000"):
-		fileprocessornxos(filename)
-	elif filename.startswith("n7000"):
-		fileprocessornxos(filename)
-	elif filename.startswith("n7700"):
-		fileprocessornxos(filename)
-	elif filename.startswith('n9000'):
-		fileprocessornxos(filename)
-	elif filename.startswith("nxos"):
-		fileprocessornxos(filename)
 
 def toplevel(filename):
 	src = filename
@@ -2468,21 +2257,19 @@ def toplevel(filename):
 			filepreprocessor (name)
 
 		elif name.startswith("ata"):
-			continue
-
-		elif "srec" in name:
-			fileprocessorrommon(name)
+			fileprocessorvoice(name)
 
 		elif "tsjspgen" in name or "tpcgen" in name or "tpgen" in name or "tpcgenx" in name or "tscgen" in name or "tscgenx" in name:
 			fileprocessorpagent(name)
 
 		elif(
+		"srec" in name or 
 		"rommon" in name or 
 		"ROMMON" in name or 
 		"promupgrade" in name or 
 		"governator" in name or 
 		"C7200_NPEG2_RM" in name or 
-		"c6880x_rm" in name
+		"c6880x_rm" in name or 
 		name == "Rommon-123-8r.YH13-notes" or 
 		name == "Rommon-124-22r.YB5-notes" or 
 		name == "Rommon-151-1r.T5-notes" or 
@@ -2491,8 +2278,10 @@ def toplevel(filename):
 		):
 			fileprocessorrommon(name)
 
-
 		elif (
+		name.startswith('n3000') or 
+		name.startswith('n3500') or 
+		name.startswith('n4000') or 
 		name.startswith('n5000') or 
 		name.startswith('n6000') or 
 		name.startswith('n7000') or 
@@ -2503,13 +2292,13 @@ def toplevel(filename):
 		name.startswith('n5000_poap_script') or 
 		name.startswith('n6000_poap_script') or 
 		name.startswith('poap_ng') or 
-		name == "n3k_bios_release_rn.pdf" or 
-		splitbydash[0] == 'Nexus1000v' or 
-		splitbydot[0] == 'Nexus1000v' or 
-		splitbydot[0] == 'Nexus1000V' or 
-		splitbydot[0] == 'Nexus1000V5' or 
-		splitbydot[0] == 'n1000vh-dk9' or 
-		splitbydot[0] == 'nexus-1000v'
+		name.startswith('Nexus1000v') or 
+		name.startswith('Nexus1000v') or 
+		name.startswith('Nexus1000V') or 
+		name.startswith('Nexus1000V5') or 
+		name.startswith('n1000vh-dk9') or 
+		name.startswith('nexus-1000v') or 
+		name == "n3k_bios_release_rn.pdf"
 		):
 			fileprocessornxos(name)
 
@@ -2702,11 +2491,19 @@ def toplevel(filename):
 			filepath = prodname + '/' + imagecode
 			filemove (filepath, name)
 
-		elif (name.startswith('Sourcefire_Rule_Update') or
+		elif (
+		name.startswith('Sourcefire_Rule_Update') or
 		name.startswith('Sourcefire_VDB') or
-		name.startswith('Sourcefire_Geodb')
+		name.startswith('Sourcefire_Geodb') or 
+		name.startswith('Cisco_FTD') or 
+		name.startswith('Cisco_Firepower_Threat') or 
+		name.startswith('Cisco_Network_Sensor') or 
+		splitbydash[0] == 'firepower' or 
+		splitbydash[0] == 'fxos' or 
+		splitbydash[0] == 'ftd'
 		):
 			fileprocessorfirepower(name)
+
 
 		elif name == "ssd_c400_upgrade_6.1.2.I2.2a.tar":
 			fileprocessornxos(name)
@@ -2861,6 +2658,8 @@ def toplevel(filename):
 			imagecode = imagelookup (splitbydash[1])
 			standardios (name, prodname, imagecode)
 
+		elif splitbydot[0] == 'c6svc-fwm-k9':
+			fileprocessorsecurity(name)
 
 
 
@@ -2913,8 +2712,6 @@ def toplevel(filename):
 		elif chars7 == 'vpn3000' or chars7 == 'vpn3002' or chars7 == 'vpn3005':
 			vpn3000(name)
 
-		elif chars9 == 'c6svc-fwm':
-			fwsmclass(name)
 
 		elif splitbydot[0] == 'c6svc-nam':
 			cat6knam(name)
@@ -3181,9 +2978,6 @@ def toplevel(filename):
 			prodname = product (splitbydash[0])
 			standardios (name, prodname, imagecode)
 
-		elif splitbydash[0] == 'firepower' or splitbydash[0] == 'fxos':
-			firepower (name)
-
 		elif splitbydash[0] == 'UTD' and splitbydash[1] == 'STD' and splitbydash[2] == 'SIGNATURE':
 			ios_xe_signature (name)
 
@@ -3199,8 +2993,6 @@ def toplevel(filename):
 		elif splitbydash[0] == 'ASR9000' or splitbydash[0] == 'ASR9K' or splitbydash[0] == 'asr9k':
 			asr9k (name)
 
-		elif name.startswith('Cisco_FTD') or name.startswith('Cisco_Firepower_Threat') or name.startswith('Cisco_Network_Sensor') or splitbydash[0] == 'ftd':
-			firepowerftd (name)
 		else:
 			imagecode = imagelookup (splitbydash[1])
 			prodname = product (splitbydash[0])

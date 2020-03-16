@@ -2432,8 +2432,6 @@ def product (prodcode):
 		prodname = "Routers/Virtual/IOS-XRv9000"
 	elif prodcode == 'asr9k':
 		prodname = "Routers/ASR/ASR9K"
-	elif prodcode == 'firepower':
-		prodname = "Security/Firepower"
 	elif prodcode == 'ipp3905':
 		prodname = "Voice/IP-Phones/3905"
 	elif prodcode == 'ipp7911_7906':
@@ -2460,6 +2458,14 @@ def product (prodcode):
 		prodname = "Voice/IP-Phones/7970_7971"
 	elif prodcode == 'ipp7975':
 		prodname = "Voice/IP-Phones/7975"
+	elif prodcode == 'firepower':
+		prodname = "Security/Firewall-NG/Firepower"
+	elif prodcode == 'asa':
+		prodname = "Security/Firewall/ASA"
+	elif prodcode == 'c6svc-fwm':
+		prodname = "Security/Firewall/Catalyst-6500-FWSM"
+	elif prodcode == 'pix':
+		prodname = "Security/Firewall/PIX"
 	else:
 		prodname = 'UNKNOWN'
 	return prodname
