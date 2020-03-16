@@ -1621,6 +1621,12 @@ def imagelookup (imagecode):
 		subdirectory = 'GeoDB-SRU-VDB/VDB'
 	elif imagecode == 'sfgeodb':
 		subdirectory = 'GeoDB-SRU-VDB/Geodb'
+	elif imagecode == 'csfrules':
+		subdirectory = 'GeoDB-SRU-VDB/Rules-6.4-AND-LATER'
+	elif imagecode == 'csfvdb':
+		subdirectory = 'GeoDB-SRU-VDB/VDB-6.4-AND-LATER'
+	elif imagecode == 'csfgeodb':
+		subdirectory = 'GeoDB-SRU-VDB/Geodb-6.4-AND-LATER'
 	elif imagecode == 'cpld_update':
 		subdirectory = 'CPLD-UPDATE'
 	elif imagecode == 'analogmodem':
@@ -2459,13 +2465,15 @@ def product (prodcode):
 	elif prodcode == 'ipp7975':
 		prodname = "Voice/IP-Phones/7975"
 	elif prodcode == 'firepower':
-		prodname = "Security/Firewall-NG/Firepower"
+		prodname = "Security/Firewall-NG/FirePOWER"
 	elif prodcode == 'asa':
 		prodname = "Security/Firewall/ASA"
 	elif prodcode == 'c6svc-fwm':
 		prodname = "Security/Firewall/Catalyst-6500-FWSM"
 	elif prodcode == 'pix':
 		prodname = "Security/Firewall/PIX"
+	elif prodcode == 'asdm':
+		prodname = 'ADAPTIVE-SECURITY-DEVICE-MANAGER'
 	else:
 		prodname = 'UNKNOWN'
 	return prodname

@@ -2004,60 +2004,6 @@ def aci (filename):
 		filepath = product + '/NEXUS-9000-ACI-MODE/'  + '/' + versiontwo + '/' + versionthree
 		filemove (filepath, filename)
 
-def firepowerftd (filename):
-	prodname = product('firepower')
-	filepath = prodname
-	filemove (filepath, filename)
-
-def firepower (filename):
-	prodname = product('firepower')
-	splitbydot = name.split('.')
-	splitbydash = name.split('-')
-	splitbydash0 = splitbydot[0].split('-')
-	if splitbydash0[0] == 'firepower':
-		if splitbydash0[1] == 'mibs':
-			imagecode = "MIBS"
-			iosmain = splitbydot[1] + '.' + splitbydot[2]
-			iosfull = splitbydot[1] + '.' + splitbydot[2] + '.' + splitbydot[3] + '.' + splitbydot[4]
-			filepath = prodname + '/' + imagecode + '/' + iosmain + '/' + iosfull
-			filemove (filepath, filename)
-	elif splitbydash0[0] == 'fxos':
-		if splitbydash0[1] == 'mibs' and splitbydash0[2] == 'fp9k' and splitbydash0[3] == 'fp4k':
-			imagecode = "MIBS-9K-4K"
-			iosmain = splitbydot[1] + '.' + splitbydot[2]
-			iosfull = splitbydot[1] + '.' + splitbydot[2] + '.' + splitbydot[3] + '.' + splitbydot[4]
-			filepath = prodname + '/' + imagecode + '/' + iosmain + '/' + iosfull
-			filemove (filepath, filename)
-		elif len(splitbydash0) >= 3:
-			if splitbydash0[2] == 'fpr4k' and splitbydash0[3] == 'firmware':
-				imagecode = "FIRMWARE-4K"
-				iosfull = splitbydot[1] + '.' + splitbydot[2] + '.' + splitbydot[3]
-				filepath = prodname + '/' + imagecode + '/' + iosfull
-				filemove (filepath, filename)
-			elif splitbydash0[1] == 'k9' and splitbydash0[2] == 'manager':
-				imagecode = "SYSTEM/MANAGER"
-				iosmain = splitbydot[1] + '.' + splitbydot[2]
-				iosfull = splitbydot[1] + '.' + splitbydot[2] + '.' + splitbydot[3] + '.' + splitbydot[4]
-				filepath = prodname + '/' + imagecode + '/' + iosmain + '/' + iosfull
-				filemove (filepath, filename)
-			elif splitbydash0[1] == 'k9' and splitbydash0[2] == 'system':
-				imagecode = "SYSTEM/SYSTEM"
-				iosmain = splitbydot[1] + '.' + splitbydot[2]
-				iosfull = splitbydot[1] + '.' + splitbydot[2] + '.' + splitbydot[3] + '.' + splitbydot[4]
-				filepath = prodname + '/' + imagecode + '/' + iosmain + '/' + iosfull
-				filemove (filepath, filename)
-			elif splitbydash0[1] == 'k9' and splitbydash0[2] == 'kickstart':
-				imagecode = "SYSTEM/KICKSTART"
-				iosmain = splitbydot[1] + '.' + splitbydot[2]
-				iosfull = splitbydot[1] + '.' + splitbydot[2] + '.' + splitbydot[3] + '.' + splitbydot[4]
-				filepath = prodname + '/' + imagecode + '/' + iosmain + '/' + iosfull
-				filemove (filepath, filename)
-		elif splitbydash0[1]:
-			imagecode = "IMAGE"
-			iosmain = splitbydot[1] + '.' + splitbydot[2]
-			iosfull = splitbydot[1] + '.' + splitbydot[2] + '.' + splitbydot[3] + '.' + splitbydot[4]
-			filepath = prodname + '/' + imagecode + '/' + iosmain + '/' + iosfull
-			filemove (filepath, filename)
 
 def cat9k (filename):
 ####	if filename.startswith('cat9k_iosxeldpe'):
@@ -2138,34 +2084,6 @@ def iosxethreedigit (filename,prodname,imagecode):
 		filepath = filepath4(prodname,'SMU',iosfull,splitbydot[4])
 		filemove (filepath, filename)
 
-def fileprocessorfpvdb (filename):
-	splitbydash = filename.split('-')
-	prodname = product ('firepower')
-	imagecode = imagelookup('sfvdb')
-	splitbydash[2] = splitbydash[2].replace(".sh", "")
-	ver = util2digit (splitbydash[1],splitbydash[2])
-	#Intended File Format (Product, Image Path, Year, Version
-	filepath = filepath4 (prodname,imagecode,splitbydash[1],ver)
-	filemove (filepath, filename)
-
-def fileprocessorfprules (filename):
-	splitbydash = filename.split('-')
-	prodname = product ('firepower')
-	imagecode = imagelookup('sfrules')
-	ver = util4digit (splitbydash[1],splitbydash[2],splitbydash[3],splitbydash[4])
-	#Intended File Format (Product, Image Path, Year, Version
-	filepath = filepath4 (prodname,imagecode,splitbydash[1],ver)
-	filemove (filepath, filename)
-
-def fileprocessorfpgeodb (filename):
-	splitbydash = filename.split('-')
-	splitbydash[4] = splitbydash[4].replace(".sh", "")
-	prodname = product ('firepower')
-	imagecode = imagelookup('sfgeodb')
-	ver = util4digit (splitbydash[1],splitbydash[2],splitbydash[3],splitbydash[4])
-	#Intended File Format (Product, Image Path, Year, Version
-	filepath = filepath4 (prodname,imagecode,splitbydash[1],ver)
-	filemove (filepath, filename)
 
 def scriptusage ():
 	print ("-h: This Help Messagen")
@@ -2492,17 +2410,20 @@ def toplevel(filename):
 			filemove (filepath, name)
 
 		elif (
+		name.startswith('Cisco_Firepower_SRU') or
+		name.startswith('Cisco_VDB_Fingerprint_Database') or
+		name.startswith('Cisco_Firepower_GEODB') or 
 		name.startswith('Sourcefire_Rule_Update') or
 		name.startswith('Sourcefire_VDB') or
 		name.startswith('Sourcefire_Geodb') or 
 		name.startswith('Cisco_FTD') or 
 		name.startswith('Cisco_Firepower_Threat') or 
 		name.startswith('Cisco_Network_Sensor') or 
-		splitbydash[0] == 'firepower' or 
-		splitbydash[0] == 'fxos' or 
-		splitbydash[0] == 'ftd'
+		name.startswith('firepower') or 
+		name.startswith('fxos') or 
+		name.startswith('ftd')
 		):
-			fileprocessorfirepower(name)
+			fileprocessorsecurity(name)
 
 
 		elif name == "ssd_c400_upgrade_6.1.2.I2.2a.tar":
@@ -2661,6 +2582,12 @@ def toplevel(filename):
 		elif splitbydot[0] == 'c6svc-fwm-k9':
 			fileprocessorsecurity(name)
 
+		elif name.startswith('asdm'):
+			fileprocessorsecurity(name)
+
+		elif name.startswith('pix') or name.startswith('PIX'):
+			fileprocessorsecurity(name)
+
 
 
 
@@ -2694,12 +2621,6 @@ def toplevel(filename):
 
 		elif chars9 == 'Cisco_ACI':
 			aci(name)
-
-		elif chars3 == 'pix' or chars3 == 'PIX':
-			pix(name)
-
-		elif chars4 == 'asdm':
-			asdmclass(name)
 
 		elif chars5 == 'm9100':
 			m9100class(name)
