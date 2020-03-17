@@ -1,14 +1,13 @@
 import os, shutil, sys, re, getopt
-#Functions (product,imagelookup,iostrain,filemove)
-#import product,imagelookup,iostrain,filemove from iosutils
-#import iosutils
 from iosutils import product,imagelookup,iostrain
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat
+from iosutils import fileprocessorpagent,fileprocessorrommon
 from ios_nexus import fileprocessornxos
 from ios_voice import fileprocessorvoice
 from ios_security import fileprocessorsecurity
+from ios_iosxe import fileprocessor_iosxe
 
 def cat6knam (filename):
 	product = 'Network-Management/Catalyst-6500-NAM'
@@ -39,260 +38,6 @@ def vpn3000 (filename):
 	fullver = first[8] + '.' + array[1] + '(' + array[2] + ')' + second[0]
 	filepath = product + '/' + mainver + '/' + fullver
 	filemove (filepath, filename)
-
-def anyconnect (filename):
-	product = 'VPN AnyConnect Client'
-	splitbydot = filename.split('.')
-	splitbydash = filename.split('-')
-	if splitbydash[1] == 'EnableFIPS' and splitbydash[2] == 'win':
-		imagecode = 'FIPS'
-		supcode = 'WINDOWS'
-		thissplit = splitbydash[3].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-		filemove (filepath, filename)
-	elif splitbydash[1] == 'dart' and splitbydash[2] == 'win':
-		imagecode = 'DART'
-		supcode = 'WINDOWS'
-		thissplit = splitbydash[3].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-		filemove (filepath, filename)
-	elif splitbydash[1] == 'gina' and splitbydash[2] == 'win':
-		if splitbydash[4] == 'web' and splitbydash[5] == 'deploy':
-			imagecode = 'GINA-WEB-DEPLOY'
-		elif splitbydash[4] == 'PRE' and splitbydash[5] == 'deploy':
-			imagecode = 'GINA-PRE-DEPLOY'
-		else:
-			imagecode = 'GINA'
-		supcode = 'WINDOWS'
-		thissplit = splitbydash[3].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-		filemove (filepath, filename)
-	elif splitbydash[1] == 'Linux_64':
-		imagecode = 'CLIENT'
-		supcode = 'LINUX 64'
-		thissplit = splitbydash[2].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-		filemove (filepath, filename)
-	elif splitbydash[1] == 'linux' and splitbydash[2] == '64':
-		imagecode = 'CLIENT'
-		supcode = 'LINUX 64'
-		thissplit = splitbydash[3].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-		filemove (filepath, filename)
-	elif splitbydash[1] == 'predeploy' and splitbydash[2] == 'linux' and splitbydash[3] == '64':
-		imagecode = 'PRE-DEPLOY'
-		supcode = 'LINUX 64'
-		thissplit = splitbydash[4].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-		filemove (filepath, filename)
-	elif splitbydash[1] == 'predeploy' and splitbydash[2] == 'linux':
-		imagecode = 'PRE-DEPLOY'
-		supcode = 'LINUX'
-		thissplit = splitbydash[3].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-		filemove (filepath, filename)
-	elif splitbydash[1] == 'linux':
-		supcode = 'LINUX'
-		if splitbydash[3] == 'EnableFIPS.tar.gz':
-			imagecode = 'FIPS'
-		elif splitbydash[3] == 'vpnapi.tar.gz':
-			imagecode = 'VPN-API'
-		else:
-			imagecode = 'CLIENT'
-		thissplit = splitbydash[2].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-		filemove (filepath, filename)
-
-	elif splitbydash[3] == 'compliance' and splitbydash[1] == 'macosx':
-		imagecode = 'ISE COMPLIANCE'
-		supcode = 'MAC OS-X I386'
-		thissplit = splitbydash[4].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/'  + imagecode + '/' + mainver + '/' + fullver + '/'  + supcode
-		filemove (filepath, filename)
-		
-
-	elif splitbydash[1] == 'isecompliance' and splitbydash[2] == 'macosx':
-		imagecode = 'ISE COMPLIANCE'
-		supcode = 'MAC OS-X I386'
-		thissplit = splitbydash[3].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/'  + imagecode + '/' + mainver + '/' + fullver + '/'  + supcode
-		filemove (filepath, filename)
-		
-
-	elif splitbydash[2] == 'compliance' and splitbydash[1] == 'win':
-		imagecode = 'ISE COMPLIANCE'
-		supcode = 'WINDOWS'
-		thissplit = splitbydash[3].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/'  + imagecode + '/' + mainver + '/' + fullver + '/'  + supcode
-		filemove (filepath, filename)
-		
-	elif splitbydash[1] == 'macosx' and splitbydash[2] == 'i386':
-		supcode = 'MAC OS-X I386'
-		if splitbydash[4] == 'EnableFIPS.tar.gz':
-			imagecode = 'FIPS'
-		elif splitbydash[4] == 'vpnapi.tar.gz':
-			imagecode = 'VPN-API'
-		else:
-			imagecode = 'CLIENT'
-		thissplit = splitbydash[3].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-		filemove (filepath, filename)
-	elif splitbydash[1] == 'macosx' and splitbydash[2] == 'powerpc':
-		supcode = 'MAC OS-X POWERPC'
-		if splitbydash[3] == 'EnableFIPS.tar.gz':
-			imagecode = 'FIPS'
-		elif splitbydash[3] == 'vpnapi.tar.gz':
-			imagecode = 'VPN-API'
-		else:
-			imagecode = 'CLIENT'
-		thissplit = splitbydash[3].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-		filemove (filepath, filename)
-	elif splitbydash[1] == 'wince':
-		if splitbydash[3] == 'activesync':
-			supcode = 'WINDOWS-CE'
-			imagecode = 'CLIENT - ACTIVESYNC'
-			thissplit = splitbydash[4].split('.')
-			mainver = thissplit[0] + '.' + thissplit[1]
-			fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-			filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-			filemove (filepath, filename)
-		else:
-			supcode = 'WINDOWS-CE'
-			imagecode = 'CLIENT'
-			thissplit = splitbydash[3].split('.')
-			mainver = thissplit[0] + '.' + thissplit[1]
-			fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-			filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-			filemove (filepath, filename)
-	elif splitbydash[1] == 'win' and splitbydash[2] == 'vpnapi':
-		supcode = 'WINDOWS'
-		imagecode = 'VPN-API'
-		thissplit = splitbydash[3].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-		filemove (filepath, filename)
-	elif splitbydash[1] == 'win':
-		supcode = 'WINDOWS'
-		if splitbydash[3] == 'web' and splitbydash[4] == 'deploy':
-			imagecode = 'CLIENT-WEB-DEPLOY'
-		elif splitbydash[3] == 'pre' and splitbydash[4] == 'deploy':
-			imagecode = 'CLIENT-PRE-DEPLOY'
-		else:
-			imagecode = 'CLIENT'
-		thissplit = splitbydash[2].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-		filemove (filepath, filename)
-
-	elif splitbydash[1] == 'isecompliance' and splitbydash[2] == 'win':
-		imagecode = 'ISE COMPLIANCE'
-		supcode = 'WINDOWS'
-		thissplit = splitbydash[3].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/'  + imagecode + '/' + mainver + '/' + fullver + '/'  + supcode
-		filemove (filepath, filename)
-			
-	elif splitbydash[1] == 'iseposture':
-		imagecode = 'ISE POSTURE'
-		if splitbydash[2] == 'macosx':
-			supcode = 'MAC OS-X I386'
-		elif splitbydash[2] == 'win':
-			supcode = 'WINDOWS'
-		thissplit = splitbydash[3].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-		filemove (filepath, filename)
-			
-	elif splitbydash[1] == 'profileeditor':
-		imagecode = 'PROFILE EDITOR'
-		if splitbydash[2] == 'macosx':
-			supcode = 'MAC OS-X I386'
-		elif splitbydash[2] == 'win':
-			supcode = 'WINDOWS'
-		thissplit = splitbydash[3].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-		filemove (filepath, filename)
-			
-	elif splitbydash[1] == 'websecurity':
-		imagecode = 'PROFILE EDITOR'
-		if splitbydash[2] == 'macosx':
-			supcode = 'MAC OS-X I386'
-		elif splitbydash[2] == 'win':
-			supcode = 'WINDOWS'
-		thissplit = splitbydash[3].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-		filemove (filepath, filename)
-			
-	elif splitbydash[1] == 'amp':
-		imagecode = 'AMP ENABLER'
-		if splitbydash[2] == 'macosx':
-			supcode = 'MAC OS-X I386'
-		elif splitbydash[2] == 'win':
-			supcode = 'WINDOWS'
-		thissplit = splitbydash[3].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-		filemove (filepath, filename)
-			
-	elif splitbydash[1] == 'posture':
-		imagecode = 'ISE POSTURE'
-		if splitbydash[2] == 'macosx':
-			supcode = 'MAC OS-X I386'
-		elif splitbydash[2] == 'win':
-			supcode = 'WINDOWS'
-		thissplit = splitbydash[3].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-		filemove (filepath, filename)
-		
-	elif splitbydash[1] == 'nam':
-		imagecode = 'NETWORK ACCESS MODULE'
-		if splitbydash[2] == 'macosx':
-			supcode = 'MAC OS-X I386'
-		elif splitbydash[2] == 'win':
-			supcode = 'WINDOWS'
-		thissplit = splitbydash[3].split('.')
-		mainver = thissplit[0] + '.' + thissplit[1]
-		fullver = thissplit[0] + '.' + thissplit[1] + '.' + thissplit[2]
-		filepath = product + '/' + mainver + '/' + fullver + '/'  + supcode + '/'  + imagecode
-		filemove (filepath, filename)
 
 def csd (filename):
 	chars = name[0:4]
@@ -2004,132 +1749,10 @@ def aci (filename):
 		filepath = product + '/NEXUS-9000-ACI-MODE/'  + '/' + versiontwo + '/' + versionthree
 		filemove (filepath, filename)
 
-
-def cat9k (filename):
-####	if filename.startswith('cat9k_iosxeldpe'):
-####		imagecode = imagelookup ('cat9k_iosxeldpe')
-####		print (imagecode, end="\n")
-####		iosxethreedigit(filename,prodname,imagecode)
-####	elif filename.startswith('cat9k_iosxe'):
-####		imagecode = imagelookup ('cat9k_iosxe')
-####		print (imagecode, end="\n")
-####		iosxethreedigit(filename,prodname,imagecode)
-####	elif filename.startswith('cat9k_iosxe_npe'):
-####		imagecode = imagelookup ('cat9k_iosxe_npe')
-####		print (imagecode, end="\n")
-####		iosxethreedigit(filename,prodname,imagecode)
-####	elif filename.startswith('cat9k_lite_iosxe'):
-####		imagecode = imagelookup ('cat9k_lite_iosxe')
-####		print (imagecode, end="\n")
-####		iosxethreedigit(filename,prodname,imagecode)
-####	elif filename.startswith('cat9k_lite_iosxe_npe'):
-####		imagecode = imagelookup ('cat9k_lite_iosxe_npe')
-####		print (imagecode, end="\n")
-	splitbydot = filename.split('.')
-	prodname = product ('cat9k')
-	imagecode = imagelookup (splitbydot[0])
-	iosxethreedigit(filename,prodname,imagecode)
-
-def iosxeclassification (filename,prodname,imagecode):
-	splitbydot = filename.split('.')
-	if prodname == 'UNKNOWN':
-		messageunknowndev()
-	elif imagecode == 'UNKNOWN':
-		messageunknownfeat()
-	else:
-		if splitbydot[1] == '03':
-			iosxevthree(filename,prodname,imagecode)
-		elif splitbydot[1] == '17':
-			iosxethreedigit(filename,prodname,imagecode)
-		elif splitbydot[1] == '16':
-			iosxethreedigit(filename,prodname,imagecode)
-		else:
-			iosxevthree(filename,prodname,imagecode)
-
-def iosxevthree (filename,prodname,imagecode):
-	splitbydot = filename.split('.')
-	if splitbydot[1] == '02':
-		iosmain = splitbydot[1] + '.' + splitbydot[2]
-		iosfull = splitbydot[1] + '.' + splitbydot[2] + '.' + splitbydot[3]
-		filepath = prodname + '/' + iosmain + '/' + iosfull + '/' + imagecode
-		filemove (filepath, filename)
-	elif (splitbydot[7] == 'pkg' or 
-	 splitbydot[7] == 'bin'):
-		iosmain = splitbydot[1] + '.' + splitbydot[2]
-		iosfull = splitbydot[1] + '.' + splitbydot[2] + '.' + splitbydot[3]
-		filepath = prodname + '/' + iosmain + '/' + iosfull + '/' + imagecode
-		filemove (filepath, filename)
-
-def iosxethreedigit (filename,prodname,imagecode):
-	splitbydot = filename.split('.')
-	splitbydot[3] = splitbydot[3].replace("-serial", "")
-	splitbydot[3] = splitbydot[3].replace("-nfvis", "")
-	splitbydot[3] = splitbydot[3].replace("-esxi", "")
-	splitbydot[3] = splitbydot[3].replace("-kvm", "")
-	#Checks to make sure that it is a regular firmware image, not a SMU
-	if splitbydot[4] == 'SPA' or splitbydot[4] == 'run' or splitbydot[4] == 'iso' or splitbydot[4] == 'ova' or splitbydot[4] == 'qcow2' or splitbydot[4] == 'tar':
-	#	iosmain = splitbydot[1] + '.' + splitbydot[2]
-	#	iosfull = splitbydot[1] + '.' + splitbydot[2] + '.' + splitbydot[3]
-	#	filepath = prodname + '/' + iosmain + '/' + iosfull + '/' + imagecode
-		iosmain = util2digit(splitbydot[1],splitbydot[2])
-		iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
-		filepath = filepath4(prodname,iosmain,iosfull,imagecode)
-		filemove (filepath, filename)
-	elif splitbydot[4].startswith('CSC') and splitbydot[6]  == 'smu':
-		#iosmain = splitbydot[1] + '.' + splitbydot[2]
-		#iosfull = splitbydot[1] + '.' + splitbydot[2] + '.' + splitbydot[3]
-#		filepath = prodname + '/' + 'SMU' + '/' + iosfull + '/' + splitbydot[4]
-#		iosmain = util2digit(splitbydot[1],splitbydot[2])
-		iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
-		filepath = filepath4(prodname,'SMU',iosfull,splitbydot[4])
-		filemove (filepath, filename)
-
-
 def scriptusage ():
 	print ("-h: This Help Messagen")
 	print ("-d: Directory\n")
 	print ("-h: Compute MD5 hash\n")
-
-#def fileprocessorios (filename):
-
-#def fileprocessoriosxe (filename):
-
-#def fileprocessoriosxr (filename):
-
-def fileprocessorasa (filename):
-	if filename == 'anyconnect_app_selector_2.0.zip':
-		filepath = 'ASA/APP-SELECTOR/2.0/'
-		filemove (filepath, filename)
-	elif filename.startswith("hostscan"):
-		filepath = 'ASA/Hostscan/'
-		filemove (filepath, filename)
-	else:
-		filepath = 'ASA/'
-		filemove (filepath, filename)
-
-def fileprocessorfirepower (filename):
-	if filename.startswith('Sourcefire_Rule'):
-		fileprocessorfprules (filename)
-	elif filename.startswith('Sourcefire_VDB'):
-		fileprocessorfpvdb (filename)
-	elif filename.startswith('Sourcefire_Geodb'):
-		fileprocessorfpgeodb (filename)
-
-#def fileprocessorwireless (filename):
-
-def fileprocessorrommon (filename):
-	filepath = "ROMMON/"
-	filemove (filepath, filename)
-
-def fileprocessorpagent (filename):
-	filepath = "Routers/PAGENT/"
-	filemove (filepath, filename)
-
-def filepreprocessor (filename):
-	if filename.startswith("iosxrv") or filename.startswith("fullk9"):
-		fileprocessoriosxr(filename)
-	elif filename.startswith("asa") or filename.startswith("hostscan") or "anyconnect" in filename:
-		fileprocessorasa(filename)
 
 def toplevel(filename):
 	src = filename
@@ -2171,10 +1794,8 @@ def toplevel(filename):
 		chars9 = name[0:9]
 		chars10 = name[0:10]
 		
-		if name.startswith("asa") or name.startswith("hostscan") or "anyconnect" in name:
-			filepreprocessor (name)
 
-		elif name.startswith("ata"):
+		if name.startswith("ata"):
 			fileprocessorvoice(name)
 
 		elif "tsjspgen" in name or "tpcgen" in name or "tpgen" in name or "tpcgenx" in name or "tscgen" in name or "tscgenx" in name:
@@ -2265,12 +1886,6 @@ def toplevel(filename):
 
 		elif name.startswith('DNAC') or name.startswith('dnac'):
 			imagecode = product ('dnac')
-			filepath = prodname + '/' + imagecode
-			filemove (filepath, name)
-
-		elif name == "cat9k_iosxe.16.00.00fpgautility.SPA.bin":
-			prodname = product ('cat9k')
-			imagecode = "Hardware"
 			filepath = prodname + '/' + imagecode
 			filemove (filepath, name)
 
@@ -2495,22 +2110,22 @@ def toplevel(filename):
 		elif name.startswith('ess3x00'):
 			prodname = product (splitbydash[0])
 			imagecode = imagelookup (splitbydashsub[1])
-			iosxeclassification (name, prodname, imagecode)
+			fileprocessor_iosxe (name, prodname, imagecode)
 
 		elif name.startswith('cat3k_caa') and splitbydot[1] =='16':
 			prodname = product (splitbydash[0])
 			imagecode = imagelookup (splitbydashsub[1])
-			iosxeclassification (name, prodname, imagecode)
+			fileprocessor_iosxe (name, prodname, imagecode)
 
 		elif name.startswith('s5800'):
 			prodname = product (splitbydash[0])
 			imagecode = imagelookup (splitbydashsub[1])
-			iosxeclassification (name, prodname, imagecode)
+			fileprocessor_iosxe (name, prodname, imagecode)
 
 		elif name.startswith('vg400') or name.startswith('vg450'):
 			prodname = product (splitbydash[0])
 			imagecode = imagelookup (splitbydashsub[1])
-			iosxeclassification (name, prodname, imagecode)
+			fileprocessor_iosxe (name, prodname, imagecode)
 
 		elif splitbydot[0] == 'C9800-40-universalk9_wlc' or splitbydot[0] == 'C9800-80-universalk9_wlc' or splitbydot[0] == 'C9800-80-universalk9_wlc' or splitbydot[0] == 'C9800-CL-universalk9':
 			prodname = product (splitbydash[0])
@@ -2532,89 +2147,93 @@ def toplevel(filename):
 				if imagecode == 'UNKNOWN':
 					messageunknownfeat()
 				else:
-					iosxeclassification (name, prodname, imagecode)
+					fileprocessor_iosxe (name, prodname, imagecode)
 
-		elif (splitbydash[0] == 'asr1000' or 
-		 splitbydash[0] == 'asr1001' or 
-		 splitbydash[0] == 'asr1001x' or 
-		 splitbydash[0] == 'asr1002' or 
-		 splitbydash[0] == 'asr1002x' or 
-		 splitbydash[0] == 'asr1000rp1' or 
-		 splitbydash[0] == 'asr1000rp2' or 
-		 splitbydash[0] == 'asr1000rpx86' or 
-		 splitbydash[0] == 'asr900rsp1' or 
-		 splitbydash[0] == 'asr900rsp2' or 
-#		 splitbydash[0] == 'asr901' or 
-		 splitbydash[0] == 'asr901sec' or 
-		 splitbydash[0] == 'asr901rsp1' or 
-		 splitbydash[0] == 'asr901rsp2' or 
-		 splitbydash[0] == 'asr903rsp1' or 
-		 splitbydash[0] == 'asr903rsp2' or 
-		 splitbydash[0] == 'asr903rsp2' or 
-		 splitbydash[0] == 'asr920' or 
-		 splitbydash[0] == 'csr1000v' or 
-		 splitbydash[0] == 'csr1000v_milplr' or 
-		 splitbydash[0] == 'ie3x00' or 
-		 splitbydash[0] == 'isr4400' or 
-		 splitbydash[0] == 'isr4300' or 
-		 splitbydash[0] == 'isr4200' or 
-		 splitbydash[0] == 'ir1101' or 
-		 splitbydash[0] == 'isr4400v2'):
-			prodname = product (splitbydash[0])
-			imagecode = imagelookup (splitbydashsub[1])
-			iosxeclassification (name, prodname, imagecode)
+		elif (
+		splitbydash[0] == 'asr1000' or 
+		splitbydash[0] == 'asr1001' or 
+		splitbydash[0] == 'asr1001x' or 
+		splitbydash[0] == 'asr1002' or 
+		splitbydash[0] == 'asr1002x' or 
+		splitbydash[0] == 'asr1000rp1' or 
+		splitbydash[0] == 'asr1000rp2' or 
+		splitbydash[0] == 'asr1000rpx86' or 
+		splitbydash[0] == 'asr900rsp1' or 
+		splitbydash[0] == 'asr900rsp2' or 
+#		splitbydash[0] == 'asr901' or 
+		splitbydash[0] == 'asr901sec' or 
+		splitbydash[0] == 'asr901rsp1' or 
+		splitbydash[0] == 'asr901rsp2' or 
+		splitbydash[0] == 'asr903rsp1' or 
+		splitbydash[0] == 'asr903rsp2' or 
+		splitbydash[0] == 'asr903rsp2' or 
+		splitbydash[0] == 'asr920' or 
+		splitbydash[0] == 'csr1000v' or 
+		splitbydash[0] == 'csr1000v_milplr' or 
+		splitbydash[0] == 'ie3x00' or 
+		splitbydash[0] == 'isr4400' or 
+		splitbydash[0] == 'isr4300' or 
+		splitbydash[0] == 'isr4200' or 
+		splitbydash[0] == 'ir1101' or 
+		splitbydash[0] == 'isr4400v2' or 
+		splitbydot[0] == 'c1100-universalk9_ias' or 
+		splitbydot[0] == 'c1100-universalk9_ias_npe' or 
+		splitbydot[0] == 'c1100-ucmk9' or 
+		splitbydot[0] == 'c1100-universalk9' or 
+		splitbydot[0] == 'c1100-universalk9_npe' or 
+		name.startswith('cat9k')
+		):
+			fileprocessor_iosxe(name)
 
-		elif (splitbydot[0] == 'c1100-universalk9_ias' or 
-		 splitbydot[0] == 'c1100-universalk9_ias_npe' or 
-		 splitbydot[0] == 'c1100-ucmk9' or 
-		 splitbydot[0] == 'c1100-universalk9' or 
-		 splitbydot[0] == 'c1100-universalk9_npe'):
-			prodname = product ('c1100router')
-			mydash = splitbydot[0].split('-')
-			imagecode = imagelookup (mydash[1])
-			iosxeclassification (name, prodname, imagecode)
+		elif (
+		splitbydash[0] == 'anyconnect' or 
+		name.startswith("hostscan") or
+		name.startswith("thirdparty") or 
+		name.startswith("tools-anyconnect") or 
+		name.startswith("sampleTransforms") or 
+		name.startswith('pix') or 
+		name.startswith('PIX') or 
+		name.startswith('asdm') or 
+		name.startswith('asa') or 
+		splitbydot[0] == 'c6svc-fwm-k9' or 
+		name == "anyconnect_app_selector_2.0.zip"
+		):
+			fileprocessorsecurity(name)
+
+
+		elif (
+		name.startswith("CUMC")
+		):
+			continue
+
+		elif splitbydash[0] == 'Acs' or splitbydash[0] == 'ACS' or name.startswith("applAcs"):
+			continue
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		elif splitbydash[0] == 'c1100':
 			prodname = "Wireless/Access-Point/Aironet-1100"
 			imagecode = imagelookup (splitbydash[1])
 			standardios (name, prodname, imagecode)
-
-		elif splitbydot[0] == 'c6svc-fwm-k9':
-			fileprocessorsecurity(name)
-
-		elif name.startswith('asdm'):
-			fileprocessorsecurity(name)
-
-		elif name.startswith('pix') or name.startswith('PIX'):
-			fileprocessorsecurity(name)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		elif chars5 == 'cat9k':
-			cat9k(name)
-
-
-
-
-
-
 
 		elif splitbydash[0] == 'AIR' or classify[0] == 'SWISMK9' or classify[0] == 'SWLC3750K9' or chars3 == 'MFG':
 			wireless(name)
@@ -2636,9 +2255,6 @@ def toplevel(filename):
 
 		elif splitbydot[0] == 'c6svc-nam':
 			cat6knam(name)
-
-		elif splitbydash[0] == 'anyconnect':
-			anyconnect(name)
 
 		elif chars3 == 'csd':
 			csd(name)
@@ -2802,32 +2418,7 @@ def toplevel(filename):
 		elif name == 'c2xx-m1-utils-1.0.2.iso':
 			filepath = 'UCS/C-SERIES/UTILS/1.0/1.0(2)'
 			filemove (filepath, name)
-#		elif splitbydot[1] == 'tar' and splitbydot[2] == 'gpg':
-#			acs5patches(name)
 
-		elif name == 'ACS_5.0.0.21_ADE_OS_1.2_upgrade.tar.gpg':
-			filepath = 'ACS/5.0.0.21/OS Upgrade'
-			filemove (filepath, name)
-
-		elif name == 'ACS-5.0.0.21.iso':
-			filepath = 'ACS/5.0.0.21/Install'
-			filemove (filepath, name)
-
-		elif name == 'ACS_v5.2.0.26.iso':
-			filepath = 'ACS/5.2.0.26/Install'
-			filemove (filepath, name)
-
-		elif name == 'ACS_5.2.0.26.tar.gz':
-			filepath = 'ACS/5.2.0.26/Upgrade'
-			filemove (filepath, name)
-
-		elif name == 'ACS_v5.1.0.44.iso':
-			filepath = 'ACS/5.1.0.44/Install'
-			filemove (filepath, name)
-
-		elif name == 'ACS_5.1.0.44.tar.gz':
-			filepath = 'ACS/5.1.0.44/Upgrade'
-			filemove (filepath, name)
 
 		elif splitbydash[0] == 'IPS' and splitbydash[1] == 'CS' and splitbydash[2] == 'MGR':
 			csmips(name)
@@ -2843,9 +2434,6 @@ def toplevel(filename):
 
 		elif splitbydash[0] == 'csmars':
 			mars(name)
-
-		elif splitbydash[0] == 'Acs' or splitbydash[0] == 'ACS':
-			acs(name)
 
 		elif splitbydot[1] == 'SPA':
 			if splitbydash[0] == 'cat4500e':

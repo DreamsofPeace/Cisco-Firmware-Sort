@@ -1673,6 +1673,24 @@ def imagelookup (imagecode):
 		subdirectory = 'NextPort-Modem-Firmware'
 	elif imagecode == 'np':
 		subdirectory = 'NextPort-Firmware'
+	elif imagecode == 'iseposturewin':
+		subdirectory = 'ISE-POSTURE/WIN'
+	elif imagecode == 'iseposturemac':
+		subdirectory = 'ISE-POSTURE/MAC'
+	elif imagecode == 'isecompliancewin':
+		subdirectory = 'ISE-COMPLIANCE/WIN'
+	elif imagecode == 'isecompliancemac':
+		subdirectory = 'ISE-COMPLIANCE/MAC'
+	elif imagecode == 'app_selector':
+		subdirectory = 'APP-SELECTOR'
+	elif imagecode == 'fips':
+		subdirectory = 'FIPS'
+	elif imagecode == 'gina':
+		subdirectory = 'GINA-MODULE'
+	elif imagecode == 'dart':
+		subdirectory = 'DIAGNOSTICS-AND-REPORTING'
+	elif imagecode == 'hostscan':
+		subdirectory = 'HOST-SCAN'
 	else:
 		subdirectory = 'UNKNOWN'
 	return subdirectory
@@ -2473,11 +2491,20 @@ def product (prodcode):
 	elif prodcode == 'pix':
 		prodname = "Security/Firewall/PIX"
 	elif prodcode == 'asdm':
-		prodname = 'ADAPTIVE-SECURITY-DEVICE-MANAGER'
+		prodname = "ADAPTIVE-SECURITY-DEVICE-MANAGER"
+	elif prodcode == 'anyconnect':
+		prodname = "Security/VPN-Clients/Anyconnect"
 	else:
 		prodname = 'UNKNOWN'
 	return prodname
 
+def fileprocessorrommon (filename):
+	filepath = "ROMMON/"
+	filemove (filepath, filename)
+
+def fileprocessorpagent (filename):
+	filepath = "Routers/PAGENT/"
+	filemove (filepath, filename)
 
 def util2digit (a,b):
 	z = a + '.' + b
@@ -2516,6 +2543,6 @@ def filepath5 (a,b,c,d,e):
 	return z
 
 def messageunknowndev ():
-		print ("This device type is unknown, please update the script with the information about the image. E001", end="\n")
+		print ("E001: This device type is unknown, please update the script with the information about the image.", end="\n")
 def messageunknownfeat ():
-		print ("This feature set is unknown, please update the script with the information about the image. E002", end="\n")
+		print ("E002: This feature set is unknown, please update the script with the information about the image.", end="\n")

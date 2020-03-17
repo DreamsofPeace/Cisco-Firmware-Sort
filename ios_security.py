@@ -5,16 +5,29 @@ from iosutils import messageunknowndev,messageunknownfeat
 
 def fileprocessorsecurity (filename):
 	if filename.startswith('c6svc-fwm-k9'):
-		firewallfwsm (filename)
+		sec_fwsm (filename)
+####	elif filename.startswith('thirdparty'):
+####		sec_anyconnect(filename)
+	elif filename == "anyconnect_app_selector_2.0.zip":
+		prodname = product('anyconnect')
+		imagecode = imagelookup('app_selector')
+		sec_single_file (filename,prodname,imagecode)
 	elif filename.startswith('asdm'):
-		firewallasdm (filename)
+		sec_asa_asdm (filename)
 	elif filename.startswith('Cisco_Firepower_SRU') or filename.startswith('Sourcefire_Rule_Update'):
-		fileprocessorfprules(filename)
+		sec_fp_rules(filename)
 	elif filename.startswith('Cisco_Firepower_GEODB') or filename.startswith('Sourcefire_Geodb'):
-		fileprocessorfpgeodb(filename)
+		sec_fp_geodb(filename)
 	elif filename.startswith('Cisco_VDB_Fingerprint_Database') or filename.startswith('Sourcefire_VDB'):
-		fileprocessorfpvdb(filename)
-
+		sec_fp_vdb(filename)
+	elif filename.startswith('anyconnect'):
+		sec_anyconnect(filename)
+	elif filename.startswith('hostscan_'):
+		sec_hostscan(filename)
+#	elif filename.startswith('tools-anyconnect'):
+#		sec_anyconnect(filename)
+#	elif filename.startswith('sampleTransforms'):
+#		sec_anyconnect(filename)
 #	name.startswith('Cisco_FTD') or 
 #	name.startswith('Cisco_Firepower_Threat') or 
 #	name.startswith('Cisco_Network_Sensor') or 
@@ -23,7 +36,7 @@ def fileprocessorsecurity (filename):
 #	name.startswith('ftd')
 #	):
 
-def fileprocessorfpvdb (filename):
+def sec_fp_vdb (filename):
 	splitbydash = filename.split('-')
 	prodname = product ('firepower')
 	if filename.startswith('Cisco_VDB_Fingerprint_Database'):
@@ -36,7 +49,7 @@ def fileprocessorfpvdb (filename):
 	filepath = filepath4 (prodname,imagecode,splitbydash[1],ver)
 	filemove (filepath, filename)
 
-def fileprocessorfprules (filename):
+def sec_fp_rules (filename):
 	splitbydash = filename.split('-')
 	prodname = product ('firepower')
 	if filename.startswith('Cisco_Firepower_SRU'):
@@ -48,7 +61,7 @@ def fileprocessorfprules (filename):
 	filepath = filepath4 (prodname,imagecode,splitbydash[1],ver)
 	filemove (filepath, filename)
 
-def fileprocessorfpgeodb (filename):
+def sec_fp_geodb (filename):
 	splitbydash = filename.split('-')
 	splitbydash[4] = splitbydash[4].replace(".sh", "")
 	prodname = product ('firepower')
@@ -61,6 +74,10 @@ def fileprocessorfpgeodb (filename):
 	filepath = filepath4 (prodname,imagecode,splitbydash[1],ver)
 	filemove (filepath, filename)
 
+def sec_single_file(filename,prodname,imagecode):
+	filepath = filepath2 (prodname,imagecode)
+	filemove (filepath, filename)
+	
 def firepowerftd (filename):
 	prodname = product('firepower')
 	filepath = prodname
@@ -116,10 +133,10 @@ def firepower (filename):
 			filepath = prodname + '/' + imagecode + '/' + iosmain + '/' + iosfull
 			filemove (filepath, filename)
 
-def firewallasdm (filename):
+def sec_asa_asdm (filename):
 	prodname = product('asdm')
 
-def firewallfwsm (filename):
+def sec_fwsm (filename):
 	splitbydot = filename.split('.')
 	splitbydash = splitbydot[1].split('-')
 	vertwo = util2digit(splitbydash[0],splitbydash[1])
@@ -135,3 +152,61 @@ def firewallpix (filename):
 	pixprimary = pixversion[3] + '.' + pixversion[4]
 	filepath = product + '/' + pixprimary + '/' + pix
 	filemove (filepath, filename)
+
+
+def sec_hostscan (filename):
+	splitbyuscore = filename.split('_')
+	splitbyuscore[1] = splitbyuscore[1].replace("-k9.pkg", "")
+	splitbydot = splitbyuscore[1].split('.')
+	prodname = product('anyconnect')
+	imagecode = imagelookup('hostscan')
+	ver2 = util2digit (splitbydot[0],splitbydot[1])
+	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
+	filepath = filepath4(prodname,imagecode,ver2,ver3)
+	filemove (filepath, filename)
+
+def sec_anyconnect_p3_d3_v (filename,prodname,imagecode):
+	splitbydash = filename.split('-')
+	splitbydash = filename.split('-')
+	splitbydot = splitbydash[3].split('.')
+	ver2 = util2digit (splitbydot[0],splitbydot[1])
+	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
+	filepath = filepath4(prodname,imagecode,ver2,ver3)
+	filemove (filepath, filename)
+
+def sec_anyconnect_p3_d4_v (filename,prodname,imagecode):
+	splitbydash = filename.split('-')
+	splitbydot = splitbydash[3].split('.')
+	ver2 = util2digit (splitbydot[0],splitbydot[1])
+	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
+	filepath = filepath4(prodname,imagecode,ver2,ver3)
+	filemove (filepath, filename)
+
+def sec_anyconnect (filename):
+	prodname = product('anyconnect')
+	splitbydash = filename.split('-')
+	if splitbydash[1] == 'iseposture' and splitbydash[2] == 'win':
+		imagecode = imagelookup('iseposturewin')
+		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+	elif splitbydash[1] == 'iseposture' and splitbydash[2] == 'mac':
+		imagecode = imagelookup('iseposturemac')
+		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+	elif splitbydash[1] == 'isecompliance' and splitbydash[2] == 'win':
+		imagecode = imagelookup('isecompliancewin')
+		sec_anyconnect_p3_d4_v (filename,prodname,imagecode)
+	elif splitbydash[1] == 'isecompliance' and splitbydash[2] == 'mac':
+		imagecode = imagelookup('isecompliancemac')
+		sec_anyconnect_p3_d4_v (filename,prodname,imagecode)
+	elif splitbydash[1] == 'isecompliance' and splitbydash[2] == 'mac':
+		imagecode = imagelookup('isecompliancemac')
+		sec_anyconnect_p3_d4_v (filename,prodname,imagecode)
+	elif splitbydash[1] == 'EnableFIPS' and splitbydash[2] == 'win':
+		imagecode = imagelookup('fips')
+		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+	elif splitbydash[1] == 'dart' and splitbydash[2] == 'win':
+		imagecode = imagelookup('dart')
+		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+	elif splitbydash[1] == 'gina' and splitbydash[2] == 'win':
+		imagecode = imagelookup('gina')
+		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+
