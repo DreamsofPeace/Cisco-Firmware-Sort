@@ -153,7 +153,6 @@ def firewallpix (filename):
 	filepath = product + '/' + pixprimary + '/' + pix
 	filemove (filepath, filename)
 
-
 def sec_hostscan (filename):
 	splitbyuscore = filename.split('_')
 	splitbyuscore[1] = splitbyuscore[1].replace("-k9.pkg", "")
@@ -174,32 +173,15 @@ def sec_anyconnect_p3_d3_v (filename,prodname,imagecode):
 	filepath = filepath4(prodname,imagecode,ver2,ver3)
 	filemove (filepath, filename)
 
-def sec_anyconnect_p3_d4_v (filename,prodname,imagecode):
-	splitbydash = filename.split('-')
-	splitbydot = splitbydash[3].split('.')
-	ver2 = util2digit (splitbydot[0],splitbydot[1])
-	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-	filepath = filepath4(prodname,imagecode,ver2,ver3)
-	filemove (filepath, filename)
-
 def sec_anyconnect (filename):
 	prodname = product('anyconnect')
 	splitbydash = filename.split('-')
-	if splitbydash[1] == 'iseposture' and splitbydash[2] == 'win':
-		imagecode = imagelookup('iseposturewin')
+	if splitbydash[1] == 'iseposture' and splitbydash[2] == 'win' or splitbydash[2] == 'mac':
+		imagecode = imagelookup('iseposture')
 		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
-	elif splitbydash[1] == 'iseposture' and splitbydash[2] == 'mac':
-		imagecode = imagelookup('iseposturemac')
+	elif splitbydash[1] == 'isecompliance' and splitbydash[2] == 'win' or splitbydash[2] == 'macosx':
+		imagecode = imagelookup('isecompliance')
 		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
-	elif splitbydash[1] == 'isecompliance' and splitbydash[2] == 'win':
-		imagecode = imagelookup('isecompliancewin')
-		sec_anyconnect_p3_d4_v (filename,prodname,imagecode)
-	elif splitbydash[1] == 'isecompliance' and splitbydash[2] == 'mac':
-		imagecode = imagelookup('isecompliancemac')
-		sec_anyconnect_p3_d4_v (filename,prodname,imagecode)
-	elif splitbydash[1] == 'isecompliance' and splitbydash[2] == 'mac':
-		imagecode = imagelookup('isecompliancemac')
-		sec_anyconnect_p3_d4_v (filename,prodname,imagecode)
 	elif splitbydash[1] == 'EnableFIPS' and splitbydash[2] == 'win':
 		imagecode = imagelookup('fips')
 		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)

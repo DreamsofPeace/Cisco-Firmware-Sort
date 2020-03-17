@@ -1673,14 +1673,10 @@ def imagelookup (imagecode):
 		subdirectory = 'NextPort-Modem-Firmware'
 	elif imagecode == 'np':
 		subdirectory = 'NextPort-Firmware'
-	elif imagecode == 'iseposturewin':
-		subdirectory = 'ISE-POSTURE/WIN'
-	elif imagecode == 'iseposturemac':
-		subdirectory = 'ISE-POSTURE/MAC'
-	elif imagecode == 'isecompliancewin':
-		subdirectory = 'ISE-COMPLIANCE/WIN'
-	elif imagecode == 'isecompliancemac':
-		subdirectory = 'ISE-COMPLIANCE/MAC'
+	elif imagecode == 'iseposture':
+		subdirectory = 'ISE-POSTURE'
+	elif imagecode == 'isecompliance':
+		subdirectory = 'ISE-COMPLIANCE'
 	elif imagecode == 'app_selector':
 		subdirectory = 'APP-SELECTOR'
 	elif imagecode == 'fips':
