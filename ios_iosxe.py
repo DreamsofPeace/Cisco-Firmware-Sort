@@ -13,11 +13,32 @@ def fileprocessor_iosxe(filename):
 		prodname = product ('cat9k')
 		imagecode == imagelookup(splitbydot[0])
 		fileprocessoriosxe (filename,prodname,imagecode)
+	elif filename.startswith("cat3k_caa"):
+		prodname = product (splitbydash[0])
+		mdash = splitbydot[0].split('-')
+		imagecode = imagelookup(mdash[1])
+		if splitbydot[2] == "03":
+			fileprocessor_iosxe_3 (filename,prodname,imagecode)
+		else:
+			fileprocessoriosxe(filename,prodname,imagecode)
 	else:
 		prodname = product (splitbydash[0])
 		mdash = splitbydot[0].split('-')
 		imagecode = imagelookup(mdash[1])
 		fileprocessoriosxe(filename,prodname,imagecode)
+
+def fileprocessor_iosxe_3 (filename,prodname,imagecode):
+	splitbydot = filename.split('.')
+	if splitbydot[4].startswith('CSC') and splitbydot[6]  == 'smu':
+		iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
+		filepath = filepath4(prodname,'SMU',iosfull,splitbydot[4])
+		filemove (filepath, filename)
+	else:
+		iosmain = util2digit(splitbydot[2],splitbydot[3])
+		iosfull = util3digit(splitbydot[2],splitbydot[3],splitbydot[4])
+		filepath = filepath4(prodname,iosmain,iosfull,imagecode)
+		filemove (filepath, filename)
+
 
 def fileprocessoriosxe (filename,prodname,imagecode):
 	splitbydot = filename.split('.')

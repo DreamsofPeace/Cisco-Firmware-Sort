@@ -2110,22 +2110,22 @@ def toplevel(filename):
 		elif name.startswith('ess3x00'):
 			prodname = product (splitbydash[0])
 			imagecode = imagelookup (splitbydashsub[1])
-			fileprocessor_iosxe (name, prodname, imagecode)
+			fileprocessor_iosxe (name)
 
 		elif name.startswith('cat3k_caa') and splitbydot[1] =='16':
 			prodname = product (splitbydash[0])
 			imagecode = imagelookup (splitbydashsub[1])
-			fileprocessor_iosxe (name, prodname, imagecode)
+			fileprocessor_iosxe (name)
 
 		elif name.startswith('s5800'):
 			prodname = product (splitbydash[0])
 			imagecode = imagelookup (splitbydashsub[1])
-			fileprocessor_iosxe (name, prodname, imagecode)
+			fileprocessor_iosxe (name)
 
 		elif name.startswith('vg400') or name.startswith('vg450'):
 			prodname = product (splitbydash[0])
 			imagecode = imagelookup (splitbydashsub[1])
-			fileprocessor_iosxe (name, prodname, imagecode)
+			fileprocessor_iosxe (name)
 
 		elif splitbydot[0] == 'C9800-40-universalk9_wlc' or splitbydot[0] == 'C9800-80-universalk9_wlc' or splitbydot[0] == 'C9800-80-universalk9_wlc' or splitbydot[0] == 'C9800-CL-universalk9':
 			prodname = product (splitbydash[0])
@@ -2147,7 +2147,7 @@ def toplevel(filename):
 				if imagecode == 'UNKNOWN':
 					messageunknownfeat()
 				else:
-					fileprocessor_iosxe (name, prodname, imagecode)
+					fileprocessor_iosxe (name)
 
 		elif (
 		splitbydash[0] == 'asr1000' or 
@@ -2181,6 +2181,7 @@ def toplevel(filename):
 		splitbydot[0] == 'c1100-ucmk9' or 
 		splitbydot[0] == 'c1100-universalk9' or 
 		splitbydot[0] == 'c1100-universalk9_npe' or 
+		name.startswith('cat3k_caa') or 
 		name.startswith('cat9k')
 		):
 			fileprocessor_iosxe(name)
@@ -2256,8 +2257,9 @@ def toplevel(filename):
 		elif splitbydot[0] == 'c6svc-nam':
 			cat6knam(name)
 
-		elif chars3 == 'csd':
-			csd(name)
+		elif name.startswith("csd"):
+			continue
+#			csd(name)
 
 		elif name.startswith('sg') and name.endswith('zip') or name.endswith('adi') or name.endswith('adi-gz'):
 			css(name)
@@ -2457,8 +2459,9 @@ def toplevel(filename):
 			m9200 (name, prodname)
 
 		elif splitbydash[0] == 'm9250':
-			prodname = product (splitbydash[0])
-			m9250 (name, prodname)
+			continue
+#			prodname = product (splitbydash[0])
+#			m9250 (name, prodname)
 
 		elif splitbydot[0] == 'c10k-fpd-pkg':
 			prodname = 'Routers/SP/10000'

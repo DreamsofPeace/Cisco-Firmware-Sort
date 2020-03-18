@@ -1687,6 +1687,22 @@ def imagelookup (imagecode):
 		subdirectory = 'DIAGNOSTICS-AND-REPORTING'
 	elif imagecode == 'hostscan':
 		subdirectory = 'HOST-SCAN'
+	elif imagecode == 'mcp':
+		subdirectory = 'MANAGEMENT-CENTER-FOR-PERFORMANCE'
+	elif imagecode == 'install':
+		subdirectory = 'INSTALL'
+	elif imagecode == 'patch':
+		subdirectory = 'PATCH'
+	elif imagecode == 'sp1':
+		subdirectory = 'SERVICE-PACK-1'
+	elif imagecode == 'sp2':
+		subdirectory = 'SERVICE-PACK-2'
+	elif imagecode == 'sp3':
+		subdirectory = 'SERVICE-PACK-3'
+	elif imagecode == 'sp4':
+		subdirectory = 'SERVICE-PACK-4'
+	elif imagecode == 'sp5':
+		subdirectory = 'SERVICE-PACK-5'
 	else:
 		subdirectory = 'UNKNOWN'
 	return subdirectory
@@ -2490,6 +2506,8 @@ def product (prodcode):
 		prodname = "ADAPTIVE-SECURITY-DEVICE-MANAGER"
 	elif prodcode == 'anyconnect':
 		prodname = "Security/VPN-Clients/Anyconnect"
+	elif prodcode == 'csd':
+		prodname = "Security/VPN-Clients/Cisco-Secure-Desktop"
 	else:
 		prodname = 'UNKNOWN'
 	return prodname
