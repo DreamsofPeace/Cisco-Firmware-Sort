@@ -10,10 +10,16 @@ def file_proc_servers (filename):
 def file_proc_servers_ucs (filename):
 	splitbydash = filename.split("-")
 	if filename.startswith("ucs-catalog"):
-		prodname = product("ucs")
+		prodname = product("ucsgeneric")
 		imagecode = imagelookup("catalog")
 		file_proc_servers_ucs_single (filename,prodname,imagecode)
-	if splitbydash[0] == "ucs" and splitbydash[2] == "huu":
+	elif filename.startswith("ucs-utils"):
+		prodname = product("ucsgeneric")
+		imagecode = imagelookup("utils")
+	elif filename.startswith("ucs-drivers"):
+		prodname = product("ucsgeneric")
+		imagecode = imagelookup("drivers")
+	elif splitbydash[0] == "ucs" and splitbydash[2] == "huu":
 		prodname = product(splitbydash[1])
 		imagecode = imagelookup(splitbydash[2])
 		file_proc_servers_ucs_p3 (filename,prodname,imagecode)

@@ -28,13 +28,36 @@ def fileprocessorsecurity (filename):
 #		sec_anyconnect(filename)
 #	elif filename.startswith("sampleTransforms"):
 #		sec_anyconnect(filename)
+	elif filename.startswith("fxos"):
+		sec_fxos(filename)
+	elif filename.startswith("fxos"):
+		sec_fxos(filename)
+	elif filename.startswith("Sourcefire_3D_Defense_Center_S3_Patch"):
+		sec_sourcefire_fmc_patch(filename)
 #	name.startswith("Cisco_FTD") or 
 #	name.startswith("Cisco_Firepower_Threat") or 
 #	name.startswith("Cisco_Network_Sensor") or 
 #	name.startswith("firepower") or 
-#	name.startswith("fxos") or 
 #	name.startswith("ftd")
 #	):
+#def sec_sourcefire (filename):
+#	splitbydash = filename.split("-")
+#	if splitbydash[0] == "Cisco_Firepower_Management_Center_Virtual":
+
+def sec_sourcefire_fmc_patch (filename):
+	prodname = product ("firepower")
+	imagecode = imagelookup("fmc")
+	imagecode2 = imagelookup("patch")
+	workname = filename.replace(".sh.REL.tar", "")
+	workname = workname.replace(".sh", "")
+	splitbydash = workname.split("-")
+	splitbydot = splitbydash[1].split(".")
+	vertwo = util2digit (splitbydot[0],splitbydot[1])
+	verfive = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
+	patchline = imagecode2 + splitbydot[3]
+	filepath = filepath5 (prodname,imagecode,vertwo,verfive,patchline)
+	filemove (filepath, filename)
+	
 
 def sec_fp_vdb (filename):
 	splitbydash = filename.split("-")
@@ -77,61 +100,43 @@ def sec_fp_geodb (filename):
 def sec_single_file(filename,prodname,imagecode):
 	filepath = filepath2 (prodname,imagecode)
 	filemove (filepath, filename)
-	
-def firepowerftd (filename):
-	prodname = product("firepower")
-	filepath = prodname
+
+def sec_fxos_firmware (filename,prodname,imagecode):
+	splitbydot = filename.split(".")
+	version = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
+	filepath = filepath3 (prodname,imagecode,version)
 	filemove (filepath, filename)
 
-def firepower (filename):
+def sec_fxos_firmware_recovery (filename,prodname,imagecode):
+	splitbydot = filename.split(".")
+	splitbydot[4] = splitbydot[4].strip("N")
+	versiontwo  = util2digit(splitbydot[4],splitbydot[5])
+	versionfull = util4digit(splitbydot[4],splitbydot[5],splitbydot[6],splitbydot[7])
+	filepath = filepath4 (prodname,imagecode,versiontwo,versionfull)
+	filemove (filepath, filename)
+
+def sec_fxos_firmware_d4_1_4 (filename,prodname,imagecode):
+	splitbydot = filename.split(".")
+	versiontwo  = util2digit(splitbydot[1],splitbydot[2])
+	versionfull = util4digit(splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4])
+	filepath = filepath4 (prodname,imagecode,versiontwo,versionfull)
+	filemove (filepath, filename)
+
+def sec_fxos (filename):
 	prodname = product("firepower")
-	splitbydot = name.split(".")
-	splitbydash = name.split("-")
-	splitbydash0 = splitbydot[0].split("-")
-	if splitbydash0[0] == "firepower":
-		if splitbydash0[1] == "mibs":
-			imagecode = "MIBS"
-			iosmain = splitbydot[1] + "." + splitbydot[2]
-			iosfull = splitbydot[1] + "." + splitbydot[2] + "." + splitbydot[3] + "." + splitbydot[4]
-			filepath = prodname + "/" + imagecode + "/" + iosmain + "/" + iosfull
-			filemove (filepath, filename)
-	elif splitbydash0[0] == "fxos":
-		if splitbydash0[1] == "mibs" and splitbydash0[2] == "fp9k" and splitbydash0[3] == "fp4k":
-			imagecode = "MIBS-9K-4K"
-			iosmain = splitbydot[1] + "." + splitbydot[2]
-			iosfull = splitbydot[1] + "." + splitbydot[2] + "." + splitbydot[3] + "." + splitbydot[4]
-			filepath = prodname + "/" + imagecode + "/" + iosmain + "/" + iosfull
-			filemove (filepath, filename)
-		elif len(splitbydash0) >= 3:
-			if splitbydash0[2] == "fpr4k" and splitbydash0[3] == "firmware":
-				imagecode = "FIRMWARE-4K"
-				iosfull = splitbydot[1] + "." + splitbydot[2] + "." + splitbydot[3]
-				filepath = prodname + "/" + imagecode + "/" + iosfull
-				filemove (filepath, filename)
-			elif splitbydash0[1] == "k9" and splitbydash0[2] == "manager":
-				imagecode = "SYSTEM/MANAGER"
-				iosmain = splitbydot[1] + "." + splitbydot[2]
-				iosfull = splitbydot[1] + "." + splitbydot[2] + "." + splitbydot[3] + "." + splitbydot[4]
-				filepath = prodname + "/" + imagecode + "/" + iosmain + "/" + iosfull
-				filemove (filepath, filename)
-			elif splitbydash0[1] == "k9" and splitbydash0[2] == "system":
-				imagecode = "SYSTEM/SYSTEM"
-				iosmain = splitbydot[1] + "." + splitbydot[2]
-				iosfull = splitbydot[1] + "." + splitbydot[2] + "." + splitbydot[3] + "." + splitbydot[4]
-				filepath = prodname + "/" + imagecode + "/" + iosmain + "/" + iosfull
-				filemove (filepath, filename)
-			elif splitbydash0[1] == "k9" and splitbydash0[2] == "kickstart":
-				imagecode = "SYSTEM/KICKSTART"
-				iosmain = splitbydot[1] + "." + splitbydot[2]
-				iosfull = splitbydot[1] + "." + splitbydot[2] + "." + splitbydot[3] + "." + splitbydot[4]
-				filepath = prodname + "/" + imagecode + "/" + iosmain + "/" + iosfull
-				filemove (filepath, filename)
-		elif splitbydash0[1]:
-			imagecode = "IMAGE"
-			iosmain = splitbydot[1] + "." + splitbydot[2]
-			iosfull = splitbydot[1] + "." + splitbydot[2] + "." + splitbydot[3] + "." + splitbydot[4]
-			filepath = prodname + "/" + imagecode + "/" + iosmain + "/" + iosfull
-			filemove (filepath, filename)
+	splitbydot = filename.split(".")
+	if splitbydot[0] == "fxos-k9-fpr4k-firmware":
+		imagecode = imagelookup(splitbydot[0])
+		sec_fxos_firmware(filename,prodname,imagecode)
+	elif splitbydot[0] == "fxos-k9-manager" or splitbydot[0] == "fxos-k9":
+		imagecode = imagelookup(splitbydot[0])
+		sec_fxos_firmware_d4_1_4(filename,prodname,imagecode)
+	elif splitbydot[0] == "fxos-k9-system" or splitbydot[0] == "fxos-k9-kickstart":
+		imagecode = imagelookup(splitbydot[0])
+		sec_fxos_firmware_recovery(filename,prodname,imagecode)
+	elif splitbydot[0] == "fxos-mibs-fp9k-fp4k" or splitbydot[0] == "firepower-mibs":
+		imagecode = imagelookup(splitbydot[0])
+		sec_fxos_firmware_d4_1_4(filename,prodname,imagecode)
 
 def sec_asa_asdm (filename):
 	prodname = product("asdm")

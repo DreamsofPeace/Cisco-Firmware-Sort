@@ -1707,6 +1707,22 @@ def imagelookup (imagecode):
 		subdirectory = "HOST-UPGRADE-UTILITY"
 	elif imagecode == "catalog":
 		subdirectory = "DEVICE-CATALOG"
+	elif imagecode == "fxos-k9-fpr4k-firmware":
+		subdirectory = "FIRMWARE-4K"
+	elif imagecode == "fxos-k9-kickstart":
+		subdirectory = "FXOS-RECOVERY/KICKSTART"
+	elif imagecode == "fxos-k9-system":
+		subdirectory = "FXOS-RECOVERY/SYSTEM"
+	elif imagecode == "fxos-k9-manager":
+		subdirectory = "FXOS-RECOVERY/MANAGER"
+	elif imagecode == "fxos-k9":
+		subdirectory = "FXOS"
+	elif imagecode == "fxos-mibs-fp9k-fp4k":
+		subdirectory = "FIREPOWER-MIBS-9K-4K"
+	elif imagecode == "firepower-mibs":
+		subdirectory = "FIREPOWER-MIBS"
+	elif imagecode == "fmc":
+		subdirectory = "FIREPOWER-MANAGEMENT-CENTER"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2544,6 +2560,8 @@ def product (prodcode):
 		prodname = "Servers/UCS/C-SERIES/C460M4"
 	elif prodcode == "c480m5":
 		prodname = "Servers/UCS/C-SERIES/C480M5"
+	elif prodcode == "ucsgeneric":
+		prodname = "Servers/UCS"
 	else:
 		prodname = "UNKNOWN"
 	return prodname

@@ -8,26 +8,26 @@ def fileprocessor_iosxe(filename):
 	splitbydash = filename.split("-")
 	if filename == "cat9k_iosxe.16.00.00fpgautility.SPA.bin":
 		prodname = product ("cat9k")
-		fileprocessoriosxe (filename,prodname,"Hardware")
+		fileproc_iosxe (filename,prodname,"Hardware")
 	elif filename.startswith("cat9k_iosxe") or filename.startswith("cat9k_lite"):
 		prodname = product ("cat9k")
 		imagecode == imagelookup(splitbydot[0])
-		fileprocessoriosxe (filename,prodname,imagecode)
+		fileproc_iosxe (filename,prodname,imagecode)
 	elif filename.startswith("cat3k_caa"):
 		prodname = product (splitbydash[0])
 		mdash = splitbydot[0].split("-")
 		imagecode = imagelookup(mdash[1])
 		if splitbydot[2] == "03":
-			fileprocessor_iosxe_3 (filename,prodname,imagecode)
+			fileproc_iosxe_3 (filename,prodname,imagecode)
 		else:
-			fileprocessoriosxe(filename,prodname,imagecode)
+			fileproc_iosxe(filename,prodname,imagecode)
 	else:
 		prodname = product (splitbydash[0])
 		mdash = splitbydot[0].split("-")
 		imagecode = imagelookup(mdash[1])
-		fileprocessoriosxe(filename,prodname,imagecode)
+		fileproc_iosxe(filename,prodname,imagecode)
 
-def fileprocessor_iosxe_3 (filename,prodname,imagecode):
+def fileproc_iosxe_3 (filename,prodname,imagecode):
 	splitbydot = filename.split(".")
 	if splitbydot[4].startswith("CSC") and splitbydot[6]  == "smu":
 		iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
@@ -39,8 +39,7 @@ def fileprocessor_iosxe_3 (filename,prodname,imagecode):
 		filepath = filepath4(prodname,iosmain,iosfull,imagecode)
 		filemove (filepath, filename)
 
-
-def fileprocessoriosxe (filename,prodname,imagecode):
+def fileproc_iosxe (filename,prodname,imagecode):
 	splitbydot = filename.split(".")
 	splitbydot[3] = splitbydot[3].replace("-serial", "")
 	splitbydot[3] = splitbydot[3].replace("-nfvis", "")
@@ -54,7 +53,6 @@ def fileprocessoriosxe (filename,prodname,imagecode):
 	elif imagecode == "Hardware":
 		filepath = filepath2 (prodname,imagecode)
 		filemove (filepath, filename)
-#	elif splitbydot[4] == "SPA" or splitbydot[4] == "run" or splitbydot[4] == "iso" or splitbydot[4] == "ova" or splitbydot[4] == "qcow2" or splitbydot[4] == "tar":
 	else:
 		iosmain = util2digit(splitbydot[1],splitbydot[2])
 		iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])

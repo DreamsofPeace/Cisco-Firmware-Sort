@@ -1788,9 +1788,7 @@ def toplevel(filename):
 		name.startswith("Cisco_Firepower_SRU") or
 		name.startswith("Cisco_VDB_Fingerprint_Database") or
 		name.startswith("Cisco_Firepower_GEODB") or 
-		name.startswith("Sourcefire_Rule_Update") or
-		name.startswith("Sourcefire_VDB") or
-		name.startswith("Sourcefire_Geodb") or 
+		name.startswith("Sourcefire") or
 		name.startswith("Cisco_FTD") or 
 		name.startswith("Cisco_Firepower_Threat") or 
 		name.startswith("Cisco_Network_Sensor") or 
@@ -1972,7 +1970,15 @@ def toplevel(filename):
 		elif (
 		name.startswith("ucs") or 
 		name.startswith("update_pkg-ucse") or 
-		name.startswith("B57BCMCD")
+		name.startswith("B57BCMCD") or 
+		name.startswith("SW_16MB_release_1102.bin") or 
+		name.startswith("LSI_x64_Signed_Driver_5.2.116.64.zip") or 
+		name.startswith("UCS_docs_20110510.iso") or 
+		name.startswith("ucs-drivers.1.0.2.iso") or 
+		name.startswith("intel9.2.3.1023.tar") or 
+		name.startswith("SW_Signed_Bios_Image.bin.SPA") or 
+		name.startswith("B57CiscoCD_T6.4.4.3-57712.zip") or 
+		name.startswith("1X0SBIOSv4.8")
 		):
 			file_proc_servers (name)
 
