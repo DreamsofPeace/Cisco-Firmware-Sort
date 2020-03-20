@@ -1714,42 +1714,50 @@ def toplevel(filename):
 			filepath = prodname + "/" + imagecode
 			filemove (filepath, name)
 
-		elif (name == "V3_07.axf"
-		 or name == "V3_09.axf"
-		 or name == "V3_12_1.axf"
-		 or name == "V3_12_2.axf"
-		 or name == "V3_12_3.axf"
-		 or name == "Release-Notes-V3.12.1"
-		 or name == "Release-Notes-V3.12.2"
-		 or name == "portware.2730.ios"
-		 or name == "Exp_V3_11.axf"
-		 or name == "2730_rel_note"
-		 or name == "Exp_v10_10.spe"):
+		elif (
+		name == "V3_07.axf" or 
+		name == "V3_09.axf" or 
+		name == "V3_12_1.axf" or 
+		name == "V3_12_2.axf" or 
+		name == "V3_12_3.axf" or 
+		name == "Release-Notes-V3.12.1" or 
+		name == "Release-Notes-V3.12.2" or 
+		name == "portware.2730.ios" or 
+		name == "Exp_V3_11.axf" or 
+		name == "Exp_V3_11_Release_Note.pdf" or 
+		name == "2730_rel_note" or 
+		name == "Exp_v10_10.spe"
+		):
 			prodname = product ("ISRG2GENERIC")
 			imagecode = imagelookup ("ISRG2PVDMODEM")
 			filepath = prodname + "/" + imagecode
 			filemove (filepath, name)
 
-		elif (name == "VAEW_A_39x3_B39x3_24o.SSA.bin"
-		 or name == "VAEW_A_39t_B_39d_24m.SSA"
-		 or name == "VAEW_A_39d_B_39d_24g1.SSA.bin"
-		 or name == "VAEW_A_39f1_B_39d_24g1.SSA.bin"):
+		elif (
+		name == "VAEW_A_39x3_B39x3_24o.SSA.bin" or 
+		name == "VAEW_A_39t_B_39d_24m.SSA" or 
+		name == "VAEW_A_39d_B_39d_24g1.SSA.bin" or 
+		name == "VAEW_A_39f1_B_39d_24g1.SSA.bin"
+		):
 			prodname = product ("c860vaew")
 			imagecode = imagelookup ("DSLFIRMWARE")
 			filepath = prodname + "/" + imagecode
 			filemove (filepath, name)
 
-		elif (name == "c1100_phy_fw_A39x3_B39x3.pkg"
-		 or name == "c1100_gfast_phy_fw_A43r_B43r.pkg"
-		 or name == "c1100_gfast_phy_fw_A43j2.pkg"
+		elif (
+		name == "c1100_phy_fw_A39x3_B39x3.pkg" or 
+		name == "c1100_gfast_phy_fw_A43r_B43r.pkg" or 
+		name == "c1100_gfast_phy_fw_A43j2.pkg"
 		):
 			prodname = product ("c1100router")
 			imagecode = imagelookup ("DSLFIRMWARE")
 			filepath = prodname + "/" + imagecode
 			filemove (filepath, name)
 
-		elif (name == "VAE2_A_39x3_B39x3_24o.SSA.bin"
-		 or name == "VAE2_A_39t_B39d_24m.SSA.bin"):
+		elif (
+		name == "VAE2_A_39x3_B39x3_24o.SSA.bin" or 
+		name == "VAE2_A_39t_B39d_24m.SSA.bin"
+		 ):
 			prodname = product ("c860vae2")
 			imagecode = imagelookup ("DSLFIRMWARE")
 
@@ -1777,7 +1785,8 @@ def toplevel(filename):
 			filepath = prodname + "/" + imagecode
 			filemove (filepath, name)
 
-		elif (name.startswith("adsl_alc")
+		elif (
+		name.startswith("adsl_alc")
 		):
 			prodname = product ("ISRG1GENERIC")
 			imagecode = imagelookup ("DSLFIRMWARE")
@@ -1799,12 +1808,12 @@ def toplevel(filename):
 			fileprocessorsecurity(name)
 
 
-		elif name == "ssd_c400_upgrade_6.1.2.I2.2a.tar":
+		elif (
+		name == "ssd_c400_upgrade_6.1.2.I2.2a.tar" or 
+		name.startswith("n9000-epld")
+		):
 			fileprocessornxos(name)
 
-		elif name.startswith("n9000-epld"):
-			fileprocessornxos(name)
-		
 		elif name.startswith("isr4200_cpld_update"):
 			prodname = product ("isr4200")
 			imagecode = imagelookup ("cpld_update")
