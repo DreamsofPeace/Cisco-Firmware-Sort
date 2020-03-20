@@ -1954,6 +1954,7 @@ def toplevel(filename):
 		name.startswith("PIX") or 
 		name.startswith("asdm") or 
 		name.startswith("asa") or 
+		name.startswith("csd") or 
 		splitbydot[0] == "c6svc-fwm-k9" or 
 		name == "anyconnect_app_selector_2.0.zip"
 		):
@@ -2027,10 +2028,6 @@ def toplevel(filename):
 
 		elif splitbydot[0] == "c6svc-nam":
 			cat6knam(name)
-
-		elif name.startswith("csd"):
-			continue
-#			csd(name)
 
 		elif name.startswith("sg") and name.endswith("zip") or name.endswith("adi") or name.endswith("adi-gz"):
 			css(name)

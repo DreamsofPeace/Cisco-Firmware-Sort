@@ -1723,6 +1723,42 @@ def imagelookup (imagecode):
 		subdirectory = "FIREPOWER-MIBS"
 	elif imagecode == "fmc":
 		subdirectory = "FIREPOWER-MANAGEMENT-CENTER"
+	elif imagecode == "vpnapi":
+		subdirectory = "VPNAPI"
+	elif imagecode == "profileeditor":
+		subdirectory = "PROFILE-EDITOR"
+	elif imagecode == "wince":
+		subdirectory = "CLIENT/WINDOWS-CE"
+	elif imagecode == "win":
+		subdirectory = "CLIENT/WINDOWS"
+	elif imagecode == "winarm64":
+		subdirectory = "CLIENT/WINDOWS-ARM64"
+	elif imagecode == "nvm":
+		subdirectory = "NETWORK-VISIBILITY-MODULE"
+	elif imagecode == "macosxi386":
+		subdirectory = "CLIENT/MACOSX-i386"
+	elif imagecode == "macosxpowerpc":
+		subdirectory = "CLIENT/MACOSX-PowerPC"
+	elif imagecode == "macos":
+		subdirectory = "CLIENT/MACOSX"
+	elif imagecode == "linux64":
+		subdirectory = "CLIENT/LINUX-64"
+	elif imagecode == "linux":
+		subdirectory = "CLIENT/LINUX"
+	elif imagecode == "anyconnectnam":
+		subdirectory = "NETWORK-ACCESS-MANAGER"
+	elif imagecode == "websecurity":
+		subdirectory = "WEB-SECURITY"
+	elif imagecode == "transforms":
+		subdirectory = "TRANSFORMS"
+	elif imagecode == "thirdparty":
+		subdirectory = "THIRD-PARTY-UTILS"
+	elif imagecode == "amp":
+		subdirectory = "ADVANCED-MALWARE-PROTECTION"
+	elif imagecode == "translations":
+		subdirectory = "TRANSLATIONS"
+	elif imagecode == "csd":
+		subdirectory = "CISCO-SECURE-DESKTOP"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2526,8 +2562,6 @@ def product (prodcode):
 		prodname = "ADAPTIVE-SECURITY-DEVICE-MANAGER"
 	elif prodcode == "anyconnect":
 		prodname = "Security/VPN-Clients/Anyconnect"
-	elif prodcode == "csd":
-		prodname = "Security/VPN-Clients/Cisco-Secure-Desktop"
 	elif prodcode == "c125":
 		prodname = "Servers/UCS/C-SERIES/C125M5"
 	elif prodcode == "c200":
@@ -2560,6 +2594,8 @@ def product (prodcode):
 		prodname = "Servers/UCS/C-SERIES/C460M4"
 	elif prodcode == "c480m5":
 		prodname = "Servers/UCS/C-SERIES/C480M5"
+	elif prodcode == "e100":
+		prodname = "Servers/UCS/E-SERIES/E1XX"
 	elif prodcode == "ucsgeneric":
 		prodname = "Servers/UCS"
 	else:
