@@ -39,7 +39,10 @@ def fileprocessorsecurity (filename):
 	):
 		sec_anyconnect(filename)
 
-	elif filename.startswith("fxos"):
+	elif (
+	filename.startswith("fxos") or 
+	filename.startswith("firepower")
+	):
 		sec_fxos(filename)
 
 	elif filename.startswith("Sourcefire_3D_Defense_Center_S3_Patch"):

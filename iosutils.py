@@ -1759,6 +1759,16 @@ def imagelookup (imagecode):
 		subdirectory = "TRANSLATIONS"
 	elif imagecode == "csd":
 		subdirectory = "CISCO-SECURE-DESKTOP"
+	elif imagecode == "drivers":
+		subdirectory = "DRIVERS"
+	elif imagecode == "driversucsb":
+		subdirectory = "DRIVERS/B-SERIES"
+	elif imagecode == "driversucsc":
+		subdirectory = "DRIVERS/C-SERIES"
+	elif imagecode == "driversucse":
+		subdirectory = "DRIVERS/E-SERIES"
+	elif imagecode == "ucsbundle":
+		subdirectory = "BUNDLE"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
