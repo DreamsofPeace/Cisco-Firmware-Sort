@@ -1767,6 +1767,22 @@ def imagelookup (imagecode):
 		subdirectory = "DRIVERS/C-SERIES"
 	elif imagecode == "driversucse":
 		subdirectory = "DRIVERS/E-SERIES"
+	elif imagecode == "utilsbvmware":
+		subdirectory = "UTILS/B-SERIES/VMWARE"
+	elif imagecode == "utilsblinux":
+		subdirectory = "UTILS/B-SERIES/LINUX"
+	elif imagecode == "utilsbefi":
+		subdirectory = "UTILS/B-SERIES/EFI"
+	elif imagecode == "utilsbwindows":
+		subdirectory = "UTILS/B-SERIES/WINDOWS"
+	elif imagecode == "utilscvmware":
+		subdirectory = "UTILS/C-SERIES/VMWARE"
+	elif imagecode == "utilsclinux":
+		subdirectory = "UTILS/C-SERIES/LINUX"
+	elif imagecode == "utilscefi":
+		subdirectory = "UTILS/C-SERIES/EFI"
+	elif imagecode == "utilscwindows":
+		subdirectory = "UTILS/C-SERIES/WINDOWS"
 	elif imagecode == "ucsbundle":
 		subdirectory = "BUNDLE"
 	else:
@@ -2660,3 +2676,5 @@ def messageunknowndev ():
 		print ("E001: This device type is unknown, please update the script with the information about the image.", end="\n")
 def messageunknownfeat ():
 		print ("E002: This feature set is unknown, please update the script with the information about the image.", end="\n")
+def messageunknownfile ():
+		print ("E002: This file in not classifiable, please update the script with the information about the image.", end="\n")

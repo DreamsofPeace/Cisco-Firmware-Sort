@@ -1,7 +1,7 @@
 from iosutils import product,imagelookup,iostrain
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
-from iosutils import messageunknowndev,messageunknownfeat
+from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
 
 def fileprocessorsecurity (filename):
 	if filename.startswith("c6svc-fwm-k9"):
@@ -47,6 +47,10 @@ def fileprocessorsecurity (filename):
 
 	elif filename.startswith("Sourcefire_3D_Defense_Center_S3_Patch"):
 		sec_sourcefire_fmc_patch(filename)
+
+	else:
+		messageunknownfile()
+
 #	name.startswith("Cisco_FTD") or 
 #	name.startswith("Cisco_Firepower_Threat") or 
 #	name.startswith("Cisco_Network_Sensor") or 

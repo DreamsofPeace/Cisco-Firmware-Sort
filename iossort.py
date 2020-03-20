@@ -2,7 +2,7 @@ import os, shutil, sys, re, getopt
 from iosutils import product,imagelookup,iostrain
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
-from iosutils import messageunknowndev,messageunknownfeat
+from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
 from iosutils import fileprocessorpagent,fileprocessorrommon
 from ios_nexus import fileprocessornxos
 from ios_voice import fileprocessorvoice
@@ -1865,26 +1865,6 @@ def toplevel(filename):
 			imagecode = imagelookup (splitbydash[1])
 			cat29003500 (name, prodname, imagecode)
 
-		elif name.startswith("ess3x00"):
-			prodname = product (splitbydash[0])
-			imagecode = imagelookup (splitbydashsub[1])
-			fileprocessor_iosxe (name)
-
-		elif name.startswith("cat3k_caa") and splitbydot[1] =="16":
-			prodname = product (splitbydash[0])
-			imagecode = imagelookup (splitbydashsub[1])
-			fileprocessor_iosxe (name)
-
-		elif name.startswith("s5800"):
-			prodname = product (splitbydash[0])
-			imagecode = imagelookup (splitbydashsub[1])
-			fileprocessor_iosxe (name)
-
-		elif name.startswith("vg400") or name.startswith("vg450"):
-			prodname = product (splitbydash[0])
-			imagecode = imagelookup (splitbydashsub[1])
-			fileprocessor_iosxe (name)
-
 		elif splitbydot[0] == "C9800-40-universalk9_wlc" or splitbydot[0] == "C9800-80-universalk9_wlc" or splitbydot[0] == "C9800-80-universalk9_wlc" or splitbydot[0] == "C9800-CL-universalk9":
 			prodname = product (splitbydash[0])
 			if prodname == "UNKNOWN":
@@ -1940,7 +1920,11 @@ def toplevel(filename):
 		splitbydot[0] == "c1100-universalk9" or 
 		splitbydot[0] == "c1100-universalk9_npe" or 
 		name.startswith("cat3k_caa") or 
-		name.startswith("cat9k")
+		name.startswith("cat9k") or 
+		name.startswith("ess3x00") or 
+		name.startswith("s5800") or 
+		name.startswith("vg400") or 
+		name.startswith("vg450")
 		):
 			fileprocessor_iosxe(name)
 

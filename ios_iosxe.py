@@ -1,7 +1,7 @@
 from iosutils import product,imagelookup,iostrain
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
-from iosutils import messageunknowndev,messageunknownfeat
+from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
 
 def fileprocessor_iosxe(filename):
 	splitbydot = filename.split(".")
@@ -25,7 +25,12 @@ def fileprocessor_iosxe(filename):
 		prodname = product (splitbydash[0])
 		mdash = splitbydot[0].split("-")
 		imagecode = imagelookup(mdash[1])
-		fileproc_iosxe(filename,prodname,imagecode)
+		if prodname == "UNKNOWN":
+			messageunknowndev()
+		elif imagecode == "UNKNOWN":
+			messageunknownfeat()
+		else:
+			fileproc_iosxe(filename,prodname,imagecode)
 
 def fileproc_iosxe_3 (filename,prodname,imagecode):
 	splitbydot = filename.split(".")
