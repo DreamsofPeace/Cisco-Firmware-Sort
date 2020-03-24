@@ -1546,19 +1546,21 @@ def toplevel(filename):
 			continue
 		
 		chars3 = name[0:3]
-		chars4 = name[0:4]
 		chars5 = name[0:5]
-		chars6 = name[0:6]
 		chars7 = name[0:7]
-		chars8 = name[0:8]
 		chars9 = name[0:9]
-		chars10 = name[0:10]
-		
 
 		if name.startswith("ata"):
 			fileprocessorvoice(name)
 
-		elif "tsjspgen" in name or "tpcgen" in name or "tpgen" in name or "tpcgenx" in name or "tscgen" in name or "tscgenx" in name:
+		elif (
+		"tsjspgen" in name or 
+		"tpcgen" in name or 
+		"tpgen" in name or 
+		"tpcgenx" in name or 
+		"tscgen" in name or 
+		"tscgenx" in name
+		):
 			fileprocessorpagent(name)
 
 		elif(
