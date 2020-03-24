@@ -1956,18 +1956,11 @@ def toplevel(filename):
 			fileprocessorsecurity(name)
 
 		elif (
-		name.startswith("CUMC")
-		):
-			continue
-
-		elif splitbydash[0] == "Acs" or splitbydash[0] == "ACS" or name.startswith("applAcs"):
-			continue
-
-		elif (
 		name.startswith("ucs") or 
 		name.startswith("update_pkg-ucse") or 
 		name == "Signed_EN_BIOS_1.5.0.4.bin.SPA" or 
 		name == "1X0DBIOSv4.8" or 
+		name == "1X0SBIOSv4.8" or 
 		name == "B57BCMCD_v15.2.4.1.tgz" or 
 		name == "B57CiscoCD_T6.4.4.3-57712.zip" or 
 		name == "CIMC-3.2.8.bin" or 
@@ -2026,10 +2019,30 @@ def toplevel(filename):
 		name == "ucse-huu-2.1.1.iso" or 
 		name == "update_pkg-Mar-22-MR-rebuild.bin" or 
 		name == "update_pkg-ucse.combined.120808.bin" or 
+		name == "update_pkg-ucse.combined.REL.2.2.1.bin" or 
 		name == "update_pkg-ucse.combined.REL.2.2.2.bin" or 
-		name == "update_pkg-ucse.combined.REL.bin"
+		name == "update_pkg-ucse.combined.REL.bin" or 
+		name == "SW_16MB_release_1102.bin" or 
+		name == "SW_Signed_Bios_Image.bin.SPA" or 
+		name == "UCS_docs_20110510.iso" or 
+		name == "c2xx-m1-utils-1.0.2.iso" or 
+		name == "b2xx-m1-drivers-1.1.1j.iso"
 		):
 			file_proc_servers (name)
+
+		elif (
+		name.startswith("CUMC")
+		):
+			continue
+
+		elif (
+		splitbydash[0] == "Acs" or 
+		splitbydash[0] == "ACS" or 
+		name.startswith("applAcs") or 
+		name.startswith("UCP") or 
+		name.startswith("Clean")
+		):
+			continue
 
 
 

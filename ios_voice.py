@@ -16,19 +16,23 @@ def fileprocphone(filename):
 
 	elif filename.startswith("cmterm-7911_7906-sccp"):
 		prodname = product ("ipp7911_7906")
-		fileprocphone3digitsccp(filename,prodname)
+		imagecode = imagelookup("sccp")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 	elif filename.startswith("cmterm-7911_7906-sip"):
 		prodname = product ("ipp7911_7906")
-		fileprocphone3digitsip(filename,prodname)
+		imagecode = imagelookup("sip")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 	elif filename.startswith("cmterm-7914-sccp"):
 		prodname = product ("ipp7914")
-		fileprocphone3digitsccp(filename,prodname)
+		imagecode = imagelookup("sccp")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 	elif filename.startswith("cmterm-7914-sip"):
 		prodname = product ("ipp7914")
-		fileprocphone3digitsip(filename,prodname)
+		imagecode = imagelookup("sip")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 	elif filename.startswith("cmterm-7915"):
 		prodname = product ("ipp7915")
@@ -40,27 +44,33 @@ def fileprocphone(filename):
 
 	elif filename.startswith("cmterm-7921-sccp"):
 		prodname = product ("ipp7921")
-		fileprocphone3digitsccp(filename,prodname)
+		imagecode = imagelookup("sccp")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 	elif filename.startswith("cmterm-7921-sip"):
 		prodname = product ("ipp7921")
-		fileprocphone3digitsip(filename,prodname)
+		imagecode = imagelookup("sip")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 	elif filename.startswith("cmterm-7931-sccp"):
 		prodname = product ("ipp7931")
-		fileprocphone3digitsccp(filename,prodname)
+		imagecode = imagelookup("sccp")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 	elif filename.startswith("cmterm-7931-sip"):
 		prodname = product ("ipp7931")
-		fileprocphone3digitsip(filename,prodname)
+		imagecode = imagelookup("sip")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 	elif filename.startswith("cmterm-7940_7960-sccp"):
 		prodname = product ("ipp7940_7960")
-		fileprocphone3digitsccp(filename,prodname)
+		imagecode = imagelookup("sccp")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 	elif filename.startswith("cmterm-7940_7960-sip"):
 		prodname = product ("ipp7940_7960")
-		fileprocphone3digitsip(filename,prodname)
+		imagecode = imagelookup("sip")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 	elif filename.startswith("cmterm-7940-7960"):
 		prodname = product ("ipp7940_7960")
@@ -68,43 +78,58 @@ def fileprocphone(filename):
 
 	elif filename.startswith("cmterm-7941_7961-sccp"):
 		prodname = product ("ipp7941_7961")
-		fileprocphone3digitsccp(filename,prodname)
+		imagecode = imagelookup("sccp")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 	elif filename.startswith("cmterm-7941_7961-sip"):
 		prodname = product ("ipp7941_7961")
-		fileprocphone3digitsip(filename,prodname)
+		imagecode = imagelookup("sip")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 	elif filename.startswith("cmterm-7942_7962-sccp"):
 		prodname = product ("ipp7942_7962")
-		fileprocphone3digitsccp(filename,prodname)
+		imagecode = imagelookup("sccp")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 	elif filename.startswith("cmterm-7942_7962-sip"):
 		prodname = product ("ipp7942_7962")
-		fileprocphone3digitsip(filename,prodname)
+		imagecode = imagelookup("sip")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 	elif filename.startswith("cmterm-7945_7965-sccp"):
 		prodname = product ("ipp7945_7965")
-		fileprocphone3digitsccp(filename,prodname)
+		imagecode = imagelookup("sccp")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 	elif filename.startswith("cmterm-7945_7965-sip"):
 		prodname = product ("ipp7945_7965")
-		fileprocphone3digitsip(filename,prodname)
+		imagecode = imagelookup("sip")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 	elif filename.startswith("cmterm-7970_7971-sccp"):
 		prodname = product ("ipp7970_7971")
-		fileprocphone3digitsccp(filename,prodname)
+		imagecode = imagelookup("sccp")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 	elif filename.startswith("cmterm-7970_7971-sip"):
 		prodname = product ("ipp7970_7971")
-		fileprocphone3digitsip(filename,prodname)
+		imagecode = imagelookup("sip")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 	elif filename.startswith("cmterm-7975-sccp"):
 		prodname = product ("ipp7975")
-		fileprocphone3digitsccp(filename,prodname)
+		imagecode = imagelookup("sccp")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 	elif filename.startswith("cmterm-7975-sip"):
 		prodname = product ("ipp7975")
-		fileprocphone3digitsip(filename,prodname)
+		imagecode = imagelookup("sip")
+		fileprocphone3digittype(filename,prodname,imagecode)
+
+	elif filename.startswith("cmterm-8845_65-sip"):
+		prodname = product ("ipp8845_65")
+		imagecode = imagelookup("sip")
+		fileprocphone3digittype(filename,prodname,imagecode)
 
 
 
@@ -123,20 +148,13 @@ def fileprocphone3digittwo(filename,prodname):
 #	elif splitbydash[4] == "-sccp.cop":
 #		fileprocphone3digitsccp(filename,prodname)
 
-def fileprocphone3digitsip(filename,prodname):
-	imagecode = imagelookup("sip")
-	splitbydot = filename.split(".")
-	splitbydash = splitbydot[1].split("-")
-	ver2 = util2digit(splitbydash[0],splitbydash[1])
-	ver3 = util3digit(splitbydash[0],splitbydash[1],splitbydash[2])
-	filepath = filepath4(prodname,ver2,ver3,imagecode)
-	filemove (filepath, filename)
-
-def fileprocphone3digitsccp(filename,prodname):
-	imagecode = imagelookup("sccp")
-	splitbydot = filename.split(".")
-	splitbydash = splitbydot[1].split("-")
-	ver2 = util2digit(splitbydash[0],splitbydash[1])
-	ver3 = util3digit(splitbydash[0],splitbydash[1],splitbydash[2])
-	filepath = filepath4(prodname,ver2,ver3,imagecode)
-	filemove (filepath, filename)
+def fileprocphone3digitsip(filename,prodname,imagecode):
+	if prodname == "UNKNOWN" or imagecode == "UNKNOWN":
+		messageunknownfile()
+	else:
+		splitbydot = filename.split(".")
+		splitbydash = splitbydot[1].split("-")
+		ver2 = util2digit(splitbydash[0],splitbydash[1])
+		ver3 = util3digit(splitbydash[0],splitbydash[1],splitbydash[2])
+		filepath = filepath4(prodname,ver2,ver3,imagecode)
+		filemove (filepath, filename)

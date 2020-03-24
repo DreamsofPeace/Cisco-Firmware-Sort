@@ -1783,12 +1783,16 @@ def imagelookup (imagecode):
 		subdirectory = "UTILS/C-SERIES/EFI"
 	elif imagecode == "utilscwindows":
 		subdirectory = "UTILS/C-SERIES/WINDOWS"
+	elif imagecode == "utilsc":
+		subdirectory = "UTILS/C-SERIES"
 	elif imagecode == "driverseseries":
 		subdirectory = "DRIVERS"
 	elif imagecode == "firmwareeseries":
 		subdirectory = "FIRMWARE"
 	elif imagecode == "ucsbundle":
 		subdirectory = "BUNDLE"
+	elif imagecode == "docs":
+		subdirectory = "DOCUMENTATION"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2580,6 +2584,8 @@ def product (prodcode):
 		prodname = "Voice/IP-Phones/7970_7971"
 	elif prodcode == "ipp7975":
 		prodname = "Voice/IP-Phones/7975"
+	elif prodcode == "ipp7975":
+		prodname = "Voice/IP-Phones/7975"
 	elif prodcode == "firepower":
 		prodname = "Security/Firewall-NG/FirePOWER"
 	elif prodcode == "asa":
@@ -2683,4 +2689,4 @@ def messageunknowndev ():
 def messageunknownfeat ():
 		print ("E002: This feature set is unknown, please update the script with the information about the image.", end="\n")
 def messageunknownfile ():
-		print ("E002: This file in not classifiable, please update the script with the information about the image.", end="\n")
+		print ("E003: This file in not classifiable, please update the script with the information about the image.", end="\n")
