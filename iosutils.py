@@ -1783,6 +1783,10 @@ def imagelookup (imagecode):
 		subdirectory = "UTILS/C-SERIES/EFI"
 	elif imagecode == "utilscwindows":
 		subdirectory = "UTILS/C-SERIES/WINDOWS"
+	elif imagecode == "driverseseries":
+		subdirectory = "DRIVERS"
+	elif imagecode == "firmwareeseries":
+		subdirectory = "FIRMWARE"
 	elif imagecode == "ucsbundle":
 		subdirectory = "BUNDLE"
 	else:
@@ -2622,6 +2626,8 @@ def product (prodcode):
 		prodname = "Servers/UCS/C-SERIES/C480M5"
 	elif prodcode == "e100":
 		prodname = "Servers/UCS/E-SERIES/E1XX"
+	elif prodcode == "ucseseries":
+		prodname = "Servers/UCS/E-SERIES/"
 	elif prodcode == "ucsgeneric":
 		prodname = "Servers/UCS"
 	else:

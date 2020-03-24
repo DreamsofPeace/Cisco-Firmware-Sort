@@ -17,6 +17,93 @@ def file_proc_servers_ucs (filename):
 		imagecode = imagelookup("catalog")
 		file_proc_servers_ucs_single (filename,prodname,imagecode)
 
+	elif (
+	name == "B57BCMCD_v15.2.4.1.tgz" or 
+	name == "B57CiscoCD_T6.4.4.3-57712.zip" or 
+	name == "Intel_Windows_drv_MR_6.714.18.00_pv.zip" or 
+	name == "LSI_x64_Signed_Driver_5.2.116.64.zip" or 
+	name == "MR_WINDOWS_DRIVER-6.506.02.00-WHQL.zip" or 
+	name == "intel9.2.3.1023.tar" or 
+	name == "rste_4.5.0.1335_install.zip" or 
+	):
+		prodname = product("ucseseries")
+		imagecode = imagelookup("driverseseries")
+		file_proc_servers_ucs_single (filename,prodname,imagecode)
+
+	elif (
+	name == "efi-obd-v12-07-18.diag" or 
+	name == "efi-obd-v13-10-15.diag" or 
+	name == "efi-obd-v13-7-3.diag"
+	):
+		prodname = product("ucseseries")
+		imagecode = imagelookup("hdiag")
+		file_proc_servers_ucs_single (filename,prodname,imagecode)
+
+	elif (
+	name == "huu-2.3.1.iso" or 
+	name == "huu-2.3.2.iso" or 
+	name == "huu-2.3.3.iso" or 
+	name == "huu-2.4.1.iso" or 
+	name == "huu-3.0.1.iso" or 
+	name == "huu-3.1.1.iso" or 
+	name == "huu_3.1.2.iso" or 
+	name == "huu_3.1.3.iso" or 
+	name == "huu_3.1.4.iso" or 
+	name == "huu_3.2.6.v3.iso" or 
+	name == "ucse-huu-2.1.1.iso"
+	):
+		prodname = product("ucseseries")
+		imagecode = imagelookup("huu")
+		file_proc_servers_ucs_single (filename,prodname,imagecode)
+
+	elif (
+	name == "DW_16MB_release_1029.bin" or 
+	name == "DW_BIOS.bin.SPA" or 
+	name == "DW_Signed_Bios_Image.bin.SPA" or 
+	name == "1X0DBIOSv4.8" or 
+	name == "Signed_EN_BIOS_1.5.0.4.bin.SPA" or 
+	name == "CIMC-3.2.8.bin" or 
+	name == "CIMC_2.4.1.bin" or 
+	name == "CIMC_2.4.2.bin" or 
+	name == "CIMC_3.0.1.bin" or 
+	name == "CIMC_3.0.2.bin" or 
+	name == "CIMC_3.1.1.bin" or 
+	name == "CIMC_3.1.2.bin" or 
+	name == "CIMC_3.1.3.bin" or 
+	name == "CIMC_3.1.4.bin" or 
+	name == "CIMC_3.2.1.REL.bin" or 
+	name == "CIMC_3.2.2.bin" or 
+	name == "CIMC_3.2.3.bin" or 
+	name == "CIMC_3.2.4.bin" or 
+	name == "CIMC_3.2.6.bin" or 
+	name == "CIMC_3.2.7.bin" or 
+	name == "Signed_DW_M1M2_BIOS_2.5.0.4.bin.SPA" or 
+	name == "Signed_DW_M1M2_BIOS_2.5.0.5.bin.SPA" or 
+	name == "Signed_DW_M1M2_BIOS_2.5.0.6.bin.SPA" or 
+	name == "Signed_DW_M1M2_Bios_Image_041015.bin.SPA" or 
+	name == "Signed_EN_BIOS_1.5.0.5.bin.SPA" or 
+	name == "Signed_EN_BIOS_1.5.0.6.bin.SPA" or 
+	name == "Signed_SW_M2_BIOS_1.5.0.6.bin.SPA" or 
+	name == "Signed_SW_M2_BIOS_1.5.0.7.bin.SPA" or 
+	name == "Signed_SW_M2_BIOS_1.5.0.8.bin.SPA" or 
+	name == "Signed_SW_M2_Bios_1.5.0.5.bin.SPA" or 
+	name == "UCSEDM3_BIOS_2.4.SPA" or 
+	name == "UCSEDM3_BIOS_2.5.SPA" or 
+	name == "UCSEDM3_BIOS_2.6.SPA" or 
+	name == "UCSE_CIMC_2.3.1.bin" or 
+	name == "UCSE_CIMC_2.3.2.bin" or 
+	name == "UCSE_CIMC_2.3.3.bin" or 
+	name == "UCSE_CIMC_2.3.5.bin" or 
+	name == "update_pkg-Mar-22-MR-rebuild.bin" or 
+	name == "update_pkg-ucse.combined.120808.bin" or 
+	name == "update_pkg-ucse.combined.REL.2.2.2.bin" or 
+	name == "update_pkg-ucse.combined.REL.bin"
+	):
+		prodname = product("ucseseries")
+		imagecode = imagelookup("firmwareeseries")
+		file_proc_servers_ucs_single (filename,prodname,imagecode)
+
+
 	elif filename.startswith("ucs-utils"):
 		prodname = product("ucsgeneric")
 		imagecode = imagelookup("utils")
