@@ -5,13 +5,6 @@ from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
 
 def file_proc_servers (filename):
 	if (
-	filename.startswith("ucs") or 
-	filename == "b2xx-m1-drivers-1.1.1j.iso" or 
-	filename == "c2xx-m1-utils-1.0.2.iso"
-	):
-		file_proc_servers_ucs (filename)
-
-	elif (
 	filename == "B57BCMCD_v15.2.4.1.tgz" or 
 	filename == "B57CiscoCD_T6.4.4.3-57712.zip" or 
 	filename == "Intel_Windows_drv_MR_6.714.18.00_pv.zip" or 
@@ -44,7 +37,8 @@ def file_proc_servers (filename):
 	filename == "huu_3.1.3.iso" or 
 	filename == "huu_3.1.4.iso" or 
 	filename == "huu_3.2.6.v3.iso" or 
-	filename == "ucse-huu-2.1.1.iso"
+	filename == "ucse-huu-2.1.1.iso" or 
+	filename == "ucs-e100-huu-2.2.1.iso"
 	):
 		prodname = product("ucseseries")
 		imagecode = imagelookup("huu")
@@ -100,14 +94,31 @@ def file_proc_servers (filename):
 		prodname = product("ucseseries")
 		imagecode = imagelookup("firmwareeseries")
 		file_proc_servers_ucs_single (filename,prodname,imagecode)
+
 	elif (
 	filename == "UCS_docs_20110510.iso"
 	):
 		prodname = product("ucsgeneric")
 		imagecode = imagelookup("docs")
 		file_proc_servers_ucs_single (filename,prodname,imagecode)
+
+	elif (
+	filename.startswith("ucs") or 
+	filename == "b2xx-m1-drivers-1.1.1j.iso" or 
+	filename == "c2xx-m1-utils-1.0.2.iso"
+	):
+		file_proc_servers_ucs (filename)
+
+	elif (
+	filename.startswith("PI")
+	):
+		file_proc_servers_primeinfra (filename)
+
 	else:
 		messageunknownfile()
+
+def file_proc_servers_primeinfra (filename):
+	splitbydash = filename.split("-")
 
 def file_proc_servers_ucs (filename):
 	splitbydash = filename.split("-")

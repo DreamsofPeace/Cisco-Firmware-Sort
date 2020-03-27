@@ -148,7 +148,7 @@ def fileprocphone3digittwo(filename,prodname):
 #	elif splitbydash[4] == "-sccp.cop":
 #		fileprocphone3digitsccp(filename,prodname)
 
-def fileprocphone3digitsip(filename,prodname,imagecode):
+def fileprocphone3digittype(filename,prodname,imagecode):
 	if prodname == "UNKNOWN" or imagecode == "UNKNOWN":
 		messageunknownfile()
 	else:

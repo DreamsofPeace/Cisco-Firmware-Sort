@@ -1793,6 +1793,14 @@ def imagelookup (imagecode):
 		subdirectory = "BUNDLE"
 	elif imagecode == "docs":
 		subdirectory = "DOCUMENTATION"
+	elif imagecode == "asdm":
+		subdirectory = "ADAPTIVE-SECURITY-DEVICE-MANAGER"
+	elif imagecode == "asdmf":
+		subdirectory = "ADAPTIVE-SECURITY-DEVICE-MANAGER-ASASM"
+	elif imagecode == "struts":
+		subdirectory = "STRUTS-FIX"
+	elif imagecode == "upgrade":
+		subdirectory = "UPGRADE"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2594,8 +2602,6 @@ def product (prodcode):
 		prodname = "Security/Firewall/Catalyst-6500-FWSM"
 	elif prodcode == "pix":
 		prodname = "Security/Firewall/PIX"
-	elif prodcode == "asdm":
-		prodname = "ADAPTIVE-SECURITY-DEVICE-MANAGER"
 	elif prodcode == "anyconnect":
 		prodname = "Security/VPN-Clients/Anyconnect"
 	elif prodcode == "c125":
@@ -2636,6 +2642,12 @@ def product (prodcode):
 		prodname = "Servers/UCS/E-SERIES/"
 	elif prodcode == "ucsgeneric":
 		prodname = "Servers/UCS"
+	elif prodcode == "ise":
+		prodname = "Security/Identity/IDENTIY-SERVICES-ENGINE"
+	elif prodcode == "isepic":
+		prodname = "Security/Identity/IDENTIY-SERVICES-ENGINE-PIC"
+	elif prodcode == "acs":
+		prodname = "Security/Identity/ACS"
 	else:
 		prodname = "UNKNOWN"
 	return prodname

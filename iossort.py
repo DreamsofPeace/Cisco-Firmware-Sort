@@ -1949,9 +1949,12 @@ def toplevel(filename):
 		name.startswith("PIX") or 
 		name.startswith("asdm") or 
 		name.startswith("asa") or 
+		name.startswith("cisco-asa") or 
 		name.startswith("csd") or 
 		splitbydot[0] == "c6svc-fwm-k9" or 
-		name == "anyconnect_app_selector_2.0.zip"
+		name == "anyconnect_app_selector_1.0.zip" or 
+		name == "anyconnect_app_selector_2.0.zip" or 
+		name == "WebSecurityCert.zip"
 		):
 			fileprocessorsecurity(name)
 
@@ -2004,6 +2007,7 @@ def toplevel(filename):
 		name == "efi-obd-v12-07-18.diag" or 
 		name == "efi-obd-v13-10-15.diag" or 
 		name == "efi-obd-v13-7-3.diag" or 
+		name == "ucse-huu-2.1.1.iso" or 
 		name == "huu-2.3.1.iso" or 
 		name == "huu-2.3.2.iso" or 
 		name == "huu-2.3.3.iso" or 
@@ -2016,7 +2020,6 @@ def toplevel(filename):
 		name == "huu_3.2.6.v3.iso" or 
 		name == "intel9.2.3.1023.tar" or 
 		name == "rste_4.5.0.1335_install.zip" or 
-		name == "ucse-huu-2.1.1.iso" or 
 		name == "update_pkg-Mar-22-MR-rebuild.bin" or 
 		name == "update_pkg-ucse.combined.120808.bin" or 
 		name == "update_pkg-ucse.combined.REL.2.2.1.bin" or 
@@ -2029,6 +2032,20 @@ def toplevel(filename):
 		name == "b2xx-m1-drivers-1.1.1j.iso"
 		):
 			file_proc_servers (name)
+
+		elif (
+		name.startswith("ise-pic") or 
+		name == "pic-2.2.0.470.SPA.x86_64.iso" or 
+		name == "pic-2.4.0.357.SPA.x86_64.iso" or 
+		name == "README_ISE_20_201_21_22" or 
+		name.startswith("PI") or 
+		name.startswith("ISE") or 
+		name.startswith("ise") or 
+		name.startswith("mac-spw-dmg") or 
+		name.startswith("webagent") or 
+		name.startswith("win_spw")
+		):
+			fileprocessorsecurity (name)
 
 		elif (
 		name.startswith("CUMC")

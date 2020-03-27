@@ -7,10 +7,13 @@ def fileprocessorsecurity (filename):
 	if filename.startswith("c6svc-fwm-k9"):
 		sec_fwsm (filename)
 
-	if filename.startswith("csd_"):
+	elif filename.startswith("csd_"):
 		sec_csd (filename)
 
-	elif filename == "anyconnect_app_selector_2.0.zip":
+	elif(
+	filename == "anyconnect_app_selector_1.0.zip" or 
+	filename == "anyconnect_app_selector_2.0.zip"
+	):
 		prodname = product("anyconnect")
 		imagecode = imagelookup("app_selector")
 		sec_single_file (filename,prodname,imagecode)
@@ -48,6 +51,24 @@ def fileprocessorsecurity (filename):
 	elif filename.startswith("Sourcefire_3D_Defense_Center_S3_Patch"):
 		sec_sourcefire_fmc_patch(filename)
 
+	elif (
+	filename.startswith("ise-pic") or 
+	filename == "pic-2.2.0.470.SPA.x86_64.iso" or 
+	filename == "pic-2.4.0.357.SPA.x86_64.iso"
+	):
+		sec_ise_pic(filename)
+
+	elif (
+		filename == "README_ISE_20_201_21_22" or 
+		filename.startswith("PI") or 
+		filename.startswith("ISE") or 
+		filename.startswith("ise") or 
+		filename.startswith("mac-spw-dmg") or 
+		filename.startswith("webagent") or 
+		filename.startswith("win_spw")
+	):
+		sec_ise(filename)
+
 	else:
 		messageunknownfile()
 
@@ -60,6 +81,112 @@ def fileprocessorsecurity (filename):
 #def sec_sourcefire (filename):
 #	splitbydash = filename.split("-")
 #	if splitbydash[0] == "Cisco_Firepower_Management_Center_Virtual":
+
+def sec_ise (filename):
+	prodname = product ("ise")
+	if (
+	filename == "README_ISE_20_201_21_22" or 
+	filename == "ise-applystrutsfix-signed.x86_64.tar.gz" or 
+	filename == "ise-rollbackstrutsfix-signed.x86_64.tar.gz"
+	):
+		imagecode = imagelookup("struts")
+		sec_single_file(filename,prodname,imagecode)
+	elif (
+	filename.startswith("ise-patchbundle-")
+	):
+		imagecode = imagelookup("patch")
+		sec_ise_patch (filename,prodname,imagecode)
+	elif (
+	filename.startswith("ISE-") and filename.endswith("ova") or 
+	filename.startswith("ise-") and filename.endswith("iso")
+	):
+		imagecode = imagelookup("install")
+		sec_ise_install (filename,prodname,imagecode)
+	elif (
+	filename.startswith("ise-upgradebundle-")
+	):
+		imagecode = imagelookup("upgrade")
+		sec_ise_upgrade (filename,prodname,imagecode)
+
+	else:
+		messageunknownfile()
+
+def sec_ise_upgrade (filename,prodname,imagecode):
+	if filename =="ise-upgradebundle-1.4.x-to-2.2.0.470.1808.x86_64.tar.gz":
+		vertwo = "2.2"
+	elif filename =="ise-upgradebundle-2.0.x-2.3.x-to-2.4.0.357.SPA.x86_64.tar.gz":
+		vertwo = "2.4"
+	elif filename =="ise-upgradebundle-2.0.x-to-2.1.0.474.SPA.x86_64.tar.gz":
+		vertwo = "2.1"
+	elif filename =="ise-upgradebundle-2.0.x-to-2.2.0.470.1808.SPA.x86_64.tar.gz":
+		vertwo = "2.2"
+	elif filename =="ise-upgradebundle-2.0.x-to-2.2.0.470.SPA.x86_64.tar.gz":
+		vertwo = "2.2"
+	elif filename =="ise-upgradebundle-2.0.x-to-2.3.0.298.1808.SPA.x86_64.tar.gz":
+		vertwo = "2.3"
+	elif filename =="ise-upgradebundle-2.1.x-2.4.x-to-2.6.0.156.SPA.x86_64.tar.gz":
+		vertwo = "2.6"
+	elif filename =="ise-upgradebundle-2.2.0.470.1808.SPA.x86_64.tar.gz":
+		vertwo = "2.2"
+	elif filename =="ise-upgradebundle-2.2.0.470.SPA.x86_64.tar.gz":
+		vertwo = "2.2"
+	elif filename =="ise-upgradebundle-2.2.x-2.6.x-to-2.7.0.356.SPA.x86_64.tar.gz":
+		vertwo = "2.7"
+	elif filename =="ise-upgradebundle-2.3.0.298.SPA.x86_64.tar.gz":
+		vertwo = "2.3"
+	filepath = filepath3 (prodname,vertwo,imagecode)
+	filemove (filepath, filename)
+
+def sec_ise_install (filename,prodname,imagecode):
+	workname = filename.replace("ise-","")
+	workname = workname.replace("ISE-","")
+	splitbydot = workname.split(".")
+	vertwo = util2digit(splitbydot[0],splitbydot[1])
+	filepath = filepath3 (prodname,vertwo,imagecode)
+	filemove (filepath, filename)
+
+
+def sec_ise_patch (filename,prodname,imagecode):
+	workname = filename.replace("ise-patchbundle-","")
+	splitbydot = workname.split(".")
+	splitbydash = workname.split("-")
+	patchnum = splitbydash[1].replace("Patch","")
+	vertwo = util2digit(splitbydot[0],splitbydot[1])
+	filepath = filepath4 (prodname,vertwo,imagecode,patchnum)
+	filemove (filepath, filename)
+
+def sec_ise_pic (filename):
+	prodname = product ("isepic")
+	if filename.startswith("pic-"):
+		sec_ise_pic_orig (filename,prodname)
+	elif filename.startswith("ise-pic-"):
+		sec_ise_pic_current (filename,prodname)
+	else:
+		messageunknownfile()
+
+def sec_ise_pic_orig (filename,prodname):
+	splitbydot = filename.split(".")
+	splitbydot[0] = splitbydot[0].replace("pic-","")
+	imagecode = imagelookup("install")
+	verfour = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+	filepath = filepath3 (prodname,verfour,imagecode)
+	filemove (filepath, filename)
+
+def sec_ise_pic_current (filename,prodname):
+	splitbydash = filename.split("-")
+	if filename.startswith("ise-pic-patchbundle-"):
+		splitbydash[4] = splitbydash[4].replace("Patch", "")
+		version = splitbydash[3]
+		imagecode = imagelookup("patch")
+		filepath = filepath4 (prodname,version,imagecode,splitbydash[4])
+		filemove (filepath, filename)
+	elif filename.startswith("ise-pic-"):
+		version = splitbydash[2]
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	else:
+		messageunknownfile()
 
 def sec_sourcefire_fmc_patch (filename):
 	prodname = product ("firepower")
@@ -161,7 +288,61 @@ def sec_fxos (filename):
 		sec_fxos_firmware_d4_1_4(filename,prodname,imagecode)
 
 def sec_asa_asdm (filename):
-	prodname = product("asdm")
+	if filename == "asdm508.bin":
+		prodname = product("asa")
+		imagecode = imagelookup("asdm")
+		vertwo = util2digit("5","0")
+		verthree = util3digit("5","0","8")
+		filepath = filepath4(prodname,imagecode,vertwo,verthree)
+		filemove (filepath, filename)
+	elif filename == "asdm-demo-722.msi":
+		prodname = product("asa")
+		imagecode = imagelookup("asdm")
+		vertwo = util2digit("7","2")
+		verthree = util3digit("7","2","2")
+		filepath = filepath4(prodname,imagecode,vertwo,verthree)
+		filemove (filepath, filename)
+	elif filename == "asdm-openjre-7122.bin":
+		prodname = product("asa")
+		imagecode = imagelookup("asdm")
+		vertwo = util2digit("7","1")
+		verfour = util4digit("7","1","2","2")
+		filepath = filepath4(prodname,imagecode,vertwo,verfour)
+	elif filename == "asdm-openjre-7131.bin":
+		prodname = product("asa")
+		imagecode = imagelookup("asdm")
+		vertwo = util2digit("7","1")
+		verfour = util4digit("7","1","3","1")
+		filepath = filepath4(prodname,imagecode,vertwo,verfour)
+		filemove (filepath, filename)
+	elif (
+	filename.endswith("f.bin") or 
+	filename.endswith("f.msi")
+	):
+		prodname = product("asa")
+		imagecode = imagelookup("asdmf")
+		sec_asa_asdm_to_ver (filename,prodname,imagecode)
+
+	else:
+		prodname = product("asa")
+		imagecode = imagelookup("asdm")
+		sec_asa_asdm_to_ver (filename,prodname,imagecode)
+
+def sec_asa_asdm_to_ver (filename,prodname,imagecode):
+#	workname = filename.replace("asdm-","")
+	workname = filename.replace("f.bin","")
+	workname = workname.replace(".bin","")
+	workname = workname.replace(".msi","")
+	splitbydash = workname.split("-")
+	if len(splitbydash) == 2:
+		sbd1 = list(splitbydash[1])
+		vertwo = util2digit(sbd1[0],sbd1[1])
+		verthree = util3digit(sbd1[0],sbd1[1],sbd1[2])
+		filepath = filepath4(prodname,imagecode,vertwo,verthree)
+		filemove (filepath, filename)
+	else:
+		messageunknownfile ()
+
 
 def sec_fwsm (filename):
 	splitbydot = filename.split(".")
