@@ -1801,6 +1801,8 @@ def imagelookup (imagecode):
 		subdirectory = "STRUTS-FIX"
 	elif imagecode == "upgrade":
 		subdirectory = "UPGRADE"
+	elif imagecode == "clean":
+		subdirectory = "CLEAN-UTILITY"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory

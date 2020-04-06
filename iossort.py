@@ -547,25 +547,6 @@ def cat4500spa (filename, prodname, imagecode):
 		filepath = prodname + "/" + iostrain + "/" + iosversion + "/" + imagecode
 		filemove (filepath, filename)
 
-def acs5patches (filename):
-	product = "ACS"
-	imagecode = "PATCH"
-	splitbydot = filename.split(".")
-	splitbydash = splitbydot[0].split("-")
-	version = splitbydash[0] + "." + splitbydash[1] + "." + splitbydash[2] + "." + splitbydash[3]
-	filepath = product + "/" + version + "/" + imagecode + "/" + splitbydash[4]
-	filemove (filepath, filename)
-
-def acs (filename):
-	product = "ACS"
-	splitbydot = filename.split(".")
-	splitbydash = filename.split("-")
-	splitbydot2 = splitbydash[1].split(".")
-	
-	if splitbydash[2] == "DOCs.zip":
-		imagecode = "DOCUMENTATION"
-
-
 def mars (filename):
 	product = "MARS"
 	splitbydot = filename.split(".")
@@ -574,8 +555,6 @@ def mars (filename):
 	version = splitbydash[1] + "." + splitbydot[1] + "." + splitbydot[2] + "." + splitbydot[3]
 	filepath = product + "/" + mainversion + "/" + version
 	filemove (filepath, filename)
-
-
 
 def nbar2 (filename):
 	product = "NBAR2"
@@ -2048,16 +2027,21 @@ def toplevel(filename):
 			fileprocessorsecurity (name)
 
 		elif (
-		name.startswith("CUMC")
-		):
-			continue
-
-		elif (
-		splitbydash[0] == "Acs" or 
-		splitbydash[0] == "ACS" or 
+		name.startswith("Acs") or 
+		name.startswith("ACS") or 
 		name.startswith("applAcs") or 
 		name.startswith("UCP") or 
-		name.startswith("Clean")
+		name.startswith("Clean") or 
+		name.startswith("5-") or 
+		name == "ACS57BasePatch.tar.gz" or 
+		name == "ReadMe_for_ACS_5.6_Upgrade_Package-txt" or 
+		name == "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429.zip" or 
+		name == "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429-Readme.txt"
+		):
+			fileprocessorsecurity (name)
+
+		elif (
+		name.startswith("CUMC")
 		):
 			continue
 

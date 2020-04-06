@@ -69,6 +69,18 @@ def fileprocessorsecurity (filename):
 	):
 		sec_ise(filename)
 
+	elif (
+		filename.startswith("ACS") or 
+		filename.startswith("Acs") or 
+		filename.startswith("Clean") or 
+		filename.startswith("UCP") or 
+		filename.startswith("applAcs") or 
+		filename.startswith("5-") or 
+		filename == "ACS57BasePatch.tar.gz" or 
+		filename == "ReadMe_for_ACS_5.6_Upgrade_Package-txt"
+	):
+		sec_acs(filename)
+
 	else:
 		messageunknownfile()
 
@@ -81,6 +93,91 @@ def fileprocessorsecurity (filename):
 #def sec_sourcefire (filename):
 #	splitbydash = filename.split("-")
 #	if splitbydash[0] == "Cisco_Firepower_Management_Center_Virtual":
+
+def sec_acs (filename):
+	prodname = product ("acs")
+	if (
+	filename.startswith("Clean-")
+	):
+		imagecode = imagelookup("clean")
+#		sec_ise_patch (filename,prodname,imagecode)
+
+	elif (
+	filename.startswith("5-")
+	):
+		imagecode = imagelookup("patch")
+		sec_acs_patch (filename,prodname,imagecode)
+
+	elif (
+		filename == "ACS57BasePatch.tar.gz"
+	):
+		imagecode = imagelookup("patch")
+		filepath = filepath4 (prodname,"5.7.0.15",imagecode,"0")
+		filemove (filepath, filename)
+
+	elif (
+		filename == "ACS_5.0.0.21_ADE_OS_1.2_upgrade.tar.gpg"
+	):
+		imagecode = imagelookup("upgrade")
+		filepath = filepath3 (prodname,"5.0.0.21",imagecode)
+		filemove (filepath, filename)
+
+	elif (
+		filename == "ReadMe_for_ACS_5.6_Upgrade_Package-txt"
+	):
+		imagecode = imagelookup("upgrade")
+		filepath = filepath3 (prodname,"5.6.0.22",imagecode)
+		filemove (filepath, filename)
+
+	elif (
+		filename == "applAcs_4.1.1.23_ACS-4.1-CSTacacs-CSCsg97429.zip" or 
+		filename == "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429.zip" or 
+		filename == "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429-Readme.txt"
+	):
+		imagecode = imagelookup("patch")
+		filepath = filepath4 (prodname,"4.1.1.23",imagecode,"CSTacacs-CSCsg97429")
+		filemove (filepath, filename)
+
+	elif (
+	filename.startswith("ACS-4") or 
+	filename.startswith("Acs-4")
+	):
+		sec_acs_vfour (filename,prodname)
+	else:
+		messageunknownfile()
+
+def sec_acs_vfour (filename,prodname):
+	if filename.endswith("-DOCs.zip"):
+		imagecode = imagelookup("docs")
+	elif filename.endswith("-BIN-K9.zip"):
+		imagecode = imagelookup("install")
+	elif (
+	filename.endswith("-SW.zip") or 
+	filename.endswith("-SW.exe") or 
+	filename.endswith("-SW-Readme.txt") or 
+	filename.endswith("-Clean.zip")
+	):
+		imagecode = imagelookup("patch")
+		sec_acs_vfour_patch (filename,prodname,imagecode)
+
+def sec_acs_vfour_patch (filename,prodname,imagecode):
+	workname = filename.replace("-SW.zip", "")
+	workname = workname.replace("-SW.exe", "")
+	workname = workname.replace("-Clean.zip", "")
+	workname = workname.replace("-SW-Readme.txt", "")
+	workname = workname.replace("Acs-", "")
+	workname = workname.replace("ACS-", "")
+	splitbydot = workname.split(".")
+	verfour = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+	filepath = filepath4 (prodname,verfour,imagecode,splitbydot[4])
+	filemove (filepath, filename)
+
+def sec_acs_patch (filename,prodname,imagecode):
+	workname = filename.replace(".tar.gpg","")
+	splitbydash = workname.split("-")
+	verfour = util4digit(splitbydash[0],splitbydash[1],splitbydash[2],splitbydash[3])
+	filepath = filepath4 (prodname,verfour,imagecode,splitbydash[4])
+	filemove (filepath, filename)
 
 def sec_ise (filename):
 	prodname = product ("ise")

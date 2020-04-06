@@ -11,8 +11,12 @@ def fileprocessor_iosxe(filename):
 		fileproc_iosxe (filename,prodname,"Hardware")
 	elif filename.startswith("cat9k_iosxe") or filename.startswith("cat9k_lite"):
 		prodname = product ("cat9k")
-		imagecode == imagelookup(splitbydot[0])
-		fileproc_iosxe (filename,prodname,imagecode)
+		if filename.endswith("smu.bin"):
+			imagecode = imagelookup("smu")
+			fileproc_iosxe (filename,prodname,imagecode)
+		else:
+			imagecode = imagelookup(splitbydot[0])
+			fileproc_iosxe (filename,prodname,imagecode)
 	elif filename.startswith("cat3k_caa"):
 		prodname = product (splitbydash[0])
 		mdash = splitbydot[0].split("-")
