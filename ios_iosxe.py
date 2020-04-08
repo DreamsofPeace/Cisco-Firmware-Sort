@@ -9,14 +9,22 @@ def fileprocessor_iosxe(filename):
 	if filename == "cat9k_iosxe.16.00.00fpgautility.SPA.bin":
 		prodname = product ("cat9k")
 		fileproc_iosxe (filename,prodname,"Hardware")
+
 	elif filename.startswith("cat9k_iosxe") or filename.startswith("cat9k_lite"):
-		prodname = product ("cat9k")
-		if filename.endswith("smu.bin"):
-			imagecode = imagelookup("smu")
-			fileproc_iosxe (filename,prodname,imagecode)
+		if filename.startswith("cat9k_iosxe"):
+			prodname = product ("cat9k")
+		elif filename.startswith("cat9k_lite"):
+			prodname = product ("cat9k_lite")
+		if prodname == "UNKNOWN":
+			messageunknownfile ()
 		else:
-			imagecode = imagelookup(splitbydot[0])
-			fileproc_iosxe (filename,prodname,imagecode)
+			if filename.endswith("smu.bin"):
+				imagecode = imagelookup("smu")
+				fileproc_iosxe (filename,prodname,imagecode)
+			else:
+				imagecode = imagelookup(splitbydot[0])
+				fileproc_iosxe (filename,prodname,imagecode)
+
 	elif filename.startswith("cat3k_caa"):
 		prodname = product (splitbydash[0])
 		mdash = splitbydot[0].split("-")
@@ -25,6 +33,7 @@ def fileprocessor_iosxe(filename):
 			fileproc_iosxe_3 (filename,prodname,imagecode)
 		else:
 			fileproc_iosxe(filename,prodname,imagecode)
+
 	else:
 		prodname = product (splitbydash[0])
 		mdash = splitbydot[0].split("-")

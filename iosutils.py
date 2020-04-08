@@ -1638,9 +1638,9 @@ def imagelookup (imagecode):
 	elif imagecode == "cat9k_iosxe":
 		subdirectory = "SYSTEM"
 	elif imagecode == "cat9k_lite_iosxe_npe":
-		subdirectory = "SYSTEM-CAT9200-NPE"
+		subdirectory = "SYSTEM-NPE"
 	elif imagecode == "cat9k_lite_iosxe":
-		subdirectory = "SYSTEM-CAT9200"
+		subdirectory = "SYSTEM"
 	elif imagecode == "smu":
 		subdirectory = "SMU"
 	elif imagecode == "system":
@@ -2552,6 +2552,8 @@ def product (prodcode):
 		prodname = "Switches/Nexus/Nexus-9000V"
 	elif prodcode == "cat9k":
 		prodname = "Switches/Catalyst/Catalyst-9000"
+	elif prodcode == "cat9k_lite":
+		prodname = "Switches/Catalyst/Catalyst-9200"
 	elif prodcode == "s5400":
 		prodname = "Switches/Rockwell-Stratix/5400"
 	elif prodcode == "s5410":
