@@ -139,12 +139,138 @@ def sec_acs (filename):
 		filemove (filepath, filename)
 
 	elif (
+		filename == "ACS-5.0.0.21.iso" or 
+		filename == "ACS_5.1.0.44.tar.gz" or 
+		filename == "ACS_5.2.0.26.tar.gz" or 
+		filename == "ACS_5.3.0.40.tar.gz" or 
+		filename == "ACS_5.4.0.46.0a.tar.gz" or 
+		filename == "ACS_5.5.0.46.tar.gz" or 
+		filename == "ACS_5.6.0.22.tar.gz" or 
+		filename == "ACS_5.7.0.15.tar.gz" or 
+		filename == "ACS_5.8.0.32.tar.gz" or 
+		filename == "ACS_5.8.1.4.tar.gz" or 
+		filename == "ACS_v5.1.0.44.iso" or 
+		filename == "ACS_v5.2.0.26.iso" or 
+		filename == "ACS_v5.3.0.40.iso" or 
+		filename == "ACS_v5.4.0.46.0a.iso" or 
+		filename == "ACS_v5.5.0.46.iso" or 
+		filename == "ACS_v5.6.0.22.iso" or 
+		filename == "ACS_v5.7.0.15.iso" or 
+		filename == "ACS_v5.8.0.32.iso" or 
+		filename == "ACS_v5.8.1.4.iso" or 
+		filename == "ACS_55_USB_Installation_tool.zip" or 
+		filename == "ACS_56_USB_Installation_tool.zip" or 
+		filename == "ACS_57_USB_Installation_tool.zip" or 
+		filename == "ACS_581_USB_Installation_tool.zip" or 
+		filename == "ACS_58_USB_Installation_tool.zip"
+	):
+		sec_acs_vfiveinstall (filename,prodname)
+
+	elif (
 	filename.startswith("ACS-4") or 
 	filename.startswith("Acs-4")
 	):
 		sec_acs_vfour (filename,prodname)
 	else:
 		messageunknownfile()
+
+def sec_acs_vfiveinstall (filename,prodname):
+	if filename == "ACS_55_USB_Installation_tool.zip":
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,"5.5.0.46",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_56_USB_Installation_tool.zip":
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,"5.6.0.22",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_57_USB_Installation_tool.zip":
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,"5.7.0.15",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_58_USB_Installation_tool.zip":
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,"5.8.0.32",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_581_USB_Installation_tool.zip":
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,"5.8.1.4",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_5.1.0.44.tar.gz":
+		imagecode = imagelookup("upgrade")
+		filepath = filepath3 (prodname,"5.1.0.44",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_5.2.0.26.tar.gz":
+		imagecode = imagelookup("upgrade")
+		filepath = filepath3 (prodname,"5.2.0.26",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_5.3.0.40.tar.gz":
+		imagecode = imagelookup("upgrade")
+		filepath = filepath3 (prodname,"5.3.0.40",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_5.4.0.46.0a.tar.gz":
+		imagecode = imagelookup("upgrade")
+		filepath = filepath3 (prodname,"5.4.0.46",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_5.5.0.46.tar.gz":
+		imagecode = imagelookup("upgrade")
+		filepath = filepath3 (prodname,"5.5.0.46",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_5.6.0.22.tar.gz":
+		imagecode = imagelookup("upgrade")
+		filepath = filepath3 (prodname,"5.6.0.22",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_5.7.0.15.tar.gz":
+		imagecode = imagelookup("upgrade")
+		filepath = filepath3 (prodname,"5.7.0.15",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_5.8.0.32.tar.gz":
+		imagecode = imagelookup("upgrade")
+		filepath = filepath3 (prodname,"5.8.0.32",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_5.8.1.4.tar.gz":
+		imagecode = imagelookup("upgrade")
+		filepath = filepath3 (prodname,"5.8.1.4",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS-5.0.0.21.iso":
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,"5.0.0.21",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_v5.1.0.44.iso":
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,"5.1.0.44",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_v5.2.0.26.iso":
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,"5.2.0.26",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_v5.3.0.40.iso":
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,"5.3.0.40",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_v5.4.0.46.0a.iso":
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,"5.4.0.46",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_v5.5.0.46.iso":
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,"5.5.0.46",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_v5.6.0.22.iso":
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,"5.6.0.22",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_v5.7.0.15.iso":
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,"5.7.0.15",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_v5.8.0.32.iso":
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,"5.8.0.32",imagecode)
+		filemove (filepath, filename)
+	elif filename == "ACS_v5.8.1.4.iso":
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,"5.8.1.4",imagecode)
+		filemove (filepath, filename)
 
 def sec_acs_vfour (filename,prodname):
 	if filename.endswith("-DOCs.zip"):
@@ -204,6 +330,11 @@ def sec_ise (filename):
 	):
 		imagecode = imagelookup("upgrade")
 		sec_ise_upgrade (filename,prodname,imagecode)
+	elif (
+	filename.startswith("ise-urtbundle-")
+	):
+		imagecode = imagelookup("urtbundle")
+		sec_ise_urtbundle (filename,prodname,imagecode)
 
 	else:
 		messageunknownfile()
@@ -242,7 +373,6 @@ def sec_ise_install (filename,prodname,imagecode):
 	filepath = filepath3 (prodname,vertwo,imagecode)
 	filemove (filepath, filename)
 
-
 def sec_ise_patch (filename,prodname,imagecode):
 	workname = filename.replace("ise-patchbundle-","")
 	splitbydot = workname.split(".")
@@ -250,6 +380,14 @@ def sec_ise_patch (filename,prodname,imagecode):
 	patchnum = splitbydash[1].replace("Patch","")
 	vertwo = util2digit(splitbydot[0],splitbydot[1])
 	filepath = filepath4 (prodname,vertwo,imagecode,patchnum)
+	filemove (filepath, filename)
+
+def sec_ise_urtbundle (filename,prodname,imagecode):
+	workname = filename.replace("ise-patchbundle-","")
+	splitbydash = filename.split("-")
+	splitbydot = splitbydash[2].split(".")
+	vertwo = util2digit(splitbydot[0],splitbydot[1])
+	filepath = filepath3 (prodname,vertwo,imagecode)
 	filemove (filepath, filename)
 
 def sec_ise_pic (filename):
