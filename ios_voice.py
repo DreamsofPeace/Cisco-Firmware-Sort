@@ -134,15 +134,21 @@ def fileprocphone(filename):
 
 
 def fileprocphone3digit(filename,prodname):
-	splitbydot = filename.split(".")
-	splitbydash = splitbydot[1].split("-")
-	ver2 = util2digit(splitbydash[0],splitbydash[1])
-	ver3 = util3digit(splitbydash[0],splitbydash[1],splitbydash[2])
-	filepath = filepath3(prodname,ver2,ver3)
-	filemove (filepath, filename)
+	if prodname == "UNKNOWN":
+		messageunknownfile()
+	else:
+		splitbydot = filename.split(".")
+		splitbydash = splitbydot[1].split("-")
+		ver2 = util2digit(splitbydash[0],splitbydash[1])
+		ver3 = util3digit(splitbydash[0],splitbydash[1],splitbydash[2])
+		filepath = filepath3(prodname,ver2,ver3)
+		filemove (filepath, filename)
 
 def fileprocphone3digittwo(filename,prodname):
-	splitbydash = filename.split("-")
+	if prodname == "UNKNOWN":
+		messageunknownfile()
+	else:
+		splitbydash = filename.split("-")
 #	if splitbydash[4] == "sip.cop":
 #		fileprocphone3digitsip(filename,prodname)
 #	elif splitbydash[4] == "-sccp.cop":
