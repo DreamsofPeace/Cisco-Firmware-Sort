@@ -1801,6 +1801,8 @@ def imagelookup (imagecode):
 		subdirectory = "STRUTS-FIX"
 	elif imagecode == "upgrade":
 		subdirectory = "UPGRADE"
+	elif imagecode == "urtbundle":
+		subdirectory = "UPGRADE-READINESS-TOOL"
 	elif imagecode == "clean":
 		subdirectory = "CLEAN-UTILITY"
 	else:
@@ -2596,8 +2598,8 @@ def product (prodcode):
 		prodname = "Voice/IP-Phones/7970_7971"
 	elif prodcode == "ipp7975":
 		prodname = "Voice/IP-Phones/7975"
-	elif prodcode == "ipp7975":
-		prodname = "Voice/IP-Phones/7975"
+	elif prodcode == "ipp8845_65":
+		prodname = "Voice/IP-Phones/8845_8865"
 	elif prodcode == "firepower":
 		prodname = "Security/Firewall-NG/FirePOWER"
 	elif prodcode == "asa":
