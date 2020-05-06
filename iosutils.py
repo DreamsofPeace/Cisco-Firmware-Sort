@@ -1805,6 +1805,10 @@ def imagelookup (imagecode):
 		subdirectory = "UPGRADE-READINESS-TOOL"
 	elif imagecode == "clean":
 		subdirectory = "CLEAN-UTILITY"
+	elif imagecode == "supplicantpw":
+		subdirectory = "SUPPLICANT-PROVISIONING-WIZARD"
+	elif imagecode == "acs_mig":
+		subdirectory = "ACS-MIGRATION"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory

@@ -21,6 +21,12 @@ def fileprocessorsecurity (filename):
 	elif filename.startswith("asdm"):
 		sec_asa_asdm (filename)
 
+	elif (
+	filename.startswith("asav") or
+	filename.startswith("asa")
+	):
+		sec_asa_firmware (filename)
+
 	elif filename.startswith("Cisco_Firepower_SRU") or filename.startswith("Sourcefire_Rule_Update"):
 		sec_fp_rules(filename)
 
@@ -65,7 +71,8 @@ def fileprocessorsecurity (filename):
 		filename.startswith("ise") or 
 		filename.startswith("mac-spw-dmg") or 
 		filename.startswith("webagent") or 
-		filename.startswith("win_spw")
+		filename.startswith("win_spw") or 
+		filename.startswith("ACS-MigrationApplication")
 	):
 		sec_ise(filename)
 
@@ -93,6 +100,124 @@ def fileprocessorsecurity (filename):
 #def sec_sourcefire (filename):
 #	splitbydash = filename.split("-")
 #	if splitbydash[0] == "Cisco_Firepower_Management_Center_Virtual":
+
+def sec_asa_firmware (filename):
+	if (
+	filename.startswith("asa7") or 
+	filename.startswith("asa8")
+	):
+		prodname = product ("asa")
+		sec_asa_firmware_v7_8 (filename,prodname)
+	elif (
+	filename.startswith("asa9") or 
+	filename.startswith("asav9")
+	):
+		prodname = product ("asa")
+		sec_asa_firmware_v9 (filename,prodname)
+	else:
+		messageunknownfile()
+
+def sec_asa_firmware_v9 (filename,prodname):
+	splitbydash = filename.split("-")
+#	print (len(splitbydash), end="\n")
+	if (
+	filename == "asa9101-smp-k8.bin" or 
+	filename == "asav9101.vhdx" or 
+	filename == "asav9101.qcow2" or 
+	filename == "asav9101.zip"
+	):
+		filepath = filepath3 (prodname,"9.10","9.10.1")
+		filemove (filepath, filename)
+	elif len(splitbydash) == 1:
+		workname = filename.replace("asav", "")
+		workname = workname.replace("asa", "")
+		splitbydot = workname.split(".")
+		verlist = list(splitbydot[0])
+		vertwo = util2digit(verlist[0],verlist[1])
+		verthree = util3digit(verlist[0],verlist[1],verlist[2])
+		filepath = filepath3 (prodname,vertwo,verthree)
+		filemove (filepath, filename)
+	elif (
+	filename.endswith(".ova") or
+	filename.endswith(".qcow2") or
+	filename.endswith(".vmdk") or
+	filename.endswith(".vhdx") or
+	filename.endswith(".zip") and
+	len(splitbydash) == 2
+	):
+		workname = filename.replace("asav", "")
+		workname = workname.replace("asa", "")
+		workname = workname.replace("qcow2", "")
+		workname = workname.replace("ova", "")
+		workname = workname.replace("vmdk", "")
+		workname = workname.replace("vhdx", "")
+		workname = workname.replace("zip", "")
+		mysplitdashworkname = workname.split("-")
+		verlist = list(mysplitdashworkname[0])
+		vertwo = util2digit(verlist[0],verlist[1])
+		verfour = util4digit(verlist[0],verlist[1],verlist[2],mysplitdashworkname[1])
+		filepath = filepath3 (prodname,vertwo,verfour)
+		filemove (filepath, filename)
+	elif (
+	len(splitbydash) == 3 and
+	splitbydash[1] == "smp" and
+	splitbydash[2] == "k8.bin"
+	):
+		workname = filename.replace("asav", "")
+		workname = workname.replace("asa", "")
+		mysplitdashworkname = workname.split("-")
+		verlist = list(mysplitdashworkname[0])
+		vertwo = util2digit(verlist[0],verlist[1])
+		verthree = util3digit(verlist[0],verlist[1],verlist[2])
+		filepath = filepath3 (prodname,vertwo,verthree)
+		filemove (filepath, filename)
+	elif (
+	len(splitbydash) == 4 and
+	splitbydash[2] == "smp" and
+	splitbydash[3] == "k8.bin"
+	):
+		workname = splitbydash[3].replace(".qcow2", "")
+		workname = workname.replace(".vhdx", "")
+		workname = workname.replace(".zip", "")
+		workname = workname.replace("asav", "")
+		workname = workname.replace("asa", "")
+		mysplitdashworkname = workname.split("-")
+		verlist = list(mysplitdashworkname[0])
+		vertwo = util2digit(verlist[0],verlist[1])
+		verfour = util4digit(verlist[0],verlist[1],verlist[2],splitbydash[1])
+		filepath = filepath3 (prodname,vertwo,verfour)
+		filemove (filepath, filename)
+	else:
+		messageunknownfile()
+
+def sec_asa_firmware_v7_8 (filename,prodname):
+	workname = filename.replace("asa", "")
+	splitbydash = workname.split("-")
+	if (
+	len(splitbydash) == 2 or 
+	len(splitbydash) == 3 and 
+	filename.endswith("-smp-k8.bin")
+	):
+		verlist = list(splitbydash[0])
+		vertwo = util2digit(verlist[0],verlist[1])
+		verthree = util3digit(verlist[0],verlist[1],verlist[2])
+		filepath = filepath3 (prodname,vertwo,verthree)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("asa871") and
+	filename.endswith(".ova")
+	):
+		verlist = list(splitbydash[0])
+		splitbydash[1] = splitbydash[1].replace(".ova", "")
+		verfour = util4digit(verlist[0],verlist[1],verlist[2],splitbydash[1])
+		filepath = filepath3 (prodname,vertwo,verfour)
+		filemove (filepath, filename)
+	else:
+		verlist = list(splitbydash[0])
+		vertwo = util2digit(verlist[0],verlist[1])
+		verfour = util4digit(verlist[0],verlist[1],verlist[2],splitbydash[1])
+		filepath = filepath3 (prodname,vertwo,verfour)
+		filemove (filepath, filename)
 
 def sec_acs (filename):
 	prodname = product ("acs")
@@ -168,7 +293,9 @@ def sec_acs (filename):
 
 	elif (
 	filename.startswith("ACS-4") or 
-	filename.startswith("Acs-4")
+	filename.startswith("Acs-4") or 
+	filename.startswith("Acs_4") or 
+	filename.startswith("applAcs_4")
 	):
 		sec_acs_vfour (filename,prodname)
 	else:
@@ -275,24 +402,41 @@ def sec_acs_vfiveinstall (filename,prodname):
 def sec_acs_vfour (filename,prodname):
 	if filename.endswith("-DOCs.zip"):
 		imagecode = imagelookup("docs")
+		sec_acs_vfour_software (filename,prodname,imagecode)
 	elif filename.endswith("-BIN-K9.zip"):
 		imagecode = imagelookup("install")
+		sec_acs_vfour_software (filename,prodname,imagecode)
 	elif (
 	filename.endswith("-SW.zip") or 
+	filename.endswith("-RA.zip") or 
 	filename.endswith("-SW.exe") or 
 	filename.endswith("-SW-Readme.txt") or 
-	filename.endswith("-Clean.zip")
+	filename.endswith(".txt") or 
+	filename.endswith("-Clean.zip") or 
+	filename.startswith("applAcs_") and filename.endswith(".zip")
 	):
 		imagecode = imagelookup("patch")
 		sec_acs_vfour_patch (filename,prodname,imagecode)
 
+def sec_acs_vfour_software (filename,prodname,imagecode):
+	workname = filename.replace("-BIN-K9.zip", "")
+	workname = workname.replace("-DOCs.zip", "")
+	workname = workname.replace("ACS-", "")
+	splitbydot = workname.split(".")
+	verfour = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+	filepath = filepath3 (prodname,verfour,imagecode)
+	filemove (filepath, filename)
+
 def sec_acs_vfour_patch (filename,prodname,imagecode):
 	workname = filename.replace("-SW.zip", "")
 	workname = workname.replace("-SW.exe", "")
+	workname = workname.replace("-RA.zip", "")
 	workname = workname.replace("-Clean.zip", "")
 	workname = workname.replace("-SW-Readme.txt", "")
 	workname = workname.replace("Acs-", "")
 	workname = workname.replace("ACS-", "")
+	workname = workname.replace("Acs_", "")
+	workname = workname.replace("ACS_", "")
 	splitbydot = workname.split(".")
 	verfour = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
 	filepath = filepath4 (prodname,verfour,imagecode,splitbydot[4])
@@ -335,9 +479,39 @@ def sec_ise (filename):
 	):
 		imagecode = imagelookup("urtbundle")
 		sec_ise_urtbundle (filename,prodname,imagecode)
+	elif (
+	filename.startswith("win_spw-") and
+	filename.endswith("-isebundle.zip") or 
+	filename.startswith("mac-spw-dmg-") and
+	filename.endswith("-isebundle.zip")
+	):
+		imagecode = imagelookup("supplicantpw")
+		sec_ise_spw (filename,prodname,imagecode)
+
+	elif (
+	filename.startswith("ACS-MigrationApplication-")
+	):
+		imagecode = imagelookup("acs_mig")
+		sec_ise_acs_mig (filename,prodname,imagecode)
 
 	else:
 		messageunknownfile()
+
+def sec_ise_acs_mig (filename,prodname,imagecode):
+	workname = filename.replace("ACS-MigrationApplication-","")
+	splitbydot = workname.split(".")
+	vertwo = util2digit(splitbydot[0],splitbydot[1])
+	filepath = filepath3 (prodname,vertwo,imagecode)
+	filemove (filepath, filename)
+
+def sec_ise_spw (filename,prodname,imagecode):
+	workname = filename.replace("win_spw-","")
+	workname = workname.replace("mac-spw-dmg-","")
+	workname = workname.replace("-isebundle.zip","")
+	splitbydot = workname.split(".")
+	vertwo = util2digit(splitbydot[0],splitbydot[1])
+	filepath = filepath3 (prodname,vertwo,imagecode)
+	filemove (filepath, filename)
 
 def sec_ise_upgrade (filename,prodname,imagecode):
 	if filename =="ise-upgradebundle-1.4.x-to-2.2.0.470.1808.x86_64.tar.gz":
@@ -577,7 +751,6 @@ def sec_asa_asdm_to_ver (filename,prodname,imagecode):
 		filemove (filepath, filename)
 	else:
 		messageunknownfile ()
-
 
 def sec_fwsm (filename):
 	splitbydot = filename.split(".")
