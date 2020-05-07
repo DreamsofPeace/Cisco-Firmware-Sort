@@ -1930,6 +1930,7 @@ def toplevel(filename):
 		name.startswith("asa") or 
 		name.startswith("cisco-asa") or 
 		name.startswith("csd") or 
+		name.startswith("fwsm_migration") or 
 		splitbydot[0] == "c6svc-fwm-k9" or 
 		name == "anyconnect_app_selector_1.0.zip" or 
 		name == "anyconnect_app_selector_2.0.zip" or 

@@ -1721,6 +1721,10 @@ def imagelookup (imagecode):
 		subdirectory = "FIREPOWER-MIBS-9K-4K"
 	elif imagecode == "firepower-mibs":
 		subdirectory = "FIREPOWER-MIBS"
+	elif imagecode == "lfbff":
+		subdirectory = "ASA-FIREPOWER"
+	elif imagecode == "fwsmtoasasm":
+		subdirectory = "FWSM-TO-ASASM-CONVERSION"
 	elif imagecode == "fmc":
 		subdirectory = "FIREPOWER-MANAGEMENT-CENTER"
 	elif imagecode == "vpnapi":
