@@ -1919,26 +1919,6 @@ def toplevel(filename):
 			fileprocessor_iosxe(name)
 
 		elif (
-		splitbydash[0] == "anyconnect" or 
-		name.startswith("hostscan") or
-		name.startswith("thirdparty") or 
-		name.startswith("tools-anyconnect") or 
-		name.startswith("sampleTransforms") or 
-		name.startswith("pix") or 
-		name.startswith("PIX") or 
-		name.startswith("asdm") or 
-		name.startswith("asa") or 
-		name.startswith("cisco-asa") or 
-		name.startswith("csd") or 
-		name.startswith("fwsm_migration") or 
-		splitbydot[0] == "c6svc-fwm-k9" or 
-		name == "anyconnect_app_selector_1.0.zip" or 
-		name == "anyconnect_app_selector_2.0.zip" or 
-		name == "WebSecurityCert.zip"
-		):
-			fileprocessorsecurity(name)
-
-		elif (
 		name.startswith("ucs") or 
 		name.startswith("update_pkg-ucse") or 
 		name == "Signed_EN_BIOS_1.5.0.4.bin.SPA" or 
@@ -2014,27 +1994,43 @@ def toplevel(filename):
 			file_proc_servers (name)
 
 		elif (
+		name.startswith("5-") or 
+		name.startswith("ACS") or 
+		name.startswith("Acs") or 
+		name.startswith("Cisco_Firepower") or 
+		name.startswith("Firepower") or 
+		name.startswith("Clean") or 
+		name.startswith("ISE") or 
+		name.startswith("PI") or 
+		name.startswith("PIX") or 
+		name.startswith("UCP") or 
+		name.startswith("applAcs") or 
+		name.startswith("asa") or 
+		name.startswith("asdm") or 
+		name.startswith("cisco-asa") or 
+		name.startswith("csd") or 
+		name.startswith("fwsm_migration") or 
+		name.startswith("hostscan") or
+		name.startswith("ise") or 
 		name.startswith("ise-pic") or 
+		name.startswith("mac-spw-dmg") or 
+		name.startswith("pix") or 
+		name.startswith("sampleTransforms") or 
+		name.startswith("thirdparty") or 
+		name.startswith("tools-anyconnect") or 
+		name.startswith("webagent") or 
+		name.startswith("win_spw") or 
+		splitbydot[0] == "cisco-ftd" or
+		splitbydash[0] == "anyconnect" or 
+		splitbydot[0] == "c6svc-fwm-k9" or 
+		name == "anyconnect_app_selector_1.0.zip" or 
+		name == "anyconnect_app_selector_2.0.zip" or 
+		name == "WebSecurityCert.zip" or 
 		name == "pic-2.2.0.470.SPA.x86_64.iso" or 
 		name == "pic-2.4.0.357.SPA.x86_64.iso" or 
 		name == "README_ISE_20_201_21_22" or 
-		name.startswith("PI") or 
-		name.startswith("ISE") or 
-		name.startswith("ise") or 
-		name.startswith("mac-spw-dmg") or 
-		name.startswith("webagent") or 
-		name.startswith("win_spw")
-		):
-			fileprocessorsecurity (name)
-
-		elif (
-		name.startswith("Acs") or 
-		name.startswith("ACS") or 
-		name.startswith("applAcs") or 
-		name.startswith("UCP") or 
-		name.startswith("Clean") or 
-		name.startswith("5-") or 
 		name == "ACS57BasePatch.tar.gz" or 
+		name == "firepower-mibs.zip" or 
 		name == "ReadMe_for_ACS_5.6_Upgrade_Package-txt" or 
 		name == "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429.zip" or 
 		name == "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429-Readme.txt"

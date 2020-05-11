@@ -1721,8 +1721,12 @@ def imagelookup (imagecode):
 		subdirectory = "FIREPOWER-MIBS-9K-4K"
 	elif imagecode == "firepower-mibs":
 		subdirectory = "FIREPOWER-MIBS"
+	elif imagecode == "mibs":
+		subdirectory = "MIBS"
 	elif imagecode == "lfbff":
 		subdirectory = "ASA-FIREPOWER"
+	elif imagecode == "restapi":
+		subdirectory = "REST-API"
 	elif imagecode == "fwsmtoasasm":
 		subdirectory = "FWSM-TO-ASASM-CONVERSION"
 	elif imagecode == "fmc":
@@ -1813,6 +1817,10 @@ def imagelookup (imagecode):
 		subdirectory = "SUPPLICANT-PROVISIONING-WIZARD"
 	elif imagecode == "acs_mig":
 		subdirectory = "ACS-MIGRATION"
+	elif imagecode == "ngfw":
+		subdirectory = "NGFW"
+	elif imagecode == "ngfwv":
+		subdirectory = "NGFWV"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2609,7 +2617,7 @@ def product (prodcode):
 	elif prodcode == "ipp8845_65":
 		prodname = "Voice/IP-Phones/8845_8865"
 	elif prodcode == "firepower":
-		prodname = "Security/Firewall-NG/FirePOWER"
+		prodname = "Security/Firewall/FirePOWER"
 	elif prodcode == "asa":
 		prodname = "Security/Firewall/ASA"
 	elif prodcode == "c6svc-fwm":

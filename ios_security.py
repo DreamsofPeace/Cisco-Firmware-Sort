@@ -5,13 +5,7 @@ from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
 
 def fileprocessorsecurity (filename):
 
-	if filename.startswith("c6svc-fwm-k9"):
-		sec_fwsm (filename)
-
-	elif filename.startswith("csd_"):
-		sec_csd (filename)
-
-	elif(
+	if(
 	filename == "anyconnect_app_selector_1.0.zip" or 
 	filename == "anyconnect_app_selector_2.0.zip"
 	):
@@ -27,8 +21,21 @@ def fileprocessorsecurity (filename):
 		imagecode = imagelookup("fwsmtoasasm")
 		sec_single_file (filename,prodname,imagecode)
 
+	elif(
+	filename == "firepower-mibs.zip"
+	):
+		prodname = product("firepower")
+		imagecode = imagelookup("mibs")
+		sec_single_file (filename,prodname,imagecode)
+
 	elif filename.startswith("asdm"):
 		sec_asa_asdm (filename)
+
+	elif filename.startswith("c6svc-fwm-k9"):
+		sec_fwsm (filename)
+
+	elif filename.startswith("csd_"):
+		sec_csd (filename)
 
 	elif (
 	filename.startswith("asav") or
@@ -65,6 +72,9 @@ def fileprocessorsecurity (filename):
 
 	elif filename.startswith("Sourcefire_3D_Defense_Center_S3_Patch"):
 		sec_sourcefire_fmc_patch(filename)
+
+	elif filename.startswith("Cisco_FTD_Patch"):
+		sec_sourcefire_ftd_patch(filename)
 
 	elif (
 	filename.startswith("ise-pic") or 
@@ -126,8 +136,29 @@ def sec_asa_firmware (filename):
 	):
 		prodname = product ("asa")
 		sec_asa_firmware_v7_8 (filename,prodname)
+
+	elif (
+	filename.startswith("asa-restapi")
+	):
+		prodname = product ("asa")
+		sec_asa_rest_api (filename,prodname)
 	else:
 		messageunknownfile()
+
+def sec_asa_rest_api (filename,prodname):
+	splitbydash = filename.split("-")
+	imagecode = imagelookup("restapi")
+	mylist = list(splitbydash[2])
+	if len(mylist) == 3:
+		myver = util3digit(mylist[0],mylist[1],mylist[2])
+	elif len(mylist) == 4:
+		myver = util4digit(mylist[0],mylist[1],mylist[2],mylist[3])
+	elif len(mylist) == 6:
+		v3 = mylist[3] + mylist[4] + mylist[5]
+		myver = util4digit(mylist[0],mylist[1],mylist[2],v3)
+	filepath = filepath3 (prodname,imagecode,myver)
+	filemove (filepath, filename)
+
 
 def sec_asa_firmware_v9 (filename,prodname):
 	splitbydash = filename.split("-")
@@ -815,6 +846,16 @@ def sec_sourcefire_fmc_patch (filename):
 	verfive = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
 	patchline = imagecode2 + splitbydot[3]
 	filepath = filepath5 (prodname,imagecode,vertwo,verfive,patchline)
+	filemove (filepath, filename)
+
+def sec_sourcefire_ftd_patch (filename):
+	prodname = product ("firepower")
+	imagecode = imagelookup("ngfw")
+	splitbydash = filename.split("-")
+	splitbydot = splitbydash[1].split(".")
+	vertwo = util2digit(splitbydot[0],splitbydot[1])
+	verfour = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+	filepath = filepath4 (prodname,imagecode,vertwo,verfour)
 	filemove (filepath, filename)
 
 def sec_fp_vdb (filename):
