@@ -29,8 +29,4 @@ Options Arguments (Not Yet Implemented)
 
 (The CSV file you can obtain from the Cisco Trust Center meets this format)
 
-  -hf, --hashfile       File with Hash Info. Format is
-
-                        FILENAME,MD5HASH,SHA512HASH. Additional columns are
-
-                        ignored
+  -hf, --hashfile       File with Hash Info. Format is FILENAME,MD5HASH,SHA512HASH. Additional columns are ignored
