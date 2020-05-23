@@ -14,6 +14,18 @@ def fileprocessorsecurity (filename):
 		sec_single_file (filename,prodname,imagecode)
 
 	elif(
+	filename.startswith("np") and filename.endswith(".bin") or 
+	filename.startswith("pdm") and filename.endswith(".bin") or 
+	filename == "PIXtoASA_1_0.zip" or 
+	filename == "PIX_to_ASA_1_0.dmg" or 
+	filename == "PIXtoASAsetup_1_0.exe" or 
+	filename.startswith("pix") and filename.endswith(".bin") or 
+	filename.startswith("PIX") and filename.endswith(".bin")
+	):
+		prodname = product("pix")
+		sec_pix (filename,prodname)
+
+	elif(
 	filename == "fwsm_migration_mac-1.0.18.zip" or 
 	filename == "fwsm_migration_win-1.0.18.zip"
 	):
@@ -26,6 +38,14 @@ def fileprocessorsecurity (filename):
 	):
 		prodname = product("firepower")
 		imagecode = imagelookup("mibs")
+		sec_single_file (filename,prodname,imagecode)
+
+	elif(
+	filename == "BOOTX64.EFI" or 
+	filename == "grub.efi"
+	):
+		prodname = product("ise")
+		imagecode = "2.4/APPLIANCE-BOOT-SECTOR"
 		sec_single_file (filename,prodname,imagecode)
 
 	elif filename.startswith("asdm"):
@@ -120,6 +140,32 @@ def fileprocessorsecurity (filename):
 #	splitbydash = filename.split("-")
 #	if splitbydash[0] == "Cisco_Firepower_Management_Center_Virtual":
 
+def sec_pix (filename,prodname):
+
+	if filename.startswith("np") and filename.endswith(".bin"):
+		imagecode = imagelookup("pixpasswordrecovery")
+		sec_single_file (filename,prodname,imagecode)
+	elif filename.startswith("pdm") and filename.endswith(".bin"):
+		imagecode = imagelookup("pdm")
+		sec_single_file (filename,prodname,imagecode)
+	elif filename == "PIXtoASA_1_0.zip":
+		imagecode = imagelookup("PIXtoASA")
+		sec_single_file (filename,prodname,imagecode)
+	elif filename == "PIX_to_ASA_1_0.dmg":
+		imagecode = imagelookup("PIXtoASA")
+		sec_single_file (filename,prodname,imagecode)
+	elif filename == "PIXtoASAsetup_1_0.exe":
+		imagecode = imagelookup("PIXtoASA")
+		sec_single_file (filename,prodname,imagecode)
+
+def firewallpix (filename):
+	prodname = product("pix")
+	pixversion = list(filename)
+	pix = pixversion[3] + "." + pixversion[4] + "(" + pixversion[5] + ")"
+	pixprimary = pixversion[3] + "." + pixversion[4]
+	filepath = product + "/" + pixprimary + "/" + pix
+	filemove (filepath, filename)
+
 def sec_asa_firmware (filename):
 
 	if (
@@ -162,7 +208,7 @@ def sec_asa_rest_api (filename,prodname):
 
 def sec_asa_firmware_v9 (filename,prodname):
 	splitbydash = filename.split("-")
-	print (len(splitbydash), end="\n")
+#	print (len(splitbydash), end="\n")
 
 	if (
 	filename == "asa9101-smp-k8.bin" or 
@@ -1042,14 +1088,6 @@ def sec_fwsm (filename):
 	verthree = util3digit(splitbydash[0],splitbydash[1],splitbydash[2])
 	prodname = product("c6svc-fwm")
 	filepath = filepath3(prodname,vertwo,verthree)
-	filemove (filepath, filename)
-
-def firewallpix (filename):
-	prodname = product("pix")
-	pixversion = list(filename)
-	pix = pixversion[3] + "." + pixversion[4] + "(" + pixversion[5] + ")"
-	pixprimary = pixversion[3] + "." + pixversion[4]
-	filepath = product + "/" + pixprimary + "/" + pix
 	filemove (filepath, filename)
 
 def sec_hostscan (filename):

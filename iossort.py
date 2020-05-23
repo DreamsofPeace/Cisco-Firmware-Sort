@@ -2033,7 +2033,19 @@ def toplevel(filename):
 		name == "firepower-mibs.zip" or 
 		name == "ReadMe_for_ACS_5.6_Upgrade_Package-txt" or 
 		name == "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429.zip" or 
-		name == "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429-Readme.txt"
+		name == "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429-Readme.txt" or 
+		name == "BOOTX64.EFI" or 
+		name == "grub.efi" or 
+		name.startswith("np") and name.endswith(".bin") or 
+		name.startswith("pdm") and name.endswith(".bin") or 
+		name.startswith("bh") and name.endswith(".bin") or 
+		name.startswith("pix") and name.endswith(".bin") or 
+		name.startswith("PIX") and name.endswith(".bin") or 
+		name == "PIXtoASA_1_0.zip" or 
+		name == "PIX_to_ASA_1_0.dmg" or 
+		name == "PIXtoASAsetup_1_0.exe"
+		
+
 		):
 			fileprocessorsecurity (name)
 

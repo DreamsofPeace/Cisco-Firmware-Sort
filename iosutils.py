@@ -1775,24 +1775,18 @@ def imagelookup (imagecode):
 		subdirectory = "DRIVERS/C-SERIES"
 	elif imagecode == "driversucse":
 		subdirectory = "DRIVERS/E-SERIES"
-	elif imagecode == "utilsbvmware":
-		subdirectory = "UTILS/B-SERIES/VMWARE"
-	elif imagecode == "utilsblinux":
-		subdirectory = "UTILS/B-SERIES/LINUX"
-	elif imagecode == "utilsbefi":
-		subdirectory = "UTILS/B-SERIES/EFI"
-	elif imagecode == "utilsbwindows":
-		subdirectory = "UTILS/B-SERIES/WINDOWS"
-	elif imagecode == "utilscvmware":
-		subdirectory = "UTILS/C-SERIES/VMWARE"
-	elif imagecode == "utilsclinux":
-		subdirectory = "UTILS/C-SERIES/LINUX"
-	elif imagecode == "utilscefi":
-		subdirectory = "UTILS/C-SERIES/EFI"
-	elif imagecode == "utilscwindows":
-		subdirectory = "UTILS/C-SERIES/WINDOWS"
-	elif imagecode == "utilsc":
-		subdirectory = "UTILS/C-SERIES"
+	elif imagecode == "utilsbseries":
+		subdirectory = "UTILS/B-SERIES/"
+	elif imagecode == "utilscseries":
+		subdirectory = "UTILS/C-SERIES/"
+	elif imagecode == "vmware":
+		subdirectory = "VMWARE"
+	elif imagecode == "ucslinux":
+		subdirectory = "LINUX"
+	elif imagecode == "efi":
+		subdirectory = "EFI"
+	elif imagecode == "windows":
+		subdirectory = "WINDOWS"
 	elif imagecode == "driverseseries":
 		subdirectory = "DRIVERS"
 	elif imagecode == "firmwareeseries":
@@ -1821,6 +1815,12 @@ def imagelookup (imagecode):
 		subdirectory = "NGFW"
 	elif imagecode == "ngfwv":
 		subdirectory = "NGFWV"
+	elif imagecode == "pixpasswordrecovery":
+		subdirectory = "PASSWORD-RECOVERY"
+	elif imagecode == "pdm":
+		subdirectory = "PIX-DEVICE-MANAGER"
+	elif imagecode == "PIXtoASA":
+		subdirectory = "PIX-TO-ASA"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
