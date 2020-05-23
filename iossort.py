@@ -1,4 +1,5 @@
-import os, shutil, sys, re, getopt
+import os, shutil, sys, re, getopt, argparse
+import hashlib
 from iosutils import product,imagelookup,iostrain
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
@@ -28,7 +29,6 @@ def cat6knam (filename):
 			fullver = thissplit[0] + "." + thissplit[1] + "(" + thissplit[2] + ")"
 			filepath = product + "/" + mainver + "/" + fullver
 			filemove (filepath, filename)
-			
 
 def vpn3000 (filename):
 	product = "VPN 3000"
@@ -578,7 +578,6 @@ def nbar2 (filename):
 	elif splitbydash[2] == "cat9k":
 		nbarsixteen (filename)
 
-
 def nbarsixteen (filename):
 	product = "NBAR2"
 	splitbydash = filename.split("-")
@@ -716,7 +715,6 @@ def ipssig (filename):
 	filepath = product + "/" + engine[0] + "/" + imagecode + "/" + version
 	filemove (filepath, filename)
 
-
 def ipssystem (filename):
 	product = "IPS"
 	imagecode = "SYSTEM UPGRADE"
@@ -730,7 +728,6 @@ def ipssystem (filename):
 		engine = splitbydash[4].split(".")
 		filepath = product + "/" + engine[0] + "/" + version + "/" + imagecode
 	filemove (filepath, filename)
-
 
 def csm4 (filename):
 	product = "Cisco Security Manager"
@@ -759,7 +756,6 @@ def csm4 (filename):
 	filepath = product + "/" + version + "/" + imagecode
 	filemove (filepath, filename)
 
-
 def csmmcp (filename):
 	product = "Cisco Security Manager"
 	imagecode = "MANAGEMENT CENTER FOR PERFORMANCE"
@@ -774,42 +770,6 @@ def csmmcp (filename):
 		splitall = list(splitbydash[2])
 		version = splitall[0] + "." + splitall[1] + "." + splitall[2]
 	filepath = product + "/" + version + "/" + imagecode
-	filemove (filepath, filename)
-
-
-
-def asr1000 (filename, prodname, imagecode):
-	splitbydot = filename.split(".")
-	splitbydash = filename.split("-")
-#	splitbydot[1] = splitbydot[1].lstrip("0")
-#	splitbydot[2] = splitbydot[2].lstrip("0")
-#	splitbydot[3] = splitbydot[3].lstrip("0")
-#	splitbydot[4] = splitbydot[4].rstrip("t")
-#	splitbydot[5] = splitbydot[5].rstrip("t")
-	if splitbydot[3] =="bin":
-		mysplit = splitbydot[1].split("-")
-		main = list(mysplit[0])
-		iosprimary = splitbydot[1] + "." + splitbydot[2]
-#		iosversion = splitbydot[1] + "." + splitbydot[2] + "." + splitbydot[3] + "-" + main[0] + main[1] + "." + main[2] + "(" + mysplit[1] + ")" + splitbydot[6]
-		iosversion = splitbydot[1] + "." + splitbydot[2] + "." + splitbydot[3]
-	elif splitbydot[4] =="S":
-		mysplit = splitbydot[5].split("-")
-		main = list(mysplit[0])
-		iosprimary = splitbydot[1] + "." + splitbydot[2]
-#		iosversion = splitbydot[1] + "." + splitbydot[2] + "." + splitbydot[3] + "-" + main[0] + main[1] + "." + main[2] + "(" + mysplit[1] + ")" + splitbydot[6]
-		iosversion = splitbydot[1] + "." + splitbydot[2] + "." + splitbydot[3]
-	elif splitbydot[4] =="SPA":
-		mysplit = splitbydot[5].split("-")
-		main = list(mysplit[0])
-		iosprimary = splitbydot[1] + "." + splitbydot[2]
-		iosversion = splitbydot[1] + "." + splitbydot[2] + "." + splitbydot[3]
-	else:
-		mysplit = splitbydot[4].split("-")
-		main = list(mysplit[0])
-		iosprimary = splitbydot[1] + "." + splitbydot[2]
-#		iosversion = splitbydot[1] + "." + splitbydot[2] + "." + splitbydot[3] + "-" + main[0] + main[1] + "." + main[2] + "(" + mysplit[1] + ")" + splitbydot[5]
-		iosversion = splitbydot[1] + "." + splitbydot[2] + "." + splitbydot[3]
-	filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode
 	filemove (filepath, filename)
 
 def cat29003500 (filename, prodname, imagecode):
@@ -883,7 +843,6 @@ def cat29003500 (filename, prodname, imagecode):
 ##		print(filepath)
 #		filemove (filepath, filename)
 
-
 def m9100class (filename):
 	product = "MDS 9100"
 	mds9100 = filename.split(".")
@@ -929,7 +888,6 @@ def m9100class (filename):
 		mds9100ver = mds9100[1] + "." + mds9100[2] + "(" + mds9100[3] + ")"
 		filepath = product + "/" + gencode +"/" + mds9100primary + "/" + mds9100ver + "/" + imagecode
 		filemove (filepath, filename)
-	
 
 def m9200 (filename, prodname):
 	if prodname == "UNKNOWN":
@@ -949,7 +907,6 @@ def m9200 (filename, prodname):
 		mdsver = splitbydot[1] + "." + splitbydot[2] + "(" + splitbydot[3] + ")"
 		filepath = prodname + "/" + gen + "/" + mdsprimary + "/" + mdsver + "/" + imagecode
 		filemove (filepath, filename)
-
 
 def m9250 (filename, product):
 	product = "MDS 9250"
@@ -1057,7 +1014,6 @@ def m9500class (filename):
 		mds9500ver = mds9500[1] + "." + mds9500[2] + "(" + mds9500[3] + ")"
 		filepath = product + "/" + imagecode + "/" + mds9500primary + "/" + mds9500ver
 		filemove (filepath, filename)
-	
 
 def standardios (filename, prodname, imagecode):
 	
@@ -1488,12 +1444,7 @@ def aci (filename):
 		filepath = product + "/NEXUS-9000-ACI-MODE/"  + "/" + versiontwo + "/" + versionthree
 		filemove (filepath, filename)
 
-def scriptusage ():
-	print ("-h: This Help Messagen")
-	print ("-d: Directory\n")
-	print ("-h: Compute MD5 hash\n")
-
-def toplevel(filename):
+def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile):
 	src = filename
 	names = os.listdir(src)
 	os.chdir(src)
@@ -1505,6 +1456,35 @@ def toplevel(filename):
 		
 		print(name)
 		
+		if hashsha512 == True:
+			hasher = hashlib.sha512()
+			with open(name, 'rb') as afile:
+				buf = afile.read()
+				hasher.update(buf)
+			print("SHA512:", end =" ")
+			print(hasher.hexdigest())
+		if hashsha256 == True:
+			hasher = hashlib.sha256()
+			with open(name, 'rb') as afile:
+				buf = afile.read()
+				hasher.update(buf)
+			print("SHA256:", end =" ")
+			print(hasher.hexdigest())
+		if hashsha1 == True:
+			hasher = hashlib.sha1()
+			with open(name, 'rb') as afile:
+				buf = afile.read()
+				hasher.update(buf)
+			print("SHA1:", end =" ")
+			print(hasher.hexdigest())
+		if hashmd5 == True:
+			hasher = hashlib.md5()
+			with open(name, 'rb') as afile:
+				buf = afile.read()
+				hasher.update(buf)
+			print("MD5:", end =" ")
+			print(hasher.hexdigest())
+
 		splitbydot = name.split(".")
 		classify = name.split("-")
 		splitbydash = name.split("-")
@@ -1787,7 +1767,6 @@ def toplevel(filename):
 		name.startswith("ftd")
 		):
 			fileprocessorsecurity(name)
-
 
 		elif (
 		name == "ssd_c400_upgrade_6.1.2.I2.2a.tar" or 
@@ -2228,4 +2207,23 @@ def toplevel(filename):
 			standardios (name, prodname, imagecode)
 
 if __name__ == "__main__":
-	toplevel(sys.argv[1])
+
+	parser = argparse.ArgumentParser()
+	parser.add_argument('-d','--directory', help='Directory to sort', required=True)
+#	parser.add_argument('-h','--help', help='Display the Help Message', required=False)
+	parser.add_argument('-hs','--hashsha512', help='Hash File using the SHA 512 Algorithm', action='store_true', required=False)
+	parser.add_argument('-hs1','--hashsha256', help='Hash File using the SHA 256 Algorithm', action='store_true', required=False)
+	parser.add_argument('-hs2','--hashsha1', help='Hash File using the SHA1 Algorithm', action='store_true', required=False)
+	parser.add_argument('-hs3','--hashmd5', help='Hash File using the MD5 Algorithm', action='store_true', required=False)
+	parser.add_argument('-hf','--hashfile', help='File with Hash Info. Format is FILENAME,MD5HASH,SHA512HASH. Additional columns are ignored', action='store_true', required=False)
+	
+	args = parser.parse_args()
+	dirpass = args.directory
+	hashsha512 = args.hashsha512
+	hashsha256 = args.hashsha256
+	hashsha1   = args.hashsha1
+	hashmd5    = args.hashmd5
+	hashfile   = args.hashfile
+
+	toplevel(dirpass,hashsha512,hashsha256,hashsha1,hashmd5,hashfile)
+	
