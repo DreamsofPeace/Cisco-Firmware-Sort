@@ -1548,6 +1548,8 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile):
 		name.startswith("n7700") or 
 		name.startswith("n9000") or 
 		name.startswith("nxosv") or 
+		name.startswith("nexus9300v") or 
+		name.startswith("nexus9500v") or 
 		name.startswith("nxos") or 
 		name.startswith("n5000_poap_script") or 
 		name.startswith("n6000_poap_script") or 
@@ -2189,8 +2191,8 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile):
 		elif splitbydash[0] == "UTD" and splitbydash[1] == "STD" and splitbydash[2] == "SIGNATURE":
 			ios_xe_signature (name)
 
-		elif splitbydash[1] == "vWAAS" or splitbydash[2] == "vWAAS" or splitbydash[0] == "WAAS" or splitbydash[1] == "WAAS" or splitbydash[0] == "waas":
-			waas (name)
+#		elif splitbydash[1] == "vWAAS" or splitbydash[2] == "vWAAS" or splitbydash[0] == "WAAS" or splitbydash[1] == "WAAS" or splitbydash[0] == "waas":
+#			waas (name)
 
 		elif splitbydash[0] == "aci" or splitbydash[0] == "apic" or splitbydash[0] == "vcenter" and splitbydash[1] == "plugin":
 			aci (name)

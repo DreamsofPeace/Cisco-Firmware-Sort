@@ -63,7 +63,12 @@ def fileprocessornxos (filename):
 		else:
 			fileprocnxosthreedigit(filename,prodname,imagecode)
 
-	elif splitbydot[0] == "nxosv-final" or splitbydot[0] == "nxosv":
+	elif (
+	splitbydot[0] == "nxosv-final" or 
+	splitbydot[0] == "nxosv" or 
+	splitbydot[0] == "nexus9300v" or 
+	splitbydot[0] == "nexus9500v"
+	):
 		prodname = product("nxosv")
 		imagecode = imagelookup("system")
 		if splitbydot[1] == "6" or splitbydot[1] == "7":
