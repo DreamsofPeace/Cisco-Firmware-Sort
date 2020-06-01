@@ -215,14 +215,20 @@ def file_proc_servers_aci (debug1,filename,prodname):
 		filepath = filepath4(prodname,imagecode,ver2,ver3)
 		filemove (filepath, filename)
 	elif (
-	filename.startswith("vcenter-plugin-")
+	filename.startswith("apic-vrealize-")
 	):
 		imagecode = imagelookup("aciplgvs")
 		workname = filename.replace("apic-vrealize-", "")
-		splitbydot = filename.split(".")
+		if debug1:
+			print ("\t\tWorkname#\t", end="")
+			print (workname, end="\n")
+		splitbydot = workname.split(".")
 		ver2 = util2digit(splitbydot[0],splitbydot[1])
 		ver3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
 		filepath = filepath4(prodname,imagecode,ver2,ver3)
+		if debug1:
+			print ("\t\tFilepath#\t", end="")
+			print (filepath, end="\n")
 		filemove (filepath, filename)
 	elif (
 	filename.startswith("aci-n9000-dk9.")
