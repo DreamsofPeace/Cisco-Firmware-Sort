@@ -1393,58 +1393,7 @@ def waas (filename):
 		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
 		filemove (filepath, filename)
 
-def aci (filename):
-	splitbydot = filename.split(".")
-	splitbydash = filename.split("-")
-	product = "APIC"
-	if splitbydot[0].startswith("Cisco_ACI_Virtual_Edge_"):
-		workname = filename.rstrip("-pkg.zip")
-		workname = workname.lstrip("Cisco_ACI_Virtual_Edge_")
-		splitbydot = workname.split(".")
-		versiontwo = splitbydot[0] + "." + splitbydot[1]
-		versionthree = splitbydot[0] + "." + splitbydot[1] + "(" + splitbydot[2] + ")"
-		filepath = product + "/ACI-VIRTUAL-EDGE/"  + "/" + versiontwo + "/" + versionthree
-		filemove (filepath, filename)
-	elif splitbydash[0] == "aci" and splitbydash[1] == "apic" and splitbydash[2].startswith("dk9"):
-		versiontwo = splitbydot[1] + "." + splitbydot[2]
-		versionthree = splitbydot[1] + "." + splitbydot[2] + "(" + splitbydot[3] + ")"
-		filepath = product + "/APIC-CONTROLLER/" + "/" + versiontwo + "/" + versionthree 
-		filemove (filepath, filename)
-	elif splitbydash[0] == "aci" and splitbydash[1] == "n9000" and splitbydash[2].startswith("dk9"):
-		versiontwo = splitbydot[1] + "." + splitbydot[2]
-		versionthree = splitbydot[1] + "." + splitbydot[2] + "(" + splitbydot[3] + ")"
-		filepath = product + "/NEXUS-9000-ACI-MODE/"  + "/" + versiontwo + "/" + versionthree
-		filemove (filepath, filename)
-	elif splitbydash[0] == "aci" and splitbydash[1] == "msft" and splitbydash[2] == "pkg":
-		workname = filename.lstrip("aci-msft-pkg-")
-		splitbydot = workname.split(".")
-		versiontwo = splitbydot[0] + "." + splitbydot[1]
-		versionthree = splitbydot[0] + "." + splitbydot[1] + "(" + splitbydot[2] + ")"
-		filepath = product + "/MICROSOFT-PLUGIN/"  + "/" + versiontwo + "/" + versionthree
-		filemove (filepath, filename)
-	elif splitbydash[0] == "apic" and splitbydash[1] == "vrealize":
-		workname = filename.lstrip("apic-vrealize-")
-		splitbydot = workname.split(".")
-		versiontwo = splitbydot[0] + "." + splitbydot[1]
-		versionthree = splitbydot[0] + "." + splitbydot[1] + "(" + splitbydot[2] + ")"
-		filepath = product + "/VREALIZE-PLUGIN/"  + "/" + versiontwo + "/" + versionthree
-		filemove (filepath, filename)
-	elif splitbydash[0] == "vcenter" and splitbydash[1] == "plugin":
-		workname = filename.lstrip("vcenter-plugin-")
-		splitbydot = workname.split(".")
-		versiontwo = splitbydot[0] + "." + splitbydot[1]
-		versionthree = splitbydot[0] + "." + splitbydot[1] + "(" + splitbydot[2] + ")"
-		filepath = product + "/VCENTER-PLUGIN/"  + "/" + versiontwo + "/" + versionthree
-		filemove (filepath, filename)
-	elif splitbydash[0] == "aci" and splitbydash[1] == "msft" and splitbydash[2] == "pkg":
-		workname = filename.lstrip("aci-msft-pkg-")
-		splitbydot = workname.split(".")
-		versiontwo = splitbydot[0] + "." + splitbydot[1]
-		versionthree = splitbydot[0] + "." + splitbydot[1] + "(" + splitbydot[2] + ")"
-		filepath = product + "/NEXUS-9000-ACI-MODE/"  + "/" + versiontwo + "/" + versionthree
-		filemove (filepath, filename)
-
-def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile):
+def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug1):
 	src = filename
 	names = os.listdir(src)
 	os.chdir(src)
@@ -1455,6 +1404,8 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile):
 			continue
 		
 		print(name)
+		if debug1:
+			print("\tSubroutine#\tTop Level")
 		
 		if hashsha512 == True:
 			hasher = hashlib.sha512()
@@ -1499,15 +1450,14 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile):
 			continue
 		elif name.endswith("hash"):
 			continue
-#		elif name.endswith("pdf"):
-#			continue
+		elif name.endswith("pdf"):
+			continue
 		elif name.endswith("part"):
 			continue
 		
 		chars3 = name[0:3]
 		chars5 = name[0:5]
 		chars7 = name[0:7]
-		chars9 = name[0:9]
 
 		if name.startswith("ata"):
 			fileprocessorvoice(name)
@@ -1902,6 +1852,9 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile):
 		elif (
 		name.startswith("ucs") or 
 		name.startswith("update_pkg-ucse") or 
+		name.startswith("pid-ctlg") or 
+		name.startswith("delnorte2") or 
+		name.startswith("plumas2") or 
 		name == "Signed_EN_BIOS_1.5.0.4.bin.SPA" or 
 		name == "1X0DBIOSv4.8" or 
 		name == "1X0SBIOSv4.8" or 
@@ -1972,7 +1925,7 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile):
 		name == "c2xx-m1-utils-1.0.2.iso" or 
 		name == "b2xx-m1-drivers-1.1.1j.iso"
 		):
-			file_proc_servers (name)
+			file_proc_servers(name,debug1)
 
 		elif (
 		name.startswith("5-") or 
@@ -2025,33 +1978,51 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile):
 		name == "PIXtoASA_1_0.zip" or 
 		name == "PIX_to_ASA_1_0.dmg" or 
 		name == "PIXtoASAsetup_1_0.exe"
-		
-
 		):
 			fileprocessorsecurity (name)
+
+		elif (
+		name.startswith ("Cisco_ACI") or 
+		name.startswith ("acisim") or 
+		name.startswith ("aci-simulator") or 
+		name.startswith ("aci-apic") or 
+		name.startswith ("aci-msft-pkg") or 
+		name.startswith ("aci-n9000-dk9") or 
+		name.startswith ("apic-vrealize") or 
+		name.startswith ("esx-msc") or 
+		name.startswith ("msc") or 
+		name.startswith ("vcenter-plugin") or 
+		name.startswith ("tools-msc")
+		):
+			file_proc_servers(name,debug1)
+
+
+		elif splitbydash[0] == "fcs" and splitbydash[1] == "csm":
+			csm4(name)
+
+		elif splitbydash[0] == "fcs" and splitbydash[1] == "mcp":
+			csmmcp(name)
+
+		elif splitbydash[0] == "csmars":
+			mars(name)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		elif (
 		name.startswith("CUMC")
 		):
 			continue
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 		elif splitbydash[0] == "c1100":
@@ -2062,20 +2033,14 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile):
 		elif splitbydash[0] == "AIR" or classify[0] == "SWISMK9" or classify[0] == "SWLC3750K9" or chars3 == "MFG":
 			wireless(name)
 
-		elif chars9 == "Cisco_ACI":
-			aci(name)
-
 		elif chars5 == "m9100":
 			m9100class(name)
 
 		elif chars5 == "m9500" or chars5 == "m9000" or chars5 == "m9700":
 			m9500class(name)
-	#	elif chars8 == "cat4500e":
-	##		cat4500es7class(name)
 
 		elif chars7 == "vpn3000" or chars7 == "vpn3002" or chars7 == "vpn3005":
 			vpn3000(name)
-
 
 		elif splitbydot[0] == "c6svc-nam":
 			cat6knam(name)
@@ -2110,12 +2075,6 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile):
 		elif splitbydash[0] == "cat6000" or splitbydash[0] == "cat5000" or splitbydot[0] == "cat4000" or splitbydot[0] == "cat4000-cv" or splitbydot[0] == "cat4000-k8" or splitbydot[0] == "cat4000-k9":
 			catos (name)
 
-		elif splitbydash[0] == "fcs" and splitbydash[1] == "csm":
-			csm4(name)
-
-		elif splitbydash[0] == "fcs" and splitbydash[1] == "mcp":
-			csmmcp(name)
-
 		elif splitbydash[0] == "fcs" and splitbydash[1] == "rme" and splitbydash[2] == "430":
 			filepath = "Cisco Security Manager/4.0.0/RESOURCE MANAGER ESSENTIALS"
 			filemove (filepath, name)
@@ -2131,9 +2090,6 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile):
 
 		elif splitbydash[0] == "IPS" and splitbydash[1] == "sig":
 			ipssig(name)
-
-		elif splitbydash[0] == "csmars":
-			mars(name)
 
 		elif splitbydot[1] == "SPA":
 			if splitbydash[0] == "cat4500e":
@@ -2191,12 +2147,6 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile):
 		elif splitbydash[0] == "UTD" and splitbydash[1] == "STD" and splitbydash[2] == "SIGNATURE":
 			ios_xe_signature (name)
 
-#		elif splitbydash[1] == "vWAAS" or splitbydash[2] == "vWAAS" or splitbydash[0] == "WAAS" or splitbydash[1] == "WAAS" or splitbydash[0] == "waas":
-#			waas (name)
-
-		elif splitbydash[0] == "aci" or splitbydash[0] == "apic" or splitbydash[0] == "vcenter" and splitbydash[1] == "plugin":
-			aci (name)
-
 		elif splitbydash[0] == "full" or splitbydash[0] == "fullk9":
 			iosxrv9k (name)
 
@@ -2218,6 +2168,7 @@ if __name__ == "__main__":
 	parser.add_argument('-hs2','--hashsha1', help='Hash File using the SHA1 Algorithm', action='store_true', required=False)
 	parser.add_argument('-hs3','--hashmd5', help='Hash File using the MD5 Algorithm', action='store_true', required=False)
 	parser.add_argument('-hf','--hashfile', help='File with Hash Info. Format is FILENAME,MD5HASH,SHA512HASH. Additional columns are ignored', action='store_true', required=False)
+	parser.add_argument('-d1','--debug1', help='Print Debug Commands (Level 1) (NYI)', action='store_true', required=False)
 	
 	args = parser.parse_args()
 	dirpass = args.directory
@@ -2226,6 +2177,7 @@ if __name__ == "__main__":
 	hashsha1   = args.hashsha1
 	hashmd5    = args.hashmd5
 	hashfile   = args.hashfile
+	debug1     = args.debug1
 
-	toplevel(dirpass,hashsha512,hashsha256,hashsha1,hashmd5,hashfile)
+	toplevel(dirpass,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug1)
 	

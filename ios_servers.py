@@ -3,7 +3,10 @@ from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
 
-def file_proc_servers (filename):
+def file_proc_servers (filename,debug1):
+	if debug1:
+		print("\tModule#\tios_servers")
+		print("\tSubroutine#\tfile_proc_servers")
 	if (
 	filename == "B57BCMCD_v15.2.4.1.tgz" or 
 	filename == "B57CiscoCD_T6.4.4.3-57712.zip" or 
@@ -15,8 +18,27 @@ def file_proc_servers (filename):
 	):
 		prodname = product("ucseseries")
 		imagecode = imagelookup("driverseseries")
-		file_proc_servers_ucs_single (filename,prodname,imagecode)
+		file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
 
+	elif filename.startswith("ucs-catalog"):
+		prodname = product("ucsgeneric")
+		imagecode = imagelookup("catalog")
+		file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
+
+	elif filename.startswith("pid-ctlg"):
+		prodname = product("c2xxm3")
+		imagecode = imagelookup("catalog")
+		file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
+
+	elif filename.startswith("delnorte2"):
+		prodname = product("c2xxm3")
+		imagecode = imagelookup("catalog")
+		file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
+
+	elif filename.startswith("plumas2"):
+		prodname = product("c2xxm5")
+		imagecode = imagelookup("catalog")
+		file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
 	elif (
 	filename == "efi-obd-v12-07-18.diag" or 
 	filename == "efi-obd-v13-10-15.diag" or 
@@ -24,7 +46,7 @@ def file_proc_servers (filename):
 	):
 		prodname = product("ucseseries")
 		imagecode = imagelookup("hdiag")
-		file_proc_servers_ucs_single (filename,prodname,imagecode)
+		file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename == "huu-2.3.1.iso" or 
@@ -42,7 +64,7 @@ def file_proc_servers (filename):
 	):
 		prodname = product("ucseseries")
 		imagecode = imagelookup("huu")
-		file_proc_servers_ucs_single (filename,prodname,imagecode)
+		file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename == "DW_16MB_release_1029.bin" or 
@@ -93,44 +115,165 @@ def file_proc_servers (filename):
 	):
 		prodname = product("ucseseries")
 		imagecode = imagelookup("firmwareeseries")
-		file_proc_servers_ucs_single (filename,prodname,imagecode)
+		file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename == "UCS_docs_20110510.iso"
 	):
 		prodname = product("ucsgeneric")
 		imagecode = imagelookup("docs")
-		file_proc_servers_ucs_single (filename,prodname,imagecode)
+		file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("ucs") or 
 	filename == "b2xx-m1-drivers-1.1.1j.iso" or 
 	filename == "c2xx-m1-utils-1.0.2.iso"
 	):
-		file_proc_servers_ucs (filename)
+		file_proc_servers_ucs (debug1,filename)
 
 	elif (
 	filename.startswith("PI")
 	):
-		file_proc_servers_primeinfra (filename)
+		file_proc_servers_primeinfra (debug1,filename)
+
+	elif (
+	filename.startswith ("Cisco_ACI") or 
+	filename.startswith ("acisim") or 
+	filename.startswith ("aci-simulator") or 
+	filename.startswith ("aci-apic") or 
+	filename.startswith ("aci-msft-pkg") or 
+	filename.startswith ("aci-n9000-dk9") or 
+	filename.startswith ("apic-vrealize") or 
+	filename.startswith ("esx-msc") or 
+	filename.startswith ("msc") or 
+	filename.startswith ("vcenter-plugin") or 
+	filename.startswith ("tools-msc")
+	):
+		prodname = product("aci")
+		file_proc_servers_aci(debug1,filename,prodname)
 
 	else:
 		messageunknownfile()
 
-def file_proc_servers_primeinfra (filename):
+
+def file_proc_servers_aci (debug1,filename,prodname):
+	if debug1:
+		print("\tSubroutine#\tfile_proc_servers_aci")
+	if (
+	filename.startswith("tools-msc-") or 
+	filename.startswith("esx-msc-") or 
+	filename.startswith("msc-")
+	):
+		imagecode = imagelookup("mso")
+		workname = filename.replace("tools-msc-", "")
+		workname = workname.replace("esx-msc-", "")
+		workname = workname.replace("msc-", "")
+		splitbydot = filename.split(".")
+		ver2 = util2digit(splitbydot[0],splitbydot[1])
+		ver3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		filepath = filepath4(prodname,imagecode,ver2,ver3)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("Cisco_ACI_Virtual_Edge_")
+	):
+		imagecode = imagelookup("acive")
+		workname = filename.replace("Cisco_ACI_Virtual_Edge_", "")
+		workname = workname.replace("-pkg.zip", "")
+		splitbydot = filename.split(".")
+		ver2 = util2digit(splitbydot[0],splitbydot[1])
+		ver3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		filepath = filepath4(prodname,imagecode,ver2,ver3)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("aci-apic-dk9.")
+	):
+		imagecode = imagelookup("apic")
+		workname = filename.replace("aci-apic-dk9.", "")
+		splitbydot = filename.split(".")
+		ver2 = util2digit(splitbydot[0],splitbydot[1])
+		ver3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		filepath = filepath4(prodname,imagecode,ver2,ver3)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("aci-msft-pkg-")
+	):
+		imagecode = imagelookup("aciplgms")
+		workname = filename.replace("aci-msft-pkg-", "")
+		splitbydot = filename.split(".")
+		ver2 = util2digit(splitbydot[0],splitbydot[1])
+		ver3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		filepath = filepath4(prodname,imagecode,ver2,ver3)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("vcenter-plugin-")
+	):
+		imagecode = imagelookup("aciplgvc")
+		workname = filename.replace("vcenter-plugin-", "")
+		splitbydot = filename.split(".")
+		ver2 = util2digit(splitbydot[0],splitbydot[1])
+		ver3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		filepath = filepath4(prodname,imagecode,ver2,ver3)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("vcenter-plugin-")
+	):
+		imagecode = imagelookup("aciplgvs")
+		workname = filename.replace("apic-vrealize-", "")
+		splitbydot = filename.split(".")
+		ver2 = util2digit(splitbydot[0],splitbydot[1])
+		ver3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		filepath = filepath4(prodname,imagecode,ver2,ver3)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("aci-n9000-dk9.")
+	):
+		imagecode = imagelookup("n9kacim")
+		workname = filename.replace("aci-n9000-dk9.", "")
+		splitbydot = filename.split(".")
+		ver2 = util2digit(splitbydot[0],splitbydot[1])
+		ver3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		filepath = filepath4(prodname,imagecode,ver2,ver3)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("acisim-")
+	):
+		imagecode = imagelookup("acisim")
+		workname = filename.replace("acisim-", "")
+		workname = workname.replace("_part1.ova", "")
+		workname = workname.replace("_part2.ova", "")
+		workname = workname.replace("_part3.ova", "")
+		workname = workname.replace("_part4.ova", "")
+		workname = workname.replace("-",".")
+		splitbydot = workname.split(".")
+		ver2 = util2digit(splitbydot[0],splitbydot[1])
+		ver3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		filepath = filepath4(prodname,imagecode,ver2,ver3)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("aci-simulator-dk9.")
+	):
+		imagecode = imagelookup("acisim")
+		workname = filename.replace("aci-simulator-dk9.", "")
+		splitbydot = workname.split(".")
+		ver2 = util2digit(splitbydot[0],splitbydot[1])
+		ver3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		filepath = filepath4(prodname,imagecode,ver2,ver3)
+		filemove (filepath, filename)
+
+	else:
+		messageunknownfile()
+
+def file_proc_servers_primeinfra (debug1,filename):
+	splitbydash = filename.split("-")
+	if debug1:
+		print("\tSubroutine#\tfile_proc_servers_primeinfra")
+
+def file_proc_servers_ucs (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tfile_proc_servers_ucs")
 	splitbydash = filename.split("-")
 
-def file_proc_servers_ucs (filename):
-	splitbydash = filename.split("-")
-
-	if filename.startswith("ucs-catalog"):
-		prodname = product("ucsgeneric")
-		imagecode = imagelookup("catalog")
-		file_proc_servers_ucs_single (filename,prodname,imagecode)
-
-
-
-	elif filename.startswith("ucs-utils"):
+	if filename.startswith("ucs-utils"):
 		prodname = product("ucsgeneric")
 		imagecode = imagelookup("utils")
 
@@ -146,7 +289,7 @@ def file_proc_servers_ucs (filename):
 		if filename == "ucs-drivers.1.0.2.iso":
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("driversucsb")
-			file_proc_servers_p2_d3 (filename,prodname,imagecode)
+			file_proc_servers_p2_d3 (debug1,filename,prodname,imagecode)
 		elif filename == "b2xx-m1-drivers-1.1.1j.iso":
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("driversucsc")
@@ -154,19 +297,19 @@ def file_proc_servers_ucs (filename):
 		elif filename.startswith("ucs-cxxx-drivers") or filename.startswith("ucs-c2xx-drivers"):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("driversucsc")
-			file_proc_servers_p2_d3 (filename,prodname,imagecode)
+			file_proc_servers_p2_d3 (debug1,filename,prodname,imagecode)
 		elif filename.startswith("ucs-cxxx-fw"):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("driversucsc")
-			file_proc_servers_p2_d3 (filename,prodname,imagecode)
+			file_proc_servers_p2_d3 (debug1,filename,prodname,imagecode)
 		elif filename.startswith("ucs-bxxx-drivers"):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("driversucsb")
-			file_proc_servers_p2_d3 (filename,prodname,imagecode)
+			file_proc_servers_p2_d3 (debug1,filename,prodname,imagecode)
 		elif filename.startswith("ucs-b2xx-drivers"):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("driversucsb")
-			file_proc_servers_p2_d3 (filename,prodname,imagecode)
+			file_proc_servers_p2_d3 (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("ucs_k9_bundle") or 
@@ -181,7 +324,7 @@ def file_proc_servers_ucs (filename):
 	):
 		prodname = product("ucsgeneric")
 		imagecode = imagelookup("ucsbundle")
-		file_proc_servers_p2_d3 (filename,prodname,imagecode)
+		file_proc_servers_p2_d3 (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("ucs-b2xx-utils") or 
@@ -196,14 +339,14 @@ def file_proc_servers_ucs (filename):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("utilsbseries")
 			imagecode2 = imagelookup("vmware")
-			file_proc_servers_p3_d3_utils (filename,prodname,imagecode,imagecode2)
+			file_proc_servers_p3_d3_utils (debug1,filename,prodname,imagecode,imagecode2)
 
 		elif (
 		filename == "c2xx-m1-utils-1.0.2.iso"
 		):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("utilscseries")
-			file_proc_servers_ucs_single (filename,prodname,imagecode)
+			file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
 
 		elif (
 		filename.startswith("ucs-b2xx-utils-") and filename.endswith("-windows.iso")
@@ -211,7 +354,7 @@ def file_proc_servers_ucs (filename):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("utilsbseries")
 			imagecode2 = imagelookup("windows")
-			file_proc_servers_p3_d3_utils (filename,prodname,imagecode,imagecode2)
+			file_proc_servers_p3_d3_utils (debug1,filename,prodname,imagecode,imagecode2)
 
 		elif (
 		filename.startswith("ucs-b2xx-utils-") and filename.endswith("-linux.iso")
@@ -219,7 +362,7 @@ def file_proc_servers_ucs (filename):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("utilsbseries")
 			imagecode2 = imagelookup("ucslinux")
-			file_proc_servers_p3_d3_utils (filename,prodname,imagecode,imagecode2)
+			file_proc_servers_p3_d3_utils (debug1,filename,prodname,imagecode,imagecode2)
 
 		elif (
 		filename.startswith("ucs-c2xx-utils-") and filename.endswith("-vmware.iso")
@@ -227,7 +370,7 @@ def file_proc_servers_ucs (filename):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("utilscseries")
 			imagecode2 = imagelookup("vmware")
-			file_proc_servers_p3_d3_utils (filename,prodname,imagecode,imagecode2)
+			file_proc_servers_p3_d3_utils (debug1,filename,prodname,imagecode,imagecode2)
 
 		elif (
 		filename.startswith("ucs-c2xx-utils-") and filename.endswith("-windows.iso")
@@ -235,7 +378,7 @@ def file_proc_servers_ucs (filename):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("utilscseries")
 			imagecode2 = imagelookup("windows")
-			file_proc_servers_p3_d3_utils (filename,prodname,imagecode,imagecode2)
+			file_proc_servers_p3_d3_utils (debug1,filename,prodname,imagecode,imagecode2)
 
 		elif (
 		filename.startswith("ucs-c2xx-utils-") and filename.endswith("-linux.iso")
@@ -243,7 +386,7 @@ def file_proc_servers_ucs (filename):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("utilscseries")
 			imagecode2 = imagelookup("ucslinux")
-			file_proc_servers_p3_d3_utils (filename,prodname,imagecode,imagecode2)
+			file_proc_servers_p3_d3_utils (debug1,filename,prodname,imagecode,imagecode2)
 
 		elif (
 		filename.startswith("ucs-c2xx-utils-") and filename.endswith("-efi.iso")
@@ -251,7 +394,7 @@ def file_proc_servers_ucs (filename):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("utilscseries")
 			imagecode2 = imagelookup("efi")
-			file_proc_servers_p3_d3_utils (filename,prodname,imagecode,imagecode2)
+			file_proc_servers_p3_d3_utils (debug1,filename,prodname,imagecode,imagecode2)
 
 		elif (
 		filename.startswith("ucs-bxxx-utils-vmware") or 
@@ -260,7 +403,7 @@ def file_proc_servers_ucs (filename):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("utilsbseries")
 			imagecode2 = imagelookup("vmware")
-			file_proc_servers_p2_d3_utils (filename,prodname,imagecode,imagecode2)
+			file_proc_servers_p2_d3_utils (debug1,filename,prodname,imagecode,imagecode2)
 		elif (
 		filename.startswith("ucs-cxxx-utils-vmware") or 
 		filename.startswith("ucs-c2xx-utils-vmware")
@@ -268,7 +411,7 @@ def file_proc_servers_ucs (filename):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("utilscseries")
 			imagecode2 = imagelookup("vmware")
-			file_proc_servers_p2_d3_utils (filename,prodname,imagecode,imagecode2)
+			file_proc_servers_p2_d3_utils (debug1,filename,prodname,imagecode,imagecode2)
 		elif (
 		filename.startswith("ucs-bxxx-utils-windows") or 
 		filename.startswith("ucs-b2xx-utils-windows")
@@ -276,7 +419,7 @@ def file_proc_servers_ucs (filename):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("utilsbseries")
 			imagecode2 = imagelookup("windows")
-			file_proc_servers_p2_d3_utils (filename,prodname,imagecode,imagecode2)
+			file_proc_servers_p2_d3_utils (debug1,filename,prodname,imagecode,imagecode2)
 		elif (
 		filename.startswith("ucs-cxxx-utils-windows") or 
 		filename.startswith("ucs-c2xx-utils-windows")
@@ -284,7 +427,7 @@ def file_proc_servers_ucs (filename):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("utilscseries")
 			imagecode2 = imagelookup("windows")
-			file_proc_servers_p2_d3_utils (filename,prodname,imagecode,imagecode2)
+			file_proc_servers_p2_d3_utils (debug1,filename,prodname,imagecode,imagecode2)
 		elif (
 		filename.startswith("ucs-bxxx-utils-linux") or 
 		filename.startswith("ucs-b2xx-utils-linux")
@@ -292,7 +435,7 @@ def file_proc_servers_ucs (filename):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("utilsbseries")
 			imagecode2 = imagelookup("ucslinux")
-			file_proc_servers_p2_d3_utils (filename,prodname,imagecode,imagecode2)
+			file_proc_servers_p2_d3_utils (debug1,filename,prodname,imagecode,imagecode2)
 		elif (
 		filename.startswith("ucs-cxxx-utils-linux") or 
 		filename.startswith("ucs-c2xx-utils-linux")
@@ -300,7 +443,7 @@ def file_proc_servers_ucs (filename):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("utilscseries")
 			imagecode2 = imagelookup("ucslinux")
-			file_proc_servers_p2_d3_utils (filename,prodname,imagecode,imagecode2)
+			file_proc_servers_p2_d3_utils (debug1,filename,prodname,imagecode,imagecode2)
 		elif (
 		filename.startswith("ucs-cxxx-utils-efi") or 
 		filename.startswith("ucs-c2xx-utils-efi")
@@ -308,33 +451,41 @@ def file_proc_servers_ucs (filename):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("utilscseries")
 			imagecode2 = imagelookup("efi")
-			file_proc_servers_p2_d3_utils (filename,prodname,imagecode,imagecode2)
+			file_proc_servers_p2_d3_utils (debug1,filename,prodname,imagecode,imagecode2)
 
 
 	elif splitbydash[0] == "ucs" and splitbydash[2] == "huu":
 		prodname = product(splitbydash[1])
 		imagecode = imagelookup(splitbydash[2])
-		file_proc_servers_p3_d3 (filename,prodname,imagecode)
+		file_proc_servers_p3_d3 (debug1,filename,prodname,imagecode)
 
-def file_proc_servers_ucs_single (filename,prodname,imagecode):
+def file_proc_servers_ucs_single (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tfile_proc_servers_ucs_single")
 	filepath = filepath2 (prodname,imagecode)
 	filemove (filepath, filename)
 
-def file_proc_servers_p2_d3 (filename,prodname,imagecode):
+def file_proc_servers_p2_d3 (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tfile_proc_servers_p2_d3")
 	splitbydot = filename.split(".")
 	ver2 = util2digit(splitbydot[1],splitbydot[2])
 	ver3 = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
 	filepath = filepath4(prodname,imagecode,ver2,ver3)
 	filemove (filepath, filename)
 
-def file_proc_servers_p2_d3_utils (filename,prodname,imagecode,imagecode2):
+def file_proc_servers_p2_d3_utils (debug1,filename,prodname,imagecode,imagecode2):
+	if debug1:
+		print("\tSubroutine#\tfile_proc_servers_p2_d3_utils")
 	splitbydot = filename.split(".")
 	ver2 = util2digit(splitbydot[1],splitbydot[2])
 	ver3 = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
 	filepath = filepath5(prodname,imagecode,ver2,ver3,imagecode2)
 	filemove (filepath, filename)
 
-def file_proc_servers_p3_d3 (filename,prodname,imagecode):
+def file_proc_servers_p3_d3 (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tfile_proc_servers_p3_d3")
 	splitbydash = filename.split("-", 3)
 	splitbydot = splitbydash[3].split(".")
 	ver2 = util2digit(splitbydot[0],splitbydot[1])
@@ -342,7 +493,9 @@ def file_proc_servers_p3_d3 (filename,prodname,imagecode):
 	filepath = filepath4(prodname,imagecode,ver2,ver3)
 	filemove (filepath, filename)
 
-def file_proc_servers_p3_d3_utils (filename,prodname,imagecode,imagecode2):
+def file_proc_servers_p3_d3_utils (debug1,filename,prodname,imagecode,imagecode2):
+	if debug1:
+		print("\tSubroutine#\tfile_proc_servers_p3_d3_utils")
 	splitbydash = filename.split("-", 3)
 	splitbydot = splitbydash[3].split(".")
 	workname = splitbydot[2].replace("-vmware.iso", "")

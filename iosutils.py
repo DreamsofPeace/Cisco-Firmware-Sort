@@ -1822,6 +1822,22 @@ def imagelookup (imagecode):
 		subdirectory = "PIX-DEVICE-MANAGER"
 	elif imagecode == "PIXtoASA":
 		subdirectory = "PIX-TO-ASA"
+	elif imagecode == "apic":
+		subdirectory = "APIC-CONTROLLER"
+	elif imagecode == "acive":
+		subdirectory = "ACI-VIRTUAL-EDGE"
+	elif imagecode == "aciplgms":
+		subdirectory = "PLUG-INS/MICROSOFT"
+	elif imagecode == "aciplgvc":
+		subdirectory = "PLUG-INS/VCENTER"
+	elif imagecode == "aciplgvs":
+		subdirectory = "PLUG-INS/VREALIZE"
+	elif imagecode == "n9kacim":
+		subdirectory = "NEXUS-9000-ACI-MODE"
+	elif imagecode == "mso":
+		subdirectory = "MULTI-SIDE-ORCHESTRATOR"
+	elif imagecode == "acisim":
+		subdirectory = "ACI-SIMULATOR"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2627,6 +2643,12 @@ def product (prodcode):
 		prodname = "Security/Firewall/PIX"
 	elif prodcode == "anyconnect":
 		prodname = "Security/VPN-Clients/Anyconnect"
+	elif prodcode == "c2xxm3":
+		prodname = "Servers/UCS/C-SERIES/C2XXM3"
+	elif prodcode == "c2xxm4":
+		prodname = "Servers/UCS/C-SERIES/C2XXM4"
+	elif prodcode == "c2xxm5":
+		prodname = "Servers/UCS/C-SERIES/C2XXM5"
 	elif prodcode == "c125":
 		prodname = "Servers/UCS/C-SERIES/C125M5"
 	elif prodcode == "c200":
@@ -2671,6 +2693,10 @@ def product (prodcode):
 		prodname = "Security/Identity/IDENTIY-SERVICES-ENGINE-PIC"
 	elif prodcode == "acs":
 		prodname = "Security/Identity/ACS"
+	elif prodcode == "dnac":
+		prodname = "Servers/DNAC"
+	elif prodcode == "aci":
+		prodname = "Servers/APIC"
 	else:
 		prodname = "UNKNOWN"
 	return prodname
