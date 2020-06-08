@@ -3,7 +3,11 @@ from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
 
-def fileprocessorsecurity (filename):
+def fileprocessorsecurity (debug1,filename):
+	if debug1:
+		print("\tModule#\tios_servers")
+	if debug1:
+		print("\tSubroutine#\tfileprocessorsecurity")
 
 	if(
 	filename == "anyconnect_app_selector_1.0.zip" or 
@@ -11,7 +15,7 @@ def fileprocessorsecurity (filename):
 	):
 		prodname = product("anyconnect")
 		imagecode = imagelookup("app_selector")
-		sec_single_file (filename,prodname,imagecode)
+		sec_single_file (debug1,filename,prodname,imagecode)
 
 	elif(
 	filename.startswith("np") and filename.endswith(".bin") or 
@@ -23,7 +27,7 @@ def fileprocessorsecurity (filename):
 	filename.startswith("PIX") and filename.endswith(".bin")
 	):
 		prodname = product("pix")
-		sec_pix (filename,prodname)
+		sec_pix (debug1,filename,prodname)
 
 	elif(
 	filename == "fwsm_migration_mac-1.0.18.zip" or 
@@ -31,14 +35,14 @@ def fileprocessorsecurity (filename):
 	):
 		prodname = product("asa")
 		imagecode = imagelookup("fwsmtoasasm")
-		sec_single_file (filename,prodname,imagecode)
+		sec_single_file (debug1,filename,prodname,imagecode)
 
 	elif(
 	filename == "firepower-mibs.zip"
 	):
 		prodname = product("firepower")
 		imagecode = imagelookup("mibs")
-		sec_single_file (filename,prodname,imagecode)
+		sec_single_file (debug1,filename,prodname,imagecode)
 
 	elif(
 	filename == "BOOTX64.EFI" or 
@@ -46,34 +50,34 @@ def fileprocessorsecurity (filename):
 	):
 		prodname = product("ise")
 		imagecode = "2.4/APPLIANCE-BOOT-SECTOR"
-		sec_single_file (filename,prodname,imagecode)
+		sec_single_file (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("asdm"):
-		sec_asa_asdm (filename)
+		sec_asa_asdm (debug1,filename)
 
 	elif filename.startswith("c6svc-fwm-k9"):
-		sec_fwsm (filename)
+		sec_fwsm (debug1,filename)
 
 	elif filename.startswith("csd_"):
-		sec_csd (filename)
+		sec_csd (debug1,filename)
 
 	elif (
 	filename.startswith("asav") or
 	filename.startswith("asa")
 	):
-		sec_asa_firmware (filename)
+		sec_asa_firmware (debug1,filename)
 
 	elif filename.startswith("Cisco_Firepower_SRU") or filename.startswith("Sourcefire_Rule_Update"):
-		sec_fp_rules(filename)
+		sec_fp_rules (debug1,filename)
 
 	elif filename.startswith("Cisco_Firepower_GEODB") or filename.startswith("Sourcefire_Geodb"):
-		sec_fp_geodb(filename)
+		sec_fp_geodb (debug1,filename)
 
 	elif filename.startswith("Cisco_VDB_Fingerprint_Database") or filename.startswith("Sourcefire_VDB"):
-		sec_fp_vdb(filename)
+		sec_fp_vdb (debug1,filename)
 
 	elif filename.startswith("hostscan_"):
-		sec_hostscan(filename)
+		sec_hostscan (debug1,filename)
 
 	elif (
 	filename.startswith("anyconnect") or 
@@ -82,26 +86,26 @@ def fileprocessorsecurity (filename):
 	filename.startswith("tools-anyconnect") or 
 	filename.startswith("sampleTransforms")
 	):
-		sec_anyconnect(filename)
+		sec_anyconnect (debug1,filename)
 
 	elif (
 	filename.startswith("fxos") or 
 	filename.startswith("firepower")
 	):
-		sec_fxos(filename)
+		sec_fxos (debug1,filename)
 
 	elif filename.startswith("Sourcefire_3D_Defense_Center_S3_Patch"):
-		sec_sourcefire_fmc_patch(filename)
+		sec_sourcefire_fmc_patch (debug1,filename)
 
 	elif filename.startswith("Cisco_FTD_Patch"):
-		sec_sourcefire_ftd_patch(filename)
+		sec_sourcefire_ftd_patch (debug1,filename)
 
 	elif (
 	filename.startswith("ise-pic") or 
 	filename == "pic-2.2.0.470.SPA.x86_64.iso" or 
 	filename == "pic-2.4.0.357.SPA.x86_64.iso"
 	):
-		sec_ise_pic(filename)
+		sec_ise_pic (debug1,filename)
 
 	elif (
 		filename == "README_ISE_20_201_21_22" or 
@@ -113,7 +117,7 @@ def fileprocessorsecurity (filename):
 		filename.startswith("win_spw") or 
 		filename.startswith("ACS-MigrationApplication")
 	):
-		sec_ise(filename)
+		sec_ise (debug1,filename)
 
 	elif (
 		filename.startswith("ACS") or 
@@ -125,10 +129,26 @@ def fileprocessorsecurity (filename):
 		filename == "ACS57BasePatch.tar.gz" or 
 		filename == "ReadMe_for_ACS_5.6_Upgrade_Package-txt"
 	):
-		sec_acs(filename)
+		sec_acs (debug1,filename)
+
+	elif (
+		filename.startswith ("fcs-csm") or 
+		filename.startswith ("fcs-mcp") or 
+		filename.startswith ("csm")
+	):
+		sec_csm (debug1,filename)
+
 
 	else:
 		messageunknownfile()
+
+
+def sec_single_file (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_single_file")
+	filepath = filepath2 (prodname,imagecode)
+	filemove (filepath, filename)
+
 
 #	name.startswith("Cisco_FTD") or 
 #	name.startswith("Cisco_Firepower_Threat") or 
@@ -140,33 +160,48 @@ def fileprocessorsecurity (filename):
 #	splitbydash = filename.split("-")
 #	if splitbydash[0] == "Cisco_Firepower_Management_Center_Virtual":
 
-def sec_pix (filename,prodname):
+def sec_csm (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_csm")
+		prodname = product ("csm")
+	if filename.startswith("csm-maxmind-geolitecity"):
+		imagecode = imagelookup("csmgeoip")
+		sec_csm_geoip (debug1,filename,prodname,imagecode)
+
+def sec_csm_geoip (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_csm_geoip")
+	workname = filename.replace("csm-maxmind-geolitecity-","")
+	workname = workname.replace(".zip","")
+	mylist = list(workname)
+	myyear = mylist[0] + mylist[1] + mylist[2] + mylist[3]
+	filepath = filepath3 (prodname,imagecode,myyear)
+	filemove (filepath, filename)
+
+
+def sec_pix (debug1,filename,prodname):
+	if debug1:
+		print("\tSubroutine#\tsec_pix")
 
 	if filename.startswith("np") and filename.endswith(".bin"):
 		imagecode = imagelookup("pixpasswordrecovery")
-		sec_single_file (filename,prodname,imagecode)
+		sec_single_file (debug1,filename,prodname,imagecode)
 	elif filename.startswith("pdm") and filename.endswith(".bin"):
 		imagecode = imagelookup("pdm")
-		sec_single_file (filename,prodname,imagecode)
+		sec_single_file (debug1,filename,prodname,imagecode)
 	elif filename == "PIXtoASA_1_0.zip":
 		imagecode = imagelookup("PIXtoASA")
-		sec_single_file (filename,prodname,imagecode)
+		sec_single_file (debug1,filename,prodname,imagecode)
 	elif filename == "PIX_to_ASA_1_0.dmg":
 		imagecode = imagelookup("PIXtoASA")
-		sec_single_file (filename,prodname,imagecode)
+		sec_single_file (debug1,filename,prodname,imagecode)
 	elif filename == "PIXtoASAsetup_1_0.exe":
 		imagecode = imagelookup("PIXtoASA")
-		sec_single_file (filename,prodname,imagecode)
+		sec_single_file (debug1,filename,prodname,imagecode)
 
-def firewallpix (filename):
-	prodname = product("pix")
-	pixversion = list(filename)
-	pix = pixversion[3] + "." + pixversion[4] + "(" + pixversion[5] + ")"
-	pixprimary = pixversion[3] + "." + pixversion[4]
-	filepath = product + "/" + pixprimary + "/" + pix
-	filemove (filepath, filename)
-
-def sec_asa_firmware (filename):
+def sec_asa_firmware (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_asa_firmware")
 
 	if (
 	filename.startswith("asa9") or 
@@ -192,6 +227,8 @@ def sec_asa_firmware (filename):
 		messageunknownfile()
 
 def sec_asa_rest_api (filename,prodname):
+	if debug1:
+		print("\tSubroutine#\tsec_asa_rest_api")
 	splitbydash = filename.split("-")
 	imagecode = imagelookup("restapi")
 	mylist = list(splitbydash[2])
@@ -207,6 +244,8 @@ def sec_asa_rest_api (filename,prodname):
 
 
 def sec_asa_firmware_v9 (filename,prodname):
+	if debug1:
+		print("\tSubroutine#\tsec_asa_firmware_v9")
 	splitbydash = filename.split("-")
 #	print (len(splitbydash), end="\n")
 
@@ -423,6 +462,8 @@ def sec_asa_firmware_v9 (filename,prodname):
 		messageunknownfile()
 
 def sec_asa_firmware_v7_8 (filename,prodname):
+	if debug1:
+		print("\tSubroutine#\tsec_asa_firmware_v7_8")
 	workname = filename.replace("asa", "")
 	splitbydash = workname.split("-")
 
@@ -453,14 +494,16 @@ def sec_asa_firmware_v7_8 (filename,prodname):
 		filepath = filepath3 (prodname,vertwo,verfour)
 		filemove (filepath, filename)
 
-def sec_acs (filename):
+def sec_acs (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_acs")
 	prodname = product ("acs")
 
 	if (
 	filename.startswith("Clean-")
 	):
 		imagecode = imagelookup("clean")
-#		sec_ise_patch (filename,prodname,imagecode)
+		sec_acs_vfour_patch (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("5-")
@@ -537,6 +580,8 @@ def sec_acs (filename):
 		messageunknownfile()
 
 def sec_acs_vfiveinstall (filename,prodname):
+	if debug1:
+		print("\tSubroutine#\tsec_acs_vfiveinstall")
 
 	if filename == "ACS_55_USB_Installation_tool.zip":
 		imagecode = imagelookup("install")
@@ -659,14 +704,16 @@ def sec_acs_vfiveinstall (filename,prodname):
 		filemove (filepath, filename)
 
 def sec_acs_vfour (filename,prodname):
+	if debug1:
+		print("\tSubroutine#\tsec_acs_vfour")
 
 	if filename.endswith("-DOCs.zip"):
 		imagecode = imagelookup("docs")
-		sec_acs_vfour_software (filename,prodname,imagecode)
+		sec_acs_vfour_software (debug1,filename,prodname,imagecode)
 
 	elif filename.endswith("-BIN-K9.zip"):
 		imagecode = imagelookup("install")
-		sec_acs_vfour_software (filename,prodname,imagecode)
+		sec_acs_vfour_software (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.endswith("-SW.zip") or 
@@ -678,9 +725,11 @@ def sec_acs_vfour (filename,prodname):
 	filename.startswith("applAcs_") and filename.endswith(".zip")
 	):
 		imagecode = imagelookup("patch")
-		sec_acs_vfour_patch (filename,prodname,imagecode)
+		sec_acs_vfour_patch (debug1,filename,prodname,imagecode)
 
-def sec_acs_vfour_software (filename,prodname,imagecode):
+def sec_acs_vfour_software (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_acs_vfour_software")
 	workname = filename.replace("-BIN-K9.zip", "")
 	workname = workname.replace("-DOCs.zip", "")
 	workname = workname.replace("ACS-", "")
@@ -689,29 +738,37 @@ def sec_acs_vfour_software (filename,prodname,imagecode):
 	filepath = filepath3 (prodname,verfour,imagecode)
 	filemove (filepath, filename)
 
-def sec_acs_vfour_patch (filename,prodname,imagecode):
+def sec_acs_vfour_patch (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_acs_vfour_patch")
 	workname = filename.replace("-SW.zip", "")
 	workname = workname.replace("-SW.exe", "")
 	workname = workname.replace("-RA.zip", "")
+	workname = workname.replace("-K9.zip", "")
 	workname = workname.replace("-Clean.zip", "")
 	workname = workname.replace("-SW-Readme.txt", "")
 	workname = workname.replace("Acs-", "")
 	workname = workname.replace("ACS-", "")
 	workname = workname.replace("Acs_", "")
 	workname = workname.replace("ACS_", "")
+	workname = workname.replace("Clean-", "")
 	splitbydot = workname.split(".")
 	verfour = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
 	filepath = filepath4 (prodname,verfour,imagecode,splitbydot[4])
 	filemove (filepath, filename)
 
 def sec_acs_patch (filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_acs_patch")
 	workname = filename.replace(".tar.gpg","")
 	splitbydash = workname.split("-")
 	verfour = util4digit(splitbydash[0],splitbydash[1],splitbydash[2],splitbydash[3])
 	filepath = filepath4 (prodname,verfour,imagecode,splitbydash[4])
 	filemove (filepath, filename)
 
-def sec_ise (filename):
+def sec_ise (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_iseh")
 	prodname = product ("ise")
 
 	if (
@@ -720,7 +777,7 @@ def sec_ise (filename):
 	filename == "ise-rollbackstrutsfix-signed.x86_64.tar.gz"
 	):
 		imagecode = imagelookup("struts")
-		sec_single_file(filename,prodname,imagecode)
+		sec_single_file (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("ise-patchbundle-")
@@ -766,6 +823,8 @@ def sec_ise (filename):
 		messageunknownfile()
 
 def sec_ise_acs_mig (filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_ise_acs_mig")
 	workname = filename.replace("ACS-MigrationApplication-","")
 	splitbydot = workname.split(".")
 	vertwo = util2digit(splitbydot[0],splitbydot[1])
@@ -773,6 +832,8 @@ def sec_ise_acs_mig (filename,prodname,imagecode):
 	filemove (filepath, filename)
 
 def sec_ise_spw (filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_ise_spw")
 	workname = filename.replace("win_spw-","")
 	workname = workname.replace("mac-spw-dmg-","")
 	workname = workname.replace("-isebundle.zip","")
@@ -782,6 +843,8 @@ def sec_ise_spw (filename,prodname,imagecode):
 	filemove (filepath, filename)
 
 def sec_ise_upgrade (filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_ise_upgrade")
 
 	if filename =="ise-upgradebundle-1.4.x-to-2.2.0.470.1808.x86_64.tar.gz":
 		vertwo = "2.2"
@@ -819,6 +882,8 @@ def sec_ise_upgrade (filename,prodname,imagecode):
 	filemove (filepath, filename)
 
 def sec_ise_install (filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_ise_install")
 	workname = filename.replace("ise-","")
 	workname = workname.replace("ISE-","")
 	splitbydot = workname.split(".")
@@ -827,6 +892,8 @@ def sec_ise_install (filename,prodname,imagecode):
 	filemove (filepath, filename)
 
 def sec_ise_patch (filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_ise_patch")
 	workname = filename.replace("ise-patchbundle-","")
 	splitbydot = workname.split(".")
 	splitbydash = workname.split("-")
@@ -836,6 +903,8 @@ def sec_ise_patch (filename,prodname,imagecode):
 	filemove (filepath, filename)
 
 def sec_ise_urtbundle (filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_ise_urtbundle")
 	workname = filename.replace("ise-patchbundle-","")
 	splitbydash = filename.split("-")
 	splitbydot = splitbydash[2].split(".")
@@ -843,7 +912,9 @@ def sec_ise_urtbundle (filename,prodname,imagecode):
 	filepath = filepath3 (prodname,vertwo,imagecode)
 	filemove (filepath, filename)
 
-def sec_ise_pic (filename):
+def sec_ise_pic (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_ise_pic")
 	prodname = product ("isepic")
 
 	if filename.startswith("pic-"):
@@ -855,6 +926,8 @@ def sec_ise_pic (filename):
 		messageunknownfile()
 
 def sec_ise_pic_orig (filename,prodname):
+	if debug1:
+		print("\tSubroutine#\tsec_ise_pic_orig")
 	splitbydot = filename.split(".")
 	splitbydot[0] = splitbydot[0].replace("pic-","")
 	imagecode = imagelookup("install")
@@ -863,6 +936,8 @@ def sec_ise_pic_orig (filename,prodname):
 	filemove (filepath, filename)
 
 def sec_ise_pic_current (filename,prodname):
+	if debug1:
+		print("\tSubroutine#\tsec_ise_pic_current")
 	splitbydash = filename.split("-")
 
 	if filename.startswith("ise-pic-patchbundle-"):
@@ -880,7 +955,9 @@ def sec_ise_pic_current (filename,prodname):
 	else:
 		messageunknownfile()
 
-def sec_sourcefire_fmc_patch (filename):
+def sec_sourcefire_fmc_patch (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_sourcefire_fmc_patch")
 	prodname = product ("firepower")
 	imagecode = imagelookup("fmc")
 	imagecode2 = imagelookup("patch")
@@ -894,7 +971,9 @@ def sec_sourcefire_fmc_patch (filename):
 	filepath = filepath5 (prodname,imagecode,vertwo,verfive,patchline)
 	filemove (filepath, filename)
 
-def sec_sourcefire_ftd_patch (filename):
+def sec_sourcefire_ftd_patch (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_sourcefire_ftd_patch")
 	prodname = product ("firepower")
 	imagecode = imagelookup("ngfw")
 	splitbydash = filename.split("-")
@@ -904,7 +983,9 @@ def sec_sourcefire_ftd_patch (filename):
 	filepath = filepath4 (prodname,imagecode,vertwo,verfour)
 	filemove (filepath, filename)
 
-def sec_fp_vdb (filename):
+def sec_fp_vdb (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_fp_vdb")
 	splitbydash = filename.split("-")
 	prodname = product ("firepower")
 
@@ -919,7 +1000,9 @@ def sec_fp_vdb (filename):
 	filepath = filepath4 (prodname,imagecode,splitbydash[1],ver)
 	filemove (filepath, filename)
 
-def sec_fp_rules (filename):
+def sec_fp_rules (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_fp_rules")
 	splitbydash = filename.split("-")
 	prodname = product ("firepower")
 
@@ -933,7 +1016,9 @@ def sec_fp_rules (filename):
 	filepath = filepath4 (prodname,imagecode,splitbydash[1],ver)
 	filemove (filepath, filename)
 
-def sec_fp_geodb (filename):
+def sec_fp_geodb (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_fp_geodb")
 	splitbydash = filename.split("-")
 	splitbydash[4] = splitbydash[4].replace(".sh", "")
 	prodname = product ("firepower")
@@ -948,52 +1033,58 @@ def sec_fp_geodb (filename):
 	filepath = filepath4 (prodname,imagecode,splitbydash[1],ver)
 	filemove (filepath, filename)
 
-def sec_single_file(filename,prodname,imagecode):
-	filepath = filepath2 (prodname,imagecode)
-	filemove (filepath, filename)
-
-def sec_fxos_firmware (filename,prodname,imagecode):
+def sec_fxos_firmware (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_fxos_firmware")
 	splitbydot = filename.split(".")
 	version = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
 	filepath = filepath3 (prodname,imagecode,version)
 	filemove (filepath, filename)
 
-def sec_fxos_firmware_recovery (filename,prodname,imagecode):
+def sec_fxos_firmware_recovery (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_fxos_firmware_recovery")
 	splitbydot = filename.split(".")
 	splitbydot[4] = splitbydot[4].strip("N")
-	versiontwo  = util2digit(splitbydot[4],splitbydot[5])
+	versiontwo = util2digit(splitbydot[4],splitbydot[5])
 	versionfull = util4digit(splitbydot[4],splitbydot[5],splitbydot[6],splitbydot[7])
 	filepath = filepath4 (prodname,imagecode,versiontwo,versionfull)
 	filemove (filepath, filename)
 
-def sec_fxos_firmware_d4_1_4 (filename,prodname,imagecode):
+def sec_fxos_firmware_d4_1_4 (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_fxos_firmware_d4_1_4")
 	splitbydot = filename.split(".")
-	versiontwo  = util2digit(splitbydot[1],splitbydot[2])
+	versiontwo = util2digit(splitbydot[1],splitbydot[2])
 	versionfull = util4digit(splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4])
 	filepath = filepath4 (prodname,imagecode,versiontwo,versionfull)
 	filemove (filepath, filename)
 
-def sec_fxos (filename):
+def sec_fxos (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_fxos")
 	prodname = product("firepower")
 	splitbydot = filename.split(".")
 
 	if splitbydot[0] == "fxos-k9-fpr4k-firmware":
 		imagecode = imagelookup(splitbydot[0])
-		sec_fxos_firmware(filename,prodname,imagecode)
+		sec_fxos_firmware (debug1,filename,prodname,imagecode)
 
 	elif splitbydot[0] == "fxos-k9-manager" or splitbydot[0] == "fxos-k9":
 		imagecode = imagelookup(splitbydot[0])
-		sec_fxos_firmware_d4_1_4(filename,prodname,imagecode)
+		sec_fxos_firmware_d4_1_4 (debug1,filename,prodname,imagecode)
 
 	elif splitbydot[0] == "fxos-k9-system" or splitbydot[0] == "fxos-k9-kickstart":
 		imagecode = imagelookup(splitbydot[0])
-		sec_fxos_firmware_recovery(filename,prodname,imagecode)
+		sec_fxos_firmware_recovery (debug1,filename,prodname,imagecode)
 
 	elif splitbydot[0] == "fxos-mibs-fp9k-fp4k" or splitbydot[0] == "firepower-mibs":
 		imagecode = imagelookup(splitbydot[0])
-		sec_fxos_firmware_d4_1_4(filename,prodname,imagecode)
+		sec_fxos_firmware_d4_1_4 (debug1,filename,prodname,imagecode)
 
-def sec_asa_asdm (filename):
+def sec_asa_asdm (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_asa_asdm")
 
 	if filename == "asdm508.bin":
 		prodname = product("asa")
@@ -1032,14 +1123,16 @@ def sec_asa_asdm (filename):
 	):
 		prodname = product("asa")
 		imagecode = imagelookup("asdmf")
-		sec_asa_asdm_to_ver (filename,prodname,imagecode)
+		sec_asa_asdm_to_ver (debug1,filename,prodname,imagecode)
 
 	else:
 		prodname = product("asa")
 		imagecode = imagelookup("asdm")
-		sec_asa_asdm_to_ver (filename,prodname,imagecode)
+		sec_asa_asdm_to_ver (debug1,filename,prodname,imagecode)
 
-def sec_asa_asdm_to_ver (filename,prodname,imagecode):
+def sec_asa_asdm_to_ver (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_asa_asdm_to_ver")
 #	workname = filename.replace("asdm-","")
 	workname = filename.replace("f.bin","")
 	workname = workname.replace(".bin","")
@@ -1081,7 +1174,9 @@ def sec_asa_asdm_to_ver (filename,prodname,imagecode):
 	else:
 		messageunknownfile ()
 
-def sec_fwsm (filename):
+def sec_fwsm (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_fwsm")
 	splitbydot = filename.split(".")
 	splitbydash = splitbydot[1].split("-")
 	vertwo = util2digit(splitbydash[0],splitbydash[1])
@@ -1090,7 +1185,9 @@ def sec_fwsm (filename):
 	filepath = filepath3(prodname,vertwo,verthree)
 	filemove (filepath, filename)
 
-def sec_hostscan (filename):
+def sec_hostscan (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_hostscan")
 	splitbyuscore = filename.split("_")
 	splitbyuscore[1] = splitbyuscore[1].replace("-k9.pkg", "")
 	splitbydot = splitbyuscore[1].split(".")
@@ -1101,7 +1198,9 @@ def sec_hostscan (filename):
 	filepath = filepath4(prodname,imagecode,ver2,ver3)
 	filemove (filepath, filename)
 
-def sec_csd (filename):
+def sec_csd (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_csd")
 	splitbyuscore = filename.split("_")
 	splitbyuscore[1] = splitbyuscore[1].replace("-k9.pkg", "")
 	splitbydot = splitbyuscore[1].split(".")
@@ -1112,7 +1211,9 @@ def sec_csd (filename):
 	filepath = filepath4(prodname,imagecode,ver2,ver3)
 	filemove (filepath, filename)
 
-def sec_anyconnect_p1_d3_u (filename,prodname,imagecode):
+def sec_anyconnect_p1_d3_u (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_anyconnect_p1_d3_u")
 	splitbyuscore = filename.split("_")
 	splitbydot = splitbyuscore[1].split(".")
 	ver2 = util2digit (splitbydot[0],splitbydot[1])
@@ -1120,7 +1221,9 @@ def sec_anyconnect_p1_d3_u (filename,prodname,imagecode):
 	filepath = filepath4(prodname,imagecode,ver2,ver3)
 	filemove (filepath, filename)
 
-def sec_anyconnect_p1_d3_v (filename,prodname,imagecode):
+def sec_anyconnect_p1_d3_v (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_anyconnect_p1_d3_v")
 	splitbydash = filename.split("-")
 	splitbydot = splitbydash[1].split(".")
 	ver2 = util2digit (splitbydot[0],splitbydot[1])
@@ -1128,7 +1231,9 @@ def sec_anyconnect_p1_d3_v (filename,prodname,imagecode):
 	filepath = filepath4(prodname,imagecode,ver2,ver3)
 	filemove (filepath, filename)
 
-def sec_anyconnect_p2_d3_v (filename,prodname,imagecode):
+def sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_anyconnect_p2_d3_v")
 	splitbydash = filename.split("-")
 	splitbydot = splitbydash[2].split(".")
 	ver2 = util2digit (splitbydot[0],splitbydot[1])
@@ -1136,7 +1241,9 @@ def sec_anyconnect_p2_d3_v (filename,prodname,imagecode):
 	filepath = filepath4(prodname,imagecode,ver2,ver3)
 	filemove (filepath, filename)
 
-def sec_anyconnect_p3_d3_v (filename,prodname,imagecode):
+def sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_anyconnect_p3_d3_v")
 	splitbydash = filename.split("-")
 	splitbydot = splitbydash[3].split(".")
 	ver2 = util2digit (splitbydot[0],splitbydot[1])
@@ -1144,7 +1251,9 @@ def sec_anyconnect_p3_d3_v (filename,prodname,imagecode):
 	filepath = filepath4(prodname,imagecode,ver2,ver3)
 	filemove (filepath, filename)
 
-def sec_anyconnect_p4_d3_v (filename,prodname,imagecode):
+def sec_anyconnect_p4_d3_v (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_anyconnect_p4_d3_v")
 	splitbydash = filename.split("-")
 	splitbydot = splitbydash[4].split(".")
 	ver2 = util2digit (splitbydot[0],splitbydot[1])
@@ -1152,7 +1261,9 @@ def sec_anyconnect_p4_d3_v (filename,prodname,imagecode):
 	filepath = filepath4(prodname,imagecode,ver2,ver3)
 	filemove (filepath, filename)
 
-def sec_anyconnect (filename):
+def sec_anyconnect (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_anyconnect")
 	prodname = product("anyconnect")
 	splitbydash = filename.split("-")
 
@@ -1160,43 +1271,43 @@ def sec_anyconnect (filename):
 	filename.startswith("thirdparty_") and filename.endswith("_3eTI_Docs.zip")
 	):
 		imagecode = imagelookup("thirdparty")
-		sec_anyconnect_p1_d3_u (filename,prodname,imagecode)
+		sec_anyconnect_p1_d3_u (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("sampleTransforms-")
 	):
 		imagecode = imagelookup("transforms")
-		sec_anyconnect_p1_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p1_d3_v (debug1,filename,prodname,imagecode)
 
 	elif(
 	filename.startswith("hostscan-posture-macosx-i386-") and filename.endswith("-pre-deploy-k9.dmg") or 
 	filename.startswith("hostscan-posture-linux-x64-") and filename.endswith("-pre-deploy-k9.tar.gz")
 	):
 		imagecode = imagelookup("iseposture")
-		sec_anyconnect_p4_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p4_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-posture-win-") or 
 	filename.startswith("anyconnect-posture-mac-")
 	):
 		imagecode = imagelookup("iseposture")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif splitbydash[1] == "isecompliance" and splitbydash[2] == "win" or splitbydash[2] == "macosx":
 		imagecode = imagelookup("isecompliance")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-win-compliance-")
 	):
 		imagecode = imagelookup("isecompliance")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-macosx-i386-compliance-")
 	):
 		imagecode = imagelookup("isecompliance")
-		sec_anyconnect_p4_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p4_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.endswith("-isecompliance-predeploy-k9.msi") or 
@@ -1204,13 +1315,13 @@ def sec_anyconnect (filename):
 	filename.endswith("-isecompliance-predeploy-k9.dmg")
 	):
 		imagecode = imagelookup("isecompliance")
-		sec_anyconnect_p2_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("hostscan-win-") and filename.endswith("-pre-deploy-k9.msi")
 	):
 		imagecode = imagelookup("hostscan")
-		sec_anyconnect_p2_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-macosx-powerpc-") and filename.endswith("-vpnapi.tar.gz") or 
@@ -1219,7 +1330,7 @@ def sec_anyconnect (filename):
 	filename.startswith("anyconnect-win-vpnapi-")
 	):
 		imagecode = imagelookup("vpnapi")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-macos-") and filename.endswith("-vpnapi.tar.gz") or 
@@ -1228,7 +1339,7 @@ def sec_anyconnect (filename):
 	filename.startswith("anyconnect-win-") and filename.endswith("-vpnapi.zip")
 	):
 		imagecode = imagelookup("vpnapi")
-		sec_anyconnect_p2_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-macosx-i386-") and filename.endswith("-EnableFIPS.tar.gz") or 
@@ -1236,33 +1347,33 @@ def sec_anyconnect (filename):
 	filename.startswith("anyconnect-linux-64-") and filename.endswith("-EnableFIPS.tar.gz")
 	):
 		imagecode = imagelookup("fips")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-linux-") and filename.endswith("-EnableFIPS.tar.gz")
 	):
 		imagecode = imagelookup("fips")
-		sec_anyconnect_p2_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
 
 	elif splitbydash[1] == "EnableFIPS" and splitbydash[2] == "win":
 		imagecode = imagelookup("fips")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif splitbydash[1] == "dart" and splitbydash[2] == "win":
 		imagecode = imagelookup("dart")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif splitbydash[1] == "gina" and splitbydash[2] == "win":
 		imagecode = imagelookup("gina")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("anyconnect-gina-"):
 		imagecode = imagelookup("gina")
-		sec_anyconnect_p2_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("anyconnect-profileeditor-win"):
 		imagecode = imagelookup(splitbydash[1])
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-win-") and filename.endswith("-nvm-standalone-k9.msi") or 
@@ -1270,143 +1381,143 @@ def sec_anyconnect (filename):
 	filename.startswith("anyconnect-linux64-") and filename.endswith("-nvm-standalone.tar.gz")
 	):
 		imagecode = imagelookup("nvm")
-		sec_anyconnect_p2_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-nvm-win-")
 	):
 		imagecode = imagelookup("nvm")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-wince-ARMv4I-activesync-")
 	):
 		imagecode = imagelookup("wince")
-		sec_anyconnect_p4_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p4_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-wince-ARMv4I-")
 	):
 		imagecode = imagelookup("wince")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-win-arm64-")
 	):
 		imagecode = imagelookup("winarm64")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-win-k9-")
 	):
 		imagecode = imagelookup("win")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-win-")
 	):
 		imagecode = imagelookup("win")
-		sec_anyconnect_p2_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-macosx-i386-k9-")
 	):
 		imagecode = imagelookup("macosxi386")
-		sec_anyconnect_p4_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p4_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-macosx-powerpc-k9-")
 	):
 		imagecode = imagelookup("macosxi386")
-		sec_anyconnect_p4_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p4_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-macosx-i386-")
 	):
 		imagecode = imagelookup("macosxi386")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-macosx-powerpc-")
 	):
 		imagecode = imagelookup("macosxpowerpc")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-macos-")
 	):
 		imagecode = imagelookup("macos")
-		sec_anyconnect_p2_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-predeploy-linux-64-")
 	):
 		imagecode = imagelookup("linux64")
-		sec_anyconnect_p4_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p4_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-predeploy-linux-")
 	):
 		imagecode = imagelookup("linux")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-linux-k9-")
 	):
 		imagecode = imagelookup("linux")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-linux64-") or 
 	filename.startswith("anyconnect-Linux_64-")
 	):
 		imagecode = imagelookup("linux64")
-		sec_anyconnect_p2_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-linux-64-")
 	):
 		imagecode = imagelookup("linux64")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-linux-")
 	):
 		imagecode = imagelookup("linux")
-		sec_anyconnect_p2_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-nam-win-")
 	):
 		imagecode = imagelookup("anyconnectnam")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-websecurity-win-")
 	):
 		imagecode = imagelookup("websecurity")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("tools-anyconnect-win-") and filename.endswith("-profileeditor-k9.msi")
 	):
 		imagecode = imagelookup("profileeditor")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("tools-anyconnect-win-") and filename.endswith("-transforms.zip")
 	):
 		imagecode = imagelookup("transforms")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-amp-win-")
 	):
 		imagecode = imagelookup("amp")
-		sec_anyconnect_p3_d3_v (filename,prodname,imagecode)
+		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-translations-")
 	):
 		imagecode = imagelookup("translations")
-		sec_single_file (filename,prodname,imagecode)
+		sec_single_file (debug1,filename,prodname,imagecode)

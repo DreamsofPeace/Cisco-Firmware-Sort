@@ -1510,9 +1510,11 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug1):
 		name.startswith("Nexus1000V5") or 
 		name.startswith("n1000vh-dk9") or 
 		name.startswith("nexus-1000v") or 
-		name == "n3k_bios_release_rn.pdf"
+		name == "n3k_bios_release_rn.pdf" or 
+		name == "ssd_c400_upgrade_6.1.2.I2.2a.tar" or 
+		name.startswith("n9000-epld")
 		):
-			fileprocessornxos(name)
+			fileprocessornxos(name,debug1)
 
 		elif name.startswith("cmterm"):
 			fileprocessorvoice(name)
@@ -1705,26 +1707,6 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug1):
 			imagecode = imagelookup ("DSLFIRMWARE")
 			filepath = prodname + "/" + imagecode
 			filemove (filepath, name)
-
-		elif (
-		name.startswith("Cisco_Firepower_SRU") or
-		name.startswith("Cisco_VDB_Fingerprint_Database") or
-		name.startswith("Cisco_Firepower_GEODB") or 
-		name.startswith("Sourcefire") or
-		name.startswith("Cisco_FTD") or 
-		name.startswith("Cisco_Firepower_Threat") or 
-		name.startswith("Cisco_Network_Sensor") or 
-		name.startswith("firepower") or 
-		name.startswith("fxos") or 
-		name.startswith("ftd")
-		):
-			fileprocessorsecurity(name)
-
-		elif (
-		name == "ssd_c400_upgrade_6.1.2.I2.2a.tar" or 
-		name.startswith("n9000-epld")
-		):
-			fileprocessornxos(name)
 
 		elif name.startswith("isr4200_cpld_update"):
 			prodname = product ("isr4200")
@@ -1927,7 +1909,18 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug1):
 		):
 			file_proc_servers(name,debug1)
 
+
 		elif (
+		name.startswith("Cisco_Firepower_SRU") or
+		name.startswith("Cisco_VDB_Fingerprint_Database") or
+		name.startswith("Cisco_Firepower_GEODB") or 
+		name.startswith("Sourcefire") or
+		name.startswith("Cisco_FTD") or 
+		name.startswith("Cisco_Firepower_Threat") or 
+		name.startswith("Cisco_Network_Sensor") or 
+		name.startswith("firepower") or 
+		name.startswith("fxos") or 
+		name.startswith("ftd") or 
 		name.startswith("5-") or 
 		name.startswith("ACS") or 
 		name.startswith("Acs") or 
@@ -1977,9 +1970,13 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug1):
 		name.startswith("PIX") and name.endswith(".bin") or 
 		name == "PIXtoASA_1_0.zip" or 
 		name == "PIX_to_ASA_1_0.dmg" or 
-		name == "PIXtoASAsetup_1_0.exe"
+		name == "PIXtoASAsetup_1_0.exe" or 
+		name.startswith ("fcs-csm") or 
+		name.startswith ("fcs-mcp") or 
+		name.startswith ("csm") or 
+		name.startswith ("csmars")
 		):
-			fileprocessorsecurity (name)
+			fileprocessorsecurity(debug1,name)
 
 		elif (
 		name.startswith ("Cisco_ACI") or 
@@ -1995,18 +1992,6 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug1):
 		name.startswith ("tools-msc")
 		):
 			file_proc_servers(name,debug1)
-
-
-		elif splitbydash[0] == "fcs" and splitbydash[1] == "csm":
-			csm4(name)
-
-		elif splitbydash[0] == "fcs" and splitbydash[1] == "mcp":
-			csmmcp(name)
-
-		elif splitbydash[0] == "csmars":
-			mars(name)
-
-
 
 
 

@@ -1628,6 +1628,8 @@ def imagelookup (imagecode):
 		subdirectory = "GeoDB-SRU-VDB/VDB-6.4-AND-LATER"
 	elif imagecode == "csfgeodb":
 		subdirectory = "GeoDB-SRU-VDB/Geodb-6.4-AND-LATER"
+	elif imagecode == "csmgeoip":
+		subdirectory = "CSM-GEOIP-DB"
 	elif imagecode == "cpld_update":
 		subdirectory = "CPLD-UPDATE"
 	elif imagecode == "analogmodem":
@@ -2693,6 +2695,8 @@ def product (prodcode):
 		prodname = "Security/Identity/IDENTIY-SERVICES-ENGINE-PIC"
 	elif prodcode == "acs":
 		prodname = "Security/Identity/ACS"
+	elif prodcode == "csm":
+		prodname = "Security/CISCO-SECURITY-MANAGER"
 	elif prodcode == "dnac":
 		prodname = "Servers/DNAC"
 	elif prodcode == "aci":
