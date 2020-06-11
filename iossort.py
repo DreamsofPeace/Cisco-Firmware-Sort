@@ -1974,7 +1974,9 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug1):
 		name.startswith ("fcs-csm") or 
 		name.startswith ("fcs-mcp") or 
 		name.startswith ("csm") or 
-		name.startswith ("csmars")
+		name.startswith ("csmars") or 
+		name.startswith ("coeus") or 
+		name.startswith ("phoebe")
 		):
 			fileprocessorsecurity(debug1,name)
 

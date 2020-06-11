@@ -38,6 +38,12 @@ def fileprocessorsecurity (debug1,filename):
 		sec_single_file (debug1,filename,prodname,imagecode)
 
 	elif(
+	filename.startswith ("coeus") or 
+	filename.startswith ("phoebe")
+	):
+		sec_ironportv (debug1,filename)
+
+	elif(
 	filename == "firepower-mibs.zip"
 	):
 		prodname = product("firepower")
@@ -142,6 +148,19 @@ def fileprocessorsecurity (debug1,filename):
 	else:
 		messageunknownfile()
 
+def sec_ironportv (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_ironportv")
+	splitbydash = filename.split("-")
+	if filename.startswith ("coeus"):
+		prodname = product("ironport")
+		imagecode = imagelookup("websecurity")
+	elif filename.startswith ("phoebe"):
+		prodname = product("ironport")
+		imagecode = imagelookup("emailsecurity")
+	myver4 = util4digit(splitbydash[1],splitbydash[2],splitbydash[3],splitbydash[4])
+	filepath = filepath4 (prodname,imagecode,splitbydash[1],myver4)
+	filemove (filepath, filename)
 
 def sec_single_file (debug1,filename,prodname,imagecode):
 	if debug1:

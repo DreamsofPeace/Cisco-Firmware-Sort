@@ -1840,6 +1840,10 @@ def imagelookup (imagecode):
 		subdirectory = "MULTI-SIDE-ORCHESTRATOR"
 	elif imagecode == "acisim":
 		subdirectory = "ACI-SIMULATOR"
+	elif imagecode == "emailsecurity":
+		subdirectory = "EMAIL-SECURITY-APPLIANCE"
+	elif imagecode == "websecurity":
+		subdirectory = "WEB-SECURITY-APPLIANCE"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2701,6 +2705,8 @@ def product (prodcode):
 		prodname = "Servers/DNAC"
 	elif prodcode == "aci":
 		prodname = "Servers/APIC"
+	elif prodcode == "ironport":
+		prodname = "Security/Ironport"
 	else:
 		prodname = "UNKNOWN"
 	return prodname
