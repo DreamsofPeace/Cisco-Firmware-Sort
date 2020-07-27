@@ -142,7 +142,7 @@ def fileprocessornxos (filename,debug1):
 	else:
 		messageunknownfile()
 
-def nexus7ksliceandice (filename,prodname,supcode):
+def nexus7ksliceandice (filename,prodname,supcode,debug1):
 	if debug1:
 		print("\tSubroutine#\tnexus7ksliceandice")
 	splitbydot = filename.split(".")
