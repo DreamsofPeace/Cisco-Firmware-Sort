@@ -153,8 +153,80 @@ def file_proc_servers (filename,debug1):
 		prodname = product("aci")
 		file_proc_servers_aci(debug1,filename,prodname)
 
+	elif (
+	filename.startswith ("storfs-packages") or 
+	filename.startswith ("HX-ESXi") or 
+	filename.startswith ("HX-Kubernetes") or 
+	filename.startswith ("Cisco-HX-Data-Platform-Installer") or
+	filename.startswith ("HyperFlex-VC-HTML") or 
+	filename.startswith ("hxcsi") or 
+	filename.startswith ("HyperFlex-Witness-") or 
+	filename.startswith ("HxClone-HyperV")
+	):
+		prodname = product("hyperflex")
+		file_proc_servers_hyperflex(debug1,filename,prodname)
 	else:
 		messageunknownfile()
+
+
+def file_proc_servers_hyperflex (debug1,filename,prodname):
+	if debug1:
+		print("\tSubroutine#\tfile_proc_servers_hyperflex")
+	if filename.startswith ("storfs-packages"):
+		workname = filename.replace("storfs-packages-", "")
+		workname = workname.replace(".tgz", "")
+		splitbydot = workname.split(".")
+		vertwo = util2digit (splitbydot[0],splitbydot[1])
+		verthree = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
+		imagecode = imagelookup("upgrade")
+		filepath = filepath4(prodname,imagecode,vertwo,verthree)
+		filemove (filepath, filename)
+	elif filename.startswith ("HX-ESXi"):
+		workname = filename.replace("HX-ESXi-", "")
+		splitbydash = workname.split("-")
+		imagecode = imagelookup("vmware")
+		filepath = filepath3(prodname,imagecode,splitbydash[0])
+		filemove (filepath, filename)
+	elif filename.startswith ("HX-Kubernetes"):
+		workname = filename.replace("HX-Kubernetes-", "")
+		splitbydot = workname.split(".")
+		vertwo = util2digit (splitbydot[0],splitbydot[1])
+		verthree = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
+		imagecode = imagelookup("kubernetes")
+		filepath = filepath4(prodname,imagecode,vertwo,verthree)
+		filemove (filepath, filename)
+	elif filename.startswith ("Cisco-HX-Data-Platform-Installer"):
+		workname = filename.replace("Cisco-HX-Data-Platform-Installer-v", "")
+		workname = workname.replace("p1-esx.ova", "")
+		workname = workname.replace("-esx.ova", "")
+		workname = workname.replace("-hyperv.vhdx.zip", "")
+		splitbydot = workname.split(".")
+		vertwo = util2digit (splitbydot[0],splitbydot[1])
+		verthree = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
+		imagecode = imagelookup("install")
+		filepath = filepath4(prodname,imagecode,vertwo,verthree)
+		filemove (filepath, filename)
+	elif filename.startswith ("HyperFlex-VC-HTML"):
+		imagecode = imagelookup("vchtmlplug")
+		filepath = filepath2(prodname,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith ("hxcsi"):
+		imagecode = imagelookup("kubernetes")
+		filepath = filepath2(prodname,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith ("HyperFlex-Witness-"):
+		imagecode = imagelookup("witness")
+		filepath = filepath2(prodname,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith ("HxClone-HyperV"):
+		workname = filename.replace("HxClone-HyperV-v", "")
+		workname = workname.replace(".ps1", "")
+		splitbydot = workname.split(".")
+		vertwo = util2digit (splitbydot[0],splitbydot[1])
+		verthree = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
+		imagecode = imagelookup("install")
+		filepath = filepath4(prodname,imagecode,vertwo,verthree)
+		filemove (filepath, filename)
 
 
 def file_proc_servers_aci (debug1,filename,prodname):

@@ -106,6 +106,9 @@ def fileprocessorsecurity (debug1,filename):
 	elif filename.startswith("Cisco_FTD_Patch"):
 		sec_sourcefire_ftd_patch (debug1,filename)
 
+	elif filename.startswith("Cisco_Network_Sensor_Patch"):
+		sec_fp_asa_mode (debug1,filename)
+
 	elif (
 	filename.startswith("ise-pic") or 
 	filename == "pic-2.2.0.470.SPA.x86_64.iso" or 
@@ -145,22 +148,23 @@ def fileprocessorsecurity (debug1,filename):
 		sec_csm (debug1,filename)
 
 
+	elif (
+		filename.startswith ("UTD-STD-SIGNATURE")
+	):
+		sec_utd_signature (debug1,filename)
+
+	elif (
+	filename.startswith("iosxe-utd") or 
+	filename.startswith("iox-iosxe-utd") or 
+	filename.startswith("secapp-ucmk9") or 
+	filename.startswith("iosxe-utd-ips")
+	):
+		sec_utd_engine (debug1,filename)
+
 	else:
 		messageunknownfile()
 
-def sec_ironportv (debug1,filename):
-	if debug1:
-		print("\tSubroutine#\tsec_ironportv")
-	splitbydash = filename.split("-")
-	if filename.startswith ("coeus"):
-		prodname = product("ironport")
-		imagecode = imagelookup("websecurity")
-	elif filename.startswith ("phoebe"):
-		prodname = product("ironport")
-		imagecode = imagelookup("emailsecurity")
-	myver4 = util4digit(splitbydash[1],splitbydash[2],splitbydash[3],splitbydash[4])
-	filepath = filepath4 (prodname,imagecode,splitbydash[1],myver4)
-	filemove (filepath, filename)
+
 
 def sec_single_file (debug1,filename,prodname,imagecode):
 	if debug1:
@@ -178,6 +182,55 @@ def sec_single_file (debug1,filename,prodname,imagecode):
 #def sec_sourcefire (filename):
 #	splitbydash = filename.split("-")
 #	if splitbydash[0] == "Cisco_Firepower_Management_Center_Virtual":
+
+def sec_utd_engine (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_utd_engine")
+	prodname =  product("ciscoutd")
+	imagecode = imagelookup("engine")
+	filepath = filepath2(prodname,imagecode)
+	filemove (filepath, filename)
+
+def sec_utd_signature (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_utd_signature")
+	splitbydash = filename.split("-")
+	prodname =  product("ciscoutd")
+	imagecode = imagelookup("engine")
+	filepath = filepath4(prodname,imagecode,splitbydash[3],splitbydash[4])
+	filemove (filepath, filename)
+
+def sec_ironportv (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_ironportv")
+	splitbydash = filename.split("-")
+	if filename.startswith ("coeus"):
+		prodname = product("ironport")
+		imagecode = imagelookup("websecurity")
+	elif filename.startswith ("phoebe"):
+		prodname = product("ironport")
+		imagecode = imagelookup("emailsecurity")
+	myver4 = util4digit(splitbydash[1],splitbydash[2],splitbydash[3],splitbydash[4])
+	filepath = filepath4 (prodname,imagecode,splitbydash[1],myver4)
+	filemove (filepath, filename)
+
+def sec_fp_asa_mode (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_fp_asa_mode")
+	prodname = product("firepower")
+	imagecode = imagelookup("fpasamode")
+	if filename =="Cisco_Network_Sensor_Patch-6.0.1-29.sh":
+		vertwo = util2digit("6","0")
+		verfour = util3digit("6","0","1")
+		filepath = filepath4 (prodname,imagecode,vertwo,verfour)
+		filemove (filepath, filename)
+	else:
+		splitbydash = filename.split("-")
+		splitbydot = splitbydash[1].split(".")
+		vertwo = util2digit(splitbydot[0],splitbydot[1])
+		verfour = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+		filepath = filepath4 (prodname,imagecode,vertwo,verfour)
+		filemove (filepath, filename)
 
 def sec_csm (debug1,filename):
 	if debug1:
@@ -228,24 +281,24 @@ def sec_asa_firmware (debug1,filename):
 	filename.startswith("asa871")
 	):
 		prodname = product ("asa")
-		sec_asa_firmware_v9 (filename,prodname)
+		sec_asa_firmware_v9 (debug1,filename,prodname)
 
 	elif (
 	filename.startswith("asa7") or 
 	filename.startswith("asa8")
 	):
 		prodname = product ("asa")
-		sec_asa_firmware_v7_8 (filename,prodname)
+		sec_asa_firmware_v7_8 (debug1,filename,prodname)
 
 	elif (
 	filename.startswith("asa-restapi")
 	):
 		prodname = product ("asa")
-		sec_asa_rest_api (filename,prodname)
+		sec_asa_rest_api (debug1,filename,prodname)
 	else:
 		messageunknownfile()
 
-def sec_asa_rest_api (filename,prodname):
+def sec_asa_rest_api (debug1,filename,prodname):
 	if debug1:
 		print("\tSubroutine#\tsec_asa_rest_api")
 	splitbydash = filename.split("-")
@@ -262,7 +315,7 @@ def sec_asa_rest_api (filename,prodname):
 	filemove (filepath, filename)
 
 
-def sec_asa_firmware_v9 (filename,prodname):
+def sec_asa_firmware_v9 (debug1,filename,prodname):
 	if debug1:
 		print("\tSubroutine#\tsec_asa_firmware_v9")
 	splitbydash = filename.split("-")
@@ -480,7 +533,7 @@ def sec_asa_firmware_v9 (filename,prodname):
 	else:
 		messageunknownfile()
 
-def sec_asa_firmware_v7_8 (filename,prodname):
+def sec_asa_firmware_v7_8 (debug1,filename,prodname):
 	if debug1:
 		print("\tSubroutine#\tsec_asa_firmware_v7_8")
 	workname = filename.replace("asa", "")
@@ -802,26 +855,26 @@ def sec_ise (debug1,filename):
 	filename.startswith("ise-patchbundle-")
 	):
 		imagecode = imagelookup("patch")
-		sec_ise_patch (filename,prodname,imagecode)
+		sec_ise_patch (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("ISE-") and filename.endswith("ova") or 
 	filename.startswith("ise-") and filename.endswith("iso")
 	):
 		imagecode = imagelookup("install")
-		sec_ise_install (filename,prodname,imagecode)
+		sec_ise_install (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("ise-upgradebundle-")
 	):
 		imagecode = imagelookup("upgrade")
-		sec_ise_upgrade (filename,prodname,imagecode)
+		sec_ise_upgrade (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("ise-urtbundle-")
 	):
 		imagecode = imagelookup("urtbundle")
-		sec_ise_urtbundle (filename,prodname,imagecode)
+		sec_ise_urtbundle (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("win_spw-") and
@@ -830,18 +883,18 @@ def sec_ise (debug1,filename):
 	filename.endswith("-isebundle.zip")
 	):
 		imagecode = imagelookup("supplicantpw")
-		sec_ise_spw (filename,prodname,imagecode)
+		sec_ise_spw (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("ACS-MigrationApplication-")
 	):
 		imagecode = imagelookup("acs_mig")
-		sec_ise_acs_mig (filename,prodname,imagecode)
+		sec_ise_acs_mig (debug1,filename,prodname,imagecode)
 
 	else:
 		messageunknownfile()
 
-def sec_ise_acs_mig (filename,prodname,imagecode):
+def sec_ise_acs_mig (debug1,filename,prodname,imagecode):
 	if debug1:
 		print("\tSubroutine#\tsec_ise_acs_mig")
 	workname = filename.replace("ACS-MigrationApplication-","")
@@ -850,7 +903,7 @@ def sec_ise_acs_mig (filename,prodname,imagecode):
 	filepath = filepath3 (prodname,vertwo,imagecode)
 	filemove (filepath, filename)
 
-def sec_ise_spw (filename,prodname,imagecode):
+def sec_ise_spw (debug1,filename,prodname,imagecode):
 	if debug1:
 		print("\tSubroutine#\tsec_ise_spw")
 	workname = filename.replace("win_spw-","")
@@ -861,7 +914,7 @@ def sec_ise_spw (filename,prodname,imagecode):
 	filepath = filepath3 (prodname,vertwo,imagecode)
 	filemove (filepath, filename)
 
-def sec_ise_upgrade (filename,prodname,imagecode):
+def sec_ise_upgrade (debug1,filename,prodname,imagecode):
 	if debug1:
 		print("\tSubroutine#\tsec_ise_upgrade")
 
@@ -900,7 +953,7 @@ def sec_ise_upgrade (filename,prodname,imagecode):
 	filepath = filepath3 (prodname,vertwo,imagecode)
 	filemove (filepath, filename)
 
-def sec_ise_install (filename,prodname,imagecode):
+def sec_ise_install (debug1,filename,prodname,imagecode):
 	if debug1:
 		print("\tSubroutine#\tsec_ise_install")
 	workname = filename.replace("ise-","")
@@ -910,7 +963,7 @@ def sec_ise_install (filename,prodname,imagecode):
 	filepath = filepath3 (prodname,vertwo,imagecode)
 	filemove (filepath, filename)
 
-def sec_ise_patch (filename,prodname,imagecode):
+def sec_ise_patch (debug1,filename,prodname,imagecode):
 	if debug1:
 		print("\tSubroutine#\tsec_ise_patch")
 	workname = filename.replace("ise-patchbundle-","")
@@ -921,7 +974,7 @@ def sec_ise_patch (filename,prodname,imagecode):
 	filepath = filepath4 (prodname,vertwo,imagecode,patchnum)
 	filemove (filepath, filename)
 
-def sec_ise_urtbundle (filename,prodname,imagecode):
+def sec_ise_urtbundle (debug1,filename,prodname,imagecode):
 	if debug1:
 		print("\tSubroutine#\tsec_ise_urtbundle")
 	workname = filename.replace("ise-patchbundle-","")
@@ -1013,6 +1066,7 @@ def sec_fp_vdb (debug1,filename):
 
 	elif filename.startswith("Sourcefire_VDB"):
 		imagecode = imagelookup("sfvdb")
+	splitbydash[2] = splitbydash[2].replace(".sh.REL.tar", "")
 	splitbydash[2] = splitbydash[2].replace(".sh", "")
 	ver = util2digit (splitbydash[1],splitbydash[2])
 	#Intended File Format (Product, Image Path, Year, Version
@@ -1039,6 +1093,7 @@ def sec_fp_geodb (debug1,filename):
 	if debug1:
 		print("\tSubroutine#\tsec_fp_geodb")
 	splitbydash = filename.split("-")
+	splitbydash[4] = splitbydash[4].replace(".sh.REL.tar", "")
 	splitbydash[4] = splitbydash[4].replace(".sh", "")
 	prodname = product ("firepower")
 
@@ -1086,6 +1141,10 @@ def sec_fxos (debug1,filename):
 	splitbydot = filename.split(".")
 
 	if splitbydot[0] == "fxos-k9-fpr4k-firmware":
+		imagecode = imagelookup(splitbydot[0])
+		sec_fxos_firmware (debug1,filename,prodname,imagecode)
+
+	elif splitbydot[0] == "fxos-k9-fpr9k-firmware":
 		imagecode = imagelookup(splitbydot[0])
 		sec_fxos_firmware (debug1,filename,prodname,imagecode)
 
@@ -1540,3 +1599,4 @@ def sec_anyconnect (debug1,filename):
 	):
 		imagecode = imagelookup("translations")
 		sec_single_file (debug1,filename,prodname,imagecode)
+

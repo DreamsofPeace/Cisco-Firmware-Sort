@@ -1169,13 +1169,6 @@ def iosxrv (filename, prodname, imagecode):
 		filepath = prodname + "/" + iosmain + "/" + iosfull + "/" + imagecode
 		filemove (filepath, filename)
 
-def ios_xe_signature (filename):
-	splitbydash = filename.split("-")
-	prodname = "IOS-XE-UTD"
-	prodcode = "SIGNATURES"
-	filepath = prodname + "/" + prodcode + "/" + splitbydash[3] + "/" + splitbydash[4]
-	filemove (filepath, filename)
-
 def waas (filename):
 	prodname = "WAAS"
 	splitbydot = name.split(".")
@@ -1393,7 +1386,7 @@ def waas (filename):
 		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
 		filemove (filepath, filename)
 
-def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug1):
+def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,debug1):
 	src = filename
 	names = os.listdir(src)
 	os.chdir(src)
@@ -1403,7 +1396,8 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug1):
 		elif name.endswith(".part"):
 			continue
 		
-		print(name)
+		if debug0 != True:
+			print(name)
 		if debug1:
 			print("\tSubroutine#\tTop Level")
 		
@@ -1905,9 +1899,29 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug1):
 		name == "SW_Signed_Bios_Image.bin.SPA" or 
 		name == "UCS_docs_20110510.iso" or 
 		name == "c2xx-m1-utils-1.0.2.iso" or 
-		name == "b2xx-m1-drivers-1.1.1j.iso"
+		name == "b2xx-m1-drivers-1.1.1j.iso" or 
+		name.startswith ("Cisco_ACI") or 
+		name.startswith ("acisim") or 
+		name.startswith ("aci-simulator") or 
+		name.startswith ("aci-apic") or 
+		name.startswith ("aci-msft-pkg") or 
+		name.startswith ("aci-n9000-dk9") or 
+		name.startswith ("apic-vrealize") or 
+		name.startswith ("esx-msc") or 
+		name.startswith ("msc") or 
+		name.startswith ("vcenter-plugin") or 
+		name.startswith ("tools-msc") or 
+		name.startswith ("storfs-packages") or 
+		name.startswith ("HX-ESXi") or 
+		name.startswith ("HX-Kubernetes") or 
+		name.startswith ("Cisco-HX-Data-Platform-Installer") or 
+		name.startswith ("HyperFlex-VC-HTML") or 
+		name.startswith ("hxcsi") or 
+		name.startswith ("HyperFlex-Witness-") or 
+		name.startswith ("HxClone-HyperV")
 		):
 			file_proc_servers(name,debug1)
+
 
 
 		elif (
@@ -1976,26 +1990,15 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug1):
 		name.startswith ("csm") or 
 		name.startswith ("csmars") or 
 		name.startswith ("coeus") or 
-		name.startswith ("phoebe")
+		name.startswith ("phoebe") or 
+		name.startswith ("phoebe") or
+		name.startswith ("iosxe-utd") or
+		name.startswith ("iox-iosxe-utd") or
+		name.startswith ("secapp-ucmk9") or
+		name.startswith ("UTD-STD-SIGNATURE") or 
+		name.startswith("iosxe-utd-ips")
 		):
 			fileprocessorsecurity(debug1,name)
-
-		elif (
-		name.startswith ("Cisco_ACI") or 
-		name.startswith ("acisim") or 
-		name.startswith ("aci-simulator") or 
-		name.startswith ("aci-apic") or 
-		name.startswith ("aci-msft-pkg") or 
-		name.startswith ("aci-n9000-dk9") or 
-		name.startswith ("apic-vrealize") or 
-		name.startswith ("esx-msc") or 
-		name.startswith ("msc") or 
-		name.startswith ("vcenter-plugin") or 
-		name.startswith ("tools-msc")
-		):
-			file_proc_servers(name,debug1)
-
-
 
 
 
@@ -2131,9 +2134,6 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug1):
 			prodname = product (splitbydash[0])
 			standardios (name, prodname, imagecode)
 
-		elif splitbydash[0] == "UTD" and splitbydash[1] == "STD" and splitbydash[2] == "SIGNATURE":
-			ios_xe_signature (name)
-
 		elif splitbydash[0] == "full" or splitbydash[0] == "fullk9":
 			iosxrv9k (name)
 
@@ -2155,6 +2155,7 @@ if __name__ == "__main__":
 	parser.add_argument('-hs2','--hashsha1', help='Hash File using the SHA1 Algorithm', action='store_true', required=False)
 	parser.add_argument('-hs3','--hashmd5', help='Hash File using the MD5 Algorithm', action='store_true', required=False)
 	parser.add_argument('-hf','--hashfile', help='File with Hash Info. Format is FILENAME,MD5HASH,SHA512HASH. Additional columns are ignored', action='store_true', required=False)
+	parser.add_argument('-d0','--debug0', help='Debug Level 0 (No Output) (NYI)', action='store_true', required=False)
 	parser.add_argument('-d1','--debug1', help='Print Debug Commands (Level 1) (NYI)', action='store_true', required=False)
 	
 	args = parser.parse_args()
@@ -2165,6 +2166,7 @@ if __name__ == "__main__":
 	hashmd5    = args.hashmd5
 	hashfile   = args.hashfile
 	debug1     = args.debug1
+	debug0     = args.debug0
 
-	toplevel(dirpass,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug1)
+	toplevel(dirpass,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,debug1)
 	

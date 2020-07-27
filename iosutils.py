@@ -1844,6 +1844,18 @@ def imagelookup (imagecode):
 		subdirectory = "EMAIL-SECURITY-APPLIANCE"
 	elif imagecode == "websecurity":
 		subdirectory = "WEB-SECURITY-APPLIANCE"
+	elif imagecode == "fpasamode":
+		subdirectory = "FIREPOWER-ASA-MODE"
+	elif imagecode == "signatures":
+		subdirectory = "SIGNATURES"
+	elif imagecode == "engine":
+		subdirectory = "ENGINE"
+	elif imagecode == "kubernetes":
+		subdirectory = "KUBERNETES"
+	elif imagecode == "vchtmlplug":
+		subdirectory = "VCENTER-HTML-PLUGIN"
+	elif imagecode == "witness":
+		subdirectory = "WITNESS-NODE"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2705,8 +2717,12 @@ def product (prodcode):
 		prodname = "Servers/DNAC"
 	elif prodcode == "aci":
 		prodname = "Servers/APIC"
+	elif prodcode == "hyperflex":
+		prodname = "Servers/Hyperflex"
 	elif prodcode == "ironport":
 		prodname = "Security/Ironport"
+	elif prodcode == "ciscoutd":
+		prodname = "IOS-XE-UTD"
 	else:
 		prodname = "UNKNOWN"
 	return prodname
