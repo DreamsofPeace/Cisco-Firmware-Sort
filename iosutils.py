@@ -2722,7 +2722,7 @@ def product (prodcode):
 	elif prodcode == "ironport":
 		prodname = "Security/Ironport"
 	elif prodcode == "ciscoutd":
-		prodname = "IOS-XE-UTD"
+		prodname = "Security/IOS-XE-UTD"
 	else:
 		prodname = "UNKNOWN"
 	return prodname
