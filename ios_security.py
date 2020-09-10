@@ -196,7 +196,7 @@ def sec_utd_signature (debug1,filename):
 		print("\tSubroutine#\tsec_utd_signature")
 	splitbydash = filename.split("-")
 	prodname =  product("ciscoutd")
-	imagecode = imagelookup("engine")
+	imagecode = imagelookup("signatures")
 	filepath = filepath4(prodname,imagecode,splitbydash[3],splitbydash[4])
 	filemove (filepath, filename)
 
