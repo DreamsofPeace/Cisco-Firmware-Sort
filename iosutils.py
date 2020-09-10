@@ -1712,6 +1712,8 @@ def imagelookup (imagecode):
 		subdirectory = "DEVICE-CATALOG"
 	elif imagecode == "fxos-k9-fpr4k-firmware":
 		subdirectory = "FIRMWARE-4K"
+	elif imagecode == "fxos-k9-fpr9k-firmware":
+		subdirectory = "FIRMWARE-9K"
 	elif imagecode == "fxos-k9-kickstart":
 		subdirectory = "FXOS-RECOVERY/KICKSTART"
 	elif imagecode == "fxos-k9-system":
