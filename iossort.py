@@ -1762,27 +1762,14 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 			imagecode = imagelookup (splitbydash[1])
 			cat29003500 (name, prodname, imagecode)
 
-		elif splitbydot[0] == "C9800-40-universalk9_wlc" or splitbydot[0] == "C9800-80-universalk9_wlc" or splitbydot[0] == "C9800-80-universalk9_wlc" or splitbydot[0] == "C9800-CL-universalk9":
-			prodname = product (splitbydash[0])
-			if prodname == "UNKNOWN":
-				messageunknowndev()
-			else:
-				if name.startswith("C9800-40-"):
-					prodname = prodname + "-40"
-					imagecode = imagelookup (splitbydashsub[2])
-				elif name.startswith("C9800-80-"):
-					prodname = prodname + "-80"
-					imagecode = imagelookup (splitbydashsub[2])
-				elif name.startswith("C9800-L-"):
-					prodname = prodname + "-L"
-					imagecode = imagelookup (splitbydashsub[2])
-				elif name.startswith("C9800-CL-"):
-					prodname = prodname + "-CL"
-					imagecode = imagelookup (splitbydashsub[2])
-				if imagecode == "UNKNOWN":
-					messageunknownfeat()
-				else:
-					fileprocessor_iosxe (name)
+		elif (
+		splitbydot[0] == "C9800-40-universalk9_wlc" or 
+		splitbydot[0] == "C9800-80-universalk9_wlc" or 
+		splitbydot[0] == "C9800-CL-universalk9" or 
+		splitbydot[0] == "C9800-L-universalk9_wlc" or 
+		splitbydot[0] == "C9800-SW-iosxe-wlc"
+		):
+			fileprocessor_iosxe (name)
 
 		elif (
 		splitbydash[0] == "asr1000" or 

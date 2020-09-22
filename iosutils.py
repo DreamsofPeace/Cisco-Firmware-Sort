@@ -2597,8 +2597,16 @@ def product (prodcode):
 		prodname = "Wireless/Controller/5520"
 	elif prodcode == "CT2500":
 		prodname = "Wireless/Controller/2500"
-	elif prodcode == "C9800":
-		prodname = "Wireless/Controller/Catalyst-9800"
+	elif prodcode == "C9800-40":
+		prodname = "Wireless/Controller/Catalyst-9800-40"
+	elif prodcode == "C9800-80":
+		prodname = "Wireless/Controller/Catalyst-9800-80"
+	elif prodcode == "C9800-CL":
+		prodname = "Wireless/Controller/Catalyst-9800-CL"
+	elif prodcode == "C9800-L":
+		prodname = "Wireless/Controller/Catalyst-9800-L"
+	elif prodcode == "C9800-SW":
+		prodname = "Wireless/Controller/Catalyst-9800-SW"
 	elif prodcode == "nxos":
 		prodname = "Switches/Nexus/Nexus-9000-3000"
 	elif prodcode == "n9000":
