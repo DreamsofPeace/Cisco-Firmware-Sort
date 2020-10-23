@@ -10,6 +10,7 @@ from ios_voice import fileprocessorvoice
 from ios_security import fileprocessorsecurity
 from ios_iosxe import fileprocessor_iosxe
 from ios_servers import file_proc_servers
+from ios_ios import fileprocessorios
 
 def cat6knam (filename):
 	product = "Network-Management/Catalyst-6500-NAM"
@@ -103,13 +104,6 @@ def csd (filename):
 		fullver = thissplit[0] + "." + thissplit[1] + "." + thissplit[2]
 		filepath = product + "/" + mainver + "/" + fullver + "/"  + supcode
 		filemove (filepath, filename)
-
-def css (filename):
-	array = list(filename)
-	product = "CSS"
-	fullver = array[2] + array[3] + "." + array[4] + array[5] + "." + array[6] + "." + array[7] + array[8]
-	filepath = product + "/" + fullver
-	filemove (filepath, filename)
 
 def catos (filename):
 	array = filename.split(".")
@@ -1506,7 +1500,17 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		name.startswith("nexus-1000v") or 
 		name == "n3k_bios_release_rn.pdf" or 
 		name == "ssd_c400_upgrade_6.1.2.I2.2a.tar" or 
-		name.startswith("n9000-epld")
+		name == "ssd_c400_upgrade_6.1.2.I2.3.tar" or 
+		name == "ssd_c400_upgrade_6.1.2.I2.2.tar" or 
+		name == "ssd_c400_upgrade_6.1.2.I2.1.tar" or 
+		name == "ntp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm" or 
+		name == "ntp-1.0.2-7.0.3.I2.2e.lib32_n9000.rpm" or 
+		name == "nxos.nsqos_lc_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm" or 
+		name == "nxos.nsqos_sup_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm" or 
+		name == "vxlan-2.0.1.0-9.2.3.lib32_n9000.rpm" or 
+		name == "snmp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm" or 
+		name.startswith("n9000-epld") or 
+		name.startswith("guestshell")
 		):
 			fileprocessornxos(name,debug1)
 
@@ -1767,7 +1771,8 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		splitbydot[0] == "C9800-80-universalk9_wlc" or 
 		splitbydot[0] == "C9800-CL-universalk9" or 
 		splitbydot[0] == "C9800-L-universalk9_wlc" or 
-		splitbydot[0] == "C9800-SW-iosxe-wlc"
+		splitbydot[0] == "C9800-SW-iosxe-wlc" or 
+		splitbydot[0] == "C9800-AP-universalk9"
 		):
 			fileprocessor_iosxe (name)
 
@@ -1905,91 +1910,111 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		name.startswith ("HyperFlex-VC-HTML") or 
 		name.startswith ("hxcsi") or 
 		name.startswith ("HyperFlex-Witness-") or 
-		name.startswith ("HxClone-HyperV")
+		name.startswith ("HxClone-HyperV") or 
+		name.startswith ("DCNM") or 
+		name.startswith ("dcnm") or 
+		name.startswith ("dcnm") or 
+		name == "readme_10.2.1.ST.1"
 		):
 			file_proc_servers(name,debug1)
 
 
-
 		elif (
-		name.startswith("Cisco_Firepower_SRU") or
-		name.startswith("Cisco_VDB_Fingerprint_Database") or
-		name.startswith("Cisco_Firepower_GEODB") or 
-		name.startswith("Sourcefire") or
-		name.startswith("Cisco_FTD") or 
-		name.startswith("Cisco_Firepower_Threat") or 
-		name.startswith("Cisco_Network_Sensor") or 
-		name.startswith("firepower") or 
-		name.startswith("fxos") or 
-		name.startswith("ftd") or 
-		name.startswith("5-") or 
-		name.startswith("ACS") or 
-		name.startswith("Acs") or 
-		name.startswith("Cisco_Firepower") or 
-		name.startswith("Firepower") or 
-		name.startswith("Clean") or 
-		name.startswith("ISE") or 
-		name.startswith("PI") or 
-		name.startswith("PIX") or 
-		name.startswith("UCP") or 
-		name.startswith("applAcs") or 
-		name.startswith("asa") or 
-		name.startswith("asdm") or 
-		name.startswith("cisco-asa") or 
-		name.startswith("csd") or 
-		name.startswith("fwsm_migration") or 
-		name.startswith("hostscan") or
-		name.startswith("ise") or 
-		name.startswith("ise-pic") or 
-		name.startswith("mac-spw-dmg") or 
-		name.startswith("pix") or 
-		name.startswith("sampleTransforms") or 
-		name.startswith("thirdparty") or 
-		name.startswith("tools-anyconnect") or 
-		name.startswith("webagent") or 
-		name.startswith("win_spw") or 
-		splitbydot[0] == "cisco-ftd" or
-		splitbydash[0] == "anyconnect" or 
-		splitbydot[0] == "c6svc-fwm-k9" or 
-		name == "anyconnect_app_selector_1.0.zip" or 
-		name == "anyconnect_app_selector_2.0.zip" or 
-		name == "WebSecurityCert.zip" or 
-		name == "pic-2.2.0.470.SPA.x86_64.iso" or 
-		name == "pic-2.4.0.357.SPA.x86_64.iso" or 
-		name == "README_ISE_20_201_21_22" or 
-		name == "ACS57BasePatch.tar.gz" or 
-		name == "firepower-mibs.zip" or 
-		name == "ReadMe_for_ACS_5.6_Upgrade_Package-txt" or 
-		name == "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429.zip" or 
-		name == "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429-Readme.txt" or 
-		name == "BOOTX64.EFI" or 
-		name == "grub.efi" or 
-		name.startswith("np") and name.endswith(".bin") or 
-		name.startswith("pdm") and name.endswith(".bin") or 
-		name.startswith("bh") and name.endswith(".bin") or 
-		name.startswith("pix") and name.endswith(".bin") or 
-		name.startswith("PIX") and name.endswith(".bin") or 
-		name == "PIXtoASA_1_0.zip" or 
-		name == "PIX_to_ASA_1_0.dmg" or 
-		name == "PIXtoASAsetup_1_0.exe" or 
-		name.startswith ("fcs-csm") or 
-		name.startswith ("fcs-mcp") or 
+		name.startswith ("5-") or 
+		name.startswith ("ACS") or 
+		name.startswith ("Acs") or 
+		name.startswith ("Cisco_FTD") or 
+		name.startswith ("Cisco_Firepower") or 
+		name.startswith ("Cisco_Firepower_GEODB") or 
+		name.startswith ("Cisco_Firepower_SRU") or
+		name.startswith ("Cisco_Firepower_Threat") or 
+		name.startswith ("Cisco_Network_Sensor") or 
+		name.startswith ("Cisco_VDB_Fingerprint_Database") or
+		name.startswith ("Clean") or 
+		name.startswith ("Firepower") or 
+		name.startswith ("ISE") or 
+		name.startswith ("PI") or 
+		name.startswith ("PIX") and name.endswith(".bin") or 
+		name.startswith ("PIX") or 
+		name.startswith ("Sourcefire") or
+		name.startswith ("UCP") or 
+		name.startswith ("UTD-STD-SIGNATURE") or 
+		name.startswith ("applAcs") or 
+		name.startswith ("asasfr") or 
+		name.startswith ("asa") or 
+		name.startswith ("asdm") or 
+		name.startswith ("bh") and name.endswith(".bin") or 
+		name.startswith ("cisco-asa") or 
+		name.startswith ("coeus") or 
+		name.startswith ("csd") or 
 		name.startswith ("csm") or 
 		name.startswith ("csmars") or 
-		name.startswith ("coeus") or 
-		name.startswith ("phoebe") or 
-		name.startswith ("phoebe") or
+		name.startswith ("fcs-csm") or 
+		name.startswith ("fcs-mcp") or 
+		name.startswith ("firepower") or 
+		name.startswith ("ftd") or 
+		name.startswith ("fwsm_migration") or 
+		name.startswith ("fxos") or 
+		name.startswith ("hostscan") or
 		name.startswith ("iosxe-utd") or
+		name.startswith ("iosxe-utd-ips") or
 		name.startswith ("iox-iosxe-utd") or
+		name.startswith ("ise") or 
+		name.startswith ("ise-pic") or 
+		name.startswith ("mac-spw-dmg") or 
+		name.startswith ("np") and name.endswith(".bin") or 
+		name.startswith ("pdm") and name.endswith(".bin") or 
+		name.startswith ("phoebe") or 
+		name.startswith ("pix") and name.endswith(".bin") or 
+		name.startswith ("pix") or 
+		name.startswith ("sampleTransforms") or 
 		name.startswith ("secapp-ucmk9") or
-		name.startswith ("UTD-STD-SIGNATURE") or 
-		name.startswith("iosxe-utd-ips")
+		name.startswith ("thirdparty") or 
+		name.startswith ("tools-anyconnect") or 
+		name.startswith ("webagent") or 
+		name.startswith ("win_spw") or 
+		splitbydash[0] == "anyconnect" or 
+		splitbydot[0] == "c6svc-fwm-k9" or 
+		splitbydot[0] == "cisco-ftd" or
+		name == "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429-Readme.txt" or 
+		name == "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429.zip" or 
+		name == "ACS57BasePatch.tar.gz" or 
+		name == "BOOTX64.EFI" or 
+		name == "PIX_to_ASA_1_0.dmg" or 
+		name == "PIXtoASA_1_0.zip" or 
+		name == "PIXtoASAsetup_1_0.exe" or 
+		name == "README_ISE_20_201_21_22" or 
+		name == "ReadMe_for_ACS_5.6_Upgrade_Package-txt" or 
+		name == "WebSecurityCert.zip" or 
+		name == "anyconnect_app_selector_1.0.zip" or 
+		name == "anyconnect_app_selector_2.0.zip" or 
+		name == "firepower-mibs.zip" or 
+		name == "grub.efi" or 
+		name == "pic-2.2.0.470.SPA.x86_64.iso" or 
+		name == "pic-2.4.0.357.SPA.x86_64.iso" or 
+		name == "release_duration_tool.tar" or 
+		name == "cvdm-css-1.0_K9.zip" or 
+		name == "cvdm-css-1.0.zip"
 		):
 			fileprocessorsecurity(debug1,name)
 
+		elif name.startswith("sg") and name.endswith("zip") or name.endswith("adi") or name.endswith("adi-gz"):
+			fileprocessorsecurity(debug1,name)
 
-
-
+		elif (
+		name.startswith ("sprom") or 
+		name.startswith ("epld-sup2") or 
+		name.startswith ("epld-6548getx") or 
+		name.startswith ("6509neba") or 
+		name.startswith ("6516agbic") or 
+		name.startswith ("6548getx") or 
+		name.startswith ("66748getx") or 
+		name == "sconvertit0-11.tar" or 
+		name == "sconvertit0-12.tar" or 
+		name == "wconvertit0-11.zip" or 
+		name == "wconvertit0-12.zip"
+		):
+			fileprocessorios(debug1,name)
 
 
 
@@ -2021,9 +2046,6 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 
 		elif splitbydot[0] == "c6svc-nam":
 			cat6knam(name)
-
-		elif name.startswith("sg") and name.endswith("zip") or name.endswith("adi") or name.endswith("adi-gz"):
-			css(name)
 
 		elif splitbydot[0] == "c675" or splitbydot[1] == "c675":
 			filepath = "Other"

@@ -5,7 +5,7 @@ from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
 
 def fileprocessorsecurity (debug1,filename):
 	if debug1:
-		print("\tModule#\tios_servers")
+		print("\tModule#\tios_security")
 	if debug1:
 		print("\tSubroutine#\tfileprocessorsecurity")
 
@@ -16,6 +16,25 @@ def fileprocessorsecurity (debug1,filename):
 		prodname = product("anyconnect")
 		imagecode = imagelookup("app_selector")
 		sec_single_file (debug1,filename,prodname,imagecode)
+
+	elif filename == "release_duration_tool.tar":
+		prodname = product ("firepower")
+		imagecode = imagelookup("fmc")
+		filepath = filepath4 (prodname,imagecode,"5.4.0","5.4.0.9")
+		filemove (filepath, filename)
+
+	elif (
+	filename.startswith("sg") and filename.endswith("zip") or 
+	filename.startswith("sg") and filename.endswith("adi") or 
+	filename.startswith("sg") and filename.endswith("adi-gz")
+	):
+		sec_css (debug1,filename)
+
+	elif (
+	filename == "cvdm-css-1.0_K9.zip" or 
+	filename == "cvdm-css-1.0.zip"
+	):
+		sec_css (debug1,filename)
 
 	elif(
 	filename.startswith("np") and filename.endswith(".bin") or 
@@ -44,6 +63,12 @@ def fileprocessorsecurity (debug1,filename):
 		sec_ironportv (debug1,filename)
 
 	elif(
+	filename.startswith ("cisco-asa-fp2k") or 
+	filename.startswith ("cisco-asa")
+	):
+		sec_fp_asa_module (debug1,filename)
+
+	elif(
 	filename == "firepower-mibs.zip"
 	):
 		prodname = product("firepower")
@@ -66,6 +91,9 @@ def fileprocessorsecurity (debug1,filename):
 
 	elif filename.startswith("csd_"):
 		sec_csd (debug1,filename)
+
+	elif filename.startswith("asasfr"):
+		sec_asa_fp_sys (debug1,filename)
 
 	elif (
 	filename.startswith("asav") or
@@ -100,13 +128,22 @@ def fileprocessorsecurity (debug1,filename):
 	):
 		sec_fxos (debug1,filename)
 
-	elif filename.startswith("Sourcefire_3D_Defense_Center_S3_Patch"):
+	elif (
+	filename.startswith("Sourcefire_3D_Defense_Center_S3_Patch") or 
+	filename.startswith("Sourcefire_3D_Defense_Center_S3_Hotfix")
+	):
 		sec_sourcefire_fmc_patch (debug1,filename)
 
 	elif filename.startswith("Cisco_FTD_Patch"):
 		sec_sourcefire_ftd_patch (debug1,filename)
 
-	elif filename.startswith("Cisco_Network_Sensor_Patch"):
+	elif (
+	filename.startswith("Sourcefire_3D_Device_S3_Patch") or 
+	filename.startswith("Sourcefire_3D_Device_VMware_Patch")
+	):
+		sec_sourcefire_device (debug1,filename)
+
+	elif filename.startswith("Cisco_Network_Sensor"):
 		sec_fp_asa_mode (debug1,filename)
 
 	elif (
@@ -161,10 +198,17 @@ def fileprocessorsecurity (debug1,filename):
 	):
 		sec_utd_engine (debug1,filename)
 
+	elif (
+	filename.startswith("Sourcefire_Defense_Center_S3") or 
+	filename.startswith("Sourcefire_Defense_Center_Virtual64_VMware") or 
+	filename.startswith("Cisco_Firepower_Management_Center_Virtual_VMware") or 
+	filename.startswith("Cisco_Firepower_Management_Center_Virtual") or 
+	filename.startswith("Cisco_Firepower_Management_Center_VMware")
+	):
+		sec_fp_mgmt (debug1,filename)
+
 	else:
 		messageunknownfile()
-
-
 
 def sec_single_file (debug1,filename,prodname,imagecode):
 	if debug1:
@@ -172,17 +216,43 @@ def sec_single_file (debug1,filename,prodname,imagecode):
 	filepath = filepath2 (prodname,imagecode)
 	filemove (filepath, filename)
 
+def sec_fp_mgmt (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_utd_engine")
+	prodname = product("firepower")
+	imagecode = imagelookup("fmc")
+	splitbydash = filename.split("-")
+	if (
+	filename.startswith("Sourcefire_Defense_Center_S3") or 
+	filename.startswith("Sourcefire_Defense_Center_Virtual64_VMware") or 
+	filename.startswith("Cisco_Firepower_Management_Center_Virtual_VMware") or 
+	filename.startswith("Cisco_Firepower_Management_Center_Virtual") or 
+	filename.startswith("Cisco_Firepower_Management_Center_VMware")
+	):
+		version = splitbydash[1]
+		filepath = filepath3(prodname,imagecode,version)
+		filemove (filepath, filename)
 
-#	name.startswith("Cisco_FTD") or 
-#	name.startswith("Cisco_Firepower_Threat") or 
-#	name.startswith("Cisco_Network_Sensor") or 
-#	name.startswith("firepower") or 
-#	name.startswith("ftd")
-#	):
-#def sec_sourcefire (filename):
-#	splitbydash = filename.split("-")
-#	if splitbydash[0] == "Cisco_Firepower_Management_Center_Virtual":
-
+def sec_asa_fp_sys (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_asa_fp_sys")
+	prodname =  product("firepower")
+	imagecode = imagelookup("fpasasystem")
+	splitbydash = filename.split("-")
+#	splitbydot = splitbydash[2].split(".")
+	if filename.startswith("asasfr-5500x-boot"):
+		imagecode2 = imagelookup("boot")
+		filepath = filepath4(prodname,imagecode,splitbydash[3],imagecode2)
+		filemove (filepath, filename)
+	elif filename.startswith("asasfr-boot"):
+		imagecode2 = imagelookup("boot")
+		filepath = filepath4(prodname,imagecode,splitbydash[2],imagecode2)
+		filemove (filepath, filename)
+	elif filename.startswith("asasfr-sys"):
+		imagecode2 = imagelookup("system")
+		filepath = filepath4(prodname,imagecode,splitbydash[2],imagecode2)
+		filemove (filepath, filename)
+	
 def sec_utd_engine (debug1,filename):
 	if debug1:
 		print("\tSubroutine#\tsec_utd_engine")
@@ -210,8 +280,9 @@ def sec_ironportv (debug1,filename):
 	elif filename.startswith ("phoebe"):
 		prodname = product("ironport")
 		imagecode = imagelookup("emailsecurity")
-	myver4 = util4digit(splitbydash[1],splitbydash[2],splitbydash[3],splitbydash[4])
-	filepath = filepath4 (prodname,imagecode,splitbydash[1],myver4)
+	vertwo = util4digit(splitbydash[1],splitbydash[2])
+	verfour = util4digit(splitbydash[1],splitbydash[2],splitbydash[3],splitbydash[4])
+	filepath = filepath4 (prodname,imagecode,splitbydash[1],vertwo,verfour)
 	filemove (filepath, filename)
 
 def sec_fp_asa_mode (debug1,filename):
@@ -219,23 +290,78 @@ def sec_fp_asa_mode (debug1,filename):
 		print("\tSubroutine#\tsec_fp_asa_mode")
 	prodname = product("firepower")
 	imagecode = imagelookup("fpasamode")
-	if filename =="Cisco_Network_Sensor_Patch-6.0.1-29.sh":
-		vertwo = util2digit("6","0")
-		verfour = util3digit("6","0","1")
-		filepath = filepath4 (prodname,imagecode,vertwo,verfour)
+	if filename == "Cisco_Network_Sensor_Patch-6.0.1-29.sh":
+		filepath = filepath4 (prodname,imagecode,"6.0.1","6.0.1.0")
+		filemove (filepath, filename)
+	elif filename == "Cisco_Network_Sensor_Hotfix_A-6.2.0.1-10.sh":
+		filepath = filepath4 (prodname,imagecode,"6.2.0","INSTALL")
+		filemove (filepath, filename)
+	elif filename == "Cisco_Network_Sensor_Hotfix_AF-6.1.0.2-1.sh":
+		filepath = filepath4 (prodname,imagecode,"6.1.0","INSTALL")
+		filemove (filepath, filename)
+	elif filename == "Cisco_Network_Sensor_Hotfix_DK-5.4.0.10-1.sh":
+		filepath = filepath4 (prodname,imagecode,"5.4.0","5.4.0.9")
+		filemove (filepath, filename)
+	elif filename == "Cisco_Network_Sensor_Hotfix_O-6.0.0.999-1.sh":
+		filepath = filepath4 (prodname,imagecode,"6.0.0","6.0.0.1")
+		filemove (filepath, filename)
+	elif filename == "Cisco_Network_Sensor_Hotfix_H-6.2.3.999-5.sh.REL.tar":
+		filepath = filepath4 (prodname,imagecode,"6.2.3","6.2.3.3")
+		filemove (filepath, filename)
+	elif filename == "Cisco_Network_Sensor_Hotfix_BN-6.2.2.999-5.sh.REL.tar":
+		filepath = filepath4 (prodname,imagecode,"6.2.2","6.2.2.4")
+		filemove (filepath, filename)
+	elif filename == "Cisco_Network_Sensor_Hotfix_BW-6.2.0.999-6.sh":
+		filepath = filepath4 (prodname,imagecode,"6.2.0","6.2.0.5")
+		filemove (filepath, filename)
+	elif filename == "Cisco_Network_Sensor_6.0.0_Pre-install-5.4.0.999-1.sh":
+		filepath = filepath4 (prodname,imagecode,"6.0.0","INSTALL")
+		filemove (filepath, filename)
+	elif filename == "Cisco_Network_Sensor_6.0.0_Pre-install-5.4.0.999-2.sh":
+		filepath = filepath4 (prodname,imagecode,"6.0.0","INSTALL")
+		filemove (filepath, filename)
+	elif filename == "Cisco_Network_Sensor_6.0.0_Pre-install-5.4.1.999-1.sh":
+		filepath = filepath4 (prodname,imagecode,"6.0.0","INSTALL")
+		filemove (filepath, filename)
+	elif filename == "Cisco_Network_Sensor_6.1.0_Pre-install-6.0.1.999-29.sh":
+		filepath = filepath4 (prodname,imagecode,"6.1.0","INSTALL")
+		filemove (filepath, filename)
+	elif filename == "Cisco_Network_Sensor_6.1.0_Pre-install-6.0.1.999-30.sh":
+		filepath = filepath4 (prodname,imagecode,"6.1.0","INSTALL")
+		filemove (filepath, filename)
+	elif filename == "Cisco_Network_Sensor_6.1.0_Pre-install-6.0.1.999-32.sh":
+		filepath = filepath4 (prodname,imagecode,"6.1.0","INSTALL")
+		filemove (filepath, filename)
+	elif filename.startswith("Cisco_Network_Sensor_Upgrade"):
+		splitbydash = filename.split("-")
+		filepath = filepath4 (prodname,imagecode,splitbydash[1],"INSTALL")
 		filemove (filepath, filename)
 	else:
 		splitbydash = filename.split("-")
 		splitbydot = splitbydash[1].split(".")
-		vertwo = util2digit(splitbydot[0],splitbydot[1])
+		verthree = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
 		verfour = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
-		filepath = filepath4 (prodname,imagecode,vertwo,verfour)
+		filepath = filepath4 (prodname,imagecode,verthree,verfour)
+		filemove (filepath, filename)
+
+def sec_fp_asa_module (debug1,filename):
+	prodname = product("firepower")
+	imagecode = imagelookup("fpasamodule")
+	splitbydot = filename.split(".")
+	if splitbydot[4] == "SPA":
+		verthree = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
+		filepath = filepath4 (prodname,imagecode,verthree,verthree)
+		filemove (filepath, filename)
+	else:
+		verthree = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
+		verfour = util4digit(splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4])
+		filepath = filepath4 (prodname,imagecode,verthree,verfour)
 		filemove (filepath, filename)
 
 def sec_csm (debug1,filename):
 	if debug1:
 		print("\tSubroutine#\tsec_csm")
-		prodname = product ("csm")
+	prodname = product ("csm")
 	if filename.startswith("csm-maxmind-geolitecity"):
 		imagecode = imagelookup("csmgeoip")
 		sec_csm_geoip (debug1,filename,prodname,imagecode)
@@ -1032,16 +1158,39 @@ def sec_sourcefire_fmc_patch (debug1,filename):
 		print("\tSubroutine#\tsec_sourcefire_fmc_patch")
 	prodname = product ("firepower")
 	imagecode = imagelookup("fmc")
-	imagecode2 = imagelookup("patch")
-	workname = filename.replace(".sh.REL.tar", "")
-	workname = workname.replace(".sh", "")
-	splitbydash = workname.split("-")
-	splitbydot = splitbydash[1].split(".")
-	vertwo = util2digit (splitbydot[0],splitbydot[1])
-	verfive = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-	patchline = imagecode2 + splitbydot[3]
-	filepath = filepath5 (prodname,imagecode,vertwo,verfive,patchline)
-	filemove (filepath, filename)
+	if filename == "Sourcefire_3D_Defense_Center_S3_Patch-5.4.1-59.sh":
+		filepath = filepath4 (prodname,imagecode,"5.4.1","5.4.1")
+		filemove (filepath, filename)
+	elif filename == "Sourcefire_3D_Defense_Center_S3_Hotfix_A-6.2.0.1-10.sh":
+		filepath = filepath4 (prodname,imagecode,"6.2.0","6.2.0")
+		filemove (filepath, filename)
+	elif filename == "Sourcefire_3D_Defense_Center_S3_Hotfix_AJ-6.1.0.2-1.sh":
+		filepath = filepath4 (prodname,imagecode,"6.1.0","6.1.0.1")
+		filemove (filepath, filename)
+	elif filename == "Sourcefire_3D_Defense_Center_S3_Hotfix_AZ-6.1.0.3-1.sh":
+		filepath = filepath4 (prodname,imagecode,"6.1.0","6.1.0.2")
+		filemove (filepath, filename)
+	elif (
+	filename == "Sourcefire_3D_Defense_Center_S3_Hotfix_BN-6.2.2.999-5.sh.REL.tar" or 
+	filename == "Sourcefire_3D_Defense_Center_S3_Hotfix_BS-6.2.2.5-3.sh.REL.tar"
+	):
+		filepath = filepath4 (prodname,imagecode,"6.2.0","6.2.2.4")
+		filemove (filepath, filename)
+	elif filename == "Sourcefire_3D_Defense_Center_S3_Hotfix_K-6.0.0.2-3.sh":
+		filepath = filepath4 (prodname,imagecode,"6.0.0","6.0.0.1")
+		filemove (filepath, filename)
+	else:
+#		imagecode2 = imagelookup("patch")
+		workname = filename.replace(".sh.REL.tar", "")
+		workname = workname.replace(".sh", "")
+		splitbydash = workname.split("-")
+		splitbydot = splitbydash[1].split(".")
+		verthree = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
+		verfour = util4digit (splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+#		patchline = imagecode2 + splitbydot[3]
+#		filepath = filepath5 (prodname,imagecode,vertwo,verfive,patchline)
+		filepath = filepath4 (prodname,imagecode,verthree,verfour)
+		filemove (filepath, filename)
 
 def sec_sourcefire_ftd_patch (debug1,filename):
 	if debug1:
@@ -1054,6 +1203,22 @@ def sec_sourcefire_ftd_patch (debug1,filename):
 	verfour = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
 	filepath = filepath4 (prodname,imagecode,vertwo,verfour)
 	filemove (filepath, filename)
+
+def sec_sourcefire_device (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_sourcefire_device")
+	prodname = product ("firepower")
+	imagecode = imagelookup("sourcefiredev")
+	if filename == "Sourcefire_3D_Device_S3_Patch-6.0.1-29.sh":
+		filepath = filepath3 (prodname,imagecode,"6.0.1")
+		filemove (filepath, filename)
+	else:
+		splitbydash = filename.split("-")
+		splitbydot = splitbydash[1].split(".")
+		vertwo = util2digit(splitbydot[0],splitbydot[1])
+		verfour = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+		filepath = filepath4 (prodname,imagecode,vertwo,verfour)
+		filemove (filepath, filename)
 
 def sec_fp_vdb (debug1,filename):
 	if debug1:
@@ -1600,3 +1765,30 @@ def sec_anyconnect (debug1,filename):
 		imagecode = imagelookup("translations")
 		sec_single_file (debug1,filename,prodname,imagecode)
 
+
+def sec_css (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_css")
+	workname = filename.strip("sg")
+	workname = workname.strip("adi-gz")
+	workname = workname.strip("adi")
+	workname = workname.strip("zip")
+	verarray = list(workname)
+	prodname = product("css")
+	if filename == "cvdm-css-1.0_K9.zip":
+		imagecode = imagelookup("devicemgr")
+		filepath = filepath2 (prodname,imagecode)
+		filemove (filepath, filename)
+	if filename == "cvdm-css-1.0.zip":
+		imagecode = imagelookup("devicemgr")
+		filepath = filepath2 (prodname,imagecode)
+		filemove (filepath, filename)
+	if len(verarray) == 7:
+		verp3 = verarray[5] + verarray[6] + verarray[7]
+	else:
+		verp3 = verarray[5] + verarray[6]
+	verp1 = verarray[0] + verarray[1]
+	verp2 = verarray[2] + verarray[3]
+	verfull = util4digit(verp1,verp2,verarray[4],verp3)
+	filepath = filepath4 (prodname,verp1,verp2,verfull)
+	filemove (filepath, filename)

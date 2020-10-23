@@ -1736,6 +1736,8 @@ def imagelookup (imagecode):
 		subdirectory = "FWSM-TO-ASASM-CONVERSION"
 	elif imagecode == "fmc":
 		subdirectory = "FIREPOWER-MANAGEMENT-CENTER"
+	elif imagecode == "sourcefiredev":
+		subdirectory = "SOURCEFIRE-8350"
 	elif imagecode == "vpnapi":
 		subdirectory = "VPNAPI"
 	elif imagecode == "profileeditor":
@@ -1847,7 +1849,11 @@ def imagelookup (imagecode):
 	elif imagecode == "websecurity":
 		subdirectory = "WEB-SECURITY-APPLIANCE"
 	elif imagecode == "fpasamode":
-		subdirectory = "FIREPOWER-ASA-MODE"
+		subdirectory = "FIREPOWER-ASA-MODE/FIREPOWER-MODULE"
+	elif imagecode == "fpasamodule":
+		subdirectory = "FIREPOWER-ASA-MODE/ASA-MODULE"
+	elif imagecode == "fpasasystem":
+		subdirectory = "FIREPOWER-ASA-MODE/SYSTEM"
 	elif imagecode == "signatures":
 		subdirectory = "SIGNATURES"
 	elif imagecode == "engine":
@@ -1858,6 +1864,34 @@ def imagelookup (imagecode):
 		subdirectory = "VCENTER-HTML-PLUGIN"
 	elif imagecode == "witness":
 		subdirectory = "WITNESS-NODE"
+	elif imagecode == "xsd":
+		subdirectory = "XML-SCHEMA"
+	elif imagecode == "guestshell":
+		subdirectory = "NEXUS-GUESTSHELL"
+	elif imagecode == "capacity-emulator":
+		subdirectory = "CAPACITY-EMULATOR"
+	elif imagecode == "sprom":
+		subdirectory = "SPROM-EPLD"
+	elif imagecode == "config-converter":
+		subdirectory = "CONFIG-CONVERTER"
+	elif imagecode == "installer":
+		subdirectory = "INSTALLER"
+	elif imagecode == "installer-ase":
+		subdirectory = "INSTALLER-ASE"
+	elif imagecode == "va":
+		subdirectory = "VIRTUAL-APPLIANCE"
+	elif imagecode == "templates":
+		subdirectory = "TEMPLATES"
+	elif imagecode == "silent-installer":
+		subdirectory = "SILENT-INSTALLER"
+	elif imagecode == "san-client":
+		subdirectory = "SAN-CLIENT"
+	elif imagecode == "device-pack":
+		subdirectory = "DEVICE-PACK"
+	elif imagecode == "devicemgr":
+		subdirectory = "DEVICE-MANAGER"
+	elif imagecode == "virtual-ovf":
+		subdirectory = "OVF-DEFINITION-FILES"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2403,6 +2437,8 @@ def product (prodcode):
 		prodname = "Routers/Embedded/5921"
 	elif prodcode == "n3000":
 		prodname = "Switches/Nexus/Nexus-3000"
+	elif prodcode == "n3500":
+		prodname = "Switches/Nexus/Nexus-3500"
 	elif prodcode == "n4000":
 		prodname = "Switches/Nexus/Nexus-4000"
 	elif prodcode == "n5000":
@@ -2607,6 +2643,8 @@ def product (prodcode):
 		prodname = "Wireless/Controller/Catalyst-9800-L"
 	elif prodcode == "C9800-SW":
 		prodname = "Wireless/Controller/Catalyst-9800-SW"
+	elif prodcode == "C9800-AP":
+		prodname = "Wireless/Controller/Catalyst-9800-Access-Points"
 	elif prodcode == "nxos":
 		prodname = "Switches/Nexus/Nexus-9000-3000"
 	elif prodcode == "n9000":
@@ -2733,6 +2771,10 @@ def product (prodcode):
 		prodname = "Security/Ironport"
 	elif prodcode == "ciscoutd":
 		prodname = "Security/IOS-XE-UTD"
+	elif prodcode == "dcnm":
+		prodname = "Servers/Data-Center-Network-Manager"
+	elif prodcode == "css":
+		prodname = "Servers/CSS"
 	else:
 		prodname = "UNKNOWN"
 	return prodname

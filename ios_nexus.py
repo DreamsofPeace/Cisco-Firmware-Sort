@@ -11,10 +11,16 @@ def fileprocessornxos (filename,debug1):
 	splitbydash = filename.split("-")
 	splitbydot = filename.split(".")
 
-	if filename == "ssd_c400_upgrade_6.1.2.I2.2a.tar":
+	if (
+	filename == "ssd_c400_upgrade_6.1.2.I2.2a.tar" or 
+	filename == "ssd_c400_upgrade_6.1.2.I2.3.tar" or 
+	filename == "ssd_c400_upgrade_6.1.2.I2.2.tar" or 
+	filename == "ssd_c400_upgrade_6.1.2.I2.1.tar"
+	):
 		prodname = product("nxos")
 		imagecode = imagelookup("firmware")
 		nexussinglefile (filename,prodname,imagecode,debug1)
+
 
 	elif filename == "n9000-epld-secure-boot-update.img":
 		prodname = product("nxos")
@@ -24,6 +30,57 @@ def fileprocessornxos (filename,debug1):
 	elif filename == "nxos-n3kbios.bin" or filename == "n3k_bios_release_rn.pdf":
 		prodname = product("n3000")
 		imagecode = imagelookup("bios")
+		nexussinglefile (filename,prodname,imagecode,debug1)
+
+	elif splitbydot[0] == "guestshell":
+		prodname = product("nxos")
+		imagecode = imagelookup("guestshell")
+		nexussinglefile (filename,prodname,imagecode,debug1)
+
+	elif filename == "nxos.9.3.4-capacity-emulator.tgz":
+		prodname = product("nxos")
+		imagecode = imagelookup("capacity-emulator")
+		nexussinglefile (filename,prodname,imagecode,debug1)
+
+	elif filename == "ntp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm":
+		prodname = product("nxos")
+		imagecode = imagelookup("smu")
+		imagecode = imagecode + "/7.0/7.0.3.I2.2e/NTP"
+		nexussinglefile (filename,prodname,imagecode,debug1)
+
+	elif filename == "ntp-1.0.2-7.0.3.I2.2e.lib32_n9000.rpm":
+		prodname = product("nxos")
+		imagecode = imagelookup("smu")
+		imagecode = imagecode + "/7.0/7.0.3.I2.2e/NTP"
+		nexussinglefile (filename,prodname,imagecode,debug1)
+
+	elif filename == "nxos.nsqos_lc_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm":
+		prodname = product("nxos")
+		imagecode = imagelookup("smu")
+		imagecode = imagecode + "/7.0/7.0.3.I2.2e/QoS"
+		nexussinglefile (filename,prodname,imagecode,debug1)
+
+	elif filename == "nxos.nsqos_sup_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm":
+		prodname = product("nxos")
+		imagecode = imagelookup("smu")
+		imagecode = imagecode + "/7.0/7.0.3.I2.2e/QoS"
+		nexussinglefile (filename,prodname,imagecode,debug1)
+
+	elif filename == "snmp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm":
+		prodname = product("nxos")
+		imagecode = imagelookup("smu")
+		imagecode = imagecode + "/7.0/7.0.3.I2.2e/SNMP"
+		nexussinglefile (filename,prodname,imagecode,debug1)
+
+	elif filename == "vxlan-2.0.1.0-9.2.3.lib32_n9000.rpm":
+		prodname = product("nxos")
+		imagecode = imagelookup("smu")
+		imagecode = imagecode + "/9.2/9.2.3/VXLAN"
+		nexussinglefile (filename,prodname,imagecode,debug1)
+
+	elif splitbydot[0] == "n3000_xsd":
+		prodname = product("n3000")
+		imagecode = imagelookup("xsd")
 		nexussinglefile (filename,prodname,imagecode,debug1)
 
 	elif filename.startswith("n5000_poap_script"):
@@ -122,6 +179,15 @@ def fileprocessornxos (filename,debug1):
 			imagecode = imagelookup("system")
 			fileprocnxosfivedigit (filename,prodname,imagecode,debug1)
 
+	elif splitbydash[0] == "n3500":
+		prodname = product(splitbydash[0])
+		if splitbydot[0] == "n3500-uk9-kickstart":
+			imagecode = imagelookup("kickstart")
+			fileprocnxosfivedigit (filename,prodname,imagecode,debug1)
+		elif splitbydot[0] == "n3500-uk9":
+			imagecode = imagelookup("system")
+			fileprocnxosfivedigit (filename,prodname,imagecode,debug1)
+
 	elif splitbydash[0] == "n7000":
 		prodname = product(splitbydash[0])
 		if splitbydash[1] == "s1":
@@ -139,6 +205,7 @@ def fileprocessornxos (filename,debug1):
 		elif splitbydash[1] == "s3":
 			imagecode = imagelookup("s3")
 			nexus7ksliceandice (filename,prodname,imagecode,debug1)
+
 	else:
 		messageunknownfile()
 

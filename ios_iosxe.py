@@ -39,7 +39,8 @@ def fileprocessor_iosxe(filename):
 	splitbydot[0] == "C9800-80-universalk9_wlc" or 
 	splitbydot[0] == "C9800-CL-universalk9" or 
 	splitbydot[0] == "C9800-L-universalk9_wlc" or 
-	splitbydot[0] == "C9800-SW-iosxe-wlc"
+	splitbydot[0] == "C9800-SW-iosxe-wlc" or 
+	splitbydot[0] == "C9800-AP-universalk9"
 	):
 		fileproccontroller (filename)
 
@@ -69,6 +70,9 @@ def fileproccontroller (filename):
 		fileproc_iosxe_noimagecode (filename,prodname)
 	elif filename.startswith("C9800-SW-iosxe-wlc"):
 		prodname = product ("C9800-SW")
+		fileproc_iosxe_noimagecode (filename,prodname)
+	elif filename.startswith("C9800-AP-universalk9"):
+		prodname = product ("C9800-AP")
 		fileproc_iosxe_noimagecode (filename,prodname)
 
 def fileproc_iosxe_noimagecode (filename,prodname):

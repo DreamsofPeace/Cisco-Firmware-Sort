@@ -165,8 +165,75 @@ def file_proc_servers (filename,debug1):
 	):
 		prodname = product("hyperflex")
 		file_proc_servers_hyperflex(debug1,filename,prodname)
+
+	elif (
+	filename.startswith ("DCNM") or 
+	filename.startswith ("dcnm")
+	):
+		prodname = product("dcnm")
+		file_proc_servers_dcnm(debug1,filename,prodname)
+	elif filename == "readme_10.2.1.ST.1":
+		prodname = product("dcnm")
+		filepath = filepath3(prodname,"10.2","10.2.1")
+		filemove (filepath, filename)
 	else:
 		messageunknownfile()
+
+def file_proc_servers_dcnm (debug1,filename,prodname):
+	if debug1:
+		print("\tSubroutine#\tfile_proc_servers_dcnm")
+	splitbydot = filename.split(".")
+	vertwo = util2digit (splitbydot[1],splitbydot[2])
+	verthree = util3digit (splitbydot[1],splitbydot[2],splitbydot[3])
+	if filename.startswith ("dcnm-installer-x64-windows"):
+		imagecode = imagelookup("installer")
+		filepath = filepath4(prodname,vertwo,verthree,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith ("dcnm-installer-x64-linux"):
+		imagecode = imagelookup("installer")
+		filepath = filepath4(prodname,vertwo,verthree,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith ("DCNMUpgradeTool"):
+		imagecode = imagelookup("upgrade")
+		filepath = filepath4(prodname,vertwo,verthree,imagecode)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith ("dcnm-va-templates") or 
+	filename.startswith ("dcnm_fabricpath_fabric_templates") or 
+	filename.startswith ("dcnm_deprecated_templates") or 
+	filename.startswith ("dcnm_ip_vxlan_fabric_templates")
+	):
+		imagecode = imagelookup("templates")
+		filepath = filepath4(prodname,vertwo,verthree,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith ("dcnm-va"):
+		imagecode = imagelookup("va")
+		filepath = filepath4(prodname,vertwo,verthree,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith ("dcnm-se"):
+		imagecode = imagelookup("installer-ase")
+		filepath = filepath4(prodname,vertwo,verthree,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith ("dcnm-se"):
+		imagecode = imagelookup("installer-ase")
+		filepath = filepath4(prodname,vertwo,verthree,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith ("dcnm-silent-installer-properties"):
+		imagecode = imagelookup("silent-installer")
+		filepath = filepath4(prodname,vertwo,verthree,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith ("dcnm-san-client"):
+		imagecode = imagelookup("san-client")
+		filepath = filepath4(prodname,vertwo,verthree,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith ("dcnm-device-pack"):
+		imagecode = imagelookup("device-pack")
+		filepath = filepath4(prodname,vertwo,verthree,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith ("dcnm-va-ovf-kvm-files"):
+		imagecode = imagelookup("virtual-ovf")
+		filepath = filepath4(prodname,vertwo,verthree,imagecode)
+		filemove (filepath, filename)
 
 
 def file_proc_servers_hyperflex (debug1,filename,prodname):
