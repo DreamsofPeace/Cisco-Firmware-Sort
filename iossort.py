@@ -9,6 +9,7 @@ from ios_nexus import fileprocessornxos
 from ios_voice import fileprocessorvoice
 from ios_security import fileprocessorsecurity
 from ios_iosxe import fileprocessor_iosxe
+from ios_iosxr import fileprocessor_iosxr
 from ios_servers import file_proc_servers
 from ios_ios import fileprocessorios
 
@@ -1774,7 +1775,7 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		splitbydot[0] == "C9800-SW-iosxe-wlc" or 
 		splitbydot[0] == "C9800-AP-universalk9"
 		):
-			fileprocessor_iosxe (name)
+			fileprocessor_iosxe (debug1,name)
 
 		elif (
 		splitbydash[0] == "asr1000" or 
@@ -1787,7 +1788,7 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		splitbydash[0] == "asr1000rpx86" or 
 		splitbydash[0] == "asr900rsp1" or 
 		splitbydash[0] == "asr900rsp2" or 
-#		splitbydash[0] == "asr901" or 
+		splitbydash[0] == "asr901" or 
 		splitbydash[0] == "asr901sec" or 
 		splitbydash[0] == "asr901rsp1" or 
 		splitbydash[0] == "asr901rsp2" or 
@@ -1815,7 +1816,17 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		name.startswith("vg400") or 
 		name.startswith("vg450")
 		):
-			fileprocessor_iosxe(name)
+			fileprocessor_iosxe(debug1,name)
+
+		elif (
+		name == "xrvr-fullk9-4.3.2.vmdk" or 
+		name == "xrv9k-fullk9-x.qcow2-6.0.0" or 
+		name.startswith("fullk9-R-XRV9000") or 
+		name.startswith("asr9k") or 
+		name.startswith("ASR9K") or 
+		name.startswith("ASR9000")
+		):
+			fileprocessor_iosxr(debug1,name)
 
 		elif (
 		name.startswith("ucs") or 
@@ -2142,12 +2153,6 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 			imagecode = imagelookup (splitbydash[1])
 			prodname = product (splitbydash[0])
 			standardios (name, prodname, imagecode)
-
-		elif splitbydash[0] == "full" or splitbydash[0] == "fullk9":
-			iosxrv9k (name)
-
-		elif splitbydash[0] == "ASR9000" or splitbydash[0] == "ASR9K" or splitbydash[0] == "asr9k":
-			asr9k (name)
 
 		else:
 			imagecode = imagelookup (splitbydash[1])

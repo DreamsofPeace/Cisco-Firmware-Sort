@@ -1892,6 +1892,8 @@ def imagelookup (imagecode):
 		subdirectory = "DEVICE-MANAGER"
 	elif imagecode == "virtual-ovf":
 		subdirectory = "OVF-DEFINITION-FILES"
+	elif imagecode == "turboboot":
+		subdirectory = "TURBO-BOOT"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -1975,6 +1977,8 @@ def product (prodcode):
 		prodname = "Routers/ASR/ASR-903-RSP2"
 	elif prodcode == "asr920":
 		prodname = "Routers/ASR/ASR-920"
+	elif prodcode == "asr9k":
+		prodname = "Routers/ASR/ASR-9000"
 	elif prodcode == "c10k":
 		prodname = "Routers/SP/10000-PRE1"
 	elif prodcode == "c10k2":
@@ -2669,8 +2673,6 @@ def product (prodcode):
 		prodname = "Routers/Virtual/IOS-XRv"
 	elif prodcode == "iosxrvfull":
 		prodname = "Routers/Virtual/IOS-XRv9000"
-	elif prodcode == "asr9k":
-		prodname = "Routers/ASR/ASR9K"
 	elif prodcode == "ipp3905":
 		prodname = "Voice/IP-Phones/3905"
 	elif prodcode == "ipp7911_7906":

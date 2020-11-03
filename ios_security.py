@@ -1765,6 +1765,12 @@ def sec_anyconnect (debug1,filename):
 		imagecode = imagelookup("translations")
 		sec_single_file (debug1,filename,prodname,imagecode)
 
+	elif (
+	filename.startswith("anyconnect-android-")
+	):
+		imagecode = imagelookup("android")
+		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
+
 
 def sec_css (debug1,filename):
 	if debug1:

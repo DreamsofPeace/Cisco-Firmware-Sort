@@ -3,7 +3,11 @@ from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
 
-def fileprocessor_iosxe(filename):
+def fileprocessor_iosxe(debug1,filename):
+	if debug1:
+		print("\tModule#\tios_iosxe")
+	if debug1:
+		print("\tSubroutine#\tfileprocessor_iosxe")
 	splitbydot = filename.split(".")
 	splitbydash = filename.split("-")
 	if filename == "cat9k_iosxe.16.00.00fpgautility.SPA.bin":
