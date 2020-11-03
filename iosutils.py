@@ -1892,6 +1892,8 @@ def imagelookup (imagecode):
 		subdirectory = "DEVICE-MANAGER"
 	elif imagecode == "virtual-ovf":
 		subdirectory = "OVF-DEFINITION-FILES"
+	elif imagecode == "android":
+		subdirectory = "ANDROID"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
