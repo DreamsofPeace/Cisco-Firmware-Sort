@@ -21,13 +21,15 @@ def fileprocessornxos (filename,debug1):
 		imagecode = imagelookup("firmware")
 		nexussinglefile (filename,prodname,imagecode,debug1)
 
-
 	elif filename == "n9000-epld-secure-boot-update.img":
 		prodname = product("nxos")
 		imagecode = imagelookup("epld")
 		nexussinglefile (filename,prodname,imagecode,debug1)
 
-	elif filename == "nxos-n3kbios.bin" or filename == "n3k_bios_release_rn.pdf":
+	elif (
+	filename == "nxos-n3kbios.bin" or 
+	filename == "n3k_bios_release_rn.pdf"
+	):
 		prodname = product("n3000")
 		imagecode = imagelookup("bios")
 		nexussinglefile (filename,prodname,imagecode,debug1)

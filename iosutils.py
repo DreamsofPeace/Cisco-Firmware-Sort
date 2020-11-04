@@ -1894,6 +1894,10 @@ def imagelookup (imagecode):
 		subdirectory = "OVF-DEFINITION-FILES"
 	elif imagecode == "turboboot":
 		subdirectory = "TURBO-BOOT"
+	elif imagecode == "android":
+		subdirectory = "ANDROID"
+	elif imagecode == "rommon":
+		subdirectory = "ROMMON"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -1957,6 +1961,8 @@ def product (prodcode):
 		prodname = "Routers/ASR/ASR-1002"
 	elif prodcode == "asr1002x":
 		prodname = "Routers/ASR/ASR-1002X"
+	elif prodcode == "asr900":
+		prodname = "Routers/ASR/ASR-900"
 	elif prodcode == "asr900rsp1":
 		prodname = "Routers/ASR/ASR-900-RSP1"
 	elif prodcode == "asr900rsp2":
@@ -1971,6 +1977,8 @@ def product (prodcode):
 		prodname = "Routers/ASR/ASR-901-SAT"
 	elif prodcode == "asr901sec":
 		prodname = "Routers/ASR/ASR-901-SEC"
+	elif prodcode == "asr903":
+		prodname = "Routers/ASR/ASR-903"
 	elif prodcode == "asr903rsp1":
 		prodname = "Routers/ASR/ASR-903-RSP1"
 	elif prodcode == "asr903rsp2":
@@ -2781,9 +2789,140 @@ def product (prodcode):
 		prodname = "UNKNOWN"
 	return prodname
 
-def fileprocessorrommon (filename):
-	filepath = "ROMMON/"
-	filemove (filepath, filename)
+def fileprocessorrommon (debug1,filename):
+	if debug1:
+		print("\tModule#\tiosutils")
+	if debug1:
+		print("\tSubroutine#\tfileprocessorrommon")
+	if (
+	filename == "asr900_15_6_43r_s_rommon.pkg" or 
+	filename == "rsp2_15_6_15r_s_rommon.pkg" or 
+	filename == "rsp2_15_6_19r_s_rommon.pkg" or 
+	filename == "rsp2_15_6_30r_s_rommon.pkg" or 
+	filename == "rsp2_rommon_15_4_3r_S5.pkg"
+	):
+		basepath = "ROMMON/"
+		prodname = product("asr900")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("asr1000") or 
+	filename == "ASR1000_RM_16_3_2R.bin"
+	):
+		basepath = "ROMMON/"
+		prodname = product("asr1000")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("c6msfc2") or 
+	filename.startswith("c6msfc2a") or 
+	filename.startswith("c6msfc3") or 
+	filename.startswith("c6ksup32") or 
+	filename.startswith("c6ksup3") or 
+	filename.startswith("c6dfc") or 
+	filename.startswith("c6dfc3") or 
+	filename.startswith("c2lc") or 
+	filename.startswith("c6ksup720") or 
+	filename.startswith("sup6t_rm") or 
+	filename.startswith("pyramid_rm2") or 
+	filename.startswith("cat6000-CPBOOT") or 
+	filename.startswith("cat6000-sup2-rm2")
+	):
+		basepath = "ROMMON/"
+		prodname = product("c6500")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename == "transformer_rm.bin.SPA.152-02r.SYS1" or 
+	filename.startswith("c6840x_rm")
+	):
+		basepath = "ROMMON/"
+		prodname = product("c6848x")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("governator_rm") or 
+	filename.startswith("c6880x_rm")
+	):
+		basepath = "ROMMON/"
+		prodname = product("c6880x")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("C1800_RM2")
+	):
+		basepath = "ROMMON/"
+		prodname = product("c180x")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("C1841_RM2")
+	):
+		basepath = "ROMMON/"
+		prodname = product("c1841")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("C2800NM_RM2")
+	):
+		basepath = "ROMMON/"
+		prodname = product("c2800nm")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("C2801_RM2")
+	):
+		basepath = "ROMMON/"
+		prodname = product("c2801")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("C7200")
+	):
+		basepath = "ROMMON/"
+		prodname = product("c7200")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("cat4000")
+	):
+		basepath = "ROMMON/"
+		prodname = product("cat4000")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("cat4500")
+	):
+		basepath = "ROMMON/"
+		prodname = product("cat4500")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("rsp720_10ge_rp-rm2") or 
+	filename.startswith("rsp720_10ge_sp-rm2") or 
+	filename.startswith("rsp720_rp-rm2") or 
+	filename.startswith("rsp720_sp-rm2")
+	):
+		basepath = "ROMMON/"
+		prodname = product("c7600")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("asr903-rommon")
+	):
+		basepath = "ROMMON/"
+		prodname = product("asr903")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename == "Rommon-123-8r.YH13-notes" or 
+	filename == "Rommon-124-22r.YB5-notes" or 
+	filename == "Rommon-151-1r.T4-notes" or 
+	filename == "Rommon-151-1r.T5-notes" or 
+	filename == "Rommon-150-1r.M12-notes"
+	):
+		basepath = "ROMMON/"
+		filemove (basepath, filename)
 
 def fileprocessorpagent (filename):
 	filepath = "Routers/PAGENT/"
