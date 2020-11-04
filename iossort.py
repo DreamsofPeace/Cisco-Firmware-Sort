@@ -1466,15 +1466,21 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		"ROMMON" in name or 
 		"promupgrade" in name or 
 		"governator" in name or 
+		"C7200_NPEG1_RM" in name or 
 		"C7200_NPEG2_RM" in name or 
 		"c6880x_rm" in name or 
+		"cat6000-CPBOOT" in name or 
 		name == "Rommon-123-8r.YH13-notes" or 
 		name == "Rommon-124-22r.YB5-notes" or 
+		name == "Rommon-151-1r.T4-notes" or 
 		name == "Rommon-151-1r.T5-notes" or 
 		name == "Rommon-150-1r.M12-notes" or 
-		name.startswith("firmwareupgrade")
+		name == "asr900_15_6_43r_s_rommon.pkg" or 
+		name == "ASR1000_RM_16_3_2R.bin" or 
+		name.startswith("firmwareupgrade") or 
+		name.startswith("transformer_rm")
 		):
-			fileprocessorrommon(name)
+			fileprocessorrommon(debug1,name)
 
 		elif (
 		name.startswith("n3000") or 
@@ -1933,9 +1939,9 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		name.startswith ("Clean") or 
 		name.startswith ("Firepower") or 
 		name.startswith ("ISE") or 
-		name.startswith ("PI") or 
 		name.startswith ("PIX") and name.endswith(".bin") or 
 		name.startswith ("PIX") or 
+		name.startswith ("PI") or 
 		name.startswith ("Sourcefire") or
 		name.startswith ("UCP") or 
 		name.startswith ("UTD-STD-SIGNATURE") or 
@@ -2158,14 +2164,13 @@ if __name__ == "__main__":
 
 	parser = argparse.ArgumentParser()
 	parser.add_argument('-d','--directory', help='Directory to sort', required=True)
-#	parser.add_argument('-h','--help', help='Display the Help Message', required=False)
 	parser.add_argument('-hs','--hashsha512', help='Hash File using the SHA 512 Algorithm', action='store_true', required=False)
 	parser.add_argument('-hs1','--hashsha256', help='Hash File using the SHA 256 Algorithm', action='store_true', required=False)
 	parser.add_argument('-hs2','--hashsha1', help='Hash File using the SHA1 Algorithm', action='store_true', required=False)
 	parser.add_argument('-hs3','--hashmd5', help='Hash File using the MD5 Algorithm', action='store_true', required=False)
 	parser.add_argument('-hf','--hashfile', help='File with Hash Info. Format is FILENAME,MD5HASH,SHA512HASH. Additional columns are ignored', action='store_true', required=False)
 	parser.add_argument('-d0','--debug0', help='Debug Level 0 (No Output) (NYI)', action='store_true', required=False)
-	parser.add_argument('-d1','--debug1', help='Print Debug Commands (Level 1) (NYI)', action='store_true', required=False)
+	parser.add_argument('-d1','--debug1', help='Print Debug Commands (Level 1) (partially implemented)', action='store_true', required=False)
 	
 	args = parser.parse_args()
 	dirpass = args.directory
