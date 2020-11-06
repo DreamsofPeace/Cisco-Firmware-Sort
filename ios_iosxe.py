@@ -48,6 +48,14 @@ def fileprocessor_iosxe(debug1,filename):
 	):
 		fileproccontroller (filename)
 
+	elif "ucmk9" in filename:
+		if splitbydash[0] == "c1100":
+			prodname = product ("c1100router")
+		else:
+			prodname = product (splitbydash[0])
+		imagecode = imagelookup("ucmk9")
+		fileproc_sdwan (filename,prodname,imagecode)
+
 	else:
 		prodname = product (splitbydash[0])
 		mdash = splitbydot[0].split("-")
@@ -127,3 +135,13 @@ def fileproc_iosxe (filename,prodname,imagecode):
 		iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
 		filepath = filepath4(prodname,iosmain,iosfull,imagecode)
 		filemove (filepath, filename)
+
+
+def fileproc_sdwan (filename,prodname,imagecode):
+	splitbydot = filename.split(".")
+	iosmain = util2digit(splitbydot[1],splitbydot[2])
+	iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
+	prodname = prodname.replace("Routers/ISRG3/", "")
+	prodname = prodname.replace("Routers/ASR/", "")
+	filepath = filepath4(imagecode,prodname,iosmain,iosfull)
+	filemove (filepath, filename)
