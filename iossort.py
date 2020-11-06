@@ -1469,6 +1469,7 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		"governator" in name or 
 		"C7200_NPEG1_RM" in name or 
 		"C7200_NPEG2_RM" in name or 
+		"C7200_NPEG1_BOOT_ROM" in name or 
 		"c6880x_rm" in name or 
 		"cat6000-CPBOOT" in name or 
 		name == "Rommon-123-8r.YH13-notes" or 
