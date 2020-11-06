@@ -1479,7 +1479,8 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		name == "asr900_15_6_43r_s_rommon.pkg" or 
 		name == "ASR1000_RM_16_3_2R.bin" or 
 		name.startswith("firmwareupgrade") or 
-		name.startswith("transformer_rm")
+		name.startswith("transformer_rm") or 
+		name.startswith("sup6t_rm")
 		):
 			fileprocessorrommon(debug1,name)
 
@@ -2011,7 +2012,9 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		name == "pic-2.4.0.357.SPA.x86_64.iso" or 
 		name == "release_duration_tool.tar" or 
 		name == "cvdm-css-1.0_K9.zip" or 
-		name == "cvdm-css-1.0.zip"
+		name == "cvdm-css-1.0.zip" or 
+		name == "occ-121.gz" or 
+		name == "occ-121.zip"
 		):
 			fileprocessorsecurity(debug1,name)
 
