@@ -1472,6 +1472,7 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		"C7200_NPEG1_BOOT_ROM" in name or 
 		"c6880x_rm" in name or 
 		"cat6000-CPBOOT" in name or 
+		"tinyrom" in name or 
 		name == "Rommon-123-8r.YH13-notes" or 
 		name == "Rommon-124-22r.YB5-notes" or 
 		name == "Rommon-151-1r.T4-notes" or 
@@ -1481,7 +1482,8 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		name == "ASR1000_RM_16_3_2R.bin" or 
 		name.startswith("firmwareupgrade") or 
 		name.startswith("transformer_rm") or 
-		name.startswith("sup6t_rm")
+		name.startswith("sup6t_rm") or 
+		name.startswith("asr920-rommon")
 		):
 			fileprocessorrommon(debug1,name)
 
