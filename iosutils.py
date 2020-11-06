@@ -1898,6 +1898,8 @@ def imagelookup (imagecode):
 		subdirectory = "ANDROID"
 	elif imagecode == "rommon":
 		subdirectory = "ROMMON"
+	elif imagecode == "bridge_smus":
+		subdirectory = "BRIDGE-SMUS"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
