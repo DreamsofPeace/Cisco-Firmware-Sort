@@ -1951,6 +1951,8 @@ def product (prodcode):
 		prodname = "Routers/ISRG2/1900"
 	elif prodcode == "c1900c":
 		prodname = "Routers/ISRG2/1900-CHINA"
+	elif prodcode == "c1900-2900":
+		prodname = "Routers/ISRG2/1900-2900"
 	elif prodcode == "c2900":
 		prodname = "Routers/ISRG2/2900"
 	elif prodcode == "c2911a":
@@ -1977,6 +1979,8 @@ def product (prodcode):
 		prodname = "Routers/Branch/Modules"
 	elif prodcode == "c800":
 		prodname = "Routers/Branch/800"
+	elif prodcode == "c800g3":
+		prodname = "Routers/ISRG3/800"
 	elif prodcode == "c800j":
 		prodname = "Routers/ISRG2/800J"
 	elif prodcode == "c900":
@@ -2954,7 +2958,7 @@ def fileprocessorrommon (debug1,filename):
 	filename.startswith("C891x_RM2")
 	):
 		basepath = "ROMMON/"
-		prodname = product("c800")
+		prodname = product("c800g3")
 		filepath = filepath2(basepath,prodname)
 		filemove (filepath, filename)
 	elif (
@@ -3105,10 +3109,73 @@ def fileprocessorrommon (debug1,filename):
 		filepath = filepath2(basepath,prodname)
 		filemove (filepath, filename)
 	elif (
+	filename.startswith("MANOPT_RM")
+	):
+		basepath = "ROMMON/"
+		prodname = product("ons15540")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
 	filename.startswith("C3900_RM2")
 	):
 		basepath = "ROMMON/"
 		prodname = product("c3900")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("VG3X0_RM")
+	):
+		basepath = "ROMMON/"
+		prodname = product("vg3x0")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("VG224_RM2")
+	):
+		basepath = "ROMMON/"
+		prodname = product("vg224")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("RPMXF_RM")
+	):
+		basepath = "ROMMON/"
+		prodname = product("rpm")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("MWR1900_RM2")
+	):
+		basepath = "ROMMON/"
+		prodname = product("mwr1900")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("C2400_RM2")
+	):
+		basepath = "ROMMON/"
+		prodname = product("c2430")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("C3200_RM_ALT")
+	):
+		basepath = "ROMMON/"
+		prodname = product("c3230")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("C1900_2900_RM2")
+	):
+		basepath = "ROMMON/"
+		prodname = product("c1900-2900")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("C10700_RM2")
+	):
+		basepath = "ROMMON/"
+		prodname = product("c10700")
 		filepath = filepath2(basepath,prodname)
 		filemove (filepath, filename)
 	elif (
