@@ -189,7 +189,19 @@ def file_proc_servers_dcnm (debug1,filename,prodname):
 		imagecode = imagelookup("installer")
 		filepath = filepath4(prodname,vertwo,verthree,imagecode)
 		filemove (filepath, filename)
+	elif filename.startswith ("dcnm-installer-windows"):
+		imagecode = imagelookup("installer")
+		filepath = filepath4(prodname,vertwo,verthree,imagecode)
+		filemove (filepath, filename)
 	elif filename.startswith ("dcnm-installer-x64-linux"):
+		imagecode = imagelookup("installer")
+		filepath = filepath4(prodname,vertwo,verthree,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith ("dcnm-installer-linux"):
+		imagecode = imagelookup("installer")
+		filepath = filepath4(prodname,vertwo,verthree,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith ("dcnm-installer-solaris"):
 		imagecode = imagelookup("installer")
 		filepath = filepath4(prodname,vertwo,verthree,imagecode)
 		filemove (filepath, filename)
