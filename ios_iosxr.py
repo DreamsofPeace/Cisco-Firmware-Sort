@@ -16,12 +16,50 @@ def fileprocessor_iosxr (debug1,filename):
 	):
 		iosxr_asr9k (debug1,filename)
 
+	elif (
+	filename.startswith("fullk9")
+	):
+		iosxr_asr9kv (debug1,filename)
+
+	elif (
+	filename.startswith("xrv9k")
+	):
+		iosxr_asr9kvsmu (debug1,filename)
+
 	else:
 #		if prodname == "UNKNOWN":
 #			messageunknowndev()
 #		elif imagecode == "UNKNOWN":
 #			messageunknownfeat()
 		messageunknowndev()
+
+def iosxr_asr9kv (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tiosxr_asr9kv")
+	prodname = product ("iosxrvfull")
+	workname = filename.replace(".tar", "")
+	splitbydash = workname.split("-")
+	verlist = list(splitbydash[3])
+	if len(verlist) == 4:
+		verfull = util4digit(verlist[0],verlist[1],verlist[2],verlist[3])
+		vertwo = util2digit(verlist[0],verlist[1])
+	elif len(verlist) == 3:
+		verfull = util3digit(verlist[0],verlist[1],verlist[2])
+		vertwo = util2digit(verlist[0],verlist[1])
+	filepath = filepath3 (prodname,vertwo,verfull)
+	filemove (filepath, filename)
+
+def iosxr_asr9kvsmu (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tiosxr_asr9kvsmu")
+	prodname = product ("iosxrvfull")
+	imagecode = imagelookup("smu")
+	workname = filename.replace("xrv9k-", "")
+	splitbydot = workname.split(".")
+	vertwo = util2digit(splitbydot[0],splitbydot[1])
+	versmu = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+	filepath = filepath4 (prodname,imagecode,vertwo,versmu)
+	filemove (filepath, filename)
 
 def iosxr_asr9k (debug1,filename):
 	if debug1:

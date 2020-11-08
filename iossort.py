@@ -1674,6 +1674,7 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		name == "xrv9k-fullk9-x.qcow2-6.0.0" or 
 		name.startswith("fullk9-R-XRV9000") or 
 		name.startswith("asr9k") or 
+		name.startswith("xrv9k") or 
 		name.startswith("ASR9K") or 
 		name.startswith("ASR9000")
 		):
