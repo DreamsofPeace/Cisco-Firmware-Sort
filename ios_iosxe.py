@@ -1,4 +1,4 @@
-from iosutils import product,imagelookup,iostrain
+from iosutils import product,imagelookup,iostrain,utilssinglemove
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
@@ -13,6 +13,72 @@ def fileprocessor_iosxe(debug1,filename):
 	if filename == "cat9k_iosxe.16.00.00fpgautility.SPA.bin":
 		prodname = product ("cat9k")
 		fileproc_iosxe (filename,prodname,"Hardware")
+
+	elif (
+	filename == "nim_vab_phy_fw_A39x3_B39x3_Bond39t.pkg" or 
+	filename == "nim_vab_phy_fw_A39t_B39g1_Bond39t.pkg" or 
+	filename == "nim_vab_phy_fw_A39t_B39g1_Bond39t.pkg" or 
+	filename.startswith("isr4300-firmware_nim_xdsl")
+	):
+		prodname = product ("isr4300")
+		imagecode = imagelookup ("dslfirmware")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif filename.startswith("isr4200-firmware_nim_xdsl"):
+		prodname = product ("isr4200")
+		imagecode = imagelookup ("dslfirmware")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif filename.startswith("isr4400-firmware_nim_xdsl"):
+		prodname = product ("isr4400")
+		imagecode = imagelookup ("dslfirmware")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif filename.startswith("isr4400v2-firmware_nim_xdsl"):
+		prodname = product ("isr4400v2")
+		imagecode = imagelookup ("dslfirmware")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif filename.startswith("isr4300-hw-programmables"):
+		prodname = product ("isr4300")
+		imagecode = imagelookup ("hardware")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif filename.startswith("isr4200_cpld_update"):
+		prodname = product ("isr4200")
+		imagecode = imagelookup ("cpld_update")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif filename.startswith("isr4300_cpld_update"):
+		prodname = product ("isr4300")
+		imagecode = imagelookup ("cpld_update")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif filename.startswith("isr4400_cpld_update"):
+		prodname = product ("isr4400")
+		imagecode = imagelookup ("cpld_update")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif filename.startswith("isr4400v2_cpld_update"):
+		prodname = product ("isr4400v2")
+		imagecode = imagelookup ("cpld_update")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename.startswith("asr1000-hw-programmables") or 
+	filename.startswith("asr1002x-hw-programmables") or 
+	filename == "ASR1K-fpga_prog.16.0.1.xe.bin"
+	):
+		prodname = product ("asr1000")
+		imagecode = imagelookup("hardware")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename.startswith("asr1000rpx86-hw-programmables")
+	):
+		prodname = product ("asr1000rpx86")
+		imagecode = imagelookup("hardware")
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("cat9k_iosxe") or filename.startswith("cat9k_lite"):
 		if filename.startswith("cat9k_iosxe"):

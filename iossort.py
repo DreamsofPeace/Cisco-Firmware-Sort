@@ -1,6 +1,6 @@
 import os, shutil, sys, re, getopt, argparse
 import hashlib
-from iosutils import product,imagelookup,iostrain
+from iosutils import product,imagelookup,iostrain,utilssinglemove
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
@@ -1066,104 +1066,6 @@ def standardios (filename, prodname, imagecode):
 			filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode
 		filemove (filepath, filename)
 
-def isr4k (filename, prodname, imagecode):
-	if filename.startswith("isr4200-hw-programmables"):
-		prodname = product ("isr4200")
-		filepath = prodname + "/" + "Hardware"
-		filemove (filepath, filename)
-	elif filename.startswith("isr4300-hw-programmables"):
-		prodname = product ("isr4300")
-		filepath = prodname + "/" + "Hardware"
-		filemove (filepath, filename)
-	elif filename.startswith("isr4400-hw-programmables"):
-		prodname = product ("isr4400")
-		filepath = prodname + "/" + "Hardware"
-		filemove (filepath, filename)
-	elif filename.startswith("isr4400v2-hw-programmables"):
-		prodname = product ("isr4400v2")
-		filepath = prodname + "/" + "Hardware"
-		filemove (filepath, filename)
-	elif filename.startswith("isr4200-firmware_nim_xdsl"):
-		prodname = product ("isr4200")
-		filepath = prodname + "/" + "Hardware"
-		filemove (filepath, filename)
-	elif filename.startswith("isr4300-firmware_nim_xdsl"):
-		prodname = product ("isr4300")
-		filepath = prodname + "/" + "Hardware"
-		filemove (filepath, filename)
-	elif filename.startswith("isr4400-firmware_nim_xdsl"):
-		prodname = product ("isr4400")
-		filepath = prodname + "/" + "Hardware"
-		filemove (filepath, filename)
-	elif filename == "nim_vab_phy_fw_A39x3_B39x3_Bond39t.pkg":
-		prodname = product ("isr4300")
-		filepath = prodname + "/" + "Hardware"
-		filemove (filepath, filename)
-	elif filename == "nim_vab_phy_fw_A39t_B39g1_Bond39t.pkg":
-		prodname = product ("isr4300")
-		filepath = prodname + "/" + "Hardware"
-		filemove (filepath, filename)
-	else:
-		splitbydot = filename.split(".")
-		splitbydash = filename.split("-")
-		splitbydot[3] = splitbydot[3].replace("-serial", "")
-		iosmain = util2digit (splitbydot[1],splitbydot[2])
-		iosversion = util3digit (splitbydot[1],splitbydot[2],splitbydot[3])
-		if prodname == "UNKNOWN":
-			messageunknowndev()
-		elif imagecode == "UNKNOWN":
-			messageunknownfeat()
-		elif imagecode == "IOS-XE-SD-WAN":
-			prodname = "IOS-XE-SD-WAN" + "/" + prodname
-			#workname = splitbydot[3].rstrip("-serial")
-			splitbydot[3] = splitbydot[3].replace("-serial", "")
-			if imagecode == "SPA":
-				filepath = prodname + "/" + iosmain + "/" + iosversion
-			else:
-				filepath = prodname + "/" + iosmain + "/" + iosversion + "/" + imagecode
-			filemove (filepath, filename)
-		elif splitbydot[4].startswith("CSC") and splitbydot[6]  == "smu":
-			filepath = prodname + "/" + iosmain + "/" + iosversion + "/" + "SMU" + "/" + splitbydot[4]
-			filemove (filepath, filename)
-		else:
-			if imagecode == "SPA":
-				filepath = prodname + "/" + iosmain + "/" + iosversion
-			else:
-				filepath = prodname + "/" + iosmain + "/" + iosversion + "/" + imagecode
-			filemove (filepath, filename)
-
-def iosxrv9k (filename):
-	splitbydash = filename.split("-")
-	prodname = product("iosxrvfull")
-	number = list (splitbydash[3])
-	iosmain = util2digit (number[0],number[1])
-	iosfull = util3digit (number[0],number[1],number[2])
-	filepath = prodname + "/" + iosmain + "/" + iosfull + "/"
-	filemove (filepath, filename)
-
-def asr9k (filename):
-	splitbydash = filename.split("-")
-	prodname = product("asr9k")
-	filepath = prodname + "/"
-	filemove (filepath, filename)
-
-def iosxrv (filename, prodname, imagecode):
-
-	splitbydot = filename.split(".")
-	splitbydash = filename.split("-")
-	splitbydot2 = splitbydash[3].split(".")
-	if splitbydash[2] == "k9":
-		iosmain = splitbydot2[0] + "." + splitbydot2[1]
-		iosfull = splitbydot2[0] + "." + splitbydot2[1] + "." + splitbydot2[2]
-		filepath = prodname + "/" + iosmain + "/" + iosfull + "/" + imagecode
-		filemove (filepath, filename)
-	else:
-		imagecode = "DEMO WITH CRYPTO"
-		iosmain = splitbydash2[3] + "." + splitbydot[1]
-		iosfull = splitbydash2[3] + "." + splitbydot[1] + "." + splitbydot[2]
-		filepath = prodname + "/" + iosmain + "/" + iosfull + "/" + imagecode
-		filemove (filepath, filename)
-
 def waas (filename):
 	prodname = "WAAS"
 	splitbydot = name.split(".")
@@ -1529,46 +1431,6 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		elif name.startswith("cmterm"):
 			fileprocessorvoice(name)
 
-		elif name == "nim_vab_phy_fw_A39x3_B39x3_Bond39t.pkg":
-			imagecode = imagelookup ("isr4300")
-			prodname = "Hardware"
-			isr4k(name,imagecode,prodname)
-
-		elif name == "nim_vab_phy_fw_A39t_B39g1_Bond39t.pkg":
-			imagecode = imagelookup ("isr4300")
-			prodname = "Hardware"
-			isr4k(name,imagecode,prodname)
-
-		elif name == "nim_vab_phy_fw_A39t_B39g1_Bond39t.pkg":
-			imagecode = imagelookup ("isr4300")
-			prodname = "Hardware"
-			isr4k(name,imagecode,prodname)
-
-		elif name.startswith("isr4200-firmware_nim_xdsl"):
-			prodname = product ("isr4200")
-			imagecode = "Hardware"
-			isr4k(name,imagecode,prodname)
-
-		elif name.startswith("isr4300-firmware_nim_xdsl"):
-			imagecode = imagelookup ("isr4300")
-			prodname = "Hardware"
-			isr4k(name,imagecode,prodname)
-
-		elif name.startswith("isr4400-firmware_nim_xdsl"):
-			imagecode = imagelookup ("isr4400")
-			prodname = "Hardware"
-			isr4k(name,imagecode,prodname)
-
-		elif name.startswith("isr4400v2-firmware_nim_xdsl"):
-			imagecode = imagelookup ("isr4400v2")
-			prodname = "Hardware"
-			isr4k(name,imagecode,prodname)
-
-		elif name.startswith("isr4300-hw-programmables"):
-			imagecode = imagelookup ("isr4300")
-			prodname = "Hardware"
-			isr4k(name,imagecode,prodname)
-
 		elif name.startswith("DNAC") or name.startswith("dnac"):
 			imagecode = product ("dnac")
 			filepath = prodname + "/" + imagecode
@@ -1718,30 +1580,6 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 			filepath = prodname + "/" + imagecode
 			filemove (filepath, name)
 
-		elif name.startswith("isr4200_cpld_update"):
-			prodname = product ("isr4200")
-			imagecode = imagelookup ("cpld_update")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
-
-		elif name.startswith("isr4300_cpld_update"):
-			prodname = product ("isr4300")
-			imagecode = imagelookup ("cpld_update")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
-
-		elif name.startswith("isr4400_cpld_update"):
-			prodname = product ("isr4400")
-			imagecode = imagelookup ("cpld_update")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
-
-		elif name.startswith("isr4400v2_cpld_update"):
-			prodname = product ("isr4400v2")
-			imagecode = imagelookup ("cpld_update")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
-
 		elif name.startswith("vcw-vfc-mz"):
 			prodname = product ("c5350")
 			imagecode = imagelookup (splitbydot[0])
@@ -1810,16 +1648,18 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		splitbydash[0] == "csr1000v" or 
 		splitbydash[0] == "csr1000v_milplr" or 
 		splitbydash[0] == "ie3x00" or 
-		splitbydash[0] == "isr4400" or 
-		splitbydash[0] == "isr4300" or 
-		splitbydash[0] == "isr4200" or 
-		splitbydash[0] == "ir1101" or 
-		splitbydash[0] == "isr4400v2" or 
+		name.startswith("isr4400") or 
+		name.startswith("isr4300") or 
+		name.startswith("isr4200") or 
+		name.startswith("ir1101") or 
+		name.startswith("isr4400v2") or 
 		splitbydot[0] == "c1100-universalk9_ias" or 
 		splitbydot[0] == "c1100-universalk9_ias_npe" or 
 		splitbydot[0] == "c1100-ucmk9" or 
 		splitbydot[0] == "c1100-universalk9" or 
 		splitbydot[0] == "c1100-universalk9_npe" or 
+		name == "asr1000-hw-programmables.16.08.01.SPA.pkg" or 
+		name == "ASR1K-fpga_prog.16.0.1.xe.bin" or 
 		name.startswith("cat3k_caa") or 
 		name.startswith("cat9k") or 
 		name.startswith("ess3x00") or 
