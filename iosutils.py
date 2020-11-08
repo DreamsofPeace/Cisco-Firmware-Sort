@@ -1612,7 +1612,7 @@ def imagelookup (imagecode):
 		subdirectory = "ISR-G2-DIGITAL-MODEM"
 	elif imagecode == "EHWICVADSLB":
 		subdirectory = "EHWIC-VA-DSL-B-C886VA-C896VA"
-	elif imagecode == "DSLFIRMWARE":
+	elif imagecode == "dslfirmware":
 		subdirectory = "DSL-FIRMWARE"
 	elif imagecode == "vcw-vfc-mz":
 		subdirectory = "VCWare"
@@ -1934,6 +1934,8 @@ def imagelookup (imagecode):
 		subdirectory = "NVSATELLITE"
 	elif imagecode == "usb_boot":
 		subdirectory = "USB-BOOT"
+	elif imagecode == "hardware":
+		subdirectory = "HARDWARE-PROGRAMMABLES"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -3201,6 +3203,13 @@ def fileprocessorrommon (debug1,filename):
 		filepath = filepath2(basepath,prodname)
 		filemove (filepath, filename)
 	elif (
+	filename.startswith("isr4400v2_rommon")
+	):
+		basepath = "ROMMON/"
+		prodname = product("isr4400v2")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
 	filename.startswith("ROMMON") and filename.endswith("tar") or 
 	filename.startswith("rommon") and filename.endswith("tar")
 	):
@@ -3267,6 +3276,14 @@ def filepath4 (a,b,c,d):
 def filepath5 (a,b,c,d,e):
 	z = a + "/" + b + "/" + c + "/" + d + "/" + e
 	return z
+
+def utilssinglemove (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\Module#\tiosutils")
+		print("\tSubroutine#\tnexussinglefile")
+	filepath = filepath2 (prodname,imagecode)
+	filemove (filepath, filename)
+
 
 def messageunknowndev ():
 		print ("E001: This device type is unknown, please update the script with the information about the image.", end="\n")
