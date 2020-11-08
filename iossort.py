@@ -1776,7 +1776,6 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		name.startswith ("HxClone-HyperV") or 
 		name.startswith ("DCNM") or 
 		name.startswith ("dcnm") or 
-		name.startswith ("dcnm") or 
 		name == "readme_10.2.1.ST.1"
 		):
 			file_proc_servers(name,debug1)
@@ -1986,11 +1985,6 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 			prodname = "Routers/SP/10000"
 			imagecode = imagelookup (splitbydash[1])
 			standardios (name, prodname, imagecode)
-
-		elif splitbydash[0] == "XR12000":
-			prodname = product (splitbydash[0])
-			imagecode = imagelookup (splitbydash[1])
-			iosxrv (name, prodname, imagecode)
 
 		elif splitbydash[0] == "all":
 			prodname = "OnePK"
