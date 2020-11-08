@@ -1,4 +1,4 @@
-from iosutils import product,imagelookup,iostrain
+from iosutils import product,imagelookup,iostrain,utilssinglemove
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
@@ -19,12 +19,12 @@ def fileprocessornxos (filename,debug1):
 	):
 		prodname = product("nxos")
 		imagecode = imagelookup("firmware")
-		nexussinglefile (filename,prodname,imagecode,debug1)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename == "n9000-epld-secure-boot-update.img":
 		prodname = product("nxos")
 		imagecode = imagelookup("epld")
-		nexussinglefile (filename,prodname,imagecode,debug1)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename == "nxos-n3kbios.bin" or 
@@ -32,73 +32,73 @@ def fileprocessornxos (filename,debug1):
 	):
 		prodname = product("n3000")
 		imagecode = imagelookup("bios")
-		nexussinglefile (filename,prodname,imagecode,debug1)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif splitbydot[0] == "guestshell":
 		prodname = product("nxos")
 		imagecode = imagelookup("guestshell")
-		nexussinglefile (filename,prodname,imagecode,debug1)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename == "nxos.9.3.4-capacity-emulator.tgz":
 		prodname = product("nxos")
 		imagecode = imagelookup("capacity-emulator")
-		nexussinglefile (filename,prodname,imagecode,debug1)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename == "ntp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm":
 		prodname = product("nxos")
 		imagecode = imagelookup("smu")
 		imagecode = imagecode + "/7.0/7.0.3.I2.2e/NTP"
-		nexussinglefile (filename,prodname,imagecode,debug1)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename == "ntp-1.0.2-7.0.3.I2.2e.lib32_n9000.rpm":
 		prodname = product("nxos")
 		imagecode = imagelookup("smu")
 		imagecode = imagecode + "/7.0/7.0.3.I2.2e/NTP"
-		nexussinglefile (filename,prodname,imagecode,debug1)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename == "nxos.nsqos_lc_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm":
 		prodname = product("nxos")
 		imagecode = imagelookup("smu")
 		imagecode = imagecode + "/7.0/7.0.3.I2.2e/QoS"
-		nexussinglefile (filename,prodname,imagecode,debug1)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename == "nxos.nsqos_sup_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm":
 		prodname = product("nxos")
 		imagecode = imagelookup("smu")
 		imagecode = imagecode + "/7.0/7.0.3.I2.2e/QoS"
-		nexussinglefile (filename,prodname,imagecode,debug1)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename == "snmp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm":
 		prodname = product("nxos")
 		imagecode = imagelookup("smu")
 		imagecode = imagecode + "/7.0/7.0.3.I2.2e/SNMP"
-		nexussinglefile (filename,prodname,imagecode,debug1)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename == "vxlan-2.0.1.0-9.2.3.lib32_n9000.rpm":
 		prodname = product("nxos")
 		imagecode = imagelookup("smu")
 		imagecode = imagecode + "/9.2/9.2.3/VXLAN"
-		nexussinglefile (filename,prodname,imagecode,debug1)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif splitbydot[0] == "n3000_xsd":
 		prodname = product("n3000")
 		imagecode = imagelookup("xsd")
-		nexussinglefile (filename,prodname,imagecode,debug1)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("n5000_poap_script"):
 		prodname = product("n5000")
 		imagecode = imagelookup("poap")
-		nexussinglefile (filename,prodname,imagecode,debug1)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("n6000_poap_script"):
 		prodname = product("n6000")
 		imagecode = imagelookup("poap")
-		nexussinglefile (filename,prodname,imagecode,debug1)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("poap_ng"):
 		prodname = product("Nexus")
 		imagecode = imagelookup("poap_ng")
-		nexussinglefile (filename,prodname,imagecode,debug1)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif splitbydot[0] == "n9000-epld":
 		prodname = product("nxos")
@@ -268,7 +268,7 @@ def nexus7ksliceandice (filename,prodname,supcode,debug1):
 				imagecode = imagelookup("system")
 				fileprocnxosthreedigit (filename,prodname,imagecode,debug1)
 
-def nexussinglefile (filename,prodname,imagecode,debug1):
+def utilssinglemove (debug1,filename,prodname,imagecode):
 	if debug1:
 		print("\tSubroutine#\tnexussinglefile")
 	filepath = filepath2 (prodname,imagecode)
