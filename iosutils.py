@@ -141,6 +141,8 @@ def iostrain (train, version):
 		version = version + "JAY"
 	elif train.startswith("JAZ"):
 		version = version + "JAZ"
+	elif train.startswith("JAB"):
+		version = version + "JAB"
 	elif train.startswith("JA"):
 		version = version + "JA"
 	elif train.startswith("JBA"):
@@ -1760,6 +1762,8 @@ def imagelookup (imagecode):
 		subdirectory = "CLIENT/WINDOWS-CE"
 	elif imagecode == "win":
 		subdirectory = "CLIENT/WINDOWS"
+	elif imagecode == "clientandroid":
+		subdirectory = "CLIENT/ANDROID"
 	elif imagecode == "winarm64":
 		subdirectory = "CLIENT/WINDOWS-ARM64"
 	elif imagecode == "nvm":
@@ -1967,6 +1971,8 @@ def product (prodcode):
 		prodname = "Routers/ISRG2/3900E"
 	elif prodcode == "c7600":
 		prodname = "Routers/SP/7600"
+	elif prodcode == "8000":
+		prodname = "Routers/SP/8000"
 	elif prodcode == "c7600rsp72043":
 		prodname = "Routers/SP/7600-RSP720"
 	elif prodcode == "rsp72043":
@@ -2195,6 +2201,8 @@ def product (prodcode):
 		prodname = "Routers/ISRG2/880-CUBE"
 	elif prodcode == "c890":
 		prodname = "Routers/ISRG1/890"
+	elif prodcode == "c890s":
+		prodname = "Routers/ISRG2/890"
 	elif prodcode == "igs":
 		prodname = "Routers/IGS"
 	elif prodcode == "urm":
@@ -2657,50 +2665,48 @@ def product (prodcode):
 		prodname = "Wireless/Access-Point/AP2800"
 	elif prodcode == "AP3800":
 		prodname = "Wireless/Access-Point/AP3800"
-	elif prodcode == "SWLC3750K9":
-		prodname = "Wireless/Controller/Catalyst-3750"
-	elif prodcode == "SWISMK9":
-		prodname = "Wireless/Controller/Catalyst-6500-WISM"
-	elif prodcode == "WLCM":
-		prodname = "Wireless/Controller/NM-NME"
-	elif prodcode == "SRE":
-		prodname = "Wireless/Controller/NM-SRE"
-	elif prodcode == "CTVM":
-		prodname = "Wireless/Controller/Virtual"
-	elif prodcode == "WLC4400":
-		prodname = "Wireless/Controller/WLC4400"
-	elif prodcode == "WLC2100":
-		prodname = "Wireless/Controller/WLC2100"
-	elif prodcode == "WLC2100":
-		prodname = "Wireless/Controller/WLC2100"
-	elif prodcode == "WISM":
-		prodname = "Wireless/Controller/Catalyst-6500-WISM"
-	elif prodcode == "WISM2":
-		prodname = "Wireless/Controller/Catalyst-6500-WISM2"
-	elif prodcode == "WLC2006":
-		prodname = "Wireless/Controller/WLC2006"
-	elif prodcode == "CT7500":
-		prodname = "Wireless/Controller/CT7500"
-	elif prodcode == "CT8500":
-		prodname = "Wireless/Controller/CT8500"
-	elif prodcode == "CT5500":
-		prodname = "Wireless/Controller/5500"
-	elif prodcode == "CT5520":
-		prodname = "Wireless/Controller/5520"
-	elif prodcode == "CT2500":
-		prodname = "Wireless/Controller/2500"
 	elif prodcode == "C9800-40":
 		prodname = "Wireless/Controller/Catalyst-9800-40"
 	elif prodcode == "C9800-80":
 		prodname = "Wireless/Controller/Catalyst-9800-80"
+	elif prodcode == "C9800-AP":
+		prodname = "Wireless/Controller/Catalyst-9800-Access-Points"
 	elif prodcode == "C9800-CL":
 		prodname = "Wireless/Controller/Catalyst-9800-CL"
 	elif prodcode == "C9800-L":
 		prodname = "Wireless/Controller/Catalyst-9800-L"
 	elif prodcode == "C9800-SW":
 		prodname = "Wireless/Controller/Catalyst-9800-SW"
-	elif prodcode == "C9800-AP":
-		prodname = "Wireless/Controller/Catalyst-9800-Access-Points"
+	elif prodcode == "CT2500":
+		prodname = "Wireless/Controller/2500"
+	elif prodcode == "CT5500":
+		prodname = "Wireless/Controller/5500"
+	elif prodcode == "CT5520":
+		prodname = "Wireless/Controller/5520"
+	elif prodcode == "CT7500":
+		prodname = "Wireless/Controller/CT7500"
+	elif prodcode == "CT8500":
+		prodname = "Wireless/Controller/CT8500"
+	elif prodcode == "CTVM":
+		prodname = "Wireless/Controller/Virtual"
+	elif prodcode == "SRE":
+		prodname = "Wireless/Controller/NM-SRE"
+	elif prodcode == "SWISMK9":
+		prodname = "Wireless/Controller/Catalyst-6500-WISM"
+	elif prodcode == "SWLC3750K9":
+		prodname = "Wireless/Controller/Catalyst-3750"
+	elif prodcode == "WISM":
+		prodname = "Wireless/Controller/Catalyst-6500-WISM"
+	elif prodcode == "WISM2":
+		prodname = "Wireless/Controller/Catalyst-6500-WISM2"
+	elif prodcode == "WLC2006":
+		prodname = "Wireless/Controller/WLC2006"
+	elif prodcode == "WLC2100":
+		prodname = "Wireless/Controller/WLC2100"
+	elif prodcode == "WLC4400":
+		prodname = "Wireless/Controller/WLC4400"
+	elif prodcode == "WLCM":
+		prodname = "Wireless/Controller/NM-NME"
 	elif prodcode == "nxos":
 		prodname = "Switches/Nexus/Nexus-9000-3000"
 	elif prodcode == "n9000":
@@ -2709,6 +2715,10 @@ def product (prodcode):
 		prodname = "Switches/Nexus/Nexus-9000V"
 	elif prodcode == "cat9k":
 		prodname = "Switches/Catalyst/Catalyst-9000"
+	elif prodcode == "c8000aep":
+		prodname = "Switches/Catalyst/Catalyst-8500-Edge"
+	elif prodcode == "c8000be":
+		prodname = "Switches/Catalyst/Catalyst-8300-Edge"
 	elif prodcode == "cat9k_lite":
 		prodname = "Switches/Catalyst/Catalyst-9200"
 	elif prodcode == "s5400":
@@ -2835,7 +2845,7 @@ def product (prodcode):
 
 def fileprocessorrommon (debug1,filename):
 	if debug1:
-		print("\tModule#\tiosutils")
+		print("\tModule#\t\tiosutils")
 	if debug1:
 		print("\tSubroutine#\tfileprocessorrommon")
 	if (
@@ -2968,6 +2978,13 @@ def fileprocessorrommon (debug1,filename):
 	):
 		basepath = "ROMMON/"
 		prodname = product("c890")
+		filepath = filepath2(basepath,prodname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("C890s_RM2")
+	):
+		basepath = "ROMMON/"
+		prodname = product("c890s")
 		filepath = filepath2(basepath,prodname)
 		filemove (filepath, filename)
 	elif (
@@ -3279,10 +3296,16 @@ def filepath5 (a,b,c,d,e):
 
 def utilssinglemove (debug1,filename,prodname,imagecode):
 	if debug1:
-		print("\Module#\tiosutils")
-		print("\tSubroutine#\tnexussinglefile")
+		print("\Module#\t\tiosutils")
+		print("\tSubroutine#\tutilssinglemove")
 	filepath = filepath2 (prodname,imagecode)
 	filemove (filepath, filename)
+
+def utilssingleprodname (debug1,filename,prodname):
+	if debug1:
+		print("\Module#\t\tiosutils")
+		print("\tSubroutine#\tnexussinglefile")
+	filemove (prodname, filename)
 
 
 def messageunknowndev ():
