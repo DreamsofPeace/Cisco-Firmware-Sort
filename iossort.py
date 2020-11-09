@@ -12,6 +12,7 @@ from ios_iosxe import fileprocessor_iosxe
 from ios_iosxr import fileprocessor_iosxr
 from ios_servers import file_proc_servers
 from ios_ios import fileprocessorios
+from ios_wireless import fileprocessor_wireless
 
 def cat6knam (filename):
 	product = "Network-Management/Catalyst-6500-NAM"
@@ -1350,8 +1351,11 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		chars5 = name[0:5]
 		chars7 = name[0:7]
 
-		if name.startswith("ata"):
-			fileprocessorvoice(name)
+		if (
+		name.startswith("ata") or 
+		name.startswith("cmterm")
+		):
+			fileprocessorvoice(debug1,name)
 
 		elif (
 		"tsjspgen" in name or 
@@ -1428,9 +1432,6 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		):
 			fileprocessornxos(name,debug1)
 
-		elif name.startswith("cmterm"):
-			fileprocessorvoice(name)
-
 		elif name.startswith("DNAC") or name.startswith("dnac"):
 			imagecode = product ("dnac")
 			filepath = prodname + "/" + imagecode
@@ -1463,18 +1464,6 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		elif name == "MC7700_03.05.29.03_00_generic_000.000_001.cwe":
 			prodname = product ("ISRG2GENERIC")
 			imagecode = imagelookup ("EHWICCELLBE")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
-
-		elif name.startswith("n5000_poap_script"):
-			prodname = product ("n5000")
-			imagecode = imagelookup (splitbydot[0])
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
-
-		elif name.startswith("n6000_poap_script"):
-			prodname = product ("n6000")
-			imagecode = imagelookup (splitbydot[0])
 			filepath = prodname + "/" + imagecode
 			filemove (filepath, name)
 
@@ -1881,16 +1870,23 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		):
 			fileprocessorios(debug1,name)
 
-
-
-
-
-
 		elif (
 		name.startswith("CUMC")
 		):
 			continue
 
+		elif (
+		name.startswith ("c1100") or 
+		name.startswith ("AIR") or 
+		name.startswith ("SWISMK9") or 
+		name.startswith ("SWLC3750K9") or 
+		name.startswith ("AIR_CTVM_LARGE-K9") or 
+		name.startswith ("AIR_CTVM-K9") or 
+		name.startswith ("MFG_CTVM") or 
+		name == "AP350-Cisco-IOS-Upgrade-Image-v2.img" or 
+		name == "AP1200-Cisco-IOS-Upgrade-Image-v3.img"
+		):
+			fileprocessor_wireless(debug1,name)
 
 		elif splitbydash[0] == "c1100":
 			prodname = "Wireless/Access-Point/Aironet-1100"
