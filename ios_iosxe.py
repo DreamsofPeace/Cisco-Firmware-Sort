@@ -1,18 +1,25 @@
-from iosutils import product,imagelookup,iostrain,utilssinglemove
+from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
 
 def fileprocessor_iosxe(debug1,filename):
 	if debug1:
-		print("\tModule#\tios_iosxe")
+		print("\tModule#\t\tios_iosxe")
 	if debug1:
 		print("\tSubroutine#\tfileprocessor_iosxe")
+
 	splitbydot = filename.split(".")
 	splitbydash = filename.split("-")
+
 	if filename == "cat9k_iosxe.16.00.00fpgautility.SPA.bin":
 		prodname = product ("cat9k")
 		fileproc_iosxe (filename,prodname,"Hardware")
+
+	elif filename == "asr1000rpx86-universalk9.V1612_1_CVE_2019_1649.SPA.bin":
+		prodname = product ("asr1000rpx86")
+		imagecode = imagelookup ("hardware")
+		utilssingleprodname (debug1,filename,prodname)
 
 	elif (
 	filename == "nim_vab_phy_fw_A39x3_B39x3_Bond39t.pkg" or 
