@@ -5,9 +5,9 @@ from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
 
 def fileprocessor_iosxr (debug1,filename):
 	if debug1:
-		print("\tModule#\tios_security")
+		print("\tModule#\t\tios_iosxr")
 	if debug1:
-		print("\tSubroutine#\tfileprocessorsecurity")
+		print("\tSubroutine#\tfileprocessor_iosxr")
 
 	if (
 	filename.startswith("ASR9K") or 

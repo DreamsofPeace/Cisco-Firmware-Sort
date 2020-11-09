@@ -3,7 +3,12 @@ from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
 
-def fileprocessorvoice(filename):
+def fileprocessorvoice(debug1,filename):
+	if debug1:
+		print("\tModule#\t\tios_voice")
+	if debug1:
+		print("\tSubroutine#\tfileprocessorvoice")
+
 	if filename.startswith("cmterm"):
 		fileprocphone(filename)
 	else:

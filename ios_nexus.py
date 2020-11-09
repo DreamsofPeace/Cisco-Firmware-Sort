@@ -5,7 +5,7 @@ from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
 
 def fileprocessornxos (filename,debug1):
 	if debug1:
-		print("\tModule#\tios_nexus")
+		print("\tModule#\t\tios_nexus")
 	if debug1:
 		print("\tSubroutine#\tfileprocessornxos")
 	splitbydash = filename.split("-")

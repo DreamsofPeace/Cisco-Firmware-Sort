@@ -5,7 +5,7 @@ from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
 
 def fileprocessorsecurity (debug1,filename):
 	if debug1:
-		print("\tModule#\tios_security")
+		print("\tModule#\t\tios_security")
 	if debug1:
 		print("\tSubroutine#\tfileprocessorsecurity")
 
@@ -1727,6 +1727,12 @@ def sec_anyconnect (debug1,filename):
 	filename.startswith("anyconnect-linux-")
 	):
 		imagecode = imagelookup("linux")
+		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename.startswith("anyconnect-android-")
+	):
+		imagecode = imagelookup("clientandroid")
 		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (

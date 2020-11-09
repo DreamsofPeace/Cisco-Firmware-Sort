@@ -5,7 +5,7 @@ from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
 
 def file_proc_servers (filename,debug1):
 	if debug1:
-		print("\tModule#\tios_servers")
+		print("\tModule#\t\tios_servers")
 	if debug1:
 		print("\tSubroutine#\tfile_proc_servers")
 	if (
