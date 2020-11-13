@@ -1,4 +1,4 @@
-from iosutils import product,imagelookup,iostrain,utilssinglemove
+from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
@@ -24,6 +24,11 @@ def fileprocessornxos (filename,debug1):
 	elif filename == "n9000-epld-secure-boot-update.img":
 		prodname = product("nxos")
 		imagecode = imagelookup("epld")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif filename == "L2-L3_CT.zip":
+		prodname = product("n1000v")
+		imagecode = imagelookup("l2l3cvt")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
@@ -99,6 +104,13 @@ def fileprocessornxos (filename,debug1):
 		prodname = product("Nexus")
 		imagecode = imagelookup("poap_ng")
 		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename.startswith("Nexus1000v") or 
+	filename.startswith("Nexus1000V")
+	):
+		prodname = product("n1000v")
+		fileprocnxos1000v (debug1,filename,prodname)
 
 	elif splitbydot[0] == "n9000-epld":
 		prodname = product("nxos")
@@ -324,6 +336,59 @@ def fileprocnxosfivedigit (filename,prodname,imagecode,debug1):
 	else:
 		filepath = filepath4 (prodname,nxosver,nxosfull,imagecode)
 	filemove (filepath, filename)
+
+def fileprocnxos1000v (debug1,filename,prodname):
+	if debug1:
+		print("\tSubroutine#\tfileprocnxos1000v")
+	if (
+	filename.startswith("Nexus1000v.5.2.1.SV") or 
+	filename.startswith("Nexus1000v.4.2.1.SV") or 
+	filename.startswith("nexus1000v.4.2.1.SV") or 
+	filename.startswith("Nexus1000v.4.0.4.SV")
+	):
+		workname = filename.replace("-pkg.zip","")
+		workname = workname.replace("zip","")
+		splitbydot = workname.split(".")
+		imagecode = imagelookup("vmware")
+		nxosfull = util3digit (splitbydot[4],splitbydot[5],splitbydot[6])
+		filepath = filepath3 (prodname,imagecode,nxosfull)
+		filemove (filepath, filename)
+	elif filename == "Nexus1000v-4.0.4.SV1.1.zip":
+		imagecode = imagelookup("vmware")
+		nxosfull = util2digit ("SV1","1")
+		filepath = filepath3 (prodname,imagecode,nxosfull)
+		filemove (filepath, filename)
+	elif filename == "Nexus1000v-4.0.4.SV1.3.zip":
+		imagecode = imagelookup("vmware")
+		nxosfull = util2digit ("SV1","3")
+		filepath = filepath3 (prodname,imagecode,nxosfull)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("Nexus1000v.5.2.1.SK")
+	):
+		workname = filename.replace("-pkg.zip","")
+		workname = workname.replace("zip","")
+		splitbydot = workname.split(".")
+		imagecode = imagelookup("kvm")
+		nxosfull = util3digit (splitbydot[4],splitbydot[5],splitbydot[6])
+		filepath = filepath3 (prodname,imagecode,nxosfull)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("Nexus1000V.5.2.1.SM")
+	):
+		workname = filename.replace("-pkg.zip","")
+		workname = workname.replace("zip","")
+		splitbydot = workname.split(".")
+		imagecode = imagelookup("hyperv")
+		nxosfull = util3digit (splitbydot[4],splitbydot[5],splitbydot[6])
+		filepath = filepath3 (prodname,imagecode,nxosfull)
+		filemove (filepath, filename)
+	elif filename == "Nexus1000V5.2.1.SM1.5.2.zip":
+		imagecode = imagelookup("hyperv")
+		nxosfull = util3digit ("SM1","5","2")
+		filepath = filepath3 (prodname,imagecode,nxosfull)
+		filemove (filepath, filename)
+		
 
 def fileprocessornxos9ksmu (filename,prodname,imagecode,debug1):
 	if debug1:

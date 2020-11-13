@@ -1806,6 +1806,8 @@ def imagelookup (imagecode):
 		subdirectory = "UTILS/C-SERIES/"
 	elif imagecode == "vmware":
 		subdirectory = "VMWARE"
+	elif imagecode == "kvm":
+		subdirectory = "KVM"
 	elif imagecode == "ucslinux":
 		subdirectory = "LINUX"
 	elif imagecode == "efi":
@@ -1866,6 +1868,8 @@ def imagelookup (imagecode):
 		subdirectory = "EMAIL-SECURITY-APPLIANCE"
 	elif imagecode == "websecurity":
 		subdirectory = "WEB-SECURITY-APPLIANCE"
+	elif imagecode == "webauth":
+		subdirectory = "WEB-AUTH-BUNDLE"
 	elif imagecode == "fpasamode":
 		subdirectory = "FIREPOWER-ASA-MODE/FIREPOWER-MODULE"
 	elif imagecode == "fpasamodule":
@@ -1940,6 +1944,10 @@ def imagelookup (imagecode):
 		subdirectory = "USB-BOOT"
 	elif imagecode == "hardware":
 		subdirectory = "HARDWARE-PROGRAMMABLES"
+	elif imagecode == "l2l3cvt":
+		subdirectory = "L2-L3-CONVERSION"
+	elif imagecode == "hyperv":
+		subdirectory = "HYPERv"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2403,10 +2411,6 @@ def product (prodcode):
 		prodname = "Switches/Catalyst/Catalyst-4000-SUP-I-II"
 	elif prodcode == "cat4000":
 		prodname = "Switches/Catalyst/Catalyst-4000"
-#	elif prodcode == "cat4000":
-#		prodname = "Switches/Catalyst/Catalyst-4000-Hybrid-Mode"
-#	elif prodcode == "cat4000":
-#		prodname = "Switches/Catalyst/Catalyst-4000-SUP-III"
 	elif prodcode == "c4224":
 		prodname = "Switches/Catalyst/Catalyst-4224"
 	elif prodcode == "cat4232":
@@ -2420,7 +2424,7 @@ def product (prodcode):
 	elif prodcode == "cat5000":
 		prodname = "Switches/Catalyst/Catalyst-5000"
 	elif prodcode == "c5atm":
-		prodname = "Switches/Catalyst/Catalyst-5000-ATM"
+		prodname = "Switches/Modules/Catalyst-5000-ATM"
 	elif prodcode == "c5rsfc":
 		prodname = "Switches/Modules/Catalyst-5000-Route-Switch-Feature-Card"
 	elif prodcode == "c5rsm":
@@ -2499,6 +2503,8 @@ def product (prodcode):
 		prodname = "Routers/Embedded/5921"
 	elif prodcode == "c5921i86v":
 		prodname = "Routers/Embedded/5921"
+	elif prodcode == "n1000v":
+		prodname = "Switches/Nexus/Nexus-1000v"
 	elif prodcode == "n3000":
 		prodname = "Switches/Nexus/Nexus-3000"
 	elif prodcode == "n3500":
@@ -2839,6 +2845,14 @@ def product (prodcode):
 		prodname = "Servers/Data-Center-Network-Manager"
 	elif prodcode == "css":
 		prodname = "Servers/CSS"
+	elif prodcode == "iosxe-sd-avc":
+		prodname = "IOSXE-AVC"
+	elif prodcode == "iosxe-remote-mgmt":
+		prodname = "IOSXE-REMOTE-MGMT"
+	elif prodcode == "cspc":
+		prodname = "Network-Management/Common-Services-Platform-Collector"
+	elif prodcode == "vpn3000":
+		prodname = "Security/VPN-3000"
 	else:
 		prodname = "UNKNOWN"
 	return prodname

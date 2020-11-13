@@ -1,4 +1,4 @@
-from iosutils import product,imagelookup,iostrain
+from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
@@ -19,27 +19,40 @@ def file_proc_servers (filename,debug1):
 	):
 		prodname = product("ucseseries")
 		imagecode = imagelookup("driverseseries")
-		file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif filename.startswith("DNAC") or filename.startswith("dnac"):
+		prodname = product ("dnac")
+		utilssingleprodname (debug1,filename,prodname)
 
 	elif filename.startswith("ucs-catalog"):
 		prodname = product("ucsgeneric")
 		imagecode = imagelookup("catalog")
-		file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("pid-ctlg"):
 		prodname = product("c2xxm3")
 		imagecode = imagelookup("catalog")
-		file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("delnorte2"):
 		prodname = product("c2xxm3")
 		imagecode = imagelookup("catalog")
-		file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("plumas2"):
 		prodname = product("c2xxm5")
 		imagecode = imagelookup("catalog")
-		file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename.startswith ("Collector") or 
+	filename.startswith ("collector") or 
+	filename == "JeOS_Patch_To_Enable_ASD.zip"
+	):
+		prodname = product("cspc")
+		utilssingleprodname (debug1,filename,prodname)
+
 	elif (
 	filename == "efi-obd-v12-07-18.diag" or 
 	filename == "efi-obd-v13-10-15.diag" or 
@@ -47,7 +60,7 @@ def file_proc_servers (filename,debug1):
 	):
 		prodname = product("ucseseries")
 		imagecode = imagelookup("hdiag")
-		file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename == "huu-2.3.1.iso" or 
@@ -65,7 +78,7 @@ def file_proc_servers (filename,debug1):
 	):
 		prodname = product("ucseseries")
 		imagecode = imagelookup("huu")
-		file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename == "DW_16MB_release_1029.bin" or 
@@ -116,14 +129,14 @@ def file_proc_servers (filename,debug1):
 	):
 		prodname = product("ucseseries")
 		imagecode = imagelookup("firmwareeseries")
-		file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename == "UCS_docs_20110510.iso"
 	):
 		prodname = product("ucsgeneric")
 		imagecode = imagelookup("docs")
-		file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("ucs") or 
@@ -504,7 +517,7 @@ def file_proc_servers_ucs (debug1,filename):
 		):
 			prodname = product("ucsgeneric")
 			imagecode = imagelookup("utilscseries")
-			file_proc_servers_ucs_single (debug1,filename,prodname,imagecode)
+			utilssinglemove (debug1,filename,prodname,imagecode)
 
 		elif (
 		filename.startswith("ucs-b2xx-utils-") and filename.endswith("-windows.iso")
@@ -616,12 +629,6 @@ def file_proc_servers_ucs (debug1,filename):
 		prodname = product(splitbydash[1])
 		imagecode = imagelookup(splitbydash[2])
 		file_proc_servers_p3_d3 (debug1,filename,prodname,imagecode)
-
-def file_proc_servers_ucs_single (debug1,filename,prodname,imagecode):
-	if debug1:
-		print("\tSubroutine#\tfile_proc_servers_ucs_single")
-	filepath = filepath2 (prodname,imagecode)
-	filemove (filepath, filename)
 
 def file_proc_servers_p2_d3 (debug1,filename,prodname,imagecode):
 	if debug1:

@@ -1,4 +1,4 @@
-from iosutils import product,imagelookup,iostrain
+from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
@@ -15,7 +15,7 @@ def fileprocessorsecurity (debug1,filename):
 	):
 		prodname = product("anyconnect")
 		imagecode = imagelookup("app_selector")
-		sec_single_file (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename == "release_duration_tool.tar":
 		prodname = product ("firepower")
@@ -36,6 +36,20 @@ def fileprocessorsecurity (debug1,filename):
 	):
 		sec_css (debug1,filename)
 
+	elif (
+	filename.startswith("vpn3000") or 
+	filename.startswith("vpn3002") or 
+	filename.startswith("vpn3005")
+	):
+		sec_vpn3000 (debug1,filename)
+
+	elif(
+	filename == "vpn30xxboot-4.0.Rel.hex"
+	):
+		prodname = product("vpn3000")
+		imagecode = imagelookup("boot")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
 	elif(
 	filename.startswith("np") and filename.endswith(".bin") or 
 	filename.startswith("pdm") and filename.endswith(".bin") or 
@@ -54,7 +68,7 @@ def fileprocessorsecurity (debug1,filename):
 	):
 		prodname = product("asa")
 		imagecode = imagelookup("fwsmtoasasm")
-		sec_single_file (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif(
 	filename.startswith ("coeus") or 
@@ -73,7 +87,7 @@ def fileprocessorsecurity (debug1,filename):
 	):
 		prodname = product("firepower")
 		imagecode = imagelookup("mibs")
-		sec_single_file (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif(
 	filename == "BOOTX64.EFI" or 
@@ -81,7 +95,7 @@ def fileprocessorsecurity (debug1,filename):
 	):
 		prodname = product("ise")
 		imagecode = "2.4/APPLIANCE-BOOT-SECTOR"
-		sec_single_file (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("asdm"):
 		sec_asa_asdm (debug1,filename)
@@ -184,7 +198,6 @@ def fileprocessorsecurity (debug1,filename):
 	):
 		sec_csm (debug1,filename)
 
-
 	elif (
 		filename.startswith ("UTD-STD-SIGNATURE")
 	):
@@ -209,12 +222,6 @@ def fileprocessorsecurity (debug1,filename):
 
 	else:
 		messageunknownfile()
-
-def sec_single_file (debug1,filename,prodname,imagecode):
-	if debug1:
-		print("\tSubroutine#\tsec_single_file")
-	filepath = filepath2 (prodname,imagecode)
-	filemove (filepath, filename)
 
 def sec_fp_mgmt (debug1,filename):
 	if debug1:
@@ -280,9 +287,9 @@ def sec_ironportv (debug1,filename):
 	elif filename.startswith ("phoebe"):
 		prodname = product("ironport")
 		imagecode = imagelookup("emailsecurity")
-	vertwo = util4digit(splitbydash[1],splitbydash[2])
+	vertwo = util2digit(splitbydash[1],splitbydash[2])
 	verfour = util4digit(splitbydash[1],splitbydash[2],splitbydash[3],splitbydash[4])
-	filepath = filepath4 (prodname,imagecode,splitbydash[1],vertwo,verfour)
+	filepath = filepath5 (prodname,imagecode,splitbydash[1],vertwo,verfour)
 	filemove (filepath, filename)
 
 def sec_fp_asa_mode (debug1,filename):
@@ -383,19 +390,19 @@ def sec_pix (debug1,filename,prodname):
 
 	if filename.startswith("np") and filename.endswith(".bin"):
 		imagecode = imagelookup("pixpasswordrecovery")
-		sec_single_file (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 	elif filename.startswith("pdm") and filename.endswith(".bin"):
 		imagecode = imagelookup("pdm")
-		sec_single_file (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 	elif filename == "PIXtoASA_1_0.zip":
 		imagecode = imagelookup("PIXtoASA")
-		sec_single_file (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 	elif filename == "PIX_to_ASA_1_0.dmg":
 		imagecode = imagelookup("PIXtoASA")
-		sec_single_file (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 	elif filename == "PIXtoASAsetup_1_0.exe":
 		imagecode = imagelookup("PIXtoASA")
-		sec_single_file (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 def sec_asa_firmware (debug1,filename):
 	if debug1:
@@ -474,7 +481,8 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 		filename.endswith(".qcow2") or
 		filename.endswith(".vmdk") or
 		filename.endswith(".vhdx") or
-		filename.endswith(".zip")
+		filename.endswith(".zip") or
+		filename.endswith(".vhd.bz2")
 		):
 			workname = filename.replace("asav", "")
 			workname = workname.replace("asa", "")
@@ -654,6 +662,18 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 			vertwo = util2digit(mysplitdashworkname[0],mysplitdashworkname[1])
 			verthree = util4digit(mysplitdashworkname[0],mysplitdashworkname[1],mysplitdashworkname[2],mysplitdashworkname[3])
 			filepath = filepath3 (prodname,vertwo,verthree)
+			filemove (filepath, filename)
+		elif (
+		splitbydash[4] == "lfbff" and
+		splitbydash[5] == "k8.SPA"
+		):
+			imagecode = imagelookup("lfbff")
+			workname = filename.replace("asav", "")
+			workname = workname.replace("asa", "")
+			mysplitdashworkname = workname.split("-")
+			vertwo = util2digit(mysplitdashworkname[0],mysplitdashworkname[1])
+			verfour = util4digit(mysplitdashworkname[0],mysplitdashworkname[1],mysplitdashworkname[2],mysplitdashworkname[3])
+			filepath = filepath4 (prodname,imagecode,vertwo,verfour)
 			filemove (filepath, filename)
 
 	else:
@@ -975,7 +995,7 @@ def sec_ise (debug1,filename):
 	filename == "ise-rollbackstrutsfix-signed.x86_64.tar.gz"
 	):
 		imagecode = imagelookup("struts")
-		sec_single_file (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("ise-patchbundle-")
@@ -1769,7 +1789,7 @@ def sec_anyconnect (debug1,filename):
 	filename.startswith("anyconnect-translations-")
 	):
 		imagecode = imagelookup("translations")
-		sec_single_file (debug1,filename,prodname,imagecode)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename.startswith("anyconnect-android-")
@@ -1803,4 +1823,15 @@ def sec_css (debug1,filename):
 	verp2 = verarray[2] + verarray[3]
 	verfull = util4digit(verp1,verp2,verarray[4],verp3)
 	filepath = filepath4 (prodname,verp1,verp2,verfull)
+	filemove (filepath, filename)
+
+def sec_vpn3000 (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_vpn3000")
+	prodname = product("vpn3000")
+	splitbydash = filename.split("-")
+	splitbydot = splitbydash[1].split(".")
+	vertwo = util2digit(splitbydot[0],splitbydot[1])
+	verfour = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+	filepath = filepath3(prodname,vertwo,verfour)
 	filemove (filepath, filename)

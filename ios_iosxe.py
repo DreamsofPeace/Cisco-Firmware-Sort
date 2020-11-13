@@ -22,6 +22,15 @@ def fileprocessor_iosxe(debug1,filename):
 		utilssingleprodname (debug1,filename,prodname)
 
 	elif (
+	filename == "c1100_phy_fw_A39x3_B39x3.pkg" or 
+	filename == "c1100_gfast_phy_fw_A43r_B43r.pkg" or 
+	filename == "c1100_gfast_phy_fw_A43j2.pkg"
+	):
+		prodname = product ("c1100router")
+		imagecode = imagelookup ("dslfirmware")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
 	filename == "nim_vab_phy_fw_A39x3_B39x3_Bond39t.pkg" or 
 	filename == "nim_vab_phy_fw_A39t_B39g1_Bond39t.pkg" or 
 	filename == "nim_vab_phy_fw_A39t_B39g1_Bond39t.pkg" or 
@@ -29,6 +38,26 @@ def fileprocessor_iosxe(debug1,filename):
 	):
 		prodname = product ("isr4300")
 		imagecode = imagelookup ("dslfirmware")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename.startswith("iosxe-sd-avc")
+	):
+		prodname = product ("iosxe-sd-avc")
+		utilssingleprodname (debug1,filename,prodname)
+
+	elif (
+	filename.startswith("iosxe-remote-mgmt")
+	):
+		prodname = product ("iosxe-remote-mgmt")
+		utilssingleprodname (debug1,filename,prodname)
+
+	elif (
+	filename.startswith("CAT3650_WEBAUTH_BUNDLE") or 
+	filename.startswith("CAT3850_WEBAUTH_BUNDLE")
+	):
+		prodname = product ("cat3k_caa")
+		imagecode = imagelookup ("webauth")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("isr4200-firmware_nim_xdsl"):
@@ -48,6 +77,11 @@ def fileprocessor_iosxe(debug1,filename):
 
 	elif filename.startswith("isr4300-hw-programmables"):
 		prodname = product ("isr4300")
+		imagecode = imagelookup ("hardware")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif filename.startswith("isr-hw-programmables"):
+		prodname = product ("isr4400")
 		imagecode = imagelookup ("hardware")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 

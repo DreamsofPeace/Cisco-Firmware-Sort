@@ -1,4 +1,4 @@
-from iosutils import product,imagelookup,iostrain
+from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
@@ -9,7 +9,16 @@ def fileprocessor_iosxr (debug1,filename):
 	if debug1:
 		print("\tSubroutine#\tfileprocessor_iosxr")
 
+	splitbydot = filename.split(".")
+
 	if (
+	filename.startswith("asr9k-px-") and splitbydot[3].startswith("CSC") or 
+	filename.startswith("asr9k-x64-") and splitbydot[3].startswith("CSC") or 
+	filename.startswith("asr9k-sysadmin-") and splitbydot[3].startswith("CSC")
+	):
+		iosxr_asr9ksmu (debug1,filename)
+	
+	elif (
 	filename.startswith("ASR9K") or 
 	filename.startswith("ASR9000") or 
 	filename.startswith("asr9k")
@@ -61,6 +70,20 @@ def iosxr_asr9kvsmu (debug1,filename):
 	filepath = filepath4 (prodname,imagecode,vertwo,versmu)
 	filemove (filepath, filename)
 
+def iosxr_asr9ksmu (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tiosxr_asr9ksmu")
+	prodname = product ("asr9k")
+	imagecode = imagelookup("smu")
+	workname = filename.replace("asr9k-px-", "")
+	workname = workname.replace("asr9k-x64-", "")
+	workname = workname.replace("asr9k-sysadmin-", "")
+	splitbydot = workname.split(".")
+	vertwo = util2digit(splitbydot[0],splitbydot[1])
+	versmu = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+	filepath = filepath5 (prodname,imagecode,vertwo,versmu,splitbydot[3])
+	filemove (filepath, filename)
+
 def iosxr_asr9k (debug1,filename):
 	if debug1:
 		print("\tSubroutine#\tiosxr_asr9k")
@@ -90,6 +113,18 @@ def iosxr_asr9k (debug1,filename):
 	filename.startswith("asr9k-px-") and filename.endswith("-sp10.tar") or 
 	filename.startswith("asr9k-px-") and filename.endswith("-sp11.tar") or 
 	filename.startswith("asr9k-px-") and filename.endswith("-sp12.tar") or 
+	filename.startswith("asr9k-x64-") and filename.endswith("-sp1.tar") or 
+	filename.startswith("asr9k-x64-") and filename.endswith("-sp2.tar") or 
+	filename.startswith("asr9k-x64-") and filename.endswith("-sp3.tar") or 
+	filename.startswith("asr9k-x64-") and filename.endswith("-sp4.tar") or 
+	filename.startswith("asr9k-x64-") and filename.endswith("-sp5.tar") or 
+	filename.startswith("asr9k-x64-") and filename.endswith("-sp6.tar") or 
+	filename.startswith("asr9k-x64-") and filename.endswith("-sp7.tar") or 
+	filename.startswith("asr9k-x64-") and filename.endswith("-sp8.tar") or 
+	filename.startswith("asr9k-x64-") and filename.endswith("-sp9.tar") or 
+	filename.startswith("asr9k-x64-") and filename.endswith("-sp10.tar") or 
+	filename.startswith("asr9k-x64-") and filename.endswith("-sp11.tar") or 
+	filename.startswith("asr9k-x64-") and filename.endswith("-sp12.tar") or 
 	filename.startswith("asr9k-px-") and filename.endswith(".sp1.tar") or 
 	filename.startswith("asr9k-px-") and filename.endswith(".sp2.tar") or 
 	filename.startswith("asr9k-px-") and filename.endswith(".sp3.tar") or 
@@ -105,9 +140,12 @@ def iosxr_asr9k (debug1,filename):
 	):
 		imagecode = imagelookup("docs")
 		iosxr_service_pack  (debug1,filename,prodname)
-	elif filename.startswith("asr9k-mini-x64-migrate_to_eXR"):
+	elif filename.startswith("asr9k-mini-x64-migrate_to_eXR.tar"):
 		imagecode = imagelookup("migrate_to_eXR")
 		iosxr_tab4_ver3 (debug1,filename,prodname,imagecode)
+	elif filename.startswith("asr9k-mini-x64-migrate_to_eXR"):
+		imagecode = imagelookup("migrate_to_eXR")
+		iosxr_dot1_ver3 (debug1,filename,prodname,imagecode)
 	elif filename.startswith("asr9k-mini-x64-"):
 		imagecode = imagelookup("mini-x64")
 		iosxr_tab3_ver3 (debug1,filename,prodname,imagecode)
@@ -140,7 +178,16 @@ def iosxr_asr9k (debug1,filename):
 		iosxr_nv_x64 (debug1,filename,prodname,imagecode)
 	elif filename.startswith("asr9k-x64-usb_boot"):
 		imagecode = imagelookup("usb_boot")
-		iosxr_tab4_ver3 (debug1,filename,prodname,imagecode)
+		iosxr_tab3_ver3 (debug1,filename,prodname,imagecode)
+
+def iosxr_dot1_ver3 (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tiosxr_dot1_ver3")
+	splitbydot = filename.split(".")
+	ver2 = util2digit(splitbydot[1],splitbydot[2])
+	ver3 = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
+	filepath = filepath4 (prodname,ver2,ver3,imagecode)
+	filemove (filepath, filename)
 
 def iosxr_tab3_ver3 (debug1,filename,prodname,imagecode):
 	if debug1:

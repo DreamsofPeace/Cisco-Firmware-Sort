@@ -1,6 +1,6 @@
 import os, shutil, sys, re, getopt, argparse
 import hashlib
-from iosutils import product,imagelookup,iostrain,utilssinglemove
+from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
@@ -32,16 +32,6 @@ def cat6knam (filename):
 			fullver = thissplit[0] + "." + thissplit[1] + "(" + thissplit[2] + ")"
 			filepath = product + "/" + mainver + "/" + fullver
 			filemove (filepath, filename)
-
-def vpn3000 (filename):
-	product = "VPN 3000"
-	array = filename.split(".")
-	first = list(array[0])
-	second = list(array[3])
-	mainver = first[8] + "." + array[1]
-	fullver = first[8] + "." + array[1] + "(" + array[2] + ")" + second[0]
-	filepath = product + "/" + mainver + "/" + fullver
-	filemove (filepath, filename)
 
 def csd (filename):
 	chars = name[0:4]
@@ -233,315 +223,6 @@ def catos (filename):
 		imagecode = "SUP-32-WITH-SSH-AND-CISCOVIEW"
 		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
 	filemove (filepath, filename)
-
-def wireless (filename):
-	classify = filename.split("-")
-	chars3 = filename[0:3]
-	if chars3 == "MFG":
-		wirelesscontrollers(filename)
-	elif (classify[1] == "AP1540"
-	 or classify[1] == "AP1560"
-	 or classify[1] == "AP1815"
-	 or classify[1] == "AP1830"
-	 or classify[1] == "AP1850"
-	 or classify[1] == "AP2800"
-	 or classify[1] == "AP3800"
-	 or classify[1] == "AP4800"):
-		ciscoap(filename)
-	elif classify[0] == "AIR":
-		wirelesscontrollers(filename)
-	elif classify[0] == "SWISMK9":
-		wirelesscontrollers(filename)
-	elif classify[0] == "SWLC3750K9":
-		wirelesscontrollers(filename)
-
-def ciscoap (filename):
-	splitbydash = filename.split("-")
-	splitbydot = filename.split(".")
-	if (splitbydash[1] == "AP1540"
-	 or splitbydash[1] == "AP1560"
-	 or splitbydash[1] == "AP1815"
-	 or splitbydash[1] == "AP1830"
-	 or splitbydash[1] == "AP1850"
-	 or splitbydash[1] == "AP2800"
-	 or splitbydash[1] == "AP3800"
-	 or splitbydash[1] == "AP4800"):
-		if splitbydot[0] == "AIR-AP1830-K9-8":
-			prodname = product (splitbydash[1])
-			if prodname =="UNKNOWN":
-				messageunknowndev()
-			else:
-				mainver = util2digit(splitbydash[3], splitbydash[4])
-				fullver = util4digit(splitbydash[3], splitbydash[4], splitbydash[5], splitbydash[6])
-				filepath = filepath3 (prodname,mainver,fullver)
-				filemove (filepath, filename)
-			
-		elif splitbydash[3] == "ME":
-			prodname = product (splitbydash[1])
-			if prodname =="UNKNOWN":
-				messageunknowndev()
-			else:
-				mainver = util2digit(splitbydash[4], splitbydash[5])
-				fullver = util4digit(splitbydash[4], splitbydash[5], splitbydash[6], splitbydash[7])
-				filepath = filepath4 (prodname,mainver,fullver,"MOBILITY")
-				filemove (filepath, filename)
-		else:
-			prodname = product (splitbydash[1])
-			if prodname =="UNKNOWN":
-				messageunknowndev()
-			else:
-				mainver = util2digit(splitbydash[3], splitbydash[4])
-				fullver = util4digit(splitbydash[3], splitbydash[4], splitbydash[5], splitbydash[6])
-				filepath = filepath3 (prodname,mainver,fullver)
-				filemove (filepath, filename)
-
-def wirelesscontrollers (filename):
-	classify = filename.split("-")
-	chars3 = filename[0:3]
-	if classify[0] == "SWLC3750K9":
-		prodname = product (classify[0])
-		splitbydot = filename.split(".")
-		splitbydash = splitbydot[0].split("-")
-		mainver = splitbydash[1] + "." + splitbydash[2]
-		fullver = splitbydash[1] + "." + splitbydash[2] + "." + splitbydash[3] + "." + splitbydash[4]
-		filepath = prodname + "/" + mainver + "/" + fullver
-		filemove (filepath, filename)
-	elif chars3 == "MFG":
-		classifyus = filename.split("_")
-		if classifyus[2] == "LARGE":
-			prodname = product (classifyus[1])
-			vermain = util2digit (classifyus[3],classifyus[4])
-			verfull = util4digit (classifyus[3],classifyus[4],classifyus[5],classifyus[6])
-			filepath = prodname + "/" + vermain + "/" + verfull
-			filemove (filepath, filename)
-	elif classify[0] == "SWISMK9":
-		prodname = product (classify[0])
-		splitbydot = filename.split(".")
-		splitbydash = splitbydot[0].split("-")
-		mainver = splitbydash[1] + "." + splitbydash[2]
-		fullver = splitbydash[1] + "." + splitbydash[2] + "." + splitbydash[3] + "." + splitbydash[4]
-		filepath = prodname + "/" + mainver + "/" + fullver
-		filemove (filepath, filename)
-	elif classify[0] == "AIR" and classify[1] == "WLCM":
-		prodname = product (classify[1])
-		splitbydot = filename.split(".")
-		splitbydash = splitbydot[0].split("-")
-		mainver = splitbydash[3] + "." + splitbydash[4]
-		fullver = splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5] + "." + splitbydash[6]
-		filepath = prodname + "/" + mainver + "/" + fullver
-		filemove (filepath, filename)
-	elif classify[0] == "AIR" and classify[1] == "WLC" and classify[1] == "SRE":
-		prodname = product (classify[2])
-		splitbydot = filename.split(".")
-		splitbydash = splitbydot[0].split("-")
-		mainver = splitbydash[3] + "." + splitbydash[4]
-		fullver = splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5] + "." + splitbydash[6]
-		filepath = prodname + "/" + mainver + "/" + fullver
-		filemove (filepath, filename)
-	elif classify[0] == "AIR" and classify[1] == "CTVM":
-		prodname = product (classify[1])
-		splitbydot = filename.split(".")
-		splitbydash = splitbydot[0].split("-")
-		if splitbydash[2] == "K9":
-			mainver = splitbydash[3] + "." + splitbydash[4]
-			fullver = splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5] + "." + splitbydash[6]
-		else:
-			mainver = splitbydash[2] + "." + splitbydash[3]
-			fullver = splitbydash[2] + "." + splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5]
-		filepath = prodname + "/" + mainver + "/" + fullver
-		filemove (filepath, filename)
-	elif classify[0] == "AIR" and classify[1] == "WLC4400":
-		prodname = product (classify[1])
-		splitbydot = filename.split(".")
-		splitbydash = splitbydot[0].split("-")
-		if splitbydash[2] == "K9":
-			mainver = splitbydash[3] + "." + splitbydash[4]
-			fullver = splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5] + "." + splitbydash[6]
-		else:
-			mainver = splitbydash[2] + "." + splitbydash[3]
-			fullver = splitbydash[2] + "." + splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5]
-		filepath = prodname + "/" + mainver + "/" + fullver
-		filemove (filepath, filename)
-	elif classify[0] == "AIR" and classify[1] == "WLC2100":
-		prodname = product (classify[1])
-		splitbydot = filename.split(".")
-		splitbydash = splitbydot[0].split("-")
-		if splitbydash[2] == "K9":
-			mainver = splitbydash[3] + "." + splitbydash[4]
-			fullver = splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5] + "." + splitbydash[6]
-		else:
-			mainver = splitbydash[2] + "." + splitbydash[3]
-			fullver = splitbydash[2] + "." + splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5]
-		filepath = prodname + "/" + mainver + "/" + fullver
-		filemove (filepath, filename)
-	elif classify[0] == "AIR" and classify[1] == "WISM":
-		prodname = product (classify[1])
-		splitbydot = filename.split(".")
-		splitbydash = splitbydot[0].split("-")
-		if splitbydash[2] == "K9":
-			mainver = splitbydash[3] + "." + splitbydash[4]
-			fullver = splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5] + "." + splitbydash[6]
-		else:
-			mainver = splitbydash[2] + "." + splitbydash[3]
-			fullver = splitbydash[2] + "." + splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5]
-		filepath = prodname + "/" + mainver + "/" + fullver
-		filemove (filepath, filename)
-	elif classify[0] == "AIR" and classify[1] == "WISM2":
-		prodname = product (classify[1])
-		splitbydot = filename.split(".")
-		splitbydash = splitbydot[0].split("-")
-		if splitbydash[2] == "K9":
-			mainver = splitbydash[3] + "." + splitbydash[4]
-			fullver = splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5] + "." + splitbydash[6]
-		else:
-			mainver = splitbydash[2] + "." + splitbydash[3]
-			fullver = splitbydash[2] + "." + splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5]
-		filepath = prodname + "/" + mainver + "/" + fullver
-		filemove (filepath, filename)
-	elif classify[0] == "AIR" and classify[1] == "WLC2006":
-		prodname = product (classify[1])
-		splitbydot = filename.split(".")
-		splitbydash = splitbydot[0].split("-")
-		if splitbydash[2] == "K9":
-			mainver = splitbydash[3] + "." + splitbydash[4]
-			fullver = splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5] + "." + splitbydash[6]
-		else:
-			mainver = splitbydash[2] + "." + splitbydash[3]
-			fullver = splitbydash[2] + "." + splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5]
-		filepath = prodname + "/" + mainver + "/" + fullver
-		filemove (filepath, filename)
-	elif classify[0] == "AIR" and classify[1] == "CT7500":
-		prodname = product (classify[1])
-		splitbydot = filename.split(".")
-		splitbydash = splitbydot[0].split("-")
-		if splitbydash[2] == "K9":
-			mainver = splitbydash[3] + "." + splitbydash[4]
-			fullver = splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5] + "." + splitbydash[6]
-		else:
-			mainver = splitbydash[2] + "." + splitbydash[3]
-			fullver = splitbydash[2] + "." + splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5]
-		filepath = prodname + "/" + mainver + "/" + fullver
-		filemove (filepath, filename)
-	elif classify[0] == "AIR" and classify[1] == "CT8500":
-		prodname = product (classify[1])
-		splitbydot = filename.split(".")
-		splitbydash = splitbydot[0].split("-")
-		if splitbydash[2] == "K9":
-			mainver = splitbydash[3] + "." + splitbydash[4]
-			fullver = splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5] + "." + splitbydash[6]
-		else:
-			mainver = splitbydash[2] + "." + splitbydash[3]
-			fullver = splitbydash[2] + "." + splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5]
-		filepath = prodname + "/" + mainver + "/" + fullver
-		filemove (filepath, filename)
-	elif classify[0] == "AIR" and classify[1] == "CT8500":
-		prodname = product (classify[1])
-		splitbydot = filename.split(".")
-		splitbydash = splitbydot[0].split("-")
-		if splitbydash[2] == "K9":
-			mainver = splitbydash[3] + "." + splitbydash[4]
-			fullver = splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5] + "." + splitbydash[6]
-		else:
-			mainver = splitbydash[2] + "." + splitbydash[3]
-			fullver = splitbydash[2] + "." + splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5]
-		filepath = prodname + "/" + mainver + "/" + fullver
-		filemove (filepath, filename)
-	elif classify[0] == "AIR" and classify[1] == "CT5500":
-		prodname = product (classify[1])
-		splitbydot = filename.split(".")
-		splitbydash = splitbydot[0].split("-")
-		if classify[2] == "AP_BUNDLE":
-			mainver = splitbydash[4] + "." + splitbydash[5]
-			fullver = splitbydash[4] + "." + splitbydash[5] + "." + splitbydash[6] + "." + splitbydash[7]
-		elif splitbydash[2] == "K9":
-			mainver = splitbydash[3] + "." + splitbydash[4]
-			fullver = splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5] + "." + splitbydash[6]
-		elif splitbydash[2] == "LDPE":
-			mainver = splitbydash[4] + "." + splitbydash[5]
-			fullver = splitbydash[4] + "." + splitbydash[5] + "." + splitbydash[6] + "." + splitbydash[7] + "(RUSSIA)"
-		filepath = prodname + "/" + mainver + "/" + fullver
-		filemove (filepath, filename)
-	elif classify[0] == "AIR" and classify[1] == "CT5520":
-		prodname = product (classify[1])
-		splitbydot = filename.split(".")
-		splitbydash = splitbydot[0].split("-")
-		if classify[2] == "AP_BUNDLE":
-			mainver = splitbydash[4] + "." + splitbydash[5]
-			fullver = splitbydash[4] + "." + splitbydash[5] + "." + splitbydash[6] + "." + splitbydash[7]
-		elif splitbydash[2] == "K9":
-			mainver = splitbydash[3] + "." + splitbydash[4]
-			fullver = splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5] + "." + splitbydash[6]
-		elif splitbydash[2] == "LDPE":
-			mainver = splitbydash[4] + "." + splitbydash[5]
-			fullver = splitbydash[4] + "." + splitbydash[5] + "." + splitbydash[6] + "." + splitbydash[7] + "(RUSSIA)"
-		filepath = prodname + "/" + mainver + "/" + fullver
-		filemove (filepath, filename)
-	elif classify[0] == "AIR" and classify[1] == "CT2500":
-		prodname = product (classify[1])
-		splitbydot = filename.split(".")
-		splitbydash = splitbydot[0].split("-")
-		if classify[2] == "AP_BUNDLE":
-			mainver = splitbydash[4] + "." + splitbydash[5]
-			fullver = splitbydash[4] + "." + splitbydash[5] + "." + splitbydash[6] + "." + splitbydash[7]
-		elif splitbydash[2] == "K9":
-			mainver = splitbydash[3] + "." + splitbydash[4]
-			fullver = splitbydash[3] + "." + splitbydash[4] + "." + splitbydash[5] + "." + splitbydash[6]
-		filepath = prodname + "/" + mainver + "/" + fullver
-		filemove (filepath, filename)
-
-def spa (filename, prodname, imagecode):
-	
-	if prodname == "UNKNOWN":
-		messageunknowndev()
-	elif imagecode == "UNKNOWN":
-		messageunknownfeat()
-	else:
-		splitbydot = filename.split(".")
-		splitbydash = filename.split("-")
-		myver = splitbydot[2].split("-")
-		
-		mynum = list(myver[0])
-		thiscontrol = 0
-		for myios in mynum:
-			if thiscontrol == 0:
-				iosversion = myios
-				iosprimary = myios
-				thiscontrol = thiscontrol + 1
-			elif thiscontrol == 1:
-				iosversion = iosversion + myios + "."
-				iosprimary = iosprimary + myios + "."
-				thiscontrol = thiscontrol + 1
-			elif thiscontrol == 2:
-				iosversion = iosversion + myios
-				iosprimary = iosprimary + myios
-				thiscontrol = thiscontrol + 1
-		
-		if splitbydot[2] == "bin":
-			iosversion = iosversion + "(" + myver[1] + ")"
-		else:
-			iosprimary = iostrain(splitbydot[3], iosprimary)
-			iosversion = iosversion + "(" + myver[1] + ")" + splitbydot[3]
-		filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode
-		filemove (filepath, filename)
-
-def cat4500spa (filename, prodname, imagecode):
-	
-	if prodname == "UNKNOWN":
-		messageunknowndev()
-	elif imagecode == "UNKNOWN":
-		messageunknownfeat()
-	else:
-		splitbydot = filename.split(".")
-		splitbydash = filename.split("-")
-		iosmain = list(splitbydot[6])
-#		iostrain = iosmain[0] + iosmain[1] + "." + iosmain[2]
-#		iosversion = iosmain[0] + iosmain[1] + "." + iosmain[2] + "(" + iosmain[4] + ")" + splitbydot[7] + "-" + splitbydot[2] + "." + splitbydot[3] + "(" + splitbydot[4] + ")"  + splitbydot[5]
-		iostrain = splitbydot[2] + "." + splitbydot[3]  + splitbydot[5]
-		iosversion = splitbydot[2] + "." + splitbydot[3] + "(" + splitbydot[4] + ")"  + splitbydot[5]
-	
-		
-		filepath = prodname + "/" + iostrain + "/" + iosversion + "/" + imagecode
-		filemove (filepath, filename)
 
 def mars (filename):
 	product = "MARS"
@@ -768,249 +449,6 @@ def csmmcp (filename):
 	filepath = product + "/" + version + "/" + imagecode
 	filemove (filepath, filename)
 
-def cat29003500 (filename, prodname, imagecode):
-	myworkname = filename.replace(".tar", "")
-	myworkname = myworkname.replace(".bin", "")
-
-	splitbydash = myworkname.split("-")
-	splitbydot = myworkname.split(".")
-
-#c3500XL-c3h2s-mz.120-5.4.WC.1.bin
-#c3500XL-c3h2s-mz.120-5.4.WC.1
-#c3500xl-c3h2s-mz.120-5.WC2.tar
-#c3500xl-c3h2s-mz.120-5.WC2
-#	print (len(splitbydot), end="\n")
-	if len(splitbydot) == 3:
-		#listver = stringtolist (splitbydot[0])
-#		if splitbydot[1] == "120-5":
-		if splitbydot[1] == "120-5":
-			if splitbydot[2].startswith("XW"):
-				iosversion = "12.0XW"
-				iosmain ="12.0(5)"
-				filepath = prodname + "/" + iosversion + "/" + iosmain + splitbydot[2] + "/" + imagecode
-				filemove (filepath, filename)
-			elif splitbydot[2].startswith("WC"):
-				iosversion = "12.0WC"
-				iosmain ="12.0(5)"
-				filepath = prodname + "/" + iosversion + "/" + iosmain + splitbydot[2] + "/" + imagecode
-				filemove (filepath, filename)
-	#		elif splitbydot[2].startswith("SA"):
-	#			iosversion = "11.2SA"
-	#			iosmain ="11.2(8)"
-	#			filepath = prodname + "/" + iosversion + "/" + iosmain + splitbydot[2] + "/" + imagecode
-	#			filemove (filepath, filename)
-	#	elif splitbydash[3] == "112.8":
-	#		elif splitbydash[4].startswith("SA"):
-	#			iosversion = "11.2SA"
-	#			iosmain ="11.2(8)"
-	#			filepath = prodname + "/" + iosversion + "/" + iosmain + splitbydot[2] + "/" + imagecode
-	#			filemove (filepath, filename)
-
-
-#	if len(splitbydash) == "4":
-#		if splitbydash[1] == "hs" and splitbydash[2] == "mz":
-##			version = splitbydot[4].replace(".bin", "")
-##			version = splitbydot[4].replace(".tar", "")
-#			splitbydot = filename.split(".")
-#			listver = stringtolist (splitbydot[0])
-#			iosmain = util3digit (listver[0],listver[1],listver[2])
-#			iosversion = iosmain + "(" + splitbydot[1] + ")" + splitbydot[2] + "(" + splitbydot[4] + ")"
-#			filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode
-#			print(filepath)
-#		#	filemove (filepath, filename)
-		
-#	if len(splittest) == "6":
-#		workname = filename.rstrip(".bin")
-#		splitbydash = workname.split("-")
-#		firstver = splitbydash[3].split(".")
-#		mainver = list(firstver[0])
-#		iosprimary = mainver[0] + mainver[1] + "." + mainver[2]
-#		iosversion  = iosprimary + "(" + firstver[1] + ")" + firstver[2] + "(" + splitbydash[5] + ")"
-#		filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode
-##		print(filepath)
-#		filemove (filepath, filename)
-#	else:
-#		splitbydot = filename.split(".")
-#		splitbydash = splitbydot[1].split("-")
-#		mainver = list(splitbydash[0])
-#		iosprimary = mainver[0] + mainver[1] + "." + mainver[2]
-#		iosversion  = iosprimary + "(" + splitbydash[1] + ")" + splitbydot[2]
-#		filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode
-##		print(filepath)
-#		filemove (filepath, filename)
-
-def m9100class (filename):
-	product = "MDS 9100"
-	mds9100 = filename.split(".")
-	if mds9100[0] == "m9100-s1ek9-kickstart-mz":
-		imagecode = "KICKSTART"
-		gencode = "GEN 1"
-		mds9100primary = mds9100[1] + "." + mds9100[2]
-		mds9100ver = mds9100[1] + "." + mds9100[2] + "(" + mds9100[3] + ")"
-		filepath = product + "/" + gencode +"/" + mds9100primary + "/" + mds9100ver + "/" + imagecode
-		filemove (filepath, filename)
-	elif mds9100[0] == "m9100-s1ek9-mz":
-		imagecode = "SYSTEM-SOFTWARE"
-		gencode = "GEN 1"
-		mds9100primary = mds9100[1] + "." + mds9100[2]
-		mds9100ver = mds9100[1] + "." + mds9100[2] + "(" + mds9100[3] + ")"
-		filepath = product + "/" + gencode +"/" + mds9100primary + "/" + mds9100ver + "/" + imagecode
-		filemove (filepath, filename)
-	elif mds9100[0] == "m9100-s2ek9-mz":
-		imagecode = "SYSTEM-SOFTWARE"
-		gencode = "GEN 2"
-		mds9100primary = mds9100[1] + "." + mds9100[2]
-		mds9100ver = mds9100[1] + "." + mds9100[2] + "(" + mds9100[3] + ")"
-		filepath = product + "/" + gencode +"/" + mds9100primary + "/" + mds9100ver + "/" + imagecode
-		filemove (filepath, filename)
-	elif mds9100[0] == "m9100-s2ek9-kickstart-mz":
-		imagecode = "KICKSTART"
-		gencode = "GEN 2"
-		mds9100primary = mds9100[1] + "." + mds9100[2]
-		mds9100ver = mds9100[1] + "." + mds9100[2] + "(" + mds9100[3] + ")"
-		filepath = product + "/" + gencode +"/" + mds9100primary + "/" + mds9100ver + "/" + imagecode
-		filemove (filepath, filename)
-	elif mds9100[0] == "m9100-s3ek9-mz":
-		imagecode = "SYSTEM-SOFTWARE"
-		gencode = "GEN 3"
-		mds9100primary = mds9100[1] + "." + mds9100[2]
-		mds9100ver = mds9100[1] + "." + mds9100[2] + "(" + mds9100[3] + ")"
-		filepath = product + "/" + gencode +"/" + mds9100primary + "/" + mds9100ver + "/" + imagecode
-		filemove (filepath, filename)
-	elif mds9100[0] == "m9100-s3ek9-kickstart-mz":
-		imagecode = "KICKSTART"
-		gencode = "GEN 3"
-		mds9100primary = mds9100[1] + "." + mds9100[2]
-		mds9100ver = mds9100[1] + "." + mds9100[2] + "(" + mds9100[3] + ")"
-		filepath = product + "/" + gencode +"/" + mds9100primary + "/" + mds9100ver + "/" + imagecode
-		filemove (filepath, filename)
-
-def m9200 (filename, prodname):
-	if prodname == "UNKNOWN":
-		messageunknowndev()
-	else:
-		splitbydash = name.split("-")
-		splitbydot = name.split(".")
-		if splitbydash[2].startswith("kickstart"):
-			imagecode = "KICKSTART"
-		elif splitbydash[2].startswith("mz"):
-			imagecode = "SYSTEM-SOFTWARE"
-		if splitbydash[1] == "ek9":
-			gen = "GEN 1"
-		elif splitbydash[1] == "s2ek9":
-			gen = "GEN 2"
-		mdsprimary = splitbydot[1] + "." + splitbydot[2]
-		mdsver = splitbydot[1] + "." + splitbydot[2] + "(" + splitbydot[3] + ")"
-		filepath = prodname + "/" + gen + "/" + mdsprimary + "/" + mdsver + "/" + imagecode
-		filemove (filepath, filename)
-
-def m9250 (filename, product):
-	product = "MDS 9250"
-	splitbydash = name.split("-")
-	splitbydot = name.split(".")
-	
-	nxosmain = splitbydot[1] + "." + splitbydot[2]
-	nxosfull = splitbydot[1] + "." + splitbydot[2] + "(" + splitbydot[3] + ")"
-	
-	if splitbydash[2] == "kickstart":
-		imagecode = "KICKSTART"
-		try:
-			splitbydash[4] == "npe"
-		except:
-			imagecode = "KICKSTART"
-			filepath = product + "/" + nxosmain +"/" + nxosfull + "/" + imagecode
-			filemove (filepath, filename)
-		else:
-			imagecode = "KICKSTART NO CRYPTO"
-			filepath = product + "/" + nxosmain +"/" + nxosfull + "/" + imagecode
-			filemove (filepath, filename)
-	elif splitbydash[2] == "mz":
-		imagecode = "SYSTEM"
-		try:
-			splitbydash[3] == "npe"
-		except:
-			imagecode = "SYSTEM"
-			filepath = product + "/" + nxosmain +"/" + nxosfull + "/" + imagecode
-			filemove (filepath, filename)
-		else:
-			imagecode = "SYSTEM NO CRYPTO"
-			filepath = product + "/" + nxosmain +"/" + nxosfull + "/" + imagecode
-			filemove (filepath, filename)
-
-def m9500class (filename):
-	mds9500 = name.split(".")
-	if mds9500[0] == "m9500-sf1ek9-kickstart-mz":
-		product = "MDS-9500"
-		imagecode = "KICKSTART"
-		supcode = "SUP-1"
-		imagetype = "1"
-	elif mds9500[0] == "m9500-sf1ek9-mz":
-		product = "MDS-9500"
-		imagecode = "SYSTEM-SOFTWARE"
-		supcode = "SUP-1"
-		imagetype = "1"
-	elif mds9500[0] == "m9500-sf2ek9-kickstart-mz":
-		product = "MDS-9500"
-		imagecode = "KICKSTART"
-		imagetype = "1"
-		supcode = "SUP-2"
-	elif mds9500[0] == "m9500-sf2ek9-mz":
-		product = "MDS-9500"
-		imagecode = "SYSTEM-SOFTWARE"
-		supcode = "SUP-2"
-		imagetype = "1"
-	elif mds9500[0] == "m9700-sf3ek9-kickstart-mz":
-		product = "MDS-9700"
-		imagecode = "KICKSTART"
-		supcode = "SUP-3"
-		imagetype = "1"
-	elif mds9500[0] == "m9700-sf3ek9-mz":
-		product = "MDS-9700"
-		imagecode = "SYSTEM"
-		supcode = "SUP-3"
-		imagetype = "1"
-	elif mds9500[0] == "m9000-epld-1":
-		product = "MDS-9500"
-		imagecode = "EPLD"
-		imagetype = "2"
-	elif mds9500[0] == "m9000-epld-2":
-		product = "MDS-9500"
-		imagecode = "EPLD"
-		imagetype = "2"
-	elif mds9500[0] == "m9000-epld-3":
-		product = "MDS-9500"
-		imagecode = "EPLD"
-		imagetype = "2"
-	elif mds9500[0] == "m9000-epld-4":
-		product = "MDS-9500"
-		imagecode = "EPLD"
-		imagetype = "2"
-	elif mds9500[0] == "m9000-epld-5":
-		product = "MDS-9500"
-		imagecode = "EPLD"
-		imagetype = "2"
-	elif mds9500[0] == "m9000-ek9-ssi-mz":
-		product = "MDS-9500"
-		imagecode = "SSI"
-		imagetype = "3"
-	if imagetype == "1":
-		mds9500primary = mds9500[1] + "." + mds9500[2]
-		mds9500ver = mds9500[1] + "." + mds9500[2] + "(" + mds9500[3] + ")"
-		filepath = product + "/" + supcode + "/" + mds9500primary + "/" + mds9500ver + "/" + imagecode
-		filemove (filepath, filename)
-	elif imagetype == "2":
-		vercode = name.lstrip("m9000-epld-")
-		thisver = vercode.split(".")
-		mds9500primary = thisver[0] + "." + thisver[1]
-		mds9500ver = thisver[0] + "." + thisver[1] + "(" + thisver[2] + ")"
-		filepath = product + "/" + imagecode + "/" + mds9500primary + "/" + mds9500ver
-		filemove (filepath, filename)
-	elif imagetype == "3":
-		mds9500primary = mds9500[1] + "." + mds9500[2]
-		mds9500ver = mds9500[1] + "." + mds9500[2] + "(" + mds9500[3] + ")"
-		filepath = product + "/" + imagecode + "/" + mds9500primary + "/" + mds9500ver
-		filemove (filepath, filename)
-
 def standardios (filename, prodname, imagecode):
 	
 	if prodname == "UNKNOWN":
@@ -1071,7 +509,6 @@ def waas (filename):
 	prodname = "WAAS"
 	splitbydot = name.split(".")
 	splitbydash = name.split("-")
-
 
 	if splitbydash[0] == "waas":
 		if splitbydash[1] == "x86_64":
@@ -1162,7 +599,6 @@ def waas (filename):
 				imagecode = "RESCUE-CD"
 			filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
 			filemove (filepath, filename)
-
 
 	elif splitbydash[1] == "vWAAS":
 		if splitbydash[2] == "150":
@@ -1284,7 +720,7 @@ def waas (filename):
 		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
 		filemove (filepath, filename)
 
-def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,debug1):
+def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 	src = filename
 	names = os.listdir(src)
 	os.chdir(src)
@@ -1297,7 +733,8 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		if debug0 != True:
 			print(name)
 		if debug1:
-			print("\tSubroutine#\tTop Level")
+			print("\tModule#\t\tiossort")
+			print("\tSubroutine#\ttoplevel")
 		
 		if hashsha512 == True:
 			hasher = hashlib.sha512()
@@ -1312,13 +749,6 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 				buf = afile.read()
 				hasher.update(buf)
 			print("SHA256:", end =" ")
-			print(hasher.hexdigest())
-		if hashsha1 == True:
-			hasher = hashlib.sha1()
-			with open(name, 'rb') as afile:
-				buf = afile.read()
-				hasher.update(buf)
-			print("SHA1:", end =" ")
 			print(hasher.hexdigest())
 		if hashmd5 == True:
 			hasher = hashlib.md5()
@@ -1427,124 +857,11 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		name == "nxos.nsqos_sup_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm" or 
 		name == "vxlan-2.0.1.0-9.2.3.lib32_n9000.rpm" or 
 		name == "snmp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm" or 
+		name == "L2-L3_CT.zip" or 
 		name.startswith("n9000-epld") or 
 		name.startswith("guestshell")
 		):
 			fileprocessornxos(name,debug1)
-
-		elif name.startswith("DNAC") or name.startswith("dnac"):
-			imagecode = product ("dnac")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
-
-		elif name == "MC7700_03.05.29.02_00_generic_000.000_001.cwe" or name == "MC7700_ATT_03.05.10.02_00.cwe":
-			prodname = product ("ISRG2GENERIC")
-			imagecode = imagelookup ("EHWICCELLATT")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
-
-		elif name == "MC7750_VZW_03.05.10.06_00.cwe":
-			prodname = product ("ISRG2GENERIC")
-			imagecode = imagelookup ("EHWICCELLVZW")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
-
-		elif name == "MC7710_Global_03.05.29.02.cwe":
-			prodname = product ("ISRG2GENERIC")
-			imagecode = imagelookup ("EHWICCELLEU")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
-
-		elif name == "MC7710_Global_03.05.24.00A.cwe":
-			prodname = product ("ISRG2GENERIC")
-			imagecode = imagelookup ("EHWICCELLG")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
-
-		elif name == "MC7700_03.05.29.03_00_generic_000.000_001.cwe":
-			prodname = product ("ISRG2GENERIC")
-			imagecode = imagelookup ("EHWICCELLBE")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
-
-		elif (name == "VA_B_38V_d24m.bin" or 
-		name == "vdsl.bin.32bdslfw" or 
-		name == "vdsl.bin-A2pv6C035d_d23j" or 
-		name == "vdsl.bin-A2pv6C035j" or 
-		name == "VA_A_35l_B_35l_23j.bin" or 
-		name == "vdsl.bin-A2pv6C035l" or 
-		name == "VA_A_38k1_B_38h_24g1.bin" or 
-		name == "VA_A_39m_B_38h3_24h.bin" or 
-		name == "VA_A_39h_B_38h3_24h_j.bin" or 
-		name == "VA_A_39d_B_38h3_24h_1.bin" or 
-		name == "VA_A_38q_B_38r1_24j.bin" or 
-		name == "VA_A_39m_B_38h3_24h_o.bin" or 
-		name == "VA_A_39m_B_38u_24h.bin" or 
-		name == "VA_A_39t_B_35j_24m" or 
-		name == "VA_B_38V_d24m.bin" or 
-		name == "VA_A_39m_B_38u_24o_rc1_SDK_4.14L.04A-J.bin" or 
-		name == "VA_A_39t_B_38r1_24o_rc1_SDK_4.14L.04A.bin"
-		 ):
-			prodname = product ("ISRG2GENERIC")
-			imagecode = imagelookup ("EHWICVADSLB")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
-
-		elif (
-		name == "V3_07.axf" or 
-		name == "V3_09.axf" or 
-		name == "V3_12_1.axf" or 
-		name == "V3_12_2.axf" or 
-		name == "V3_12_3.axf" or 
-		name == "Release-Notes-V3.12.1" or 
-		name == "Release-Notes-V3.12.2" or 
-		name == "portware.2730.ios" or 
-		name == "Exp_V3_11.axf" or 
-		name == "Exp_V3_11_Release_Note.pdf" or 
-		name == "2730_rel_note" or 
-		name == "Exp_v10_10.spe"
-		):
-			prodname = product ("ISRG2GENERIC")
-			imagecode = imagelookup ("ISRG2PVDMODEM")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
-
-		elif (
-		name == "VAEW_A_39x3_B39x3_24o.SSA.bin" or 
-		name == "VAEW_A_39t_B_39d_24m.SSA" or 
-		name == "VAEW_A_39d_B_39d_24g1.SSA.bin" or 
-		name == "VAEW_A_39f1_B_39d_24g1.SSA.bin"
-		):
-			prodname = product ("c860vaew")
-			imagecode = imagelookup ("DSLFIRMWARE")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
-
-		elif (
-		name == "c1100_phy_fw_A39x3_B39x3.pkg" or 
-		name == "c1100_gfast_phy_fw_A43r_B43r.pkg" or 
-		name == "c1100_gfast_phy_fw_A43j2.pkg"
-		):
-			prodname = product ("c1100router")
-			imagecode = imagelookup ("DSLFIRMWARE")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
-
-		elif (
-		name == "VAE2_A_39x3_B39x3_24o.SSA.bin" or 
-		name == "VAE2_A_39t_B39d_24m.SSA.bin"
-		 ):
-			prodname = product ("c860vae2")
-			imagecode = imagelookup ("DSLFIRMWARE")
-
-		elif (
-		name.startswith("mica-modem-pw") or 
-		name.startswith("mica-pw")
-		):
-			prodname = product ("mica-modem")
-			imagecode = imagelookup ("mica-modem")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
 
 		elif (
 		name.startswith("np.0.8.11.1.spe") or 
@@ -1584,26 +901,6 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		elif splitbydot[0] == "oac":
 			filepath = "Switches/Nexus/Nexus-Open-Agent-Container"
 			filemove (filepath, name)
-
-		elif name.startswith("c2900XL"):
-			prodname = product (splitbydash[0])
-			imagecode = imagelookup (splitbydash[1])
-			cat29003500 (name, prodname, imagecode)
-
-		elif name.startswith("c2900xl"):
-			prodname = product (splitbydash[0])
-			imagecode = imagelookup (splitbydash[1])
-			cat29003500 (name, prodname, imagecode)
-
-		elif name.startswith("c3500XL"):
-			prodname = product (splitbydash[0])
-			imagecode = imagelookup (splitbydash[1])
-			cat29003500 (name, prodname, imagecode)
-
-		elif name.startswith("c3500xl"):
-			prodname = product (splitbydash[0])
-			imagecode = imagelookup (splitbydash[1])
-			cat29003500 (name, prodname, imagecode)
 
 		elif (
 		splitbydot[0] == "C9800-40-universalk9_wlc" or 
@@ -1648,13 +945,24 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		splitbydot[0] == "c1100-universalk9" or 
 		splitbydot[0] == "c1100-universalk9_npe" or 
 		name == "asr1000-hw-programmables.16.08.01.SPA.pkg" or 
+		name == "isr-hw-programmables.03.13.02.S.154-3.S2-ext.SPA.pkg" or 
+		name == "isr-hw-programmables.03.15.03.S.155-2.S3-ext.SPA.pkg" or 
 		name == "ASR1K-fpga_prog.16.0.1.xe.bin" or 
 		name.startswith("cat3k_caa") or 
 		name.startswith("cat9k") or 
 		name.startswith("ess3x00") or 
 		name.startswith("s5800") or 
 		name.startswith("vg400") or 
-		name.startswith("vg450")
+		name.startswith("vg450") or 
+		name.startswith("CAT3650_WEBAUTH_BUNDLE") or 
+		name.startswith("CAT3850_WEBAUTH_BUNDLE") or 
+		name.startswith("iosxe-sd-avc") or 
+		name.startswith("iosxe-remote-mgmt") or 
+		name == "c1100_gfast_phy_fw_A43j2.pkg" or 
+		name == "c1100_gfast_phy_fw_A43r_B43r.pkg" or 
+		name == "c1100_phy_fw_A39x3_B39x3.pkg" or 
+		name == "nim_vab_phy_fw_A39t_B39g1_Bond39t.pkg" or 
+		name == "nim_vab_phy_fw_A39x3_B39x3_Bond39t.pkg"
 		):
 			fileprocessor_iosxe(debug1,name)
 
@@ -1665,7 +973,10 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		name.startswith("asr9k") or 
 		name.startswith("xrv9k") or 
 		name.startswith("ASR9K") or 
-		name.startswith("ASR9000")
+		name.startswith("csm-") or 
+		name.startswith("Sightline") or 
+		name.startswith("SP_") or 
+		name.startswith("TMS_")
 		):
 			fileprocessor_iosxr(debug1,name)
 
@@ -1765,7 +1076,10 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		name.startswith ("HxClone-HyperV") or 
 		name.startswith ("DCNM") or 
 		name.startswith ("dcnm") or 
-		name == "readme_10.2.1.ST.1"
+		name.startswith ("Collector") or 
+		name.startswith ("collector") or 
+		name == "readme_10.2.1.ST.1" or 
+		name == "JeOS_Patch_To_Enable_ASD.zip"
 		):
 			file_proc_servers(name,debug1)
 
@@ -1848,11 +1162,15 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		name == "cvdm-css-1.0.zip" or 
 		name == "occ-121.gz" or 
 		name == "occ-121.zip" or 
-		name == "README-occ-121.rtf"
+		name == "README-occ-121.rtf" or 
+		name.startswith("sg") and name.endswith("zip") or 
+		name.startswith("sg") and name.endswith("adi") or 
+		name.startswith("sg") and name.endswith("adi-gz") or 
+		name.startswith ("VPN3000") or 
+		name.startswith ("vpn3000") or 
+		name.startswith ("vpn3002") or 
+		name.startswith ("vpn3005")
 		):
-			fileprocessorsecurity(debug1,name)
-
-		elif name.startswith("sg") and name.endswith("zip") or name.endswith("adi") or name.endswith("adi-gz"):
 			fileprocessorsecurity(debug1,name)
 
 		elif (
@@ -1866,12 +1184,65 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		name == "sconvertit0-11.tar" or 
 		name == "sconvertit0-12.tar" or 
 		name == "wconvertit0-11.zip" or 
-		name == "wconvertit0-12.zip"
+		name == "wconvertit0-12.zip" or 
+		name == "2730_rel_note" or 
+		name == "Exp_V3_11.axf" or 
+		name == "Exp_V3_11_Release_Note.pdf" or 
+		name == "Exp_v10_10.spe" or 
+		name == "MC7700_03.05.29.02_00_generic_000.000_001.cwe" or 
+		name == "MC7700_03.05.29.03_00_generic_000.000_001.cwe" or 
+		name == "MC7700_ATT_03.05.10.02_00.cwe" or 
+		name == "MC7710_Global_03.05.24.00A.cwe" or 
+		name == "MC7710_Global_03.05.29.02.cwe" or 
+		name == "MC7750_VZW_03.05.10.06_00.cwe" or 
+		name == "Release-Notes-V3.12.1" or 
+		name == "Release-Notes-V3.12.2" or 
+		name == "V3_07.axf" or 
+		name == "V3_09.axf" or 
+		name == "V3_12_1.axf" or 
+		name == "V3_12_2.axf" or 
+		name == "V3_12_3.axf" or 
+		name == "VAE2_A_39t_B39d_24m.SSA.bin" or 
+		name == "VAE2_A_39x3_B39x3_24o.SSA.bin" or 
+		name == "VAEW_A_39d_B_39d_24g1.SSA.bin" or 
+		name == "VAEW_A_39f1_B_39d_24g1.SSA.bin" or 
+		name == "VAEW_A_39t_B_39d_24m.SSA" or 
+		name == "VAEW_A_39x3_B39x3_24o.SSA.bin" or 
+		name == "VA_A_35l_B_35l_23j.bin" or 
+		name == "VA_A_38k1_B_38h_24g1.bin" or 
+		name == "VA_A_38q_B_38r1_24j.bin" or 
+		name == "VA_A_39d_B_38h3_24h_1.bin" or 
+		name == "VA_A_39h_B_38h3_24h_j.bin" or 
+		name == "VA_A_39m_B_38h3_24h.bin" or 
+		name == "VA_A_39m_B_38h3_24h_o.bin" or 
+		name == "VA_A_39m_B_38u_24h.bin" or 
+		name == "VA_A_39m_B_38u_24o_rc1_SDK_4.14L.04A-J.bin" or 
+		name == "VA_A_39t_B_35j_24m" or 
+		name == "VA_A_39t_B_38r1_24o_rc1_SDK_4.14L.04A.bin" or 
+		name == "VA_B_38V_d24m.bin" or 
+		name == "portware.2730.ios" or 
+		name == "vdsl.bin-A2pv6C035d_d23j" or 
+		name == "vdsl.bin-A2pv6C035j" or 
+		name == "vdsl.bin-A2pv6C035l" or 
+		name == "vdsl.bin.32bdslfw" or 
+		name.startswith("mica-modem-pw") or 
+		name.startswith("mica-pw") or 	
+		name.startswith("c2900XL") or 
+		name.startswith("c2900xl") or 
+		name.startswith("c3500XL") or 
+		name.startswith("c3500xl")
 		):
 			fileprocessorios(debug1,name)
 
 		elif (
 		name.startswith("CUMC")
+		):
+			continue
+
+		elif (
+		name.startswith("8705_") or 
+		name.startswith("8775_") or 
+		name.startswith("8790_")
 		):
 			continue
 
@@ -1888,22 +1259,15 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		):
 			fileprocessor_wireless(debug1,name)
 
-		elif splitbydash[0] == "c1100":
-			prodname = "Wireless/Access-Point/Aironet-1100"
-			imagecode = imagelookup (splitbydash[1])
-			standardios (name, prodname, imagecode)
-
-		elif splitbydash[0] == "AIR" or classify[0] == "SWISMK9" or classify[0] == "SWLC3750K9" or chars3 == "MFG":
-			wireless(name)
-
-		elif chars5 == "m9100":
-			m9100class(name)
-
-		elif chars5 == "m9500" or chars5 == "m9000" or chars5 == "m9700":
-			m9500class(name)
-
-		elif chars7 == "vpn3000" or chars7 == "vpn3002" or chars7 == "vpn3005":
-			vpn3000(name)
+		elif (
+		name.startswith ("m9000") or 
+		name.startswith ("m9100") or 
+		name.startswith ("m9200") or 
+		name.startswith ("m9250") or 
+		name.startswith ("m9500") or 
+		name.startswith ("m9700")
+		):
+			fileprocessornxos(name,debug1)
 
 		elif splitbydot[0] == "c6svc-nam":
 			cat6knam(name)
@@ -1951,32 +1315,6 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		elif splitbydash[0] == "IPS" and splitbydash[1] == "sig":
 			ipssig(name)
 
-		elif splitbydot[1] == "SPA":
-			if splitbydash[0] == "cat4500e":
-				thissplit = splitbydot[0].split("-")
-				imagecode = imagelookup (thissplit[1])
-				prodname = product (splitbydash[0])
-				cat4500spa (name, prodname, imagecode)
-			elif splitbydash[0] == "cat4500es8":
-				thissplit = splitbydot[0].split("-")
-				imagecode = imagelookup (thissplit[1])
-				prodname = product (splitbydash[0])
-				cat4500spa (name, prodname, imagecode)
-			else:
-				imagecode = imagelookup (splitbydash[1])
-				prodname = product (splitbydash[0])
-				spa (name, prodname, imagecode)
-
-
-		elif splitbydash[0] == "m9200":
-			prodname = product (splitbydash[0])
-			m9200 (name, prodname)
-
-		elif splitbydash[0] == "m9250":
-			continue
-#			prodname = product (splitbydash[0])
-#			m9250 (name, prodname)
-
 		elif splitbydot[0] == "c10k-fpd-pkg":
 			prodname = "Routers/SP/10000"
 			imagecode = imagelookup (splitbydash[1])
@@ -1994,11 +1332,6 @@ def toplevel(filename,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,deb
 		elif splitbydash[0] == "pp" and splitbydash[1] == "adv":
 			nbar2 (name)
 
-		elif splitbydot[0] == "ucs_ctrlr":
-			imagecode = imagelookup (splitbydash[1])
-			prodname = product (splitbydash[0])
-			standardios (name, prodname, imagecode)
-
 		else:
 			imagecode = imagelookup (splitbydash[1])
 			prodname = product (splitbydash[0])
@@ -2010,7 +1343,6 @@ if __name__ == "__main__":
 	parser.add_argument('-d','--directory', help='Directory to sort', required=True)
 	parser.add_argument('-hs','--hashsha512', help='Hash File using the SHA 512 Algorithm', action='store_true', required=False)
 	parser.add_argument('-hs1','--hashsha256', help='Hash File using the SHA 256 Algorithm', action='store_true', required=False)
-	parser.add_argument('-hs2','--hashsha1', help='Hash File using the SHA1 Algorithm', action='store_true', required=False)
 	parser.add_argument('-hs3','--hashmd5', help='Hash File using the MD5 Algorithm', action='store_true', required=False)
 	parser.add_argument('-hf','--hashfile', help='File with Hash Info. Format is FILENAME,MD5HASH,SHA512HASH. Additional columns are ignored', action='store_true', required=False)
 	parser.add_argument('-d0','--debug0', help='Debug Level 0 (No Output) (NYI)', action='store_true', required=False)
@@ -2020,11 +1352,9 @@ if __name__ == "__main__":
 	dirpass = args.directory
 	hashsha512 = args.hashsha512
 	hashsha256 = args.hashsha256
-	hashsha1   = args.hashsha1
 	hashmd5    = args.hashmd5
 	hashfile   = args.hashfile
 	debug1     = args.debug1
 	debug0     = args.debug0
 
-	toplevel(dirpass,hashsha512,hashsha256,hashsha1,hashmd5,hashfile,debug0,debug1)
-	
+	toplevel(dirpass,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1)
