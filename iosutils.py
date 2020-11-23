@@ -239,6 +239,10 @@ def iostrain (train, version):
 		version = version + "JN"
 	elif train.startswith("JX"):
 		version = version + "JX"
+	elif train.startswith("JPJ"):
+		version = version + "JPJ"
+	elif train.startswith("JP"):
+		version = version + "JP"
 	elif train.startswith("JY"):
 		version = version + "JY"
 	elif train.startswith("L"):
@@ -1948,6 +1952,10 @@ def imagelookup (imagecode):
 		subdirectory = "L2-L3-CONVERSION"
 	elif imagecode == "hyperv":
 		subdirectory = "HYPERv"
+	elif imagecode == "events":
+		subdirectory = "EVENTS"
+	elif imagecode == "logagent":
+		subdirectory = "LOG-AGENT"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2323,6 +2331,8 @@ def product (prodcode):
 		prodname = "Switches/Catalyst/Catalyst-2960"
 	elif prodcode == "c1000":
 		prodname = "Switches/Compact/Catalyst-1000"
+	elif prodcode == "cat1200":
+		prodname = "Switches/Compact/Catalyst-1200"
 	elif prodcode == "c2960c405":
 		prodname = "Switches/Compact/Catalyst-2960C"
 	elif prodcode == "c2960c405ex":
@@ -2338,7 +2348,7 @@ def product (prodcode):
 	elif prodcode == "c2960x":
 		prodname = "Switches/Catalyst/Catalyst-2960X"
 	elif prodcode == "c3kx":
-		prodname = "Switches/Catalyst/Catalyst-3000-SERVICE-MODULE"
+		prodname = "Switches/Modules/Catalyst-3000-SERVICE-MODULE"
 	elif prodcode == "cbs31x0":
 		prodname = "Switches/Blade-Switches/Catalyst-3100-DELL-Blade"
 	elif prodcode == "c3550":
@@ -2437,6 +2447,8 @@ def product (prodcode):
 		prodname = "Switches/Modules/Catalyst-6500-ATM"
 	elif prodcode == "wscmm":
 		prodname = "Switches/Modules/Catalyst-6500-CMM"
+	elif prodcode == "wsidsm2":
+		prodname = "Switches/Modules/Catalyst-6500-IDSM2"
 	elif prodcode == "cat6000":
 		prodname = "Switches/Catalyst/Catalyst-6500"
 	elif prodcode == "s6523":
@@ -2450,13 +2462,13 @@ def product (prodcode):
 	elif prodcode == "c6msfc3":
 		prodname = "Switches/Modules/Catalyst-6500-MSFC3"
 	elif prodcode == "c6svc5fmwam":
-		prodname = "Switches/Catalyst/Catalyst-6500-MWAM"
+		prodname = "Switches/Modules/Catalyst-6500-MWAM"
 	elif prodcode == "c6svc6fmwam":
-		prodname = "Switches/Catalyst/Catalyst-6500-MWAM"
+		prodname = "Switches/Modules/Catalyst-6500-MWAM"
 	elif prodcode == "c6svcimwam":
-		prodname = "Switches/Catalyst/Catalyst-6500-MWAM"
+		prodname = "Switches/Modules/Catalyst-6500-MWAM"
 	elif prodcode == "svcmwam":
-		prodname = "Switches/Catalyst/Catalyst-6500-MWAM"
+		prodname = "Switches/Modules/Catalyst-6500-MWAM"
 	elif prodcode == "c6sup11":
 		prodname = "Switches/Catalyst/Catalyst-6500-SUP1-MSFC1"
 	elif prodcode == "c6sup12":
@@ -2513,8 +2525,6 @@ def product (prodcode):
 		prodname = "Switches/Nexus/Nexus-4000"
 	elif prodcode == "n5000":
 		prodname = "Switches/Nexus/Nexus-5000"
-#	elif prodcode == "n5600":
-#		prodname = "Switches/Nexus/Nexus-6000-5600"
 	elif prodcode == "n6000":
 		prodname = "Switches/Nexus/Nexus-6000-5600"
 	elif prodcode == "n7000":
@@ -2835,6 +2845,8 @@ def product (prodcode):
 		prodname = "Servers/DNAC"
 	elif prodcode == "aci":
 		prodname = "Servers/APIC"
+	elif prodcode == "apicem":
+		prodname = "Network-Management/APIC-EM"
 	elif prodcode == "hyperflex":
 		prodname = "Servers/Hyperflex"
 	elif prodcode == "ironport":
@@ -2853,6 +2865,8 @@ def product (prodcode):
 		prodname = "Network-Management/Common-Services-Platform-Collector"
 	elif prodcode == "vpn3000":
 		prodname = "Security/VPN-3000"
+	elif prodcode == "mars":
+		prodname = "Security/MARS"
 	else:
 		prodname = "UNKNOWN"
 	return prodname

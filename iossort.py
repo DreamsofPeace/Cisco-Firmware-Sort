@@ -224,15 +224,6 @@ def catos (filename):
 		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
 	filemove (filepath, filename)
 
-def mars (filename):
-	product = "MARS"
-	splitbydot = filename.split(".")
-	splitbydash = splitbydot[0].split("-")
-	mainversion = splitbydash[1] + "." + splitbydot[1]
-	version = splitbydash[1] + "." + splitbydot[1] + "." + splitbydot[2] + "." + splitbydot[3]
-	filepath = product + "/" + mainversion + "/" + version
-	filemove (filepath, filename)
-
 def nbar2 (filename):
 	product = "NBAR2"
 	splitbydash = filename.split("-")
@@ -478,6 +469,15 @@ def standardios (filename, prodname, imagecode):
 				
 		if splitbydot[2] == "bin":
 			iosversion = iosversion + "(" + myver[1] + ")"
+		elif splitbydot[1] == "SPA":
+			verid = list(splitbydot[2])
+			vertwo = verid[0] + verid[1]
+			vertwo = util2digit(vertwo,verid[2])
+			verfull = util2digit(vertwo,verid[4])
+			if splitbydot[3] != "bin":
+				verfull = util2digit(verfull,splitbydot[3])
+			filepath = filepath4(prodname,vertwo,verfull,imagecode)
+			filemove (filepath, filename)
 		else:
 			iosprimary = iostrain(splitbydot[2], iosprimary)
 			iosversion = iosversion + "(" + myver[1] + ")" + splitbydot[2]
@@ -973,10 +973,12 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("asr9k") or 
 		name.startswith("xrv9k") or 
 		name.startswith("ASR9K") or 
+		name.startswith("XR12000") or 
 		name.startswith("csm-") or 
 		name.startswith("Sightline") or 
 		name.startswith("SP_") or 
-		name.startswith("TMS_")
+		name.startswith("TMS_") or 
+		name.startswith("Cisco_TMS_")
 		):
 			fileprocessor_iosxr(debug1,name)
 
@@ -1079,7 +1081,9 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("Collector") or 
 		name.startswith ("collector") or 
 		name == "readme_10.2.1.ST.1" or 
-		name == "JeOS_Patch_To_Enable_ASD.zip"
+		name == "JeOS_Patch_To_Enable_ASD.zip" or 
+		name.startswith ("apic_em_update-apic-") or 
+		name.startswith ("APIC-EM-")
 		):
 			file_proc_servers(name,debug1)
 
@@ -1114,6 +1118,14 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("csd") or 
 		name.startswith ("csm") or 
 		name.startswith ("csmars") or 
+		name == "pnLogAgent_1.1.zip" or 
+		name == "pnLogAgent_4-1-3.zip" or 
+		name == "pnLogAgent_4-1-3.zip.txt" or 
+		name == "README_WebAgent.txt" or 
+		name == "webAgent_1-0.zip" or 
+		name == "webAgent_1-0.zip.txt" or 
+		name == "webAgent_1-1.zip" or 
+		name == "webAgent_1-1.zip.txt" or 
 		name.startswith ("fcs-csm") or 
 		name.startswith ("fcs-mcp") or 
 		name.startswith ("firepower") or 
@@ -1166,10 +1178,13 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("sg") and name.endswith("zip") or 
 		name.startswith("sg") and name.endswith("adi") or 
 		name.startswith("sg") and name.endswith("adi-gz") or 
+		name == "vpn30xxboot-4.0.Rel.hex" or 
 		name.startswith ("VPN3000") or 
 		name.startswith ("vpn3000") or 
 		name.startswith ("vpn3002") or 
-		name.startswith ("vpn3005")
+		name.startswith ("vpn3005") or 
+		name.startswith ("CSM4") and name.endswith("Service_Pack1.exe") or 
+		name.startswith ("CSM4") and name.endswith("Service_Pack2.exe")
 		):
 			fileprocessorsecurity(debug1,name)
 
@@ -1218,6 +1233,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "VA_A_39m_B_38u_24h.bin" or 
 		name == "VA_A_39m_B_38u_24o_rc1_SDK_4.14L.04A-J.bin" or 
 		name == "VA_A_39t_B_35j_24m" or 
+		name == "VA_A_39t_b_38r1_24o.bin" or 
 		name == "VA_A_39t_B_38r1_24o_rc1_SDK_4.14L.04A.bin" or 
 		name == "VA_B_38V_d24m.bin" or 
 		name == "portware.2730.ios" or 
@@ -1245,6 +1261,45 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("8790_")
 		):
 			continue
+
+		elif (
+		name.startswith("vios")
+		):
+			continue
+
+		elif (
+		name.startswith("cat1900") or 
+		name.startswith("cat2820")
+		):
+			continue
+
+		elif (
+		name.startswith("uccx")
+		):
+			continue
+
+		elif (
+		name.startswith("s52000tc")
+		):
+			continue
+
+		elif (
+		name.startswith("ciscocm")
+		):
+			continue
+
+		elif (
+		name.startswith("SPA30x_SPA50x_")
+		):
+			continue
+
+		elif (
+		name.startswith("c1200") or 
+		name.startswith("dmp") or 
+		name.startswith("nmp")
+		):
+			prodname = product ("cat1200")
+			utilssingleprodname (debug1,name,prodname)
 
 		elif (
 		name.startswith ("c1100") or 

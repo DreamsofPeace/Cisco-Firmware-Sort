@@ -36,7 +36,44 @@ def fileprocessorsecurity (debug1,filename):
 	):
 		sec_css (debug1,filename)
 
+	elif(
+	filename == "vpn30xxboot-4.0.Rel.hex"
+	):
+		prodname = product("vpn3000")
+		imagecode = imagelookup("boot")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif(
+	filename == "vpn3000-4.7.Rel-k9.bin"
+	):
+		prodname = product("vpn3000")
+		filepath = filepath3(prodname,"4.7","4.7")
+		filemove (filepath, filename)
+
+	elif(
+	filename == "vpn3000-4.7.1.Rel-k9.bin"
+	):
+		prodname = product("vpn3000")
+		filepath = filepath3(prodname,"4.7","4.7.1")
+		filemove (filepath, filename)
+
+	elif(
+	filename == "vpn3000-4.7.2.Rel-k9.bin"
+	):
+		prodname = product("vpn3000")
+		filepath = filepath3(prodname,"4.7","4.7.2")
+		filemove (filepath, filename)
+
+	elif(
+	filename == "vpn3000events-4.1.7.E.zip" or 
+	filename == "vpn3000events-4.7.Rel.zip"
+	):
+		prodname = product("vpn3000")
+		imagecode = imagelookup("events")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
 	elif (
+	filename.startswith("VPN3000") or 
 	filename.startswith("vpn3000") or 
 	filename.startswith("vpn3002") or 
 	filename.startswith("vpn3005")
@@ -190,6 +227,25 @@ def fileprocessorsecurity (debug1,filename):
 		filename == "ReadMe_for_ACS_5.6_Upgrade_Package-txt"
 	):
 		sec_acs (debug1,filename)
+
+	elif (
+		filename.startswith ("csmars")
+	):
+		sec_mars_os (debug1,filename)
+
+	elif (
+		filename == "pnLogAgent_1.1.zip" or 
+		filename == "pnLogAgent_4-1-3.zip" or 
+		filename == "pnLogAgent_4-1-3.zip.txt" or 
+		filename == "README_WebAgent.txt" or 
+		filename == "webAgent_1-0.zip" or 
+		filename == "webAgent_1-0.zip.txt" or 
+		filename == "webAgent_1-1.zip" or 
+		filename == "webAgent_1-1.zip.txt"
+	):
+		prodname = product("mars")
+		imagecode = imagelookup("logagent")
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
 		filename.startswith ("fcs-csm") or 
@@ -727,7 +783,7 @@ def sec_acs (debug1,filename):
 	filename.startswith("5-")
 	):
 		imagecode = imagelookup("patch")
-		sec_acs_patch (filename,prodname,imagecode)
+		sec_acs_patch (debug1,filename,prodname,imagecode)
 
 	elif (
 		filename == "ACS57BasePatch.tar.gz"
@@ -975,7 +1031,7 @@ def sec_acs_vfour_patch (debug1,filename,prodname,imagecode):
 	filepath = filepath4 (prodname,verfour,imagecode,splitbydot[4])
 	filemove (filepath, filename)
 
-def sec_acs_patch (filename,prodname,imagecode):
+def sec_acs_patch (debug1,filename,prodname,imagecode):
 	if debug1:
 		print("\tSubroutine#\tsec_acs_patch")
 	workname = filename.replace(".tar.gpg","")
@@ -986,7 +1042,7 @@ def sec_acs_patch (filename,prodname,imagecode):
 
 def sec_ise (debug1,filename):
 	if debug1:
-		print("\tSubroutine#\tsec_iseh")
+		print("\tSubroutine#\tsec_ise")
 	prodname = product ("ise")
 
 	if (
@@ -1831,6 +1887,17 @@ def sec_vpn3000 (debug1,filename):
 	prodname = product("vpn3000")
 	splitbydash = filename.split("-")
 	splitbydot = splitbydash[1].split(".")
+	vertwo = util2digit(splitbydot[0],splitbydot[1])
+	verfour = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+	filepath = filepath3(prodname,vertwo,verfour)
+	filemove (filepath, filename)
+
+def sec_mars_os (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_mars_os")
+	prodname = product("mars")
+	workname = filename.replace("csmars-","")
+	splitbydot = workname.split(".")
 	vertwo = util2digit(splitbydot[0],splitbydot[1])
 	verfour = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
 	filepath = filepath3(prodname,vertwo,verfour)

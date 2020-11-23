@@ -185,12 +185,36 @@ def file_proc_servers (filename,debug1):
 	):
 		prodname = product("dcnm")
 		file_proc_servers_dcnm(debug1,filename,prodname)
+
 	elif filename == "readme_10.2.1.ST.1":
 		prodname = product("dcnm")
 		filepath = filepath3(prodname,"10.2","10.2.1")
 		filemove (filepath, filename)
+
+	elif (
+	filename.startswith ("apic_em_update-apic-") or 
+	filename.startswith ("APIC-EM-")
+	):
+		file_proc_servers_apicem(debug1,filename)
+
 	else:
 		messageunknownfile()
+
+def file_proc_servers_apicem (debug1,filename):
+	splitbydash = filename.split("-")
+	if debug1:
+		print("\tSubroutine#\tfile_proc_servers_apicem")
+	prodname = product("apicem")
+	if filename.startswith ("apic_em_update-apic"):
+		splitbydash = filename.split("-")
+		splitbydot = splitbydash[3].split(".")
+	elif filename.startswith ("APIC-EM"):
+		splitbydash = filename.split("-")
+		splitbydot = splitbydash[2].split(".")
+	vertwo = util2digit(splitbydot[0],splitbydot[1])
+	verthree = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+	filepath = filepath3(prodname,vertwo,verthree)
+	filemove (filepath, filename)
 
 def file_proc_servers_dcnm (debug1,filename,prodname):
 	if debug1:
