@@ -14,89 +14,6 @@ from ios_servers import file_proc_servers
 from ios_ios import fileprocessorios
 from ios_wireless import fileprocessor_wireless
 
-def cat6knam (filename):
-	product = "Network-Management/Catalyst-6500-NAM"
-	array = filename.split(".")
-	if array[0] == "c6svc-nam":
-		version = array[1].split("-")
-		mainver = version[0] + "." + version[1]
-		fullver = version[0] + "." + version[1] + "(" + version[2] + ")"
-		if array[2] == "patch":
-			thissplit = array[3].split("-")
-			patchver = thissplit[0] + "." + thissplit[1]
-			filepath = product + "/" + mainver + "/" + fullver + "/Patch " + patchver
-			filemove (filepath, filename)
-		else:
-			thissplit = array[1].split("-")
-			mainver = thissplit[0] + "." + thissplit[1]
-			fullver = thissplit[0] + "." + thissplit[1] + "(" + thissplit[2] + ")"
-			filepath = product + "/" + mainver + "/" + fullver
-			filemove (filepath, filename)
-
-def csd (filename):
-	chars = name[0:4]
-	product = "VPN Cisco Secure Desktop"
-	array = filename.split(".")
-	array2 = filename.split("-")
-	if chars == "csd_":
-		supcode = "HOST PACKAGE"
-		array3 = filename.split("_")
-		array4 = array3[1].split("-")
-		thissplit = array4[0].split(".")
-		mainver = thissplit[0] + "." + thissplit[1]
-		fullver = thissplit[0] + "." + thissplit[1] + "." + thissplit[2]
-		filepath = product + "/" + mainver + "/" + fullver + "/"  + supcode
-		filemove (filepath, filename)
-	elif array2[2] == "macosx" and array2[3] == "i386":
-		supcode = "MAC OS-X I386"
-		thissplit = array2[1].split(".")
-		mainver = thissplit[0] + "." + thissplit[1]
-		fullver = thissplit[0] + "." + thissplit[1] + "." + thissplit[2]
-		filepath = product + "/" + mainver + "/" + fullver + "/"  + supcode
-		filemove (filepath, filename)
-	elif array2[2] == "macosx" and array2[3] == "ppc":
-		supcode = "MAC OS-X POWERPC"
-		thissplit = array2[1].split(".")
-		mainver = thissplit[0] + "." + thissplit[1]
-		fullver = thissplit[0] + "." + thissplit[1] + "." + thissplit[2]
-		filepath = product + "/" + mainver + "/" + fullver + "/"  + supcode
-		filemove (filepath, filename)
-	elif array2[2] == "windows":
-		supcode = "WINDOWS"
-		thissplit = array2[1].split(".")
-		mainver = thissplit[0] + "." + thissplit[1]
-		fullver = thissplit[0] + "." + thissplit[1] + "." + thissplit[2]
-		filepath = product + "/" + mainver + "/" + fullver + "/"  + supcode
-		filemove (filepath, filename)
-	elif array2[2] == "wince":
-		supcode = "WINCE"
-		thissplit = array2[1].split(".")
-		mainver = thissplit[0] + "." + thissplit[1]
-		fullver = thissplit[0] + "." + thissplit[1] + "." + thissplit[2]
-		filepath = product + "/" + mainver + "/" + fullver + "/"  + supcode
-		filemove (filepath, filename)
-	elif array2[2] == "linux" and array2[3] == "i386":
-		supcode = "LINUX X86"
-		thissplit = array2[1].split(".")
-		mainver = thissplit[0] + "." + thissplit[1]
-		fullver = thissplit[0] + "." + thissplit[1] + "." + thissplit[2]
-		filepath = product + "/" + mainver + "/" + fullver + "/"  + supcode
-		filemove (filepath, filename)
-	elif array2[2] == "linux" and array2[3] == "x64":
-		supcode = "LINUX X64"
-		thissplit = array2[1].split(".")
-		mainver = thissplit[0] + "." + thissplit[1]
-		fullver = thissplit[0] + "." + thissplit[1] + "." + thissplit[2]
-		filepath = product + "/" + mainver + "/" + fullver + "/"  + supcode
-		filemove (filepath, filename)
-	elif array2[2] == "linux" and array2[3] == "x64":
-		supcode = "LINUX X64"
-		thissplit = array2[1].split(".")
-		mainver = thissplit[0] + "." + thissplit[1]
-		fullver = thissplit[0] + "." + thissplit[1] + "." + thissplit[2]
-		filepath = product + "/" + mainver + "/" + fullver + "/"  + supcode
-		filemove (filepath, filename)
-
 def catos (filename):
 	array = filename.split(".")
 	version = array[1].split("-")
@@ -333,47 +250,6 @@ def ipsrecovery (filename):
 		filepath = product + "/" + engine[0] + "/" + version + "/" + imagecode
 	filemove (filepath, filename)
 
-def csmips (filename):
-	product = "Cisco Security Manager"
-	splitbydash = filename.split("-")
-	if splitbydash[3] == "AIM":
-		imagecode = "UPGRADE-AIM"
-		version = splitbydash[5] + "(" + splitbydash[6] + ")"
-		engine = splitbydash[7].split(".")
-		filepath = product + "/" + engine[0] + "/" + version + "/" + imagecode
-		filemove (filepath, filename)
-	elif splitbydash[3] == "K9":
-		imagecode = "UPGRADE-OTHER"
-		version = splitbydash[4] + "(" + splitbydash[5] + ")"
-		engine = splitbydash[6].split(".")
-		filepath = product + "/" + engine[0] + "/" + version + "/" + imagecode
-		filemove (filepath, filename)
-	elif splitbydash[3] == "SSC_5":
-		imagecode = "UPGRADE-AIP-SSC-5"
-		version = splitbydash[5] + "(" + splitbydash[6] + ")"
-		engine = splitbydash[7].split(".")
-		filepath = product + "/" + engine[0] + "/" + version + "/" + imagecode
-		filemove (filepath, filename)
-	elif splitbydash[3] == "NME":
-		imagecode = "UPGRADE-NME"
-		version = splitbydash[5] + "(" + splitbydash[6] + ")"
-		engine = splitbydash[7].split(".")
-		filepath = product + "/" + engine[0] + "/" + version + "/" + imagecode
-		filemove (filepath, filename)
-	elif splitbydash[3] == "sig":
-		imagecode = "SIGNATURES"
-		version = splitbydash[4]
-		engine = splitbydash[6].split(".")
-		filepath = product + "/" + engine[0] + "/" + imagecode + "/" + version
-		filemove (filepath, filename)
-	elif splitbydash[3] == "engine":
-		imagecode = "UPGRADE-ENGINE"
-		temp = splitbydash[6].split(".")
-		version = splitbydash[6] + "(" + temp[0] + ")"
-		engine = splitbydash[4]
-		filepath = product + "/" + engine + "/" + version + "/" + imagecode
-		filemove (filepath, filename)
-
 def ipssig (filename):
 	product = "IPS"
 	imagecode = "SIGNATURES"
@@ -395,49 +271,6 @@ def ipssystem (filename):
 		version = splitbydash[2] + "(" + splitbydash[3] + ")"
 		engine = splitbydash[4].split(".")
 		filepath = product + "/" + engine[0] + "/" + version + "/" + imagecode
-	filemove (filepath, filename)
-
-def csm4 (filename):
-	product = "Cisco Security Manager"
-	splitbydash = filename.split("-")
-	if splitbydash[3] == "rme":
-		imagecode = "RESOURCE MANAGER ESSENTIALS"
-	if splitbydash[3] == "mcp":
-		imagecode = "MONITORING CENTER FOR PERFORMANCE"
-	if splitbydash[3] == "sp1":
-		imagecode = "SERVICE PACK 1"
-	if splitbydash[3] == "sp2":
-		imagecode = "SERVICE PACK 2"
-	if splitbydash[3] == "sp3":
-		imagecode = "SERVICE PACK 3"
-	if splitbydash[3] == "sp4":
-		imagecode = "SERVICE PACK 4"
-	if splitbydash[3] == "sp5":
-		imagecode = "SERVICE PACK 5"
-	if splitbydash[3] == "win":
-		imagecode = "INSTALL"
-	if splitbydash[3] == "w2k":
-		imagecode = "INSTALL"
-	splitall = list(splitbydash[2])
-	splitbydash = splitbydot[0].split("-")
-	version = splitall[0] + "." + splitall[1] + "." + splitall[2]
-	filepath = product + "/" + version + "/" + imagecode
-	filemove (filepath, filename)
-
-def csmmcp (filename):
-	product = "Cisco Security Manager"
-	imagecode = "MANAGEMENT CENTER FOR PERFORMANCE"
-	splitbydash = filename.split("-")
-	if splitbydash[2] == "40":
-		version = "4.0.0"
-	elif splitbydash[2] == "v30":
-		version = "3.0.0"
-	elif splitbydash[2] == "v31":
-		version = "3.1.0"
-	else:
-		splitall = list(splitbydash[2])
-		version = splitall[0] + "." + splitall[1] + "." + splitall[2]
-	filepath = product + "/" + version + "/" + imagecode
 	filemove (filepath, filename)
 
 def standardios (filename, prodname, imagecode):
@@ -772,14 +605,12 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			continue
 		elif name.endswith("hash"):
 			continue
-		elif name.endswith("pdf"):
-			continue
 		elif name.endswith("part"):
 			continue
-		
-		chars3 = name[0:3]
-		chars5 = name[0:5]
-		chars7 = name[0:7]
+		elif name == "cat9k_fpga_upgrade_utility.pdf":
+			fileprocessor_iosxe(debug1,name)
+		elif name.endswith("pdf"):
+			continue
 
 		if (
 		name.startswith("ata") or 
@@ -886,6 +717,16 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			filepath = prodname + "/" + imagecode
 			filemove (filepath, name)
 
+		elif (
+		name.startswith("8705_") or 
+		name.startswith("8775_") or 
+		name.startswith("8790_")
+		):
+			prodname = product ("ISRG1GENERIC")
+			imagecode = imagelookup ("HWIC3GGSM")
+			filepath = prodname + "/" + imagecode
+			filemove (filepath, name)
+
 		elif name.startswith("vcw-vfc-mz"):
 			prodname = product ("c5350")
 			imagecode = imagelookup (splitbydot[0])
@@ -939,11 +780,8 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("isr4200") or 
 		name.startswith("ir1101") or 
 		name.startswith("isr4400v2") or 
-		splitbydot[0] == "c1100-universalk9_ias" or 
-		splitbydot[0] == "c1100-universalk9_ias_npe" or 
-		splitbydot[0] == "c1100-ucmk9" or 
-		splitbydot[0] == "c1100-universalk9" or 
-		splitbydot[0] == "c1100-universalk9_npe" or 
+		name.startswith("c1100-universalk9") or 
+		name.startswith("c1100-ucmk9") or 
 		name == "asr1000-hw-programmables.16.08.01.SPA.pkg" or 
 		name == "isr-hw-programmables.03.13.02.S.154-3.S2-ext.SPA.pkg" or 
 		name == "isr-hw-programmables.03.15.03.S.155-2.S3-ext.SPA.pkg" or 
@@ -965,22 +803,6 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "nim_vab_phy_fw_A39x3_B39x3_Bond39t.pkg"
 		):
 			fileprocessor_iosxe(debug1,name)
-
-		elif (
-		name == "xrvr-fullk9-4.3.2.vmdk" or 
-		name == "xrv9k-fullk9-x.qcow2-6.0.0" or 
-		name.startswith("fullk9-R-XRV9000") or 
-		name.startswith("asr9k") or 
-		name.startswith("xrv9k") or 
-		name.startswith("ASR9K") or 
-		name.startswith("XR12000") or 
-		name.startswith("csm-") or 
-		name.startswith("Sightline") or 
-		name.startswith("SP_") or 
-		name.startswith("TMS_") or 
-		name.startswith("Cisco_TMS_")
-		):
-			fileprocessor_iosxr(debug1,name)
 
 		elif (
 		name.startswith("ucs") or 
@@ -1083,7 +905,9 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "readme_10.2.1.ST.1" or 
 		name == "JeOS_Patch_To_Enable_ASD.zip" or 
 		name.startswith ("apic_em_update-apic-") or 
-		name.startswith ("APIC-EM-")
+		name.startswith ("APIC-EM-") or 
+		name.startswith ("CiscoPI3.4.pem") or 
+		name.startswith ("CiscoPI3.5.pem")
 		):
 			file_proc_servers(name,debug1)
 
@@ -1127,6 +951,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "webAgent_1-1.zip" or 
 		name == "webAgent_1-1.zip.txt" or 
 		name.startswith ("fcs-csm") or 
+		name.startswith ("csm-maxmind-geolitecity-") or 
 		name.startswith ("fcs-mcp") or 
 		name.startswith ("firepower") or 
 		name.startswith ("ftd") or 
@@ -1146,6 +971,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("pix") or 
 		name.startswith ("sampleTransforms") or 
 		name.startswith ("secapp-ucmk9") or
+		name.startswith ("secapp-utd") or
 		name.startswith ("thirdparty") or 
 		name.startswith ("tools-anyconnect") or 
 		name.startswith ("webagent") or 
@@ -1184,9 +1010,31 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("vpn3002") or 
 		name.startswith ("vpn3005") or 
 		name.startswith ("CSM4") and name.endswith("Service_Pack1.exe") or 
-		name.startswith ("CSM4") and name.endswith("Service_Pack2.exe")
+		name.startswith ("CSM4") and name.endswith("Service_Pack2.exe") or 
+		name.startswith ("cda") and name.endswith("iso") or 
+		name == "cisco_vpn_auth.jar" or 
+		name == "pxGrid_Mitigation_Remediation_v1.0.tgz" or 
+		name == "rawrite.exe" or 
+		name == "VPNDisable_ServiceProfile.xml" or 
+		name == "citrix_plugin_howto.doc"
 		):
 			fileprocessorsecurity(debug1,name)
+
+		elif (
+		name == "xrvr-fullk9-4.3.2.vmdk" or 
+		name == "xrv9k-fullk9-x.qcow2-6.0.0" or 
+		name.startswith("fullk9-R-XRV9000") or 
+		name.startswith("asr9k") or 
+		name.startswith("xrv9k") or 
+		name.startswith("ASR9K") or 
+		name.startswith("XR12000") or 
+		name.startswith("csm-") or 
+		name.startswith("Sightline") or 
+		name.startswith("SP_") or 
+		name.startswith("TMS_") or 
+		name.startswith("Cisco_TMS_")
+		):
+			fileprocessor_iosxr(debug1,name)
 
 		elif (
 		name.startswith ("sprom") or 
@@ -1210,6 +1058,12 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "MC7710_Global_03.05.24.00A.cwe" or 
 		name == "MC7710_Global_03.05.29.02.cwe" or 
 		name == "MC7750_VZW_03.05.10.06_00.cwe" or 
+		name.startswith ("MC735X") and name.endswith ("spk") or 
+		name.startswith ("MC7354") and name.endswith ("spk") or 
+		name.startswith ("MC7350") and name.endswith ("spk") or 
+		name.startswith ("MC7304") and name.endswith ("spk") or 
+		name == "fw_upgrade.tcl" or 
+		name == "sprint_v16904_package.tar" or 
 		name == "Release-Notes-V3.12.1" or 
 		name == "Release-Notes-V3.12.2" or 
 		name == "V3_07.axf" or 
@@ -1256,6 +1110,14 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			continue
 
 		elif (
+		name == "Cisco_usbconsole_driver.zip" or 
+		name == "Cisco_usbconsole_driver_3_1.zip" or 
+		name == "asr-9xx_usbconsole_drivers.zip"
+		):
+			prodname = product ("usbconsole")
+			utilssingleprodname (debug1,name,prodname)
+
+		elif (
 		name.startswith("8705_") or 
 		name.startswith("8775_") or 
 		name.startswith("8790_")
@@ -1268,29 +1130,79 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			continue
 
 		elif (
-		name.startswith("cat1900") or 
+		name == "p1021_c800.V1.1.0.bin" or 
+		name == "PRL_60779.prl"
+		):
+			continue
+
+		elif (
+		name == "all-in-one-VM-1.2.1-194.ova" or 
+		name == "all-in-one-VM-1.3.0.181.ova"
+		):
+			prodname = product ("onepk")
+			utilssingleprodname (debug1,name,prodname)
+
+		elif (
+		name.startswith("cat1900")
+		):
+			prodname = product ("cat1900")
+			utilssingleprodname (debug1,name,prodname)
+
+		elif (
+		name.startswith("cat2800") or 
 		name.startswith("cat2820")
 		):
-			continue
+			prodname = product ("cat2800")
+			utilssingleprodname (debug1,name,prodname)
 
 		elif (
-		name.startswith("uccx")
+		name == "README.SWT"
+		):
+			prodname = product ("cat1600")
+			utilssingleprodname (debug1,name,prodname)
+
+		elif (
+		name == "epsboot.ima"
+		):
+			prodname = product ("cat3000")
+			utilssingleprodname (debug1,name,prodname)
+
+		elif (
+		name.startswith("uccx") or 
+		name.startswith("s52000tc") or 
+		name.startswith("ciscocm") or 
+		name.startswith("CPO") and name.endswith("zip") or 
+		name.startswith("128MB.sdf") or 
+		name.startswith("256MB.sdf") or 
+		name.startswith("MIBS") or 
+		name.startswith("sdmv10.zip") or 
+		name.startswith("SDM-V25.zip") or 
+		name.startswith("c6svc-nam") or 
+		name.startswith("CSD-for-CSA-updates.zip") or 
+		name.startswith("copfiles_iOS96.zip")
 		):
 			continue
 
 		elif (
-		name.startswith("s52000tc")
+		name.startswith("axsm_") or 
+		name.startswith("axsmxg_") or 
+		name.startswith("pxm45_") or 
+		name == "mgx8880rel5600mib.tar"
 		):
+			#MGX8850
 			continue
 
 		elif (
-		name.startswith("ciscocm")
-		):
-			continue
-
-		elif (
+		name.startswith("Sx500") or 
+		name.startswith("Sx350") or 
+		name.startswith("Sx300") or 
+		name.startswith("Sx250") or 
+		name.startswith("Sx220") or 
+		name.startswith("Sx200") or 
+		name.startswith("MIBs_Sx500") or 
 		name.startswith("SPA30x_SPA50x_")
 		):
+			#Small Business
 			continue
 
 		elif (
@@ -1309,8 +1221,13 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("AIR_CTVM_LARGE-K9") or 
 		name.startswith ("AIR_CTVM-K9") or 
 		name.startswith ("MFG_CTVM") or 
+		name.startswith ("AP_BUNDLE") or 
+		name.startswith ("CiscoAironet-AP-to-LWAPP-Upgrade-Tool") or 
 		name == "AP350-Cisco-IOS-Upgrade-Image-v2.img" or 
-		name == "AP1200-Cisco-IOS-Upgrade-Image-v3.img"
+		name == "AP1200-Cisco-IOS-Upgrade-Image-v3.img" or 
+		name.startswith ("WGB350") and name.endswith ("exe") or 
+		name == "webauth_bundle.zip" or 
+		name == "webauth_bundle-1.0.2.zip"
 		):
 			fileprocessor_wireless(debug1,name)
 
@@ -1324,8 +1241,40 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		):
 			fileprocessornxos(name,debug1)
 
-		elif splitbydot[0] == "c6svc-nam":
-			cat6knam(name)
+		elif (
+		name == "CPUpdate.xml" or 
+		name.startswith("Cisco-config-pro") or 
+		name.startswith("cisco-config-pro")
+		):
+			prodname = product ("ccp")
+			utilssingleprodname (debug1,name,prodname)
+
+		elif (
+		name == "cna-1_0-windows-k9-installer.1-0-1a.exe" or 
+		name.startswith("cna-mac-k9") or 
+		name.startswith("cna-windows-k9")
+		):
+			prodname = product ("cna")
+			utilssingleprodname (debug1,name,prodname)
+
+		elif (
+		name == "SDM-V25.zip"
+		):
+			continue
+#			prodname = product ("ccp")
+#			utilssingleprodname (debug1,name,prodname)
+
+		elif (
+		name.startswith("c3560cx-cwml") or 
+		name.startswith("c2960x-cwml") or 
+		name.startswith("c2960l-cwml") or 
+		name.startswith("c2960cx-cwml") or 
+		name.startswith("c2960-cwml") or 
+		name.startswith("c2960c405-cwml") or 
+		name.startswith("c1000-cwml")
+		):
+			prodname = product ("ccpc")
+			utilssingleprodname (debug1,name,prodname)
 
 		elif splitbydot[0] == "c675" or splitbydot[1] == "c675":
 			filepath = "Other"
@@ -1358,9 +1307,6 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			filepath = "Cisco Security Manager/4.0.0/RESOURCE MANAGER ESSENTIALS"
 			filemove (filepath, name)
 
-		elif splitbydash[0] == "IPS" and splitbydash[1] == "CS" and splitbydash[2] == "MGR":
-			csmips(name)
-
 		elif splitbydash[0] == "IPS" and splitbydash[1] == "K9" and splitbydash[2] == "r":
 			ipsrecovery(name)
 
@@ -1388,9 +1334,10 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			nbar2 (name)
 
 		else:
-			imagecode = imagelookup (splitbydash[1])
-			prodname = product (splitbydash[0])
-			standardios (name, prodname, imagecode)
+#			imagecode = imagelookup (splitbydash[1])
+#			prodname = product (splitbydash[0])
+#			standardios (name, prodname, imagecode)
+			fileprocessorios (debug1,name)
 
 if __name__ == "__main__":
 

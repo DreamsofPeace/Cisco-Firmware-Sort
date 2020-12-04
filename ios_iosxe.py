@@ -12,9 +12,13 @@ def fileprocessor_iosxe(debug1,filename):
 	splitbydot = filename.split(".")
 	splitbydash = filename.split("-")
 
-	if filename == "cat9k_iosxe.16.00.00fpgautility.SPA.bin":
+	if (
+	filename == "cat9k_iosxe.16.00.00fpgautility.SPA.bin" or 
+	filename == "cat9k_fpga_upgrade_utility.pdf"
+	):
 		prodname = product ("cat9k")
-		fileproc_iosxe (filename,prodname,"Hardware")
+		imagecode = imagelookup ("fpga")
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename == "asr1000rpx86-universalk9.V1612_1_CVE_2019_1649.SPA.bin":
 		prodname = product ("asr1000rpx86")
@@ -164,7 +168,10 @@ def fileprocessor_iosxe(debug1,filename):
 		fileproc_sdwan (filename,prodname,imagecode)
 
 	else:
-		prodname = product (splitbydash[0])
+		if splitbydash[0] == "c1100":
+			prodname = product ("c1100router")
+		else:
+			prodname = product (splitbydash[0])
 		mdash = splitbydot[0].split("-")
 		imagecode = imagelookup(mdash[1])
 		if prodname == "UNKNOWN":
@@ -233,9 +240,6 @@ def fileproc_iosxe (filename,prodname,imagecode):
 	if splitbydot[4].startswith("CSC") and splitbydot[6]  == "smu":
 		iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
 		filepath = filepath4(prodname,"SMU",iosfull,splitbydot[4])
-		filemove (filepath, filename)
-	elif imagecode == "Hardware":
-		filepath = filepath2 (prodname,imagecode)
 		filemove (filepath, filename)
 	else:
 		iosmain = util2digit(splitbydot[1],splitbydot[2])

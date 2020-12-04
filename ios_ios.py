@@ -5,7 +5,7 @@ from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
 
 def fileprocessorios (debug1,filename):
 	if debug1:
-		print("\tModule#\tios_ios")
+		print("\tModule# \tios_ios")
 	if debug1:
 		print("\tSubroutine#\tfileprocessorios")
 	splitbydash = filename.split("-")
@@ -22,7 +22,7 @@ def fileprocessorios (debug1,filename):
 	):
 		prodname = product("c6500")
 		imagecode = imagelookup("sprom")
-		iossinglefile (filename,prodname,imagecode,debug1)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
 	filename == "sconvertit0-11.tar" or 
@@ -32,7 +32,7 @@ def fileprocessorios (debug1,filename):
 	):
 		prodname = product("c6500")
 		imagecode = imagelookup("config-converter")
-		iossinglefile (filename,prodname,imagecode,debug1)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename == "MC7700_03.05.29.02_00_generic_000.000_001.cwe" or filename == "MC7700_ATT_03.05.10.02_00.cwe":
 		prodname = product ("ISRG2GENERIC")
@@ -126,9 +126,92 @@ def fileprocessorios (debug1,filename):
 		imagecode = imagelookup ("mica-modem")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
+	else:
+		splitbydash = filename.split("-")
+		prodname = product (splitbydash[0])
+		imagecode = imagelookup (splitbydash[1])
+		if prodname == "UNKNOWN":
+			messageunknowndev()
+		elif imagecode == "UNKNOWN":
+			messageunknownfeat()
+		else:
+			ios_classical (debug1,filename,prodname,imagecode)
 
-def iossinglefile (filename,prodname,imagecode,debug1):
+def ios_classical (debug1,filename, prodname, imagecode):
 	if debug1:
-		print("\tSubroutine#\tiossinglefile")
-	filepath = filepath2 (prodname,imagecode)
-	filemove (filepath, filename)
+		print("\tSubroutine#\tios_classical")
+	
+	splitbydot = filename.split(".")
+	splitbydash = filename.split("-")
+
+	splitbydot[1] = splitbydot[1].replace("-", "")
+	myversion = splitbydot[1].split("-")
+	mynumber = list(myversion[0])
+	if len(mynumber) == 5:
+		twodigit = mynumber[0] + mynumber[1]
+		vertwo = util2digit(twodigit,mynumber[2])
+		fourdigit = mynumber[3] + mynumber[4]
+		verthree = util2digit(vertwo,fourdigit)
+		if len(splitbydot) > 2:
+			if (
+			splitbydot[2] != "bin" or 
+			splitbydot[2] != "tar"
+			):
+				vertwo = iostrain(splitbydot[2], vertwo)
+				verthree = util2digit(verthree,splitbydot[2])
+				filepath = filepath4(prodname,vertwo,verthree,imagecode)
+				filemove (filepath, filename)
+	elif len(mynumber) == 4:
+		twodigit = mynumber[0] + mynumber[1]
+		vertwo = util2digit(twodigit,mynumber[2])
+		verthree = util2digit(vertwo,mynumber[3])
+		if len(splitbydot) > 2:
+			if (
+			splitbydot[2] != "bin" or 
+			splitbydot[2] != "tar"
+			):
+				vertwo = iostrain(splitbydot[2], vertwo)
+				verthree = util2digit(verthree,splitbydot[2])
+				filepath = filepath4(prodname,vertwo,verthree,imagecode)
+				filemove (filepath, filename)
+
+
+"""
+		if splitbydot[2] == "bin":
+			iosversion = iosversion + "(" + myversion[1] + ")"
+		elif splitbydot[1] == "SPA":
+			verid = list(splitbydot[2])
+			vertwo = verid[0] + verid[1]
+			vertwo = util2digit(vertwo,verid[2])
+			verfull = util2digit(vertwo,verid[4])
+			if splitbydot[3] != "bin":
+				verfull = util2digit(verfull,splitbydot[3])
+			filepath = filepath4(prodname,vertwo,verfull,imagecode)
+			filemove (filepath, filename)
+		else:
+			iosprimary = iostrain(splitbydot[2], iosprimary)
+			iosversion = iosversion + "(" + myversion[1] + ")" + splitbydot[2]
+		if prodname == "Catalyst-6500" and imagecode == "FIELD PROGRAMABLE DEVICE":
+			filepath = prodname + "/" + imagecode + "/" + iosprimary + "/" + iosversion
+		elif splitbydash[0] == "c7600" and splitbydot[1] == "122-18":
+			filepath = "Catalyst-6500" + "/" + imagecode + "/" + iosprimary + "/" + iosversion
+		elif prodname == "7600" and imagecode == "FIELD PROGRAMABLE DEVICE":
+			filepath = prodname + "-" + imagecode + "/" + iosprimary + "/" + iosversion
+		elif splitbydot[0] == "s3223-adventerprisek9_wan-vz" or splitbydot[0] == "s72033-adventerprisek9_wan-vz":
+			filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode + " - MODULAR"
+		elif splitbydot[0] == "s3223-adventerprise_wan-vz" or splitbydot[0] == "s72033-adventerprise_wan-vz":
+			filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode + " - MODULAR"
+		elif splitbydot[0] == "s3223-advipservicesk9_wan-vz" or splitbydot[0] == "s72033-advipservicesk9_wan-vz":
+			filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode + " - MODULAR"
+		elif splitbydot[0] == "s3223-ipbase-vz" or splitbydot[0] == "s72033-ipbase-vz":
+			filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode + " - MODULAR"
+		elif splitbydot[0] == "s3223-ipbasek9-vz" or splitbydot[0] == "s72033-ipbasek9-vz":
+			filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode + " - MODULAR"
+		elif splitbydot[0] == "s3223-ipservicesk9_wan-vz" or splitbydot[0] == "s72033-ipservicesk9_wan-vz":
+			filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode + " - MODULAR"
+		elif splitbydot[0] == "s3223-ipservicesk9-vz" or splitbydot[0] == "s72033-ipservicesk9-vz":
+			filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode + " - MODULAR"
+		else:
+			filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode
+		filemove (filepath, filename)
+"""

@@ -263,6 +263,7 @@ def fileprocessorsecurity (debug1,filename):
 	filename.startswith("iosxe-utd") or 
 	filename.startswith("iox-iosxe-utd") or 
 	filename.startswith("secapp-ucmk9") or 
+	filename.startswith("secapp-utd") or
 	filename.startswith("iosxe-utd-ips")
 	):
 		sec_utd_engine (debug1,filename)
@@ -281,7 +282,7 @@ def fileprocessorsecurity (debug1,filename):
 
 def sec_fp_mgmt (debug1,filename):
 	if debug1:
-		print("\tSubroutine#\tsec_utd_engine")
+		print("\tSubroutine#\tsec_fp_mgmt")
 	prodname = product("firepower")
 	imagecode = imagelookup("fmc")
 	splitbydash = filename.split("-")
@@ -436,7 +437,10 @@ def sec_csm_geoip (debug1,filename,prodname,imagecode):
 	workname = workname.replace(".zip","")
 	mylist = list(workname)
 	myyear = mylist[0] + mylist[1] + mylist[2] + mylist[3]
-	filepath = filepath3 (prodname,imagecode,myyear)
+	mymonth = mylist[4] + mylist[5]
+	myday = mylist[6] + mylist[7]
+	releasedate = myyear + "-" + mymonth + "-" + myday
+	filepath = filepath3 (prodname,imagecode,releasedate)
 	filemove (filepath, filename)
 
 
