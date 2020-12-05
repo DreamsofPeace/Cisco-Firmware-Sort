@@ -622,7 +622,7 @@ def iostrain (train, version):
 	return version
 
 def imagelookup (imagecode):
-	elif imagecode == "sm10g":
+	if imagecode == "sm10g":
 		subdirectory = "10-GIG-MODULE"
 	elif imagecode == "migrate_to_eXR":
 		subdirectory = "64BIT-MIGRATION"
