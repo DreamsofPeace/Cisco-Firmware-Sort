@@ -144,7 +144,10 @@ def fileprocessor_iosxe(debug1,filename):
 		prodname = product (splitbydash[0])
 		mdash = splitbydot[0].split("-")
 		imagecode = imagelookup(mdash[1])
-		if splitbydot[2] == "03":
+		if (
+		filename.startswith("cat3k_caa-universalk9.SPA") or 
+		filename.startswith("cat3k_caa-universalk9ldpe.SPA")
+		):
 			fileproc_iosxe_3 (filename,prodname,imagecode)
 		else:
 			fileproc_iosxe(filename,prodname,imagecode)
