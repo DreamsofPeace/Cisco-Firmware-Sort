@@ -152,6 +152,26 @@ def fileprocessor_iosxe(debug1,filename):
 		else:
 			fileproc_iosxe(filename,prodname,imagecode)
 
+	elif filename.startswith("cat4500es8"):
+		mdash = splitbydot[0].split("-")
+		prodname = product (mdash[0])
+		imagecode = imagelookup(mdash[1])
+		fileproc_iosxe_3 (filename,prodname,imagecode)
+
+	elif filename.startswith("cat4500e"):
+		prodname = product (splitbydash[0])
+		mdash = splitbydot[0].split("-")
+		imagecode = imagelookup(mdash[1])
+		if (
+		filename.startswith("cat4500e-universalk9") or 
+		filename.startswith("cat4500e-universal") or 
+		filename.startswith("cat4500e-universalk9_lite") or 
+		filename.startswith("cat4500e-universal_lite")
+		):
+			fileproc_iosxe_3 (filename,prodname,imagecode)
+		else:
+			fileproc_iosxe(filename,prodname,imagecode)
+
 	elif (
 	splitbydot[0] == "C9800-40-universalk9_wlc" or 
 	splitbydot[0] == "C9800-80-universalk9_wlc" or 
