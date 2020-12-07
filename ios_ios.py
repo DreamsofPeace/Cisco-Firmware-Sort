@@ -134,6 +134,17 @@ def fileprocessorios (debug1,filename):
 		imagecode = imagelookup ("fpd")
 		ios_classical (debug1,filename,prodname,imagecode)
 
+	elif (
+	filename.startswith ("s2t54") or 
+	filename.startswith ("s6t64") or 
+	filename.startswith ("c6848x") or 
+	filename.startswith ("c6880x")
+	):
+		splitbydash = filename.split("-")
+		prodname = product(splitbydash[0])
+		imagecode = imagelookup(splitbydash[1])
+		ios_spa (debug1,filename,prodname,imagecode)
+
 	else:
 		splitbydash = filename.split("-")
 		prodname = product (splitbydash[0])
@@ -144,6 +155,22 @@ def fileprocessorios (debug1,filename):
 			messageunknownfeat()
 		else:
 			ios_classical (debug1,filename,prodname,imagecode)
+
+def ios_spa (debug1,filename, prodname, imagecode):
+	if debug1:
+		print("\tSubroutine#\tios_spa")
+
+	splitbydot = filename.split(".")
+	splitbydot[2] = splitbydot[2].replace("-", "")
+	mynumber = list(splitbydot[2])
+	twodigit = mynumber[0] + mynumber[1]
+	vertwo = util2digit(twodigit,mynumber[2])
+	verthree = util2digit(vertwo,mynumber[3])
+	verfour = util2digit(verthree,splitbydot[3])
+	vertwo = iostrain(splitbydot[3], vertwo)
+#	verthree = iostrain(splitbydot[3], verthree)
+	filepath = filepath4(prodname,vertwo,verfour,imagecode)
+	filemove (filepath, filename)
 
 def ios_classical (debug1,filename, prodname, imagecode):
 	if debug1:
