@@ -17,8 +17,8 @@ from ios_wireless import fileprocessor_wireless
 def catos (filename):
 	array = filename.split(".")
 	version = array[1].split("-")
-	mainver = version[0] + "." + version[1]
-	fullver = version[0] + "." + version[1] + "(" + version[2] + ")"
+	mainver = util2digit(version[0],version[1])
+	fullver = util3digit(version[0],version[1],version[2])
 	if array[0] == "cat4000":
 		prodname = product ("cat4000s12")
 		imagecode = "SUP-I-II"
@@ -272,71 +272,6 @@ def ipssystem (filename):
 		engine = splitbydash[4].split(".")
 		filepath = product + "/" + engine[0] + "/" + version + "/" + imagecode
 	filemove (filepath, filename)
-
-def standardios (filename, prodname, imagecode):
-	
-	if prodname == "UNKNOWN":
-		messageunknowndev()
-	elif imagecode == "UNKNOWN":
-		messageunknownfeat()
-	else:
-		splitbydot = filename.split(".")
-		splitbydash = filename.split("-")
-		myver = splitbydot[1].split("-")
-		
-		mynum = list(myver[0])
-		thiscontrol = 0
-		for myios in mynum:
-			if thiscontrol == 0:
-				iosversion = myios
-				iosprimary = myios
-				thiscontrol = thiscontrol + 1
-			elif thiscontrol == 1:
-				iosversion = iosversion + myios + "."
-				iosprimary = iosprimary + myios + "."
-				thiscontrol = thiscontrol + 1
-			elif thiscontrol == 2:
-				iosversion = iosversion + myios
-				iosprimary = iosprimary + myios
-				thiscontrol = thiscontrol + 1
-				
-		if splitbydot[2] == "bin":
-			iosversion = iosversion + "(" + myver[1] + ")"
-		elif splitbydot[1] == "SPA":
-			verid = list(splitbydot[2])
-			vertwo = verid[0] + verid[1]
-			vertwo = util2digit(vertwo,verid[2])
-			verfull = util2digit(vertwo,verid[4])
-			if splitbydot[3] != "bin":
-				verfull = util2digit(verfull,splitbydot[3])
-			filepath = filepath4(prodname,vertwo,verfull,imagecode)
-			filemove (filepath, filename)
-		else:
-			iosprimary = iostrain(splitbydot[2], iosprimary)
-			iosversion = iosversion + "(" + myver[1] + ")" + splitbydot[2]
-		if prodname == "Catalyst-6500" and imagecode == "FIELD PROGRAMABLE DEVICE":
-			filepath = prodname + "/" + imagecode + "/" + iosprimary + "/" + iosversion
-		elif splitbydash[0] == "c7600" and splitbydot[1] == "122-18":
-			filepath = "Catalyst-6500" + "/" + imagecode + "/" + iosprimary + "/" + iosversion
-		elif prodname == "7600" and imagecode == "FIELD PROGRAMABLE DEVICE":
-			filepath = prodname + "-" + imagecode + "/" + iosprimary + "/" + iosversion
-		elif splitbydot[0] == "s3223-adventerprisek9_wan-vz" or splitbydot[0] == "s72033-adventerprisek9_wan-vz":
-			filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode + " - MODULAR"
-		elif splitbydot[0] == "s3223-adventerprise_wan-vz" or splitbydot[0] == "s72033-adventerprise_wan-vz":
-			filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode + " - MODULAR"
-		elif splitbydot[0] == "s3223-advipservicesk9_wan-vz" or splitbydot[0] == "s72033-advipservicesk9_wan-vz":
-			filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode + " - MODULAR"
-		elif splitbydot[0] == "s3223-ipbase-vz" or splitbydot[0] == "s72033-ipbase-vz":
-			filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode + " - MODULAR"
-		elif splitbydot[0] == "s3223-ipbasek9-vz" or splitbydot[0] == "s72033-ipbasek9-vz":
-			filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode + " - MODULAR"
-		elif splitbydot[0] == "s3223-ipservicesk9_wan-vz" or splitbydot[0] == "s72033-ipservicesk9_wan-vz":
-			filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode + " - MODULAR"
-		elif splitbydot[0] == "s3223-ipservicesk9-vz" or splitbydot[0] == "s72033-ipservicesk9-vz":
-			filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode + " - MODULAR"
-		else:
-			filepath = prodname + "/" + iosprimary + "/" + iosversion + "/" + imagecode
-		filemove (filepath, filename)
 
 def waas (filename):
 	prodname = "WAAS"
@@ -749,11 +684,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		splitbydot[0] == "C9800-CL-universalk9" or 
 		splitbydot[0] == "C9800-L-universalk9_wlc" or 
 		splitbydot[0] == "C9800-SW-iosxe-wlc" or 
-		splitbydot[0] == "C9800-AP-universalk9"
-		):
-			fileprocessor_iosxe (debug1,name)
-
-		elif (
+		splitbydot[0] == "C9800-AP-universalk9" or 
 		splitbydash[0] == "asr1000" or 
 		splitbydash[0] == "asr1001" or 
 		splitbydash[0] == "asr1001x" or 
@@ -782,6 +713,8 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("isr4400v2") or 
 		name.startswith("c1100-universalk9") or 
 		name.startswith("c1100-ucmk9") or 
+		name.startswith("cat4500es8") or 
+		name.startswith("cat4500e") or 
 		name == "asr1000-hw-programmables.16.08.01.SPA.pkg" or 
 		name == "isr-hw-programmables.03.13.02.S.154-3.S2-ext.SPA.pkg" or 
 		name == "isr-hw-programmables.03.15.03.S.155-2.S3-ext.SPA.pkg" or 
@@ -1293,12 +1226,14 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			splitbydashsub = thistemp.split("-")
 			imagecode = imagelookup (splitbydashsub[1])
 			prodname = product (splitbydashsub[0])
-			standardios (name, prodname, imagecode)
+#			standardios (name, prodname, imagecode)
+			fileprocessorios (debug1,name)
 
 		elif splitbydot[0] == "dsc-c5800-mz":
 			imagecode = imagelookup (splitbydash[0])
 			prodname = product (splitbydash[1])
-			standardios (name, prodname, imagecode)
+#			standardios (name, prodname, imagecode)
+			fileprocessorios (debug1,name)
 
 		elif splitbydash[0] == "cat6000" or splitbydash[0] == "cat5000" or splitbydot[0] == "cat4000" or splitbydot[0] == "cat4000-cv" or splitbydot[0] == "cat4000-k8" or splitbydot[0] == "cat4000-k9":
 			catos (name)
@@ -1319,7 +1254,8 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		elif splitbydot[0] == "c10k-fpd-pkg":
 			prodname = "Routers/SP/10000"
 			imagecode = imagelookup (splitbydash[1])
-			standardios (name, prodname, imagecode)
+#			standardios (name, prodname, imagecode)
+			fileprocessorios (debug1,name)
 
 		elif splitbydash[0] == "all":
 			prodname = "OnePK"
