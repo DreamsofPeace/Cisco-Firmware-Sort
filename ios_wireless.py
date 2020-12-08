@@ -161,11 +161,196 @@ def fileprocessor_wireless(debug1,filename):
 		wireless_all_dash (debug1,filename,prodname,workname)
 
 	elif (
+	filename.startswith("AIR-CT5500-K9-") 
+	):
+		prodname = product ("CT5500")
+		workname = filename.replace(".aes","")
+		workname = workname.replace("AIR-CT5500-K9-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-CT5500-LDPE-K9-") 
+	):
+		prodname = product ("CT5500")
+		workname = filename.replace(".aes","")
+		workname = workname.replace("AIR-CT5500-LDPE-K9-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-CTVM-")
+	):
+		prodname = product ("CTVM")
+		workname = filename.replace(".aes","")
+		workname = workname.replace(".ova","")
+		workname = workname.replace("AIR-CTVM-K9-","")
+		workname = workname.replace("AIR-CTVM-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-CT2500-K9-") 
+	):
+		prodname = product ("CT2500")
+		workname = filename.replace(".aes","")
+		workname = workname.replace("AIR-CT2500-K9-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-WLC4400-K9-") 
+	):
+		prodname = product ("WLC4400")
+		workname = filename.replace(".aes","")
+		workname = workname.replace("AIR-WLC4400-K9-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-WLC4100-K9-") 
+	):
+		prodname = product ("WLC4100")
+		workname = filename.replace(".aes","")
+		workname = workname.replace("AIR-WLC4100-K9-","")
+		newname = filename.split(".")
+		if len(newname) > 2:
+			wireless_all_dash_dot (debug1,filename,prodname,workname)
+		else:
+			wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-WLC2100-K9-") 
+	):
+		prodname = product ("WLC2100")
+		workname = filename.replace(".aes","")
+		workname = workname.replace("AIR-WLC2100-K9-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-WLC2006-K9-") 
+	):
+		prodname = product ("WLC2006")
+		workname = filename.replace(".aes","")
+		workname = workname.replace("AIR-WLC2006-K9-","")
+		newname = filename.split(".")
+		if len(newname) > 2:
+			wireless_all_dash_dot (debug1,filename,prodname,workname)
+		else:
+			wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-CT5520-K9-") 
+	):
+		prodname = product ("CT5520")
+		workname = filename.replace(".aes","")
+		workname = workname.replace("AIR-CT5520-K9-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
 	filename.startswith("AIR-CT3504-K9-") 
 	):
 		prodname = product ("CT3504")
 		workname = filename.replace(".aes","")
 		workname = workname.replace("AIR-CT3504-K9-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-CT7500-K9-") 
+	):
+		prodname = product ("CT7500")
+		workname = filename.replace(".aes","")
+		workname = workname.replace("AIR-CT7500-K9-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-CT8500-K9-") 
+	):
+		prodname = product ("CT8500")
+		workname = filename.replace(".aes","")
+		workname = workname.replace("AIR-CT8500-K9-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-WLCM-K9-") 
+	):
+		prodname = product ("WLCM")
+		workname = filename.replace(".aes","")
+		workname = workname.replace("AIR-WLCM-K9-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-CT8540-K9-") 
+	):
+		prodname = product ("CT8540")
+		workname = filename.replace(".aes","")
+		workname = workname.replace("AIR-CT8540-K9-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-WISM2-K9-") 
+	):
+		prodname = product ("WISM2")
+		workname = filename.replace(".aes","")
+		workname = workname.replace("AIR-WISM2-K9-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-AP1840-K9-ME-") 
+	):
+		prodname = product ("AP1840")
+		workname = filename.replace(".aes","")
+		workname = workname.replace(".zip","")
+		workname = workname.replace("AIR-AP1840-K9-ME-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-AP1540-K9-ME-") 
+	):
+		prodname = product ("AP1540")
+		workname = filename.replace(".aes","")
+		workname = workname.replace(".zip","")
+		workname = workname.replace("AIR-AP1540-K9-ME-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-AP1560-K9-ME-") 
+	):
+		prodname = product ("AP1560")
+		workname = filename.replace(".aes","")
+		workname = workname.replace(".zip","")
+		workname = workname.replace("AIR-AP1560-K9-ME-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-AP2800-K9-ME-") 
+	):
+		prodname = product ("AP2800")
+		workname = filename.replace(".aes","")
+		workname = workname.replace(".zip","")
+		workname = workname.replace("AIR-AP2800-K9-ME-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-AP3800-K9-ME-") 
+	):
+		prodname = product ("AP3800")
+		workname = filename.replace(".aes","")
+		workname = workname.replace(".zip","")
+		workname = workname.replace("AIR-AP3800-K9-ME-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-AP4800-K9-ME-") 
+	):
+		prodname = product ("AP4800")
+		workname = filename.replace(".aes","")
+		workname = workname.replace(".zip","")
+		workname = workname.replace("AIR-AP4800-K9-ME-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-AP4800-K9-ME-") 
+	):
+		prodname = product ("AP4800")
+		workname = filename.replace(".aes","")
+		workname = workname.replace(".zip","")
+		workname = workname.replace("AIR-AP4800-K9-ME-","")
 		wireless_all_dash (debug1,filename,prodname,workname)
 
 	elif (
@@ -178,6 +363,27 @@ def fileprocessor_wireless(debug1,filename):
 		wireless_all_dash (debug1,filename,prodname,workname)
 
 	elif (
+	filename.startswith("AIR-6300-K9-ME-") or 
+	filename.startswith("AIR-AP6300-K9-ME-") 
+	):
+		prodname = product ("AP6300")
+		workname = filename.replace(".aes","")
+		workname = workname.replace(".zip","")
+		workname = workname.replace(".tar","")
+		workname = workname.replace("AIR-6300-K9-ME-","")
+		workname = workname.replace("AIR-AP6300-K9-ME-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-LOC2700-L-K9-") 
+	):
+		prodname = product ("LOC2700")
+		workname = filename.replace(".bin.gz","")
+		workname = workname.replace(".bin","")
+		workname = workname.replace("AIR-LOC2700-L-K9-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
 	filename.startswith("AP_BUNDLE_3500_") 
 	):
 		prodname = product ("CT3504")
@@ -185,6 +391,41 @@ def fileprocessor_wireless(debug1,filename):
 		workname = workname.replace(".zip","")
 		workname = workname.replace("AP_BUNDLE_3500_","")
 		wireless_all_underscore (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-CT2500-AP_BUNDLE-K9-") 
+	):
+		prodname = product ("CT2500")
+		workname = filename.replace(".aes","")
+		workname = workname.replace(".zip","")
+		workname = workname.replace("AIR-CT2500-AP_BUNDLE-K9-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-CT5500-LDPE-AP_BUNDLE-K9-") 
+	):
+		prodname = product ("CT5500")
+		workname = filename.replace(".aes","")
+		workname = workname.replace(".zip","")
+		workname = workname.replace("AIR-CT5500-LDPE-AP_BUNDLE-K9-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-CT5500-AP_BUNDLE-K9-") 
+	):
+		prodname = product ("CT5500")
+		workname = filename.replace(".aes","")
+		workname = workname.replace(".zip","")
+		workname = workname.replace("AIR-CT5500-AP_BUNDLE-K9-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
+	filename.startswith("AIR-WISM2-AP_BUNDLE-K9-") 
+	):
+		prodname = product ("CT5500")
+		workname = filename.replace(".aes","")
+		workname = workname.replace("AIR-WISM2-AP_BUNDLE-K9-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
 
 def wireless_all_underscore (debug1,filename,prodname,workname):
 	if debug1:

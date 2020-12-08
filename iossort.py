@@ -1147,6 +1147,14 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssingleprodname (debug1,name,prodname)
 
 		elif (
+		name == "c3750-dmon-mz-122-25r.SEE4" or 
+		name == "c3750-dmon-mz.122-25r.SEC"
+		):
+			prodname = product ("c3750")
+			imagecode = imagelookup ("hdiag")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
 		name.startswith ("c1100") or 
 		name.startswith ("AIR") or 
 		name.startswith ("SWISMK9") or 

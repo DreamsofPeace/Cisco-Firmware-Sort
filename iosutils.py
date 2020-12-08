@@ -2348,33 +2348,33 @@ def product (prodcode):
 	elif prodcode == "iosxrvfull":
 		prodname = "ROUTERS/Virtual/IOS-XRv9000"
 	elif prodcode == "csa":
-		prodname = "Security/CISCO-SECURITY-AGENT"
+		prodname = "SECURITY/CISCO-SECURITY-AGENT"
 	elif prodcode == "csm":
-		prodname = "Security/CISCO-SECURITY-MANAGER"
+		prodname = "SECURITY/CISCO-SECURITY-MANAGER"
 	elif prodcode == "asa":
-		prodname = "Security/FIREWALL/ASA"
+		prodname = "SECURITY/FIREWALL/ASA"
 	elif prodcode == "c6svc-fwm":
-		prodname = "Security/FIREWALL/Catalyst-6500-FWSM"
+		prodname = "SECURITY/FIREWALL/Catalyst-6500-FWSM"
 	elif prodcode == "firepower":
-		prodname = "Security/FIREWALL/FirePOWER"
+		prodname = "SECURITY/FIREWALL/FirePOWER"
 	elif prodcode == "pix":
-		prodname = "Security/FIREWALL/PIX"
+		prodname = "SECURITY/FIREWALL/PIX"
 	elif prodcode == "acs":
-		prodname = "Security/IDENTITY/ACS"
+		prodname = "SECURITY/IDENTITY/ACS"
 	elif prodcode == "ise":
-		prodname = "Security/IDENTITY/IDENTIY-SERVICES-ENGINE"
+		prodname = "SECURITY/IDENTITY/IDENTIY-SERVICES-ENGINE"
 	elif prodcode == "isepic":
-		prodname = "Security/IDENTITY/IDENTIY-SERVICES-ENGINE-PIC"
+		prodname = "SECURITY/IDENTITY/IDENTIY-SERVICES-ENGINE-PIC"
 	elif prodcode == "ciscoutd":
-		prodname = "Security/IOS-XE-UTD"
+		prodname = "SECURITY/IOS-XE-UTD"
 	elif prodcode == "ironport":
-		prodname = "Security/Ironport"
+		prodname = "SECURITY/IRONPORT"
 	elif prodcode == "mars":
-		prodname = "Security/MARS"
+		prodname = "SECURITY/MARS"
 	elif prodcode == "vpn3000":
-		prodname = "Security/VPN-3000"
+		prodname = "SECURITY/VPN-3000"
 	elif prodcode == "anyconnect":
-		prodname = "Security/VPN-Clients/Anyconnect"
+		prodname = "SECURITY/VPN-Clients/Anyconnect"
 	elif prodcode == "aci":
 		prodname = "SERVERS/APIC"
 	elif prodcode == "css":
@@ -2798,67 +2798,75 @@ def product (prodcode):
 	elif prodcode == "uc500":
 		prodname = "Voice/UC-500"
 	elif prodcode == "c1100":
-		prodname = "WIRELESS/Access-Point/Aironet-1100"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-1100"
 	elif prodcode == "c1130":
-		prodname = "WIRELESS/Access-Point/Aironet-1130"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-1130"
 	elif prodcode == "c1140":
-		prodname = "WIRELESS/Access-Point/Aironet-1140"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-1140"
 	elif prodcode == "c1200":
-		prodname = "WIRELESS/Access-Point/Aironet-1200"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-1200"
 	elif prodcode == "c1240":
-		prodname = "WIRELESS/Access-Point/Aironet-1240"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-1240"
 	elif prodcode == "c1250":
-		prodname = "WIRELESS/Access-Point/Aironet-1250"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-1250"
 	elif prodcode == "c1310":
-		prodname = "WIRELESS/Access-Point/Aironet-1310"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-1310"
 	elif prodcode == "c1520":
-		prodname = "WIRELESS/Access-Point/Aironet-1500-Mesh-AP"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-1500-Mesh-AP"
 	elif prodcode == "c350":
-		prodname = "WIRELESS/Access-Point/Aironet-350"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-350"
 	elif prodcode == "c520":
-		prodname = "WIRELESS/Access-Point/Aironet-521"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-521"
 	elif prodcode == "ap1g1":
-		prodname = "WIRELESS/Access-Point/Aironet-AP1G1-(700)"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP1G1-(700)"
 	elif prodcode == "ap1g2":
-		prodname = "WIRELESS/Access-Point/Aironet-AP1G2-(1600)"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP1G2-(1600)"
 	elif prodcode == "ap1g3":
-		prodname = "WIRELESS/Access-Point/Aironet-AP1G3-(IR829-1530)"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP1G3-(IR829-1530)"
 	elif prodcode == "ap1g4":
-		prodname = "WIRELESS/Access-Point/Aironet-AP1G4-(1810-1830-1850)"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP1G4-(1810-1830-1850)"
 	elif prodcode == "ap1g5":
-		prodname = "WIRELESS/Access-Point/Aironet-AP1G5-(1540-1800-1815)"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP1G5-(1540-1800-1815)"
 	elif prodcode == "ap1g6":
-		prodname = "WIRELESS/Access-Point/Aironet-AP1G6-(c9117)"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP1G6-(c9117)"
 	elif prodcode == "ap1g6a":
-		prodname = "WIRELESS/Access-Point/Aironet-AP1G6a-(c9130)"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP1G6a-(c9130)"
 	elif prodcode == "ap1g7":
-		prodname = "WIRELESS/Access-Point/Aironet-AP1G7-(C9115-9120)"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP1G7-(C9115-9120)"
 	elif prodcode == "ap3g1":
-		prodname = "WIRELESS/Access-Point/Aironet-AP3G1-(1260,3500)"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP3G1-(1260,3500)"
 	elif prodcode == "ap3g2":
-		prodname = "WIRELESS/Access-Point/Aironet-AP3G2-(1600,1700,2600,2700,3600,3700)"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP3G2-(1600,1700,2600,2700,3600,3700)"
 	elif prodcode == "c3700":
-		prodname = "WIRELESS/Access-Point/Aironet-AP3G2-(1600,1700,2600,2700,3600,3700)"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP3G2-(1600,1700,2600,2700,3600,3700)"
 	elif prodcode == "ap3g3":
-		prodname = "WIRELESS/Access-Point/Aironet-AP3G3-(2800,3800,4800,1560,6300)"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP3G3-(2800,3800,4800,1560,6300)"
 	elif prodcode == "ap801":
-		prodname = "WIRELESS/Access-Point/Aironet-AP801-(861W,88xW,1911W-Routers)"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP801-(861W,88xW,1911W-Routers)"
 	elif prodcode == "ap802":
-		prodname = "WIRELESS/Access-Point/Aironet-AP802-(812,819,886VA-W,887VA-W,89xW-Routers)"
+		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP802-(812,819,886VA-W,887VA-W,89xW-Routers)"
 	elif prodcode == "AP1540":
-		prodname = "WIRELESS/Access-Point/AP1540"
+		prodname = "WIRELESS/ACCESS-POINT/AP1540"
 	elif prodcode == "AP1560":
-		prodname = "WIRELESS/Access-Point/AP1560"
+		prodname = "WIRELESS/ACCESS-POINT/AP1560"
+	elif prodcode == "AP1810w":
+		prodname = "WIRELESS/ACCESS-POINT/AP1810w"
 	elif prodcode == "AP1815":
-		prodname = "WIRELESS/Access-Point/AP1815"
+		prodname = "WIRELESS/ACCESS-POINT/AP1815"
 	elif prodcode == "AP1830":
-		prodname = "WIRELESS/Access-Point/AP1830"
+		prodname = "WIRELESS/ACCESS-POINT/AP1830"
+	elif prodcode == "AP1840":
+		prodname = "WIRELESS/ACCESS-POINT/AP1840"
 	elif prodcode == "AP1850":
-		prodname = "WIRELESS/Access-Point/AP1850"
+		prodname = "WIRELESS/ACCESS-POINT/AP1850"
 	elif prodcode == "AP2800":
-		prodname = "WIRELESS/Access-Point/AP2800"
+		prodname = "WIRELESS/ACCESS-POINT/AP2800"
 	elif prodcode == "AP3800":
-		prodname = "WIRELESS/Access-Point/AP3800"
+		prodname = "WIRELESS/ACCESS-POINT/AP3800"
+	elif prodcode == "AP4800":
+		prodname = "WIRELESS/ACCESS-POINT/AP4800"
+	elif prodcode == "AP6300":
+		prodname = "WIRELESS/ACCESS-POINT/AP6300"
 	elif prodcode == "CT2500":
 		prodname = "WIRELESS/CONTROLLER/2500"
 	elif prodcode == "CT5500":
@@ -2878,7 +2886,7 @@ def product (prodcode):
 	elif prodcode == "C9800-80":
 		prodname = "WIRELESS/CONTROLLER/Catalyst-9800-80"
 	elif prodcode == "C9800-AP":
-		prodname = "WIRELESS/CONTROLLER/Catalyst-9800-Access-Points"
+		prodname = "WIRELESS/CONTROLLER/Catalyst-9800-ACCESS-POINTs"
 	elif prodcode == "C9800-CL":
 		prodname = "WIRELESS/CONTROLLER/Catalyst-9800-CL"
 	elif prodcode == "C9800-L":
@@ -2891,6 +2899,8 @@ def product (prodcode):
 		prodname = "WIRELESS/CONTROLLER/CT7500"
 	elif prodcode == "CT8500":
 		prodname = "WIRELESS/CONTROLLER/CT8500"
+	elif prodcode == "LOC2700":
+		prodname = "WIRELESS/CONTROLLER/LOCATION-2700"
 	elif prodcode == "WLCM":
 		prodname = "WIRELESS/CONTROLLER/NM-NME"
 	elif prodcode == "SRE":
@@ -2901,8 +2911,14 @@ def product (prodcode):
 		prodname = "WIRELESS/CONTROLLER/WLC2006"
 	elif prodcode == "WLC2100":
 		prodname = "WIRELESS/CONTROLLER/WLC2100"
+	elif prodcode == "WLC4100":
+		prodname = "WIRELESS/CONTROLLER/WLC4100"
 	elif prodcode == "WLC4400":
 		prodname = "WIRELESS/CONTROLLER/WLC4400"
+	elif prodcode == "WLC7500":
+		prodname = "WIRELESS/CONTROLLER/WLC7500"
+	elif prodcode == "CT8540":
+		prodname = "WIRELESS/CONTROLLER/WLC8540"
 	else:
 		prodname = "UNKNOWN"
 	return prodname

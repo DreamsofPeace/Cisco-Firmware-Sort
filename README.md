@@ -18,8 +18,6 @@ Optional Arguments (Any or all arguments accepted)
 
   -hs1, --hashsha256    Hash File using the SHA 256 Algorithm
 
-  -hs2, --hashsha1      Hash File using the SHA1 Algorithm
-
   -hs3, --hashmd5       Hash File using the MD5 Algorithm
 
 
