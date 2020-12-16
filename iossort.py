@@ -617,6 +617,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "ssd_c400_upgrade_6.1.2.I2.3.tar" or 
 		name == "ssd_c400_upgrade_6.1.2.I2.2.tar" or 
 		name == "ssd_c400_upgrade_6.1.2.I2.1.tar" or 
+		name == "ntp-1.0.1-7.0.3.I2.2d.lib32_n9000.rpm" or 
 		name == "ntp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm" or 
 		name == "ntp-1.0.2-7.0.3.I2.2e.lib32_n9000.rpm" or 
 		name == "nxos.nsqos_lc_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm" or 
@@ -641,16 +642,14 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		):
 			prodname = product ("mica-modem")
 			imagecode = imagelookup ("np")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
+			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
 		name.startswith("adsl_alc")
 		):
 			prodname = product ("ISRG1GENERIC")
 			imagecode = imagelookup ("DSLFIRMWARE")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
+			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
 		name.startswith("8705_") or 
@@ -659,24 +658,22 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		):
 			prodname = product ("ISRG1GENERIC")
 			imagecode = imagelookup ("HWIC3GGSM")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
+			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif name.startswith("vcw-vfc-mz"):
 			prodname = product ("c5350")
 			imagecode = imagelookup (splitbydot[0])
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
+			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif name.startswith("c3600-2600-analog-fw"):
 			prodname = product ("branchmodules")
 			imagecode = imagelookup ("analogmodem")
-			filepath = prodname + "/" + imagecode
-			filemove (filepath, name)
+			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif splitbydot[0] == "oac":
-			filepath = "Switches/Nexus/Nexus-Open-Agent-Container"
-			filemove (filepath, name)
+			prodname = product ("NEXUS")
+			imagecode = imagelookup ("oac")
+			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
 		splitbydot[0] == "C9800-40-universalk9_wlc" or 
@@ -738,6 +735,10 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			fileprocessor_iosxe(debug1,name)
 
 		elif (
+		name.startswith("UCSC-C240-M5-") or 
+		name.startswith("hostUpgrade_v") or 
+		name.startswith("hostupgrade_v") or 
+		name.startswith("C200M1-") or 
 		name.startswith("ucs") or 
 		name.startswith("update_pkg-ucse") or 
 		name.startswith("pid-ctlg") or 
@@ -835,6 +836,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("dcnm") or 
 		name.startswith ("Collector") or 
 		name.startswith ("collector") or 
+		name == "cspc28backupscript.zip" or 
 		name == "readme_10.2.1.ST.1" or 
 		name == "JeOS_Patch_To_Enable_ASD.zip" or 
 		name.startswith ("apic_em_update-apic-") or 
@@ -859,6 +861,12 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("Clean") or 
 		name.startswith ("Firepower") or 
 		name.startswith ("ISE") or 
+		name.startswith ("ise") or 
+		name.startswith ("ise-pic") or 
+		name.startswith ("SNS-36xx-BIOS") or 
+		name.startswith ("SNS-36xx-firmware") or 
+		name.startswith ("upd-pkg-SNS-36xx-cimc") or
+		name == "README_ISE_20_201_21_22" or 
 		name.startswith ("PIX") and name.endswith(".bin") or 
 		name.startswith ("PIX") or 
 		name.startswith ("PI") or 
@@ -894,8 +902,6 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("iosxe-utd") or
 		name.startswith ("iosxe-utd-ips") or
 		name.startswith ("iox-iosxe-utd") or
-		name.startswith ("ise") or 
-		name.startswith ("ise-pic") or 
 		name.startswith ("mac-spw-dmg") or 
 		name.startswith ("np") and name.endswith(".bin") or 
 		name.startswith ("pdm") and name.endswith(".bin") or 
@@ -919,7 +925,6 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "PIX_to_ASA_1_0.dmg" or 
 		name == "PIXtoASA_1_0.zip" or 
 		name == "PIXtoASAsetup_1_0.exe" or 
-		name == "README_ISE_20_201_21_22" or 
 		name == "ReadMe_for_ACS_5.6_Upgrade_Package-txt" or 
 		name == "WebSecurityCert.zip" or 
 		name == "anyconnect_app_selector_1.0.zip" or 

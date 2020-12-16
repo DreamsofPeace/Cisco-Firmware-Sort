@@ -36,11 +36,14 @@ def file_proc_servers (filename,debug1):
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("delnorte2"):
-		prodname = product("c2xxm3")
+		prodname = product("c2xxm4")
 		imagecode = imagelookup("catalog")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
-	elif filename.startswith("plumas2"):
+	elif (
+	filename.startswith("plumas2") or 
+	filename.startswith("UCSC-C240-M5")
+	):
 		prodname = product("c2xxm5")
 		imagecode = imagelookup("catalog")
 		utilssinglemove (debug1,filename,prodname,imagecode)
@@ -48,7 +51,8 @@ def file_proc_servers (filename,debug1):
 	elif (
 	filename.startswith ("Collector") or 
 	filename.startswith ("collector") or 
-	filename == "JeOS_Patch_To_Enable_ASD.zip"
+	filename == "JeOS_Patch_To_Enable_ASD.zip" or 
+	filename == "cspc28backupscript.zip"
 	):
 		prodname = product("cspc")
 		utilssingleprodname (debug1,filename,prodname)
