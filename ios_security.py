@@ -134,6 +134,15 @@ def fileprocessorsecurity (debug1,filename):
 		imagecode = "2.4/APPLIANCE-BOOT-SECTOR"
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
+	elif(
+	filename.startswith ("SNS-36xx-BIOS") or 
+	filename.startswith ("SNS-36xx-firmware") or 
+	filename.startswith ("upd-pkg-SNS-36xx-cimc")
+	):
+		prodname = product("ise")
+		imagecode = imagelookup("sns63xx")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
 	elif filename.startswith("asdm"):
 		sec_asa_asdm (debug1,filename)
 

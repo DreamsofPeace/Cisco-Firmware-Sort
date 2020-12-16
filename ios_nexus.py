@@ -49,6 +49,12 @@ def fileprocessornxos (filename,debug1):
 		imagecode = imagelookup("capacity-emulator")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
+	elif filename == "ntp-1.0.1-7.0.3.I2.2d.lib32_n9000.rpm":
+		prodname = product("nxos")
+		imagecode = imagelookup("smu")
+		imagecode = imagecode + "/7.0/7.0.3.I2.2d/NTP"
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
 	elif filename == "ntp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm":
 		prodname = product("nxos")
 		imagecode = imagelookup("smu")

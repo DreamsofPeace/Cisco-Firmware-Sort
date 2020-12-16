@@ -1970,6 +1970,10 @@ def imagelookup (imagecode):
 		subdirectory = "WITNESS-NODE"
 	elif imagecode == "xsd":
 		subdirectory = "XML-SCHEMA"
+	elif imagecode == "oac":
+		subdirectory = "OPEN-AGENT-CONTAINER"
+	elif imagecode == "sns63xx":
+		subdirectory = "SNS-36xx"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -1978,7 +1982,7 @@ def product (prodcode):
 	if prodcode == "apicem":
 		prodname = "NETWORK-MANAGEMENT/APIC-EM"
 	elif prodcode == "cspc":
-		prodname = "NETWORK-MANAGEMENT/Common-Services-Platform-Collector"
+		prodname = "NETWORK-MANAGEMENT/COMMON-SERVICES-PLATFORM-COLLECTOR"
 	elif prodcode == "ccp":
 		prodname = "NETWORK-MANAGEMENT/CONFIGURATION-PROFESSIONAL"
 	elif prodcode == "ccpc":
@@ -2709,6 +2713,8 @@ def product (prodcode):
 		prodname = "SWITCHES/Nexus/Nexus-9000-3000"
 	elif prodcode == "nxosv":
 		prodname = "SWITCHES/Nexus/Nexus-9000V"
+	elif prodcode == "nxosgeneric":
+		prodname = "SWITCHES/NEXUS/"
 	elif prodcode == "s5400":
 		prodname = "SWITCHES/Rockwell-Stratix/5400"
 	elif prodcode == "s5410":
@@ -2742,61 +2748,65 @@ def product (prodcode):
 	elif prodcode == "usbconsole":
 		prodname = "USB-CONSOLE"
 	elif prodcode == "vg200":
-		prodname = "Voice/Gateway/VG-200"
+		prodname = "VOICE/GATEWAY/VG-200"
 	elif prodcode == "vg20x":
-		prodname = "Voice/Gateway/VG-202"
+		prodname = "VOICE/GATEWAY/VG-202"
 	elif prodcode == "vg20xxm":
-		prodname = "Voice/Gateway/VG-20x-XM"
+		prodname = "VOICE/GATEWAY/VG-20x-XM"
 	elif prodcode == "vg224":
-		prodname = "Voice/Gateway/VG-224"
+		prodname = "VOICE/GATEWAY/VG-224"
 	elif prodcode == "vg3x0":
-		prodname = "Voice/Gateway/VG-310-320"
+		prodname = "VOICE/GATEWAY/VG-310-320"
 	elif prodcode == "vg350":
-		prodname = "Voice/Gateway/VG-350"
+		prodname = "VOICE/GATEWAY/VG-350"
 	elif prodcode == "vg400":
-		prodname = "Voice/Gateway/VG-400"
+		prodname = "VOICE/GATEWAY/VG-400"
 	elif prodcode == "vg450":
-		prodname = "Voice/Gateway/VG-450"
+		prodname = "VOICE/GATEWAY/VG-450"
 	elif prodcode == "vgd":
-		prodname = "Voice/Gateway/VGD"
+		prodname = "VOICE/GATEWAY/VGD"
 	elif prodcode == "c2420":
-		prodname = "Voice/IAD/2420-IAD"
+		prodname = "VOICE/IAD/2420-IAD"
 	elif prodcode == "c2430":
-		prodname = "Voice/IAD/2430-IAD"
+		prodname = "VOICE/IAD/2430-IAD"
 	elif prodcode == "c2435":
-		prodname = "Voice/IAD/2435-IAD"
+		prodname = "VOICE/IAD/2435-IAD"
 	elif prodcode == "ics7700":
-		prodname = "Voice/ICS-7700"
+		prodname = "VOICE/ICS-7700"
 	elif prodcode == "ipp3905":
-		prodname = "Voice/IP-Phones/3905"
+		prodname = "VOICE/IP-PHONES/3905"
 	elif prodcode == "ipp7911_7906":
-		prodname = "Voice/IP-Phones/7906_7911"
+		prodname = "VOICE/IP-PHONES/7906_7911"
 	elif prodcode == "ipp7914":
-		prodname = "Voice/IP-Phones/7914"
+		prodname = "VOICE/IP-PHONES/7914"
 	elif prodcode == "ipp7915":
-		prodname = "Voice/IP-Phones/7915"
+		prodname = "VOICE/IP-PHONES/7915"
 	elif prodcode == "ipp7916":
-		prodname = "Voice/IP-Phones/7916"
+		prodname = "VOICE/IP-PHONES/7916"
 	elif prodcode == "ipp7921":
-		prodname = "Voice/IP-Phones/7921"
+		prodname = "VOICE/IP-PHONES/7921"
 	elif prodcode == "ipp7931":
-		prodname = "Voice/IP-Phones/7931"
+		prodname = "VOICE/IP-PHONES/7931"
+	elif prodcode == "ipp7937":
+		prodname = "VOICE/IP-PHONES/7937-CONFERENCE-PHONE"
 	elif prodcode == "ipp7940_7960":
-		prodname = "Voice/IP-Phones/7940_7960"
+		prodname = "VOICE/IP-PHONES/7940_7960"
 	elif prodcode == "ipp7941_7961":
-		prodname = "Voice/IP-Phones/7941_7961"
+		prodname = "VOICE/IP-PHONES/7941_7961"
 	elif prodcode == "ipp7942_7962":
-		prodname = "Voice/IP-Phones/7942_7962"
+		prodname = "VOICE/IP-PHONES/7942_7962"
 	elif prodcode == "ipp7945_7965":
-		prodname = "Voice/IP-Phones/7945_7965"
+		prodname = "VOICE/IP-PHONES/7945_7965"
 	elif prodcode == "ipp7970_7971":
-		prodname = "Voice/IP-Phones/7970_7971"
+		prodname = "VOICE/IP-PHONES/7970_7971"
 	elif prodcode == "ipp7975":
-		prodname = "Voice/IP-Phones/7975"
+		prodname = "VOICE/IP-PHONES/7975"
 	elif prodcode == "ipp8845_65":
-		prodname = "Voice/IP-Phones/8845_8865"
+		prodname = "VOICE/IP-PHONES/8845_8865"
+	elif prodcode == "ipp894x":
+		prodname = "VOICE/IP-PHONES/894x"
 	elif prodcode == "uc500":
-		prodname = "Voice/UC-500"
+		prodname = "VOICE/UC-500"
 	elif prodcode == "c1100":
 		prodname = "WIRELESS/ACCESS-POINT/Aironet-1100"
 	elif prodcode == "c1130":
