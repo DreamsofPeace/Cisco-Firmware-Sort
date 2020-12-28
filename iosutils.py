@@ -868,6 +868,20 @@ def imagelookup (imagecode):
 		subdirectory = "EHWIC-4G-LTE-G"
 	elif imagecode == "EHWICCELLVZW":
 		subdirectory = "EHWIC-4G-LTE-V"
+	elif imagecode == "EHWIC4GLTEST":
+		subdirectory = "EHWIC-4G-LTE-ST"
+	elif imagecode == "EHWIC4GLTEAT":
+		subdirectory = "EHWIC-4G-LTE-AT"
+	elif imagecode == "EHWIC4GLTECA":
+		subdirectory = "EHWIC-4G-LTE-CA"
+	elif imagecode == "EHWIC4GLTEAU":
+		subdirectory = "EHWIC-4G-LTE-AU"
+	elif imagecode == "EHWIC4GLTEGB":
+		subdirectory = "EHWIC-4G-LTE-GB"
+	elif imagecode == "EHWIC4GLTEVZ":
+		subdirectory = "EHWIC-4G-LTE-VZ"
+	elif imagecode == "C819GWLTEMNAAK9":
+		subdirectory = "C819GW-LTE-MNA-AK9"
 	elif imagecode == "EHWICVADSLB":
 		subdirectory = "EHWIC-VA-DSL-B-C886VA-C896VA"
 	elif imagecode == "i6k2l2q4":
@@ -1096,6 +1110,8 @@ def imagelookup (imagecode):
 		subdirectory = "HTML"
 	elif imagecode == "HWIC3GGSM":
 		subdirectory = "HWIC-3G-GSM"
+	elif imagecode == "HWICCABLE":
+		subdirectory = "HWIC-CABLE"
 	elif imagecode == "hyperv":
 		subdirectory = "HYPERv"
 	elif imagecode == "install":
@@ -1621,9 +1637,9 @@ def imagelookup (imagecode):
 	elif imagecode == "nvm":
 		subdirectory = "NETWORK-VISIBILITY-MODULE"
 	elif imagecode == "np":
-		subdirectory = "NextPort-Firmware"
+		subdirectory = "NEXTPORT-FIRMWARE"
 	elif imagecode == "mica-modem":
-		subdirectory = "NextPort-Modem-Firmware"
+		subdirectory = "NEXTPORT-MODEM-FIRMWARE"
 	elif imagecode == "n9kacim":
 		subdirectory = "NEXUS-9000-ACI-MODE"
 	elif imagecode == "guestshell":
@@ -1644,6 +1660,8 @@ def imagelookup (imagecode):
 		subdirectory = "PASSWORD-RECOVERY"
 	elif imagecode == "patch":
 		subdirectory = "PATCH"
+	elif imagecode == "mpatch":
+		subdirectory = "MODULARITY-PATCH"
 	elif imagecode == "k9o3sv9y5":
 		subdirectory = "PERFORMANCE-SMALL-OFFICE-VOICE-FW-IPSEC-3DES"
 	elif imagecode == "pdm":
@@ -1794,6 +1812,8 @@ def imagelookup (imagecode):
 		subdirectory = "STRUTS-FIX"
 	elif imagecode == "sup":
 		subdirectory = "SUP-1"
+	elif imagecode == "sup8m":
+		subdirectory = "SUP-1-8M"
 	elif imagecode == "supk8":
 		subdirectory = "SUP-1"
 	elif imagecode == "s1":
@@ -1826,6 +1846,18 @@ def imagelookup (imagecode):
 		subdirectory = "SUP-2-WITH-SSH"
 	elif imagecode == "s3":
 		subdirectory = "SUP-3"
+	elif imagecode == "sup3":
+		subdirectory = "SUP-3"
+	elif imagecode == "sup3k9":
+		subdirectory = "SUP-3-WITH-SSH"
+	elif imagecode == "supg":
+		subdirectory = "SUP-3"
+	elif imagecode == "supgk9":
+		subdirectory = "SUP-3-WITH-SSH"
+	elif imagecode == "sup3cvk9":
+		subdirectory = "SUP-3-WITH-CISCOVIEW-AND-SSH"
+	elif imagecode == "sup3cv":
+		subdirectory = "SUP-3-WITH-CISCOVIEW"
 	elif imagecode == "s3ek9":
 		subdirectory = "SUP-3"
 	elif imagecode == "sup32pfc3k8":
@@ -1949,7 +1981,7 @@ def imagelookup (imagecode):
 	elif imagecode == "vpnapi":
 		subdirectory = "VPNAPI"
 	elif imagecode == "webauth":
-		subdirectory = "WEB-AUTH-BUNDLE"
+		subdirectory = "WEBAUTH-BUNDLE"
 	elif imagecode == "sipspawmak9":
 		subdirectory = "WEBEX-NODE"
 	elif imagecode == "websecurity":
@@ -1972,8 +2004,36 @@ def imagelookup (imagecode):
 		subdirectory = "XML-SCHEMA"
 	elif imagecode == "oac":
 		subdirectory = "OPEN-AGENT-CONTAINER"
-	elif imagecode == "sns63xx":
+	elif imagecode == "sns36xx":
 		subdirectory = "SNS-36xx"
+	elif imagecode == "sns35xx":
+		subdirectory = "SNS-35xx"
+	elif imagecode == "qed":
+		subdirectory = "DEVICE-ENABLER"
+	elif imagecode == "vxworks":
+		subdirectory = "VXWorks"
+	elif imagecode == "WKGBDG":
+		subdirectory = "WORKGROUP-BRIDGE"
+	elif imagecode == "WRLBDG":
+		subdirectory = "WIRELESS-BRIDGE"
+	elif imagecode == "imgwrt":
+		subdirectory = "IMAGE-WRITING"
+	elif imagecode == "occtoacl":
+		subdirectory = "OCC-TO-ACL-CONVERTER"
+	elif imagecode == "aptolwapp":
+		subdirectory = "AP-TO-LWAPP-CONVERTER"
+	elif imagecode == "nbar":
+		subdirectory = "NBAR2"
+	elif imagecode == "vxworkstoios":
+		subdirectory = "VXWorks-to-IOS-CONVERSION-TOOL"
+	elif imagecode == "rme":
+		subdirectory = "RESOURCE-MANAGER-ESSENTIALS"
+	elif imagecode == "scu":
+		subdirectory = "SERVER-CONFIGURATION-UTILITY"
+	elif imagecode == "ssi":
+		subdirectory = "STORAGE-SERVICE-INTERFACE"
+	elif imagecode == "fabman":
+		subdirectory = "FABRIC-MANAGER"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -1987,14 +2047,18 @@ def product (prodcode):
 		prodname = "NETWORK-MANAGEMENT/CONFIGURATION-PROFESSIONAL"
 	elif prodcode == "ccpc":
 		prodname = "NETWORK-MANAGEMENT/CONFIGURATION-PROFESSIONAL-CATALYST"
+	elif prodcode == "cpi":
+		prodname = "NETWORK-MANAGEMENT/CISCO-PRIME-INFRASTRUCTURE"
 	elif prodcode == "dnac":
-		prodname = "NETWORK-MANAGEMENT/DNA-Center"
+		prodname = "NETWORK-MANAGEMENT/DNA-CENTER"
 	elif prodcode == "cna":
 		prodname = "NETWORK-MANAGEMENT/NETWORK-ASSISTANT"
+	elif prodcode == "ntwkmgmt":
+		prodname = "NETWORK-MANAGEMENT"
 	elif prodcode == "ons15530":
-		prodname = "Optical/ONS-15530"
+		prodname = "OPTICAL/ONS-15530"
 	elif prodcode == "ons15540":
-		prodname = "Optical/ONS-15540"
+		prodname = "OPTICAL/ONS-15540"
 	elif prodcode == "asr1000":
 		prodname = "ROUTERS/ASR/ASR-1000"
 	elif prodcode == "asr1000rp1":
@@ -2118,7 +2182,7 @@ def product (prodcode):
 	elif prodcode == "mc3810":
 		prodname = "ROUTERS/Branch/MC-3810"
 	elif prodcode == "branchmodules":
-		prodname = "ROUTERS/Branch/Modules"
+		prodname = "ROUTERS/Branch/MODULES"
 	elif prodcode == "ni2":
 		prodname = "ROUTERS/Broadband/NI-2"
 	elif prodcode == "rfgw":
@@ -2214,7 +2278,7 @@ def product (prodcode):
 	elif prodcode == "c890":
 		prodname = "ROUTERS/ISRG1/890"
 	elif prodcode == "ISRG1GENERIC":
-		prodname = "ROUTERS/ISRG1/Modules"
+		prodname = "ROUTERS/ISRG1/MODULES"
 	elif prodcode == "c1900":
 		prodname = "ROUTERS/ISRG2/1900"
 	elif prodcode == "c1900-2900":
@@ -2250,7 +2314,9 @@ def product (prodcode):
 	elif prodcode == "c900":
 		prodname = "ROUTERS/ISRG2/900"
 	elif prodcode == "ISRG2GENERIC":
-		prodname = "ROUTERS/ISRG2/Modules"
+		prodname = "ROUTERS/ISRG2/MODULES"
+	elif prodcode == "c800g2":
+		prodname = "ROUTERS/ISRG2/800"
 	elif prodcode == "c800g3":
 		prodname = "ROUTERS/ISRG3/800"
 	elif prodcode == "ir1101":
@@ -2358,7 +2424,7 @@ def product (prodcode):
 	elif prodcode == "asa":
 		prodname = "SECURITY/FIREWALL/ASA"
 	elif prodcode == "c6svc-fwm":
-		prodname = "SECURITY/FIREWALL/Catalyst-6500-FWSM"
+		prodname = "SECURITY/FIREWALL/CATALYST-6500-FWSM"
 	elif prodcode == "firepower":
 		prodname = "SECURITY/FIREWALL/FirePOWER"
 	elif prodcode == "pix":
@@ -2378,17 +2444,17 @@ def product (prodcode):
 	elif prodcode == "vpn3000":
 		prodname = "SECURITY/VPN-3000"
 	elif prodcode == "anyconnect":
-		prodname = "SECURITY/VPN-Clients/Anyconnect"
+		prodname = "SECURITY/VPN-CLIENTS/ANYCONNECT"
 	elif prodcode == "aci":
 		prodname = "SERVERS/APIC"
 	elif prodcode == "css":
 		prodname = "SERVERS/CSS"
 	elif prodcode == "dcnm":
-		prodname = "SERVERS/Data-Center-Network-Manager"
+		prodname = "SERVERS/DATA-CENTER-NETWORK-MANAGER"
 	elif prodcode == "dnac":
 		prodname = "SERVERS/DNAC"
 	elif prodcode == "hyperflex":
-		prodname = "SERVERS/Hyperflex"
+		prodname = "SERVERS/HYPERFLEX"
 	elif prodcode == "onepk":
 		prodname = "SERVERS/ONE-PK"
 	elif prodcode == "ucsgeneric":
@@ -2409,6 +2475,8 @@ def product (prodcode):
 		prodname = "SERVERS/UCS/C-SERIES/C240M3"
 	elif prodcode == "c240m4":
 		prodname = "SERVERS/UCS/C-SERIES/C240M4"
+	elif prodcode == "c240m5":
+		prodname = "SERVERS/UCS/C-SERIES/C240M5"
 	elif prodcode == "c250":
 		prodname = "SERVERS/UCS/C-SERIES/C250M1-C250M2"
 	elif prodcode == "c260":
@@ -2431,6 +2499,10 @@ def product (prodcode):
 		prodname = "SERVERS/UCS/C-SERIES/C460M4"
 	elif prodcode == "c480m5":
 		prodname = "SERVERS/UCS/C-SERIES/C480M5"
+	elif prodcode == "ucsbseries":
+		prodname = "SERVERS/UCS/B-SERIES/"
+	elif prodcode == "ucscseries":
+		prodname = "SERVERS/UCS/C-SERIES/"
 	elif prodcode == "ucseseries":
 		prodname = "SERVERS/UCS/E-SERIES/"
 	elif prodcode == "e100":
@@ -2444,175 +2516,175 @@ def product (prodcode):
 	elif prodcode == "ni2":
 		prodname = "Service-Gateway/6XXX-DSL-Switch"
 	elif prodcode == "m9100":
-		prodname = "Storage/MDS-9100"
+		prodname = "STORAGE/MDS-9100"
 	elif prodcode == "m9200":
-		prodname = "Storage/MDS-9200"
+		prodname = "STORAGE/MDS-9200"
 	elif prodcode == "m9250":
-		prodname = "Storage/MDS-9250"
+		prodname = "STORAGE/MDS-9250"
 	elif prodcode == "m9500":
-		prodname = "Storage/MDS-9500"
+		prodname = "STORAGE/MDS-9500"
 	elif prodcode == "m9700":
-		prodname = "Storage/MDS-9700"
+		prodname = "STORAGE/MDS-9700"
 	elif prodcode == "ls1010":
 		prodname = "SWITCHES/ATM/Lightspeed-1010"
 	elif prodcode == "cbs30x0":
-		prodname = "SWITCHES/Blade-Switches/Catalyst-3000-DELL-Blade"
+		prodname = "SWITCHES/Blade-Switches/CATALYST-3000-DELL-Blade"
 	elif prodcode == "cbs31x0":
-		prodname = "SWITCHES/Blade-Switches/Catalyst-3100-DELL-Blade"
+		prodname = "SWITCHES/Blade-Switches/CATALYST-3100-DELL-Blade"
 	elif prodcode == "cigesm":
 		prodname = "SWITCHES/Blade-Switches/IBM-Blade-Switch"
 	elif prodcode == "cgesm":
 		prodname = "SWITCHES/Blade-Switches/IBM-Blade-Switch"
 	elif prodcode == "cat1200":
-		prodname = "SWITCHES/Catalyst/Catalyst-1200"
+		prodname = "SWITCHES/CATALYST/CATALYST-1200"
 	elif prodcode == "cat1600":
-		prodname = "SWITCHES/Catalyst/Catalyst-1600"
+		prodname = "SWITCHES/CATALYST/CATALYST-1600"
 	elif prodcode == "cat1900":
-		prodname = "SWITCHES/Catalyst/Catalyst-1900"
+		prodname = "SWITCHES/CATALYST/CATALYST-1900"
 	elif prodcode == "c2350":
-		prodname = "SWITCHES/Catalyst/Catalyst-2350"
+		prodname = "SWITCHES/CATALYST/CATALYST-2350"
 	elif prodcode == "c2360":
-		prodname = "SWITCHES/Catalyst/Catalyst-2360"
+		prodname = "SWITCHES/CATALYST/CATALYST-2360"
 	elif prodcode == "cat2800":
-		prodname = "SWITCHES/Catalyst/Catalyst-2800"
+		prodname = "SWITCHES/CATALYST/CATALYST-2800"
 	elif prodcode == "c29atm":
-		prodname = "SWITCHES/Catalyst/Catalyst-2900-ATM"
+		prodname = "SWITCHES/CATALYST/CATALYST-2900-ATM"
 	elif prodcode == "c2900XL":
-		prodname = "SWITCHES/Catalyst/Catalyst-2900XL"
+		prodname = "SWITCHES/CATALYST/CATALYST-2900XL"
 	elif prodcode == "c2900xl":
-		prodname = "SWITCHES/Catalyst/Catalyst-2900XL"
+		prodname = "SWITCHES/CATALYST/CATALYST-2900XL"
 	elif prodcode == "c2918":
-		prodname = "SWITCHES/Catalyst/Catalyst-2918"
+		prodname = "SWITCHES/CATALYST/CATALYST-2918"
 	elif prodcode == "c2928":
-		prodname = "SWITCHES/Catalyst/Catalyst-2928"
+		prodname = "SWITCHES/CATALYST/CATALYST-2928"
 	elif prodcode == "c2940":
-		prodname = "SWITCHES/Catalyst/Catalyst-2940"
+		prodname = "SWITCHES/CATALYST/CATALYST-2940"
 	elif prodcode == "cat2948g":
-		prodname = "SWITCHES/Catalyst/Catalyst-2948G"
+		prodname = "SWITCHES/CATALYST/CATALYST-2948G"
 	elif prodcode == "c2950":
-		prodname = "SWITCHES/Catalyst/Catalyst-2950"
+		prodname = "SWITCHES/CATALYST/CATALYST-2950"
 	elif prodcode == "c2950lre":
-		prodname = "SWITCHES/Catalyst/Catalyst-2950-LRE"
+		prodname = "SWITCHES/CATALYST/CATALYST-2950-LRE"
 	elif prodcode == "c2955":
-		prodname = "SWITCHES/Catalyst/Catalyst-2955"
+		prodname = "SWITCHES/CATALYST/CATALYST-2955"
 	elif prodcode == "c2960":
-		prodname = "SWITCHES/Catalyst/Catalyst-2960"
+		prodname = "SWITCHES/CATALYST/CATALYST-2960"
 	elif prodcode == "c2960l":
-		prodname = "SWITCHES/Catalyst/Catalyst-2960L"
+		prodname = "SWITCHES/CATALYST/CATALYST-2960L"
 	elif prodcode == "c2960s":
-		prodname = "SWITCHES/Catalyst/Catalyst-2960S"
+		prodname = "SWITCHES/CATALYST/CATALYST-2960S"
 	elif prodcode == "c2960x":
-		prodname = "SWITCHES/Catalyst/Catalyst-2960X"
+		prodname = "SWITCHES/CATALYST/CATALYST-2960X"
 	elif prodcode == "c2970":
-		prodname = "SWITCHES/Catalyst/Catalyst-2970"
+		prodname = "SWITCHES/CATALYST/CATALYST-2970"
 	elif prodcode == "c2975":
-		prodname = "SWITCHES/Catalyst/Catalyst-2975"
+		prodname = "SWITCHES/CATALYST/CATALYST-2975"
 	elif prodcode == "cat3000":
-		prodname = "SWITCHES/Catalyst/Catalyst-3000"
+		prodname = "SWITCHES/CATALYST/CATALYST-3000"
 	elif prodcode == "c3500xl":
-		prodname = "SWITCHES/Catalyst/Catalyst-3500XL"
+		prodname = "SWITCHES/CATALYST/CATALYST-3500XL"
 	elif prodcode == "c3500XL":
-		prodname = "SWITCHES/Catalyst/Catalyst-3500XL"
+		prodname = "SWITCHES/CATALYST/CATALYST-3500XL"
 	elif prodcode == "c3550":
-		prodname = "SWITCHES/Catalyst/Catalyst-3550"
+		prodname = "SWITCHES/CATALYST/CATALYST-3550"
 	elif prodcode == "c3560":
-		prodname = "SWITCHES/Catalyst/Catalyst-3560"
+		prodname = "SWITCHES/CATALYST/CATALYST-3560"
 	elif prodcode == "c3560e":
-		prodname = "SWITCHES/Catalyst/Catalyst-3560E"
+		prodname = "SWITCHES/CATALYST/CATALYST-3560E"
 	elif prodcode == "c3560x":
-		prodname = "SWITCHES/Catalyst/Catalyst-3560X"
+		prodname = "SWITCHES/CATALYST/CATALYST-3560X"
 	elif prodcode == "c3750":
-		prodname = "SWITCHES/Catalyst/Catalyst-3750"
+		prodname = "SWITCHES/CATALYST/CATALYST-3750"
 	elif prodcode == "c3750e":
-		prodname = "SWITCHES/Catalyst/Catalyst-3750E"
+		prodname = "SWITCHES/CATALYST/CATALYST-3750E"
 	elif prodcode == "c3750me":
-		prodname = "SWITCHES/Catalyst/Catalyst-3750ME"
+		prodname = "SWITCHES/CATALYST/CATALYST-3750ME"
 	elif prodcode == "c3750x":
-		prodname = "SWITCHES/Catalyst/Catalyst-3750X"
+		prodname = "SWITCHES/CATALYST/CATALYST-3750X"
 	elif prodcode == "cat3k_caa":
-		prodname = "SWITCHES/Catalyst/Catalyst-3850-3650"
+		prodname = "SWITCHES/CATALYST/CATALYST-3850-3650"
 	elif prodcode == "cat4000":
-		prodname = "SWITCHES/Catalyst/Catalyst-4000"
+		prodname = "SWITCHES/CATALYST/CATALYST-4000"
 	elif prodcode == "cat4000s12":
-		prodname = "SWITCHES/Catalyst/Catalyst-4000-SUP-I-II"
+		prodname = "SWITCHES/CATALYST/CATALYST-4000-SUP-I-II"
 	elif prodcode == "c4224":
-		prodname = "SWITCHES/Catalyst/Catalyst-4224"
+		prodname = "SWITCHES/CATALYST/CATALYST-4224"
 	elif prodcode == "cat4232":
-		prodname = "SWITCHES/Catalyst/Catalyst-4232"
+		prodname = "SWITCHES/CATALYST/CATALYST-4232"
 	elif prodcode == "cat4500":
-		prodname = "SWITCHES/Catalyst/Catalyst-4500"
+		prodname = "SWITCHES/CATALYST/CATALYST-4500"
 	elif prodcode == "cat4500e":
-		prodname = "SWITCHES/Catalyst/Catalyst-4500E"
+		prodname = "SWITCHES/CATALYST/CATALYST-4500E"
 	elif prodcode == "c4500e":
-		prodname = "SWITCHES/Catalyst/Catalyst-4500E"
+		prodname = "SWITCHES/CATALYST/CATALYST-4500E"
 	elif prodcode == "cat4500es8":
-		prodname = "SWITCHES/Catalyst/Catalyst-4500E-SUP8E"
+		prodname = "SWITCHES/CATALYST/CATALYST-4500E-SUP8E"
 	elif prodcode == "cat5000":
-		prodname = "SWITCHES/Catalyst/Catalyst-5000"
+		prodname = "SWITCHES/CATALYST/CATALYST-5000"
 	elif prodcode == "ce500":
-		prodname = "SWITCHES/Catalyst/Catalyst-500E"
+		prodname = "SWITCHES/CATALYST/CATALYST-500E"
 	elif prodcode == "c6500":
-		prodname = "SWITCHES/Catalyst/Catalyst-6500"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500"
 	elif prodcode == "cat6000":
-		prodname = "SWITCHES/Catalyst/Catalyst-6500"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500"
 	elif prodcode == "c6sup11":
-		prodname = "SWITCHES/Catalyst/Catalyst-6500-SUP1-MSFC1"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP1-MSFC1"
 	elif prodcode == "c6sup12":
-		prodname = "SWITCHES/Catalyst/Catalyst-6500-SUP1-MSFC2"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP1-MSFC2"
 	elif prodcode == "c6k222":
-		prodname = "SWITCHES/Catalyst/Catalyst-6500-SUP2-MSFC2"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP2-MSFC2"
 	elif prodcode == "c6sup22":
-		prodname = "SWITCHES/Catalyst/Catalyst-6500-SUP2-MSFC2"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP2-MSFC2"
 	elif prodcode == "s222":
-		prodname = "SWITCHES/Catalyst/Catalyst-6500-SUP2-MSFC2"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP2-MSFC2"
 	elif prodcode == "s2t54":
-		prodname = "SWITCHES/Catalyst/Catalyst-6500-SUP2T"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP2T"
 	elif prodcode == "s3223":
-		prodname = "SWITCHES/Catalyst/Catalyst-6500-SUP32-MSFC2"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP32-MSFC2"
 	elif prodcode == "s32p3":
-		prodname = "SWITCHES/Catalyst/Catalyst-6500-SUP32-PISA"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP32-PISA"
 	elif prodcode == "s72033":
-		prodname = "SWITCHES/Catalyst/Catalyst-6500-SUP720-MSFC3"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP720-MSFC3"
 	elif prodcode == "s6t64":
-		prodname = "SWITCHES/Catalyst/Catalyst-6800-SUP6T"
+		prodname = "SWITCHES/CATALYST/CATALYST-6800-SUP6T"
 	elif prodcode == "c6848x":
-		prodname = "SWITCHES/Catalyst/Catalyst-6840-X"
+		prodname = "SWITCHES/CATALYST/CATALYST-6840-X"
 	elif prodcode == "c6880x":
-		prodname = "SWITCHES/Catalyst/Catalyst-6880-X"
+		prodname = "SWITCHES/CATALYST/CATALYST-6880-X"
 	elif prodcode == "c8000be":
-		prodname = "SWITCHES/Catalyst/Catalyst-8300-Edge"
+		prodname = "SWITCHES/CATALYST/CATALYST-8300-Edge"
 	elif prodcode == "c8000aep":
-		prodname = "SWITCHES/Catalyst/Catalyst-8500-Edge"
+		prodname = "SWITCHES/CATALYST/CATALYST-8500-Edge"
 	elif prodcode == "cat8510c":
-		prodname = "SWITCHES/Catalyst/Catalyst-8510CSR"
+		prodname = "SWITCHES/CATALYST/CATALYST-8510CSR"
 	elif prodcode == "cat8510m":
-		prodname = "SWITCHES/Catalyst/Catalyst-8510MSR"
+		prodname = "SWITCHES/CATALYST/CATALYST-8510MSR"
 	elif prodcode == "cat8540c":
-		prodname = "SWITCHES/Catalyst/Catalyst-8540CSR"
+		prodname = "SWITCHES/CATALYST/CATALYST-8540CSR"
 	elif prodcode == "cat8540m":
-		prodname = "SWITCHES/Catalyst/Catalyst-8540MSR"
+		prodname = "SWITCHES/CATALYST/CATALYST-8540MSR"
 	elif prodcode == "cat9k":
-		prodname = "SWITCHES/Catalyst/Catalyst-9000"
+		prodname = "SWITCHES/CATALYST/CATALYST-9000"
 	elif prodcode == "cat9k_lite":
-		prodname = "SWITCHES/Catalyst/Catalyst-9200"
+		prodname = "SWITCHES/CATALYST/CATALYST-9200"
 	elif prodcode == "c1000":
-		prodname = "SWITCHES/Compact/Catalyst-1000"
+		prodname = "SWITCHES/Compact/CATALYST-1000"
 	elif prodcode == "c2960c405":
-		prodname = "SWITCHES/Compact/Catalyst-2960C"
+		prodname = "SWITCHES/Compact/CATALYST-2960C"
 	elif prodcode == "c2960c405ex":
-		prodname = "SWITCHES/Compact/Catalyst-2960CG"
+		prodname = "SWITCHES/Compact/CATALYST-2960CG"
 	elif prodcode == "c2960cx":
-		prodname = "SWITCHES/Compact/Catalyst-2960CX"
+		prodname = "SWITCHES/Compact/CATALYST-2960CX"
 	elif prodcode == "c3560c":
-		prodname = "SWITCHES/Compact/Catalyst-3560C"
+		prodname = "SWITCHES/Compact/CATALYST-3560C"
 	elif prodcode == "c3560c405":
-		prodname = "SWITCHES/Compact/Catalyst-3560C"
+		prodname = "SWITCHES/Compact/CATALYST-3560C"
 	elif prodcode == "c3560c405ex":
-		prodname = "SWITCHES/Compact/Catalyst-3560CG"
+		prodname = "SWITCHES/Compact/CATALYST-3560CG"
 	elif prodcode == "c3560cx":
-		prodname = "SWITCHES/Compact/Catalyst-3560CX"
+		prodname = "SWITCHES/Compact/CATALYST-3560CX"
 	elif prodcode == "cdb":
-		prodname = "SWITCHES/Compact/Catalyst-Digital-Building"
+		prodname = "SWITCHES/Compact/CATALYST-Digital-Building"
 	elif prodcode == "c2020":
 		prodname = "SWITCHES/Embedded/2020"
 	elif prodcode == "ess3x00":
@@ -2622,97 +2694,97 @@ def product (prodcode):
 	elif prodcode == "grwicdes":
 		prodname = "SWITCHES/Grid/CGS-Module"
 	elif prodcode == "ie2000":
-		prodname = "SWITCHES/IE/IE-2000"
+		prodname = "SWITCHES/INDUSTRIAL-ETHERNET/IE-2000"
 	elif prodcode == "ie2000u":
-		prodname = "SWITCHES/IE/IE-2000U"
+		prodname = "SWITCHES/INDUSTRIAL-ETHERNET/IE-2000U"
 	elif prodcode == "ies":
-		prodname = "SWITCHES/IE/IE-3000"
+		prodname = "SWITCHES/INDUSTRIAL-ETHERNET/IE-3000"
 	elif prodcode == "ie3010":
-		prodname = "SWITCHES/IE/IE-3010"
+		prodname = "SWITCHES/INDUSTRIAL-ETHERNET/IE-3010"
 	elif prodcode == "ie3x00":
-		prodname = "SWITCHES/IE/IE-3x00"
+		prodname = "SWITCHES/INDUSTRIAL-ETHERNET/IE-3x00"
 	elif prodcode == "ie4000":
-		prodname = "SWITCHES/IE/IE-4000"
+		prodname = "SWITCHES/INDUSTRIAL-ETHERNET/IE-4000"
 	elif prodcode == "ie4010":
-		prodname = "SWITCHES/IE/IE-4010"
+		prodname = "SWITCHES/INDUSTRIAL-ETHERNET/IE-4010"
 	elif prodcode == "ie5000":
-		prodname = "SWITCHES/IE/IE-5000"
+		prodname = "SWITCHES/INDUSTRIAL-ETHERNET/IE-5000"
 	elif prodcode == "s6523":
-		prodname = "SWITCHES/Metro/Catalyst-6500ME"
+		prodname = "SWITCHES/METRO/CATALYST-6500ME"
 	elif prodcode == "me1200":
-		prodname = "SWITCHES/Metro/ME-1200"
+		prodname = "SWITCHES/METRO/ME-1200"
 	elif prodcode == "ucs_ctrlr":
-		prodname = "SWITCHES/Metro/ME-1200/UCS-CONTROLLLER"
+		prodname = "SWITCHES/METRO/ME-1200/UCS-CONTROLLLER"
 	elif prodcode == "me240x":
-		prodname = "SWITCHES/Metro/ME-2400"
+		prodname = "SWITCHES/METRO/ME-2400"
 	elif prodcode == "me2600x":
-		prodname = "SWITCHES/Metro/ME-2600X"
+		prodname = "SWITCHES/METRO/ME-2600X"
 	elif prodcode == "me340x":
-		prodname = "SWITCHES/Metro/ME-3400"
+		prodname = "SWITCHES/METRO/ME-3400"
 	elif prodcode == "me360x":
-		prodname = "SWITCHES/Metro/ME-3600"
+		prodname = "SWITCHES/METRO/ME-3600"
 	elif prodcode == "me360x_t":
-		prodname = "SWITCHES/Metro/ME-3600"
+		prodname = "SWITCHES/METRO/ME-3600"
 	elif prodcode == "me380x":
-		prodname = "SWITCHES/Metro/ME-3800"
+		prodname = "SWITCHES/METRO/ME-3800"
 	elif prodcode == "c2960sm":
-		prodname = "SWITCHES/Modules/Catalyst-2960-SERVICE-MODULE"
+		prodname = "SWITCHES/MODULES/CATALYST-2960-SERVICE-MODULE"
 	elif prodcode == "c3kx":
-		prodname = "SWITCHES/Modules/Catalyst-3000-SERVICE-MODULE"
+		prodname = "SWITCHES/MODULES/CATALYST-3000-SERVICE-MODULE"
 	elif prodcode == "c4gwy":
-		prodname = "SWITCHES/Modules/Catalyst-4500-Access-Gateway-Module"
+		prodname = "SWITCHES/MODULES/CATALYST-4500-ACCESS-GATEWAY-MODULE"
 	elif prodcode == "c5atm":
-		prodname = "SWITCHES/Modules/Catalyst-5000-ATM"
+		prodname = "SWITCHES/MODULES/CATALYST-5000-ATM"
 	elif prodcode == "c5rsfc":
-		prodname = "SWITCHES/Modules/Catalyst-5000-Route-Switch-Feature-Card"
+		prodname = "SWITCHES/MODULES/CATALYST-5000-ROUTE-SWITCH-FEATURE-CARD"
 	elif prodcode == "c5rsm":
-		prodname = "SWITCHES/Modules/Catalyst-5000-Route-Switch-Module"
+		prodname = "SWITCHES/MODULES/CATALYST-5000-ROUTE-SWITCH-MODULE"
 	elif prodcode == "c6atm":
-		prodname = "SWITCHES/Modules/Catalyst-6500-ATM"
+		prodname = "SWITCHES/MODULES/CATALYST-6500-ATM"
 	elif prodcode == "wscmm":
-		prodname = "SWITCHES/Modules/Catalyst-6500-CMM"
+		prodname = "SWITCHES/MODULES/CATALYST-6500-CMM"
 	elif prodcode == "wsidsm2":
-		prodname = "SWITCHES/Modules/Catalyst-6500-IDSM2"
+		prodname = "SWITCHES/MODULES/CATALYST-6500-IDSM2"
 	elif prodcode == "c6msfc":
-		prodname = "SWITCHES/Modules/Catalyst-6500-MSFC1"
+		prodname = "SWITCHES/MODULES/CATALYST-6500-MSFC1"
 	elif prodcode == "c6msfc2":
-		prodname = "SWITCHES/Modules/Catalyst-6500-MSFC2"
+		prodname = "SWITCHES/MODULES/CATALYST-6500-MSFC2"
 	elif prodcode == "c6msfc2a":
-		prodname = "SWITCHES/Modules/Catalyst-6500-MSFC2A"
+		prodname = "SWITCHES/MODULES/CATALYST-6500-MSFC2A"
 	elif prodcode == "c6msfc3":
-		prodname = "SWITCHES/Modules/Catalyst-6500-MSFC3"
+		prodname = "SWITCHES/MODULES/CATALYST-6500-MSFC3"
 	elif prodcode == "c6svc5fmwam":
-		prodname = "SWITCHES/Modules/Catalyst-6500-MWAM"
+		prodname = "SWITCHES/MODULES/CATALYST-6500-MWAM"
 	elif prodcode == "c6svc6fmwam":
-		prodname = "SWITCHES/Modules/Catalyst-6500-MWAM"
+		prodname = "SWITCHES/MODULES/CATALYST-6500-MWAM"
 	elif prodcode == "c6svcimwam":
-		prodname = "SWITCHES/Modules/Catalyst-6500-MWAM"
+		prodname = "SWITCHES/MODULES/CATALYST-6500-MWAM"
 	elif prodcode == "svcmwam":
-		prodname = "SWITCHES/Modules/Catalyst-6500-MWAM"
+		prodname = "SWITCHES/MODULES/CATALYST-6500-MWAM"
 	elif prodcode == "Nexus":
-		prodname = "SWITCHES/Nexus/"
+		prodname = "SWITCHES/NEXUS/"
 	elif prodcode == "n1000v":
-		prodname = "SWITCHES/Nexus/Nexus-1000v"
+		prodname = "SWITCHES/NEXUS/NEXUS-1000v"
 	elif prodcode == "n3000":
-		prodname = "SWITCHES/Nexus/Nexus-3000"
+		prodname = "SWITCHES/NEXUS/NEXUS-3000"
 	elif prodcode == "n3500":
-		prodname = "SWITCHES/Nexus/Nexus-3500"
+		prodname = "SWITCHES/NEXUS/NEXUS-3500"
 	elif prodcode == "n4000":
-		prodname = "SWITCHES/Nexus/Nexus-4000"
+		prodname = "SWITCHES/NEXUS/NEXUS-4000"
 	elif prodcode == "n5000":
-		prodname = "SWITCHES/Nexus/Nexus-5000"
+		prodname = "SWITCHES/NEXUS/NEXUS-5000"
 	elif prodcode == "n6000":
-		prodname = "SWITCHES/Nexus/Nexus-6000-5600"
+		prodname = "SWITCHES/NEXUS/NEXUS-6000-5600"
 	elif prodcode == "n7000":
-		prodname = "SWITCHES/Nexus/Nexus-7000"
+		prodname = "SWITCHES/NEXUS/NEXUS-7000"
 	elif prodcode == "n7700":
-		prodname = "SWITCHES/Nexus/Nexus-7700"
+		prodname = "SWITCHES/NEXUS/NEXUS-7700"
 	elif prodcode == "n9000":
-		prodname = "SWITCHES/Nexus/Nexus-9000"
+		prodname = "SWITCHES/NEXUS/NEXUS-9000"
 	elif prodcode == "nxos":
-		prodname = "SWITCHES/Nexus/Nexus-9000-3000"
+		prodname = "SWITCHES/NEXUS/NEXUS-9000-3000"
 	elif prodcode == "nxosv":
-		prodname = "SWITCHES/Nexus/Nexus-9000V"
+		prodname = "SWITCHES/NEXUS/NEXUS-9000V"
 	elif prodcode == "nxosgeneric":
 		prodname = "SWITCHES/NEXUS/"
 	elif prodcode == "s5400":
@@ -2755,6 +2827,8 @@ def product (prodcode):
 		prodname = "VOICE/GATEWAY/VG-20x-XM"
 	elif prodcode == "vg224":
 		prodname = "VOICE/GATEWAY/VG-224"
+	elif prodcode == "vg248":
+		prodname = "VOICE/GATEWAY/VG-248"
 	elif prodcode == "vg3x0":
 		prodname = "VOICE/GATEWAY/VG-310-320"
 	elif prodcode == "vg350":
@@ -2805,56 +2879,62 @@ def product (prodcode):
 		prodname = "VOICE/IP-PHONES/8845_8865"
 	elif prodcode == "ipp894x":
 		prodname = "VOICE/IP-PHONES/894x"
+	elif prodcode == "ata187":
+		prodname = "VOICE/ATA/ATA-187"
+	elif prodcode == "ata190":
+		prodname = "VOICE/ATA/ATA-190"
 	elif prodcode == "uc500":
 		prodname = "VOICE/UC-500"
+	elif prodcode == "wireless":
+		prodname = "WIRELESS"
 	elif prodcode == "c1100":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-1100"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-1100"
 	elif prodcode == "c1130":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-1130"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-1130"
 	elif prodcode == "c1140":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-1140"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-1140"
 	elif prodcode == "c1200":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-1200"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-1200"
 	elif prodcode == "c1240":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-1240"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-1240"
 	elif prodcode == "c1250":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-1250"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-1250"
 	elif prodcode == "c1310":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-1310"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-1310"
 	elif prodcode == "c1520":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-1500-Mesh-AP"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-1500-Mesh-AP"
 	elif prodcode == "c350":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-350"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-350"
 	elif prodcode == "c520":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-521"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-521"
 	elif prodcode == "ap1g1":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP1G1-(700)"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-AP1G1-(700)"
 	elif prodcode == "ap1g2":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP1G2-(1600)"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-AP1G2-(1600)"
 	elif prodcode == "ap1g3":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP1G3-(IR829-1530)"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-AP1G3-(IR829-1530)"
 	elif prodcode == "ap1g4":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP1G4-(1810-1830-1850)"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-AP1G4-(1810-1830-1850)"
 	elif prodcode == "ap1g5":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP1G5-(1540-1800-1815)"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-AP1G5-(1540-1800-1815)"
 	elif prodcode == "ap1g6":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP1G6-(c9117)"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-AP1G6-(c9117)"
 	elif prodcode == "ap1g6a":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP1G6a-(c9130)"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-AP1G6a-(c9130)"
 	elif prodcode == "ap1g7":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP1G7-(C9115-9120)"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-AP1G7-(C9115-9120)"
 	elif prodcode == "ap3g1":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP3G1-(1260,3500)"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-AP3G1-(1260,3500)"
 	elif prodcode == "ap3g2":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP3G2-(1600,1700,2600,2700,3600,3700)"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-AP3G2-(1600,1700,2600,2700,3600,3700)"
 	elif prodcode == "c3700":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP3G2-(1600,1700,2600,2700,3600,3700)"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-AP3G2-(1600,1700,2600,2700,3600,3700)"
 	elif prodcode == "ap3g3":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP3G3-(2800,3800,4800,1560,6300)"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-AP3G3-(2800,3800,4800,1560,6300)"
 	elif prodcode == "ap801":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP801-(861W,88xW,1911W-Routers)"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-AP801-(861W,88xW,1911W-Routers)"
 	elif prodcode == "ap802":
-		prodname = "WIRELESS/ACCESS-POINT/Aironet-AP802-(812,819,886VA-W,887VA-W,89xW-Routers)"
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-AP802-(812,819,886VA-W,887VA-W,89xW-Routers)"
 	elif prodcode == "AP1540":
 		prodname = "WIRELESS/ACCESS-POINT/AP1540"
 	elif prodcode == "AP1560":
@@ -2884,25 +2964,25 @@ def product (prodcode):
 	elif prodcode == "CT5520":
 		prodname = "WIRELESS/CONTROLLER/5520"
 	elif prodcode == "SWLC3750K9":
-		prodname = "WIRELESS/CONTROLLER/Catalyst-3750"
+		prodname = "WIRELESS/CONTROLLER/CATALYST-3750"
 	elif prodcode == "SWISMK9":
-		prodname = "WIRELESS/CONTROLLER/Catalyst-6500-WISM"
+		prodname = "WIRELESS/CONTROLLER/CATALYST-6500-WISM"
 	elif prodcode == "WISM":
-		prodname = "WIRELESS/CONTROLLER/Catalyst-6500-WISM"
+		prodname = "WIRELESS/CONTROLLER/CATALYST-6500-WISM"
 	elif prodcode == "WISM2":
-		prodname = "WIRELESS/CONTROLLER/Catalyst-6500-WISM2"
+		prodname = "WIRELESS/CONTROLLER/CATALYST-6500-WISM2"
 	elif prodcode == "C9800-40":
-		prodname = "WIRELESS/CONTROLLER/Catalyst-9800-40"
+		prodname = "WIRELESS/CONTROLLER/CATALYST-9800-40"
 	elif prodcode == "C9800-80":
-		prodname = "WIRELESS/CONTROLLER/Catalyst-9800-80"
+		prodname = "WIRELESS/CONTROLLER/CATALYST-9800-80"
 	elif prodcode == "C9800-AP":
-		prodname = "WIRELESS/CONTROLLER/Catalyst-9800-ACCESS-POINTs"
+		prodname = "WIRELESS/CONTROLLER/CATALYST-9800-ACCESS-POINTs"
 	elif prodcode == "C9800-CL":
-		prodname = "WIRELESS/CONTROLLER/Catalyst-9800-CL"
+		prodname = "WIRELESS/CONTROLLER/CATALYST-9800-CL"
 	elif prodcode == "C9800-L":
-		prodname = "WIRELESS/CONTROLLER/Catalyst-9800-L"
+		prodname = "WIRELESS/CONTROLLER/CATALYST-9800-L"
 	elif prodcode == "C9800-SW":
-		prodname = "WIRELESS/CONTROLLER/Catalyst-9800-SW"
+		prodname = "WIRELESS/CONTROLLER/CATALYST-9800-SW"
 	elif prodcode == "CT3504":
 		prodname = "WIRELESS/CONTROLLER/CT3504"
 	elif prodcode == "CT7500":
@@ -2929,6 +3009,8 @@ def product (prodcode):
 		prodname = "WIRELESS/CONTROLLER/WLC7500"
 	elif prodcode == "CT8540":
 		prodname = "WIRELESS/CONTROLLER/WLC8540"
+	elif prodcode == "wcs":
+		prodname = "WIRELESS/CONTROLLER/WCS"
 	else:
 		prodname = "UNKNOWN"
 	return prodname
@@ -3397,6 +3479,93 @@ def utilssingleprodname (debug1,filename,prodname):
 		print("\tSubroutine#\tutilssingleprodname")
 	filemove (prodname, filename)
 
+def utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname):
+	if debug1:
+		print("\tModule#\t\tiosutils")
+		print("\tSubroutine#\tutils_dev_v2_v3_imagecode")
+	if prodname == "UNKNOWN":
+		messageunknowndev()
+	elif imagecode == "UNKNOWN":
+		messageunknownfeat()
+	else:
+		splitbydot = workname.split(".")
+		if len(splitbydot) == 3:
+			version2 = util2digit(splitbydot[0],splitbydot[1])
+			version3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		elif len(splitbydot) == 4:
+			version2 = util2digit(splitbydot[0],splitbydot[1])
+			version3 = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+		elif len(splitbydot) == 5:
+			version2 = util2digit(splitbydot[0],splitbydot[1])
+			version3 = util5digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4])
+		filepath = filepath4(prodname,version2,version3,imagecode)
+		filemove (filepath, filename)
+
+def utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname):
+	if debug1:
+		print("\tModule#\t\tiosutils")
+		print("\tSubroutine#\tutils_dev_imagecode_v2_vf")
+	if prodname == "UNKNOWN":
+		messageunknowndev()
+	elif imagecode == "UNKNOWN":
+		messageunknownfeat()
+	else:
+		splitbydot = workname.split(".")
+		if len(splitbydot) == 3:
+			version2 = util2digit(splitbydot[0],splitbydot[1])
+			version3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		elif len(splitbydot) == 4:
+			version2 = util2digit(splitbydot[0],splitbydot[1])
+			version3 = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+		elif len(splitbydot) == 5:
+			version2 = util2digit(splitbydot[0],splitbydot[1])
+			version3 = util5digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4])
+		filepath = filepath4(prodname,imagecode,version2,version3)
+		filemove (filepath, filename)
+
+def utils_dev_v2_vf_imagecode_dash (debug1,filename,prodname,imagecode,workname):
+	if debug1:
+		print("\tModule#\t\tiosutils")
+		print("\tSubroutine#\tutils_dev_v2_v3_imagecode_dash")
+	if prodname == "UNKNOWN":
+		messageunknowndev()
+	elif imagecode == "UNKNOWN":
+		messageunknownfeat()
+	else:
+		splitbydash = workname.split("-")
+		if len(splitbydash) == 3:
+			version2 = util2digit(splitbydash[0],splitbydash[1])
+			version3 = util3digit(splitbydash[0],splitbydash[1],splitbydash[2])
+		elif len(splitbydash) == 4:
+			version2 = util2digit(splitbydash[0],splitbydash[1])
+			version3 = util4digit(splitbydash[0],splitbydash[1],splitbydash[2],splitbydash[3])
+		elif len(splitbydash) == 5:
+			version2 = util2digit(splitbydash[0],splitbydash[1])
+			version3 = util5digit(splitbydash[0],splitbydash[1],splitbydash[2],splitbydash[3],splitbydash[4])
+		filepath = filepath4(prodname,version2,version3,imagecode)
+		filemove (filepath, filename)
+
+def utils_dev_imagecode_v2_vf_dash (debug1,filename,prodname,imagecode,workname):
+	if debug1:
+		print("\tModule#\t\tiosutils")
+		print("\tSubroutine#\tutils_dev_imagecode_v2_vf_dash")
+	if prodname == "UNKNOWN":
+		messageunknowndev()
+	elif imagecode == "UNKNOWN":
+		messageunknownfeat()
+	else:
+		splitbydash = workname.split("-")
+		if len(splitbydash) == 3:
+			version2 = util2digit(splitbydash[0],splitbydash[1])
+			version3 = util3digit(splitbydash[0],splitbydash[1],splitbydash[2])
+		elif len(splitbydash) == 4:
+			version2 = util2digit(splitbydash[0],splitbydash[1])
+			version3 = util4digit(splitbydash[0],splitbydash[1],splitbydash[2],splitbydash[3])
+		elif len(splitbydash) == 5:
+			version2 = util2digit(splitbydash[0],splitbydash[1])
+			version3 = util5digit(splitbydash[0],splitbydash[1],splitbydash[2],splitbydash[3],splitbydash[4])
+		filepath = filepath4(prodname,imagecode,version2,version3)
+		filemove (filepath, filename)
 
 def messageunknowndev ():
 		print ("E001: This device type is unknown, please update the script with the information about the image.", end="\n")

@@ -1,277 +1,44 @@
 import os, shutil, sys, re, getopt, argparse
 import hashlib
-from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
-from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
-from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
-from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
-from iosutils import fileprocessorpagent,fileprocessorrommon
-from ios_nexus import fileprocessornxos
-from ios_voice import fileprocessorvoice
+from iosutils     import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
+from iosutils     import utils_dev_v2_vf_imagecode,utils_dev_imagecode_v2_vf,utils_dev_imagecode_v2_vf_dash
+from iosutils     import filemove,filepath2,filepath3,filepath4,filepath5
+from iosutils     import util2digit,util3digit,util4digit,util5digit,stringtolist
+from iosutils     import messageunknowndev,messageunknownfeat,messageunknownfile
+from iosutils     import fileprocessorpagent,fileprocessorrommon
+from ios_nexus    import fileprocessornxos
+from ios_voice    import fileprocessorvoice
 from ios_security import fileprocessorsecurity
-from ios_iosxe import fileprocessor_iosxe
-from ios_iosxr import fileprocessor_iosxr
-from ios_servers import file_proc_servers
-from ios_ios import fileprocessorios
+from ios_iosxe    import fileprocessor_iosxe
+from ios_iosxr    import fileprocessor_iosxr
+from ios_servers  import file_proc_servers
+from ios_ios      import fileprocessorios
 from ios_wireless import fileprocessor_wireless
 
-def catos (filename):
-	array = filename.split(".")
-	version = array[1].split("-")
-	mainver = util2digit(version[0],version[1])
-	fullver = util3digit(version[0],version[1],version[2])
-	if array[0] == "cat4000":
-		prodname = product ("cat4000s12")
-		imagecode = "SUP-I-II"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat4000-cv":
-		prodname = product ("cat4000s12")
-		imagecode = "SUP-I-II-WITH-CISCOVIEW"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat4000-k8":
-		prodname = product ("cat4000s12")
-		imagecode = "SUP-I-II"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat4000-k9":
-		prodname = product ("cat4000s12")
-		imagecode = "SUP-I-II-WITH-SSH"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat5000-supg":
-		prodname = product ("cat5000")
-		imagecode = "SUP-III"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat5000-supgk9":
-		prodname = product ("cat5000")
-		imagecode = "SUP-III-WITH-SSH"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat5000-sup":
-		prodname = product ("cat5000")
-		imagecode = "SUP-II-G"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat5000-supk9":
-		prodname = product ("cat5000")
-		imagecode = "SUP-II-G-WITH-SSH"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat5000-sup3":
-		prodname = product ("cat5000")
-		imagecode = "SUP-III-G"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat5000-sup3k9":
-		prodname = product ("cat5000")
-		imagecode = "SUP-III-G-WITH-SSH"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat5000-sup3cv":
-		prodname = product ("cat5000")
-		imagecode = "SUP-III-G-WITH-CISCOVIEW"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat5000-sup3cvk9":
-		prodname = product ("cat5000")
-		imagecode = "SUP-III-G-WITH-SSH-AND-CISCOVIEW"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat5000-atm":
-		prodname = product ("cat5000")
-		imagecode = "ATM-MODULE"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat5000-sup8m":
-		prodname = product ("cat5000")
-		imagecode = "SUP-8M"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat6000-sup2":
-		prodname = product ("cat6000")
-		imagecode = "SUP-2"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat6000-sup2cv":
-		prodname = product ("cat6000")
-		imagecode = "SUP-2-WITH-CISCOVIEW"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat6000-sup2k8" or array[0] == "cat6000-sup2k9":
-		prodname = product ("cat6000")
-		imagecode = "SUP-2-WITH-SSH"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat6000-sup2cvk8" or array[0] == "cat6000-sup2cvk9":
-		prodname = product ("cat6000")
-		imagecode = "SUP-2-WITH-SSH-AND-CISCOVIEW"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat6000-sup":
-		prodname = product ("cat6000")
-		imagecode = "SUP-1"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat6000-supcv":
-		prodname = product ("cat6000")
-		imagecode = "SUP-1-WITH-CISCOVIEW"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat6000-supk8" or array[0] == "cat6000-supk9":
-		prodname = product ("cat6000")
-		imagecode = "SUP-1-WITH-SSH"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat6000-supcvk8" or array[0] == "cat6000-supcvk9":
-		prodname = product ("cat6000")
-		imagecode = "SUP-1-WITH-SSH-AND-CISCOVIEW"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat6000-sup720k8":
-		prodname = product ("cat6000")
-		imagecode = "SUP-720"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat6000-sup720cvk8":
-		prodname = product ("cat6000")
-		imagecode = "SUP-720-WITH-CISCOVIEW"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat6000-sup720k9":
-		prodname = product ("cat6000")
-		imagecode = "SUP-720-WITH-SSH"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat6000-sup720cvk9":
-		prodname = product ("cat6000")
-		imagecode = "SUP-720-WITH-SSH-AND-CISCOVIEW"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat6000-sup32pfc3k8":
-		prodname = product ("cat6000")
-		imagecode = "SUP-32"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat6000-sup32pfc3cvk8":
-		prodname = product ("cat6000")
-		imagecode = "SUP-32-WITH-CISCOVIEW"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat6000-sup32pfc3k9":
-		prodname = product ("cat6000")
-		imagecode = "SUP-32-WITH-SSH"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	elif array[0] == "cat6000-sup32pfc3cvk9":
-		prodname = product ("cat6000")
-		imagecode = "SUP-32-WITH-SSH-AND-CISCOVIEW"
-		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
-	filemove (filepath, filename)
-
-def nbar2 (filename):
-	product = "NBAR2"
-	splitbydash = filename.split("-")
-	if splitbydash[2] == "asr1k":
-		nbarsixteen (filename)
-	elif splitbydash[2] == "csr1000v":
-		nbarsixteen (filename)
-	elif splitbydash[2] == "isr4000":
-		nbarsixteen (filename)
-	elif splitbydash[2] == "isr4451":
-		nbarsixteen (filename)
-	elif splitbydash[2] == "isr1100":
-		nbarsixteen (filename)
-	elif splitbydash[2] == "asr1k":
-		nbarsixteen (filename)
-	elif splitbydash[2] == "isrg2":
-		nbarsixteen (filename)
-	elif splitbydash[2] == "cat3k":
-		nbarsixteen (filename)
-	elif splitbydash[2] == "cat9k":
-		nbarsixteen (filename)
-
-def nbarsixteen (filename):
-	product = "NBAR2"
-	splitbydash = filename.split("-")
-
-	if splitbydash[2] == "asr1k":
-		nbarclassification (filename,"NBAR2","ASR-1K")
-	elif splitbydash[2] == "csr1000v":
-		nbarclassification (filename,"NBAR2","CSR-1000V")
-	elif splitbydash[2] == "isr4000":
-		nbarclassification (filename,"NBAR2","ISR-4000")
-	elif splitbydash[2] == "isr4451":
-		nbarclassification (filename,"NBAR2","ISR-4000")
-	elif splitbydash[2] == "isr1100":
-		nbarclassification (filename,"NBAR2","ISR-1100")
-	elif splitbydash[2] == "asr1k":
-		nbarclassification (filename,"NBAR2","ASR-1K")
-	elif splitbydash[2] == "isrg2":
-		nbarclassification (filename,"NBAR2","ISR-G2")
-	elif splitbydash[2] == "cat3k":
-		nbarclassification (filename,"NBAR2","CAT-3K")
-	elif splitbydash[2] == "cat9k":
-		nbarclassification (filename,"NBAR2","CAT-9K")
-
-def nbarclassification (filename,product,prodcode):
-	splitbydash = filename.split("-")
-	splitbydot = filename.split(".")
-
-	if prodcode == "ASR-1K" or prodcode == "CSR-1000V" or prodcode == "ISR-4000" or prodcode == "CAT-3K" or prodcode == "CAT-9K" or prodcode == "ISR-1100":
-		if splitbydash[3] == "152" or splitbydash[3] == "153" or splitbydash[3] == "154" or splitbydash[3] == "155":
-			listver = list(splitbydash[3])
-			splitbydash[6] = splitbydash[6].replace(".pack","")
-			fullver = splitbydash[6] + "-" + listver[0] + listver[1] + "." + listver[1] + "-" + splitbydash[4]
-			filepath = product + "/" + prodcode + "/" + fullver
-			filemove (filepath, filename)
-		else:
-			main1 = list(splitbydash[3])
-			if splitbydash[3] == "1612.1a":
-				majorversion = "16.12.1a"
-				nbarversion = filename.replace(".pack","")
-				nbarversion = nbarversion.split("-")
-				filepath = product + "/" + prodcode + "/" + nbarversion[5] + "-" + majorversion
-				filemove (filepath, filename)
-			elif splitbydash[3] == "1612.1":
-				majorversion = "16.12.1"
-				nbarversion = filename.replace(".pack","")
-				nbarversion = nbarversion.split("-")
-				filepath = product + "/" + prodcode + "/" + nbarversion[5] + "-" + majorversion
-				filemove (filepath, filename)
-			else:
-				majorversion = main1[0] + main1[1] + "." + main1[2] + "." + main1[4]
-				nbarversion = filename.replace(".pack","")
-				nbarversion = nbarversion.split("-")
-				filepath = product + "/" + prodcode + "/" + nbarversion[5] + "-" + majorversion
-				filemove (filepath, filename)
-	elif filename == "pp-adv-isrg2-153-1.T-3.1.0.pack":
-		filepath = product + "/" + prodcode + "/" + "3.1.0-153-1.T"
+def nbar (filename):
+	prodname = product ("ntwkmgmt")
+	imagecode = imagelookup ("nbar")
+	workname = filename.replace(".pack","")
+	splitbydash = workname.split("-")
+	if filename.startswith("pp-adv-nam-18-"):
+		workname = workname.replace("pp-adv-nam-18-","")
+		filepath = filepath3(prodname,imagecode,workname)
 		filemove (filepath, filename)
-	elif prodcode == "ISR-G2":
-		workname = filename.replace("pp-adv-isrg2-","")
-		workname = workname.replace(".pack","")
-		spdash = workname.split("-")
-		filepath = product + "/" + prodcode + "/" + spdash[3] + "-" + spdash[0] + "-" + spdash[1]
+	elif filename.startswith("pp-adv-nam-61-18-"):
+		workname = workname.replace("pp-adv-nam-61-18-","")
+		filepath = filepath3(prodname,imagecode,workname)
+		filemove (filepath, filename)
+	elif filename.startswith("pp-adv-csr1000v-153-2-S0a-15-"):
+		workname = workname.replace("pp-adv-csr1000v-153-2-S0a-15-","")
+		filepath = filepath3(prodname,imagecode,workname)
 		filemove (filepath, filename)
 	else:
-		main1 = list(splitbydash[3])
-		if splitbydash[3].startswith("1612"):
-			majorversion = main1[0] + main1[1] + "." + main1[2] + main1[3]
-		else:
-			majorversion = main1[0] + main1[1] + "." + main1[2]
-		minorversion = splitbydash[4].split(".")
-		nbarversion = filename.replace(".pack","")
-		nbarversion = nbarversion.split("-")
-		filepath = product + "/" + prodcode + "/" + nbarversion[5] + "-" + majorversion+ "." + main1[4]
+		try:
+			myver = splitbydash[6]
+		except:
+			myver = splitbydash[5]
+		filepath = filepath3(prodname,imagecode,myver)
 		filemove (filepath, filename)
-
-def ipsrecovery (filename):
-	product = "IPS"
-	imagecode = "RECOVERY IMAGE"
-	splitbydash = filename.split("-")
-	if filename == "IPS-K9-r-1.1-a-5.0-1.pkg":
-		filepath = product + "/E0/5.0(1)/" + imagecode
-	else:
-		version = splitbydash[5] + "(" + splitbydash[6] + ")"
-		engine = splitbydash[7].split(".")
-		filepath = product + "/" + engine[0] + "/" + version + "/" + imagecode
-	filemove (filepath, filename)
-
-def ipssig (filename):
-	product = "IPS"
-	imagecode = "SIGNATURES"
-	splitbydash = filename.split("-")
-	version = splitbydash[2]
-	engine = splitbydash[4].split(".")
-	filepath = product + "/" + engine[0] + "/" + imagecode + "/" + version
-	filemove (filepath, filename)
-
-def ipssystem (filename):
-	product = "IPS"
-	imagecode = "SYSTEM UPGRADE"
-	splitbydash = filename.split("-")
-	if splitbydash[2] == "sp":
-		splitbydot = splitbydash[4].split(".")
-		version = splitbydash[3] + "(" + splitbydot[0] + ")"
-		filepath = product + "/" + "E0" + "/" + version + "/" + imagecode
-	else:
-		version = splitbydash[2] + "(" + splitbydash[3] + ")"
-		engine = splitbydash[4].split(".")
-		filepath = product + "/" + engine[0] + "/" + version + "/" + imagecode
-	filemove (filepath, filename)
 
 def waas (filename):
 	prodname = "WAAS"
@@ -544,12 +311,15 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			continue
 		elif name == "cat9k_fpga_upgrade_utility.pdf":
 			fileprocessor_iosxe(debug1,name)
-		elif name.endswith("pdf"):
-			continue
+		elif name == "Exp_V3_11_Release_Note.pdf":
+			fileprocessorios(debug1,name)
+#		elif name.endswith("pdf"):
+#			continue
 
 		if (
 		name.startswith("ata") or 
-		name.startswith("cmterm")
+		name.startswith("cmterm") or 
+		name.startswith("vgc-main")
 		):
 			fileprocessorvoice(debug1,name)
 
@@ -603,8 +373,10 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("nexus9300v") or 
 		name.startswith("nexus9500v") or 
 		name.startswith("nxos") or 
+		name.startswith("oac") or 
 		name.startswith("n5000_poap_script") or 
 		name.startswith("n6000_poap_script") or 
+		name.startswith("poap_script") or 
 		name.startswith("poap_ng") or 
 		name.startswith("Nexus1000v") or 
 		name.startswith("Nexus1000v") or 
@@ -613,10 +385,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("n1000vh-dk9") or 
 		name.startswith("nexus-1000v") or 
 		name == "n3k_bios_release_rn.pdf" or 
-		name == "ssd_c400_upgrade_6.1.2.I2.2a.tar" or 
-		name == "ssd_c400_upgrade_6.1.2.I2.3.tar" or 
-		name == "ssd_c400_upgrade_6.1.2.I2.2.tar" or 
-		name == "ssd_c400_upgrade_6.1.2.I2.1.tar" or 
+		name.startswith("ssd_c400_upgrade") or 
 		name == "ntp-1.0.1-7.0.3.I2.2d.lib32_n9000.rpm" or 
 		name == "ntp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm" or 
 		name == "ntp-1.0.2-7.0.3.I2.2e.lib32_n9000.rpm" or 
@@ -668,11 +437,6 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		elif name.startswith("c3600-2600-analog-fw"):
 			prodname = product ("branchmodules")
 			imagecode = imagelookup ("analogmodem")
-			utilssinglemove (debug1,name,prodname,imagecode)
-
-		elif splitbydot[0] == "oac":
-			prodname = product ("NEXUS")
-			imagecode = imagelookup ("oac")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
@@ -828,6 +592,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("HX-ESXi") or 
 		name.startswith ("HX-Kubernetes") or 
 		name.startswith ("Cisco-HX-Data-Platform-Installer") or 
+		name.startswith ("cisco-HX-Data-Platform-Installer") or 
 		name.startswith ("HyperFlex-VC-HTML") or 
 		name.startswith ("hxcsi") or 
 		name.startswith ("HyperFlex-Witness-") or 
@@ -842,7 +607,35 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("apic_em_update-apic-") or 
 		name.startswith ("APIC-EM-") or 
 		name.startswith ("CiscoPI3.4.pem") or 
-		name.startswith ("CiscoPI3.5.pem")
+		name.startswith ("CiscoPI3.5.pem") or 
+		name == "operations_center_pi_2_1_2_enable_update.ubf" or 
+		name == "pi212_20141118_01.ubf" or 
+		name == "pi212_PIGEN_CSCur43834_01.ubf" or 
+		name == "BashFix-update-0-x86_64.tar.gz" or 
+		name.startswith ("cisco-prime-pnp-app-k9-") or 
+		name.startswith ("PI-VA-") or 
+		name.startswith ("PI-APL-") or 
+		name.startswith ("PI-UCS-APL-") or 
+		name.startswith ("PI-Upgrade-") or 
+		name.startswith ("ucs-cxx") or 
+		name == "BashFix-update-0-x86_64.tar.gz" or 
+		name == "Datacenter_Technology_Pack-1.0.53.ubf" or 
+		name == "Datacenter_Technology_Pack_Update_1_Patch-1.0.58.ubf" or 
+		name == "GlibcFix-pi22-update-0-x86_64.tar.gz" or 
+		name == "PrimeInfra.pem" or 
+		name == "ca_technology_package-2.1.0.0.41.ubf" or 
+		name == "operations_center_pi_2_1_2_enable_update.ubf" or 
+		name == "rhel-vulnerability-patch-pnp-2.2.0.14.tar.gz" or 
+		name == "InstallerUpdateBE-1.0.5.tar.gz" or 
+		name == "ca_technology_package-2.1.0.0.41.ubf" or 
+		name == "operations_center_pi_2_1_2_enable_update.ubf" or 
+		name.startswith ("Device-Pack") or 
+		name.startswith ("CiscoPI") or 
+		name.startswith ("PI") or 
+		name.startswith ("pi") or 
+		name.startswith ("PNP-GATEWAY-VM-") or 
+		name.startswith ("cisco-prime-pnp") or 
+		name.startswith ("pnp-")
 		):
 			file_proc_servers(name,debug1)
 
@@ -866,6 +659,9 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("SNS-36xx-BIOS") or 
 		name.startswith ("SNS-36xx-firmware") or 
 		name.startswith ("upd-pkg-SNS-36xx-cimc") or
+		name.startswith ("SNS-35x5-BIOS") or 
+		name.startswith ("SNS-35x5-firmware") or 
+		name.startswith ("upd-pkg-SNS-35x5-cimc") or
 		name == "README_ISE_20_201_21_22" or 
 		name.startswith ("PIX") and name.endswith(".bin") or 
 		name.startswith ("PIX") or 
@@ -891,7 +687,11 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "webAgent_1-0.zip.txt" or 
 		name == "webAgent_1-1.zip" or 
 		name == "webAgent_1-1.zip.txt" or 
-		name.startswith ("fcs-csm") or 
+		name.startswith ("fcs-csm") or
+		name.startswith ("fcs-cms") or
+		name.startswith ("fcs-CSM") or
+		name.startswith ("fcs-mcp") or
+		name.startswith ("fcs-rme") or
 		name.startswith ("csm-maxmind-geolitecity-") or 
 		name.startswith ("fcs-mcp") or 
 		name.startswith ("firepower") or 
@@ -956,7 +756,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "VPNDisable_ServiceProfile.xml" or 
 		name == "citrix_plugin_howto.doc"
 		):
-			fileprocessorsecurity(debug1,name)
+			fileprocessorsecurity(debug1,name,filename)
 
 		elif (
 		name == "xrvr-fullk9-4.3.2.vmdk" or 
@@ -988,7 +788,6 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "wconvertit0-12.zip" or 
 		name == "2730_rel_note" or 
 		name == "Exp_V3_11.axf" or 
-		name == "Exp_V3_11_Release_Note.pdf" or 
 		name == "Exp_v10_10.spe" or 
 		name == "MC7700_03.05.29.02_00_generic_000.000_001.cwe" or 
 		name == "MC7700_03.05.29.03_00_generic_000.000_001.cwe" or 
@@ -1168,9 +967,12 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("AIR_CTVM-K9") or 
 		name.startswith ("MFG_CTVM") or 
 		name.startswith ("AP_BUNDLE") or 
+		name.startswith ("WCS-STANDARD-K9") or 
 		name.startswith ("CiscoAironet-AP-to-LWAPP-Upgrade-Tool") or 
 		name == "AP350-Cisco-IOS-Upgrade-Image-v2.img" or 
 		name == "AP1200-Cisco-IOS-Upgrade-Image-v3.img" or 
+		name == "Aironet-AP-Cisco-IOS-Conversion-Tool-v2.1.exe" or 
+		name.startswith ("BR350") and name.endswith ("exe") or 
 		name.startswith ("WGB350") and name.endswith ("exe") or 
 		name == "webauth_bundle.zip" or 
 		name == "webauth_bundle-1.0.2.zip"
@@ -1182,6 +984,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("m9100") or 
 		name.startswith ("m9200") or 
 		name.startswith ("m9250") or 
+		name.startswith ("m9300") or 
 		name.startswith ("m9500") or 
 		name.startswith ("m9700")
 		):
@@ -1239,35 +1042,16 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			splitbydashsub = thistemp.split("-")
 			imagecode = imagelookup (splitbydashsub[1])
 			prodname = product (splitbydashsub[0])
-#			standardios (name, prodname, imagecode)
 			fileprocessorios (debug1,name)
 
 		elif splitbydot[0] == "dsc-c5800-mz":
 			imagecode = imagelookup (splitbydash[0])
 			prodname = product (splitbydash[1])
-#			standardios (name, prodname, imagecode)
 			fileprocessorios (debug1,name)
 
-		elif splitbydash[0] == "cat6000" or splitbydash[0] == "cat5000" or splitbydot[0] == "cat4000" or splitbydot[0] == "cat4000-cv" or splitbydot[0] == "cat4000-k8" or splitbydot[0] == "cat4000-k9":
-			catos (name)
-
-		elif splitbydash[0] == "fcs" and splitbydash[1] == "rme" and splitbydash[2] == "430":
-			filepath = "Cisco Security Manager/4.0.0/RESOURCE MANAGER ESSENTIALS"
-			filemove (filepath, name)
-
-		elif splitbydash[0] == "IPS" and splitbydash[1] == "K9" and splitbydash[2] == "r":
-			ipsrecovery(name)
-
-		elif splitbydash[0] == "IPS" and splitbydash[1] == "K9":
-			ipssystem(name)
-
-		elif splitbydash[0] == "IPS" and splitbydash[1] == "sig":
-			ipssig(name)
-
 		elif splitbydot[0] == "c10k-fpd-pkg":
-			prodname = "Routers/SP/10000"
+			prodname = product ("c10k")
 			imagecode = imagelookup (splitbydash[1])
-#			standardios (name, prodname, imagecode)
 			fileprocessorios (debug1,name)
 
 		elif splitbydash[0] == "all":
@@ -1279,13 +1063,264 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 				filepath = prodname + "/" + "1.3/" + "1.3(0)181"
 				filemove (filepath, name)
 
-		elif splitbydash[0] == "pp" and splitbydash[1] == "adv":
-			nbar2 (name)
+		elif (
+		name.startswith("pp-adv")
+		):
+			nbar (name)
+
+		elif (
+		name.startswith("s6523-mp001")
+		):
+			prodname = product ("s6523")
+			imagecode = imagelookup ("mpatch")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name.startswith("s3223-mp001")
+		):
+			prodname = product ("s3223")
+			imagecode = imagelookup ("mpatch")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name.startswith("s72033-mp001")
+		):
+			prodname = product ("s72033")
+			imagecode = imagelookup ("mpatch")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif name.startswith("cat4000."):
+			prodname = product ("cat4000")
+			imagecode = imagelookup ("sup")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat4000.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat4000-cv."):
+			prodname = product ("cat4000")
+			imagecode = imagelookup ("supcv")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat4000-cv.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat4000-k8."):
+			prodname = product ("cat4000")
+			imagecode = imagelookup ("supk8")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat4000-k8.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat4000-k9."):
+			prodname = product ("cat4000")
+			imagecode = imagelookup ("supk9")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat4000-k9.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat5000-supg."):
+			prodname = product ("cat5000")
+			imagecode = imagelookup ("supg")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat5000-supg.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat5000-supgk9."):
+			prodname = product ("cat5000")
+			imagecode = imagelookup ("supgk9")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat5000-supgk9.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat5000-sup."):
+			prodname = product ("cat5000")
+			imagecode = imagelookup ("sup")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat5000-sup.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat5000-sup3."):
+			prodname = product ("cat5000")
+			imagecode = imagelookup ("sup3")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat5000-sup3.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat5000-sup8m."):
+			prodname = product ("cat5000")
+			imagecode = imagelookup ("sup8m")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat5000-sup8m.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat5000-atm."):
+			prodname = product ("cat5000")
+			imagecode = imagelookup ("m")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat5000-atm.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat5000-sup3cv."):
+			prodname = product ("cat5000")
+			imagecode = imagelookup ("sup3cv")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat5000-sup3cv.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat5000-sup3cvk9."):
+			prodname = product ("cat5000")
+			imagecode = imagelookup ("sup3cvk9")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat5000-sup3cvk9.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat5000-sup3k9."):
+			prodname = product ("cat5000")
+			imagecode = imagelookup ("sup3k9")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat5000-sup3k9.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-sup."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("sup")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-sup.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-supcv."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("supcv")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-supcv.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-supcvk8."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("supcvk8")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-supcvk8.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-supcvk9."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("supcvk9")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-supcvk9.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-supk8."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("supk8")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-supk8.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-supk9."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("supk9")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-supk9.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-sup2."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("sup2")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-sup2.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-sup2cv."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("sup2cv")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-sup2cv.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-sup2cvk8."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("sup2cvk8")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-sup2cvk8.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-sup2cvk9."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("sup2cvk9")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-sup2cvk9.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-sup2k8."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("sup2k8")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-sup2k8.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-sup2k9."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("sup2k9")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-sup2k9.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-sup32pfc3cvk8."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("sup32pfc3cvk8")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-sup32pfc3cvk8.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-sup32pfc3cvk9."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("sup32pfc3cvk9")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-sup32pfc3cvk9.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-sup32pfc3k8."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("sup32pfc3k8")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-sup32pfc3k8.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-sup32pfc3k9."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("sup32pfc3k9")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-sup32pfc3k9.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-sup720cvk8."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("sup720cvk8")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-sup720cvk8.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-sup720cvk9."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("sup720cvk9")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-sup720cvk9.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-sup720k8."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("sup720k8")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-sup720k8.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
+
+		elif name.startswith("cat6000-sup720k9."):
+			prodname = product ("cat6000")
+			imagecode = imagelookup ("sup720k9")
+			workname = name.replace(".bin","")
+			workname = workname.replace("cat6000-sup720k9.","")
+			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
 
 		else:
-#			imagecode = imagelookup (splitbydash[1])
-#			prodname = product (splitbydash[0])
-#			standardios (name, prodname, imagecode)
 			fileprocessorios (debug1,name)
 
 if __name__ == "__main__":

@@ -1,4 +1,5 @@
 from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
+from iosutils import utils_dev_v2_vf_imagecode,utils_dev_imagecode_v2_vf,utils_dev_imagecode_v2_vf_dash
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
@@ -63,6 +64,32 @@ def file_proc_servers (filename,debug1):
 	filename == "efi-obd-v13-7-3.diag"
 	):
 		prodname = product("ucseseries")
+		imagecode = imagelookup("hdiag")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename.startswith ("ucs-cxx-diag")
+	):
+		prodname = product("ucscseries")
+		imagecode = imagelookup("hdiag")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename.startswith ("ucs-cxxx-scu") or 
+	filename.startswith ("ucs-cxx-scu")
+	):
+		prodname = product("ucscseries")
+		imagecode = imagelookup("scu")
+		workname = filename.replace("ucs-cxxx-scu-", "")
+		workname = workname.replace("ucs-cxx-scu-", "")
+		workname = workname.replace(".iso", "")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+
+	elif (
+	filename.startswith ("ucs-blade-diags") or 
+	filename.startswith ("ucs-blade-server-diags")
+	):
+		prodname = product("ucsbseries")
 		imagecode = imagelookup("hdiag")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
@@ -150,7 +177,22 @@ def file_proc_servers (filename,debug1):
 		file_proc_servers_ucs (debug1,filename)
 
 	elif (
-	filename.startswith("PI")
+	filename == "BashFix-update-0-x86_64.tar.gz" or 
+	filename == "Datacenter_Technology_Pack-1.0.53.ubf" or 
+	filename == "Datacenter_Technology_Pack_Update_1_Patch-1.0.58.ubf" or 
+	filename == "GlibcFix-pi22-update-0-x86_64.tar.gz" or 
+	filename == "PrimeInfra.pem" or 
+	filename == "ca_technology_package-2.1.0.0.41.ubf" or 
+	filename == "operations_center_pi_2_1_2_enable_update.ubf" or 
+	filename == "rhel-vulnerability-patch-pnp-2.2.0.14.tar.gz" or 
+	filename == "InstallerUpdateBE-1.0.5.tar.gz" or 
+	filename.startswith ("CiscoPI") or 
+	filename.startswith ("Device-Pack") or 
+	filename.startswith ("PI") or 
+	filename.startswith ("pi") or 
+	filename.startswith ("PNP-GATEWAY-VM-") or 
+	filename.startswith ("cisco-prime-pnp") or 
+	filename.startswith ("pnp-")
 	):
 		file_proc_servers_primeinfra (debug1,filename)
 
@@ -175,6 +217,7 @@ def file_proc_servers (filename,debug1):
 	filename.startswith ("HX-ESXi") or 
 	filename.startswith ("HX-Kubernetes") or 
 	filename.startswith ("Cisco-HX-Data-Platform-Installer") or
+	filename.startswith ("cisco-HX-Data-Platform-Installer") or
 	filename.startswith ("HyperFlex-VC-HTML") or 
 	filename.startswith ("hxcsi") or 
 	filename.startswith ("HyperFlex-Witness-") or 
@@ -315,8 +358,12 @@ def file_proc_servers_hyperflex (debug1,filename,prodname):
 		imagecode = imagelookup("kubernetes")
 		filepath = filepath4(prodname,imagecode,vertwo,verthree)
 		filemove (filepath, filename)
-	elif filename.startswith ("Cisco-HX-Data-Platform-Installer"):
+	elif (
+	filename.startswith ("Cisco-HX-Data-Platform-Installer") or 
+	filename.startswith ("cisco-HX-Data-Platform-Installer")
+	):
 		workname = filename.replace("Cisco-HX-Data-Platform-Installer-v", "")
+		workname = workname.replace("cisco-HX-Data-Platform-Installer-v", "")
 		workname = workname.replace("p1-esx.ova", "")
 		workname = workname.replace("-esx.ova", "")
 		workname = workname.replace("-hyperv.vhdx.zip", "")
@@ -466,10 +513,234 @@ def file_proc_servers_primeinfra (debug1,filename):
 	splitbydash = filename.split("-")
 	if debug1:
 		print("\tSubroutine#\tfile_proc_servers_primeinfra")
+	prodname = product("cpi")
+
+	if (
+	filename == "PrimeInfra.pem" or 
+	filename == "PI_3_2_FIPS_Update_01-1.0.0.ubf" or 
+	filename == "PI-APL-3.2.50.0.70-1-K9.iso.signature" or 
+	filename == "PI-APL-3.2.50.0.70-1-K9.iso" or 
+	filename == "PI-VA-3.2.50.0.70.ova"
+	):
+		utilssinglemove (debug1,filename,prodname,"3.2-FIPS")
+
+	elif (
+	filename == "PI_1.4_0_45_Update_1-39.tar.gz" or 
+	filename == "PI_1_4_0_45-CSCui77571-2.tar.gz" or 
+	filename == "PI_1_4-CSCum71308-0.tar.gz" or 
+	filename == "PI-upgrade-bundle-1.4.0.45-2.tar.gz" or 
+	filename == "PI-VA-1.4.0.45-2-large.ova" or 
+	filename == "PI-VA-1.4.0.45-2-medium.ova" or 
+	filename == "PI-VA-1.4.0.45-2-small.ova" or 
+	filename == "PI-VA-1.4.0.45-2-xl.ova"
+	):
+		utilssinglemove (debug1,filename,prodname,"1.4")
+
+
+	elif (
+	filename == "pi_2.0device_packs_5-39.ubf" or 
+	filename == "PI_2_0-CSCum71308-0.tar.gz" or 
+	filename == "pi_update_2.0-3.zip" or 
+	filename == "PI-APL-2.0.0.0.294-2-K9.iso" or 
+	filename == "PI-Upgrade-2.0.0.0.294-2.tar.gz" or 
+	filename == "PI-VA-2.0.0.0.294-2-Express.ova" or 
+	filename == "PI-VA-2.0.0.0.294-2-Pro.ova" or 
+	filename == "PI-VA-2.0.0.0.294-2-Standard.ova" or 
+	filename == "PI-VA-2.0.0.0.294-Pro.ova" or 
+	filename == "PI-VA-2.0.0.0.294-Standard.ova"
+	):
+		utilssinglemove (debug1,filename,prodname,"2.0")
+
+
+	elif (
+	filename == "pi_2.1device_packs_5-45.ubf" or 
+	filename == "ca_technology_package-2.1.0.0.41.ubf" or 
+	filename == "operations_center_pi_2_1_2_enable_update.ubf" or 
+	filename == "pi_2.1device_packs_8-56.ubf" or 
+	filename == "pi212_20141118_01.ubf" or 
+	filename == "pi212_PIGEN_CSCur43834_01.ubf" or 
+	filename == "Datacenter_Technology_Pack-1.0.53.ubf" or 
+	filename == "Datacenter_Technology_Pack_Update_1_Patch-1.0.58.ubf" or 
+	filename == "PI-APL-2.1.0.0.87-1-K9.iso" or 
+	filename == "PI-Upgrade-2.1.0.0.87.tar.gz" or 
+	filename == "PI-VA-2.1.0.0.87-Express.ova" or 
+	filename == "PI-VA-2.1.0.0.87-Pro.ova" or 
+	filename == "PI-VA-2.1.0.0.87-Standard.ova"
+	):
+		utilssinglemove (debug1,filename,prodname,"2.1")
+
+
+	elif (
+	filename == "GlibcFix-pi22-update-0-x86_64.tar.gz" or 
+	filename == "pi_2.2_device-pack_10-72.ubf" or 
+	filename == "pi22_disable3des-1.ubf" or 
+	filename == "pi222_Update_04-3.ubf" or 
+	filename == "pi223_Update_06-8.ubf" or 
+	filename == "pi223-26.ubf" or 
+	filename == "PI-APL-2.2.0.0.158-1-K9.iso" or 
+	filename == "PI-UCS-APL-2.2.0.0.158-1-K9.iso" or 
+	filename == "PI-UCS-APL-2.2.0.0.158-1-K9-usb.img" or 
+	filename == "PI-VA-2.2.0.0.158.ova"
+	):
+		utilssinglemove (debug1,filename,prodname,"2.2")
+
+	elif (
+	filename == "PI-Upgrade-3.0.X_to_3.1.0.0.132.tar.gz" or 
+	filename == "PI-VA-3.1.0.0.132.ova" or 
+	filename == "Device-Pack-16-PI3.1-133.ubf" or 
+	filename == "PI_3_1_7_update_05-1.0.11.ubf" or 
+	filename == "PI_3_1_7-1.0.16.ubf" or 
+	filename == "PI-APL-3.1.0.0.132-1-K9.iso" or 
+	filename == "PI_3_1_7-1.0.16.ubf" or 
+	filename == "PI_3_1_7-1.0.16.ubf"
+	):
+		utilssinglemove (debug1,filename,prodname,"3.1")
+
+	elif (
+	filename == "Device-Pack-4-PI3.2-12.ubf" or 
+	filename == "PI_3_2_2-1.0.13.ubf" or 
+	filename == "PI_3_2_2_update_05-1.0.5.ubf" or 
+	filename == "PI-VA-3.2.0.0.258.ova" or 
+	filename == "PI-APL-3.2.0.0.258-1-K9.iso.signature" or 
+	filename == "PI-APL-3.2.0.0.258-1-K9.iso" or 
+	filename == "PI-Upgrade-3.X_to_3.2.0.0.258.tar.gz" or 
+	filename == "CiscoPI3.2.pem" or 
+	filename == "InstallerUpdateBE-1.0.5.tar.gz"
+	):
+		utilssinglemove (debug1,filename,prodname,"3.2")
+
+	elif (
+
+	filename == "PI-Upgrade-3.3.0.0.342.tar.gz" or
+	filename == "PI-APL-3.3.0.0.342-1-K9.iso" or
+	filename == "PI-VA-3.3.0.0.342.ova" or
+	filename == "PI-APL-3.3.0.0.342-1-K9.iso.signature" or
+	filename == "CiscoPI3.3.pem" or
+	filename == "PI_3_3_1-1.0.15.ubf" or
+	filename == "PI_3_3_1_update_04-1.0.4.ubf" or
+	filename == "PI_3_3_1_update_04-1.0.5.ubf" or
+	filename == "Device-Pack-4-Update-03-PI3.3-2.ubf" or
+	filename == "Device-Pack-4-PI3.3-11.ubf"
+	):
+		utilssinglemove (debug1,filename,prodname,"3.3")
+
+	elif (
+	filename == "Device-Pack-11-PI3.4-09.ubf" or
+	filename == "Device-Pack-2-PI3.4-07.ubf" or
+	filename == "PI_3_4_2_Update_01-1.0.2.ubf" or
+	filename == "PI_3_4_2-1.0.23.ubf" or
+	filename == "PI-VA-3.4.0.0.348.ova" or
+	filename == "PI-APL-3.4.0.0.348-1-K9.iso" or
+	filename == "CiscoPI3.4.pem" or
+	filename == "PI_BUNDLE-3.4.0.0.348-Upgrade.tar.gz" or
+	filename == "PI-APL-3.4.0.0.348-1-K9.iso.signature"
+	):
+		utilssinglemove (debug1,filename,prodname,"3.4")
+
+	elif (
+	filename == "PI-Upgrade-3.X_to_3.5.0.0.550.tar.gz" or
+	filename == "PI-APL-3.5.0.0.550-1-K9.iso.signature" or
+	filename == "PI-APL-3.5.0.0.550-1-K9.iso" or
+	filename == "CiscoPI3.5.pem" or
+	filename == "PI-VA-3.5.0.0.550.ova" or
+	filename == "PI_3_5_1-1.0.22.ubf" or
+	filename == "PI_3_5_1_Security_Update_02_Part_02of02-1.0.7.ubf" or
+	filename == "PI_3_5_1_Security_Update_02_Part_01of02-1.0.4.ubf" or
+	filename == "PI_3_5_1_Update_02-1.0.21.ubf" or
+	filename == "Device-Pack-4-PI3.5-21.ubf"
+	):
+		utilssinglemove (debug1,filename,prodname,"3.5")
+
+	elif (
+	filename == "Device-Pack-1-PI3.6-13.ubf" or
+	filename == "PI_3_6_Update_03-1.0.2.ubf" or
+	filename == "PI-VA-3.6.0.0.172.ova" or
+	filename == "PI-Upgrade-3.4_to_3.6.0.0.172.tar.gz" or
+	filename == "PI-APL-3.6.0.0.172-1-K9.iso.signature" or
+	filename == "PI-APL-3.6.0.0.172-1-K9.iso" or
+	filename == "CiscoPI3.6.pem" or
+	filename == "PI-Upgrade-3.5_to_3.6.0.0.172.tar.gz"
+	):
+		utilssinglemove (debug1,filename,prodname,"3.6")
+
+	elif (
+	filename == "Device-Pack-2-PI3.7-17.ubf" or
+	filename == "PI_3_7_1_Update_04-1.0.4.ubf" or
+	filename == "PI_3_7_1-1.0.36.ubf" or
+	filename == "PI_3_7_Update_03-1.0.2.ubf" or
+	filename == "PI-VA-3.7.0.0.159.ova" or
+	filename == "PI-Upgrade-31x_32x_33x_34x_to_3.7.0.0.159.tar.gz" or
+	filename == "PI-Upgrade-35x_36x_to_3.7.0.0.159.tar.gz" or
+	filename == "CiscoPI3.7.pem" or
+	filename == "PI-APL-3.7.0.0.159-1-K9.iso.signature" or
+	filename == "PI-APL-3.7.0.0.159-1-K9.iso"
+	):
+		utilssinglemove (debug1,filename,prodname,"3.7")
+
+	elif (
+	filename == "Device-Pack-1-PI3.8-22.ubf" or
+	filename == "PI_3_8_1-1.0.26.ubf" or
+	filename == "PI_3_8_Update_02-1.0.15.ubf" or
+	filename == "PI-APL-3.8.0.0.310-1-K9.iso" or
+	filename == "PI-APL-3.8.0.0.310-1-K9.iso.signature" or
+	filename == "CiscoPI3.8.pem" or
+	filename == "PI-VA-3.8.0.0.310.ova" or
+	filename == "PI-Upgrade-36x_37x_to_3.8.0.0.310.tar.gz"
+	):
+		utilssinglemove (debug1,filename,prodname,"3.8")
+
+	elif (
+	filename == "PI_3_9_Oct_Oracle_patch-1.0.8.ubf" or
+	filename == "PI-APL-3.9.0.0.219-1-K9.iso" or
+	filename == "PI-APL-3.9.0.0.219-1-K9.iso.signature" or
+	filename == "CiscoPI3.9.pem" or
+	filename == "PI-Upgrade-37x_38x_to_3.9.0.0.219.tar.gz" or
+	filename == "PI-VA-3.9.0.0.219.ova"
+	):
+		utilssinglemove (debug1,filename,prodname,"3.9")
+
+	elif (
+	filename == "PNP-GATEWAY-VM-2.2.0.15.ova" or 
+	filename == "pnp-kickstart-2.2.0.15-K9.iso" or 
+	filename == "pnp-packaging-2.2.0.15.tar.gz"
+	):
+		utilssinglemove (debug1,filename,prodname,"PNP/3.1")
+
+	elif (
+	filename == "PNP-GATEWAY-VM-2.0.0.28.ova" or 
+	filename == "pnp-packaging-2.0.0.30.tar.gz" or 
+	filename == "pnp-gateway-patch-2.0.0.28.tar.gz" or 
+	filename == "cisco-prime-pnp-app-k9-2.0.0.28.zip"
+	):
+		utilssinglemove (debug1,filename,prodname,"PNP/2.0")
+
+	elif (
+	filename == "PNP-GATEWAY-VM-2.2.0.9.ova" or 
+	filename == "pnp-packaging-2.2.0.10.tar.gz" or 
+	filename == "pnp-packaging-2.2.0.9.tar.gz" or 
+	filename == "rhel-vulnerability-patch-pnp-2.2.0.14.tar.gz"
+	):
+		utilssinglemove (debug1,filename,prodname,"PNP/2.2")
+
+	elif (
+	filename == "pnp-kickstart-2.2.0.14-K9.iso" or 
+	filename == "pnp-packaging-2.2.0.14.tar.gz"
+	):
+		utilssinglemove (debug1,filename,prodname,"PNP/2.2")
+
+	elif (
+	filename == "cisco-prime-pnp-app-k9-2.0.1.2.zip"
+	):
+		utilssinglemove (debug1,filename,prodname,"PNP/3.0-3.1")
+
+
+	else:
+		utilssingleprodname (debug1,filename,prodname)
 
 def file_proc_servers_ucs (debug1,filename):
 	if debug1:
 		print("\tSubroutine#\tfile_proc_servers_ucs")
+
 	splitbydash = filename.split("-")
 
 	if filename.startswith("ucs-utils"):

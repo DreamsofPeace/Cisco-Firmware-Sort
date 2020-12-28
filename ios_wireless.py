@@ -1,4 +1,4 @@
-from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
+from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname,utils_dev_v2_vf_imagecode,utils_dev_imagecode_v2_vf,utils_dev_imagecode_v2_vf_dash
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
@@ -157,7 +157,7 @@ def fileprocessor_wireless(debug1,filename):
 		workname = filename.replace(".tar","")
 		workname = workname.replace(".zip","")
 		workname = workname.replace(".aes","")
-		workname = workname.replace("SWISMK9-","")
+		workname = workname.replace("SWLC3750K9-","")
 		wireless_all_dash (debug1,filename,prodname,workname)
 
 	elif (
@@ -427,6 +427,65 @@ def fileprocessor_wireless(debug1,filename):
 		workname = workname.replace("AIR-WISM2-AP_BUNDLE-K9-","")
 		wireless_all_dash (debug1,filename,prodname,workname)
 
+	elif (
+		filename.startswith ("WGB350") and filename.endswith ("exe")
+	):
+		prodname = product ("c350")
+		imagecode = imagelookup("WKGBDG")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+		filename.startswith ("BR350") and filename.endswith ("exe")
+	):
+		prodname = product ("c350")
+		imagecode = imagelookup("WRLBDG")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+		filename == "AP350-Cisco-IOS-Upgrade-Image-v2.img"
+	):
+		prodname = product ("c350")
+		imagecode = imagelookup("vxworks")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+		filename == "AP1200-Cisco-IOS-Upgrade-Image-v3.img"
+	):
+		prodname = product ("c1200")
+		imagecode = imagelookup("vxworks")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+		filename == "webauth_bundle.zip" or 
+		filename == "webauth_bundle-1.0.2.zip"
+	):
+		prodname = product ("wireless")
+		imagecode = imagelookup("webauth")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename.startswith("CiscoAironet-AP-to-LWAPP-Upgrade-Tool-") 
+	):
+		prodname = product ("wireless")
+		imagecode = imagelookup("aptolwapp")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+		filename == "Aironet-AP-Cisco-IOS-Conversion-Tool-v2.1.exe"
+	):
+		prodname = product ("wireless")
+		imagecode = imagelookup("vxworkstoios")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename.startswith("WCS-STANDARD-K9-") 
+	):
+		prodname = product ("wcs")
+		workname = filename.replace(".bin","")
+		workname = workname.replace(".exe","")
+		workname = workname.replace("WCS-STANDARD-K9-","")
+		wireless_all_dash_dot (debug1,filename,prodname,workname)
+
 def wireless_all_underscore (debug1,filename,prodname,workname):
 	if debug1:
 		print("\tSubroutine#\twireless_all_underscore")
@@ -444,7 +503,6 @@ def wireless_all_dash_dot (debug1,filename,prodname,workname):
 	verfour = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
 	filepath = filepath3(prodname,vertwo,verfour)
 	filemove (filepath, filename)
-
 
 def wireless_all_dash (debug1,filename,prodname,workname):
 	if debug1:

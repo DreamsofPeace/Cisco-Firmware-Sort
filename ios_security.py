@@ -1,9 +1,11 @@
 from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
+from iosutils import utils_dev_v2_vf_imagecode,utils_dev_imagecode_v2_vf,utils_dev_imagecode_v2_vf_dash
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
+import os
 
-def fileprocessorsecurity (debug1,filename):
+def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	if debug1:
 		print("\tModule#\t\tios_security")
 	if debug1:
@@ -93,6 +95,10 @@ def fileprocessorsecurity (debug1,filename):
 	filename == "PIXtoASA_1_0.zip" or 
 	filename == "PIX_to_ASA_1_0.dmg" or 
 	filename == "PIXtoASAsetup_1_0.exe" or 
+	filename == "rawrite.exe" or 
+	filename == "occ-121.zip" or 
+	filename == "occ-121.gz" or 
+	filename == "README-occ-121.rtf" or 
 	filename.startswith("pix") and filename.endswith(".bin") or 
 	filename.startswith("PIX") and filename.endswith(".bin")
 	):
@@ -140,7 +146,16 @@ def fileprocessorsecurity (debug1,filename):
 	filename.startswith ("upd-pkg-SNS-36xx-cimc")
 	):
 		prodname = product("ise")
-		imagecode = imagelookup("sns63xx")
+		imagecode = imagelookup("sns36xx")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif(
+	filename.startswith ("SNS-35x5-BIOS") or 
+	filename.startswith ("SNS-35x5-firmware") or 
+	filename.startswith ("upd-pkg-SNS-35x5-cimc")
+	):
+		prodname = product("ise")
+		imagecode = imagelookup("sns35xx")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("asdm"):
@@ -149,7 +164,7 @@ def fileprocessorsecurity (debug1,filename):
 	elif filename.startswith("c6svc-fwm-k9"):
 		sec_fwsm (debug1,filename)
 
-	elif filename.startswith("csd_"):
+	elif filename.startswith("csd"):
 		sec_csd (debug1,filename)
 
 	elif filename.startswith("asasfr"):
@@ -258,10 +273,15 @@ def fileprocessorsecurity (debug1,filename):
 
 	elif (
 		filename.startswith ("fcs-csm") or 
+		filename.startswith ("fcs-CSM") or 
+		filename.startswith ("fcs-cms") or 
 		filename.startswith ("fcs-mcp") or 
-		filename.startswith ("csm")
+		filename.startswith ("csm") or 
+		filename.startswith ("CSM") or 
+		filename.startswith ("fcs-mcp") or
+		filename.startswith ("fcs-rme")
 	):
-		sec_csm (debug1,filename)
+		sec_csm (debug1,filename,sourcedirectory)
 
 	elif (
 		filename.startswith ("UTD-STD-SIGNATURE")
@@ -431,13 +451,168 @@ def sec_fp_asa_module (debug1,filename):
 		filepath = filepath4 (prodname,imagecode,verthree,verfour)
 		filemove (filepath, filename)
 
-def sec_csm (debug1,filename):
+def sec_csm (debug1,filename,sourcedirectory):
 	if debug1:
 		print("\tSubroutine#\tsec_csm")
 	prodname = product ("csm")
 	if filename.startswith("csm-maxmind-geolitecity"):
 		imagecode = imagelookup("csmgeoip")
 		sec_csm_geoip (debug1,filename,prodname,imagecode)
+	elif filename.startswith("CSM"):
+		workname = filename.replace("CSM","")
+		workname = workname.replace(".exe","")
+		if workname.endswith("Service_Pack1"):
+			workname = workname.replace("Service_Pack1","")
+			imagecode = imagelookup("sp1")
+		elif workname.endswith("Service_Pack2"):
+			workname = workname.replace("Service_Pack2","")
+			imagecode = imagelookup("sp2")
+		elif workname.endswith("Service_Pack3"):
+			workname = workname.replace("Service_Pack3","")
+			imagecode = imagelookup("sp3")
+		elif workname.endswith("Service_Pack4"):
+			workname = workname.replace("Service_Pack4","")
+			imagecode = imagelookup("sp4")
+		filepath = filepath3 (prodname,workname,imagecode)
+		filemove (filepath, filename)
+	elif filename == "fcs-csm-410-win-k9.zip":
+		file_size = os.path.getsize(filename)
+		if file_size == 2204951112:
+			version = "4.10.0"
+			imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename == "fcs-csm-41-win-k9.zip":
+		version = "4.1.0"
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename == "fcs-csm-420-win-k9.zip":
+		file_size = os.path.getsize(filename)
+		if file_size == 1393471048:
+			version = "4.2.0"
+			imagecode = imagelookup("install")
+		elif file_size == 2447689726:
+			version = "4.20.0"
+			imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename == "fcs-csm-421-win-k9.zip":
+		version = "4.21.0"
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename == "fcs-csm-422-win-k9.zip":
+		version = "4.22.0"
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename == "fcs-csm-40-win-k9.zip":
+		version = "4.0.0"
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename == "fcs-csm-40-sp1-win-k9.exe":
+		version = "4.0.0"
+		imagecode = imagelookup("sp1")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename == "fcs-mcp-40-win-k9.exe":
+		version = "4.0.0"
+		imagecode = imagelookup("mcp")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename == "fcs-csm-401-win-k9.zip":
+		version = "4.0.1"
+		imagecode = imagelookup("install")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename == "fcs-cms-401-sp2-win-k9.exe":
+		version = "4.0.1"
+		imagecode = imagelookup("sp2")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename == "fcs-mcp-401-win-k9.exe":
+		version = "4.0.1"
+		imagecode = imagelookup("mcp")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename == "fcs-csm-410-mcp-410-win-k9.exe":
+		version = "4.1.0"
+		imagecode = imagelookup("mcp")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename == "fcs-csm-410-rme-430-win-k9.exe":
+		version = "4.1.0"
+		imagecode = imagelookup("rme")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename == "fcs-csm-42-sp1-win-k9.exe":
+		version = "4.2.0"
+		imagecode = imagelookup("sp1")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename == "fcs-csm-420-mcp-420-win-k9.exe":
+		version = "4.2.0"
+		imagecode = imagelookup("mcp")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename == "fcs-csm-420-rme-430-win-k9.exe":
+		version = "4.2.0"
+		imagecode = imagelookup("rme")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename == "fcs-rme-430-win-k9.exe":
+		version = "4.3.0"
+		imagecode = imagelookup("rme")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename == "fcs-CSM-440-sp1-win-k9.exe":
+		version = "4.4.0"
+		imagecode = imagelookup("sp1")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename == "fcs-CSM-440-sp1-win-k9.exe":
+		version = "4.4.0"
+		imagecode = imagelookup("sp1")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("fcs-csm-41") and filename.endswith("-win-k9.zip"):
+		workname = filename.replace("fcs-csm-","")
+		workname = workname.replace("-win-k9.zip","")
+		imagecode = imagelookup("install")
+		myver = list(workname)
+		mv = myver[1] + myver[2]
+		version = util3digit(myver[0],mv,"0")
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("fcs-csm-") and filename.endswith("-sp1-win-k9.exe"):
+		workname = filename.replace("fcs-csm-","")
+		workname = workname.replace("-sp1-win-k9.exe","")
+		imagecode = imagelookup("sp1")
+		myver = list(workname)
+		version = util3digit(myver[0],myver[1],myver[2])
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("fcs-csm-") and filename.endswith("-sp2-win-k9.exe"):
+		workname = filename.replace("fcs-csm-","")
+		workname = workname.replace("-sp2-win-k9.exe","")
+		imagecode = imagelookup("sp2")
+		myver = list(workname)
+		version = util3digit(myver[0],myver[1],myver[2])
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("fcs-csm-") and filename.endswith("-win-k9.zip"):
+		workname = filename.replace("fcs-csm-","")
+		workname = workname.replace("-win-k9.zip","")
+		imagecode = imagelookup("install")
+		myver = list(workname)
+		version = util3digit(myver[0],myver[1],myver[2])
+		filepath = filepath3 (prodname,version,imagecode)
+		filemove (filepath, filename)
+#	else:
+#		file_size = os.path.getsize(filename)
+
 
 def sec_csm_geoip (debug1,filename,prodname,imagecode):
 	if debug1:
@@ -471,6 +646,16 @@ def sec_pix (debug1,filename,prodname):
 		utilssinglemove (debug1,filename,prodname,imagecode)
 	elif filename == "PIXtoASAsetup_1_0.exe":
 		imagecode = imagelookup("PIXtoASA")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+	elif filename == "rawrite.exe":
+		imagecode = imagelookup("imgwrt")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+	elif (
+	filename == "occ-121.zip" or 
+	filename == "occ-121.gz" or 
+	filename == "README-occ-121.rtf"
+	):
+		imagecode = imagelookup("occtoacl")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 def sec_asa_firmware (debug1,filename):
@@ -556,6 +741,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 			workname = filename.replace("asav", "")
 			workname = workname.replace("asa", "")
 			workname = workname.replace(".qcow2", "")
+			workname = workname.replace(".vhd.bz2", "")
 			workname = workname.replace(".ova", "")
 			workname = workname.replace(".vmdk", "")
 			workname = workname.replace(".vhdx", "")
@@ -632,6 +818,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 			workname = filename.replace(".qcow2", "")
 			workname = workname.replace(".vhdx", "")
 			workname = workname.replace(".zip", "")
+			workname = workname.replace(".vhd.bz2", "")
 			workname = workname.replace("asav", "")
 			workname = workname.replace("asa", "")
 			workname = workname.replace("-smp-k8.bin", "")
@@ -652,6 +839,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 			workname = filename.replace(".qcow2", "")
 			workname = workname.replace(".vhdx", "")
 			workname = workname.replace(".zip", "")
+			workname = workname.replace(".vhd.bz2", "")
 			workname = workname.replace("asav", "")
 			workname = workname.replace("asa", "")
 			workname = workname.replace("-smp-k8.bin", "")
@@ -681,6 +869,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 			workname = filename.replace(".qcow2", "")
 			workname = workname.replace(".vhdx", "")
 			workname = workname.replace(".zip", "")
+			workname = workname.replace(".vhd.bz2", "")
 			workname = workname.replace("asav", "")
 			workname = workname.replace("asa", "")
 			workname = workname.replace("-smp-k8.bin", "")
@@ -1092,10 +1281,10 @@ def sec_ise (debug1,filename):
 		sec_ise_urtbundle (debug1,filename,prodname,imagecode)
 
 	elif (
-	filename.startswith("win_spw-") and
-	filename.endswith("-isebundle.zip") or 
-	filename.startswith("mac-spw-dmg-") and
-	filename.endswith("-isebundle.zip")
+	filename.startswith("win_spw-") and filename.endswith("-isebundle.zip") or 
+	filename.startswith("win_spw-") and filename.endswith("-isebundle-v1.zip") or 
+	filename.startswith("mac-spw-dmg-") and filename.endswith("-isebundle.zip") or 
+	filename.startswith("mac-spw-dmg-") and filename.endswith("-isebundle-v1.zip")
 	):
 		imagecode = imagelookup("supplicantpw")
 		sec_ise_spw (debug1,filename,prodname,imagecode)
@@ -1533,15 +1722,21 @@ def sec_hostscan (debug1,filename):
 def sec_csd (debug1,filename):
 	if debug1:
 		print("\tSubroutine#\tsec_csd")
-	splitbyuscore = filename.split("_")
-	splitbyuscore[1] = splitbyuscore[1].replace("-k9.pkg", "")
-	splitbydot = splitbyuscore[1].split(".")
 	prodname = product("anyconnect")
 	imagecode = imagelookup("csd")
-	ver2 = util2digit (splitbydot[0],splitbydot[1])
-	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-	filepath = filepath4(prodname,imagecode,ver2,ver3)
-	filemove (filepath, filename)
+	workname = filename.replace("-k9_Japanese_translation.zip", "")
+	workname = workname.replace("-k9.pkg", "")
+	workname = workname.replace("csd_", "")
+	workname = workname.replace("csd-", "")
+	workname = workname.replace("-macosx-i386-k9.dmg", "")
+	workname = workname.replace("-macosx-ppc-k9.dmg", "")
+	workname = workname.replace("-linux-i386-k9.tar.gz", "")
+	workname = workname.replace("-linux-x64-k9.tar.gz", "")
+	workname = workname.replace("-wince-k9.cab", "")
+	workname = workname.replace("-wince-k9.zip", "")
+	workname = workname.replace("-wince-k9.msi", "")
+	workname = workname.replace("-windows-k9.msi", "")
+	utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 
 def sec_anyconnect_p1_d3_u (debug1,filename,prodname,imagecode):
 	if debug1:

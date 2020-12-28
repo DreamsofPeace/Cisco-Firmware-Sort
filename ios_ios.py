@@ -59,6 +59,63 @@ def fileprocessorios (debug1,filename):
 		imagecode = imagelookup ("EHWICCELLBE")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
+	elif filename == "MC735X_9999999_9902350_05.05.58.01_00_SPRINT_005.031_000.spk":
+		prodname = product ("ISRG2GENERIC")
+		imagecode = imagelookup ("EHWIC4GLTEST")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif filename == "MC7354_1102037_05.05.58.00_00_ATT_005.013_000.spk":
+		prodname = product ("ISRG2GENERIC")
+		imagecode = imagelookup ("EHWIC4GLTEAT")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif filename == "MC735X_9999999_9902574_05.05.58.00_00_GENNA_005.025_000.spk":
+		prodname = product ("ISRG2GENERIC")
+		imagecode = imagelookup ("EHWIC4GLTECA")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename == "MC7304_1102029_05.05.58.00_00_TELSTRA_005.014_000.spk" or 
+	filename == "MC7304_1102029_05.05.58.00_00_TELSTRA_005.013_000-2kMTU.spk"
+	):
+		prodname = product ("ISRG2GENERIC")
+		imagecode = imagelookup ("EHWIC4GLTEAU")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif filename == "MC7304_9999999_9902674_05.05.58.00_00_GENEU-4G_005.026_000.spk":
+		prodname = product ("ISRG2GENERIC")
+		imagecode = imagelookup ("EHWIC4GLTEGB")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename == "MC7350_1102036_05.05.58.01_00_VZW_005.009_000.spk" or 
+	filename == "MC7350_1102036_05.05.58.01_00_Cisco_005.008_000-2kMTU.spk"
+	):
+		prodname = product ("ISRG2GENERIC")
+		imagecode = imagelookup ("EHWIC4GLTEVZ")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename == "MC7354MNA_1102407_05.05.58.01_00_VZW_005.006_000.spk" or 
+	filename == "MC7354MNA_9999999_9902196_05.05.58.00_00_ATT_005.026_000.spk" or 
+	filename == "MC735X_9999999_9902574_05.05.58.00_00_GENNA_005.025_000.spk"
+	):
+		prodname = product ("ISRG2GENERIC")
+		imagecode = imagelookup ("C819GWLTEMNAAK9")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif filename == "MC7354_1102037_05.05.58.00_00_Cisco_005.012_000-2kMTU.spk":
+		prodname = product ("ISRG2GENERIC")
+		imagecode = imagelookup ("EHWIC4GLTEAT")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename == "MC7354MNA_1102407_05.05.58.01_00_VZW_005.005_000-2kMTU.spk" or 
+	filename == "MC7354_9999999_05.05.58.00_00_USCellular_005.000_000.spk"
+	):
+		#Not able to place currently
+		prodname = product ("ISRG2GENERIC")
+
 	elif (
 	filename == "VA_B_38V_d24m.bin" or 
 	filename == "vdsl.bin.32bdslfw" or 
@@ -119,6 +176,20 @@ def fileprocessorios (debug1,filename):
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
+	filename == "C21031014bFU07192007.CDF" or 
+	filename == "C21041013iFU07192006.CDF" or 
+	filename == "C21031013gFU05122006.CDF" or 
+	filename == "C21031019aFU06192008_MAC14.CDF" or 
+	filename == "C21041013iFU07192006.CDF" or 
+	filename == "C21041014bFU07192007.CDF" or 
+	filename == "C21041019aFU06192008_MAC14.CDF" or 
+	filename == "C21041014bFU07192007.CDF"
+	):
+		prodname = product ("ISRG2GENERIC")
+		imagecode = imagelookup ("HWICCABLE")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
 	filename.startswith("mica-modem-pw") or 
 	filename.startswith("mica-pw")
 	):
@@ -128,7 +199,8 @@ def fileprocessorios (debug1,filename):
 
 	elif (
 	filename.startswith("c7600-fpd-pkg.122-18.SX") or 
-	filename.startswith("c7600-fpd-pkg.122-18.ZY")
+	filename.startswith("c7600-fpd-pkg.122-18.ZY") or 
+	filename.startswith("c6500-fpd-pkg")
 	):
 		prodname = product ("c6500")
 		imagecode = imagelookup ("fpd")
@@ -138,12 +210,45 @@ def fileprocessorios (debug1,filename):
 	filename.startswith ("s2t54") or 
 	filename.startswith ("s6t64") or 
 	filename.startswith ("c6848x") or 
-	filename.startswith ("c6880x")
+	filename.startswith ("c6880x") or 
+	filename.startswith ("c1900") or 
+	filename.startswith ("c2900") or 
+	filename.startswith ("c2911a") or 
+	filename.startswith ("c2951") or 
+	filename.startswith ("vg3x0") or 
+	filename.startswith ("vg350") or 
+	filename.startswith ("c860vaew") or 
+	filename.startswith ("c860vae2") or 
+	filename.startswith ("c3900") or 
+	filename.startswith ("c3900e") or 
+	filename.startswith ("c800j") or 
+	filename.startswith ("c900") or 
+	filename.startswith ("c800m") or 
+	filename.startswith ("ir800")
 	):
 		splitbydash = filename.split("-")
 		prodname = product(splitbydash[0])
 		imagecode = imagelookup(splitbydash[1])
 		ios_spa (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename.startswith ("c800-universalk9-mz.SPA.") or 
+	filename.startswith ("c800-universalk9_npe-mz.SPA") or 
+	filename.startswith ("c800-universalk9_iox-mz.SPA") or 
+	filename.startswith ("c800-universalk9_iox_npe-mz.SPA")
+	):
+		splitbydash = filename.split("-")
+		prodname = product("c800g2")
+		imagecode = imagelookup(splitbydash[1])
+		ios_spa (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename.startswith ("dsc-c5800-mz")
+	):
+		splitbydash = filename.split("-")
+		prodname = product(splitbydash[1])
+		imagecode = imagelookup(splitbydash[0])
+		ios_classical (debug1,filename,prodname,imagecode)
 
 	else:
 		splitbydash = filename.split("-")
@@ -194,6 +299,14 @@ def ios_classical (debug1,filename, prodname, imagecode):
 			):
 				filepath = filepath4(prodname,vertwo,verthree,imagecode)
 				filemove (filepath, filename)
+			elif (
+			filename.startswith("c6500-fpd-pkg") or 
+			filename.startswith("c7600-fpd-pkg")
+			):
+				vertwo = iostrain(splitbydot[2], vertwo)
+				verthree = util2digit(verthree,splitbydot[2])
+				filepath = filepath4(prodname,imagecode,vertwo,verthree)
+				filemove (filepath, filename)
 			else:
 				vertwo = iostrain(splitbydot[2], vertwo)
 				verthree = util2digit(verthree,splitbydot[2])
@@ -209,6 +322,14 @@ def ios_classical (debug1,filename, prodname, imagecode):
 			splitbydot[2] == "tar"
 			):
 				filepath = filepath4(prodname,vertwo,verthree,imagecode)
+				filemove (filepath, filename)
+			elif (
+			filename.startswith("c6500-fpd-pkg") or 
+			filename.startswith("c7600-fpd-pkg")
+			):
+				vertwo = iostrain(splitbydot[2], vertwo)
+				verthree = util2digit(verthree,splitbydot[2])
+				filepath = filepath4(prodname,imagecode,vertwo,verthree)
 				filemove (filepath, filename)
 			else:
 				vertwo = iostrain(splitbydot[2], vertwo)
@@ -226,6 +347,14 @@ def ios_classical (debug1,filename, prodname, imagecode):
 			splitbydot[2] == "tar"
 			):
 				filepath = filepath4(prodname,vertwo,verthree,imagecode)
+				filemove (filepath, filename)
+			elif (
+			filename.startswith("c6500-fpd-pkg") or 
+			filename.startswith("c7600-fpd-pkg")
+			):
+				vertwo = iostrain(splitbydot[2], vertwo)
+				verthree = util2digit(verthree,splitbydot[2])
+				filepath = filepath4(prodname,imagecode,vertwo,verthree)
 				filemove (filepath, filename)
 			else:
 				vertwo = iostrain(splitbydot[2], vertwo)

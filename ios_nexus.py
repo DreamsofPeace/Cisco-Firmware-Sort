@@ -1,4 +1,4 @@
-from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
+from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname,utils_dev_v2_vf_imagecode,utils_dev_imagecode_v2_vf
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
@@ -12,18 +12,25 @@ def fileprocessornxos (filename,debug1):
 	splitbydot = filename.split(".")
 
 	if (
-	filename == "ssd_c400_upgrade_6.1.2.I2.2a.tar" or 
-	filename == "ssd_c400_upgrade_6.1.2.I2.3.tar" or 
-	filename == "ssd_c400_upgrade_6.1.2.I2.2.tar" or 
-	filename == "ssd_c400_upgrade_6.1.2.I2.1.tar"
+	filename.startswith("ssd_c400_upgrade")
 	):
 		prodname = product("nxos")
 		imagecode = imagelookup("firmware")
-		utilssinglemove (debug1,filename,prodname,imagecode)
+		workname = filename.replace(".tar","")
+		workname = workname.replace("ssd_c400_upgrade_","")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 
 	elif filename == "n9000-epld-secure-boot-update.img":
 		prodname = product("nxos")
 		imagecode = imagelookup("epld")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename == "poap_script.py" or 
+	filename == "poap_script.tcl"
+	):
+		prodname = product("n3500")
+		imagecode = imagelookup("poap")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename == "L2-L3_CT.zip":
@@ -39,15 +46,12 @@ def fileprocessornxos (filename,debug1):
 		imagecode = imagelookup("bios")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
-	elif splitbydot[0] == "guestshell":
-		prodname = product("nxos")
-		imagecode = imagelookup("guestshell")
-		utilssinglemove (debug1,filename,prodname,imagecode)
-
 	elif filename == "nxos.9.3.4-capacity-emulator.tgz":
 		prodname = product("nxos")
 		imagecode = imagelookup("capacity-emulator")
-		utilssinglemove (debug1,filename,prodname,imagecode)
+		workname = filename.replace("-capacity-emulator.tgz","")
+		workname = workname.replace("nxos.","")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 
 	elif filename == "ntp-1.0.1-7.0.3.I2.2d.lib32_n9000.rpm":
 		prodname = product("nxos")
@@ -91,16 +95,6 @@ def fileprocessornxos (filename,debug1):
 		imagecode = imagecode + "/9.2/9.2.3/VXLAN"
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
-	elif splitbydot[0] == "n3000_xsd":
-		prodname = product("n3000")
-		imagecode = imagelookup("xsd")
-		utilssinglemove (debug1,filename,prodname,imagecode)
-
-	elif filename.startswith("n5000_poap_script"):
-		prodname = product("n5000")
-		imagecode = imagelookup("poap")
-		utilssinglemove (debug1,filename,prodname,imagecode)
-
 	elif filename.startswith("n6000_poap_script"):
 		prodname = product("n6000")
 		imagecode = imagelookup("poap")
@@ -109,7 +103,9 @@ def fileprocessornxos (filename,debug1):
 	elif filename.startswith("poap_ng"):
 		prodname = product("Nexus")
 		imagecode = imagelookup("poap_ng")
-		utilssinglemove (debug1,filename,prodname,imagecode)
+		workname = filename.replace(".py","")
+		workname = workname.replace("poap_ng.","")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 
 	elif (
 	filename.startswith("Nexus1000v") or 
@@ -144,19 +140,6 @@ def fileprocessornxos (filename,debug1):
 		else:
 			fileprocnxosthreedigit (filename,prodname,imagecode,debug1)
 
-	elif (
-	splitbydot[0] == "nxosv-final" or 
-	splitbydot[0] == "nxosv" or 
-	splitbydot[0] == "nexus9300v" or 
-	splitbydot[0] == "nexus9500v"
-	):
-		prodname = product("nxosv")
-		imagecode = imagelookup("system")
-		if splitbydot[1] == "6" or splitbydot[1] == "7":
-			fileprocnxosfivedigit (filename,prodname,imagecode,debug1)
-		else:
-			fileprocnxosthreedigit (filename,prodname,imagecode,debug1)
-
 	elif splitbydot[0] == "nxos":
 		prodname = product("nxos")
 		if len(splitbydot) == 5:
@@ -172,39 +155,12 @@ def fileprocessornxos (filename,debug1):
 			imagecode = imagelookup("smu")
 			fileprocessornxos9ksmu(filename,prodname,imagecode,debug1)
 
-	elif splitbydash[0] == "n5000":
-		prodname = product(splitbydash[0])
-		if splitbydot[0] == "n5000-uk9-kickstart":
-			imagecode = imagelookup("kickstart")
-			fileprocnxosfivedigit (filename,prodname,imagecode,debug1)
-		elif splitbydot[0] == "n5000-uk9":
-			imagecode = imagelookup("system")
-			fileprocnxosfivedigit (filename,prodname,imagecode,debug1)
-
 	elif splitbydash[0] == "n6000":
 		prodname = product(splitbydash[0])
 		if splitbydot[0] == "n6000-uk9-kickstart":
 			imagecode = imagelookup("kickstart")
 			fileprocnxosfivedigit (filename,prodname,imagecode,debug1)
 		elif splitbydot[0] == "n6000-uk9":
-			imagecode = imagelookup("system")
-			fileprocnxosfivedigit (filename,prodname,imagecode,debug1)
-
-	elif splitbydash[0] == "n3000":
-		prodname = product(splitbydash[0])
-		if splitbydot[0] == "n3000-uk9-kickstart":
-			imagecode = imagelookup("kickstart")
-			fileprocnxosfivedigit (filename,prodname,imagecode,debug1)
-		elif splitbydot[0] == "n3000-uk9":
-			imagecode = imagelookup("system")
-			fileprocnxosfivedigit (filename,prodname,imagecode,debug1)
-
-	elif splitbydash[0] == "n3500":
-		prodname = product(splitbydash[0])
-		if splitbydot[0] == "n3500-uk9-kickstart":
-			imagecode = imagelookup("kickstart")
-			fileprocnxosfivedigit (filename,prodname,imagecode,debug1)
-		elif splitbydot[0] == "n3500-uk9":
 			imagecode = imagelookup("system")
 			fileprocnxosfivedigit (filename,prodname,imagecode,debug1)
 
@@ -226,6 +182,292 @@ def fileprocessornxos (filename,debug1):
 			imagecode = imagelookup("s3")
 			nexus7ksliceandice (filename,prodname,imagecode,debug1)
 
+	elif filename.startswith("n3000"):
+		prodname = product("n3000")
+		if filename.startswith("n3000-uk9-kickstart."):
+			imagecode = imagelookup("kickstart")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("n3000-uk9-kickstart.","")
+			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("n3000_xsd."):
+			imagecode = imagelookup("xsd")
+			workname = filename.replace(".tar.gz","")
+			workname = workname.replace("n3000_xsd.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		else:
+			imagecode = imagelookup("system")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("n3000-uk9.","")
+			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
+
+	elif filename.startswith("guestshell"):
+		prodname = product("Nexus")
+		imagecode = imagelookup("guestshell")
+		workname = filename.replace(".ova","")
+		workname = workname.replace("guestshell.","")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+
+	elif filename.startswith("oac"):
+		prodname = product("Nexus")
+		imagecode = imagelookup("oac")
+		workname = filename.replace(".ova","")
+		workname = workname.replace("oac.","")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+
+	elif (
+	filename.startswith("nxosv-final") or 
+	filename.startswith("nxosv") or 
+	filename.startswith("nexus9300v") or 
+	filename.startswith("nexus9500v")
+	):
+		prodname = product("nxosv")
+		imagecode = imagelookup("system")
+		workname = filename.replace(".box","")
+		workname = workname.replace(".ova","")
+		workname = workname.replace(".qcow2","")
+		workname = workname.replace(".vmdk","")
+		workname = workname.replace("nxosv-final.","")
+		workname = workname.replace("nxosv.","")
+		workname = workname.replace("nexus9300v.","")
+		workname = workname.replace("nexus9500v.","")
+		utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
+
+	elif (
+	filename.startswith("n3500") or 
+	filename.startswith("poap_script.6") or 
+	filename.startswith("poap_script_n3k.")
+	):
+		prodname = product("n3500")
+		if filename.startswith("n3500-uk9-kickstart."):
+			imagecode = imagelookup("kickstart")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("n3500-uk9-kickstart.","")
+			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
+		elif (
+		filename.startswith("poap_script.") or 
+		filename.startswith("poap_script_n3k.")
+		):
+			imagecode = imagelookup("poap")
+			workname = filename.replace(".py","")
+			workname = workname.replace(".tcl","")
+			workname = workname.replace("poap_script_n3k.","")
+			workname = workname.replace("poap_script.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		else:
+			imagecode = imagelookup("system")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("n3500-uk9.","")
+			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
+
+	elif splitbydash[0] == "n4000":
+		prodname = product("n4000")
+		workname = filename.replace(".bin","")
+		workname = workname.replace("n4000-bk9-kickstart.","")
+		workname = workname.replace("n4000-bk9.","")
+		if filename.startswith("n4000-bk9-kickstart."):
+			imagecode = imagelookup("kickstart")
+		else:
+			imagecode = imagelookup("system")
+		utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
+
+	elif (
+	filename.startswith("n5000") or 
+	filename.startswith("poap_script")
+	):
+		prodname = product("n5000")
+		if filename.startswith("n5000-uk9-kickstart."):
+			imagecode = imagelookup("kickstart")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("n5000-uk9-kickstart.","")
+			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
+		elif (
+		filename.startswith("n5000_poap_script.") or 
+		filename.startswith("poap_script.")
+		):
+			imagecode = imagelookup("poap")
+			workname = filename.replace(".py","")
+			workname = workname.replace(".tcl","")
+			workname = workname.replace("n5000_poap_script.","")
+			workname = workname.replace("poap_script.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("n5000_xsd."):
+			imagecode = imagelookup("xsd")
+			workname = filename.replace(".tar.gz","")
+			workname = workname.replace("n5000_xsd.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		else:
+			imagecode = imagelookup("system")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("n5000-uk9.","")
+			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
+
+	elif (
+	splitbydash[0] == "m9000" or 
+	splitbydash[0] == "m9500"
+	):
+		prodname = product("m9500")
+		if filename.startswith("m9000-pkg1.") and filename.endswith(".epld"):
+			imagecode = imagelookup("epld")
+			workname = filename.replace(".epld","")
+			workname = workname.replace("m9000-pkg1.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9000-epld-") and filename.endswith(".img"):
+			imagecode = imagelookup("epld")
+			workname = filename.replace(".img","")
+			workname = workname.replace("m9000-epld-","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9000-ek9-ssi-mz.") and filename.endswith(".bin"):
+			imagecode = imagelookup("ssi")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9000-ek9-ssi-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9500-sf1ek9-kickstart-mz."):
+			imagecode = imagelookup("s1ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9500-sf1ek9-kickstart-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9500-sf1ek9-mz."):
+			imagecode = imagelookup("s1ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9500-sf1ek9-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9500-sf2ek9-kickstart-mz."):
+			imagecode = imagelookup("s2ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9500-sf2ek9-kickstart-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9500-sf2ek9-mz."):
+			imagecode = imagelookup("s2ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9500-sf2ek9-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9000-cd-npe-"):
+			imagecode = imagelookup("fabman")
+			workname = filename.replace(".zip","")
+			workname = workname.replace("m9000-cd-npe-","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9000-cd-"):
+			imagecode = imagelookup("fabman")
+			workname = filename.replace(".zip","")
+			workname = workname.replace("m9000-cd-","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9000-fm-update-"):
+			imagecode = imagelookup("fabman")
+			workname = filename.replace(".jar","")
+			workname = workname.replace("m9000-fm-update-","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9000-fm-"):
+			imagecode = imagelookup("fabman")
+			workname = filename.replace(".jar","")
+			workname = workname.replace("m9000-fm-","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9000-sha-"):
+			imagecode = imagelookup("fabman")
+			workname = filename.replace(".npe.jar","")
+			workname = workname.replace("m9000-sha-","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+
+	elif splitbydash[0] == "m9100":
+		prodname = product("m9100")
+		if filename.startswith("m9100-s1ek9-kickstart-mz."):
+			imagecode = imagelookup("s1ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9100-s1ek9-kickstart-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9100-s1ek9-mz."):
+			imagecode = imagelookup("s1ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9100-s1ek9-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9100-s2ek9-kickstart-mz."):
+			imagecode = imagelookup("s2ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9100-s2ek9-kickstart-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9100-s2ek9-mz."):
+			imagecode = imagelookup("s2ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9100-s2ek9-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9100-s3ek9-kickstart-mz."):
+			imagecode = imagelookup("s3ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9100-s3ek9-kickstart-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9100-s3ek9-mz."):
+			imagecode = imagelookup("s3ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9100-s3ek9-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+
+	elif splitbydash[0] == "m9200":
+		prodname = product("m9200")
+		if filename.startswith("m9200-ek9-kickstart-mz."):
+			imagecode = imagelookup("s1ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9200-ek9-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9200-s2ek9-kickstart-mz."):
+			imagecode = imagelookup("s1ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9200-s2ek9-kickstart-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9200-ek9-mz."):
+			imagecode = imagelookup("s2ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9200-ek9-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9200-s2ek9-mz."):
+			imagecode = imagelookup("s2ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9200-s2ek9-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+
+	elif splitbydash[0] == "m9250":
+		prodname = product("m9250")
+		if filename.startswith("m9250-s5ek9-kickstart-mz-npe."):
+			imagecode = imagelookup("s5ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9250-s5ek9-kickstart-mz-npe.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9250-s5ek9-kickstart-mz."):
+			imagecode = imagelookup("s5ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9250-s5ek9-kickstart-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9250-s5ek9-mz-npe."):
+			imagecode = imagelookup("s5ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9250-s5ek9-mz-npe.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9250-s5ek9-mz."):
+			imagecode = imagelookup("s5ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9250-s5ek9-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+
+	elif splitbydash[0] == "m9700":
+		prodname = product("m9700")
+		if filename.startswith("m9700-sf3ek9-kickstart-mz."):
+			imagecode = imagelookup("s3ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9700-sf3ek9-kickstart-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9700-sf3ek9-mz."):
+			imagecode = imagelookup("s5ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9700-sf3ek9-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9700-sf4ek9-kickstart-mz."):
+			imagecode = imagelookup("s4ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9700-sf4ek9-kickstart-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("m9700-sf4ek9-mz."):
+			imagecode = imagelookup("s4ek9")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("m9700-sf4ek9-mz.","")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 	else:
 		messageunknownfile()
 
