@@ -1,0 +1,628 @@
+{
+    "files": [
+        {
+            "filename": "HP_Network_Simulator_for_Comware_Devices_Ubuntu64.rar",
+            "sha256": "b595de1d5de36fca3ea783244c8242f7564e96ed7f64580e3fa8ada8fc1724c6"
+        },
+        {
+            "filename": "HP_Network_Simulator_for_Comware_Devices_Windows.rar",
+            "sha256": "eedd954038592017555d7a2b087705ab89e5fcff6a44c136a4919332ec767d31"
+        },
+        {
+            "filename": "KB_15_16_0012m.zip",
+            "md5": "1e5b413b642a7b99419f4e341632f340",
+            "sha1": "ec73ded8db67abbc075faab7b094a374072fd592",
+            "sha256": "c338cc8d32c5e972cb07f554aa7411caaedad170eb0dcd2d44b2089761cbe941"
+        },
+        {
+            "filename": "KB_16_04_0014.swi",
+            "md5": "561f57c6e0476d42c4dd429268b1f4f8",
+            "sha1": "a187059c238f6e5effea9153373f70339d0f09d0",
+            "sha256": "bf43f58fecfa2d9d292478cf738c9faebd2f5f8ada7a1f159a603a91963b21c6"
+        },
+        {
+            "filename": "KB_16_02_0015.swi",
+            "md5": "90ce14b044a5971750a5e1e4e46edb7e",
+            "sha1": "78e6ec3ea5a5f4f89e907b6d107183979a898597",
+            "sha256": "c6b8d44c7c83919fa047d94c4aa13265d69ee9c2e03ca8af0bacc4621298433b"
+        },
+        {
+            "filename": "KB_16_04_0011.swi",
+            "md5": "4e3ab5bdfb6cc6d889dda6b6a094a6ed",
+            "sha1": "73ddd13669e37d01c3627a72310235eb0fe19ad6",
+            "sha256": "6e75b4ab2aa378188d8a047cd0055e76f433600d8f2e5039e58b06bf6bfb0873"
+        },
+        {
+            "filename": "1800-Software-PA-PB0310.zip",
+            "md5": "1b4eb11f0cd1f7562896b5ac57bd9df8",
+            "sha1": "8e3a26ad73527f788eeb9d92a7ccab70579d92e5",
+            "sha256": "b5016bb8404e6a01c4b0d72e30a7683bb75ae081294928b8a73a468bf106b71a"
+        },
+        {
+            "filename": "KB_16_07_0003.swi",
+            "md5": "e1fd86a4eb5b9e049d983fd109cb117e",
+            "sha1": "0e30c1e7211196531db2920c8356e516f05bd07d",
+            "sha256": "20c1519d01cef21e6a8a106d57bf91620f8941cd8db0b166925a090b61b7bf0d"
+        },
+        {
+            "filename": "2510G-RelNotes-Y1112-59923098.pdf",
+            "sha256": "da08143092d9f1147434eb37efd8734b9de7c3e23e1997701169ea83839205de"
+        },
+        {
+            "filename": "2510G-RelNotes-Y1116-59923098.pdf",
+            "sha256": "b0fb981a0001de864ca8f375d7a076317ee8f14de6477d799b791237fe766c54"
+        },
+        {
+            "filename": "2510G-RelNotes-Y1135-59923098.pdf",
+            "sha256": "744b447c4f9c4bace9f7ea16e965b3b23bb296dfe7c1944753459b170dfd83ab"
+        },
+        {
+            "filename": "2510G-RelNotes-Y1141-59984194.pdf",
+            "sha256": "4a249cf68be6ad8d1f5c7305837414bd1b4794fd23e61373a1aa5e713de4566a"
+        },
+        {
+            "filename": "2510G-RelNotes-Y1144-59984194.pdf",
+            "sha256": "ed1bdf310bb7ad4a05a773f91164d2c027ed7d519c719a9b1334e1b298df1a04"
+        },
+        {
+            "filename": "Y.11.16 Release Notes.pdf",
+            "sha256": "903515bb3878c2dde6368d4019fda9cd6be610320895d2ec0c811bbd2d38f779"
+        },
+        {
+            "filename": "Y.11.35 Release Notes.pdf",
+            "sha256": "ae2b6575c8df32d91f7a30f515df330f90d9c676464589d4eb511e8d17d3b2aa"
+        },
+        {
+            "filename": "Y.11.41 Release Notes.pdf",
+            "sha256": "1ee09f165a99c97c64300ac961d7e9d9a787d1b097763fb4e91fab0d8a91f544"
+        },
+        {
+            "filename": "Y.11.47_ReleaseNotes.pdf",
+            "sha256": "338de9d115b323da6072e5f6c08261376676dac389418d88596ecc424d348590"
+        },
+        {
+            "filename": "Y.11.48_ReleaseNotes.pdf",
+            "sha256": "876c14a4ce9946d98fc1671406eaa2a0bb6e4de9c1dbeb40f828e38feb692bba"
+        },
+        {
+            "filename": "Y.11.49 Release Notes.pdf",
+            "sha256": "65a0204e316b874c163e226332d7437883bce3d8c3bd0b7e3741a99c381de5f2"
+        },
+        {
+            "filename": "Y.11.52 Release Notes.pdf",
+            "sha256": "a487bd582538597f8bdc747c6276b76c777910f6e388a0e04a3872d1b327d5f7"
+        },
+        {
+            "filename": "USB-Console-Drivers-Aug2013.zip",
+            "md5": "5ace8fd6eb520fc287f87f34c5574d9d",
+            "sha1": "ecdb969aaa816dd15b3607f0739f37186d609823",
+            "sha256": "c122d0494dbeb5f88ef30d6e46eb945b2d8c4c4c35efeb434dd2badabbe7a392"
+        },
+        {
+            "filename": "USB-Console-Disable-Serial-Num.reg",
+            "sha256": "1ca471119f4579913c7ad0602f19fe99abf4dae987de229ea35db0f7bed328f5"
+        },
+        {
+            "filename": "USB-Console-Info-Aug2013.pdf",
+            "sha256": "539dab9ad2c1f8e320bb6ebfce0e94244b007b5a8dafb4c6250aa83332db61c6"
+        },
+        {
+            "filename": "USB-Console-Installer-Win32bit.EXE",
+            "sha256": "07875f10f81bb2934f84a720ed4e767fdc4c6b242f4d141f809483898a3c219c"
+        },
+        {
+            "filename": "USB-Console-Installer-Win64bit.EXE",
+            "sha256": "7230f3617f99d09adad3b4618bddc5cbb0be910e92c9c956c3a25115b7c3aa47"
+        },
+        {
+            "filename": "1810-v2-RelNotes-PL-PM0105-59984196.pdf",
+            "sha256": "a84bc3e58db28600a7cf5eda27d6124c91cfeca29910e049cf6a61f111eb51c8"
+        },
+        {
+            "filename": "1810-v2-RelNotes-PL-PM0109-59984196.pdf",
+            "sha256": "064eabe2042d46b665d6a2c191109474952105d200397c53ddbb2c37879bb5f6"
+        },
+        {
+            "filename": "1810-v2-relNotes-PL-PM0204-5998-8280.pdf",
+            "sha256": "129853feda0f2afde3f48435228f4f784e5c47ce0db8193cb95df272df196bd5"
+        },
+        {
+            "filename": "J9803A-1.5.pdf",
+            "sha256": "a84bc3e58db28600a7cf5eda27d6124c91cfeca29910e049cf6a61f111eb51c8"
+        },
+        {
+            "filename": "J9803A-1.9.pdf",
+            "sha256": "064eabe2042d46b665d6a2c191109474952105d200397c53ddbb2c37879bb5f6"
+        },
+        {
+            "filename": "J9803A-2.04.pdf",
+            "sha256": "129853feda0f2afde3f48435228f4f784e5c47ce0db8193cb95df272df196bd5"
+        },
+        {
+            "filename": "J9803A-2.06.pdf",
+            "sha256": "e56281056d8d854d0baf7a309b7cd263cd3476a9fc975ec2f02133c38b722d56"
+        },
+        {
+            "filename": "J9803A-2.08.pdf",
+            "sha256": "25c28da16edaa5b619a43756d2477fcf48bf390fd779391bd7557e25b42b41dd"
+        },
+        {
+            "filename": "PL-PM.2.07_ReleaseNotes.pdf",
+            "sha256": "2f1375ce0a2a3dc610fdfaf9b2602f447bf8a7ec49bcf853b4ed337d71ac60fd"
+        },
+        {
+            "filename": "PL_PM.2.06_ReleaseNotes.pdf",
+            "sha256": "e56281056d8d854d0baf7a309b7cd263cd3476a9fc975ec2f02133c38b722d56"
+        },
+        {
+            "filename": "P.2.10.zip",
+            "md5": "378e5023ab9d3a6295eda74fb570b2b8",
+            "sha1": "386d1461a6abc08763139c3c53a48b452e3a2e3c",
+            "sha256": "c497d4a91130e1ff652db8eee49604c4b3e5b9632bfdd06981f0f6f2f84ccff9"
+        },
+        {
+            "filename": "KB_16_01_0004.zip",
+            "description": "KB.16.01.0004",
+            "build-date": "21-Jan-2016",
+            "post-date": "26-Jan-2016",
+            "md5": "8805A2B295777240CB72B96C5EDA0AF5",
+            "sha1": "11899149ADB021C5DE01AB5B93F80743E13F509C",
+            "sha256": "EAF4853ED81D10AB61958D9856B8EB2E6406F6674333F79D860A1BEFD225A411"
+        },
+        {
+            "filename": "KB_16_01_0006.zip",
+            "description": "KB.16.01.0006",
+            "build-date": "23-Mar-2016",
+            "post-date": "05-Apr-2016",
+            "md5": "07DEEC65E56F10FACDBED746267F2D48",
+            "sha1": "E3C7D16BE4FEDBC8CDED5815CCBF1ACDE805BA85",
+            "sha256": "677CDD631B65BBB03ADBFF53E275DC88B9630D0139779B09C6A3874ED0644173"
+        },
+        {
+            "filename": "KB_16_01_0007.swi",
+            "description": "KB.16.01.0007",
+            "build-date": "26-May-2016",
+            "post-date": "06-Jun-2016",
+            "md5": "e1356e4763e86f21db57d9365b2a0cd5",
+            "sha1": "856f2bcb2a4a69bda91c41db4a319b83cb7bfae4",
+            "sha256": "b88c31ab14a466ca1115ffaa5b5b3fbce0fbf05b80f9a71673b4f1f726cabbab"
+        },
+        {
+            "filename": "KB_16_01_0008.swi",
+            "description": "KB.16.01.0008",
+            "build-date": "29-Jul-2016",
+            "post-date": "09-Aug-2016",
+            "md5": "dc80ff1eb6671c85c919a0ee7936f660",
+            "sha1": "8da48ce56619b2cc7ac42a9c3f45ab5e3a4c4ce2",
+            "sha256": "757e39521ee986d62176c94294e85af16d15d59388e8a9d8df15a9020f3177c4"
+        },
+        {
+            "filename": "KB_16_01_0010.swi",
+            "description": "KB.16.01.0010",
+            "build-date": "12-Sep-2016",
+            "post-date": "22-Sep-2016",
+            "md5": "6a36feb0dfe39dd78ad7190f359a3aa7",
+            "sha1": "0e99169cef643e421da920cb231932c8baa79f36",
+            "sha256": "ef964b42b67e0f27b90c6ca332125378bf35ffdad9461afb1b87e2cc366d7f2e"
+        },
+        {
+            "filename": "KB_16_01_0011.swi",
+            "description": "KB.16.01.0011",
+            "build-date": "10-Nov-2016",
+            "post-date": "18-Nov-2016",
+            "md5": "e8334cac6b6e3910dba8e4d0157279fd",
+            "sha1": "8192ff52e7f9c06d306fc144d4545300d1377adb",
+            "sha256": "d8c07ff84da0496628e865dc41c507d7a7a6c31ca9b7c9a4e645e41f259e523a"
+        },
+        {
+            "filename": "KB_16_01_0012.swi",
+            "description": "KB.16.01.0012",
+            "build-date": "26-Jan-2017",
+            "post-date": "01-Feb-2017",
+            "md5": "987eef4f997170681a4ae0c1906e9edc",
+            "sha1": "f6e63ea53457e176821ef6846952fd8cfae4beb4",
+            "sha256": "0ba9fda07a37aba067dbae9a3fe9619058e9e37a62980949ff967d526978a72a"
+        },
+        {
+            "filename": "KB_16_02_0008.swi",
+            "description": "KB.16.02.0008",
+            "build-date": "11-Jul-2016",
+            "post-date": "19-Jul-2016",
+            "md5": "396ac88945ae345fb1d8b808d9b71c17",
+            "sha1": "9a8245dc89e790faea8e5f96e50ba6d1422fd6ae",
+            "sha256": "69353139104c269c66065fdd11274f0469a36bad97134c5e90d989e35e5dcfe1"
+        },
+        {
+            "filename": "KB_16_02_0009.swi",
+            "description": "KB.16.02.0009",
+            "build-date": "30-Jul-2016",
+            "post-date": "02-Aug-2016",
+            "md5": "dc79ddbe5fedd09479274b79b634d9ea",
+            "sha1": "2c2f3693c4cee1f27b3494c00dab854dc37e963d",
+            "sha256": "be8f1d25ba16410f0d006b706b03737c3405ea6b208360f499f94adedefc4450"
+        },
+        {
+            "filename": "KB_16_02_0010.swi",
+            "description": "KB.16.02.0010",
+            "build-date": "11-Aug-2016",
+            "post-date": "19-Aug-2016",
+            "md5": "94bbe53446cccba5859adac7d359d92d",
+            "sha1": "21437123581e8e05368047b72a66c9f7c8da1d27",
+            "sha256": "5b36c5bf56697929eb7ee45f02fd4b706c45fbf47eec90e7133f533c1e5294e0"
+        },
+        {
+            "filename": "KB_16_02_0011.swi",
+            "description": "KB.16.02.0011",
+            "build-date": "23-Aug-2016",
+            "post-date": "09-Sep-2016",
+            "md5": "698ce38f9713f0a76d3465ec143b6696",
+            "sha1": "976f75a0557efc3b876ba287a505d3e4162c1ca2",
+            "sha256": "ad1b3cb84ffc91a5d0a3b2d1535133e9967e4db4af64be3cda529d5db1a7bbda"
+        },
+        {
+            "filename": "KB_16_02_0012.swi",
+            "description": "KB.16.02.0012",
+            "build-date": "29-Aug-2016",
+            "post-date": "14-Sep-2016",
+            "md5": "9dbe546ce175f8bbc81a0c8e2e534606",
+            "sha1": "2a461448057cbfa1fcff97e9ee2fa4b6c06dc820",
+            "sha256": "40079e08b1e61675b90c10af2d272fcb0439dc481b4c8b9cc7b9e3d5edd7d8b9"
+        },
+        {
+            "filename": "KB_16_02_0013.swi",
+            "description": "KB.16.02.0013",
+            "build-date": "12-Sep-2016",
+            "post-date": "14-Sep-2016",
+            "md5": "df794617ed7fd26de779f9f5761d2658",
+            "sha1": "60c46e21ff0310b8c37933cf54f15b2e66682a41",
+            "sha256": "64d961225bcdff00189325d4d3fd8a210b01da4f64f963c50fd3fa0df0b8581f"
+        },
+        {
+            "filename": "KB_16_02_0014.swi",
+            "description": "KB.16.02.0014",
+            "build-date": "26-Oct-2016",
+            "post-date": "07-Nov-2016",
+            "md5": "454e669ae264d7aed0f3d9beb6828483",
+            "sha1": "24526441111c00559f0ba18e5437ea1a616e0dc6",
+            "sha256": "3088f9da6e0c6fe40dfded831d4bd7d63cb4f685b14d06714b95f58eae623bcd"
+        },
+        {
+            "filename": "KB_16_02_0015.swi",
+            "description": "KB.16.02.0015",
+            "build-date": "14-Nov-2016",
+            "post-date": "13-Jan-2017",
+            "md5": "90ce14b044a5971750a5e1e4e46edb7e",
+            "sha1": "78e6ec3ea5a5f4f89e907b6d107183979a898597",
+            "sha256": "c6b8d44c7c83919fa047d94c4aa13265d69ee9c2e03ca8af0bacc4621298433b"
+        },
+        {
+            "filename": "KB_16_02_0016.swi",
+            "description": "KB.16.02.0016",
+            "build-date": "26-Jan-2017",
+            "post-date": "01-Feb-2017",
+            "md5": "f629e83a645a9c73d85910005ef4a8d8",
+            "sha1": "97a8c9b7ef9940b55f538a8c052d62f7c101907a",
+            "sha256": "e07bc6e195b551a45bf971d786bf65e01dfe9b9946edc8196e212f153f53ec3f"
+        },
+        {
+            "filename": "KB_16_02_0018.swi",
+            "description": "KB.16.02.0018",
+            "build-date": "30-Mar-2017",
+            "post-date": "06-Apr-2017",
+            "md5": "596c963669d651eb39febdadea2e2045",
+            "sha1": "7ef32ab7103c8dc3c35297997b25bd68df4448b6",
+            "sha256": "0c6e914fba392585c129f74b4bfbe2c7e458f001dab00248007d398c35a8f0c9"
+        },
+        {
+            "filename": "KB_16_03_0003.swi",
+            "description": "KB.16.03.0003",
+            "build-date": "15-Dec-2016",
+            "post-date": "09-Jan-2017",
+            "md5": "ffb2983b29386d5fe3cc48ceaa3d7a5a",
+            "sha1": "32232686e67e68f4a90231bdaebc0316eb872c58",
+            "sha256": "8de1c2f8da739f29142557be431f9a0b319ba86371b1357d7e5c3e9ce87ef66d"
+        },
+        {
+            "filename": "KB_16_03_0004.swi",
+            "description": "KB.16.03.0004",
+            "build-date": "17-Apr-2017",
+            "post-date": "24-Apr-2017",
+            "md5": "1620c373552761e6e1660a638a44e1c9",
+            "sha1": "d11b387450357750b8b58d8b1083c06ac757b605",
+            "sha256": "fec1dccca3f1251e910f13b1303cb5372f423569f39341318042de7844927f80"
+        },
+        {
+            "filename": "KB_16_03_0005.swi",
+            "description": "KB.16.03.0005",
+            "build-date": "07-Jul-2017",
+            "post-date": "14-Jul-2017",
+            "md5": "7db6ee0c2507100b9f9d51cec40870a1",
+            "sha1": "bbabf5c70632f8e6918611bc4345fc07d7b7966a",
+            "sha256": "8163b96bbbf7c27216d7110b14bf00df06f0e850cd398bf7945e3b75045db052"
+        },
+        {
+            "filename": "USB-Console-Drivers-Aug2013.zip",
+            "description": "USB Console Port Drivers and Information",
+            "build-date": "20-Aug-2013",
+            "post-date": "28-Aug-2013",
+            "md5": "ace8fd6eb520fc287f87f34c5574d9d",
+            "sha1": "db969aaa816dd15b3607f0739f37186d609823",
+            "sha256": "c122d0494dbeb5f88ef30d6e46eb945b2d8c4c4c35efeb434dd2badabbe7a39"
+        },
+        {
+            "filename": "device-rest-api-v2.0.zip",
+            "description": "16.03 REST API and JSON Schema",
+            "build-date": "14-Dec-2016",
+            "post-date": "23-Jan-2017",
+            "md5": "218DA8DFBBF3CD37E260DB5D1F8759D",
+            "sha1": "AF9C2FDEBE28A12FE6328708D44029D09797D8",
+            "sha256": "6BA2F110E5CEE9CCEF666623131CF7F72DDDC7E802A235254C498AEEF078576B"
+        },
+        {
+            "filename": "device-rest-api.zip",
+            "description": "REST API and JSON Schema",
+            "build-date": "01-Mar-2016",
+            "post-date": "11-Apr-2016",
+            "md5": "0E1E996E60FBAA1C421EDF620A27138",
+            "sha1": "FDBACC505D849D988BD26A410A6F30968288B9",
+            "sha256": "1D7CA95A7D857808223A4DA2C71B481E622C6E23EBD79A52764A4E60B6C5CBE7"
+        },
+        {
+            "filename": "16.02_device-rest-api.zip",
+            "description": "6.02 REST API and JSON Schema",
+            "build-date": "03-Aug-2016",
+            "post-date": "11-Aug-2016",
+            "md5": "C4A7EEBD42AE8A905283DD119C53202",
+            "sha1": "81AB790F0CDC08AF67D840B893C1F46CC2C39A",
+            "sha256": "2E5D2EE4E5D57ADBB42BAADAD027D92C592AE94B84B927AAA15DB4540E5C9B14"
+        },
+        {
+            "filename": "P.2.16.zip",
+            "md5": "3FF486B4B78F0F4971FE425D8387CA53",
+            "sha1": "D43513C45F6B4414E79952FD4414F78F4AF5FC1A",
+            "sha256": "567430B3A3945C494F386066F22F61F856D596A22C71708D4E19981D3E8773BD"
+        },
+        {
+            "filename": "1810G-Software-P0212.zip",
+            "md5": "355f21f064293bae6a530ffa90b221c7",
+            "sha1": "db9851f7666e52927f5836b9635496ff852acbb8",
+            "sha256": "c9fbbd51ada72b6553aec594d36d2874277a18b66dfdb681494206f9ca3c8fe7"
+        },
+        {
+            "filename": "P.2.10_1810G-Software-P0210.zip",
+            "md5": "378e5023ab9d3a6295eda74fb570b2b8",
+            "sha1": "386d1461a6abc08763139c3c53a48b452e3a2e3c",
+            "sha256": "c497d4a91130e1ff652db8eee49604c4b3e5b9632bfdd06981f0f6f2f84ccff9"
+        },
+        {
+            "filename": "P.2.18.zip",
+            "md5": "3DD0C623096CC0A3A1B33BD181955E81",
+            "sha1": "C305D06FC9ACBE0682A8398A85EFBFF1514ECEE5",
+            "sha256": "0D1F278FD96E457730119BC66C0C9DA683759F1C29C168FB2EEA983997A31494"
+        },
+        {
+            "filename": "P.2.21.stk",
+            "md5": "DC07423AE8CBBDA0480847678E9DCE67",
+            "sha1": "CF92AA739C340676C22B4900807C7B5517660796",
+            "sha256": "5CF5A39161A367DE66C3A72A8ACB8B6400CBA5B6C712B8973DAF562507CE8815"
+        },
+        {
+            "filename": "PL.2.04.zip",
+            "md5": "a48c48039dc4c5120729a734078fc60c",
+            "sha1": "806fd90923e278dd38f59675ba35069f7662d0a1",
+            "sha256": "3b8ef833949f962caa407c76a12537a5f641151f9f9525affe8d00afe28d8c35"
+        },
+        {
+            "filename": "1810-v2-Software-PL-PM0109.zip",
+            "md5": "72fddeb41ff28839825413702165f967",
+            "sha1": "e4fdb760a88dbbcf1545ef31d2f6908aaa4178ee",
+            "sha256": "76a95e4c6caab3dd612c88c97db10f31c42751a2fdce1e207f1b3307b931baa0"
+        },
+        {
+            "filename": "PL_PM.1.5_1810-v2-Software-PL-PM0105.zip",
+            "md5": "e3d4def1cb0c47e3063e1ad48c16a5a7",
+            "sha1": "d2c630a6acd74b406e0fd0d9a5f1d7ba2bb0bd7e",
+            "sha256": "4262a6f730387ae0892dd5ab2beabef66d9c937643a40b49d44026386e907aba"
+        },
+        {
+            "filename": "PL.2.07.zip",
+            "md5": "2f124f6c172cfac8031c537c6b4f4286",
+            "sha1": "8cd45aa9583085fb113c3b467f7a2b2243b0e0d9",
+            "sha256": "ae337174fb07cd936aa75b72ddeb231905ed8ece3f7718b7131d795c7544fcf5"
+        },
+        {
+            "filename": "PL.2.06.zip",
+            "md5": "5b15eaea6786e45cbb5e489cec35f1bc",
+            "sha1": "7379c70fc29caeadce0a56f70e3590ea00f458d8",
+            "sha256": "d48fe816d40550639b9ee082a52603c7d9b1f5bf412d1f4598011f4cdee54f96"
+        },
+        {
+            "filename": "MIBs_V6_MIBs_V6.zip",
+            "build-date": "14-Nov-2013",
+            "post-date": "03-Dec-2013",
+            "md5": "6bd67231526959372ff29442aea37fd0",
+            "sha1": "db1a823d957124c09e75cd2430b57dfa106dc34a",
+            "sha256": "c8067d2222bed319efdb8f4f28362616f8394af71af1081469035054adad29c4"
+        },
+        {
+            "filename": "VSR_7.10.E0101P01-B.zip",
+            "build-date": "12-Dec-2013",
+            "post-date": "18-Dec-2013",
+            "md5": "7decad1544a6e7bd7ec74b0e3ba5384c",
+            "sha1": "0288d9175e7ec05ca29d203b998cefff32b00dc9",
+            "sha256": "1a0bcb6810af7940da5b5c9206df859635d27fa3304fd8228313524666778b9b"
+        },
+        {
+            "filename": "VSR_7.10.E0102.zip",
+            "build-date": "08-Jan-2014",
+            "post-date": "13-Jan-2014",
+            "md5": "b62c6372c2c7a436691dc2f0f3df9370",
+            "sha1": "3180e716b6feab8296e1546053728ff283b1e8f6",
+            "sha256": "bc67180b41c62f263f2baf76a0fb3254271ff0f5778098e39101b8c11b270d05"
+        },
+        {
+            "filename": "VSR1000_7.10.R0202.zip",
+            "build-date": "30-Apr-2014",
+            "post-date": "07-May-2014",
+            "md5": "fe44323315b574d98d4ecec06b1204b5",
+            "sha1": "0357f8bc543dc99b5e7af23e338551fa7a30420c",
+            "sha256": "30b3347e7ec06a0fbbd1093de33ec8caae1b682387352148d128b1b8c8d5a4c2"
+        },
+        {
+            "filename": "MIBs_V7.zip",
+            "build-date": "11-Jun-2014",
+            "post-date": "08-Jul-2014",
+            "md5": "95bef67767566fc69da50f684398e022",
+            "sha1": "500f971ccabe870ae6303eb958f501b395da4247",
+            "sha256": "43f487c54276293b32c5dc769f60dab58dbf330bb576afa880df9f80f75c6262"
+        },
+        {
+            "filename": "VSR1000_7.10.R0203.zip",
+            "build-date": "31-Jul-2014",
+            "post-date": "08-Aug-2014",
+            "md5": "14c8e6e7a593d56c6382171ffad6e526",
+            "sha1": "3afe123d31977501521866ec02d06c335b62b269",
+            "sha256": "129428077a3cf3a7ba0151d2a87e925ed593d3b8938120a845d2896fd01a9b2b"
+        },
+        {
+            "filename": "MIBs_V8.zip",
+            "build-date": "05-Nov-2014",
+            "post-date": "01-Dec-2014",
+            "md5": "795632ddb4f737bd9965f7c1ee78028a",
+            "sha1": "a5fd325d80cf9b97a5beb29577e78b32c895f087",
+            "sha256": "94a4f68e4e3cafd77d9bf6a6e6e6432dec232b28c9fa018b39827b84f30cda49"
+        },
+        {
+            "filename": "VSR1000_7.10.R0204.zip",
+            "build-date": "24-Dec-2014",
+            "post-date": "13-Jan-2015",
+            "md5": "77f37aab4bbd8ca3d6475c5c7834f574",
+            "sha1": "0f2a5b3bd5a90fad97ab6efece2c0b6830bbbae0",
+            "sha256": "866faefca9c2c4acc53c40e7fa111e8464de603714b861b642219d96f86b3021"
+        },
+        {
+            "filename": "VSR1000_7.10.R0204P01.zip",
+            "build-date": "12-Feb-2015",
+            "post-date": "25-Feb-2015",
+            "md5": "6a314dd193e1b3f726102cf8461df0b2",
+            "sha1": "e4855dda6de052e07dbd5ae031388c8d3550284a",
+            "sha256": "6551d63f80f0cd2f06fab20a778aa52dd3f4996e8ea16183ef4b3e87403d8e1f"
+        },
+        {
+            "filename": "MIBS_v9.zip",
+            "build-date": "09-Jun-2015",
+            "post-date": "26-Jan-2016",
+            "md5": "9fbb452ac361848673fa847516a76c1b",
+            "sha1": "548f13879e7a99db1a95f539492529a2d37c9730",
+            "sha256": "d5bbfa45441a0d364c9de134b40ecd3afb9a14a5c4362c80fd3e837773b1b13a"
+        },
+        {
+            "filename": "VSR1000_7.10.E0321.zip",
+            "build-date": "28-Aug-2015",
+            "post-date": "18-Sep-2015",
+            "md5": "2c3b19fc497cf3f5ba8576f0ac9ef41f",
+            "sha1": "ef26d9c24435bbec72a41f3a2c7ad51027ce8cd4",
+            "sha256": "938fa1e7c288077dd03ad9e9be79c85011b30405eb62be1ac43bee43ff1640da"
+        },
+        {
+            "filename": "VSR1000_7.10.E0321P01.zip",
+            "build-date": "18-Dec-2015",
+            "post-date": "14-Jan-2016",
+            "md5": "5ff8e4009232e21a6f8c7df5c64a5214",
+            "sha1": "9ba330d7b11df87d36143318f43ca9107b52f4a9",
+            "sha256": "3f73048106e1d025ea66aeb60c3ae25663f581a320a66ba7f3b8fb8841b87366"
+        },
+        {
+            "filename": "VSR1000_7.10.E0322.zip",
+            "build-date": "25-Mar-2016",
+            "post-date": "09-Jan-2017",
+            "md5": "17d1077da99890834280d4c605804e1f",
+            "sha1": "2d73222c33f56035e584a2f71a9107e3b3c7ade5",
+            "sha256": "4705d97db8d3f4b10abd471c9fca558c87b1a4007bc63582864f5aee279536d3"
+        },
+        {
+            "filename": "VSR1000_7.10.E0322P01.zip",
+            "build-date": "23-May-2016",
+            "post-date": "09-Jan-2017",
+            "md5": "fb28da4894b265c25224dffb36c1857f",
+            "sha1": "f8647d635923524ed98ce7f2d10105d8fcab4523",
+            "sha256": "7957bb69899c4c8f5207a39fc3e732dd93ba4a7eab802619c1b6aadd5042a496"
+        },
+        {
+            "filename": "VSR1000_7.10.E0324.zip",
+            "build-date": "21-Nov-2016",
+            "post-date": "09-Jan-2017",
+            "md5": "3d99174c4307d89f7d67d0491fc69376",
+            "sha1": "9058f6556b9a1863e7d51174713c8843695ed308",
+            "sha256": "2ad966c79f81612b5cad1db5ca3af6fcd3e43cdf7431e16f3a77f29483b7d54c"
+        },
+        {
+            "filename": "VSR1000_HPE-CMW710-E0518-X64.zip",
+            "build-date": "23-Jan-2017",
+            "post-date": "11-Apr-2017",
+            "md5": "7fd0ac66987526b1813e9846d5cfb3d7",
+            "sha1": "7738bff7a2f30843b71119a13fd21f420a1b6fb1",
+            "sha256": "087bbbeae72032e8e3f4f27adc824a261700e100889228599b32f151c147d958"
+        },
+        {
+            "filename": "VSR1000_HPE-CMW710-E0325-X64.zip",
+            "build-date": "09-Mar-2017",
+            "post-date": "22-Mar-2017",
+            "md5": "a18f91291e9ce7dfae3002f48110db8c",
+            "sha1": "a679c0fd73a6a57eef66030679d4f5b12ee5100b",
+            "sha256": "3a325338a8745f9b4b6034b362e3d95c75eb3d43bad7c477675179b57e8ec054"
+        },
+        {
+            "filename": "KB_15_16_0012m.zip",
+            "build-date": "12-Jan-2016",
+            "post-date": "16-Feb-2016",
+            "md5": "1e5b413b642a7b99419f4e341632f340",
+            "sha1": "ec73ded8db67abbc075faab7b094a374072fd592",
+            "sha256": "c338cc8d32c5e972cb07f554aa7411caaedad170eb0dcd2d44b2089761cbe941"
+        },
+        {
+            "filename": "KB_15_16_0013m.swi",
+            "md5": "e2f5b68e43da6ccb51e76b784614e761",
+            "sha1": "f4fee3f09f86608555d75ffb44825fc86c05e6f9",
+            "sha256": "7cc6cbda2aac7b603055b450240d13b0cbc38cbb88ddad67b4ebbbd76f23ece3"
+        },
+        {
+            "filename": "KB_15_16_0014m.swi",
+            "md5": "165048d38cd83b19e5ec1b90d958ee0a",
+            "sha1": "2bac8c30cd0d68aa62e76204565122585aa3dbb9",
+            "sha256": "f95ae32ff1105cf4f2b174e395812581cdb08de8f69332980bebda8377b87204"
+        },
+        {
+            "filename": "KB_15_16_0015m.swi",
+            "build-date": "21-Nov-2016",
+            "post-date": "02-Dec-2016",
+            "md5": "963b27a40485e45d47879e3d4530b8ea",
+            "sha1": "4a157fe9fc0fed82bd5237f2144d079f89d3471d",
+            "sha256": "e2bbfa0c8642fbb9ffeab1b30654130ca3a6ebea57383febe635c995a0e3a64f"
+        },
+        {
+            "filename": "KB_15_16_0019m.swi",
+            "build-date": "27-Mar-2017",
+            "post-date": "29-Mar-2017",
+            "md5": "a5100b9a0181d2dabd0379859ef04fc7",
+            "sha1": "30c4acb61dde42d08b75c6438c5440591a0f7d82",
+            "sha256": "abf5f4487e2b34e9375cb292edccfbdbe611772282a4f70cc9324dd57fab47d0"
+        },
+        {
+            "filename": "KB_15_16_0020m.swi",
+            "build-date": "22-Sep-2017",
+            "post-date": "29-Sep-2017",
+            "md5": "479a8639800771eba766d03ec6db282c",
+            "sha1": "61cc7e8449ce7e55708dc79ef5477a1440832287",
+            "sha256": "d8809d44cce80416e8864292bfdf9a7acf73c712be57a0f9ef729fb5d2851989"
+        },
+        {
+            "filename": "KB.15.16.0021",
+            "build-date": "19-Mar-2018",
+            "post-date": "28-Mar-2018",
+            "md5": "103430cf5222c414568436ecae3f6941",
+            "sha1": "095edc02f95df068b01a1742860ee02dd6104fb0",
+            "sha256": "6f6fd85657837d9c5447edc95cd1efb8ec863a93d8e25e2c735e50c2b100dec8"
+        }
+    ]
+}
