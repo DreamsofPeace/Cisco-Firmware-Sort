@@ -1,5 +1,5 @@
 from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
-from iosutils import utils_dev_v2_vf_imagecode,utils_dev_imagecode_v2_vf,utils_dev_imagecode_v2_vf_dash
+from iosutils import utils_dev_v2_vf_imagecode,utils_dev_imagecode_v2_vf,utils_dev_imagecode_v2_vf_dash,utils_dev_v2_vf
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
@@ -182,6 +182,13 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	elif filename.startswith("Cisco_Firepower_GEODB") or filename.startswith("Sourcefire_Geodb"):
 		sec_fp_geodb (debug1,filename)
 
+	elif filename.startswith("Cisco_Firepower_NGIPS_Appliance_Patch-"):
+		prodname = product("firepower")
+		imagecode = imagelookup("sourcefiredev")
+		splitbydash = filename.split("-")
+		workname = splitbydash[1]
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+
 	elif filename.startswith("Cisco_VDB_Fingerprint_Database") or filename.startswith("Sourcefire_VDB"):
 		sec_fp_vdb (debug1,filename)
 
@@ -306,8 +313,185 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	):
 		sec_fp_mgmt (debug1,filename)
 
+	elif (
+		filename.startswith ("IPS")
+	):
+		sec_classic_ips (debug1,filename)
+
+	elif (
+		filename.startswith ("fcs-csamc-") or 
+		filename == "fcs-csa-hotfix-5.2.0.238-w2k3-k9-CSM.zip"
+	):
+		workname = filename.replace("fcs-csamc-hotfix-","")
+		workname = workname.replace("fcs-csamc-","")
+		workname = workname.replace("fcs-csa-hotfix-","")
+		workname = workname.replace("-w2k-k9.zip","")
+		workname = workname.replace("-w2k3r2-k9.zip","")
+		workname = workname.replace("-w2k3-k9.zip","")
+		workname = workname.replace("-w2k3-k9-CSM.zip","")
+		workname = workname.replace("-CSA-Policy-Descriptions.zip","")
+		prodname = product("csa")
+		utils_dev_v2_vf (debug1,filename,prodname,workname)
+
+	elif (
+		filename.startswith ("CiscoCM-CSA-") and filename.endswith (".export") or 
+		filename.startswith ("CiscoCVP-CSA-") and filename.endswith (".export") or 
+		filename.startswith ("CiscoICM-CSA-") and filename.endswith (".export") or 
+		filename.startswith ("CiscoISN-CSA-") and filename.endswith (".export") or 
+		filename.startswith ("CiscoPA-CSA-") and filename.endswith (".export") or 
+		filename.startswith ("CiscoUnity-CSA-") and filename.endswith (".export") or 
+		filename.startswith ("CUCM-CSA-") and filename.endswith (".export")
+	):
+		imagecode = imagelookup("templates")
+		prodname = product("csa")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+		filename.startswith ("vpnclient") or 
+		filename == "VPN-5.0.00.0340-MSI.exe" or 
+		filename == "Vista-VPN-Troubleshooting.txt" or 
+		filename == "VPN_Client_Support_Matrix2.txt" or 
+		filename.startswith ("update-") and filename.endswith ("-major-K9.zip")
+	):
+		sec_ipsec_client (debug1,filename)
+
 	else:
 		messageunknownfile()
+
+def sec_ipsec_client (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_ipsec_client")
+	prodname = product("vpnclient")
+	if filename.endswith(".txt"):
+		imagecode = imagelookup("docs")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+	elif filename.startswith ("update-") and filename.endswith ("-major-K9.zip"):
+		imagecode = imagelookup("windows")
+		workname = filename.replace("update-","")
+		workname = workname.replace("-major-K9.zip","")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+	elif filename == "VPN-5.0.00.0340-MSI.exe":
+		imagecode = imagelookup("windows")
+		workname = filename.replace("VPN-","")
+		workname = workname.replace("-MSI.exe","")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+	elif filename == "vpnclient-beta-rc-5.0.00.0320.exe":
+		imagecode = imagelookup("windows")
+		workname = filename.replace("vpnclient-beta-rc-","")
+		workname = workname.replace(".exe","")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+	elif (
+	filename.startswith("vpnclient-win-is-") or 
+	filename.startswith("vpnclient-winx64-msi-") or 
+	filename.startswith("vpnclient-win-msi-")
+	):
+		imagecode = imagelookup("windows")
+		workname = filename.replace("vpnclient-win-is-","")
+		workname = workname.replace("vpnclient-win-msi-","")
+		workname = workname.replace("vpnclient-winx64-msi-","")
+		workname = workname.replace("-BETA-k9.exe","")
+		workname = workname.replace("-k9-BETA.exe","")
+		workname = workname.replace("-RC-k9.exe","")
+		workname = workname.replace("-k9-BETA.exe","")
+		workname = workname.replace("-k9-bundle.exe","")
+		workname = workname.replace("-k9-jp_wohelp.exe","")
+		workname = workname.replace("-k9-x86.exe","")
+		workname = workname.replace("-k9.exe","")
+		workname = workname.replace("-k9.zip","")
+		workname = workname.replace(".Rel-k9.exe","")
+		workname = workname.replace(".k9.exe","")
+		workname = workname.replace(".k9.zip","")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+	elif (
+	filename.startswith("vpnclient-darwin-")
+	):
+		imagecode = imagelookup("macintosh")
+		workname = filename.replace("vpnclient-darwin-","")
+		workname = workname.replace("-GUI-k9.dmg","")
+		workname = workname.replace("-universal-k9.dmg","")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+	elif (
+	filename.startswith("vpnclient-linux-")  or 
+	filename.startswith("vpnclient-linux-x86_64-")
+	):
+		imagecode = imagelookup("linuxbare")
+		workname = filename.replace("vpnclient-linux-x86_64-","")
+		workname = workname.replace("vpnclient-linux-","")
+		workname = workname.replace("-k9.tar.gz","")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+	elif (
+	filename.startswith("vpnclient-solaris-")
+	):
+		imagecode = imagelookup("solaris")
+		workname = filename.replace("vpnclient-solaris-","")
+		workname = workname.replace("-k9.tar.gz","")
+		workname = workname.replace("-k9.tar.Z","")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+
+def sec_classic_ips (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_classic_ips")
+	prodname = product("ipsids")
+	if (
+	filename.startswith("IPS-sig-") and filename.endswith("-minreq-5.0-1.pkg") or 
+	filename.startswith("IPS-sig-") and filename.endswith("-minreq-5.0-1.zip") or 
+	filename.startswith("IPS-sig-") and filename.endswith("-minreq-5.0-6.pkg") or 
+	filename.startswith("IPS-sig-") and filename.endswith("-minreq-5.0-5.pkg") or 
+	filename.startswith("IPS-sig-") and filename.endswith("-minreq-5.1-2.pkg") or 
+	filename.startswith("IPS-sig-") and filename.endswith("-minreq-5.1-4.pkg")
+	):
+		imagecode = imagelookup("signatures")
+		engine = imagelookup("engine0")
+		workname = filename.replace("IPS-sig-","")
+		workname = workname.replace("-minreq-5.0-1.pkg","")
+		workname = workname.replace("-minreq-5.0-1.zip","")
+		workname = workname.replace("-minreq-5.0-5.pkg","")
+		workname = workname.replace("-minreq-5.0-6.pkg","")
+		workname = workname.replace("-minreq-5.1-2.pkg","")
+		workname = workname.replace("-minreq-5.1-4.pkg","")
+		filepath = filepath4(prodname,imagecode,engine,workname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("IPS-sig-") and filename.endswith("-req-E1.pkg")
+	):
+		imagecode = imagelookup("signatures")
+		engine = imagelookup("engine1")
+		workname = filename.replace("IPS-sig-","")
+		workname = workname.replace("-req-E1.pkg","")
+		filepath = filepath4(prodname,imagecode,engine,workname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("IPS-sig-") and filename.endswith("-req-E2.pkg")
+	):
+		imagecode = imagelookup("signatures")
+		engine = imagelookup("engine2")
+		workname = filename.replace("IPS-sig-","")
+		workname = workname.replace("-req-E2.pkg","")
+		filepath = filepath4(prodname,imagecode,engine,workname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("IPS-sig-") and filename.endswith("-req-E3.pkg")
+	):
+		imagecode = imagelookup("signatures")
+		engine = imagelookup("engine3")
+		workname = filename.replace("IPS-sig-","")
+		workname = workname.replace("-req-E3.pkg","")
+		filepath = filepath4(prodname,imagecode,engine,workname)
+		filemove (filepath, filename)
+	elif (
+	filename.startswith("IPS-sig-") and filename.endswith("-req-E4.pkg")
+	):
+		imagecode = imagelookup("signatures")
+		engine = imagelookup("engine4")
+		workname = filename.replace("IPS-sig-","")
+		workname = workname.replace("-req-E4.pkg","")
+		filepath = filepath4(prodname,imagecode,engine,workname)
+		filemove (filepath, filename)
+
+def sec_classic_ips_sig (debug1,filename,imagecode,engine,workname):
+	if debug1:
+		print("\tSubroutine#\tsec_classic_ips_sig")
+		
 
 def sec_fp_mgmt (debug1,filename):
 	if debug1:
@@ -1051,7 +1235,7 @@ def sec_acs (debug1,filename):
 	filename.startswith("Acs_4") or 
 	filename.startswith("applAcs_4")
 	):
-		sec_acs_vfour (filename,prodname)
+		sec_acs_vfour (debug1,filename,prodname)
 	else:
 		messageunknownfile()
 
@@ -1179,7 +1363,7 @@ def sec_acs_vfiveinstall (filename,prodname):
 		filepath = filepath3 (prodname,"5.8.1.4",imagecode)
 		filemove (filepath, filename)
 
-def sec_acs_vfour (filename,prodname):
+def sec_acs_vfour (debug1,filename,prodname):
 	if debug1:
 		print("\tSubroutine#\tsec_acs_vfour")
 

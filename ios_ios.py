@@ -164,7 +164,7 @@ def fileprocessorios (debug1,filename):
 	filename == "VAEW_A_39f1_B_39d_24g1.SSA.bin"
 	):
 		prodname = product ("c860vaew")
-		imagecode = imagelookup ("DSLFIRMWARE")
+		imagecode = imagelookup ("dslfirmware")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
@@ -172,7 +172,7 @@ def fileprocessorios (debug1,filename):
 	filename == "VAE2_A_39t_B39d_24m.SSA.bin"
 	 ):
 		prodname = product ("c860vae2")
-		imagecode = imagelookup ("DSLFIRMWARE")
+		imagecode = imagelookup ("dslfirmware")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (

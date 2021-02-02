@@ -1,5 +1,5 @@
 from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
-from iosutils import utils_dev_v2_vf_imagecode,utils_dev_imagecode_v2_vf,utils_dev_imagecode_v2_vf_dash
+from iosutils import utils_dev_v2_vf_imagecode,utils_dev_imagecode_v2_vf,utils_dev_imagecode_v2_vf_dash,utils_dev_v2_vf
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
@@ -24,7 +24,58 @@ def file_proc_servers (filename,debug1):
 
 	elif filename.startswith("DNAC") or filename.startswith("dnac"):
 		prodname = product ("dnac")
-		utilssingleprodname (debug1,filename,prodname)
+		if filename == "dnac1307_cisco_image_verification_key.pub":
+			v2 = "1.3"
+			vf = "1.3.0.7"
+			prodpath = prodname + "/" + v2 + "/" + vf
+			filemove (prodpath, filename)
+		elif filename == "dnac1314_cisco_image_verification_key.pub":
+			v2 = "1.3"
+			vf = "1.3.1.4"
+			prodpath = prodname + "/" + v2 + "/" + vf
+			filemove (prodpath, filename)
+		elif filename == "dnac1317_cisco_image_verification_key.pub":
+			v2 = "1.3"
+			vf = "1.3.1.7"
+			prodpath = prodname + "/" + v2 + "/" + vf
+			filemove (prodpath, filename)
+		elif filename == "dnac1331_cisco_image_verification_key.pub":
+			v2 = "1.3"
+			vf = "1.3.3.1"
+			prodpath = prodname + "/" + v2 + "/" + vf
+			filemove (prodpath, filename)
+		elif filename == "dnac1333_cisco_image_verification_key.pub":
+			v2 = "1.3"
+			vf = "1.3.3.3"
+			prodpath = prodname + "/" + v2 + "/" + vf
+			filemove (prodpath, filename)
+		elif filename == "dnac1334_cisco_image_verification_key.pub":
+			v2 = "1.3"
+			vf = "1.3.3.4"
+			prodpath = prodname + "/" + v2 + "/" + vf
+			filemove (prodpath, filename)
+		elif filename == "dnac1335_cisco_image_verification_key.pub":
+			v2 = "1.3"
+			vf = "1.3.3.5"
+			prodpath = prodname + "/" + v2 + "/" + vf
+			filemove (prodpath, filename)
+		elif filename == "dnac1336_cisco_image_verification_key.pub":
+			v2 = "1.3"
+			vf = "1.3.3.6"
+			prodpath = prodname + "/" + v2 + "/" + vf
+			filemove (prodpath, filename)
+		elif filename.startswith("DNAC-witness"):
+			workname = filename.replace("DNAC-witness-", "")
+			workname = workname.replace(".ova", "")
+			imagecode = imagelookup("witness")
+			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		else:
+			workname = filename.replace("DNAC-SW-", "")
+			workname = workname.replace("dnac", "")
+			workname = workname.replace(".sig", "")
+			workname = workname.replace(".iso", "")
+			workname = workname.replace("_cisco_image_verification_key.pub", "")
+			utils_dev_v2_vf (debug1,filename,prodname,workname)
 
 	elif filename.startswith("ucs-catalog"):
 		prodname = product("ucsgeneric")
@@ -408,78 +459,52 @@ def file_proc_servers_aci (debug1,filename,prodname):
 		workname = filename.replace("tools-msc-", "")
 		workname = workname.replace("esx-msc-", "")
 		workname = workname.replace("msc-", "")
-		splitbydot = filename.split(".")
-		ver2 = util2digit(splitbydot[0],splitbydot[1])
-		ver3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
-		filepath = filepath4(prodname,imagecode,ver2,ver3)
-		filemove (filepath, filename)
+		workname = workname.replace(".ova", "")
+		workname = workname.replace(".tar.gz", "")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 	elif (
 	filename.startswith("Cisco_ACI_Virtual_Edge_")
 	):
 		imagecode = imagelookup("acive")
 		workname = filename.replace("Cisco_ACI_Virtual_Edge_", "")
 		workname = workname.replace("-pkg.zip", "")
-		splitbydot = filename.split(".")
-		ver2 = util2digit(splitbydot[0],splitbydot[1])
-		ver3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
-		filepath = filepath4(prodname,imagecode,ver2,ver3)
-		filemove (filepath, filename)
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 	elif (
 	filename.startswith("aci-apic-dk9.")
 	):
 		imagecode = imagelookup("apic")
 		workname = filename.replace("aci-apic-dk9.", "")
-		splitbydot = filename.split(".")
-		ver2 = util2digit(splitbydot[0],splitbydot[1])
-		ver3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
-		filepath = filepath4(prodname,imagecode,ver2,ver3)
-		filemove (filepath, filename)
+		workname = workname.replace(".iso", "")
+		workname = workname.replace(".ova", "")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 	elif (
 	filename.startswith("aci-msft-pkg-")
 	):
 		imagecode = imagelookup("aciplgms")
 		workname = filename.replace("aci-msft-pkg-", "")
-		splitbydot = filename.split(".")
-		ver2 = util2digit(splitbydot[0],splitbydot[1])
-		ver3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
-		filepath = filepath4(prodname,imagecode,ver2,ver3)
-		filemove (filepath, filename)
+		workname = workname.replace(".zip", "")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 	elif (
 	filename.startswith("vcenter-plugin-")
 	):
 		imagecode = imagelookup("aciplgvc")
 		workname = filename.replace("vcenter-plugin-", "")
-		splitbydot = filename.split(".")
-		ver2 = util2digit(splitbydot[0],splitbydot[1])
-		ver3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
-		filepath = filepath4(prodname,imagecode,ver2,ver3)
-		filemove (filepath, filename)
+		workname = workname.replace(".tgz", "")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 	elif (
 	filename.startswith("apic-vrealize-")
 	):
 		imagecode = imagelookup("aciplgvs")
 		workname = filename.replace("apic-vrealize-", "")
-		if debug1:
-			print ("\t\tWorkname#\t", end="")
-			print (workname, end="\n")
-		splitbydot = workname.split(".")
-		ver2 = util2digit(splitbydot[0],splitbydot[1])
-		ver3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
-		filepath = filepath4(prodname,imagecode,ver2,ver3)
-		if debug1:
-			print ("\t\tFilepath#\t", end="")
-			print (filepath, end="\n")
-		filemove (filepath, filename)
+		workname = workname.replace(".tgz", "")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 	elif (
 	filename.startswith("aci-n9000-dk9.")
 	):
 		imagecode = imagelookup("n9kacim")
 		workname = filename.replace("aci-n9000-dk9.", "")
-		splitbydot = filename.split(".")
-		ver2 = util2digit(splitbydot[0],splitbydot[1])
-		ver3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
-		filepath = filepath4(prodname,imagecode,ver2,ver3)
-		filemove (filepath, filename)
+		workname = workname.replace(".bin", "")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 	elif (
 	filename.startswith("acisim-")
 	):
@@ -491,20 +516,13 @@ def file_proc_servers_aci (debug1,filename,prodname):
 		workname = workname.replace("_part4.ova", "")
 		workname = workname.replace("-",".")
 		splitbydot = workname.split(".")
-		ver2 = util2digit(splitbydot[0],splitbydot[1])
-		ver3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
-		filepath = filepath4(prodname,imagecode,ver2,ver3)
-		filemove (filepath, filename)
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 	elif (
 	filename.startswith("aci-simulator-dk9.")
 	):
 		imagecode = imagelookup("acisim")
 		workname = filename.replace("aci-simulator-dk9.", "")
-		splitbydot = workname.split(".")
-		ver2 = util2digit(splitbydot[0],splitbydot[1])
-		ver3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
-		filepath = filepath4(prodname,imagecode,ver2,ver3)
-		filemove (filepath, filename)
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 
 	else:
 		messageunknownfile()
@@ -625,21 +643,26 @@ def file_proc_servers_primeinfra (debug1,filename):
 		utilssinglemove (debug1,filename,prodname,"3.3")
 
 	elif (
-	filename == "Device-Pack-11-PI3.4-09.ubf" or
-	filename == "Device-Pack-2-PI3.4-07.ubf" or
 	filename == "PI_3_4_2_Update_01-1.0.2.ubf" or
 	filename == "PI_3_4_2-1.0.23.ubf" or
+	filename == "PI_3_4_1_Update_02-1.0.9.ubf" or
+	filename == "PI_3_4_1-1.0.27.ubf" or
 	filename == "PI-VA-3.4.0.0.348.ova" or
 	filename == "PI-APL-3.4.0.0.348-1-K9.iso" or
 	filename == "CiscoPI3.4.pem" or
 	filename == "PI_BUNDLE-3.4.0.0.348-Upgrade.tar.gz" or
-	filename == "PI-APL-3.4.0.0.348-1-K9.iso.signature"
+	filename == "PI-APL-3.4.0.0.348-1-K9.iso.signature" or
+	filename == "Device-Pack-2-PI3.4-07.ubf" or
+	filename == "Device-Pack-4-PI3.4-11.ubf" or
+	filename == "Device-Pack-9-PI3.4-09.ubf" or
+	filename == "Device-Pack-11-PI3.4-09.ubf"
 	):
 		utilssinglemove (debug1,filename,prodname,"3.4")
 
 	elif (
 	filename == "PI-Upgrade-3.X_to_3.5.0.0.550.tar.gz" or
 	filename == "PI-APL-3.5.0.0.550-1-K9.iso.signature" or
+	filename == "PI_3_5_Update_01-1.0.10.ubf" or
 	filename == "PI-APL-3.5.0.0.550-1-K9.iso" or
 	filename == "CiscoPI3.5.pem" or
 	filename == "PI-VA-3.5.0.0.550.ova" or
@@ -647,6 +670,7 @@ def file_proc_servers_primeinfra (debug1,filename):
 	filename == "PI_3_5_1_Security_Update_02_Part_02of02-1.0.7.ubf" or
 	filename == "PI_3_5_1_Security_Update_02_Part_01of02-1.0.4.ubf" or
 	filename == "PI_3_5_1_Update_02-1.0.21.ubf" or
+	filename == "Device-Pack-1-PI3.5-29.ubf" or
 	filename == "Device-Pack-4-PI3.5-21.ubf"
 	):
 		utilssinglemove (debug1,filename,prodname,"3.5")
