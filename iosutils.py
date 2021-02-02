@@ -754,6 +754,12 @@ def imagelookup (imagecode):
 		subdirectory = "CLIENT/LINUX"
 	elif imagecode == "linux64":
 		subdirectory = "CLIENT/LINUX-64"
+	elif imagecode == "linuxbare":
+		subdirectory = "LINUX"
+	elif imagecode == "solaris":
+		subdirectory = "SOLARIS"
+	elif imagecode == "macintosh":
+		subdirectory = "MAC"
 	elif imagecode == "macos":
 		subdirectory = "CLIENT/MACOSX"
 	elif imagecode == "macosxi386":
@@ -890,6 +896,16 @@ def imagelookup (imagecode):
 		subdirectory = "EMAIL-SECURITY-APPLIANCE"
 	elif imagecode == "engine":
 		subdirectory = "ENGINE"
+	elif imagecode == "engine0":
+		subdirectory = "ENGINE-0"
+	elif imagecode == "engine1":
+		subdirectory = "ENGINE-1"
+	elif imagecode == "engine2":
+		subdirectory = "ENGINE-2"
+	elif imagecode == "engine3":
+		subdirectory = "ENGINE-3"
+	elif imagecode == "engine4":
+		subdirectory = "ENGINE-4"
 	elif imagecode == "i5s":
 		subdirectory = "ENHANCED-L3"
 	elif imagecode == "i5k91s":
@@ -918,6 +934,24 @@ def imagelookup (imagecode):
 		subdirectory = "ENTERPRISE-BASIC"
 	elif imagecode == "k2":
 		subdirectory = "ENTERPRISE-CIP2"
+	elif imagecode == "k2o3sv3y":
+		subdirectory = "IP-FW-VOICE-PLUS-IPSEC-3DES"
+	elif imagecode == "k2sv3y":
+		subdirectory = "IP-VOICE-PLUS-IPSEC-3DES"
+	elif imagecode == "bk2no3r2sy":
+		subdirectory = "IP-IPX-AT-IBM-FW-PLUS-IPSEC-3DES"
+	elif imagecode == "sv3y56i":
+		subdirectory = "IP-VOICE-PLUS-IPSEC-56"
+	elif imagecode == "o3sv3y56i":
+		subdirectory = "IP-FW-VOICE-PLUS-IPSEC-56"
+	elif imagecode == "k2o3sy":
+		subdirectory = "IP-FW-PLUS-IPSEC-3DES"
+	elif imagecode == "sv3y756i":
+		subdirectory = "IP-VOICE-PLUS-IPSEC-56-ADSL"
+	elif imagecode == "bno3r2sv3y56i":
+		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-56"
+	elif imagecode == "bk2no3r2sv3y":
+		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-3DES"
 	elif imagecode == "c3h2s":
 		subdirectory = "ENTERPRISE-COMMAND-CAPABLE"
 	elif imagecode == "jo3s":
@@ -1629,7 +1663,7 @@ def imagelookup (imagecode):
 	elif imagecode == "i5su3":
 		subdirectory = "MPEG-2-L3"
 	elif imagecode == "mso":
-		subdirectory = "MULTI-SIDE-ORCHESTRATOR"
+		subdirectory = "MULTI-SITE-ORCHESTRATOR"
 	elif imagecode == "h1is":
 		subdirectory = "MW-HOME-AGENT"
 	elif imagecode == "anyconnectnam":
@@ -2034,6 +2068,80 @@ def imagelookup (imagecode):
 		subdirectory = "STORAGE-SERVICE-INTERFACE"
 	elif imagecode == "fabman":
 		subdirectory = "FABRIC-MANAGER"
+	elif imagecode == "sv3y7":
+		subdirectory = "IP-VOICE-PLUS-ADSL"
+	elif imagecode == "sy756i":
+		subdirectory = "IP-PLUS-IPSEC-56-ADSL"
+	elif imagecode == "o3sy756i":
+		subdirectory = "IP-FW-PLUS-IPSEC-56-ADSL"
+	elif imagecode == "o3sv3y756i":
+		subdirectory = "IP-VOICE-FW-IDS-PLUS-IPSEC-56-ADSL"
+	elif imagecode == "k2sy7":
+		subdirectory = "IP-PLUS-IPSEC-3DES-ADSL"
+	elif imagecode == "k2sv3y7":
+		subdirectory = "IP-VOICE-PLUS-IPSEC-3DES-ADSL"
+	elif imagecode == "k2o3sy7":
+		subdirectory = "IP-FW-PLUS-IPSEC-3DES-ADSL"
+	elif imagecode == "k2o3sv3y7":
+		subdirectory = "IP-FW-VOICE-PLUS-IPSEC-3DES-ADSL"
+	elif imagecode == "bno3r2sy756i":
+		subdirectory = "IP-IPX-AT-IBM-FW-PLUS-IPSEC-56-ADSL"
+	elif imagecode == "bno3r2sv3y756i":
+		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-56-ADSL"
+	elif imagecode == "bk2no3r2sy7":
+		subdirectory = "IP-IPX-AT-IBM-FW-PLUS-IPSEC-3DES-ADSL"
+	elif imagecode == "bk2no3r2sv3y7":
+		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-3DES-ADSL"
+	elif imagecode == "sy40":
+		subdirectory = "IP-PLUS-40"
+	elif imagecode == "sy56":
+		subdirectory = "IP-PLUS-56"
+	elif imagecode == "sy56i":
+		subdirectory = "IP-PLUS-IPSEC-56"
+	elif imagecode == "sy56i":
+		subdirectory = "IP-PLUS-IPSEC-56"
+	elif imagecode == "k2sy":
+		subdirectory = "IP-PLUS-IPSEC-3DES"
+	elif imagecode == "oy":
+		subdirectory = "IP-FW"
+	elif imagecode == "nosy":
+		subdirectory = "IP-IPX-FW-PLUS"
+	elif imagecode == "osy56i":
+		subdirectory = "IP-FW-PLUS-IPSEC-56"
+	elif imagecode == "k2osy":
+		subdirectory = "IP-FW-PLUS-IPSEC-3DES"
+	elif imagecode == "ny":
+		subdirectory = "IP-IPX"
+	elif imagecode == "bnr2y":
+		subdirectory = "IP-IPX-AT-IBM"
+	elif imagecode == "bnr2sy":
+		subdirectory = "IP-IPX-AT-IBM-PLUS"
+	elif imagecode == "bnor2sy56i":
+		subdirectory = "IP-IPX-AT-IBM-FW-PLUS-IPSEC-56"
+	elif imagecode == "bk2nor2sy":
+		subdirectory = "IP-IPX-AT-IBM-FW-PLUS-IPSEC-3DES"
+	elif imagecode == "sv3y":
+		subdirectory = "IP-VOICE-PLUS"
+	elif imagecode == "sv3y40":
+		subdirectory = "IP-VOICE-PLUS-IPSEC-40"
+	elif imagecode == "sv3y56i":
+		subdirectory = "IP-VOICE-PLUS-IPSEC-56"
+	elif imagecode == "sv3y56":
+		subdirectory = "IP-VOICE-PLUS-IPSEC-56"
+	elif imagecode == "k2sv3y":
+		subdirectory = "IP-VOICE-PLUS-IPSEC-3DES"
+	elif imagecode == "osv3y":
+		subdirectory = "IP-FW-VOICE-PLUS"
+	elif imagecode == "osv3y56i":
+		subdirectory = "IP-FW-VOICE-PLUS-IPSEC-56"
+	elif imagecode == "k2osv3y":
+		subdirectory = "IP-FW-VOICE-PLUS-IPSEC-3DES"
+	elif imagecode == "nosv3y":
+		subdirectory = "IP-IPX-FW-VOICE-PLUS"
+	elif imagecode == "bnor2sv3y56i":
+		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-56"
+	elif imagecode == "bk2nor2sv3y":
+		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-3DES"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2108,123 +2216,123 @@ def product (prodcode):
 	elif prodcode == "rpmxf":
 		prodname = "ROUTERS/ATM/MGX-8850"
 	elif prodcode == "c1004":
-		prodname = "ROUTERS/Branch/1004"
+		prodname = "ROUTERS/BRANCH/1004"
 	elif prodcode == "c1005":
-		prodname = "ROUTERS/Branch/1005"
+		prodname = "ROUTERS/BRANCH/1005"
 	elif prodcode == "c1400":
-		prodname = "ROUTERS/Branch/1400"
+		prodname = "ROUTERS/BRANCH/1400"
 	elif prodcode == "c1600":
-		prodname = "ROUTERS/Branch/1600"
+		prodname = "ROUTERS/BRANCH/1600"
 	elif prodcode == "c1700":
-		prodname = "ROUTERS/Branch/1700"
+		prodname = "ROUTERS/BRANCH/1700"
 	elif prodcode == "c1710":
-		prodname = "ROUTERS/Branch/1710"
+		prodname = "ROUTERS/BRANCH/1710"
 	elif prodcode == "c2500":
-		prodname = "ROUTERS/Branch/2500"
+		prodname = "ROUTERS/BRANCH/2500"
 	elif prodcode == "igs":
-		prodname = "ROUTERS/Branch/2500"
+		prodname = "ROUTERS/BRANCH/2500"
 	elif prodcode == "c25fx":
-		prodname = "ROUTERS/Branch/2500"
+		prodname = "ROUTERS/BRANCH/2500"
 	elif prodcode == "c2511":
-		prodname = "ROUTERS/Branch/2500"
+		prodname = "ROUTERS/BRANCH/2500"
 	elif prodcode == "c2600":
-		prodname = "ROUTERS/Branch/2600"
+		prodname = "ROUTERS/BRANCH/2600"
 	elif prodcode == "c2611":
-		prodname = "ROUTERS/Branch/2600"
+		prodname = "ROUTERS/BRANCH/2600"
 	elif prodcode == "c2691":
-		prodname = "ROUTERS/Branch/2691"
+		prodname = "ROUTERS/BRANCH/2691"
 	elif prodcode == "c3620":
-		prodname = "ROUTERS/Branch/3620"
+		prodname = "ROUTERS/BRANCH/3620"
 	elif prodcode == "c3631":
-		prodname = "ROUTERS/Branch/3631"
+		prodname = "ROUTERS/BRANCH/3631"
 	elif prodcode == "c3640":
-		prodname = "ROUTERS/Branch/3640"
+		prodname = "ROUTERS/BRANCH/3640"
 	elif prodcode == "c3660":
-		prodname = "ROUTERS/Branch/3660"
+		prodname = "ROUTERS/BRANCH/3660"
 	elif prodcode == "c3660":
-		prodname = "ROUTERS/Branch/3660"
+		prodname = "ROUTERS/BRANCH/3660"
 	elif prodcode == "c3660":
-		prodname = "ROUTERS/Branch/3660"
+		prodname = "ROUTERS/BRANCH/3660"
 	elif prodcode == "c3660":
-		prodname = "ROUTERS/Branch/3660"
+		prodname = "ROUTERS/BRANCH/3660"
 	elif prodcode == "c3660":
-		prodname = "ROUTERS/Branch/3660"
+		prodname = "ROUTERS/BRANCH/3660"
 	elif prodcode == "c3725":
-		prodname = "ROUTERS/Branch/3725"
+		prodname = "ROUTERS/BRANCH/3725"
 	elif prodcode == "c3745":
-		prodname = "ROUTERS/Branch/3745"
+		prodname = "ROUTERS/BRANCH/3745"
 	elif prodcode == "c4000":
-		prodname = "ROUTERS/Branch/4000"
+		prodname = "ROUTERS/BRANCH/4000"
 	elif prodcode == "c4500":
-		prodname = "ROUTERS/Branch/4700M"
+		prodname = "ROUTERS/BRANCH/4700M"
 	elif prodcode == "c800":
-		prodname = "ROUTERS/Branch/800"
+		prodname = "ROUTERS/BRANCH/800"
 	elif prodcode == "c800m":
-		prodname = "ROUTERS/Branch/800m"
+		prodname = "ROUTERS/BRANCH/800m"
 	elif prodcode == "c805":
-		prodname = "ROUTERS/Branch/805"
+		prodname = "ROUTERS/BRANCH/805"
 	elif prodcode == "c806":
-		prodname = "ROUTERS/Branch/806"
+		prodname = "ROUTERS/BRANCH/806"
 	elif prodcode == "c815":
-		prodname = "ROUTERS/Branch/815"
+		prodname = "ROUTERS/BRANCH/815"
 	elif prodcode == "c820":
-		prodname = "ROUTERS/Branch/820"
+		prodname = "ROUTERS/BRANCH/820"
 	elif prodcode == "c827v":
-		prodname = "ROUTERS/Branch/827"
+		prodname = "ROUTERS/BRANCH/827"
 	elif prodcode == "c828":
-		prodname = "ROUTERS/Branch/828"
+		prodname = "ROUTERS/BRANCH/828"
 	elif prodcode == "c831":
-		prodname = "ROUTERS/Branch/831"
+		prodname = "ROUTERS/BRANCH/831"
 	elif prodcode == "c836":
-		prodname = "ROUTERS/Branch/836"
+		prodname = "ROUTERS/BRANCH/836"
 	elif prodcode == "c837":
-		prodname = "ROUTERS/Branch/837"
+		prodname = "ROUTERS/BRANCH/837"
 	elif prodcode == "mc3810":
-		prodname = "ROUTERS/Branch/MC-3810"
+		prodname = "ROUTERS/BRANCH/MC-3810"
 	elif prodcode == "branchmodules":
-		prodname = "ROUTERS/Branch/MODULES"
+		prodname = "ROUTERS/BRANCH/MODULES"
 	elif prodcode == "ni2":
-		prodname = "ROUTERS/Broadband/NI-2"
+		prodname = "ROUTERS/BROADBAND/NI-2"
 	elif prodcode == "rfgw":
-		prodname = "ROUTERS/Broadband/RF-Gateway"
+		prodname = "ROUTERS/BROADBAND/RF-Gateway"
 	elif prodcode == "sb101":
-		prodname = "ROUTERS/Broadband/SB-101"
+		prodname = "ROUTERS/BROADBAND/SB-101"
 	elif prodcode == "sb107":
-		prodname = "ROUTERS/Broadband/SB-107"
+		prodname = "ROUTERS/BROADBAND/SB-107"
 	elif prodcode == "ubr10k":
-		prodname = "ROUTERS/Broadband/UBR-10000-PRE1"
+		prodname = "ROUTERS/BROADBAND/UBR-10000/PRE1"
 	elif prodcode == "ubr10k2":
-		prodname = "ROUTERS/Broadband/UBR-10000-PRE2"
+		prodname = "ROUTERS/BROADBAND/UBR-10000/PRE2"
 	elif prodcode == "ubr7100":
-		prodname = "ROUTERS/Broadband/UBR-7100"
+		prodname = "ROUTERS/BROADBAND/UBR-7100"
 	elif prodcode == "ubr7200":
-		prodname = "ROUTERS/Broadband/UBR-7200"
+		prodname = "ROUTERS/BROADBAND/UBR-7200/NPEG1"
 	elif prodcode == "ubr7200p":
-		prodname = "ROUTERS/Broadband/UBR-7200-NPEG2"
+		prodname = "ROUTERS/BROADBAND/UBR-7200/NPEG2"
 	elif prodcode == "ubr920":
-		prodname = "ROUTERS/Broadband/UBR-920"
+		prodname = "ROUTERS/BROADBAND/UBR-920"
 	elif prodcode == "ubr925":
-		prodname = "ROUTERS/Broadband/UBR-925"
+		prodname = "ROUTERS/BROADBAND/UBR-925"
 	elif prodcode == "cva120":
-		prodname = "ROUTERS/Cable/CVA-120"
+		prodname = "ROUTERS/CABLE/CVA-120"
 	elif prodcode == "cva120cvc":
-		prodname = "ROUTERS/Cable/CVA-120"
+		prodname = "ROUTERS/CABLE/CVA-120"
 	elif prodcode == "c5921i86":
-		prodname = "ROUTERS/Embedded/5921"
+		prodname = "ROUTERS/EMBEDDED/5921"
 	elif prodcode == "c5921i86v":
-		prodname = "ROUTERS/Embedded/5921"
+		prodname = "ROUTERS/EMBEDDED/5921"
 	elif prodcode == "cgr2010":
-		prodname = "ROUTERS/Grid/CGR-2010"
+		prodname = "ROUTERS/GRID/CGR-2010"
 	elif prodcode == "soho70":
-		prodname = "ROUTERS/Home-Small-Business/SOHO-70"
+		prodname = "ROUTERS/HOME-SMALL-BUSINESS/SOHO-70"
 	elif prodcode == "soho71":
-		prodname = "ROUTERS/Home-Small-Business/SOHO-71"
+		prodname = "ROUTERS/HOME-SMALL-BUSINESS/SOHO-71"
 	elif prodcode == "soho78":
-		prodname = "ROUTERS/Home-Small-Business/SOHO-78"
+		prodname = "ROUTERS/HOME-SMALL-BUSINESS/SOHO-78"
 	elif prodcode == "soho91":
-		prodname = "ROUTERS/Home-Small-Business/SOHO-91"
+		prodname = "ROUTERS/HOME-SMALL-BUSINESS/SOHO-91"
 	elif prodcode == "soho97":
-		prodname = "ROUTERS/Home-Small-Business/SOHO-97"
+		prodname = "ROUTERS/HOME-SMALL-BUSINESS/SOHO-97"
 	elif prodcode == "igs":
 		prodname = "ROUTERS/IGS"
 	elif prodcode == "iosxe-sd-avc":
@@ -2336,33 +2444,33 @@ def product (prodcode):
 	elif prodcode == "isr4400v2":
 		prodname = "ROUTERS/ISRG3/ISR-4461"
 	elif prodcode == "mwr1900":
-		prodname = "ROUTERS/Mobile/MWR-1900"
+		prodname = "ROUTERS/MOBILE/MWR-1900"
 	elif prodcode == "mwr1941":
-		prodname = "ROUTERS/Mobile/MWR-1941"
+		prodname = "ROUTERS/MOBILE/MWR-1941"
 	elif prodcode == "mwr2941":
-		prodname = "ROUTERS/Mobile/MWR-2941"
+		prodname = "ROUTERS/MOBILE/MWR-2941"
 	elif prodcode == "c3201":
-		prodname = "ROUTERS/Rugged/3201-AP"
+		prodname = "ROUTERS/RUGGED/3201-AP"
 	elif prodcode == "c3202":
-		prodname = "ROUTERS/Rugged/3202-AP"
+		prodname = "ROUTERS/RUGGED/3202-AP"
 	elif prodcode == "c3205":
-		prodname = "ROUTERS/Rugged/3205-AP"
+		prodname = "ROUTERS/RUGGED/3205-AP"
 	elif prodcode == "c3220":
-		prodname = "ROUTERS/Rugged/3220"
+		prodname = "ROUTERS/RUGGED/3220"
 	elif prodcode == "c3230":
-		prodname = "ROUTERS/Rugged/3230"
+		prodname = "ROUTERS/RUGGED/3230"
 	elif prodcode == "c3250":
-		prodname = "ROUTERS/Rugged/3250"
+		prodname = "ROUTERS/RUGGED/3250"
 	elif prodcode == "c3270":
-		prodname = "ROUTERS/Rugged/3270"
+		prodname = "ROUTERS/RUGGED/3270"
 	elif prodcode == "c10k":
-		prodname = "ROUTERS/SP/10000-PRE1"
+		prodname = "ROUTERS/SP/10000/PRE1"
 	elif prodcode == "c10k2":
-		prodname = "ROUTERS/SP/10000-PRE2"
+		prodname = "ROUTERS/SP/10000/PRE2"
 	elif prodcode == "c10k3":
-		prodname = "ROUTERS/SP/10000-PRE3"
+		prodname = "ROUTERS/SP/10000/PRE3"
 	elif prodcode == "c10k4":
-		prodname = "ROUTERS/SP/10000-PRE4"
+		prodname = "ROUTERS/SP/10000/PRE4"
 	elif prodcode == "c10700":
 		prodname = "ROUTERS/SP/10700"
 	elif prodcode == "c12k":
@@ -2378,7 +2486,7 @@ def product (prodcode):
 	elif prodcode == "c7100":
 		prodname = "ROUTERS/SP/7100"
 	elif prodcode == "c7200":
-		prodname = "ROUTERS/SP/7200"
+		prodname = "ROUTERS/SP/7200-NPEG1"
 	elif prodcode == "c7200p":
 		prodname = "ROUTERS/SP/7200-NPEG2"
 	elif prodcode == "c7300":
@@ -2396,27 +2504,27 @@ def product (prodcode):
 	elif prodcode == "c7600":
 		prodname = "ROUTERS/SP/7600"
 	elif prodcode == "c7600rsp72043":
-		prodname = "ROUTERS/SP/7600-RSP720"
+		prodname = "ROUTERS/SP/7600/RSP720"
 	elif prodcode == "rsp72043":
-		prodname = "ROUTERS/SP/7600-RSP720"
+		prodname = "ROUTERS/SP/7600/RSP720"
 	elif prodcode == "c7svcsami":
-		prodname = "ROUTERS/SP/7600-SAMI"
+		prodname = "ROUTERS/SP/7600/SAMI"
 	elif prodcode == "c7600s3223":
-		prodname = "ROUTERS/SP/7600-SUP32"
+		prodname = "ROUTERS/SP/7600/SUP32"
 	elif prodcode == "c7600s72033":
-		prodname = "ROUTERS/SP/7600-SUP720"
+		prodname = "ROUTERS/SP/7600/SUP720"
 	elif prodcode == "8000":
 		prodname = "ROUTERS/SP/8000"
 	elif prodcode == "csr1000v":
-		prodname = "ROUTERS/Virtual/CSR-1000V"
+		prodname = "ROUTERS/VIRTUAL/CSR-1000V"
 	elif prodcode == "csr1000v_milplr":
-		prodname = "ROUTERS/Virtual/CSR-1000V"
+		prodname = "ROUTERS/VIRTUAL/CSR-1000V"
 	elif prodcode == "vios":
-		prodname = "ROUTERS/Virtual/IOS-V"
+		prodname = "ROUTERS/VIRTUAL/IOS-V"
 	elif prodcode == "iosxrvdemo":
-		prodname = "ROUTERS/Virtual/IOS-XRv"
+		prodname = "ROUTERS/VIRTUAL/IOS-XRv"
 	elif prodcode == "iosxrvfull":
-		prodname = "ROUTERS/Virtual/IOS-XRv9000"
+		prodname = "ROUTERS/VIRTUAL/IOS-XRv9000"
 	elif prodcode == "csa":
 		prodname = "SECURITY/CISCO-SECURITY-AGENT"
 	elif prodcode == "csm":
@@ -2437,6 +2545,8 @@ def product (prodcode):
 		prodname = "SECURITY/IDENTITY/IDENTIY-SERVICES-ENGINE-PIC"
 	elif prodcode == "ciscoutd":
 		prodname = "SECURITY/IOS-XE-UTD"
+	elif prodcode == "ipsids":
+		prodname = "SECURITY/IDS-IPS"
 	elif prodcode == "ironport":
 		prodname = "SECURITY/IRONPORT"
 	elif prodcode == "mars":
@@ -2445,6 +2555,8 @@ def product (prodcode):
 		prodname = "SECURITY/VPN-3000"
 	elif prodcode == "anyconnect":
 		prodname = "SECURITY/VPN-CLIENTS/ANYCONNECT"
+	elif prodcode == "vpnclient":
+		prodname = "SECURITY/VPN-CLIENTS/IPSEC-CLIENT"
 	elif prodcode == "aci":
 		prodname = "SERVERS/APIC"
 	elif prodcode == "css":
@@ -2508,13 +2620,13 @@ def product (prodcode):
 	elif prodcode == "e100":
 		prodname = "SERVERS/UCS/E-SERIES/E1XX"
 	elif prodcode == "c6400r":
-		prodname = "Service-Gateway/6400-NSP"
+		prodname = "SERVICE-GATEWAY/6400-NSP"
 	elif prodcode == "c6400r2sp":
-		prodname = "Service-Gateway/6400-NSP"
+		prodname = "SERVICE-GATEWAY/6400-NSP"
 	elif prodcode == "c6400s":
-		prodname = "Service-Gateway/6400-NSP"
+		prodname = "SERVICE-GATEWAY/6400-NSP"
 	elif prodcode == "ni2":
-		prodname = "Service-Gateway/6XXX-DSL-Switch"
+		prodname = "SERVICE-GATEWAY/6XXX-DSL-Switch"
 	elif prodcode == "m9100":
 		prodname = "STORAGE/MDS-9100"
 	elif prodcode == "m9200":
@@ -2528,13 +2640,13 @@ def product (prodcode):
 	elif prodcode == "ls1010":
 		prodname = "SWITCHES/ATM/Lightspeed-1010"
 	elif prodcode == "cbs30x0":
-		prodname = "SWITCHES/Blade-Switches/CATALYST-3000-DELL-Blade"
+		prodname = "SWITCHES/BLADE-SWITCHES/CATALYST-3000-DELL-Blade"
 	elif prodcode == "cbs31x0":
-		prodname = "SWITCHES/Blade-Switches/CATALYST-3100-DELL-Blade"
+		prodname = "SWITCHES/BLADE-SWITCHES/CATALYST-3100-DELL-Blade"
 	elif prodcode == "cigesm":
-		prodname = "SWITCHES/Blade-Switches/IBM-Blade-Switch"
+		prodname = "SWITCHES/BLADE-SWITCHES/IBM-Blade-Switch"
 	elif prodcode == "cgesm":
-		prodname = "SWITCHES/Blade-Switches/IBM-Blade-Switch"
+		prodname = "SWITCHES/BLADE-SWITCHES/IBM-Blade-Switch"
 	elif prodcode == "cat1200":
 		prodname = "SWITCHES/CATALYST/CATALYST-1200"
 	elif prodcode == "cat1600":
@@ -2668,31 +2780,31 @@ def product (prodcode):
 	elif prodcode == "cat9k_lite":
 		prodname = "SWITCHES/CATALYST/CATALYST-9200"
 	elif prodcode == "c1000":
-		prodname = "SWITCHES/Compact/CATALYST-1000"
+		prodname = "SWITCHES/COMPACT/CATALYST-1000"
 	elif prodcode == "c2960c405":
-		prodname = "SWITCHES/Compact/CATALYST-2960C"
+		prodname = "SWITCHES/COMPACT/CATALYST-2960C"
 	elif prodcode == "c2960c405ex":
-		prodname = "SWITCHES/Compact/CATALYST-2960CG"
+		prodname = "SWITCHES/COMPACT/CATALYST-2960CG"
 	elif prodcode == "c2960cx":
-		prodname = "SWITCHES/Compact/CATALYST-2960CX"
+		prodname = "SWITCHES/COMPACT/CATALYST-2960CX"
 	elif prodcode == "c3560c":
-		prodname = "SWITCHES/Compact/CATALYST-3560C"
+		prodname = "SWITCHES/COMPACT/CATALYST-3560C"
 	elif prodcode == "c3560c405":
-		prodname = "SWITCHES/Compact/CATALYST-3560C"
+		prodname = "SWITCHES/COMPACT/CATALYST-3560C"
 	elif prodcode == "c3560c405ex":
-		prodname = "SWITCHES/Compact/CATALYST-3560CG"
+		prodname = "SWITCHES/COMPACT/CATALYST-3560CG"
 	elif prodcode == "c3560cx":
-		prodname = "SWITCHES/Compact/CATALYST-3560CX"
+		prodname = "SWITCHES/COMPACT/CATALYST-3560CX"
 	elif prodcode == "cdb":
-		prodname = "SWITCHES/Compact/CATALYST-Digital-Building"
+		prodname = "SWITCHES/COMPACT/CATALYST-Digital-Building"
 	elif prodcode == "c2020":
-		prodname = "SWITCHES/Embedded/2020"
+		prodname = "SWITCHES/EMBEDDED/2020"
 	elif prodcode == "ess3x00":
-		prodname = "SWITCHES/Embedded/3300"
+		prodname = "SWITCHES/EMBEDDED/3300"
 	elif prodcode == "cgs2520":
-		prodname = "SWITCHES/Grid/CGS-2520"
+		prodname = "SWITCHES/GRID/CGS-2520"
 	elif prodcode == "grwicdes":
-		prodname = "SWITCHES/Grid/CGS-Module"
+		prodname = "SWITCHES/GRID/CGS-Module"
 	elif prodcode == "ie2000":
 		prodname = "SWITCHES/INDUSTRIAL-ETHERNET/IE-2000"
 	elif prodcode == "ie2000u":
@@ -2788,13 +2900,13 @@ def product (prodcode):
 	elif prodcode == "nxosgeneric":
 		prodname = "SWITCHES/NEXUS/"
 	elif prodcode == "s5400":
-		prodname = "SWITCHES/Rockwell-Stratix/5400"
+		prodname = "SWITCHES/ROCKWELL-STRATIX/5400"
 	elif prodcode == "s5410":
-		prodname = "SWITCHES/Rockwell-Stratix/5410"
+		prodname = "SWITCHES/ROCKWELL-STRATIX/5410"
 	elif prodcode == "s5700":
-		prodname = "SWITCHES/Rockwell-Stratix/5700"
+		prodname = "SWITCHES/ROCKWELL-STRATIX/5700"
 	elif prodcode == "s5800":
-		prodname = "SWITCHES/Rockwell-Stratix/5800 (IOS-XE)"
+		prodname = "SWITCHES/ROCKWELL-STRATIX/5800-IOS-XE"
 	elif prodcode == "mica-modem":
 		prodname = "UNIVERSAL-GATEWAY/"
 	elif prodcode == "c5200":
@@ -3138,15 +3250,15 @@ def fileprocessorrommon (debug1,filename):
 		filepath = filepath2(basepath,prodname)
 		filemove (filepath, filename)
 	elif (
-	filename.startswith("C880s_RM") or 
-	filename.startswith("C891x_RM2")
+	filename.startswith("C880s_RM")
 	):
 		basepath = "ROMMON/"
-		prodname = product("c800g3")
+		prodname = product("c800g2")
 		filepath = filepath2(basepath,prodname)
 		filemove (filepath, filename)
 	elif (
-	filename.startswith("C890_RM2")
+	filename.startswith("C890_RM2") or 
+	filename.startswith("C891x_RM2")
 	):
 		basepath = "ROMMON/"
 		prodname = product("c890")
@@ -3479,10 +3591,30 @@ def utilssingleprodname (debug1,filename,prodname):
 		print("\tSubroutine#\tutilssingleprodname")
 	filemove (prodname, filename)
 
+def utils_dev_v2_vf (debug1,filename,prodname,workname):
+	if debug1:
+		print("\tModule#\t\tiosutils")
+		print("\tSubroutine#\tutils_dev_v2_vf")
+	if prodname == "UNKNOWN":
+		messageunknowndev()
+	else:
+		splitbydot = workname.split(".")
+		if len(splitbydot) == 3:
+			version2 = util2digit(splitbydot[0],splitbydot[1])
+			version3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		elif len(splitbydot) == 4:
+			version2 = util2digit(splitbydot[0],splitbydot[1])
+			version3 = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+		elif len(splitbydot) == 5:
+			version2 = util2digit(splitbydot[0],splitbydot[1])
+			version3 = util5digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4])
+		filepath = filepath3(prodname,version2,version3)
+		filemove (filepath, filename)
+
 def utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname):
 	if debug1:
 		print("\tModule#\t\tiosutils")
-		print("\tSubroutine#\tutils_dev_v2_v3_imagecode")
+		print("\tSubroutine#\tutils_dev_v2_vf_imagecode")
 	if prodname == "UNKNOWN":
 		messageunknowndev()
 	elif imagecode == "UNKNOWN":
@@ -3526,7 +3658,7 @@ def utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname):
 def utils_dev_v2_vf_imagecode_dash (debug1,filename,prodname,imagecode,workname):
 	if debug1:
 		print("\tModule#\t\tiosutils")
-		print("\tSubroutine#\tutils_dev_v2_v3_imagecode_dash")
+		print("\tSubroutine#\tutils_dev_v2_vf_imagecode_dash")
 	if prodname == "UNKNOWN":
 		messageunknowndev()
 	elif imagecode == "UNKNOWN":
