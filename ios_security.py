@@ -1791,89 +1791,66 @@ def sec_asa_asdm (debug1,filename):
 	if debug1:
 		print("\tSubroutine#\tsec_asa_asdm")
 
-	if filename == "asdm508.bin":
-		prodname = product("asa")
-		imagecode = imagelookup("asdm")
-		vertwo = util2digit("5","0")
-		verthree = util3digit("5","0","8")
-		filepath = filepath4(prodname,imagecode,vertwo,verthree)
-		filemove (filepath, filename)
-
-	elif filename == "asdm-demo-722.msi":
-		prodname = product("asa")
-		imagecode = imagelookup("asdm")
-		vertwo = util2digit("7","2")
-		verthree = util3digit("7","2","2")
-		filepath = filepath4(prodname,imagecode,vertwo,verthree)
-		filemove (filepath, filename)
-
-	elif filename == "asdm-openjre-7122.bin":
-		prodname = product("asa")
-		imagecode = imagelookup("asdm")
-		vertwo = util2digit("7","1")
-		verfour = util4digit("7","1","2","2")
-		filepath = filepath4(prodname,imagecode,vertwo,verfour)
-
-	elif filename == "asdm-openjre-7131.bin":
-		prodname = product("asa")
-		imagecode = imagelookup("asdm")
-		vertwo = util2digit("7","1")
-		verfour = util4digit("7","1","3","1")
-		filepath = filepath4(prodname,imagecode,vertwo,verfour)
-		filemove (filepath, filename)
-
-	elif (
+	if (
 	filename.endswith("f.bin") or 
 	filename.endswith("f.msi")
 	):
 		prodname = product("asa")
 		imagecode = imagelookup("asdmf")
-		sec_asa_asdm_to_ver (debug1,filename,prodname,imagecode)
-
 	else:
 		prodname = product("asa")
 		imagecode = imagelookup("asdm")
-		sec_asa_asdm_to_ver (debug1,filename,prodname,imagecode)
 
-def sec_asa_asdm_to_ver (debug1,filename,prodname,imagecode):
-	if debug1:
-		print("\tSubroutine#\tsec_asa_asdm_to_ver")
-#	workname = filename.replace("asdm-","")
-	workname = filename.replace("f.bin","")
+	workname = filename.replace("asdm-openjre-","")
+	workname = workname.replace("asdm-demo-","")
+	workname = workname.replace("asdm-","")
+	workname = workname.replace("asdm","")
+	workname = workname.replace("f.bin","")
 	workname = workname.replace(".bin","")
 	workname = workname.replace(".msi","")
 	splitbydash = workname.split("-")
-
-	if len(splitbydash) == 2:
-		sbd1 = list(splitbydash[1])
-		vertwo = util2digit(sbd1[0],sbd1[1])
-		verthree = util3digit(sbd1[0],sbd1[1],sbd1[2])
-		filepath = filepath4(prodname,imagecode,vertwo,verthree)
+	if filename == "asdm-61551.bin":
+		vertwo = "6.1"
+		verfour = "6.1.5.51"
+		filepath = filepath4(prodname,imagecode,vertwo,verfour)
 		filemove (filepath, filename)
-
-	elif len(splitbydash) == 3:
-		sbd1 = list(splitbydash[1])
-		if len(sbd1) == 4:
-			vertwo = util2digit(sbd1[0],sbd1[1])
-			joint = sbd1[1] + sbd1[2]
-			verfull = util3digit(sbd1[0],joint,sbd1[3])
-		elif len(sbd1) == 3:
-			vertwo = util2digit(sbd1[0],sbd1[1])
-			verfull = util3digit(sbd1[0],sbd1[1],sbd1[2])
-		filepath = filepath4(prodname,imagecode,vertwo,verfull)
+	elif filename == "asdm-61557.bin":
+		vertwo = "6.1"
+		verfour = "6.1.5.57"
+		filepath = filepath4(prodname,imagecode,vertwo,verfour)
 		filemove (filepath, filename)
-
-	elif len(splitbydash) == 4:
-		if splitbydash[1] == "openjre":
-			sbd1 = list(splitbydash[2])
-			if len(sbd1) == 4:
-				vertwo = util2digit(sbd1[0],sbd1[1])
-				joint = sbd1[1] + sbd1[2]
-				verfull = util3digit(sbd1[0],joint,sbd1[3])
-			elif len(sbd1) == 3:
-				vertwo = util2digit(sbd1[0],sbd1[1])
-				verfull = util3digit(sbd1[0],sbd1[1],sbd1[2])
-			filepath = filepath4(prodname,imagecode,vertwo,verfull)
+	elif filename == "asdm-77170.bin":
+		vertwo = "7.7"
+		verfour = "7.7.1.70"
+		filepath = filepath4(prodname,imagecode,vertwo,verfour)
+		filemove (filepath, filename)
+	#ASDM images that are three or four digits only.
+	elif len(splitbydash) == 1:
+		asaver = list(splitbydash[0])
+		if len(asaver) == 4:
+			asamiddle = asaver[1] + asaver[2]
+			vertwo = util2digit(asaver[0],asamiddle)
+			verthree = util3digit(asaver[0],asamiddle,asaver[3])
+			filepath = filepath4(prodname,imagecode,vertwo,verthree)
+			filemove (filepath, filename)
+		elif len(asaver) == 3:
+			vertwo = util2digit(asaver[0],asaver[1])
+			verthree = util3digit(asaver[0],asaver[1],asaver[2])
+			filepath = filepath4(prodname,imagecode,vertwo,verthree)
+			filemove (filepath, filename)
+	#ASDM images that are three or four digit with a sub-version.
+	elif len(splitbydash) == 2:
+		asaver = list(splitbydash[0])
+		if len(asaver) == 4:
+			asamiddle = asaver[1] + asaver[2]
+			vertwo = util2digit(asaver[0],asamiddle)
+			verfour = util4digit(asaver[0],asamiddle,asaver[3],splitbydash[1])
+			filepath = filepath4(prodname,imagecode,vertwo,verfour)
+			filemove (filepath, filename)
+		elif len(asaver) == 3:
+			vertwo = util2digit(asaver[0],asaver[1])
+			verfour = util4digit(asaver[0],asaver[1],asaver[2],splitbydash[1])
+			filepath = filepath4(prodname,imagecode,vertwo,verfour)
 			filemove (filepath, filename)
 
 	else:
