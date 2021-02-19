@@ -252,7 +252,10 @@ def fileprocessorios (debug1,filename):
 
 	else:
 		splitbydash = filename.split("-")
-		prodname = product (splitbydash[0])
+		if splitbydash[0] == "c1000":
+			prodname = product ("c1000router")
+		else:
+			prodname = product (splitbydash[0])
 		imagecode = imagelookup (splitbydash[1])
 		if prodname == "UNKNOWN":
 			messageunknowndev()

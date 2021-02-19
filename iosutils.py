@@ -732,6 +732,10 @@ def imagelookup (imagecode):
 		subdirectory = "BOOT"
 	elif imagecode == "wboot":
 		subdirectory = "BOOT"
+	elif imagecode == "rboot":
+		subdirectory = "BOOT"
+	elif imagecode == "m":
+		subdirectory = "ATM-OC3-LANE"
 	elif imagecode == "bridge_smus":
 		subdirectory = "BRIDGE-SMUS"
 	elif imagecode == "driversucsb":
@@ -794,6 +798,8 @@ def imagelookup (imagecode):
 		subdirectory = "CSG2-RTU-SAMI-NO-CRYPTO"
 	elif imagecode == "csmgeoip":
 		subdirectory = "CSM-GEOIP-DB"
+	elif imagecode == "ds":
+		subdirectory = "DESKTOP"
 	elif imagecode == "dsv":
 		subdirectory = "DESKTOP-IBM"
 	elif imagecode == "do3s":
@@ -818,16 +824,74 @@ def imagelookup (imagecode):
 		subdirectory = "DESKTOP-IBM-IPSEC-56"
 	elif imagecode == "dk8sv":
 		subdirectory = "DESKTOP-IBM-IPSEC-56"
+	elif imagecode == "jos56":
+		subdirectory = "ENTERPRISE-FW-PLUS-56"
+	elif imagecode == "nsy56":
+		subdirectory = "IP-IPX-PLUS-56"
+	elif imagecode == "nsy40":
+		subdirectory = "IP-IPX-PLUS-40"
+	elif imagecode == "nr2y":
+		subdirectory = "IP-IPX-IBM"
+	elif imagecode == "nr2sy":
+		subdirectory = "IP-IPX-IBM-PLUS"
+	elif imagecode == "nr2sy40":
+		subdirectory = "IP-IPX-IBM-PLUS-40"
+	elif imagecode == "nr2sy56":
+		subdirectory = "IP-IPX-IBM-PLUS-56"
+	elif imagecode == "by":
+		subdirectory = "IP-AT"
+	elif imagecode == "bsy":
+		subdirectory = "IP-AT-PLUS"
+	elif imagecode == "bsy40":
+		subdirectory = "IP-AT-PLUS-40"
+	elif imagecode == "bsy56":
+		subdirectory = "IP-AT-PLUS-56"
+	elif imagecode == "ads":
+		subdirectory = "DESKTOP-IBM"
+	elif imagecode == "bnr2sy56i":
+		subdirectory = "IP-IPX-AT-IBM-PLUS-IPSEC-56"
+	elif imagecode == "bnor2sy56i":
+		subdirectory = "IP-IPX-AT-IBM-FW-PLUS-IPSEC-56"
+	elif imagecode == "bnor2sy56":
+		subdirectory = "IP-IPX-AT-IBM-FW-PLUS-IPSEC-56"
+	elif imagecode == "ads40":
+		subdirectory = "DESKTOP-IBM-40"
+	elif imagecode == "ads56":
+		subdirectory = "DESKTOP-IBM-56"
+	elif imagecode == "ds56":
+		subdirectory = "DESKTOP-IBM-56"
 	elif imagecode == "ds56i":
 		subdirectory = "DESKTOP-IBM-IPSEC-56"
 	elif imagecode == "dsv56i":
 		subdirectory = "DESKTOP-IBM-IPSEC-56"
+	elif imagecode == "dsv56":
+		subdirectory = "DESKTOP-IBM-IPSEC-56"
+	elif imagecode == "adsv":
+		subdirectory = "DESKTOP-IBM-APPN"
+	elif imagecode == "ajsv56i":
+		subdirectory = "ENTERPRISE-APPN-IPSEC-56"
+	elif imagecode == "itv":
+		subdirectory = "IP-ACIP"
+	elif imagecode == "ajs":
+		subdirectory = "ENTERPRISE-APPN"
+	elif imagecode == "ajs40":
+		subdirectory = "ENTERPRISE-APPN-40"
+	elif imagecode == "ajs56":
+		subdirectory = "ENTERPRISE-APPN-56"
+	elif imagecode == "adjv":
+		subdirectory = "ENTERPRISE-APPN"
+	elif imagecode == "adjv40":
+		subdirectory = "ENTERPRISE-APPN-40"
+	elif imagecode == "adjv56":
+		subdirectory = "ENTERPRISE-APPN-56"
 	elif imagecode == "dsv40":
 		subdirectory = "DESKTOP-IPSEC-40"
 	elif imagecode == "catalog":
 		subdirectory = "DEVICE-CATALOG"
 	elif imagecode == "devicemgr":
 		subdirectory = "DEVICE-MANAGER"
+	elif imagecode == "inu":
+		subdirectory = "NETWORK-LAYER-3-SWITCHING"
 	elif imagecode == "device-pack":
 		subdirectory = "DEVICE-PACK"
 	elif imagecode == "hdiag":
@@ -916,16 +980,48 @@ def imagelookup (imagecode):
 		subdirectory = "ENHANCED-PDSN-WITH-CRYPTO"
 	elif imagecode == "j":
 		subdirectory = "ENTERPRISE"
+	elif imagecode == "js":
+		subdirectory = "ENTERPRISE"
 	elif imagecode == "jsv":
 		subdirectory = "ENTERPRISE"
 	elif imagecode == "k":
 		subdirectory = "ENTERPRISE"
+	elif imagecode == "jsv":
+		subdirectory = "ENTERPRISE"
+	elif imagecode == "jsv40":
+		subdirectory = "ENTERPRISE-40"
+	elif imagecode == "jsv56":
+		subdirectory = "ENTERPRISE-56"
+	elif imagecode == "js40":
+		subdirectory = "ENTERPRISE-PLUS-40"
+	elif imagecode == "js56":
+		subdirectory = "ENTERPRISE-PLUS-56"
 	elif imagecode == "ajs":
 		subdirectory = "ENTERPRISE-APPN-PLUS"
 	elif imagecode == "ajs40":
 		subdirectory = "ENTERPRISE-APPN-PLUS-IPSEC-40"
 	elif imagecode == "ajs56i":
 		subdirectory = "ENTERPRISE-APPN-PLUS-IPSEC-56"
+	elif imagecode == "ajsv":
+		subdirectory = "ENTERPRISE-APPN"
+	elif imagecode == "ajsv40":
+		subdirectory = "ENTERPRISE-APPN-40"
+	elif imagecode == "ajsv56":
+		subdirectory = "ENTERPRISE-APPN-56"
+	elif imagecode == "aejs":
+		subdirectory = "ENTERPRISE/APPN/DBCONN"
+	elif imagecode == "aejs40":
+		subdirectory = "ENTERPRISE/APPN/DBCONN 40"
+	elif imagecode == "aejs56i":
+		subdirectory = "ENTERPRISE/APPN/DBCONN IPSEC 56"
+	elif imagecode == "aejs":
+		subdirectory = "ENTERPRISE-APPN-DBCONN"
+	elif imagecode == "aejsv":
+		subdirectory = "ENTERPRISE-APPN-DBCONN"
+	elif imagecode == "aejsv40":
+		subdirectory = "ENTERPRISE-APPN-DBCONN-40"
+	elif imagecode == "aejsv56i":
+		subdirectory = "ENTERPRISE-APPN-DBCONNC-56"
 	elif imagecode == "entbasek9":
 		subdirectory = "ENTERPRISE-BASE"
 	elif imagecode == "entbase":
@@ -952,12 +1048,30 @@ def imagelookup (imagecode):
 		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-56"
 	elif imagecode == "bk2no3r2sv3y":
 		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-3DES"
+	elif imagecode == "isv":
+		subdirectory = "IP"
+	elif imagecode == "is":
+		subdirectory = "IP"
+	elif imagecode == "isv40":
+		subdirectory = "IP-40"
+	elif imagecode == "isv56":
+		subdirectory = "IP-56"
 	elif imagecode == "c3h2s":
 		subdirectory = "ENTERPRISE-COMMAND-CAPABLE"
 	elif imagecode == "jo3s":
 		subdirectory = "ENTERPRISE-FW-IDS"
+	elif imagecode == "ainr":
+		subdirectory = "IP-IPX-IBM-APPN"
 	elif imagecode == "jo3sv":
 		subdirectory = "ENTERPRISE-FW-IDS"
+	elif imagecode == "bnr2y":
+		subdirectory = "IP-IPX-AT-IBM-"
+	elif imagecode == "bnr2sy":
+		subdirectory = "IP-IPX-AT-IBM-PLUS"
+	elif imagecode == "bnr2sy40":
+		subdirectory = "IP-IPX-AT-IBM-PLUS-40"
+	elif imagecode == "bnr2sy56":
+		subdirectory = "IP-IPX-AT-IBM-PLUS-56"
 	elif imagecode == "jk2o3sv":
 		subdirectory = "ENTERPRISE-FW-IDS-IPSEC-3DES"
 	elif imagecode == "jk9o3s":
@@ -1138,6 +1252,8 @@ def imagelookup (imagecode):
 		subdirectory = "HOME-OFFICE-VOICE-(SGCP-and-H.323)"
 	elif imagecode == "hostscan":
 		subdirectory = "HOST-SCAN"
+	elif imagecode == "ins":
+		subdirectory = "IP-IPX-PLUS"
 	elif imagecode == "huu":
 		subdirectory = "HOST-UPGRADE-UTILITY"
 	elif imagecode == "html":
@@ -1794,6 +1910,12 @@ def imagelookup (imagecode):
 		subdirectory = "SERVICE-PROVIDER-SECURED-SHELL-3DES"
 	elif imagecode == "k91pv":
 		subdirectory = "SERVICE-PROVIDER-SECURED-SHELL-3DES"
+	elif imagecode == "dk2o3s":
+		subdirectory = "DESKTOP-IBM-FW-IDS-IPSEC-3DES"
+	elif imagecode == "a3js56i":
+		subdirectory = "ENTERPRISE-SNASW-PLUS-IPSEC-56"
+	elif imagecode == "a3jk2s":
+		subdirectory = "ENTERPRISE-SNASW-PLUS-IPSEC-3DES"
 	elif imagecode == "k9p11":
 		subdirectory = "SERVICE-PROVIDER-SECURED-SHELL-3DES"
 	elif imagecode == "k3p":
@@ -1925,7 +2047,7 @@ def imagelookup (imagecode):
 	elif imagecode == "system":
 		subdirectory = "SYSTEM"
 	elif imagecode == "cat9k_iosxeldpe":
-		subdirectory = "SYSTEM-NO-DTLS"
+		subdirectory = "UNIVERSAL-NO-DTLS"
 	elif imagecode == "cat9k_iosxe_npe":
 		subdirectory = "SYSTEM-NPE"
 	elif imagecode == "cat9k_lite_iosxe_npe":
@@ -1959,7 +2081,7 @@ def imagelookup (imagecode):
 	elif imagecode == "universalk9azn":
 		subdirectory = "UNIVERSAL-AZURE-CLOUD"
 	elif imagecode == "universal":
-		subdirectory = "UNIVERSAL-DATA-NO-CRYPTO"
+		subdirectory = "UNIVERSAL-NO-CRYPTO"
 	elif imagecode == "universalk9_en":
 		subdirectory = "UNIVERSAL-ENGLISH"
 	elif imagecode == "universalk9_iox":
@@ -2219,6 +2341,8 @@ def product (prodcode):
 		prodname = "ROUTERS/BRANCH/1004"
 	elif prodcode == "c1005":
 		prodname = "ROUTERS/BRANCH/1005"
+	elif prodcode == "cpa1005":
+		prodname = "ROUTERS/BRANCH/1005"
 	elif prodcode == "c1400":
 		prodname = "ROUTERS/BRANCH/1400"
 	elif prodcode == "c1600":
@@ -2431,6 +2555,8 @@ def product (prodcode):
 		prodname = "ROUTERS/ISRG3/IR-1101"
 	elif prodcode == "ir800":
 		prodname = "ROUTERS/ISRG3/IR-800"
+	elif prodcode == "c1000router":
+		prodname = "ROUTERS/BRANCH/1000"
 	elif prodcode == "c1100router":
 		prodname = "ROUTERS/ISRG3/ISR-1100"
 	elif prodcode == "isr4200":
@@ -2486,9 +2612,9 @@ def product (prodcode):
 	elif prodcode == "c7100":
 		prodname = "ROUTERS/SP/7100"
 	elif prodcode == "c7200":
-		prodname = "ROUTERS/SP/7200-NPEG1"
+		prodname = "ROUTERS/SP/7200/NPEG1"
 	elif prodcode == "c7200p":
-		prodname = "ROUTERS/SP/7200-NPEG2"
+		prodname = "ROUTERS/SP/7200/NPEG2"
 	elif prodcode == "c7300":
 		prodname = "ROUTERS/SP/7300"
 	elif prodcode == "c7301":
@@ -2659,6 +2785,8 @@ def product (prodcode):
 		prodname = "SWITCHES/CATALYST/CATALYST-2360"
 	elif prodcode == "cat2800":
 		prodname = "SWITCHES/CATALYST/CATALYST-2800"
+	elif prodcode == "c2800":
+		prodname = "SWITCHES/CATALYST/CATALYST-2800"
 	elif prodcode == "c29atm":
 		prodname = "SWITCHES/CATALYST/CATALYST-2900-ATM"
 	elif prodcode == "c2900XL":
@@ -2710,7 +2838,7 @@ def product (prodcode):
 	elif prodcode == "c3750e":
 		prodname = "SWITCHES/CATALYST/CATALYST-3750E"
 	elif prodcode == "c3750me":
-		prodname = "SWITCHES/CATALYST/CATALYST-3750ME"
+		prodname = "SWITCHES/METRO/CATALYST-3750ME"
 	elif prodcode == "c3750x":
 		prodname = "SWITCHES/CATALYST/CATALYST-3750X"
 	elif prodcode == "cat3k_caa":
@@ -2739,6 +2867,8 @@ def product (prodcode):
 		prodname = "SWITCHES/CATALYST/CATALYST-6500"
 	elif prodcode == "cat6000":
 		prodname = "SWITCHES/CATALYST/CATALYST-6500"
+	elif prodcode == "c6sup":
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP1-MSFC1"
 	elif prodcode == "c6sup11":
 		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP1-MSFC1"
 	elif prodcode == "c6sup12":
@@ -2844,35 +2974,35 @@ def product (prodcode):
 	elif prodcode == "c3kx":
 		prodname = "SWITCHES/MODULES/CATALYST-3000-SERVICE-MODULE"
 	elif prodcode == "c4gwy":
-		prodname = "SWITCHES/MODULES/CATALYST-4500-ACCESS-GATEWAY-MODULE"
+		prodname = "SWITCHES/CATALYST/CATALYST-4500/ACCESS-GATEWAY-MODULE"
 	elif prodcode == "c5atm":
-		prodname = "SWITCHES/MODULES/CATALYST-5000-ATM"
+		prodname = "SWITCHES/CATALYST/CATALYST-5000/ATM"
 	elif prodcode == "c5rsfc":
-		prodname = "SWITCHES/MODULES/CATALYST-5000-ROUTE-SWITCH-FEATURE-CARD"
+		prodname = "SWITCHES/CATALYST/CATALYST-5000/ROUTE-SWITCH-FEATURE-CARD"
 	elif prodcode == "c5rsm":
-		prodname = "SWITCHES/MODULES/CATALYST-5000-ROUTE-SWITCH-MODULE"
+		prodname = "SWITCHES/CATALYST/CATALYST-5000/ROUTE-SWITCH-MODULE"
 	elif prodcode == "c6atm":
-		prodname = "SWITCHES/MODULES/CATALYST-6500-ATM"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500/ATM"
 	elif prodcode == "wscmm":
-		prodname = "SWITCHES/MODULES/CATALYST-6500-CMM"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500/CMM"
 	elif prodcode == "wsidsm2":
-		prodname = "SWITCHES/MODULES/CATALYST-6500-IDSM2"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500/IDSM2"
 	elif prodcode == "c6msfc":
-		prodname = "SWITCHES/MODULES/CATALYST-6500-MSFC1"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500/MSFC1"
 	elif prodcode == "c6msfc2":
-		prodname = "SWITCHES/MODULES/CATALYST-6500-MSFC2"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500/MSFC2"
 	elif prodcode == "c6msfc2a":
-		prodname = "SWITCHES/MODULES/CATALYST-6500-MSFC2A"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500/MSFC2A"
 	elif prodcode == "c6msfc3":
-		prodname = "SWITCHES/MODULES/CATALYST-6500-MSFC3"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500/MSFC3"
 	elif prodcode == "c6svc5fmwam":
-		prodname = "SWITCHES/MODULES/CATALYST-6500-MWAM"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500/MWAM"
 	elif prodcode == "c6svc6fmwam":
-		prodname = "SWITCHES/MODULES/CATALYST-6500-MWAM"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500/MWAM"
 	elif prodcode == "c6svcimwam":
-		prodname = "SWITCHES/MODULES/CATALYST-6500-MWAM"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500/MWAM"
 	elif prodcode == "svcmwam":
-		prodname = "SWITCHES/MODULES/CATALYST-6500-MWAM"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500/MWAM"
 	elif prodcode == "Nexus":
 		prodname = "SWITCHES/NEXUS/"
 	elif prodcode == "n1000v":

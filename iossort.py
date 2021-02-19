@@ -803,15 +803,9 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "sconvertit0-12.tar" or 
 		name == "wconvertit0-11.zip" or 
 		name == "wconvertit0-12.zip" or 
-		name == "2730_rel_note" or 
-		name == "Exp_V3_11.axf" or 
-		name == "Exp_v10_10.spe" or 
-		name == "MC7700_03.05.29.02_00_generic_000.000_001.cwe" or 
-		name == "MC7700_03.05.29.03_00_generic_000.000_001.cwe" or 
-		name == "MC7700_ATT_03.05.10.02_00.cwe" or 
-		name == "MC7710_Global_03.05.24.00A.cwe" or 
-		name == "MC7710_Global_03.05.29.02.cwe" or 
-		name == "MC7750_VZW_03.05.10.06_00.cwe" or 
+		name.startswith ("MC7700") or 
+		name.startswith ("MC7710") or 
+		name.startswith ("MC7750") or 
 		name.startswith ("MC735X") and name.endswith ("spk") or 
 		name.startswith ("MC7354") and name.endswith ("spk") or 
 		name.startswith ("MC7350") and name.endswith ("spk") or 
@@ -820,35 +814,15 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "sprint_v16904_package.tar" or 
 		name == "Release-Notes-V3.12.1" or 
 		name == "Release-Notes-V3.12.2" or 
-		name == "V3_07.axf" or 
-		name == "V3_09.axf" or 
-		name == "V3_12_1.axf" or 
-		name == "V3_12_2.axf" or 
-		name == "V3_12_3.axf" or 
-		name == "VAE2_A_39t_B39d_24m.SSA.bin" or 
-		name == "VAE2_A_39x3_B39x3_24o.SSA.bin" or 
-		name == "VAEW_A_39d_B_39d_24g1.SSA.bin" or 
-		name == "VAEW_A_39f1_B_39d_24g1.SSA.bin" or 
-		name == "VAEW_A_39t_B_39d_24m.SSA" or 
-		name == "VAEW_A_39x3_B39x3_24o.SSA.bin" or 
-		name == "VA_A_35l_B_35l_23j.bin" or 
-		name == "VA_A_38k1_B_38h_24g1.bin" or 
-		name == "VA_A_38q_B_38r1_24j.bin" or 
-		name == "VA_A_39d_B_38h3_24h_1.bin" or 
-		name == "VA_A_39h_B_38h3_24h_j.bin" or 
-		name == "VA_A_39m_B_38h3_24h.bin" or 
-		name == "VA_A_39m_B_38h3_24h_o.bin" or 
-		name == "VA_A_39m_B_38u_24h.bin" or 
-		name == "VA_A_39m_B_38u_24o_rc1_SDK_4.14L.04A-J.bin" or 
-		name == "VA_A_39t_B_35j_24m" or 
-		name == "VA_A_39t_b_38r1_24o.bin" or 
-		name == "VA_A_39t_B_38r1_24o_rc1_SDK_4.14L.04A.bin" or 
-		name == "VA_B_38V_d24m.bin" or 
+		name == "2730_rel_note" or 
+		name == "Exp_V3_11.axf" or 
+		name == "Exp_v10_10.spe" or 
+		name.startswith ("V3_") and name.endswith ("axf") or 
+		name.startswith ("VAE2_") and name.endswith ("bin") or 
+		name.startswith ("VAEW_") and name.endswith ("bin") or 
+		name.startswith ("VA_") and name.endswith ("bin") or 
 		name == "portware.2730.ios" or 
-		name == "vdsl.bin-A2pv6C035d_d23j" or 
-		name == "vdsl.bin-A2pv6C035j" or 
-		name == "vdsl.bin-A2pv6C035l" or 
-		name == "vdsl.bin.32bdslfw" or 
+		name.startswith ("vdsl.bin") or 
 		name.startswith("mica-modem-pw") or 
 		name.startswith("mica-pw") or 	
 		name.startswith("c2900XL") or 
