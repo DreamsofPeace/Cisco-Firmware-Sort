@@ -12,13 +12,12 @@ def fileprocessornxos (filename,debug1):
 	splitbydot = filename.split(".")
 
 	if (
-	filename.startswith("ssd_c400_upgrade")
+	filename.startswith("ssd_c400_upgrade") or 
+	filename == "upgrade_m500_firmware.tar.gz"
 	):
 		prodname = product("nxos")
 		imagecode = imagelookup("firmware")
-		workname = filename.replace(".tar","")
-		workname = workname.replace("ssd_c400_upgrade_","")
-		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename == "n9000-epld-secure-boot-update.img":
 		prodname = product("nxos")
@@ -635,11 +634,13 @@ def fileprocessornxos9ksmu (filename,prodname,imagecode,debug1):
 	csc = csc.replace("-1","")
 	if splitbydot[3] == "0-9":
 		digitone = "9"
+	elif splitbydot[3] == "0-10":
+		digitone = "10"
 	elif splitbydot[3] == "0-8":
 		digitone = "8"
 	elif splitbydot[3] == "0-7":
 		digitone = "7"
-	if digitone == "9":
+	if digitone == "9" or digitone == "10":
 		nxosver = util2digit (digitone,splitbydot[4])
 		nxosfull = util3digit (digitone,splitbydot[4],splitbydot[5])
 		filepath = filepath5 (prodname,imagecode,nxosver,nxosfull,csc)

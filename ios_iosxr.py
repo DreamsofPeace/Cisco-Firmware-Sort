@@ -35,6 +35,14 @@ def fileprocessor_iosxr (debug1,filename):
 	):
 		iosxr_asr9kvsmu (debug1,filename)
 
+	elif (
+	filename == "xrvr-full-4.3.2.vmdk" or
+	filename == "xrvr-fullk9-4.3.2.vmdk"
+	):
+		workname = filename.replace(".vmdk","")
+		workname = workname.replace("xrvr-full-","")
+		workname = workname.replace("xrvr-fullk9-","")
+
 	else:
 #		if prodname == "UNKNOWN":
 #			messageunknowndev()

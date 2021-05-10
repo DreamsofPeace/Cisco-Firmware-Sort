@@ -313,8 +313,8 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			fileprocessor_iosxe(debug1,name)
 		elif name == "Exp_V3_11_Release_Note.pdf":
 			fileprocessorios(debug1,name)
-#		elif name.endswith("pdf"):
-#			continue
+		elif name.endswith("pdf"):
+			continue
 
 		if (
 		name.startswith("ata") or 
@@ -386,6 +386,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("nexus-1000v") or 
 		name == "n3k_bios_release_rn.pdf" or 
 		name.startswith("ssd_c400_upgrade") or 
+		name == "upgrade_m500_firmware.tar.gz" or 
 		name == "ntp-1.0.1-7.0.3.I2.2d.lib32_n9000.rpm" or 
 		name == "ntp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm" or 
 		name == "ntp-1.0.2-7.0.3.I2.2e.lib32_n9000.rpm" or 
@@ -402,6 +403,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		elif (
 		name.startswith("np.0.8.11.1.spe") or 
 		name.startswith("np.0.8.11.2.spe") or 
+		name.startswith("np.0.10.8.0.spe") or 
 		name.startswith("np.6.106.spe") or 
 		name.startswith("np.6.93.spe") or 
 		name.startswith("np.7.16.spe") or 
@@ -456,7 +458,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		splitbydash[0] == "asr1000rpx86" or 
 		splitbydash[0] == "asr900rsp1" or 
 		splitbydash[0] == "asr900rsp2" or 
-		splitbydash[0] == "asr901" or 
+#		splitbydash[0] == "asr901" or 
 		splitbydash[0] == "asr901sec" or 
 		splitbydash[0] == "asr901rsp1" or 
 		splitbydash[0] == "asr901rsp2" or 
@@ -482,6 +484,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("cat3k_caa") or 
 		name.startswith("cat9k") or 
 		name.startswith("ess3x00") or 
+		name.startswith("ie9k") or 
 		name.startswith("s5800") or 
 		name.startswith("vg400") or 
 		name.startswith("vg450") or 
@@ -489,11 +492,13 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("CAT3850_WEBAUTH_BUNDLE") or 
 		name.startswith("iosxe-sd-avc") or 
 		name.startswith("iosxe-remote-mgmt") or 
-		name == "c1100_gfast_phy_fw_A43j2.pkg" or 
-		name == "c1100_gfast_phy_fw_A43r_B43r.pkg" or 
-		name == "c1100_phy_fw_A39x3_B39x3.pkg" or 
+		name.startswith("c1100_gfast_") or 
+		name.startswith("c1100_phy_") or 
 		name == "nim_vab_phy_fw_A39t_B39g1_Bond39t.pkg" or 
-		name == "nim_vab_phy_fw_A39x3_B39x3_Bond39t.pkg"
+		name == "nim_vab_phy_fw_A39x3_B39x3_Bond39t.pkg" or 
+		name == "asr1000rp1-advipservicesk9.V152_1_S1_CSCTR15153_3.bin" or 
+		name == "asr903rsp1-universalk9_npe.V154_3_S3_SR637267017_1.bin" or 
+		name == "asr1000rp1-adventerprisek9.BLD_V122_33_XNC_ASR_RLS3_THROTTLE_LATEST_20090513_080032.bin"
 		):
 			fileprocessor_iosxe(debug1,name)
 
@@ -580,6 +585,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("acisim") or 
 		name.startswith ("aci-simulator") or 
 		name.startswith ("aci-apic") or 
+		name.startswith ("aci-vpod") or 
 		name.startswith ("aci-msft-pkg") or 
 		name.startswith ("aci-n9000-dk9") or 
 		name.startswith ("apic-vrealize") or 
@@ -627,7 +633,6 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "rhel-vulnerability-patch-pnp-2.2.0.14.tar.gz" or 
 		name == "InstallerUpdateBE-1.0.5.tar.gz" or 
 		name == "ca_technology_package-2.1.0.0.41.ubf" or 
-		name == "operations_center_pi_2_1_2_enable_update.ubf" or 
 		name.startswith ("Device-Pack") or 
 		name.startswith ("CiscoPI") or 
 		name.startswith ("PI") or 
@@ -683,6 +688,8 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "webAgent_1-0.zip.txt" or 
 		name == "webAgent_1-1.zip" or 
 		name == "webAgent_1-1.zip.txt" or 
+		name == "rdp_09.11.2012.jar" or 
+		name == "cisco_vpn_auth.jar" or 
 		name.startswith ("5-") or 
 		name.startswith ("ACS") or 
 		name.startswith ("Acs") or 
@@ -713,6 +720,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("SNS-35x5-firmware") or 
 		name.startswith ("SNS-36xx-BIOS") or 
 		name.startswith ("SNS-36xx-firmware") or 
+		name.startswith ("SNS-36xx-HUU") or 
 		name.startswith ("Sourcefire") or
 		name.startswith ("UCP") or 
 		name.startswith ("UTD-STD-SIGNATURE") or 
@@ -777,6 +785,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 
 		elif (
 		name == "xrvr-fullk9-4.3.2.vmdk" or 
+		name == "xrvr-full-4.3.2.vmdk" or 
 		name == "xrv9k-fullk9-x.qcow2-6.0.0" or 
 		name.startswith("fullk9-R-XRV9000") or 
 		name.startswith("asr9k") or 
@@ -997,10 +1006,10 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			prodname = product ("cna")
 			utilssingleprodname (debug1,name,prodname)
 
-		elif (
-		name == "SDM-V25.zip"
-		):
-			continue
+#		elif (
+#		name == "SDM-V25.zip"
+#		):
+#			continue
 #			prodname = product ("ccp")
 #			utilssingleprodname (debug1,name,prodname)
 
@@ -1044,15 +1053,6 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			prodname = product ("c10k")
 			imagecode = imagelookup (splitbydash[1])
 			fileprocessorios (debug1,name)
-
-		elif splitbydash[0] == "all":
-			prodname = "OnePK"
-			if name == "all-in-one-VM-1.2.1-194.ova":
-				filepath = prodname + "/" + "1.2/" + "1.2(1)194"
-				filemove (filepath, name)
-			elif name == "all-in-one-VM-1.3.0.181.ova":
-				filepath = prodname + "/" + "1.3/" + "1.3(0)181"
-				filemove (filepath, name)
 
 		elif (
 		name.startswith("pp-adv")
@@ -1321,6 +1321,9 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 				fileprocessor_iosxe(debug1,name)
 			else:
 				fileprocessorios (debug1,name)
+
+		elif name.startswith("mre_workflow_signed"):
+			continue
 
 		else:
 			fileprocessorios (debug1,name)

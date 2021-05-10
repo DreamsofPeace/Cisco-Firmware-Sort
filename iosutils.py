@@ -694,6 +694,8 @@ def imagelookup (imagecode):
 		subdirectory = "ATM-LAYER-3-SSH-3DES"
 	elif imagecode == "lc":
 		subdirectory = "ATM-LINE-CARD"
+	elif imagecode == "wi":
+		subdirectory = "ATM"
 	elif imagecode == "wl":
 		subdirectory = "ATM-WORKGROUP-LANE"
 	elif imagecode == "wt":
@@ -1975,15 +1977,15 @@ def imagelookup (imagecode):
 	elif imagecode == "s1":
 		subdirectory = "SUP-1"
 	elif imagecode == "s1ek9":
-		subdirectory = "SUP-1"
+		subdirectory = "SUP-1/BASE"
 	elif imagecode == "supcv":
-		subdirectory = "SUP-1-WITH-CISCOVIEW"
+		subdirectory = "SUP-1/CISCOVIEW"
 	elif imagecode == "supcvk8":
-		subdirectory = "SUP-1-WITH-CISCOVIEW"
+		subdirectory = "SUP-1/CISCOVIEW"
 	elif imagecode == "supcvk9":
-		subdirectory = "SUP-1-WITH-CISCOVIEW-AND-SSH"
+		subdirectory = "SUP-1/CISCOVIEW-AND-SSH"
 	elif imagecode == "supk9":
-		subdirectory = "SUP-1-WITH-SSH"
+		subdirectory = "SUP-1/SSH"
 	elif imagecode == "sup2":
 		subdirectory = "SUP-2"
 	elif imagecode == "sup2k8":
@@ -1993,65 +1995,65 @@ def imagelookup (imagecode):
 	elif imagecode == "s2ek9":
 		subdirectory = "SUP-2"
 	elif imagecode == "sup2cv":
-		subdirectory = "SUP-2-WITH-CISCOVIEW"
+		subdirectory = "SUP-2/CISCOVIEW"
 	elif imagecode == "sup2cvk8":
-		subdirectory = "SUP-2-WITH-CISCOVIEW"
+		subdirectory = "SUP-2/CISCOVIEW"
 	elif imagecode == "sup2cvk9":
-		subdirectory = "SUP-2-WITH-CISCOVIEW-AND-SSH"
+		subdirectory = "SUP-2/CISCOVIEW-AND-SSH"
 	elif imagecode == "sup2k9":
-		subdirectory = "SUP-2-WITH-SSH"
+		subdirectory = "SUP-2/SSH"
 	elif imagecode == "s3":
 		subdirectory = "SUP-3"
 	elif imagecode == "sup3":
 		subdirectory = "SUP-3"
 	elif imagecode == "sup3k9":
-		subdirectory = "SUP-3-WITH-SSH"
+		subdirectory = "SUP-3/SSH"
 	elif imagecode == "supg":
-		subdirectory = "SUP-3"
+		subdirectory = "SUP-3/BASE"
 	elif imagecode == "supgk9":
-		subdirectory = "SUP-3-WITH-SSH"
+		subdirectory = "SUP-3/SSH"
 	elif imagecode == "sup3cvk9":
-		subdirectory = "SUP-3-WITH-CISCOVIEW-AND-SSH"
+		subdirectory = "SUP-3/CISCOVIEW-AND-SSH"
 	elif imagecode == "sup3cv":
-		subdirectory = "SUP-3-WITH-CISCOVIEW"
+		subdirectory = "SUP-3/CISCOVIEW"
 	elif imagecode == "s3ek9":
 		subdirectory = "SUP-3"
 	elif imagecode == "sup32pfc3k8":
-		subdirectory = "SUP-32"
+		subdirectory = "SUP-32/BASE"
 	elif imagecode == "sup32pfc3cvk8":
-		subdirectory = "SUP-32-WITH-CISCOVIEW"
+		subdirectory = "SUP-32/CISCOVIEW"
 	elif imagecode == "sup32pfc3cvk9":
-		subdirectory = "SUP-32-WITH-CISCOVIEW-AND-SSH"
+		subdirectory = "SUP-32/CISCOVIEW-AND-SSH"
 	elif imagecode == "sup32pfc3k9":
-		subdirectory = "SUP-32-WITH-SSH"
+		subdirectory = "SUP-32/SSH"
 	elif imagecode == "s4ek9":
 		subdirectory = "SUP-4"
 	elif imagecode == "s5ek9":
 		subdirectory = "SUP-5"
 	elif imagecode == "sup720k8":
-		subdirectory = "SUP-720"
+		subdirectory = "SUP-720/BASE"
 	elif imagecode == "sup720cvk8":
-		subdirectory = "SUP-720-WITH-CISCOVIEW"
+		subdirectory = "SUP-720/CISCOVIEW"
 	elif imagecode == "sup720cvk9":
-		subdirectory = "SUP-720-WITH-CISCOVIEW-AND-SSH"
+		subdirectory = "SUP-720/CISCOVIEW-AND-SSH"
 	elif imagecode == "sup720k9":
-		subdirectory = "SUP-720-WITH-SSH"
+		subdirectory = "SUP-720/SSH"
 	elif imagecode == "supplicantpw":
 		subdirectory = "SUPPLICANT-PROVISIONING-WIZARD"
 	elif imagecode == "cat9k_iosxe":
 		subdirectory = "SYSTEM"
+	elif imagecode == "iosxe":
+		subdirectory = "UNIVERSAL"
 	elif imagecode == "cat9k_lite_iosxe":
-		subdirectory = "SYSTEM"
-	elif imagecode == "system":
-		subdirectory = "SYSTEM"
+		subdirectory = "UNIVERSAL-LITE"
 	elif imagecode == "system":
 		subdirectory = "SYSTEM"
 	elif imagecode == "cat9k_iosxeldpe":
 		subdirectory = "UNIVERSAL-NO-DTLS"
 	elif imagecode == "cat9k_iosxe_npe":
-		subdirectory = "SYSTEM-NPE"
+		subdirectory = "UNIVERSAL-NPE"
 	elif imagecode == "cat9k_lite_iosxe_npe":
-		subdirectory = "SYSTEM-NPE"
+		subdirectory = "UNIVERSAL-LITE-NPE"
 	elif imagecode == "system-npe":
 		subdirectory = "SYSTEM-NPE"
 	elif imagecode == "telco":
@@ -2264,6 +2266,8 @@ def imagelookup (imagecode):
 		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-56"
 	elif imagecode == "bk2nor2sv3y":
 		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-3DES"
+	elif imagecode == "xy":
+		subdirectory = "UNKNOWN-FEATURE-SET"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2391,8 +2395,6 @@ def product (prodcode):
 		prodname = "ROUTERS/BRANCH/4700M"
 	elif prodcode == "c800":
 		prodname = "ROUTERS/BRANCH/800"
-	elif prodcode == "c800m":
-		prodname = "ROUTERS/BRANCH/800m"
 	elif prodcode == "c805":
 		prodname = "ROUTERS/BRANCH/805"
 	elif prodcode == "c806":
@@ -2423,20 +2425,26 @@ def product (prodcode):
 		prodname = "ROUTERS/BROADBAND/SB-101"
 	elif prodcode == "sb107":
 		prodname = "ROUTERS/BROADBAND/SB-107"
+	elif prodcode == "ubr920":
+		prodname = "ROUTERS/BROADBAND/UBR-920"
+	elif prodcode == "ubr925":
+		prodname = "ROUTERS/BROADBAND/UBR-925"
 	elif prodcode == "ubr10k":
 		prodname = "ROUTERS/BROADBAND/UBR-10000/PRE1"
 	elif prodcode == "ubr10k2":
 		prodname = "ROUTERS/BROADBAND/UBR-10000/PRE2"
+	elif prodcode == "ubr10k3":
+		prodname = "ROUTERS/BROADBAND/UBR-10000/PRE3"
+	elif prodcode == "ubr10k4":
+		prodname = "ROUTERS/BROADBAND/UBR-10000/PRE4"
+	elif prodcode == "ubr10k5":
+		prodname = "ROUTERS/BROADBAND/UBR-10000/PRE5"
 	elif prodcode == "ubr7100":
 		prodname = "ROUTERS/BROADBAND/UBR-7100"
 	elif prodcode == "ubr7200":
 		prodname = "ROUTERS/BROADBAND/UBR-7200/NPEG1"
 	elif prodcode == "ubr7200p":
 		prodname = "ROUTERS/BROADBAND/UBR-7200/NPEG2"
-	elif prodcode == "ubr920":
-		prodname = "ROUTERS/BROADBAND/UBR-920"
-	elif prodcode == "ubr925":
-		prodname = "ROUTERS/BROADBAND/UBR-925"
 	elif prodcode == "cva120":
 		prodname = "ROUTERS/CABLE/CVA-120"
 	elif prodcode == "cva120cvc":
@@ -2445,6 +2453,8 @@ def product (prodcode):
 		prodname = "ROUTERS/EMBEDDED/5921"
 	elif prodcode == "c5921i86v":
 		prodname = "ROUTERS/EMBEDDED/5921"
+	elif prodcode == "ie9k":
+		prodname = "ROUTERS/EMBEDDED/CATALYST-9300-EMBEDDED"
 	elif prodcode == "cgr2010":
 		prodname = "ROUTERS/GRID/CGR-2010"
 	elif prodcode == "soho70":
@@ -2527,6 +2537,8 @@ def product (prodcode):
 		prodname = "ROUTERS/ISRG2/3900"
 	elif prodcode == "c3900e":
 		prodname = "ROUTERS/ISRG2/3900E"
+	elif prodcode == "c800m":
+		prodname = "ROUTERS/ISRG2/800m"
 	elif prodcode == "c800j":
 		prodname = "ROUTERS/ISRG2/800J"
 	elif prodcode == "c860vae":
@@ -2859,36 +2871,38 @@ def product (prodcode):
 		prodname = "SWITCHES/CATALYST/CATALYST-4500E"
 	elif prodcode == "cat4500es8":
 		prodname = "SWITCHES/CATALYST/CATALYST-4500E-SUP8E"
+	elif prodcode == "cat4840g":
+		prodname = "SWITCHES/CATALYST/CATALYST-4840G"
 	elif prodcode == "cat5000":
 		prodname = "SWITCHES/CATALYST/CATALYST-5000"
 	elif prodcode == "ce500":
 		prodname = "SWITCHES/CATALYST/CATALYST-500E"
 	elif prodcode == "c6500":
-		prodname = "SWITCHES/CATALYST/CATALYST-6500"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-6800"
 	elif prodcode == "cat6000":
-		prodname = "SWITCHES/CATALYST/CATALYST-6500"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-6800"
 	elif prodcode == "c6sup":
-		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP1-MSFC1"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-6800/SUP1-MSFC1"
 	elif prodcode == "c6sup11":
-		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP1-MSFC1"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-6800/SUP1-MSFC1"
 	elif prodcode == "c6sup12":
-		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP1-MSFC2"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-6800/SUP1-MSFC2"
 	elif prodcode == "c6k222":
-		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP2-MSFC2"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-6800/SUP2-MSFC2"
 	elif prodcode == "c6sup22":
-		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP2-MSFC2"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-6800/SUP2-MSFC2"
 	elif prodcode == "s222":
-		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP2-MSFC2"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-6800/SUP2-MSFC2"
 	elif prodcode == "s2t54":
-		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP2T"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-6800/SUP-2T"
 	elif prodcode == "s3223":
-		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP32-MSFC2"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-6800/SUP32-MSFC2"
 	elif prodcode == "s32p3":
-		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP32-PISA"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-6800/SUP32-PISA"
 	elif prodcode == "s72033":
-		prodname = "SWITCHES/CATALYST/CATALYST-6500-SUP720-MSFC3"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-6800/SUP720-MSFC3"
 	elif prodcode == "s6t64":
-		prodname = "SWITCHES/CATALYST/CATALYST-6800-SUP6T"
+		prodname = "SWITCHES/CATALYST/CATALYST-6500-6800/SUP-6T"
 	elif prodcode == "c6848x":
 		prodname = "SWITCHES/CATALYST/CATALYST-6840-X"
 	elif prodcode == "c6880x":
@@ -2926,7 +2940,7 @@ def product (prodcode):
 	elif prodcode == "c3560cx":
 		prodname = "SWITCHES/COMPACT/CATALYST-3560CX"
 	elif prodcode == "cdb":
-		prodname = "SWITCHES/COMPACT/CATALYST-Digital-Building"
+		prodname = "SWITCHES/COMPACT/CATALYST-DIGITAL-BUILDING"
 	elif prodcode == "c2020":
 		prodname = "SWITCHES/EMBEDDED/2020"
 	elif prodcode == "ess3x00":

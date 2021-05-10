@@ -89,6 +89,7 @@ def fileprocessorios (debug1,filename):
 
 	elif (
 	filename == "MC7350_1102036_05.05.58.01_00_VZW_005.009_000.spk" or 
+	filename == "MC7354MNA_1102407_05.05.58.01_00_VZW_005.005_000-2kMTU.spk" or 
 	filename == "MC7350_1102036_05.05.58.01_00_Cisco_005.008_000-2kMTU.spk"
 	):
 		prodname = product ("ISRG2GENERIC")
@@ -110,7 +111,6 @@ def fileprocessorios (debug1,filename):
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
-	filename == "MC7354MNA_1102407_05.05.58.01_00_VZW_005.005_000-2kMTU.spk" or 
 	filename == "MC7354_9999999_05.05.58.00_00_USCellular_005.000_000.spk"
 	):
 		#Not able to place currently
@@ -167,24 +167,15 @@ def fileprocessorios (debug1,filename):
 		imagecode = imagelookup ("dslfirmware")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
-	elif (
-	filename == "VAE2_A_39x3_B39x3_24o.SSA.bin" or 
-	filename == "VAE2_A_39t_B39d_24m.SSA.bin"
-	 ):
+	elif filename in ["VAE2_A_39x3_B39x3_24o.SSA.bin","VAE2_A_39t_B39d_24m.SSA.bin"]:
 		prodname = product ("c860vae2")
 		imagecode = imagelookup ("dslfirmware")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
-	elif (
-	filename == "C21031014bFU07192007.CDF" or 
-	filename == "C21041013iFU07192006.CDF" or 
-	filename == "C21031013gFU05122006.CDF" or 
-	filename == "C21031019aFU06192008_MAC14.CDF" or 
-	filename == "C21041013iFU07192006.CDF" or 
-	filename == "C21041014bFU07192007.CDF" or 
-	filename == "C21041019aFU06192008_MAC14.CDF" or 
-	filename == "C21041014bFU07192007.CDF"
-	):
+
+	elif filename in ["C21031014bFU07192007.CDF", "C21041013iFU07192006.CDF", "C21031013gFU05122006.CDF", "C21031019aFU06192008_MAC14.CDF",
+					"C21041013iFU07192006.CDF", "C21041014bFU07192007.CDF", "C21041019aFU06192008_MAC14.CDF", "C21041014bFU07192007.CDF"]:
+
 		prodname = product ("ISRG2GENERIC")
 		imagecode = imagelookup ("HWICCABLE")
 		utilssinglemove (debug1,filename,prodname,imagecode)
@@ -252,7 +243,9 @@ def fileprocessorios (debug1,filename):
 
 	else:
 		splitbydash = filename.split("-")
-		if splitbydash[0] == "c1000":
+		if splitbydash[0] == "c1000" and splitbydot[1].startswith("15"):
+			prodname = product ("c1000")
+		elif splitbydash[0] == "c1000":
 			prodname = product ("c1000router")
 		else:
 			prodname = product (splitbydash[0])
@@ -276,7 +269,6 @@ def ios_spa (debug1,filename, prodname, imagecode):
 	verthree = util2digit(vertwo,mynumber[3])
 	verfour = util2digit(verthree,splitbydot[3])
 	vertwo = iostrain(splitbydot[3], vertwo)
-#	verthree = iostrain(splitbydot[3], verthree)
 	filepath = filepath4(prodname,vertwo,verfour,imagecode)
 	filemove (filepath, filename)
 

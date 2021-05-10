@@ -1,4 +1,4 @@
-from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
+from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname,utils_dev_v2_vf_imagecode,utils_dev_imagecode_v2_vf
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
@@ -25,10 +25,21 @@ def fileprocessor_iosxe(debug1,filename):
 		imagecode = imagelookup ("hardware")
 		utilssingleprodname (debug1,filename,prodname)
 
+	elif filename == "asr1000rp1-advipservicesk9.V152_1_S1_CSCTR15153_3.bin":
+		prodname = product ("asr1000rp1")
+		utilssingleprodname (debug1,filename,prodname)
+
+	elif filename == "asr903rsp1-universalk9_npe.V154_3_S3_SR637267017_1.bin":
+		prodname = product ("asr903rsp1")
+		utilssingleprodname (debug1,filename,prodname)
+
+	elif filename == "asr1000rp1-adventerprisek9.BLD_V122_33_XNC_ASR_RLS3_THROTTLE_LATEST_20090513_080032.bin":
+		prodname = product ("asr1000rp1")
+		utilssingleprodname (debug1,filename,prodname)
+
 	elif (
-	filename == "c1100_phy_fw_A39x3_B39x3.pkg" or 
-	filename == "c1100_gfast_phy_fw_A43r_B43r.pkg" or 
-	filename == "c1100_gfast_phy_fw_A43j2.pkg"
+	filename.startswith("c1100_gfast") or 
+	filename.startswith("c1100_phy")
 	):
 		prodname = product ("c1100router")
 		imagecode = imagelookup ("dslfirmware")
@@ -182,13 +193,15 @@ def fileprocessor_iosxe(debug1,filename):
 	):
 		fileproccontroller (filename)
 
-	elif "ucmk9" in filename:
-		if splitbydash[0] == "c1100":
-			prodname = product ("c1100router")
-		else:
-			prodname = product (splitbydash[0])
-		imagecode = imagelookup("ucmk9")
-		fileproc_sdwan (filename,prodname,imagecode)
+	elif filename.startswith("ie9k_"):
+		if filename.startswith("ie9k_iosxe"):
+			prodname = product ("ie9k")
+			imagecode = imagelookup("iosxe")
+			workname = filename.replace("ie9k_iosxe.","")
+			workname = workname.replace(".SPA.bin","")
+	#		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
+
 
 	else:
 		if splitbydash[0] == "c1100":
