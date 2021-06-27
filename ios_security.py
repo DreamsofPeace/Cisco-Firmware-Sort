@@ -28,11 +28,7 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	elif (
 	filename.startswith("sg") and filename.endswith("zip") or 
 	filename.startswith("sg") and filename.endswith("adi") or 
-	filename.startswith("sg") and filename.endswith("adi-gz")
-	):
-		sec_css (debug1,filename)
-
-	elif (
+	filename.startswith("sg") and filename.endswith("adi-gz") or 
 	filename == "cvdm-css-1.0_K9.zip" or 
 	filename == "cvdm-css-1.0.zip"
 	):
@@ -216,7 +212,10 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	):
 		sec_sourcefire_fmc_patch (debug1,filename)
 
-	elif filename.startswith("Cisco_FTD_Patch"):
+	elif (
+	filename.startswith("Cisco_FTD_Patch") or 
+	filename.startswith("Cisco_FTD_SSP_Patch")
+	):
 		sec_sourcefire_ftd_patch (debug1,filename)
 
 	elif (

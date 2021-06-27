@@ -2982,9 +2982,9 @@ def product (prodcode):
 	elif prodcode == "me380x":
 		prodname = "SWITCHES/METRO/ME-3800"
 	elif prodcode == "c2960sm":
-		prodname = "SWITCHES/MODULES/CATALYST-2960-SERVICE-MODULE"
+		prodname = "SWITCHES/MODULES/Catalyst-2960-SERVICE-MODULE"
 	elif prodcode == "c3kx":
-		prodname = "SWITCHES/MODULES/CATALYST-3000-SERVICE-MODULE"
+		prodname = "SWITCHES/MODULES/Catalyst-3000-SERVICE-MODULE"
 	elif prodcode == "c4gwy":
 		prodname = "SWITCHES/CATALYST/Catalyst-4500/ACCESS-GATEWAY-MODULE"
 	elif prodcode == "c5atm":
@@ -2996,25 +2996,25 @@ def product (prodcode):
 	elif prodcode == "c6atm":
 		prodname = "SWITCHES/CATALYST/Catalyst-6500/ATM"
 	elif prodcode == "wscmm":
-		prodname = "SWITCHES/CATALYST/Catalyst-6500/CMM"
+		prodname = "SWITCHES/CATALYST/Catalyst-6500-6800/CMM"
 	elif prodcode == "wsidsm2":
-		prodname = "SWITCHES/CATALYST/Catalyst-6500/IDSM2"
+		prodname = "SWITCHES/CATALYST/Catalyst-6500-6800/IDSM2"
 	elif prodcode == "c6msfc":
-		prodname = "SWITCHES/CATALYST/Catalyst-6500/MSFC1"
+		prodname = "SWITCHES/CATALYST/Catalyst-6500-6800/MSFC1"
 	elif prodcode == "c6msfc2":
-		prodname = "SWITCHES/CATALYST/Catalyst-6500/MSFC2"
+		prodname = "SWITCHES/CATALYST/Catalyst-6500-6800/MSFC2"
 	elif prodcode == "c6msfc2a":
-		prodname = "SWITCHES/CATALYST/Catalyst-6500/MSFC2A"
+		prodname = "SWITCHES/CATALYST/Catalyst-6500-6800/MSFC2A"
 	elif prodcode == "c6msfc3":
-		prodname = "SWITCHES/CATALYST/Catalyst-6500/MSFC3"
+		prodname = "SWITCHES/CATALYST/Catalyst-6500-6800/MSFC3"
 	elif prodcode == "c6svc5fmwam":
-		prodname = "SWITCHES/CATALYST/Catalyst-6500/MWAM"
+		prodname = "SWITCHES/CATALYST/Catalyst-6500-6800/MWAM"
 	elif prodcode == "c6svc6fmwam":
-		prodname = "SWITCHES/CATALYST/Catalyst-6500/MWAM"
+		prodname = "SWITCHES/CATALYST/Catalyst-6500-6800/MWAM"
 	elif prodcode == "c6svcimwam":
-		prodname = "SWITCHES/CATALYST/Catalyst-6500/MWAM"
+		prodname = "SWITCHES/CATALYST/Catalyst-6500-6800/MWAM"
 	elif prodcode == "svcmwam":
-		prodname = "SWITCHES/CATALYST/Catalyst-6500/MWAM"
+		prodname = "SWITCHES/CATALYST/Catalyst-6500-6800/MWAM"
 	elif prodcode == "Nexus":
 		prodname = "SWITCHES/NEXUS/"
 	elif prodcode == "n1000v":

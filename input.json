@@ -1,0 +1,2920 @@
+{
+    "fileinfo": [
+        {
+            "key": "apicem", 
+            "level1": "NETWORK-MANAGEMENT", 
+            "level2": "APIC-EM", 
+            "level3": ""
+        }, 
+        {
+            "key": "cpi", 
+            "level1": "NETWORK-MANAGEMENT", 
+            "level2": "CISCO-PRIME-INFRASTRUCTURE", 
+            "level3": ""
+        }, 
+        {
+            "key": "cspc", 
+            "level1": "NETWORK-MANAGEMENT", 
+            "level2": "COMMON-SERVICES-PLATFORM-COLLECTOR", 
+            "level3": ""
+        }, 
+        {
+            "key": "ccp", 
+            "level1": "NETWORK-MANAGEMENT", 
+            "level2": "CONFIGURATION-PROFESSIONAL", 
+            "level3": ""
+        }, 
+        {
+            "key": "ccpc", 
+            "level1": "NETWORK-MANAGEMENT", 
+            "level2": "CONFIGURATION-PROFESSIONAL-CATALYST", 
+            "level3": ""
+        }, 
+        {
+            "key": "dnac", 
+            "level1": "NETWORK-MANAGEMENT", 
+            "level2": "DNA-CENTER", 
+            "level3": ""
+        }, 
+        {
+            "key": "cna", 
+            "level1": "NETWORK-MANAGEMENT", 
+            "level2": "NETWORK-ASSISTANT", 
+            "level3": ""
+        }, 
+        {
+            "key": "ntwkmgmt", 
+            "level1": "NETWORK-MANAGEMENT"
+        }, 
+        {
+            "key": "ons15530", 
+            "level1": "OPTICAL", 
+            "level2": "ONS-15530", 
+            "level3": ""
+        }, 
+        {
+            "key": "ons15540", 
+            "level1": "OPTICAL", 
+            "level2": "ONS-15540", 
+            "level3": ""
+        }, 
+        {
+            "key": "asr1000", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-1000"
+        }, 
+        {
+            "key": "asr1000rp1", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-1000-RP1"
+        }, 
+        {
+            "key": "asr1000rp2", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-1000-RP2"
+        }, 
+        {
+            "key": "asr1000rpx86", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-1000-RP3"
+        }, 
+        {
+            "key": "asr1001", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-1001"
+        }, 
+        {
+            "key": "asr1001x", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-1001X"
+        }, 
+        {
+            "key": "asr1002", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-1002"
+        }, 
+        {
+            "key": "asr1002x", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-1002X"
+        }, 
+        {
+            "key": "asr900", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-900"
+        }, 
+        {
+            "key": "asr9k", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-9000"
+        }, 
+        {
+            "key": "asr900rsp1", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-900-RSP1"
+        }, 
+        {
+            "key": "asr900rsp2", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-900-RSP2"
+        }, 
+        {
+            "key": "asr901", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-901"
+        }, 
+        {
+            "key": "asr901rsp1", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-901-RSP1"
+        }, 
+        {
+            "key": "asr901rsp2", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-901-RSP2"
+        }, 
+        {
+            "key": "asr901_sat", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-901-SAT"
+        }, 
+        {
+            "key": "asr901sec", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-901-SEC"
+        }, 
+        {
+            "key": "asr903", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-903"
+        }, 
+        {
+            "key": "asr903rsp1", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-903-RSP1"
+        }, 
+        {
+            "key": "asr903rsp2", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-903-RSP2"
+        }, 
+        {
+            "key": "asr920", 
+            "level1": "ROUTERS", 
+            "level2": "ASR", 
+            "level3": "ASR-920"
+        }, 
+        {
+            "key": "urm", 
+            "level1": "ROUTERS", 
+            "level2": "ATM", 
+            "level3": "IGX-8400"
+        }, 
+        {
+            "key": "rpm", 
+            "level1": "ROUTERS", 
+            "level2": "ATM", 
+            "level3": "MGX-8850"
+        }, 
+        {
+            "key": "rpmxf", 
+            "level1": "ROUTERS", 
+            "level2": "ATM", 
+            "level3": "MGX-8850"
+        }, 
+        {
+            "key": "c800", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "800"
+        }, 
+        {
+            "key": "c805", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "805"
+        }, 
+        {
+            "key": "c806", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "806"
+        }, 
+        {
+            "key": "c815", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "815"
+        }, 
+        {
+            "key": "c820", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "820"
+        }, 
+        {
+            "key": "c827v", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "827"
+        }, 
+        {
+            "key": "c828", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "828"
+        }, 
+        {
+            "key": "c831", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "831"
+        }, 
+        {
+            "key": "c836", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "836"
+        }, 
+        {
+            "key": "c837", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "837"
+        }, 
+        {
+            "key": "c1000router", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "1000"
+        }, 
+        {
+            "key": "c1004", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "1004"
+        }, 
+        {
+            "key": "c1005", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "1005"
+        }, 
+        {
+            "key": "cpa1005", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "1005"
+        }, 
+        {
+            "key": "c1400", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "1400"
+        }, 
+        {
+            "key": "c1600", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "1600"
+        }, 
+        {
+            "key": "c1700", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "1700"
+        }, 
+        {
+            "key": "c1710", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "1710"
+        }, 
+        {
+            "key": "c2500", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "2500"
+        }, 
+        {
+            "key": "c2511", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "2500"
+        }, 
+        {
+            "key": "c25fx", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "2500"
+        }, 
+        {
+            "key": "igs", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "2500"
+        }, 
+        {
+            "key": "c2600", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "2600"
+        }, 
+        {
+            "key": "c2611", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "2600"
+        }, 
+        {
+            "key": "c2691", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "2691"
+        }, 
+        {
+            "key": "c3620", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "3620"
+        }, 
+        {
+            "key": "c3631", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "3631"
+        }, 
+        {
+            "key": "c3640", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "3640"
+        }, 
+        {
+            "key": "c3660", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "3660"
+        }, 
+        {
+            "key": "c3725", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "3725"
+        }, 
+        {
+            "key": "c3745", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "3745"
+        }, 
+        {
+            "key": "c4000", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "4000"
+        }, 
+        {
+            "key": "c4500", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "4700M"
+        }, 
+        {
+            "key": "c800m", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "800m"
+        }, 
+        {
+            "key": "mc3810", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "MC-3810"
+        }, 
+        {
+            "key": "branchmodules", 
+            "level1": "ROUTERS", 
+            "level2": "BRANCH", 
+            "level3": "MODULES"
+        }, 
+        {
+            "key": "ni2", 
+            "level1": "ROUTERS", 
+            "level2": "BROADBAND", 
+            "level3": "NI-2"
+        }, 
+        {
+            "key": "rfgw", 
+            "level1": "ROUTERS", 
+            "level2": "BROADBAND", 
+            "level3": "RF-Gateway"
+        }, 
+        {
+            "key": "sb101", 
+            "level1": "ROUTERS", 
+            "level2": "BROADBAND", 
+            "level3": "SB-101"
+        }, 
+        {
+            "key": "sb107", 
+            "level1": "ROUTERS", 
+            "level2": "BROADBAND", 
+            "level3": "SB-107"
+        }, 
+        {
+            "key": "ubr10k", 
+            "level1": "ROUTERS", 
+            "level2": "BROADBAND", 
+            "level3": "UBR-10000-PRE1"
+        }, 
+        {
+            "key": "ubr10k2", 
+            "level1": "ROUTERS", 
+            "level2": "BROADBAND", 
+            "level3": "UBR-10000-PRE2"
+        }, 
+        {
+            "key": "ubr7100", 
+            "level1": "ROUTERS", 
+            "level2": "BROADBAND", 
+            "level3": "UBR-7100"
+        }, 
+        {
+            "key": "ubr7200", 
+            "level1": "ROUTERS", 
+            "level2": "BROADBAND", 
+            "level3": "UBR-7200-NPEG1"
+        }, 
+        {
+            "key": "ubr7200p", 
+            "level1": "ROUTERS", 
+            "level2": "BROADBAND", 
+            "level3": "UBR-7200-NPEG2"
+        }, 
+        {
+            "key": "ubr920", 
+            "level1": "ROUTERS", 
+            "level2": "BROADBAND", 
+            "level3": "UBR-920"
+        }, 
+        {
+            "key": "ubr925", 
+            "level1": "ROUTERS", 
+            "level2": "BROADBAND", 
+            "level3": "UBR-925"
+        }, 
+        {
+            "key": "cva120", 
+            "level1": "ROUTERS", 
+            "level2": "CABLE", 
+            "level3": "CVA-120"
+        }, 
+        {
+            "key": "cva120cvc", 
+            "level1": "ROUTERS", 
+            "level2": "CABLE", 
+            "level3": "CVA-120"
+        }, 
+        {
+            "key": "c5921i86", 
+            "level1": "ROUTERS", 
+            "level2": "EMBEDDED", 
+            "level3": "5921"
+        }, 
+        {
+            "key": "c5921i86v", 
+            "level1": "ROUTERS", 
+            "level2": "EMBEDDED", 
+            "level3": "5921"
+        }, 
+        {
+            "key": "cgr2010", 
+            "level1": "ROUTERS", 
+            "level2": "GRID", 
+            "level3": "CGR-2010"
+        }, 
+        {
+            "key": "soho70", 
+            "level1": "ROUTERS", 
+            "level2": "HOME-SMALL-BUSINESS", 
+            "level3": "SOHO-70"
+        }, 
+        {
+            "key": "soho71", 
+            "level1": "ROUTERS", 
+            "level2": "HOME-SMALL-BUSINESS", 
+            "level3": "SOHO-71"
+        }, 
+        {
+            "key": "soho78", 
+            "level1": "ROUTERS", 
+            "level2": "HOME-SMALL-BUSINESS", 
+            "level3": "SOHO-78"
+        }, 
+        {
+            "key": "soho91", 
+            "level1": "ROUTERS", 
+            "level2": "HOME-SMALL-BUSINESS", 
+            "level3": "SOHO-91"
+        }, 
+        {
+            "key": "soho97", 
+            "level1": "ROUTERS", 
+            "level2": "HOME-SMALL-BUSINESS", 
+            "level3": "SOHO-97"
+        }, 
+        {
+            "key": "igs", 
+            "level1": "ROUTERS", 
+            "level2": "IGS", 
+            "level3": ""
+        }, 
+        {
+            "key": "iosxe-sd-avc", 
+            "level1": "ROUTERS", 
+            "level2": "IOSXE-AVC", 
+            "level3": ""
+        }, 
+        {
+            "key": "iosxe-remote-mgmt", 
+            "level1": "ROUTERS", 
+            "level2": "IOSXE-REMOTE-MGMT", 
+            "level3": ""
+        }, 
+        {
+            "key": "c850", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "850"
+        }, 
+        {
+            "key": "c860", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "860"
+        }, 
+        {
+            "key": "c870", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "870"
+        }, 
+        {
+            "key": "c871", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "871"
+        }, 
+        {
+            "key": "c890", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "890"
+        }, 
+        {
+            "key": "c180x", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "1800"
+        }, 
+        {
+            "key": "c1805", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "1805"
+        }, 
+        {
+            "key": "c181x", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "1810"
+        }, 
+        {
+            "key": "c1841", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "1841"
+        }, 
+        {
+            "key": "c1841c", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "1841-CHINA"
+        }, 
+        {
+            "key": "c1841ve", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "1841-VE"
+        }, 
+        {
+            "key": "c1861", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "1861"
+        }, 
+        {
+            "key": "c2801", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "2801"
+        }, 
+        {
+            "key": "c3825", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "3825"
+        }, 
+        {
+            "key": "c3845", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "3845"
+        }, 
+        {
+            "key": "c2800nm", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "2800nm"
+        }, 
+        {
+            "key": "c2800nmc", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "2800nm-CHINA"
+        }, 
+        {
+            "key": "c2800nmve", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "2800nmve"
+        }, 
+        {
+            "key": "c2801c", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "2801-CHINA"
+        }, 
+        {
+            "key": "c3825c", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "3825-CHINA"
+        }, 
+        {
+            "key": "c3825nv", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "3825-NO-VPN"
+        }, 
+        {
+            "key": "c3845c", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "3845-CHINA"
+        }, 
+        {
+            "key": "c3845nv", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "3845-NO-VPN"
+        }, 
+        {
+            "key": "ISRG1GENERIC", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG1", 
+            "level3": "MODULES"
+        }, 
+        {
+            "key": "c800g2", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG2", 
+            "level3": "800"
+        }, 
+        {
+            "key": "c880data", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG2", 
+            "level3": "880"
+        }, 
+        {
+            "key": "c890s", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG2", 
+            "level3": "890"
+        }, 
+        {
+            "key": "c900", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG2", 
+            "level3": "900"
+        }, 
+        {
+            "key": "c1900", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG2", 
+            "level3": "1900"
+        }, 
+        {
+            "key": "c1900-2900", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG2", 
+            "level3": "1900-2900"
+        }, 
+        {
+            "key": "c1900c", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG2", 
+            "level3": "1900-CHINA"
+        }, 
+        {
+            "key": "c2900", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG2", 
+            "level3": "2900"
+        }, 
+        {
+            "key": "c2911a", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG2", 
+            "level3": "2911a"
+        }, 
+        {
+            "key": "c2951", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG2", 
+            "level3": "2951"
+        }, 
+        {
+            "key": "c3900", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG2", 
+            "level3": "3900"
+        }, 
+        {
+            "key": "c3900e", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG2", 
+            "level3": "3900E"
+        }, 
+        {
+            "key": "c800j", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG2", 
+            "level3": "800J"
+        }, 
+        {
+            "key": "c860vae", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG2", 
+            "level3": "860-VAE"
+        }, 
+        {
+            "key": "c860vae2", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG2", 
+            "level3": "860-VAE2"
+        }, 
+        {
+            "key": "c860vaej", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG2", 
+            "level3": "860-VAEJ"
+        }, 
+        {
+            "key": "c860vaew", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG2", 
+            "level3": "860-VAEW"
+        }, 
+        {
+            "key": "c880voice", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG2", 
+            "level3": "880-CUBE"
+        }, 
+        {
+            "key": "ISRG2GENERIC", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG2", 
+            "level3": "MODULES"
+        }, 
+        {
+            "key": "c800g3", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG3", 
+            "level3": "800"
+        }, 
+        {
+            "key": "ir1101", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG3", 
+            "level3": "IR-1101"
+        }, 
+        {
+            "key": "ir800", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG3", 
+            "level3": "IR-800"
+        }, 
+        {
+            "key": "c1100router", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG3", 
+            "level3": "ISR-1100"
+        }, 
+        {
+            "key": "isr4200", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG3", 
+            "level3": "ISR-4200"
+        }, 
+        {
+            "key": "isr4200-4300", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG3", 
+            "level3": "ISR-4200-4300"
+        }, 
+        {
+            "key": "isr4300", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG3", 
+            "level3": "ISR-4300"
+        }, 
+        {
+            "key": "isr4400", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG3", 
+            "level3": "ISR-4400"
+        }, 
+        {
+            "key": "isr4400v2", 
+            "level1": "ROUTERS", 
+            "level2": "ISRG3", 
+            "level3": "ISR-4461"
+        }, 
+        {
+            "key": "mwr1900", 
+            "level1": "ROUTERS", 
+            "level2": "MOBILE", 
+            "level3": "MWR-1900"
+        }, 
+        {
+            "key": "mwr1941", 
+            "level1": "ROUTERS", 
+            "level2": "MOBILE", 
+            "level3": "MWR-1941"
+        }, 
+        {
+            "key": "mwr2941", 
+            "level1": "ROUTERS", 
+            "level2": "MOBILE", 
+            "level3": "MWR-2941"
+        }, 
+        {
+            "key": "c3220", 
+            "level1": "ROUTERS", 
+            "level2": "RUGGED", 
+            "level3": "3220"
+        }, 
+        {
+            "key": "c3230", 
+            "level1": "ROUTERS", 
+            "level2": "RUGGED", 
+            "level3": "3230"
+        }, 
+        {
+            "key": "c3250", 
+            "level1": "ROUTERS", 
+            "level2": "RUGGED", 
+            "level3": "3250"
+        }, 
+        {
+            "key": "c3270", 
+            "level1": "ROUTERS", 
+            "level2": "RUGGED", 
+            "level3": "3270"
+        }, 
+        {
+            "key": "c3201", 
+            "level1": "ROUTERS", 
+            "level2": "RUGGED", 
+            "level3": "3201-AP"
+        }, 
+        {
+            "key": "c3202", 
+            "level1": "ROUTERS", 
+            "level2": "RUGGED", 
+            "level3": "3202-AP"
+        }, 
+        {
+            "key": "c3205", 
+            "level1": "ROUTERS", 
+            "level2": "RUGGED", 
+            "level3": "3205-AP"
+        }, 
+        {
+            "key": "c7000", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "7000"
+        }, 
+        {
+            "key": "c7100", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "7100"
+        }, 
+        {
+            "key": "c7200", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "7200-NPEG1"
+        }, 
+        {
+            "key": "c7200p", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "7200-NPEG2"
+        }, 
+        {
+            "key": "c7300", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "7300"
+        }, 
+        {
+            "key": "c7301", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "7301"
+        }, 
+        {
+            "key": "c7304", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "7304"
+        }, 
+        {
+            "key": "spa", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "7304"
+        }, 
+        {
+            "key": "c7400", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "7400"
+        }, 
+        {
+            "key": "rsp", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "7500"
+        }, 
+        {
+            "key": "c7600", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "7600"
+        }, 
+        {
+            "key": "c7600rsp72043", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "7600-RSP720"
+        }, 
+        {
+            "key": "c7600s3223", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "7600-SUP32"
+        }, 
+        {
+            "key": "c7600s72033", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "7600-SUP720"
+        }, 
+        {
+            "key": "c7svcsami", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "7600-SAMI"
+        }, 
+        {
+            "key": "rsp72043", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "7600-RSP720"
+        }, 
+        {
+            "key": "8000", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "8000"
+        }, 
+        {
+            "key": "c10k", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "10000-PRE1"
+        }, 
+        {
+            "key": "c10k2", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "10000-PRE2"
+        }, 
+        {
+            "key": "c10k3", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "10000-PRE3"
+        }, 
+        {
+            "key": "c10k4", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "10000-PRE4"
+        }, 
+        {
+            "key": "c10700", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "10700"
+        }, 
+        {
+            "key": "c12k", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "12000"
+        }, 
+        {
+            "key": "c12kprp", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "12000"
+        }, 
+        {
+            "key": "gsr", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "12000"
+        }, 
+        {
+            "key": "XR12000", 
+            "level1": "ROUTERS", 
+            "level2": "SP", 
+            "level3": "12000-XR"
+        }, 
+        {
+            "key": "csr1000v", 
+            "level1": "ROUTERS", 
+            "level2": "VIRTUAL", 
+            "level3": "CSR-1000V"
+        }, 
+        {
+            "key": "csr1000v_milplr", 
+            "level1": "ROUTERS", 
+            "level2": "VIRTUAL", 
+            "level3": "CSR-1000V"
+        }, 
+        {
+            "key": "vios", 
+            "level1": "ROUTERS", 
+            "level2": "VIRTUAL", 
+            "level3": "IOS-V"
+        }, 
+        {
+            "key": "iosxrvdemo", 
+            "level1": "ROUTERS", 
+            "level2": "VIRTUAL", 
+            "level3": "IOS-XRv"
+        }, 
+        {
+            "key": "iosxrvfull", 
+            "level1": "ROUTERS", 
+            "level2": "VIRTUAL", 
+            "level3": "IOS-XRv9000"
+        }, 
+        {
+            "key": "csa", 
+            "level1": "SECURITY", 
+            "level2": "MANAGEMENT", 
+            "level3": "CISCO-SECURITY-AGENT"
+        }, 
+        {
+            "key": "csm", 
+            "level1": "SECURITY", 
+            "level2": "MANAGEMENT", 
+            "level3": "CISCO-SECURITY-MANAGER"
+        }, 
+        {
+            "key": "asa", 
+            "level1": "SECURITY", 
+            "level2": "FIREWALL", 
+            "level3": "ASA"
+        }, 
+        {
+            "key": "c6svc-fwm", 
+            "level1": "SECURITY", 
+            "level2": "FIREWALL", 
+            "level3": "CATALYST-6500-FWSM"
+        }, 
+        {
+            "key": "firepower", 
+            "level1": "SECURITY", 
+            "level2": "FIREWALL", 
+            "level3": "FirePOWER"
+        }, 
+        {
+            "key": "pix", 
+            "level1": "SECURITY", 
+            "level2": "FIREWALL", 
+            "level3": "PIX"
+        }, 
+        {
+            "key": "acs", 
+            "level1": "SECURITY", 
+            "level2": "IDENTITY", 
+            "level3": "ACS"
+        }, 
+        {
+            "key": "ise", 
+            "level1": "SECURITY", 
+            "level2": "IDENTITY", 
+            "level3": "IDENTIY-SERVICES-ENGINE"
+        }, 
+        {
+            "key": "isepic", 
+            "level1": "SECURITY", 
+            "level2": "IDENTITY", 
+            "level3": "IDENTIY-SERVICES-ENGINE-PIC"
+        }, 
+        {
+            "key": "ipsids", 
+            "level1": "SECURITY", 
+            "level2": "IDS-IPS", 
+            "level3": ""
+        }, 
+        {
+            "key": "ciscoutd", 
+            "level1": "SECURITY", 
+            "level2": "IOS-XE-UTD", 
+            "level3": ""
+        }, 
+        {
+            "key": "ironport", 
+            "level1": "SECURITY", 
+            "level2": "IRONPORT", 
+            "level3": ""
+        }, 
+        {
+            "key": "mars", 
+            "level1": "SECURITY", 
+            "level2": "MANAGEMENT", 
+            "level3": "MARS"
+        }, 
+        {
+            "key": "vpn3000", 
+            "level1": "SECURITY", 
+            "level2": "VPN-3000", 
+            "level3": ""
+        }, 
+        {
+            "key": "anyconnect", 
+            "level1": "SECURITY", 
+            "level2": "VPN-CLIENTS", 
+            "level3": "ANYCONNECT"
+        }, 
+        {
+            "key": "vpnclient", 
+            "level1": "SECURITY", 
+            "level2": "VPN-CLIENTS", 
+            "level3": "IPSEC-CLIENT"
+        }, 
+        {
+            "key": "aci", 
+            "level1": "SERVERS", 
+            "level2": "APIC", 
+            "level3": ""
+        }, 
+        {
+            "key": "css", 
+            "level1": "SERVERS", 
+            "level2": "CSS", 
+            "level3": ""
+        }, 
+        {
+            "key": "dcnm", 
+            "level1": "SERVERS", 
+            "level2": "DATA-CENTER-NETWORK-MANAGER", 
+            "level3": ""
+        }, 
+        {
+            "key": "dnac", 
+            "level1": "SERVERS", 
+            "level2": "DNAC", 
+            "level3": ""
+        }, 
+        {
+            "key": "hyperflex", 
+            "level1": "SERVERS", 
+            "level2": "HYPERFLEX", 
+            "level3": ""
+        }, 
+        {
+            "key": "onepk", 
+            "level1": "SERVERS", 
+            "level2": "ONE-PK", 
+            "level3": ""
+        }, 
+        {
+            "key": "ucsbseries", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "B-SERIES"
+        }, 
+        {
+            "key": "c125", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C125M5"
+        }, 
+        {
+            "key": "c200", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C200M1-C200M2-C210M1-C210M2"
+        }, 
+        {
+            "key": "c220", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C220M3"
+        }, 
+        {
+            "key": "c220m4", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C220M4"
+        }, 
+        {
+            "key": "c220m5", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C220M5"
+        }, 
+        {
+            "key": "c240", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C240M3"
+        }, 
+        {
+            "key": "c240m4", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C240M4"
+        }, 
+        {
+            "key": "c240m5", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C240M5"
+        }, 
+        {
+            "key": "c250", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C250M1-C250M2"
+        }, 
+        {
+            "key": "c260", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C260M2"
+        }, 
+        {
+            "key": "c2x", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C22M3-C22M4"
+        }, 
+        {
+            "key": "c2xxm3", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C2XXM3"
+        }, 
+        {
+            "key": "c2xxm4", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C2XXM4"
+        }, 
+        {
+            "key": "c2xxm5", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C2XXM5"
+        }, 
+        {
+            "key": "c3160", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C3160"
+        }, 
+        {
+            "key": "c3260", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C3260"
+        }, 
+        {
+            "key": "c420", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C420M3"
+        }, 
+        {
+            "key": "c460", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C460M1-C460M2"
+        }, 
+        {
+            "key": "c460m4", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C460M4"
+        }, 
+        {
+            "key": "c480m5", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES-C480M5"
+        }, 
+        {
+            "key": "ucscseries", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "C-SERIES"
+        }, 
+        {
+            "key": "e100", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "E-SERIES-E1XX"
+        }, 
+        {
+            "key": "ucseseries", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": "E-SERIES"
+        }, 
+        {
+            "key": "ucsgeneric", 
+            "level1": "SERVERS", 
+            "level2": "UCS", 
+            "level3": ""
+        }, 
+        {
+            "key": "c6400r", 
+            "level1": "SERVICE-GATEWAY", 
+            "level2": "6400-NSP", 
+            "level3": ""
+        }, 
+        {
+            "key": "c6400r2sp", 
+            "level1": "SERVICE-GATEWAY", 
+            "level2": "6400-NSP", 
+            "level3": ""
+        }, 
+        {
+            "key": "c6400s", 
+            "level1": "SERVICE-GATEWAY", 
+            "level2": "6400-NSP", 
+            "level3": ""
+        }, 
+        {
+            "key": "ni2", 
+            "level1": "SERVICE-GATEWAY", 
+            "level2": "6XXX-DSL-Switch", 
+            "level3": ""
+        }, 
+        {
+            "key": "m9100", 
+            "level1": "STORAGE", 
+            "level2": "MDS-9100", 
+            "level3": ""
+        }, 
+        {
+            "key": "m9200", 
+            "level1": "STORAGE", 
+            "level2": "MDS-9200", 
+            "level3": ""
+        }, 
+        {
+            "key": "m9250", 
+            "level1": "STORAGE", 
+            "level2": "MDS-9250", 
+            "level3": ""
+        }, 
+        {
+            "key": "m9500", 
+            "level1": "STORAGE", 
+            "level2": "MDS-9500", 
+            "level3": ""
+        }, 
+        {
+            "key": "m9700", 
+            "level1": "STORAGE", 
+            "level2": "MDS-9700", 
+            "level3": ""
+        }, 
+        {
+            "key": "ls1010", 
+            "level1": "SWITCHES", 
+            "level2": "ATM", 
+            "level3": "Lightspeed-1010"
+        }, 
+        {
+            "key": "cbs30x0", 
+            "level1": "SWITCHES", 
+            "level2": "BLADE-SWITCHES", 
+            "level3": "CATALYST-3000-DELL-Blade"
+        }, 
+        {
+            "key": "cbs31x0", 
+            "level1": "SWITCHES", 
+            "level2": "BLADE-SWITCHES", 
+            "level3": "CATALYST-3100-DELL-Blade"
+        }, 
+        {
+            "key": "cgesm", 
+            "level1": "SWITCHES", 
+            "level2": "BLADE-SWITCHES", 
+            "level3": "IBM-Blade-Switch"
+        }, 
+        {
+            "key": "cigesm", 
+            "level1": "SWITCHES", 
+            "level2": "BLADE-SWITCHES", 
+            "level3": "IBM-Blade-Switch"
+        }, 
+        {
+            "key": "cat1200", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-1200"
+        }, 
+        {
+            "key": "cat1600", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-1600"
+        }, 
+        {
+            "key": "cat1900", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-1900"
+        }, 
+        {
+            "key": "c2350", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2350"
+        }, 
+        {
+            "key": "c2360", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2360"
+        }, 
+        {
+            "key": "c2800", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2800"
+        }, 
+        {
+            "key": "cat2800", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2800"
+        }, 
+        {
+            "key": "c29atm", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2900-ATM"
+        }, 
+        {
+            "key": "c2900XL", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2900XL"
+        }, 
+        {
+            "key": "c2900xl", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2900XL"
+        }, 
+        {
+            "key": "c2918", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2918"
+        }, 
+        {
+            "key": "c2928", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2928"
+        }, 
+        {
+            "key": "c2940", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2940"
+        }, 
+        {
+            "key": "cat2948g", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2948G"
+        }, 
+        {
+            "key": "c2950", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2950"
+        }, 
+        {
+            "key": "c2950lre", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2950-LRE"
+        }, 
+        {
+            "key": "c2955", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2955"
+        }, 
+        {
+            "key": "c2960", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2960"
+        }, 
+        {
+            "key": "c2960l", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2960L"
+        }, 
+        {
+            "key": "c2960s", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2960S"
+        }, 
+        {
+            "key": "c2960x", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2960X"
+        }, 
+        {
+            "key": "c2970", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2970"
+        }, 
+        {
+            "key": "c2975", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-2975"
+        }, 
+        {
+            "key": "cat3000", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-3000"
+        }, 
+        {
+            "key": "c3500XL", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-3500XL"
+        }, 
+        {
+            "key": "c3500xl", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-3500XL"
+        }, 
+        {
+            "key": "c3550", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-3550"
+        }, 
+        {
+            "key": "c3560", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-3560"
+        }, 
+        {
+            "key": "c3560e", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-3560E"
+        }, 
+        {
+            "key": "c3560x", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-3560X"
+        }, 
+        {
+            "key": "c3750", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-3750"
+        }, 
+        {
+            "key": "c3750e", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-3750E"
+        }, 
+        {
+            "key": "c3750x", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-3750X"
+        }, 
+        {
+            "key": "cat3k_caa", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-3850-3650"
+        }, 
+        {
+            "key": "cat4000", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-4000"
+        }, 
+        {
+            "key": "cat4000s12", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-4000-SUP-I-II"
+        }, 
+        {
+            "key": "c4224", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-4224"
+        }, 
+        {
+            "key": "cat4232", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-4232"
+        }, 
+        {
+            "key": "c4gwy", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-4500-ACCESS-GATEWAY-MODULE"
+        }, 
+        {
+            "key": "cat4500", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-4500"
+        }, 
+        {
+            "key": "c4500e", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-4500E"
+        }, 
+        {
+            "key": "cat4500e", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-4500E"
+        }, 
+        {
+            "key": "cat4500es8", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-4500E-SUP8E"
+        }, 
+        {
+            "key": "c5atm", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-5000-ATM"
+        }, 
+        {
+            "key": "c5rsfc", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-5000-ROUTE-SWITCH-FEATURE-CARD"
+        }, 
+        {
+            "key": "c5rsm", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-5000-ROUTE-SWITCH-MODULE"
+        }, 
+        {
+            "key": "cat5000", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-5000"
+        }, 
+        {
+            "key": "ce500", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-500E"
+        }, 
+        {
+            "key": "c6500", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500"
+        }, 
+        {
+            "key": "c6atm", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-ATM"
+        }, 
+        {
+            "key": "c6msfc", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-MSFC1"
+        }, 
+        {
+            "key": "c6msfc2", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-MSFC2"
+        }, 
+        {
+            "key": "c6msfc2a", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-MSFC2A"
+        }, 
+        {
+            "key": "c6msfc3", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-MSFC3"
+        }, 
+        {
+            "key": "c6svc5fmwam", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-MWAM"
+        }, 
+        {
+            "key": "c6svc6fmwam", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-MWAM"
+        }, 
+        {
+            "key": "c6svcimwam", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-MWAM"
+        }, 
+        {
+            "key": "cat6000", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500"
+        }, 
+        {
+            "key": "svcmwam", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-MWAM"
+        }, 
+        {
+            "key": "wscmm", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-CMM"
+        }, 
+        {
+            "key": "wsidsm2", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-IDSM2"
+        }, 
+        {
+            "key": "c6sup", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-SUP1-MSFC1"
+        }, 
+        {
+            "key": "c6sup11", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-SUP1-MSFC1"
+        }, 
+        {
+            "key": "c6sup12", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-SUP1-MSFC2"
+        }, 
+        {
+            "key": "c6k222", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-SUP2-MSFC2"
+        }, 
+        {
+            "key": "c6sup22", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-SUP2-MSFC2"
+        }, 
+        {
+            "key": "s222", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-SUP2-MSFC2"
+        }, 
+        {
+            "key": "s2t54", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-SUP2T"
+        }, 
+        {
+            "key": "s3223", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-SUP32-MSFC2"
+        }, 
+        {
+            "key": "s32p3", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-SUP32-PISA"
+        }, 
+        {
+            "key": "s72033", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6500-SUP720-MSFC3"
+        }, 
+        {
+            "key": "s6t64", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6800-SUP6T"
+        }, 
+        {
+            "key": "c6848x", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6840-X"
+        }, 
+        {
+            "key": "c6880x", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-6880-X"
+        }, 
+        {
+            "key": "c8000be", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-8300-Edge"
+        }, 
+        {
+            "key": "c8000aep", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-8500-Edge"
+        }, 
+        {
+            "key": "cat8510c", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-8510CSR"
+        }, 
+        {
+            "key": "cat8510m", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-8510MSR"
+        }, 
+        {
+            "key": "cat8540c", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-8540CSR"
+        }, 
+        {
+            "key": "cat8540m", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-8540MSR"
+        }, 
+        {
+            "key": "cat9k", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-9000"
+        }, 
+        {
+            "key": "cat9k_lite", 
+            "level1": "SWITCHES", 
+            "level2": "CATALYST", 
+            "level3": "CATALYST-9200"
+        }, 
+        {
+            "key": "c1000", 
+            "level1": "SWITCHES", 
+            "level2": "COMPACT", 
+            "level3": "CATALYST-1000"
+        }, 
+        {
+            "key": "c2960c405", 
+            "level1": "SWITCHES", 
+            "level2": "COMPACT", 
+            "level3": "CATALYST-2960C"
+        }, 
+        {
+            "key": "c2960c405ex", 
+            "level1": "SWITCHES", 
+            "level2": "COMPACT", 
+            "level3": "CATALYST-2960CG"
+        }, 
+        {
+            "key": "c2960cx", 
+            "level1": "SWITCHES", 
+            "level2": "COMPACT", 
+            "level3": "CATALYST-2960CX"
+        }, 
+        {
+            "key": "c3560c", 
+            "level1": "SWITCHES", 
+            "level2": "COMPACT", 
+            "level3": "CATALYST-3560C"
+        }, 
+        {
+            "key": "c3560c405", 
+            "level1": "SWITCHES", 
+            "level2": "COMPACT", 
+            "level3": "CATALYST-3560C"
+        }, 
+        {
+            "key": "c3560c405ex", 
+            "level1": "SWITCHES", 
+            "level2": "COMPACT", 
+            "level3": "CATALYST-3560CG"
+        }, 
+        {
+            "key": "c3560cx", 
+            "level1": "SWITCHES", 
+            "level2": "COMPACT", 
+            "level3": "CATALYST-3560CX"
+        }, 
+        {
+            "key": "cdb", 
+            "level1": "SWITCHES", 
+            "level2": "COMPACT", 
+            "level3": "CATALYST-DIGITAL-BUILDING"
+        }, 
+        {
+            "key": "c2020", 
+            "level1": "SWITCHES", 
+            "level2": "EMBEDDED", 
+            "level3": "2020"
+        }, 
+        {
+            "key": "ess3x00", 
+            "level1": "SWITCHES", 
+            "level2": "EMBEDDED", 
+            "level3": "3300"
+        }, 
+        {
+            "key": "cgs2520", 
+            "level1": "SWITCHES", 
+            "level2": "GRID", 
+            "level3": "CGS-2520"
+        }, 
+        {
+            "key": "grwicdes", 
+            "level1": "SWITCHES", 
+            "level2": "GRID", 
+            "level3": "CGS-Module"
+        }, 
+        {
+            "key": "ie2000", 
+            "level1": "SWITCHES", 
+            "level2": "INDUSTRIAL-ETHERNET", 
+            "level3": "IE-2000"
+        }, 
+        {
+            "key": "ie2000u", 
+            "level1": "SWITCHES", 
+            "level2": "INDUSTRIAL-ETHERNET", 
+            "level3": "IE-2000U"
+        }, 
+        {
+            "key": "ies", 
+            "level1": "SWITCHES", 
+            "level2": "INDUSTRIAL-ETHERNET", 
+            "level3": "IE-3000"
+        }, 
+        {
+            "key": "ie3010", 
+            "level1": "SWITCHES", 
+            "level2": "INDUSTRIAL-ETHERNET", 
+            "level3": "IE-3010"
+        }, 
+        {
+            "key": "ie3x00", 
+            "level1": "SWITCHES", 
+            "level2": "INDUSTRIAL-ETHERNET", 
+            "level3": "IE-3x00"
+        }, 
+        {
+            "key": "ie4000", 
+            "level1": "SWITCHES", 
+            "level2": "INDUSTRIAL-ETHERNET", 
+            "level3": "IE-4000"
+        }, 
+        {
+            "key": "ie4010", 
+            "level1": "SWITCHES", 
+            "level2": "INDUSTRIAL-ETHERNET", 
+            "level3": "IE-4010"
+        }, 
+        {
+            "key": "ie5000", 
+            "level1": "SWITCHES", 
+            "level2": "INDUSTRIAL-ETHERNET", 
+            "level3": "IE-5000"
+        }, 
+        {
+            "key": "c3750me", 
+            "level1": "SWITCHES", 
+            "level2": "METRO", 
+            "level3": "CATALYST-3750ME"
+        }, 
+        {
+            "key": "s6523", 
+            "level1": "SWITCHES", 
+            "level2": "METRO", 
+            "level3": "CATALYST-6500ME"
+        }, 
+        {
+            "key": "me1200", 
+            "level1": "SWITCHES", 
+            "level2": "METRO", 
+            "level3": "ME-1200"
+        }, 
+        {
+            "key": "ucs_ctrlr", 
+            "level1": "SWITCHES", 
+            "level2": "METRO", 
+            "level3": "ME-1200"
+        }, 
+        {
+            "key": "me240x", 
+            "level1": "SWITCHES", 
+            "level2": "METRO", 
+            "level3": "ME-2400"
+        }, 
+        {
+            "key": "me2600x", 
+            "level1": "SWITCHES", 
+            "level2": "METRO", 
+            "level3": "ME-2600X"
+        }, 
+        {
+            "key": "me340x", 
+            "level1": "SWITCHES", 
+            "level2": "METRO", 
+            "level3": "ME-3400"
+        }, 
+        {
+            "key": "me360x", 
+            "level1": "SWITCHES", 
+            "level2": "METRO", 
+            "level3": "ME-3600"
+        }, 
+        {
+            "key": "me360x_t", 
+            "level1": "SWITCHES", 
+            "level2": "METRO", 
+            "level3": "ME-3600"
+        }, 
+        {
+            "key": "me380x", 
+            "level1": "SWITCHES", 
+            "level2": "METRO", 
+            "level3": "ME-3800"
+        }, 
+        {
+            "key": "c2960sm", 
+            "level1": "SWITCHES", 
+            "level2": "MODULES", 
+            "level3": "CATALYST-2960-SERVICE-MODULE"
+        }, 
+        {
+            "key": "c3kx", 
+            "level1": "SWITCHES", 
+            "level2": "MODULES", 
+            "level3": "CATALYST-3000-SERVICE-MODULE"
+        }, 
+        {
+            "key": "n1000v", 
+            "level1": "SWITCHES", 
+            "level2": "NEXUS", 
+            "level3": "NEXUS-1000v"
+        }, 
+        {
+            "key": "n3000", 
+            "level1": "SWITCHES", 
+            "level2": "NEXUS", 
+            "level3": "NEXUS-3000"
+        }, 
+        {
+            "key": "n3500", 
+            "level1": "SWITCHES", 
+            "level2": "NEXUS", 
+            "level3": "NEXUS-3500"
+        }, 
+        {
+            "key": "n4000", 
+            "level1": "SWITCHES", 
+            "level2": "NEXUS", 
+            "level3": "NEXUS-4000"
+        }, 
+        {
+            "key": "n5000", 
+            "level1": "SWITCHES", 
+            "level2": "NEXUS", 
+            "level3": "NEXUS-5000"
+        }, 
+        {
+            "key": "n6000", 
+            "level1": "SWITCHES", 
+            "level2": "NEXUS", 
+            "level3": "NEXUS-6000-5600"
+        }, 
+        {
+            "key": "n7000", 
+            "level1": "SWITCHES", 
+            "level2": "NEXUS", 
+            "level3": "NEXUS-7000"
+        }, 
+        {
+            "key": "n7700", 
+            "level1": "SWITCHES", 
+            "level2": "NEXUS", 
+            "level3": "NEXUS-7700"
+        }, 
+        {
+            "key": "n9000", 
+            "level1": "SWITCHES", 
+            "level2": "NEXUS", 
+            "level3": "NEXUS-9000"
+        }, 
+        {
+            "key": "nxos", 
+            "level1": "SWITCHES", 
+            "level2": "NEXUS", 
+            "level3": "NEXUS-9000-3000"
+        }, 
+        {
+            "key": "nxosv", 
+            "level1": "SWITCHES", 
+            "level2": "NEXUS", 
+            "level3": "NEXUS-9000V"
+        }, 
+        {
+            "key": "Nexus", 
+            "level1": "SWITCHES", 
+            "level2": "NEXUS", 
+            "level3": ""
+        }, 
+        {
+            "key": "nxosgeneric", 
+            "level1": "SWITCHES", 
+            "level2": "NEXUS", 
+            "level3": ""
+        }, 
+        {
+            "key": "s5400", 
+            "level1": "SWITCHES", 
+            "level2": "ROCKWELL-STRATIX", 
+            "level3": "5400"
+        }, 
+        {
+            "key": "s5410", 
+            "level1": "SWITCHES", 
+            "level2": "ROCKWELL-STRATIX", 
+            "level3": "5410"
+        }, 
+        {
+            "key": "s5700", 
+            "level1": "SWITCHES", 
+            "level2": "ROCKWELL-STRATIX", 
+            "level3": "5700"
+        }, 
+        {
+            "key": "s5800", 
+            "level1": "SWITCHES", 
+            "level2": "ROCKWELL-STRATIX", 
+            "level3": "5800-IOS-XE"
+        }, 
+        {
+            "key": "c5200", 
+            "level1": "UNIVERSAL-GATEWAY", 
+            "level2": "AS-5200", 
+            "level3": ""
+        }, 
+        {
+            "key": "c5300", 
+            "level1": "UNIVERSAL-GATEWAY", 
+            "level2": "AS-5300", 
+            "level3": ""
+        }, 
+        {
+            "key": "c5300XM", 
+            "level1": "UNIVERSAL-GATEWAY", 
+            "level2": "AS-5300XM", 
+            "level3": ""
+        }, 
+        {
+            "key": "c5350", 
+            "level1": "UNIVERSAL-GATEWAY", 
+            "level2": "AS-5350", 
+            "level3": ""
+        }, 
+        {
+            "key": "c5350XM", 
+            "level1": "UNIVERSAL-GATEWAY", 
+            "level2": "AS-5350XM", 
+            "level3": ""
+        }, 
+        {
+            "key": "c5400", 
+            "level1": "UNIVERSAL-GATEWAY", 
+            "level2": "AS-5400", 
+            "level3": ""
+        }, 
+        {
+            "key": "c5400XM", 
+            "level1": "UNIVERSAL-GATEWAY", 
+            "level2": "AS-5400XM", 
+            "level3": ""
+        }, 
+        {
+            "key": "c5800", 
+            "level1": "UNIVERSAL-GATEWAY", 
+            "level2": "AS-5800", 
+            "level3": ""
+        }, 
+        {
+            "key": "c5850", 
+            "level1": "UNIVERSAL-GATEWAY", 
+            "level2": "AS-5850", 
+            "level3": ""
+        }, 
+        {
+            "key": "c5850tb", 
+            "level1": "UNIVERSAL-GATEWAY", 
+            "level2": "AS-5850ERSC", 
+            "level3": ""
+        }, 
+        {
+            "key": "mica-modem", 
+            "level1": "UNIVERSAL-GATEWAY"
+        }, 
+        {
+            "key": "usbconsole", 
+            "level1": "USB-CONSOLE"
+        }, 
+        {
+            "key": "ata187", 
+            "level1": "VOICE", 
+            "level2": "ATA", 
+            "level3": "ATA-187"
+        }, 
+        {
+            "key": "ata190", 
+            "level1": "VOICE", 
+            "level2": "ATA", 
+            "level3": "ATA-190"
+        }, 
+        {
+            "key": "vg200", 
+            "level1": "VOICE", 
+            "level2": "GATEWAY", 
+            "level3": "VG-200"
+        }, 
+        {
+            "key": "vg20x", 
+            "level1": "VOICE", 
+            "level2": "GATEWAY", 
+            "level3": "VG-202"
+        }, 
+        {
+            "key": "vg20xxm", 
+            "level1": "VOICE", 
+            "level2": "GATEWAY", 
+            "level3": "VG-20x-XM"
+        }, 
+        {
+            "key": "vg224", 
+            "level1": "VOICE", 
+            "level2": "GATEWAY", 
+            "level3": "VG-224"
+        }, 
+        {
+            "key": "vg248", 
+            "level1": "VOICE", 
+            "level2": "GATEWAY", 
+            "level3": "VG-248"
+        }, 
+        {
+            "key": "vg3x0", 
+            "level1": "VOICE", 
+            "level2": "GATEWAY", 
+            "level3": "VG-310-320"
+        }, 
+        {
+            "key": "vg350", 
+            "level1": "VOICE", 
+            "level2": "GATEWAY", 
+            "level3": "VG-350"
+        }, 
+        {
+            "key": "vg400", 
+            "level1": "VOICE", 
+            "level2": "GATEWAY", 
+            "level3": "VG-400"
+        }, 
+        {
+            "key": "vg450", 
+            "level1": "VOICE", 
+            "level2": "GATEWAY", 
+            "level3": "VG-450"
+        }, 
+        {
+            "key": "vgd", 
+            "level1": "VOICE", 
+            "level2": "GATEWAY", 
+            "level3": "VGD"
+        }, 
+        {
+            "key": "c2420", 
+            "level1": "VOICE", 
+            "level2": "IAD", 
+            "level3": "2420-IAD"
+        }, 
+        {
+            "key": "c2430", 
+            "level1": "VOICE", 
+            "level2": "IAD", 
+            "level3": "2430-IAD"
+        }, 
+        {
+            "key": "c2435", 
+            "level1": "VOICE", 
+            "level2": "IAD", 
+            "level3": "2435-IAD"
+        }, 
+        {
+            "key": "ics7700", 
+            "level1": "VOICE", 
+            "level2": "ICS-7700", 
+            "level3": ""
+        }, 
+        {
+            "key": "ipp3905", 
+            "level1": "VOICE", 
+            "level2": "IP-PHONES", 
+            "level3": "3905"
+        }, 
+        {
+            "key": "ipp7914", 
+            "level1": "VOICE", 
+            "level2": "IP-PHONES", 
+            "level3": "7914"
+        }, 
+        {
+            "key": "ipp7915", 
+            "level1": "VOICE", 
+            "level2": "IP-PHONES", 
+            "level3": "7915"
+        }, 
+        {
+            "key": "ipp7916", 
+            "level1": "VOICE", 
+            "level2": "IP-PHONES", 
+            "level3": "7916"
+        }, 
+        {
+            "key": "ipp7921", 
+            "level1": "VOICE", 
+            "level2": "IP-PHONES", 
+            "level3": "7921"
+        }, 
+        {
+            "key": "ipp7931", 
+            "level1": "VOICE", 
+            "level2": "IP-PHONES", 
+            "level3": "7931"
+        }, 
+        {
+            "key": "ipp7975", 
+            "level1": "VOICE", 
+            "level2": "IP-PHONES", 
+            "level3": "7975"
+        }, 
+        {
+            "key": "ipp7911_7906", 
+            "level1": "VOICE", 
+            "level2": "IP-PHONES", 
+            "level3": "7906_7911"
+        }, 
+        {
+            "key": "ipp7937", 
+            "level1": "VOICE", 
+            "level2": "IP-PHONES", 
+            "level3": "7937-CONFERENCE-PHONE"
+        }, 
+        {
+            "key": "ipp7940_7960", 
+            "level1": "VOICE", 
+            "level2": "IP-PHONES", 
+            "level3": "7940_7960"
+        }, 
+        {
+            "key": "ipp7941_7961", 
+            "level1": "VOICE", 
+            "level2": "IP-PHONES", 
+            "level3": "7941_7961"
+        }, 
+        {
+            "key": "ipp7942_7962", 
+            "level1": "VOICE", 
+            "level2": "IP-PHONES", 
+            "level3": "7942_7962"
+        }, 
+        {
+            "key": "ipp7945_7965", 
+            "level1": "VOICE", 
+            "level2": "IP-PHONES", 
+            "level3": "7945_7965"
+        }, 
+        {
+            "key": "ipp7970_7971", 
+            "level1": "VOICE", 
+            "level2": "IP-PHONES", 
+            "level3": "7970_7971"
+        }, 
+        {
+            "key": "ipp8845_65", 
+            "level1": "VOICE", 
+            "level2": "IP-PHONES", 
+            "level3": "8845_8865"
+        }, 
+        {
+            "key": "ipp894x", 
+            "level1": "VOICE", 
+            "level2": "IP-PHONES", 
+            "level3": "894x"
+        }, 
+        {
+            "key": "uc500", 
+            "level1": "VOICE", 
+            "level2": "UC-500", 
+            "level3": ""
+        }, 
+        {
+            "key": "c1100", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-1100"
+        }, 
+        {
+            "key": "c1130", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-1130"
+        }, 
+        {
+            "key": "c1140", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-1140"
+        }, 
+        {
+            "key": "c1200", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-1200"
+        }, 
+        {
+            "key": "c1240", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-1240"
+        }, 
+        {
+            "key": "c1250", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-1250"
+        }, 
+        {
+            "key": "c1310", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-1310"
+        }, 
+        {
+            "key": "c1520", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-1500-Mesh-AP"
+        }, 
+        {
+            "key": "c350", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-350"
+        }, 
+        {
+            "key": "c520", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-521"
+        }, 
+        {
+            "key": "ap1g1", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-AP1G1-(700)"
+        }, 
+        {
+            "key": "ap1g2", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-AP1G2-(1600)"
+        }, 
+        {
+            "key": "ap1g3", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-AP1G3-(IR829-1530)"
+        }, 
+        {
+            "key": "ap1g4", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-AP1G4-(1810-1830-1850)"
+        }, 
+        {
+            "key": "ap1g5", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-AP1G5-(1540-1800-1815)"
+        }, 
+        {
+            "key": "ap1g6", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-AP1G6-(c9117)"
+        }, 
+        {
+            "key": "ap1g6a", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-AP1G6a-(c9130)"
+        }, 
+        {
+            "key": "ap1g7", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-AP1G7-(C9115-9120)"
+        }, 
+        {
+            "key": "ap3g1", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-AP3G1-(1260-3500)"
+        }, 
+        {
+            "key": "ap3g2", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-AP3G2-(1600-1700-2600-2700-3600-3700)"
+        }, 
+        {
+            "key": "c3700", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-AP3G2-(1600-1700-2600-2700-3600-3700)"
+        }, 
+        {
+            "key": "ap3g3", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-AP3G3-(2800-3800-4800-1560-6300)"
+        }, 
+        {
+            "key": "ap801", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-AP801-(861W-88xW-1911W-Routers)"
+        }, 
+        {
+            "key": "ap802", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AIRONET-AP802-(812-819-886VA-W-887VA-W-89xW-Routers)"
+        }, 
+        {
+            "key": "AP1540", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AP1540"
+        }, 
+        {
+            "key": "AP1560", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AP1560"
+        }, 
+        {
+            "key": "AP1810w", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AP1810w"
+        }, 
+        {
+            "key": "AP1815", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AP1815"
+        }, 
+        {
+            "key": "AP1830", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AP1830"
+        }, 
+        {
+            "key": "AP1840", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AP1840"
+        }, 
+        {
+            "key": "AP1850", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AP1850"
+        }, 
+        {
+            "key": "AP2800", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AP2800"
+        }, 
+        {
+            "key": "AP3800", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AP3800"
+        }, 
+        {
+            "key": "AP4800", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AP4800"
+        }, 
+        {
+            "key": "AP6300", 
+            "level1": "WIRELESS", 
+            "level2": "ACCESS-POINT", 
+            "level3": "AP6300"
+        }, 
+        {
+            "key": "CT2500", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "2500"
+        }, 
+        {
+            "key": "CT5500", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "5500"
+        }, 
+        {
+            "key": "CT5520", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "5520"
+        }, 
+        {
+            "key": "SWLC3750K9", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "CATALYST-3750"
+        }, 
+        {
+            "key": "SWISMK9", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "CATALYST-6500-WISM"
+        }, 
+        {
+            "key": "WISM", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "CATALYST-6500-WISM"
+        }, 
+        {
+            "key": "WISM2", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "CATALYST-6500-WISM2"
+        }, 
+        {
+            "key": "C9800-40", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "CATALYST-9800-40"
+        }, 
+        {
+            "key": "C9800-80", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "CATALYST-9800-80"
+        }, 
+        {
+            "key": "C9800-AP", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "CATALYST-9800-ACCESS-POINTS"
+        }, 
+        {
+            "key": "C9800-CL", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "CATALYST-9800-CL"
+        }, 
+        {
+            "key": "C9800-L", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "CATALYST-9800-L"
+        }, 
+        {
+            "key": "C9800-SW", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "CATALYST-9800-SW"
+        }, 
+        {
+            "key": "CT3504", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "CT3504"
+        }, 
+        {
+            "key": "CT7500", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "CT7500"
+        }, 
+        {
+            "key": "CT8500", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "CT8500"
+        }, 
+        {
+            "key": "LOC2700", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "LOCATION-2700"
+        }, 
+        {
+            "key": "WLCM", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "NM-NME"
+        }, 
+        {
+            "key": "SRE", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "NM-SRE"
+        }, 
+        {
+            "key": "CTVM", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "Virtual"
+        }, 
+        {
+            "key": "wcs", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "WCS"
+        }, 
+        {
+            "key": "WLC2006", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "WLC2006"
+        }, 
+        {
+            "key": "WLC2100", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "WLC2100"
+        }, 
+        {
+            "key": "WLC4100", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "WLC4100"
+        }, 
+        {
+            "key": "WLC4400", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "WLC4400"
+        }, 
+        {
+            "key": "WLC7500", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "WLC7500"
+        }, 
+        {
+            "key": "CT8540", 
+            "level1": "WIRELESS", 
+            "level2": "CONTROLLER", 
+            "level3": "WLC8540"
+        }
+    ]
+}

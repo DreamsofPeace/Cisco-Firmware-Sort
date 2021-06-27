@@ -228,6 +228,7 @@ def fileprocessornxos (filename,debug1):
 		workname = workname.replace("nxosv-final.","")
 		workname = workname.replace("nxosv.","")
 		workname = workname.replace("nexus9300v.","")
+		workname = workname.replace("nexus9500v64.","")
 		workname = workname.replace("nexus9500v.","")
 		utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
 

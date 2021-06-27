@@ -234,6 +234,15 @@ def fileprocessorios (debug1,filename):
 		ios_spa (debug1,filename,prodname,imagecode)
 
 	elif (
+	filename.startswith ("cgr2010-universalk9_npe-mz.SPA.") or 
+	filename.startswith ("cgr2010-universalk9-mz.SPA")
+	):
+		splitbydash = filename.split("-")
+		prodname = product("cgr2010")
+		imagecode = imagelookup(splitbydash[1])
+		ios_spa (debug1,filename,prodname,imagecode)
+
+	elif (
 	filename.startswith ("dsc-c5800-mz")
 	):
 		splitbydash = filename.split("-")
@@ -241,14 +250,25 @@ def fileprocessorios (debug1,filename):
 		imagecode = imagelookup(splitbydash[0])
 		ios_classical (debug1,filename,prodname,imagecode)
 
+	elif (
+	filename.startswith ("c1000-universal")
+	):
+		splitbydash = filename.split("-")
+		prodname = product(splitbydash[0])
+		imagecode = imagelookup(splitbydash[1])
+		ios_classical (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename.startswith ("c1000")
+	):
+		splitbydash = filename.split("-")
+		prodname = product ("c1000router")
+		imagecode = imagelookup(splitbydash[1])
+		ios_classical (debug1,filename,prodname,imagecode)
+
 	else:
 		splitbydash = filename.split("-")
-		if splitbydash[0] == "c1000" and splitbydot[1].startswith("15"):
-			prodname = product ("c1000")
-		elif splitbydash[0] == "c1000":
-			prodname = product ("c1000router")
-		else:
-			prodname = product (splitbydash[0])
+		prodname = product (splitbydash[0])
 		imagecode = imagelookup (splitbydash[1])
 		if prodname == "UNKNOWN":
 			messageunknowndev()

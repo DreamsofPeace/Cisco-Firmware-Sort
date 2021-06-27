@@ -502,6 +502,144 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		):
 			fileprocessor_iosxe(debug1,name)
 
+
+		elif (
+		name == "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429-Readme.txt" or 
+		name == "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429.zip" or 
+		name == "ACS57BasePatch.tar.gz" or 
+		name == "BOOTX64.EFI" or 
+		name == "PIX_to_ASA_1_0.dmg" or 
+		name == "PIXtoASA_1_0.zip" or 
+		name == "PIXtoASAsetup_1_0.exe" or 
+		name == "README-occ-121.rtf" or 
+		name == "README_ISE_20_201_21_22" or 
+		name == "README_WebAgent.txt" or 
+		name == "ReadMe_for_ACS_5.6_Upgrade_Package-txt" or 
+		name == "VPN-5.0.00.0340-MSI.exe" or 
+		name == "VPN_Client_Support_Matrix2.txt" or 
+		name == "VPNDisable_ServiceProfile.xml" or 
+		name == "Vista-VPN-Troubleshooting.txt" or 
+		name == "WebSecurityCert.zip" or 
+		name == "anyconnect_app_selector_1.0.zip" or 
+		name == "anyconnect_app_selector_2.0.zip" or 
+		name == "cisco_vpn_auth.jar" or 
+		name == "citrix_plugin_howto.doc" or 
+		name == "cvdm-css-1.0.zip" or 
+		name == "cvdm-css-1.0_K9.zip" or 
+		name == "fcs-csa-hotfix-5.2.0.238-w2k3-k9-CSM.zip" or 
+		name == "fcs-csamc-4.5.1.616-CSA-Policy-Descriptions.zip" or 
+		name == "firepower-mibs.zip" or 
+		name == "grub.efi" or 
+		name == "occ-121.gz" or 
+		name == "occ-121.zip" or 
+		name == "pic-2.2.0.470.SPA.x86_64.iso" or 
+		name == "pic-2.4.0.357.SPA.x86_64.iso" or 
+		name == "pnLogAgent_1.1.zip" or 
+		name == "pnLogAgent_4-1-3.zip" or 
+		name == "pnLogAgent_4-1-3.zip.txt" or 
+		name == "pxGrid_Mitigation_Remediation_v1.0.tgz" or 
+		name == "rawrite.exe" or 
+		name == "release_duration_tool.tar" or 
+		name == "vpn30xxboot-4.0.Rel.hex" or 
+		name == "webAgent_1-0.zip" or 
+		name == "webAgent_1-0.zip.txt" or 
+		name == "webAgent_1-1.zip" or 
+		name == "webAgent_1-1.zip.txt" or 
+		name == "rdp_09.11.2012.jar" or 
+		name == "cisco_vpn_auth.jar" or 
+		name.startswith ("5-") or 
+		name.startswith ("ACS") or 
+		name.startswith ("Acs") or 
+		name.startswith ("CSM4") and name.endswith("Service_Pack1.exe") or 
+		name.startswith ("CSM4") and name.endswith("Service_Pack2.exe") or 
+		name.startswith ("CUCM-CSA-") or 
+		name.startswith ("CiscoCM-CSA-") or 
+		name.startswith ("CiscoCVP-CSA-") or 
+		name.startswith ("CiscoICM-CSA-") or 
+		name.startswith ("CiscoISN-CSA-") or 
+		name.startswith ("CiscoPA-CSA-") or 
+		name.startswith ("CiscoUnity-CSA-") or 
+		name.startswith ("Cisco_FTD") or 
+		name.startswith ("Cisco_Firepower") or 
+		name.startswith ("Cisco_Firepower_GEODB") or 
+		name.startswith ("Cisco_Firepower_SRU") or
+		name.startswith ("Cisco_Firepower_Threat") or 
+		name.startswith ("Cisco_Network_Sensor") or 
+		name.startswith ("Cisco_VDB_Fingerprint_Database") or
+		name.startswith ("Clean") or 
+		name.startswith ("Firepower") or 
+		name.startswith ("IPS") or 
+		name.startswith ("ISE") or 
+		name.startswith ("PI") or 
+		name.startswith ("PIX") and name.endswith(".bin") or 
+		name.startswith ("PIX") or 
+		name.startswith ("SNS-35x5-BIOS") or 
+		name.startswith ("SNS-35x5-firmware") or 
+		name.startswith ("SNS-36xx-BIOS") or 
+		name.startswith ("SNS-36xx-firmware") or 
+		name.startswith ("SNS-36xx-HUU") or 
+		name.startswith ("Sourcefire") or
+		name.startswith ("UCP") or 
+		name.startswith ("UTD-STD-SIGNATURE") or 
+		name.startswith ("VPN3000") or 
+		name.startswith ("applAcs") or 
+		name.startswith ("asa") or 
+		name.startswith ("asasfr") or 
+		name.startswith ("asdm") or 
+		name.startswith ("bh") and name.endswith(".bin") or 
+		name.startswith ("cda") and name.endswith("iso") or 
+		name.startswith ("cisco-asa") or 
+		name.startswith ("coeus") or 
+		name.startswith ("csd") or 
+		name.startswith ("csm") or 
+		name.startswith ("csm-maxmind-geolitecity-") or 
+		name.startswith ("csmars") or 
+		name.startswith ("fcs-CSM") or
+		name.startswith ("fcs-cms") or
+		name.startswith ("fcs-csamc") or 
+		name.startswith ("fcs-csm") or
+		name.startswith ("fcs-mcp") or
+		name.startswith ("fcs-mcp") or 
+		name.startswith ("fcs-rme") or
+		name.startswith ("firepower") or 
+		name.startswith ("ftd") or 
+		name.startswith ("fwsm_migration") or 
+		name.startswith ("fxos") or 
+		name.startswith ("hostscan") or
+		name.startswith ("iosxe-utd") or
+		name.startswith ("iosxe-utd-ips") or
+		name.startswith ("iox-iosxe-utd") or
+		name.startswith ("ise") or 
+		name.startswith ("ise-pic") or 
+		name.startswith ("mac-spw-dmg") or 
+		name.startswith ("np") and name.endswith(".bin") or 
+		name.startswith ("pdm") and name.endswith(".bin") or 
+		name.startswith ("phoebe") or 
+		name.startswith ("pix") and name.endswith(".bin") or 
+		name.startswith ("pix") or 
+		name.startswith ("sampleTransforms") or 
+		name.startswith ("secapp-ucmk9") or
+		name.startswith ("secapp-utd") or
+		name.startswith ("thirdparty") or 
+		name.startswith ("tools-anyconnect") or 
+		name.startswith ("upd-pkg-SNS-35x5-cimc") or
+		name.startswith ("upd-pkg-SNS-36xx-cimc") or
+		name.startswith ("update-") and name.endswith ("-major-K9.zip") or 
+		name.startswith ("vpn3000") or 
+		name.startswith ("vpn3002") or 
+		name.startswith ("vpn3005") or 
+		name.startswith ("vpnclient") or 
+		name.startswith ("webagent") or 
+		name.startswith ("win_spw") or 
+		name.startswith("anyconnect") or 
+		name.startswith("c6svc-fwm-k9") or 
+		name.startswith("cisco-ftd") or
+		name.startswith("sg") and name.endswith("adi") or 
+		name.startswith("sg") and name.endswith("adi-gz") or 
+		name.startswith("sg") and name.endswith("zip")
+		):
+			fileprocessorsecurity(debug1,name,filename)
+
 		elif (
 		name.startswith("UCSC-C240-M5-") or 
 		name.startswith("hostUpgrade_v") or 
@@ -644,144 +782,6 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("dnac")
 		):
 			file_proc_servers(name,debug1)
-
-
-		elif (
-		name == "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429-Readme.txt" or 
-		name == "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429.zip" or 
-		name == "ACS57BasePatch.tar.gz" or 
-		name == "BOOTX64.EFI" or 
-		name == "PIX_to_ASA_1_0.dmg" or 
-		name == "PIXtoASA_1_0.zip" or 
-		name == "PIXtoASAsetup_1_0.exe" or 
-		name == "README-occ-121.rtf" or 
-		name == "README_ISE_20_201_21_22" or 
-		name == "README_WebAgent.txt" or 
-		name == "ReadMe_for_ACS_5.6_Upgrade_Package-txt" or 
-		name == "VPN-5.0.00.0340-MSI.exe" or 
-		name == "VPN_Client_Support_Matrix2.txt" or 
-		name == "VPNDisable_ServiceProfile.xml" or 
-		name == "Vista-VPN-Troubleshooting.txt" or 
-		name == "WebSecurityCert.zip" or 
-		name == "anyconnect_app_selector_1.0.zip" or 
-		name == "anyconnect_app_selector_2.0.zip" or 
-		name == "cisco_vpn_auth.jar" or 
-		name == "citrix_plugin_howto.doc" or 
-		name == "cvdm-css-1.0.zip" or 
-		name == "cvdm-css-1.0_K9.zip" or 
-		name == "fcs-csa-hotfix-5.2.0.238-w2k3-k9-CSM.zip" or 
-		name == "fcs-csamc-4.5.1.616-CSA-Policy-Descriptions.zip" or 
-		name == "firepower-mibs.zip" or 
-		name == "grub.efi" or 
-		name == "occ-121.gz" or 
-		name == "occ-121.zip" or 
-		name == "pic-2.2.0.470.SPA.x86_64.iso" or 
-		name == "pic-2.4.0.357.SPA.x86_64.iso" or 
-		name == "pnLogAgent_1.1.zip" or 
-		name == "pnLogAgent_4-1-3.zip" or 
-		name == "pnLogAgent_4-1-3.zip.txt" or 
-		name == "pxGrid_Mitigation_Remediation_v1.0.tgz" or 
-		name == "rawrite.exe" or 
-		name == "release_duration_tool.tar" or 
-		name == "vpn30xxboot-4.0.Rel.hex" or 
-		name == "webAgent_1-0.zip" or 
-		name == "webAgent_1-0.zip.txt" or 
-		name == "webAgent_1-1.zip" or 
-		name == "webAgent_1-1.zip.txt" or 
-		name == "rdp_09.11.2012.jar" or 
-		name == "cisco_vpn_auth.jar" or 
-		name.startswith ("5-") or 
-		name.startswith ("ACS") or 
-		name.startswith ("Acs") or 
-		name.startswith ("CSM4") and name.endswith("Service_Pack1.exe") or 
-		name.startswith ("CSM4") and name.endswith("Service_Pack2.exe") or 
-		name.startswith ("CUCM-CSA-") or 
-		name.startswith ("CiscoCM-CSA-") or 
-		name.startswith ("CiscoCVP-CSA-") or 
-		name.startswith ("CiscoICM-CSA-") or 
-		name.startswith ("CiscoISN-CSA-") or 
-		name.startswith ("CiscoPA-CSA-") or 
-		name.startswith ("CiscoUnity-CSA-") or 
-		name.startswith ("Cisco_FTD") or 
-		name.startswith ("Cisco_Firepower") or 
-		name.startswith ("Cisco_Firepower_GEODB") or 
-		name.startswith ("Cisco_Firepower_SRU") or
-		name.startswith ("Cisco_Firepower_Threat") or 
-		name.startswith ("Cisco_Network_Sensor") or 
-		name.startswith ("Cisco_VDB_Fingerprint_Database") or
-		name.startswith ("Clean") or 
-		name.startswith ("Firepower") or 
-		name.startswith ("IPS") or 
-		name.startswith ("ISE") or 
-		name.startswith ("PI") or 
-		name.startswith ("PIX") and name.endswith(".bin") or 
-		name.startswith ("PIX") or 
-		name.startswith ("SNS-35x5-BIOS") or 
-		name.startswith ("SNS-35x5-firmware") or 
-		name.startswith ("SNS-36xx-BIOS") or 
-		name.startswith ("SNS-36xx-firmware") or 
-		name.startswith ("SNS-36xx-HUU") or 
-		name.startswith ("Sourcefire") or
-		name.startswith ("UCP") or 
-		name.startswith ("UTD-STD-SIGNATURE") or 
-		name.startswith ("VPN3000") or 
-		name.startswith ("applAcs") or 
-		name.startswith ("asa") or 
-		name.startswith ("asasfr") or 
-		name.startswith ("asdm") or 
-		name.startswith ("bh") and name.endswith(".bin") or 
-		name.startswith ("cda") and name.endswith("iso") or 
-		name.startswith ("cisco-asa") or 
-		name.startswith ("coeus") or 
-		name.startswith ("csd") or 
-		name.startswith ("csm") or 
-		name.startswith ("csm-maxmind-geolitecity-") or 
-		name.startswith ("csmars") or 
-		name.startswith ("fcs-CSM") or
-		name.startswith ("fcs-cms") or
-		name.startswith ("fcs-csamc") or 
-		name.startswith ("fcs-csm") or
-		name.startswith ("fcs-mcp") or
-		name.startswith ("fcs-mcp") or 
-		name.startswith ("fcs-rme") or
-		name.startswith ("firepower") or 
-		name.startswith ("ftd") or 
-		name.startswith ("fwsm_migration") or 
-		name.startswith ("fxos") or 
-		name.startswith ("hostscan") or
-		name.startswith ("iosxe-utd") or
-		name.startswith ("iosxe-utd-ips") or
-		name.startswith ("iox-iosxe-utd") or
-		name.startswith ("ise") or 
-		name.startswith ("ise-pic") or 
-		name.startswith ("mac-spw-dmg") or 
-		name.startswith ("np") and name.endswith(".bin") or 
-		name.startswith ("pdm") and name.endswith(".bin") or 
-		name.startswith ("phoebe") or 
-		name.startswith ("pix") and name.endswith(".bin") or 
-		name.startswith ("pix") or 
-		name.startswith ("sampleTransforms") or 
-		name.startswith ("secapp-ucmk9") or
-		name.startswith ("secapp-utd") or
-		name.startswith ("thirdparty") or 
-		name.startswith ("tools-anyconnect") or 
-		name.startswith ("upd-pkg-SNS-35x5-cimc") or
-		name.startswith ("upd-pkg-SNS-36xx-cimc") or
-		name.startswith ("update-") and name.endswith ("-major-K9.zip") or 
-		name.startswith ("vpn3000") or 
-		name.startswith ("vpn3002") or 
-		name.startswith ("vpn3005") or 
-		name.startswith ("vpnclient") or 
-		name.startswith ("webagent") or 
-		name.startswith ("win_spw") or 
-		name.startswith("anyconnect") or 
-		name.startswith("c6svc-fwm-k9") or 
-		name.startswith("cisco-ftd") or
-		name.startswith("sg") and name.endswith("adi") or 
-		name.startswith("sg") and name.endswith("adi-gz") or 
-		name.startswith("sg") and name.endswith("zip")
-		):
-			fileprocessorsecurity(debug1,name,filename)
 
 		elif (
 		name == "xrvr-fullk9-4.3.2.vmdk" or 
@@ -1020,7 +1020,8 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("c2960cx-cwml") or 
 		name.startswith("c2960-cwml") or 
 		name.startswith("c2960c405-cwml") or 
-		name.startswith("c1000-cwml")
+		name.startswith("c1000-cwml") or 
+		name.startswith("cdb-cwml")
 		):
 			prodname = product ("ccpc")
 			utilssingleprodname (debug1,name,prodname)
