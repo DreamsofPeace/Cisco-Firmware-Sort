@@ -178,6 +178,9 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	elif filename.startswith("Cisco_Firepower_GEODB") or filename.startswith("Sourcefire_Geodb"):
 		sec_fp_geodb (debug1,filename)
 
+	elif filename.startswith("lsp-rel-"):
+		sec_fp_lsp (debug1,filename)
+
 	elif filename.startswith("Cisco_Firepower_NGIPS_Appliance_Patch-"):
 		prodname = product("firepower")
 		imagecode = imagelookup("sourcefiredev")
@@ -556,9 +559,9 @@ def sec_ironportv (debug1,filename):
 	elif filename.startswith ("phoebe"):
 		prodname = product("ironport")
 		imagecode = imagelookup("emailsecurity")
-	vertwo = util2digit(splitbydash[1],splitbydash[2])
+#	vertwo = util2digit(splitbydash[1],splitbydash[2])
 	verfour = util4digit(splitbydash[1],splitbydash[2],splitbydash[3],splitbydash[4])
-	filepath = filepath5 (prodname,imagecode,splitbydash[1],vertwo,verfour)
+	filepath = filepath3 (prodname,imagecode,verfour)
 	filemove (filepath, filename)
 
 def sec_fp_asa_mode (debug1,filename):
@@ -1713,6 +1716,21 @@ def sec_fp_rules (debug1,filename):
 	ver = util4digit (splitbydash[1],splitbydash[2],splitbydash[3],splitbydash[4])
 	#Intended File Format (Product, Image Path, Year, Version
 	filepath = filepath4 (prodname,imagecode,splitbydash[1],ver)
+	filemove (filepath, filename)
+
+def sec_fp_lsp (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tsec_fp_lsp")
+	workname = filename.replace(".tar.xz.REL.tar","")
+	workname = workname.replace("lsp-rel-","")
+	splitbydash = workname.split("-")
+	year = (workname[0:4])
+	month = (workname[4:6])
+	day = (workname[6:8])
+	version = util4digit (year,month,day,splitbydash[1])
+	prodname = product ("firepower")
+	imagecode = imagelookup("lsprel")
+	filepath = filepath4 (prodname,imagecode,year,version)
 	filemove (filepath, filename)
 
 def sec_fp_geodb (debug1,filename):

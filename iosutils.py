@@ -241,6 +241,10 @@ def iostrain (train, version):
 		version = version + "JX"
 	elif train.startswith("JPJ"):
 		version = version + "JPJ"
+	elif train.startswith("JPK"):
+		version = version + "JPK"
+	elif train.startswith("JPI"):
+		version = version + "JPI"
 	elif train.startswith("JP"):
 		version = version + "JP"
 	elif train.startswith("JY"):
@@ -874,12 +878,12 @@ def imagelookup (imagecode):
 		subdirectory = "ENTERPRISE-APPN-IPSEC-56"
 	elif imagecode == "itv":
 		subdirectory = "IP-ACIP"
-	elif imagecode == "ajs":
-		subdirectory = "ENTERPRISE-APPN"
-	elif imagecode == "ajs40":
-		subdirectory = "ENTERPRISE-APPN-40"
-	elif imagecode == "ajs56":
-		subdirectory = "ENTERPRISE-APPN-56"
+#	elif imagecode == "ajs":
+#		subdirectory = "ENTERPRISE-APPN"
+#	elif imagecode == "ajs40":
+#		subdirectory = "ENTERPRISE-APPN-40"
+#	elif imagecode == "ajs56":
+#		subdirectory = "ENTERPRISE-APPN-56"
 	elif imagecode == "adjv":
 		subdirectory = "ENTERPRISE-APPN"
 	elif imagecode == "adjv40":
@@ -982,8 +986,6 @@ def imagelookup (imagecode):
 		subdirectory = "ENHANCED-PDSN-WITH-CRYPTO"
 	elif imagecode == "j":
 		subdirectory = "ENTERPRISE"
-	elif imagecode == "js":
-		subdirectory = "ENTERPRISE"
 	elif imagecode == "jsv":
 		subdirectory = "ENTERPRISE"
 	elif imagecode == "k":
@@ -1050,8 +1052,8 @@ def imagelookup (imagecode):
 		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-3DES"
 	elif imagecode == "isv":
 		subdirectory = "IP"
-	elif imagecode == "is":
-		subdirectory = "IP"
+#	elif imagecode == "is":
+#		subdirectory = "IP"
 	elif imagecode == "isv40":
 		subdirectory = "IP-40"
 	elif imagecode == "isv56":
@@ -1065,7 +1067,7 @@ def imagelookup (imagecode):
 	elif imagecode == "jo3sv":
 		subdirectory = "ENTERPRISE-FW-IDS"
 	elif imagecode == "bnr2y":
-		subdirectory = "IP-IPX-AT-IBM-"
+		subdirectory = "IP-IPX-AT-IBM"
 	elif imagecode == "bnr2sy":
 		subdirectory = "IP-IPX-AT-IBM-PLUS"
 	elif imagecode == "bnr2sy40":
@@ -1226,22 +1228,24 @@ def imagelookup (imagecode):
 		subdirectory = "GeoDB-SRU-VDB/VDB"
 	elif imagecode == "csfvdb":
 		subdirectory = "GeoDB-SRU-VDB/VDB-6.4-AND-LATER"
+	elif imagecode == "lsprel":
+		subdirectory = "GeoDB-SRU-VDB/Lightweight-Security-Package"
 	elif imagecode == "g6ik9s":
-		subdirectory = "GGSN-4.0-(3DES)"
+		subdirectory = "GGSN-4.0-3DES"
 	elif imagecode == "g6is":
-		subdirectory = "GGSN-4.0-(BASE)"
+		subdirectory = "GGSN-4.0-BASE"
 	elif imagecode == "g6ik8s":
-		subdirectory = "GGSN-4.0-(IPSEC)"
+		subdirectory = "GGSN-4.0-IPSEC"
 	elif imagecode == "entservices_mw":
 		subdirectory = "GGSN-RELEASE-6"
 	elif imagecode == "adventerprisek9_mw":
-		subdirectory = "GGSN-RELEASE-6-(IPSEC)"
+		subdirectory = "GGSN-RELEASE-6-IPSEC"
 	elif imagecode == "g7is":
 		subdirectory = "GGSN-SERIES-4-BASE"
 	elif imagecode == "g8ik9s":
-		subdirectory = "GGSN-SERIES-6-(3DES)"
+		subdirectory = "GGSN-SERIES-6-3DES"
 	elif imagecode == "g8ik8s":
-		subdirectory = "GGSN-SERIES-6-(IPSEC)"
+		subdirectory = "GGSN-SERIES-6-IPSEC"
 	elif imagecode == "g8is":
 		subdirectory = "GGSN-SERIES-6-BASE"
 	elif imagecode == "gina":
@@ -2707,6 +2711,8 @@ def product (prodcode):
 		prodname = "SERVERS/ONE-PK"
 	elif prodcode == "ucsgeneric":
 		prodname = "SERVERS/UCS"
+	elif prodcode == "smallbusiness":
+		prodname = "Small-Business"
 	elif prodcode == "c125":
 		prodname = "SERVERS/UCS/C-SERIES/C125M5"
 	elif prodcode == "c200":
@@ -2994,7 +3000,7 @@ def product (prodcode):
 	elif prodcode == "c5rsm":
 		prodname = "SWITCHES/CATALYST/Catalyst-5000/ROUTE-SWITCH-MODULE"
 	elif prodcode == "c6atm":
-		prodname = "SWITCHES/CATALYST/Catalyst-6500/ATM"
+		prodname = "SWITCHES/CATALYST/Catalyst-6500-6800/ATM"
 	elif prodcode == "wscmm":
 		prodname = "SWITCHES/CATALYST/Catalyst-6500-6800/CMM"
 	elif prodcode == "wsidsm2":

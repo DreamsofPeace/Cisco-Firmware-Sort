@@ -566,6 +566,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("Cisco_Firepower_Threat") or 
 		name.startswith ("Cisco_Network_Sensor") or 
 		name.startswith ("Cisco_VDB_Fingerprint_Database") or
+		name.startswith ("lsp-rel-") or
 		name.startswith ("Clean") or 
 		name.startswith ("Firepower") or 
 		name.startswith ("IPS") or 
@@ -937,10 +938,19 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("Sx220") or 
 		name.startswith("Sx200") or 
 		name.startswith("MIBs_Sx500") or 
-		name.startswith("SPA30x_SPA50x_")
+		name.startswith("SPA30x_SPA50x_") or 
+		name.startswith("AP541N-K9")
 		):
-			#Small Business
-			continue
+			prodname = product ("smallbusiness")
+			utilssingleprodname (debug1,name,prodname)
+
+		elif (
+		name.startswith("c1200-k9") or 
+		name.startswith("c1200-rcvk9w8") or 
+		name.startswith("c1100-k9") or 
+		name.startswith("c1100-rcvk9w8")
+		):
+			fileprocessorios (debug1,name)
 
 		elif (
 		name.startswith("c1200") or 
@@ -1137,7 +1147,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 
 		elif name.startswith("cat5000-sup3."):
 			prodname = product ("cat5000")
-			imagecode = imagelookup ("sup3")
+			imagecode = imagelookup ("supg")
 			workname = name.replace(".bin","")
 			workname = workname.replace("cat5000-sup3.","")
 			utils_dev_imagecode_v2_vf_dash (debug1,name,prodname,imagecode,workname)
@@ -1325,6 +1335,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 
 		elif name.startswith("mre_workflow_signed"):
 			continue
+
 
 		else:
 			fileprocessorios (debug1,name)

@@ -25,6 +25,14 @@ def fileprocessorios (debug1,filename):
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
+	filename.startswith ("s72033-itpk9v") or
+	splitbydot[2].startswith ("SR")
+	):
+		prodname = product ("c7600s72033")
+		imagecode = imagelookup(splitbydash[1])
+		ios_classical (debug1,filename,prodname,imagecode)
+
+	elif (
 	filename == "sconvertit0-11.tar" or 
 	filename == "sconvertit0-12.tar" or 
 	filename == "wconvertit0-11.zip" or 
@@ -133,7 +141,8 @@ def fileprocessorios (debug1,filename):
 	filename == "VA_A_39t_B_35j_24m" or 
 	filename == "VA_B_38V_d24m.bin" or 
 	filename == "VA_A_39m_B_38u_24o_rc1_SDK_4.14L.04A-J.bin" or 
-	filename == "VA_A_39t_B_38r1_24o_rc1_SDK_4.14L.04A.bin"
+	filename == "VA_A_39t_B_38r1_24o_rc1_SDK_4.14L.04A.bin" or 
+	filename == "VA_A_39t_b_38r1_24o.bin"
 	):
 		prodname = product ("ISRG2GENERIC")
 		imagecode = imagelookup ("EHWICVADSLB")
@@ -195,6 +204,15 @@ def fileprocessorios (debug1,filename):
 	):
 		prodname = product ("c6500")
 		imagecode = imagelookup ("fpd")
+		ios_classical (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename.startswith ("c2900XL") or 
+	filename.startswith ("c2900xl")
+	):
+		splitbydash = filename.split("-")
+		prodname = product(splitbydash[0])
+		imagecode = imagelookup(splitbydash[1])
 		ios_classical (debug1,filename,prodname,imagecode)
 
 	elif (
