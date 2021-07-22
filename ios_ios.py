@@ -26,7 +26,7 @@ def fileprocessorios (debug1,filename):
 
 	elif (
 	filename.startswith ("s72033-itpk9v") or
-	splitbydot[2].startswith ("SR")
+	filename.startswith ("s72033") and splitbydot[2].startswith ("SR")
 	):
 		prodname = product ("c7600s72033")
 		imagecode = imagelookup(splitbydash[1])

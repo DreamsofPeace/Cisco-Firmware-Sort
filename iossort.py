@@ -329,7 +329,8 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		"tpgen" in name or 
 		"tpcgenx" in name or 
 		"tscgen" in name or 
-		"tscgenx" in name
+		"tscgenx" in name or 
+		"tipv6" in name
 		):
 			fileprocessorpagent(name)
 
@@ -458,6 +459,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		splitbydash[0] == "asr1000rpx86" or 
 		splitbydash[0] == "asr900rsp1" or 
 		splitbydash[0] == "asr900rsp2" or 
+		splitbydash[0] == "asr900rsp3" or 
 #		splitbydash[0] == "asr901" or 
 		splitbydash[0] == "asr901sec" or 
 		splitbydash[0] == "asr901rsp1" or 
@@ -466,6 +468,8 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		splitbydash[0] == "asr903rsp2" or 
 		splitbydash[0] == "asr903rsp2" or 
 		splitbydash[0] == "asr920" or 
+		splitbydash[0] == "asr920igp" or 
+		splitbydash[0] == "ct5760" or 
 		splitbydash[0] == "csr1000v" or 
 		splitbydash[0] == "csr1000v_milplr" or 
 		splitbydash[0] == "ie3x00" or 

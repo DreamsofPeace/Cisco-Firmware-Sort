@@ -2319,6 +2319,8 @@ def product (prodcode):
 		prodname = "ROUTERS/ASR/ASR-900-RSP1"
 	elif prodcode == "asr900rsp2":
 		prodname = "ROUTERS/ASR/ASR-900-RSP2"
+	elif prodcode == "asr900rsp3":
+		prodname = "ROUTERS/ASR/ASR-900-RSP3"
 	elif prodcode == "asr901":
 		prodname = "ROUTERS/ASR/ASR-901"
 	elif prodcode == "asr901rsp1":
@@ -2337,6 +2339,8 @@ def product (prodcode):
 		prodname = "ROUTERS/ASR/ASR-903-RSP2"
 	elif prodcode == "asr920":
 		prodname = "ROUTERS/ASR/ASR-920"
+	elif prodcode == "asr920igp":
+		prodname = "ROUTERS/ASR/ASR-920IGP"
 	elif prodcode == "urm":
 		prodname = "ROUTERS/ATM/IGX-8400"
 	elif prodcode == "rpm":
@@ -3223,6 +3227,8 @@ def product (prodcode):
 		prodname = "WIRELESS/CONTROLLER/5500"
 	elif prodcode == "CT5520":
 		prodname = "WIRELESS/CONTROLLER/5520"
+	elif prodcode == "ct5760":
+		prodname = "WIRELESS/CONTROLLER/5760"
 	elif prodcode == "SWLC3750K9":
 		prodname = "WIRELESS/CONTROLLER/CATALYST-3750"
 	elif prodcode == "SWISMK9":

@@ -169,6 +169,12 @@ def fileprocessor_iosxe(debug1,filename):
 		imagecode = imagelookup(mdash[1])
 		fileproc_iosxe_3 (filename,prodname,imagecode)
 
+	elif filename.startswith("ct5760"):
+		mdash = splitbydot[0].split("-")
+		prodname = product (mdash[0])
+		imagecode = imagelookup(mdash[1])
+		fileproc_iosxe_3 (filename,prodname,imagecode)
+
 	elif filename.startswith("cat4500e"):
 		prodname = product (splitbydash[0])
 		mdash = splitbydot[0].split("-")
