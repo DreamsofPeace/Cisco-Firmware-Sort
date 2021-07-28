@@ -3167,6 +3167,8 @@ def product (prodcode):
 		prodname = "WIRELESS/ACCESS-POINT/AIRONET-1310"
 	elif prodcode == "c1520":
 		prodname = "WIRELESS/ACCESS-POINT/AIRONET-1500-Mesh-AP"
+	elif prodcode == "c1570":
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-1570"
 	elif prodcode == "c350":
 		prodname = "WIRELESS/ACCESS-POINT/AIRONET-350"
 	elif prodcode == "c520":

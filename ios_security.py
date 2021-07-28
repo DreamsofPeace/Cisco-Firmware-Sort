@@ -843,6 +843,27 @@ def sec_pix (debug1,filename,prodname):
 	):
 		imagecode = imagelookup("occtoacl")
 		utilssinglemove (debug1,filename,prodname,imagecode)
+	elif (
+	filename.startswith("pix") and filename.endswith(".bin") or 
+	filename.startswith("PIX") and filename.endswith(".bin")
+	):
+		workname = filename.replace("PIX", "")
+		workname = workname.replace("pix", "")
+		workname = workname.replace(".bin", "")
+		splitbydash = workname.split("-")
+		#e.g. pix635.bin
+		if len(splitbydash) == 1:
+			mylist = list(splitbydash[0])
+#			if len(mylist) == 4:
+#				myver2 = util2digit(mylist[0],mylist[1])
+#				myverf = util4digit(mylist[0],mylist[1],mylist[2],mylist[3])
+			if len(mylist) == 3:
+				myver2 = util2digit(mylist[0],mylist[1])
+				myverf = util3digit(mylist[0],mylist[1],mylist[2])
+				filepath = filepath3 (prodname,myver2,myverf)
+				filemove (filepath, filename)
+		else:
+			verlist = list(splitbydash[0])
 
 def sec_asa_firmware (debug1,filename):
 	if debug1:
