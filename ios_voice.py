@@ -21,6 +21,14 @@ def fileprocessorvoice(debug1,filename):
 	):
 		prodname = product ("vg248")
 		utilssingleprodname (debug1,filename,prodname)
+
+	elif (
+	filename.startswith("cme") or 
+	filename.startswith("CME")
+	):
+		prodname = product ("voice")
+		imagecode = imagelookup ("cme")
+		utilssinglemove (debug1,filename,prodname,imagecode)
 	else:
 		messageunknownfile()
 

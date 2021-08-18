@@ -2270,6 +2270,8 @@ def imagelookup (imagecode):
 		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-3DES"
 	elif imagecode == "xy":
 		subdirectory = "UNKNOWN-FEATURE-SET"
+	elif imagecode == "cme":
+		subdirectory = "CALL-MANAGER-EXPRESS"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -3085,6 +3087,8 @@ def product (prodcode):
 		prodname = "USB-CONSOLE"
 	elif prodcode == "vg200":
 		prodname = "VOICE/GATEWAY/VG-200"
+	elif prodcode == "voice":
+		prodname = "VOICE"
 	elif prodcode == "vg20x":
 		prodname = "VOICE/GATEWAY/VG-202"
 	elif prodcode == "vg20xxm":

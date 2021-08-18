@@ -319,7 +319,9 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		if (
 		name.startswith("ata") or 
 		name.startswith("cmterm") or 
-		name.startswith("vgc-main")
+		name.startswith("vgc-main") or 
+		name.startswith("CME") or 
+		name.startswith("cme")
 		):
 			fileprocessorvoice(debug1,name)
 
@@ -969,6 +971,25 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		):
 			prodname = product ("c3750")
 			imagecode = imagelookup ("hdiag")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name == "17_1_1t_mib.zip" or 
+		name == "17_2_1_mib.zip" or 
+		name == "17_2_1a_mib.zip" or
+		name == "mibs_1610.zip" or
+		name == "mibs_1611.zip" or
+		name == "mibs_16121.zip" or
+		name == "mibs_16121s.zip" or
+		name == "mibs_16121t.zip" or
+		name == "mibs_16122s.zip" or
+		name == "mibs_16123.zip" or
+		name == "mibs_16124a.zip" or
+		name == "mibs_16125.zip" or 
+		name.startswith ("Standard-MIBS-Cisco_")
+		):
+			prodname = product ("wireless")
+			imagecode = imagelookup ("mibs")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
