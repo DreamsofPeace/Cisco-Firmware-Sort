@@ -804,8 +804,8 @@ def imagelookup (imagecode):
 		subdirectory = "CSG2-RTU-SAMI-NO-CRYPTO"
 	elif imagecode == "csmgeoip":
 		subdirectory = "CSM-GEOIP-DB"
-	elif imagecode == "ds":
-		subdirectory = "DESKTOP"
+#	elif imagecode == "ds":
+#		subdirectory = "DESKTOP"
 	elif imagecode == "dsv":
 		subdirectory = "DESKTOP-IBM"
 	elif imagecode == "do3s":
@@ -1079,7 +1079,7 @@ def imagelookup (imagecode):
 	elif imagecode == "jk9o3s":
 		subdirectory = "ENTERPRISE-FW-IDS-IPSEC-3DES"
 	elif imagecode == "io3s56i":
-		subdirectory = "ENTERPRISE-FW-IDS-IPSEC-56"
+		subdirectory = "IP-FW-PLUS-IPSEC-56"
 	elif imagecode == "jk8o3s":
 		subdirectory = "ENTERPRISE-FW-IDS-IPSEC-56"
 	elif imagecode == "jk8o3sv":
@@ -1485,7 +1485,7 @@ def imagelookup (imagecode):
 	elif imagecode == "a3i3r4":
 		subdirectory = "IP-IBM-SNASW"
 	elif imagecode == "ik2s":
-		subdirectory = "IP-IPSEC-3DES"
+		subdirectory = "IP-PLUS-IPSEC-3DES"
 	elif imagecode == "ik9su2":
 		subdirectory = "IP-IPSEC-3DES-LAWFUL-INTERCEPT"
 	elif imagecode == "ik8sv":
@@ -2684,9 +2684,9 @@ def product (prodcode):
 	elif prodcode == "acs":
 		prodname = "SECURITY/IDENTITY/ACS"
 	elif prodcode == "ise":
-		prodname = "SECURITY/IDENTITY/IDENTIY-SERVICES-ENGINE"
+		prodname = "SECURITY/IDENTITY/IDENTITY-SERVICES-ENGINE"
 	elif prodcode == "isepic":
-		prodname = "SECURITY/IDENTITY/IDENTIY-SERVICES-ENGINE-PIC"
+		prodname = "SECURITY/IDENTITY/IDENTITY-SERVICES-ENGINE-PIC"
 	elif prodcode == "ciscoutd":
 		prodname = "SECURITY/IOS-XE-UTD"
 	elif prodcode == "ipsids":
@@ -2932,21 +2932,21 @@ def product (prodcode):
 	elif prodcode == "cat9k_lite":
 		prodname = "SWITCHES/CATALYST/Catalyst-9200"
 	elif prodcode == "c1000":
-		prodname = "SWITCHES/COMPACT/CATALYST-1000"
+		prodname = "SWITCHES/COMPACT/Catalyst-1000"
 	elif prodcode == "c2960c405":
-		prodname = "SWITCHES/COMPACT/CATALYST-2960C"
+		prodname = "SWITCHES/COMPACT/Catalyst-2960C"
 	elif prodcode == "c2960c405ex":
-		prodname = "SWITCHES/COMPACT/CATALYST-2960CG"
+		prodname = "SWITCHES/COMPACT/Catalyst-2960CG"
 	elif prodcode == "c2960cx":
-		prodname = "SWITCHES/COMPACT/CATALYST-2960CX"
+		prodname = "SWITCHES/COMPACT/Catalyst-2960CX"
 	elif prodcode == "c3560c":
-		prodname = "SWITCHES/COMPACT/CATALYST-3560C"
+		prodname = "SWITCHES/COMPACT/Catalyst-3560C"
 	elif prodcode == "c3560c405":
-		prodname = "SWITCHES/COMPACT/CATALYST-3560C"
+		prodname = "SWITCHES/COMPACT/Catalyst-3560C"
 	elif prodcode == "c3560c405ex":
-		prodname = "SWITCHES/COMPACT/CATALYST-3560CG"
+		prodname = "SWITCHES/COMPACT/Catalyst-3560CG"
 	elif prodcode == "c3560cx":
-		prodname = "SWITCHES/COMPACT/CATALYST-3560CX"
+		prodname = "SWITCHES/COMPACT/Catalyst-3560CX"
 	elif prodcode == "cdb":
 		prodname = "SWITCHES/COMPACT/CATALYST-DIGITAL-BUILDING"
 	elif prodcode == "c2020":
@@ -2974,7 +2974,7 @@ def product (prodcode):
 	elif prodcode == "ie5000":
 		prodname = "SWITCHES/INDUSTRIAL-ETHERNET/IE-5000"
 	elif prodcode == "s6523":
-		prodname = "SWITCHES/METRO/CATALYST-6500ME"
+		prodname = "SWITCHES/METRO/Catalyst-6500ME"
 	elif prodcode == "me1200":
 		prodname = "SWITCHES/METRO/ME-1200"
 	elif prodcode == "ucs_ctrlr":

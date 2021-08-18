@@ -1463,6 +1463,13 @@ def sec_ise (debug1,filename):
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
+	filename == "ise-upgradebundle-2.6.x-3.0.x-to-3.1.0.518.SPA.x86_64.tar.gz"
+	):
+		imagecode = imagelookup("upgrade")
+		imagecode = "3.1/" + imagecode
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
 	filename.startswith("ise-patchbundle-")
 	):
 		imagecode = imagelookup("patch")

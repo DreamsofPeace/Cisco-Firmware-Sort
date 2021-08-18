@@ -575,7 +575,6 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("Firepower") or 
 		name.startswith ("IPS") or 
 		name.startswith ("ISE") or 
-		name.startswith ("PI") or 
 		name.startswith ("PIX") and name.endswith(".bin") or 
 		name.startswith ("PIX") or 
 		name.startswith ("SNS-35x5-BIOS") or 
