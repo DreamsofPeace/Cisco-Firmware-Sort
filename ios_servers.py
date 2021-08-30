@@ -243,7 +243,8 @@ def file_proc_servers (filename,debug1):
 	filename.startswith ("pi") or 
 	filename.startswith ("PNP-GATEWAY-VM-") or 
 	filename.startswith ("cisco-prime-pnp") or 
-	filename.startswith ("pnp-")
+	filename.startswith ("pnp-") or 
+	filename.startswith ("DnacPreCheckASSESMENTUbf")
 	):
 		file_proc_servers_primeinfra (debug1,filename)
 
@@ -671,7 +672,8 @@ def file_proc_servers_primeinfra (debug1,filename):
 	filename == "PI_3_5_1_Security_Update_02_Part_01of02-1.0.4.ubf" or
 	filename == "PI_3_5_1_Update_02-1.0.21.ubf" or
 	filename == "Device-Pack-1-PI3.5-29.ubf" or
-	filename == "Device-Pack-4-PI3.5-21.ubf"
+	filename == "Device-Pack-4-PI3.5-21.ubf" or
+	filename == "DnacPreCheckASSESMENTUbf_3_5-1.0.3.ubf"
 	):
 		utilssinglemove (debug1,filename,prodname,"3.5")
 
@@ -683,7 +685,8 @@ def file_proc_servers_primeinfra (debug1,filename):
 	filename == "PI-APL-3.6.0.0.172-1-K9.iso.signature" or
 	filename == "PI-APL-3.6.0.0.172-1-K9.iso" or
 	filename == "CiscoPI3.6.pem" or
-	filename == "PI-Upgrade-3.5_to_3.6.0.0.172.tar.gz"
+	filename == "PI-Upgrade-3.5_to_3.6.0.0.172.tar.gz" or
+	filename == "DnacPreCheckASSESMENTUbf_3_6-1.0.5.ubf"
 	):
 		utilssinglemove (debug1,filename,prodname,"3.6")
 
@@ -697,7 +700,8 @@ def file_proc_servers_primeinfra (debug1,filename):
 	filename == "PI-Upgrade-35x_36x_to_3.7.0.0.159.tar.gz" or
 	filename == "CiscoPI3.7.pem" or
 	filename == "PI-APL-3.7.0.0.159-1-K9.iso.signature" or
-	filename == "PI-APL-3.7.0.0.159-1-K9.iso"
+	filename == "PI-APL-3.7.0.0.159-1-K9.iso" or
+	filename == "DnacPreCheckASSESMENTUbf_3_7-1.0.4.ubf"
 	):
 		utilssinglemove (debug1,filename,prodname,"3.7")
 
@@ -709,7 +713,8 @@ def file_proc_servers_primeinfra (debug1,filename):
 	filename == "PI-APL-3.8.0.0.310-1-K9.iso.signature" or
 	filename == "CiscoPI3.8.pem" or
 	filename == "PI-VA-3.8.0.0.310.ova" or
-	filename == "PI-Upgrade-36x_37x_to_3.8.0.0.310.tar.gz"
+	filename == "PI-Upgrade-36x_37x_to_3.8.0.0.310.tar.gz" or
+	filename == "DnacPreCheckASSESMENTUbf_3_8-1.0.3.ubf"
 	):
 		utilssinglemove (debug1,filename,prodname,"3.8")
 
@@ -719,7 +724,8 @@ def file_proc_servers_primeinfra (debug1,filename):
 	filename == "PI-APL-3.9.0.0.219-1-K9.iso.signature" or
 	filename == "CiscoPI3.9.pem" or
 	filename == "PI-Upgrade-37x_38x_to_3.9.0.0.219.tar.gz" or
-	filename == "PI-VA-3.9.0.0.219.ova"
+	filename == "PI-VA-3.9.0.0.219.ova" or
+	filename == "DnacPreCheckASSESMENTUbf_3_9-1.0.5.ubf"
 	):
 		utilssinglemove (debug1,filename,prodname,"3.9")
 

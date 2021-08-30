@@ -2289,6 +2289,8 @@ def product (prodcode):
 		prodname = "NETWORK-MANAGEMENT/CISCO-PRIME-INFRASTRUCTURE"
 	elif prodcode == "dnac":
 		prodname = "NETWORK-MANAGEMENT/DNA-CENTER"
+	elif prodcode == "ttam":
+		prodname = "NETWORK-MANAGEMENT/DNA-CENTER-TRAFFIC"
 	elif prodcode == "cna":
 		prodname = "NETWORK-MANAGEMENT/NETWORK-ASSISTANT"
 	elif prodcode == "ntwkmgmt":

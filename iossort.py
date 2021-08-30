@@ -489,6 +489,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "ASR1K-fpga_prog.16.0.1.xe.bin" or 
 		name.startswith("cat3k_caa") or 
 		name.startswith("cat9k") or 
+		name.startswith("ttam") or 
 		name.startswith("ess3x00") or 
 		name.startswith("ie9k") or 
 		name.startswith("s5800") or 
@@ -778,6 +779,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "InstallerUpdateBE-1.0.5.tar.gz" or 
 		name == "ca_technology_package-2.1.0.0.41.ubf" or 
 		name.startswith ("Device-Pack") or 
+		name.startswith ("DnacPreCheckASSESMENTUbf") or 
 		name.startswith ("CiscoPI") or 
 		name.startswith ("PI") or 
 		name.startswith ("pi") or 
@@ -835,7 +837,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("V3_") and name.endswith ("axf") or 
 		name.startswith ("VAE2_") and name.endswith ("bin") or 
 		name.startswith ("VAEW_") and name.endswith ("bin") or 
-		name.startswith ("VA_") and name.endswith ("bin") or 
+		name.startswith ("VA_") or 
 		name == "portware.2730.ios" or 
 		name.startswith ("vdsl.bin") or 
 		name.startswith("mica-modem-pw") or 
