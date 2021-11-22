@@ -139,9 +139,15 @@ def fileprocessornxos (filename,debug1):
 		else:
 			fileprocnxosthreedigit (filename,prodname,imagecode,debug1)
 
-	elif splitbydot[0] == "nxos":
+	elif (
+	splitbydot[0] == "nxos" or 
+	splitbydot[0] == "nxos64"
+	):
 		prodname = product("nxos")
 		if len(splitbydot) == 5:
+			imagecode = imagelookup("system")
+			fileprocnxosthreedigit (filename,prodname,imagecode,debug1)
+		elif len(splitbydot) == 6:
 			imagecode = imagelookup("system")
 			fileprocnxosthreedigit (filename,prodname,imagecode,debug1)
 		elif len(splitbydot) == 7:
