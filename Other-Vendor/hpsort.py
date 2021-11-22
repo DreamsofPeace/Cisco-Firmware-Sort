@@ -15,8 +15,14 @@ def product (prodcode):
 		prodname = "SWITCHES/HPE-ARUBA-8320"
 	elif prodcode == "8325":
 		prodname = "SWITCHES/HPE-ARUBA-8325"
+	elif prodcode == "8360":
+		prodname = "SWITCHES/HPE-ARUBA-8360"
 	elif prodcode == "8400X":
 		prodname = "SWITCHES/HPE-ARUBA-8400X"
+	elif prodcode == "6100":
+		prodname = "SWITCHES/HPE-ARUBA-6100"
+	elif prodcode == "6200":
+		prodname = "SWITCHES/HPE-ARUBA-6200"
 	elif prodcode == "A":
 		prodname = "SWITCHES/HPE-ARUBA-2915(A)"
 	elif prodcode == "C":
@@ -49,6 +55,16 @@ def product (prodcode):
 		prodname = "SWITCHES/HP-1810G(PS)"
 	elif prodcode == "Q":
 		prodname = "SWITCHES/HP-2510-24(Q)"
+	elif prodcode == "M":
+		prodname = "SWITCHES/HP-3400cl-6500cl(M)"
+	elif prodcode == "E":
+		prodname = "SWITCHES/HP-5300xl(E)"
+	elif prodcode == "I":
+		prodname = "SWITCHES/HP-2824-2828(I)"
+	elif prodcode == "CY":
+		prodname = "SWITCHES/HP-EDGE-8100fl(CY)"
+	elif prodcode == "L":
+		prodname = "SWITCHES/HP-4200vl(L)"
 	elif prodcode == "R":
 		prodname = "SWITCHES/HPE-2610(R)"
 	elif prodcode == "RA":
@@ -79,8 +95,12 @@ def product (prodcode):
 		prodname = "SWITCHES/HPE-ARUBA-2540(YC)"
 	elif prodcode == "api":
 		prodname = "REST-API"
+	elif prodcode == "sim":
+		prodname = "SIMULATOR"
 	elif prodcode == "mibs":
 		prodname = "MIBS"
+	elif prodcode == "NetEdit":
+		prodname = "NetEdit"
 	elif prodcode == "MAS":
 		prodname = "SWITCHES/ARUBA-x500"
 	elif prodcode == "6xx":
@@ -332,6 +352,18 @@ def dirwalk (src,hashsha512,hashfile):
 		elif filename == "ArubaOS-CX_10.00_MIBs_Dec2017.zip":
 			prodname = product ("mibs")
 			base_directory_move (filename, prodname)
+		elif "MIBs" in filename:
+			prodname = product ("mibs")
+			base_directory_move (filename, prodname)
+		elif "NetEdit" in filename:
+			prodname = product ("NetEdit")
+			base_directory_move (filename, prodname)
+		elif "Simulator" in filename:
+			prodname = product ("sim")
+			base_directory_move (filename, prodname)
+		elif filename.startswith("ArubaOS-CX_") and filename.endswith("_ova.zip"):
+			prodname = product ("sim")
+			base_directory_move (filename, prodname)
 		elif filename == "HTML_Templates_Web-Auth-Custom-HTML-Templates-Feb2012.zip":
 			prodname = product ("webauth")
 			base_directory_move (filename, prodname)
@@ -364,15 +396,35 @@ def dirwalk (src,hashsha512,hashfile):
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_8320_","")
 			new_style_move (filename, prodname, workname, "_")
+		elif filename.startswith("CY"):
+			prodname = product ("CY")
+			workname = filename.replace(".swi","")
+			workname = workname.replace("CY.","")
+			new_style_move (filename, prodname, workname, ".")
 		elif filename.startswith("ArubaOS-CX_8325"):
 			prodname = product ("8325")
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_8325_","")
 			new_style_move (filename, prodname, workname, "_")
+		elif filename.startswith("ArubaOS-CX_8360"):
+			prodname = product ("8360")
+			workname = filename.replace(".swi","")
+			workname = workname.replace("ArubaOS-CX_8360_","")
+			new_style_move (filename, prodname, workname, "_")
 		elif filename.startswith("ArubaOS-CX_8400X"):
 			prodname = product ("8400X")
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_8400X_","")
+			new_style_move (filename, prodname, workname, "_")
+		elif filename.startswith("ArubaOS-CX_6100"):
+			prodname = product ("6100")
+			workname = filename.replace(".swi","")
+			workname = workname.replace("ArubaOS-CX_6100_","")
+			new_style_move (filename, prodname, workname, "_")
+		elif filename.startswith("ArubaOS-CX_6200"):
+			prodname = product ("6200")
+			workname = filename.replace(".swi","")
+			workname = workname.replace("ArubaOS-CX_6200_","")
 			new_style_move (filename, prodname, workname, "_")
 		elif filename.startswith("PL_"):
 			prodname = product ("PL")
@@ -507,6 +559,26 @@ def dirwalk (src,hashsha512,hashfile):
 			prodname = product ("Q")
 			workname = filename.replace(".swi","")
 			workname = workname.replace("Q_","")
+			new_style_move (filename, prodname, workname, "_")
+		elif filename.startswith("L_"):
+			prodname = product ("L")
+			workname = filename.replace(".swi","")
+			workname = workname.replace("L_","")
+			new_style_move (filename, prodname, workname, "_")
+		elif filename.startswith("M_"):
+			prodname = product ("M")
+			workname = filename.replace(".swi","")
+			workname = workname.replace("M_","")
+			new_style_move (filename, prodname, workname, "_")
+		elif filename.startswith("E_"):
+			prodname = product ("E")
+			workname = filename.replace(".swi","")
+			workname = workname.replace("E_","")
+			new_style_move (filename, prodname, workname, "_")
+		elif filename.startswith("I_"):
+			prodname = product ("I")
+			workname = filename.replace(".swi","")
+			workname = workname.replace("I_","")
 			new_style_move (filename, prodname, workname, "_")
 		elif filename.startswith("device-api"):
 			prodname = product ("api")

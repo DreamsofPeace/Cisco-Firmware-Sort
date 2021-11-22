@@ -448,6 +448,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		splitbydot[0] == "C9800-40-universalk9_wlc" or 
 		splitbydot[0] == "C9800-80-universalk9_wlc" or 
 		splitbydot[0] == "C9800-CL-universalk9" or 
+		splitbydot[0] == "C9800-CL-universalk9_kvm" or 
 		splitbydot[0] == "C9800-L-universalk9_wlc" or 
 		splitbydot[0] == "C9800-SW-iosxe-wlc" or 
 		splitbydot[0] == "C9800-AP-universalk9" or 
