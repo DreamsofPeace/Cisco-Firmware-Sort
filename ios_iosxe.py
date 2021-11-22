@@ -146,10 +146,10 @@ def fileprocessor_iosxe(debug1,filename):
 		else:
 			if filename.endswith("smu.bin"):
 				imagecode = imagelookup("smu")
-				fileproc_iosxe (filename,prodname,imagecode)
+				fileproc_iosxe (debug1,filename,prodname,imagecode)
 			else:
 				imagecode = imagelookup(splitbydot[0])
-				fileproc_iosxe (filename,prodname,imagecode)
+				fileproc_iosxe (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("cat3k_caa"):
 		prodname = product (splitbydash[0])
@@ -159,21 +159,21 @@ def fileprocessor_iosxe(debug1,filename):
 		filename.startswith("cat3k_caa-universalk9.SPA") or 
 		filename.startswith("cat3k_caa-universalk9ldpe.SPA")
 		):
-			fileproc_iosxe_3 (filename,prodname,imagecode)
+			fileproc_iosxe_3 (debug1,filename,prodname,imagecode)
 		else:
-			fileproc_iosxe(filename,prodname,imagecode)
+			fileproc_iosxe(debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("cat4500es8"):
 		mdash = splitbydot[0].split("-")
 		prodname = product (mdash[0])
 		imagecode = imagelookup(mdash[1])
-		fileproc_iosxe_3 (filename,prodname,imagecode)
+		fileproc_iosxe_3 (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("ct5760"):
 		mdash = splitbydot[0].split("-")
 		prodname = product (mdash[0])
 		imagecode = imagelookup(mdash[1])
-		fileproc_iosxe_3 (filename,prodname,imagecode)
+		fileproc_iosxe_3 (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("cat4500e"):
 		prodname = product (splitbydash[0])
@@ -185,19 +185,20 @@ def fileprocessor_iosxe(debug1,filename):
 		filename.startswith("cat4500e-universalk9_lite") or 
 		filename.startswith("cat4500e-universal_lite")
 		):
-			fileproc_iosxe_3 (filename,prodname,imagecode)
+			fileproc_iosxe_3 (debug1,filename,prodname,imagecode)
 		else:
-			fileproc_iosxe(filename,prodname,imagecode)
+			fileproc_iosxe(debug1,filename,prodname,imagecode)
 
 	elif (
 	splitbydot[0] == "C9800-40-universalk9_wlc" or 
 	splitbydot[0] == "C9800-80-universalk9_wlc" or 
 	splitbydot[0] == "C9800-CL-universalk9" or 
+	splitbydot[0] == "C9800-CL-universalk9_kvm" or 
 	splitbydot[0] == "C9800-L-universalk9_wlc" or 
 	splitbydot[0] == "C9800-SW-iosxe-wlc" or 
 	splitbydot[0] == "C9800-AP-universalk9"
 	):
-		fileproccontroller (filename)
+		fileproccontroller (debug1,filename)
 
 	elif filename.startswith("ie9k_"):
 		if filename.startswith("ie9k_iosxe"):
@@ -221,29 +222,36 @@ def fileprocessor_iosxe(debug1,filename):
 		elif imagecode == "UNKNOWN":
 			messageunknownfeat()
 		else:
-			fileproc_iosxe(filename,prodname,imagecode)
+			fileproc_iosxe(debug1,filename,prodname,imagecode)
 
-def fileproccontroller (filename):
+def fileproccontroller (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tfileproccontroller")
 	if filename.startswith("C9800-40-universalk9_wlc"):
 		prodname = product ("C9800-40")
-		fileproc_iosxe_noimagecode (filename,prodname)
+		fileproc_iosxe_noimagecode (debug1,filename,prodname)
 	elif filename.startswith("C9800-80-universalk9_wlc"):
 		prodname = product ("C9800-80")
-		fileproc_iosxe_noimagecode (filename,prodname)
+		fileproc_iosxe_noimagecode (debug1,filename,prodname)
+	elif filename.startswith("C9800-CL-universalk9_kvm"):
+		prodname = product ("C9800-CL")
+		fileproc_iosxe_noimagecode (debug1,filename,prodname)
 	elif filename.startswith("C9800-CL-universalk9"):
 		prodname = product ("C9800-CL")
-		fileproc_iosxe_noimagecode (filename,prodname)
+		fileproc_iosxe_noimagecode (debug1,filename,prodname)
 	elif filename.startswith("C9800-L-universalk9_wlc"):
 		prodname = product ("C9800-L")
-		fileproc_iosxe_noimagecode (filename,prodname)
+		fileproc_iosxe_noimagecode (debug1,filename,prodname)
 	elif filename.startswith("C9800-SW-iosxe-wlc"):
 		prodname = product ("C9800-SW")
-		fileproc_iosxe_noimagecode (filename,prodname)
+		fileproc_iosxe_noimagecode (debug1,filename,prodname)
 	elif filename.startswith("C9800-AP-universalk9"):
 		prodname = product ("C9800-AP")
-		fileproc_iosxe_noimagecode (filename,prodname)
+		fileproc_iosxe_noimagecode (debug1,filename,prodname)
 
-def fileproc_iosxe_noimagecode (filename,prodname):
+def fileproc_iosxe_noimagecode (debug1,filename,prodname):
+	if debug1:
+		print("\tSubroutine#\tfileproc_iosxe_noimagecode")
 	splitbydot = filename.split(".")
 	splitbydot[3] = splitbydot[3].replace("-serial", "")
 	splitbydot[3] = splitbydot[3].replace("-nfvis", "")
@@ -260,7 +268,9 @@ def fileproc_iosxe_noimagecode (filename,prodname):
 		filepath = filepath3(prodname,iosmain,iosfull)
 		filemove (filepath, filename)
 
-def fileproc_iosxe_3 (filename,prodname,imagecode):
+def fileproc_iosxe_3 (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tfileproc_iosxe_3")
 	splitbydot = filename.split(".")
 	if splitbydot[4].startswith("CSC") and splitbydot[6]  == "smu":
 		iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
@@ -272,7 +282,9 @@ def fileproc_iosxe_3 (filename,prodname,imagecode):
 		filepath = filepath4(prodname,iosmain,iosfull,imagecode)
 		filemove (filepath, filename)
 
-def fileproc_iosxe (filename,prodname,imagecode):
+def fileproc_iosxe (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tfileproc_iosxe")
 	splitbydot = filename.split(".")
 	splitbydot[3] = splitbydot[3].replace("-serial", "")
 	splitbydot[3] = splitbydot[3].replace("-nfvis", "")
@@ -290,7 +302,9 @@ def fileproc_iosxe (filename,prodname,imagecode):
 		filemove (filepath, filename)
 
 
-def fileproc_sdwan (filename,prodname,imagecode):
+def fileproc_sdwan (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tfileproc_sdwan")
 	splitbydot = filename.split(".")
 	iosmain = util2digit(splitbydot[1],splitbydot[2])
 	iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
