@@ -2080,6 +2080,8 @@ def imagelookup (imagecode):
 		subdirectory = "TRANSLATIONS"
 	elif imagecode == "turboboot":
 		subdirectory = "TURBO-BOOT"
+	elif imagecode == "universalk9milplr":
+		subdirectory = "UNIVERSAL-MILITARY"
 	elif imagecode == "universalk9":
 		subdirectory = "UNIVERSAL"
 	elif imagecode == "universalk9_ias":
@@ -2274,6 +2276,8 @@ def imagelookup (imagecode):
 		subdirectory = "UNKNOWN-FEATURE-SET"
 	elif imagecode == "cme":
 		subdirectory = "CALL-MANAGER-EXPRESS"
+	elif imagecode == "specialbuilds":
+		subdirectory = "SPECIAL-BUILDS"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2297,6 +2301,8 @@ def product (prodcode):
 		prodname = "NETWORK-MANAGEMENT/NETWORK-ASSISTANT"
 	elif prodcode == "ntwkmgmt":
 		prodname = "NETWORK-MANAGEMENT"
+	elif prodcode == "cworks":
+		prodname = "NETWORK-MANAGEMENT/CiscoWorks"
 	elif prodcode == "ons15530":
 		prodname = "ROUTERS/OPTICAL/ONS-15530"
 	elif prodcode == "ons15540":
@@ -2697,6 +2703,8 @@ def product (prodcode):
 		prodname = "SECURITY/IOS-XE-UTD"
 	elif prodcode == "ipsids":
 		prodname = "SECURITY/IDS-IPS"
+	elif prodcode == "iosids":
+		prodname = "SECURITY/IOS-IDS"
 	elif prodcode == "ironport":
 		prodname = "SECURITY/IRONPORT"
 	elif prodcode == "mars":

@@ -316,7 +316,131 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		elif name.endswith("pdf"):
 			continue
 
-		if (
+		elif (
+		name == "cat9k.16121.0911.bin" or 
+		name == "cat9k.16121_au.bin" or 
+		name == "cat9k_iosxe.BLD_V171_EFT-1.SSA.bin" or 
+		name == "cat9k_iosxe.BLD_V171_EFT-2.SSA.bin" or 
+		name == "cat9k_iosxe.V171_1S_TES2.SPA.bin" or 
+		name == "cat9k_iosxe.16.12-xFSU-eft1.bin" or 
+		name == "cat9k_iosxe.16.12-xFSU-eft2.bin" or 
+		name == "cat9k_iosxe.16.12-xFSU-eft3.bin" or 
+		name == "cat9k_iosxe.S2C.SSA.bin" or 
+		name == "cat9k_iosxe.V1611_1S_ES4.SPA.bin" or 
+		name == "cat9k_iosxe.BLD_POLARIS_DEV_LATEST_20190327_151803.SSA.bin" or 
+		name.startswith("cat9k_iosxe") and "THROTTLE" in name
+		):
+			prodname = product ("cat9k")
+			imagecode = imagelookup ("specialbuilds")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+
+		elif (
+		name.startswith("C9800-40-") and "THROTTLE" in name
+		):
+			prodname = product ("C9800-40")
+			imagecode = imagelookup ("specialbuilds")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name.startswith("C9800-80-") and "THROTTLE" in name
+		):
+			prodname = product ("C9800-80")
+			imagecode = imagelookup ("specialbuilds")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name.startswith("C9800-L-") and "THROTTLE" in name
+		):
+			prodname = product ("C9800-L")
+			imagecode = imagelookup ("specialbuilds")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name == "C9800-CL-universalk9.2019-04-26_10.55_bachidam.0.CSCvo94596.SSA.apdp.bin" or 
+		name == "C9800-CL-universalk9.2019-05-13_15.09_sisharm2.SSA.bin" or 
+		name == "C9800-CL-universalk9.2019-05-16_19.27_sisharm2.SSA.bin" or 
+		name == "C9800-CL-universalk9.2019-07-09_07.29_ghalwasi.SSA.bin" or 
+		name == "C9800-CL-universalk9.2019-08-07_14.47_raghasin.SSA.bin" or 
+		name == "C9800-CL-universalk9.2019-09-16_14.42_gbks.SSA.bin" or 
+		name.startswith("C9800-CL-") and "THROTTLE" in name
+		):
+			prodname = product ("C9800-CL")
+			imagecode = imagelookup ("specialbuilds")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name.startswith("C9800-SW-") and "THROTTLE" in name
+		):
+			prodname = product ("C9800-SW")
+			imagecode = imagelookup ("specialbuilds")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name == "c1100-universalk9.V16_12_0_136.SSA.bin"
+		):
+			prodname = product ("c1100router")
+			imagecode = imagelookup ("specialbuilds")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name == "asr1000rp1-adventerprisek9.BLD_V122_33_XNC_ASR_RLS3_THROTTLE_LATEST_20090513_080032.bin" or 
+		name == "asr1000rp1-advipservicesk9.V152_1_S1_CSCTR15153_3.bin"
+		):
+			prodname = product ("asr1000rp1")
+			imagecode = imagelookup ("specialbuilds")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name == "asr1000rpx86-universalk9.V1612_1_CVE_2019_1649.SPA.bin"
+		):
+			prodname = product ("asr1000rpx86")
+			imagecode = imagelookup ("specialbuilds")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name == "c180x-advipservicesk9-mz.V124_15_T1-CSCsk94464-ES.bin"
+		):
+			prodname = product ("c180x")
+			imagecode = imagelookup ("specialbuilds")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		".cv50." in name and name.endswith(".zip")
+		):
+			prodname = product ("cworks")
+			imagecode = imagelookup ("rme")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name.startswith("IOS-S") and name.endswith("-CLI.pkg") or 
+		name.startswith("IOS-S") and name.endswith(".zip")
+		):
+			prodname = product ("iosids")
+			imagecode = imagelookup ("signatures")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name.startswith("IDS-sig-") and name.endswith(".zip") or 
+		name.startswith("IDS-sig-") and name.endswith(".readme.txt")
+		):
+			prodname = product ("ipsids")
+			imagecode = imagelookup ("signatures")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name.startswith("IPS-4240-K9-") and name.endswith("-E4.pkg") or
+		name.startswith("IPS-4255-K9-") and name.endswith("-E4.pkg") or
+		name.startswith("IPS-4260-K9-") and name.endswith("-E4.pkg") or
+		name.startswith("IPS-SSM_10-K9-") and name.endswith("-E4.pkg") or
+		name.startswith("IPS-SSM_20-K9-") and name.endswith("-E4.pkg") or
+		name.startswith("IPS-SSM_40-K9-") and name.endswith("-E4.pkg")
+		):
+			prodname = product ("ipsids")
+			imagecode = imagelookup ("engine")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
 		name.startswith("ata") or 
 		name.startswith("cmterm") or 
 		name.startswith("vgc-main") or 
