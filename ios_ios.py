@@ -261,6 +261,24 @@ def fileprocessorios (debug1,filename):
 		ios_spa (debug1,filename,prodname,imagecode)
 
 	elif (
+	filename.startswith ("c5915-adventerprisek9-mz.SPA") or 
+	filename.startswith ("c5915-entbase-mz.SPA")
+	):
+		splitbydash = filename.split("-")
+		prodname = product("c5915")
+		imagecode = imagelookup(splitbydash[1])
+		ios_spa (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename.startswith ("c5940-adventerprisek9-mz.SPA") or 
+	filename.startswith ("c5940-entbase-mz.SPA")
+	):
+		splitbydash = filename.split("-")
+		prodname = product("c5940")
+		imagecode = imagelookup(splitbydash[1])
+		ios_spa (debug1,filename,prodname,imagecode)
+
+	elif (
 	filename.startswith ("dsc-c5800-mz")
 	):
 		splitbydash = filename.split("-")
