@@ -87,14 +87,19 @@ def file_proc_servers (filename,debug1):
 		imagecode = imagelookup("catalog")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
-	elif filename.startswith("delnorte2"):
+	elif (
+	filename.startswith("delnorte") or 
+	filename.startswith("delnorte2")
+	):
 		prodname = product("c2xxm4")
 		imagecode = imagelookup("catalog")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
+	filename.startswith("plumas1") or 
 	filename.startswith("plumas2") or 
-	filename.startswith("UCSC-C240-M5")
+	filename.startswith("UCSC-C220-M5-") or 
+	filename.startswith("UCSC-C240-M5-")
 	):
 		prodname = product("c2xxm5")
 		imagecode = imagelookup("catalog")
@@ -515,6 +520,11 @@ def file_proc_servers_aci (debug1,filename,prodname):
 		workname = workname.replace("_part2.ova", "")
 		workname = workname.replace("_part3.ova", "")
 		workname = workname.replace("_part4.ova", "")
+		workname = workname.replace("_part5.ova", "")
+		workname = workname.replace("_part6.ova", "")
+		workname = workname.replace("_part7.ova", "")
+		workname = workname.replace("_part8.ova", "")
+		workname = workname.replace("_part9.ova", "")
 		workname = workname.replace("-",".")
 		splitbydot = workname.split(".")
 		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)

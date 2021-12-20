@@ -26,6 +26,19 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 		filemove (filepath, filename)
 
 	elif (
+	filename.startswith("asacx-5500x-boot") or 
+	filename.startswith("asacx-boot")
+	):
+		prodname = product ("asacx")
+		imagecode = imagelookup("boot")
+		sec_asacx (debug1,filename,prodname,imagecode)
+
+	elif filename.startswith("asacx-sys-"):
+		prodname = product ("asacx")
+		imagecode = imagelookup("system")
+		sec_asacx (debug1,filename,prodname,imagecode)
+
+	elif (
 	filename.startswith("sg") and filename.endswith("zip") or 
 	filename.startswith("sg") and filename.endswith("adi") or 
 	filename.startswith("sg") and filename.endswith("adi-gz") or 
@@ -86,6 +99,14 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif(
+	filename.startswith("FMT-CP-Config-Extractor") or 
+	filename.startswith("Firepower_Migration_Tool")
+	):
+		prodname = product("firepower")
+		imagecode = imagelookup("configconvert")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif(
 	filename.startswith("np") and filename.endswith(".bin") or 
 	filename.startswith("pdm") and filename.endswith(".bin") or 
 	filename == "PIXtoASA_1_0.zip" or 
@@ -139,7 +160,8 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	elif(
 	filename.startswith ("SNS-36xx-BIOS") or 
 	filename.startswith ("SNS-36xx-firmware") or 
-	filename.startswith ("upd-pkg-SNS-36xx-cimc")
+	filename.startswith ("upd-pkg-SNS-36xx-cimc") or 
+	filename.startswith ("SNS-36xx-HUU")
 	):
 		prodname = product("ise")
 		imagecode = imagelookup("sns36xx")
@@ -199,7 +221,8 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	filename.startswith("hostscan-") or 
 	filename.startswith("thirdparty") or 
 	filename.startswith("tools-anyconnect") or 
-	filename.startswith("sampleTransforms")
+	filename.startswith("sampleTransforms") or 
+	filename.startswith("external-sso")
 	):
 		sec_anyconnect (debug1,filename)
 
@@ -420,7 +443,7 @@ def sec_ipsec_client (debug1,filename):
 		workname = filename.replace("vpnclient-linux-x86_64-","")
 		workname = workname.replace("vpnclient-linux-","")
 		workname = workname.replace("-k9.tar.gz","")
-		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 	elif (
 	filename.startswith("vpnclient-solaris-")
 	):
@@ -2020,6 +2043,12 @@ def sec_anyconnect (debug1,filename):
 		sec_anyconnect_p4_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (
+	filename.startswith("external-sso-")
+	):
+		imagecode = imagelookup("external-sso")
+		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
+
+	elif (
 	filename.startswith("anyconnect-posture-win-") or 
 	filename.startswith("anyconnect-posture-mac-")
 	):
@@ -2316,3 +2345,21 @@ def sec_mars_os (debug1,filename):
 	verfour = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
 	filepath = filepath3(prodname,vertwo,verfour)
 	filemove (filepath, filename)
+
+def sec_asacx (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_asacx")
+	workname = filename.replace(".pkg","")
+	workname = workname.replace(".img","")
+	workname = workname.replace("asacx-sys-","")
+	workname = workname.replace("asacx-5500x-boot-","")
+	workname = workname.replace("asacx-boot-","")
+	splitbydot = workname.split(".")
+	if len (splitbydot) == 3:
+		verfour = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		filepath = filepath2(prodname,verfour)
+		filemove (filepath, filename)
+	elif len (splitbydot) == 4:
+		verfour = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+		filepath = filepath2(prodname,verfour)
+		filemove (filepath, filename)
