@@ -181,7 +181,7 @@ def iosxr_asr9k (debug1,filename):
 	elif filename.startswith("asr9k-mini-x64-migrate_to_eXR"):
 		imagecode = imagelookup("migrate_to_eXR")
 		iosxr_dot1_ver3 (debug1,filename,prodname,imagecode)
-	elif filename.startswith("asr9k-full-x64-migrate_to_eXR"):
+	elif filename.startswith("asr9k-full-x64-migrate_to_eXR.tar"):
 		imagecode = imagelookup("migrate_to_eXR")
 		iosxr_dot1_ver3 (debug1,filename,prodname,imagecode)
 	elif filename.startswith("asr9k-mini-x64-"):
