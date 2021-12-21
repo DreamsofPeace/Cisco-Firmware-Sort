@@ -334,7 +334,6 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			imagecode = imagelookup ("specialbuilds")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
-
 		elif (
 		name.startswith("C9800-40-") and "THROTTLE" in name
 		):
@@ -439,6 +438,112 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			prodname = product ("ipsids")
 			imagecode = imagelookup ("engine")
 			utilssinglemove (debug1,name,prodname,imagecode)
+		elif (
+			name == "c3900e-universalk9-mz.SSA.152-4.M.CSCtw93694.bin" or 
+			name == "c3900e-universalk9-mz.SSA.152-4.M.CSCtw93694_Feb16.bin" or 
+			name == "c3900e-universalk9-mz.SSA.154-20160808061644.skaliath-NIGHTLY_V154_3_M_THROTTLE_201608041309-104-CSCva77149.bin" or 
+			name == "c3900e-universalk9-mz.SSA.154-20160819103204.skaliath-PRE_RELEASE_FC1_V154_3_M6-105-CSCva77149.bin"
+		):
+			prodname = product ("c3900")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name == "cat9k.16121.0911.bin" or 
+			name == "cat9k.16121_au.bin" or 
+			name == "cat9k_iosxe.V171_1S_TES2.SPA.bin" or 
+			name == "cat9k_bidir_updated.bin" or 
+			name == "cat9k_fraport_bidir.bin" or 
+			name == "cat9k_iosxe.16.12-xFSU-eft1.bin" or 
+			name == "cat9k_iosxe.16.12-xFSU-eft2.bin" or 
+			name == "cat9k_iosxe.16.12-xFSU-eft3.bin" or 
+			name == "cat9k_private_image_802.3bt.bin" or 
+			name == "cat9k_iosxe.BLD_V171_EFT-1.SSA.bin" or 
+			name == "cat9k_iosxe.BLD_V171_EFT-2.SSA.bin" or 
+			name.startswith("cat9k") and "THROTTLE_LATEST" in name or 
+			name.startswith("cat9k") and "prd" in name or 
+			name.startswith("cat9k") and "eft" in name
+		):
+			prodname = product ("cat9k")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name.startswith("cat3k") and "THROTTLE_LATEST" in name or 
+			name == "cat3k_caa-universalk9.2017-04-24_21.14_phkotamr.SSA.bin" or 
+			name == "cat3k_caa-universalk9.2017-05-26_21.07_phkotamr.SSA.bin" or 
+			name == "cat3k_caa-universalk9.2017-06-13_16.05_phkotamr.SSA.bin" or 
+			name == "cat3k_caa-universalk9.SSA.03.07.05.E5.662.152-3.6.62.E5.bin" or 
+			name == "cat3k_caa-universalk9.SSA.03.07.05.E5.662.152-3.6.62.E5.txt" or 
+			name == "cat3k_caa-universalk9.SSA.03.10.24.EXP.150-10.24.EXP.bin"
+		):
+			prodname = product ("cat3k_caa")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name.startswith("isr4300") and "THROTTLE_LATEST" in name
+		):
+			prodname = product ("isr4300")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name.startswith("isr4400") and "THROTTLE_LATEST" in name
+		):
+			prodname = product ("isr4400")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name.startswith("csr1000v") and "THROTTLE_LATEST" in name
+		):
+			prodname = product ("csr1000v")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name.startswith("asr1000") and "THROTTLE_LATEST" in name
+		):
+			prodname = product ("asr1000")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name.startswith("asr1002x") and "THROTTLE_LATEST" in name
+		):
+			prodname = product ("asr1002x")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name == "c3750-dmon-mz.122-25r.SEC" or 
+			name == "c3750-dmon-mz-122-25r.SEE4"
+		):
+			prodname = product ("c3750")
+			imagecode = imagelookup ("hdiag")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name == "AnyConnect-CSA.zip"
+		):
+			prodname = product ("csa")
+			imagecode = imagelookup ("export")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name.startswith("i86bi") or 
+		name.startswith("I86BI")
+		):
+			prodname = product ("iou")
+			utilssingleprodname (debug1,name,prodname)
+
+		elif (
+		name.startswith("vios") or 
+		name.startswith("vIOS")
+		):
+			prodname = product ("vios")
+			utilssingleprodname (debug1,name,prodname)
 
 		elif (
 		name.startswith("ata") or 
@@ -630,7 +735,9 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "nim_vab_phy_fw_A39x3_B39x3_Bond39t.pkg" or 
 		name == "asr1000rp1-advipservicesk9.V152_1_S1_CSCTR15153_3.bin" or 
 		name == "asr903rsp1-universalk9_npe.V154_3_S3_SR637267017_1.bin" or 
-		name == "asr1000rp1-adventerprisek9.BLD_V122_33_XNC_ASR_RLS3_THROTTLE_LATEST_20090513_080032.bin"
+		name == "asr1000rp1-adventerprisek9.BLD_V122_33_XNC_ASR_RLS3_THROTTLE_LATEST_20090513_080032.bin" or 
+		name.startswith ("WP76xx") or 
+		name.endswith ("comp_matrix.xml")
 		):
 			fileprocessor_iosxe(debug1,name)
 
@@ -764,11 +871,14 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("webagent") or 
 		name.startswith ("win_spw") or 
 		name.startswith("anyconnect") or 
+		name.startswith("external-sso") or 
 		name.startswith("c6svc-fwm-k9") or 
 		name.startswith("cisco-ftd") or
 		name.startswith("sg") and name.endswith("adi") or 
 		name.startswith("sg") and name.endswith("adi-gz") or 
-		name.startswith("sg") and name.endswith("zip")
+		name.startswith("sg") and name.endswith("zip") or 
+		name.startswith("FMT-CP-Config-Extractor") or 
+		name.startswith("Firepower_Migration_Tool")
 		):
 			fileprocessorsecurity(debug1,name,filename)
 
@@ -780,7 +890,9 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("ucs") or 
 		name.startswith("update_pkg-ucse") or 
 		name.startswith("pid-ctlg") or 
+		name.startswith("delnorte") or 
 		name.startswith("delnorte2") or 
+		name.startswith("plumas") or 
 		name.startswith("plumas2") or 
 		name == "Signed_EN_BIOS_1.5.0.4.bin.SPA" or 
 		name == "1X0DBIOSv4.8" or 
@@ -912,7 +1024,8 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("cisco-prime-pnp") or 
 		name.startswith ("pnp-") or 
 		name.startswith ("DNAC-") or 
-		name.startswith ("dnac")
+		name.startswith ("dnac") or 
+		name.startswith ("UCSC-C220-M5-")
 		):
 			file_proc_servers(name,debug1)
 
@@ -923,9 +1036,13 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("fullk9-R-XRV9000") or 
 		name.startswith("asr9k") or 
 		name.startswith("xrv9k") or 
+		name.startswith("XRV9K") or 
+		name.startswith("XRV9000") or 
 		name.startswith("ASR9K") or 
+		name.startswith("ASR9k") or 
 		name.startswith("XR12000") or 
 		name.startswith("csm-") or 
+		name.startswith("iosxrv") or 
 		name.startswith("Sightline") or 
 		name.startswith("SP_") or 
 		name.startswith("TMS_") or 

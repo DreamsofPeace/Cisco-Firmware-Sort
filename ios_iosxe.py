@@ -175,6 +175,14 @@ def fileprocessor_iosxe(debug1,filename):
 		imagecode = imagelookup(mdash[1])
 		fileproc_iosxe_3 (debug1,filename,prodname,imagecode)
 
+	elif filename.startswith("WP76xx"):
+		prodname = product ("isrg4moduleslte")
+		utilssingleprodname (debug1,filename,prodname)
+
+	elif filename.endswith("comp_matrix.xml"):
+		prodname = product ("iosxeissumatrix")
+		utilssingleprodname (debug1,filename,prodname)
+
 	elif filename.startswith("cat4500e"):
 		prodname = product (splitbydash[0])
 		mdash = splitbydot[0].split("-")
@@ -260,7 +268,7 @@ def fileproc_iosxe_noimagecode (debug1,filename,prodname):
 	#Checks to make sure that it is a regular firmware image, not a SMU
 	if splitbydot[4].startswith("CSC") and splitbydot[6]  == "smu":
 		iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
-		filepath = filepath3(prodname,"SMU",iosfull,splitbydot[4])
+		filepath = filepath4(prodname,"SMU",iosfull,splitbydot[4])
 		filemove (filepath, filename)
 	else:
 		iosmain = util2digit(splitbydot[1],splitbydot[2])
@@ -300,15 +308,3 @@ def fileproc_iosxe (debug1,filename,prodname,imagecode):
 		iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
 		filepath = filepath4(prodname,iosmain,iosfull,imagecode)
 		filemove (filepath, filename)
-
-
-def fileproc_sdwan (debug1,filename,prodname,imagecode):
-	if debug1:
-		print("\tSubroutine#\tfileproc_sdwan")
-	splitbydot = filename.split(".")
-	iosmain = util2digit(splitbydot[1],splitbydot[2])
-	iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
-	prodname = prodname.replace("Routers/ISRG3/", "")
-	prodname = prodname.replace("Routers/ASR/", "")
-	filepath = filepath4(imagecode,prodname,iosmain,iosfull)
-	filemove (filepath, filename)

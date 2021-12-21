@@ -194,6 +194,11 @@ def fileprocessornxos (filename,debug1):
 			workname = filename.replace(".bin","")
 			workname = workname.replace("n3000-uk9-kickstart.","")
 			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("n3000-compact"):
+			imagecode = imagelookup("system")
+			workname = filename.replace(".bin","")
+			workname = workname.replace("n3000-compact.","")
+			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
 		elif filename.startswith("n3000_xsd."):
 			imagecode = imagelookup("xsd")
 			workname = filename.replace(".tar.gz","")
@@ -645,7 +650,7 @@ def fileprocessornxos9ksmu (filename,prodname,imagecode,debug1):
 		digitone = "10"
 	elif splitbydot[3] == "0-8":
 		digitone = "8"
-	elif splitbydot[3] == "0-7":
+	elif splitbydot[3] == "0-7" or splitbydot[3] == "1-7":
 		digitone = "7"
 	if digitone == "9" or digitone == "10":
 		nxosver = util2digit (digitone,splitbydot[4])

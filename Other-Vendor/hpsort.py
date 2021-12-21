@@ -11,18 +11,22 @@ def filemove (newpath, filename):
 def product (prodcode):
 	if prodcode == "6400-6300":
 		prodname = "SWITCHES/HPE-ARUBA-6400-6300"
-	elif prodcode == "8320":
-		prodname = "SWITCHES/HPE-ARUBA-8320"
-	elif prodcode == "8325":
-		prodname = "SWITCHES/HPE-ARUBA-8325"
-	elif prodcode == "8360":
-		prodname = "SWITCHES/HPE-ARUBA-8360"
-	elif prodcode == "8400X":
-		prodname = "SWITCHES/HPE-ARUBA-8400X"
-	elif prodcode == "6100":
-		prodname = "SWITCHES/HPE-ARUBA-6100"
 	elif prodcode == "6200":
 		prodname = "SWITCHES/HPE-ARUBA-6200"
+	elif prodcode == "6100":
+		prodname = "SWITCHES/HPE-ARUBA-6100-6000"
+	elif prodcode == "6100-6000":
+		prodname = "SWITCHES/HPE-ARUBA-6100-6000"
+	elif prodcode == "8320":
+		prodname = "SWITCHES/HPE-ARUBA-8320"
+	elif prodcode == "8360":
+		prodname = "SWITCHES/HPE-ARUBA-8360"
+	elif prodcode == "4100i":
+		prodname = "SWITCHES/HPE-ARUBA-4100i"
+	elif prodcode == "8325":
+		prodname = "SWITCHES/HPE-ARUBA-8325"
+	elif prodcode == "8400X":
+		prodname = "SWITCHES/HPE-ARUBA-8400X"
 	elif prodcode == "A":
 		prodname = "SWITCHES/HPE-ARUBA-2915(A)"
 	elif prodcode == "C":
@@ -411,20 +415,30 @@ def dirwalk (src,hashsha512,hashfile):
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_8360_","")
 			new_style_move (filename, prodname, workname, "_")
-		elif filename.startswith("ArubaOS-CX_8400X"):
-			prodname = product ("8400X")
+		elif filename.startswith("ArubaOS-CX_6100-6000_"):
+			prodname = product ("6100-6000")
 			workname = filename.replace(".swi","")
-			workname = workname.replace("ArubaOS-CX_8400X_","")
+			workname = workname.replace("ArubaOS-CX_6100-6000_","")
 			new_style_move (filename, prodname, workname, "_")
-		elif filename.startswith("ArubaOS-CX_6100"):
+		elif filename.startswith("ArubaOS-CX_6100_"):
 			prodname = product ("6100")
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_6100_","")
 			new_style_move (filename, prodname, workname, "_")
-		elif filename.startswith("ArubaOS-CX_6200"):
+		elif filename.startswith("ArubaOS-CX_6200_"):
 			prodname = product ("6200")
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_6200_","")
+			new_style_move (filename, prodname, workname, "_")
+		elif filename.startswith("ArubaOS-CX_4100i_"):
+			prodname = product ("4100i")
+			workname = filename.replace(".swi","")
+			workname = workname.replace("ArubaOS-CX_4100i_","")
+			new_style_move (filename, prodname, workname, "_")
+		elif filename.startswith("ArubaOS-CX_8400X"):
+			prodname = product ("8400X")
+			workname = filename.replace(".swi","")
+			workname = workname.replace("ArubaOS-CX_8400X_","")
 			new_style_move (filename, prodname, workname, "_")
 		elif filename.startswith("PL_"):
 			prodname = product ("PL")
