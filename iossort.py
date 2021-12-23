@@ -693,7 +693,6 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		splitbydash[0] == "asr900rsp2" or 
 		splitbydash[0] == "asr900rsp3" or 
 #		splitbydash[0] == "asr901" or 
-		splitbydash[0] == "asr901sec" or 
 		splitbydash[0] == "asr901rsp1" or 
 		splitbydash[0] == "asr901rsp2" or 
 		splitbydash[0] == "asr903rsp1" or 
