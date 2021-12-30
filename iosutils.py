@@ -2499,6 +2499,8 @@ def product (prodcode):
 		prodname = "ROUTERS/EMBEDDED/5921"
 	elif prodcode == "c5940":
 		prodname = "ROUTERS/EMBEDDED/5940"
+	elif prodcode == "c5930":
+		prodname = "ROUTERS/EMBEDDED/5930"
 	elif prodcode == "ie9k":
 		prodname = "ROUTERS/EMBEDDED/CATALYST-9300-EMBEDDED"
 	elif prodcode == "cgr2010":

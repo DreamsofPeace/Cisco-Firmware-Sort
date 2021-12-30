@@ -270,6 +270,28 @@ def fileprocessorios (debug1,filename):
 		ios_spa (debug1,filename,prodname,imagecode)
 
 	elif (
+	filename.startswith ("c5921i86-entbasek9-tar.SPA") or 
+	filename.startswith ("c5921i86-entbasek9-ms.SPA.") or 
+	filename.startswith ("c5921i86-universalk9_npe-ms.SPA.") or 
+	filename.startswith ("c5921i86-universalk9_npe-tar.SPA.") or 
+	filename.startswith ("c5921i86-universalk9-ms.SPA.") or 
+	filename.startswith ("c5921i86-universalk9-tar.SPA.") or 
+	filename.startswith ("c5921i86v-universalk9-tar.SPA.")
+	):
+		splitbydash = filename.split("-")
+		prodname = product("c5921i86")
+		imagecode = imagelookup(splitbydash[1])
+		ios_spa (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename.startswith ("c5930-adventerprisek9-mz.SPA")
+	):
+		splitbydash = filename.split("-")
+		prodname = product("c5930")
+		imagecode = imagelookup(splitbydash[1])
+		ios_spa (debug1,filename,prodname,imagecode)
+
+	elif (
 	filename.startswith ("c5940-adventerprisek9-mz.SPA") or 
 	filename.startswith ("c5940-entbase-mz.SPA")
 	):

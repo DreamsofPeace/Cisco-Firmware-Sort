@@ -1603,7 +1603,6 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		elif name.startswith("mre_workflow_signed"):
 			continue
 
-
 		else:
 			fileprocessorios (debug1,name)
 
