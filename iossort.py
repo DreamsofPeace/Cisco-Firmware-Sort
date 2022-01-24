@@ -317,18 +317,20 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			continue
 
 		elif (
-		name == "cat9k.16121.0911.bin" or 
-		name == "cat9k.16121_au.bin" or 
-		name == "cat9k_iosxe.BLD_V171_EFT-1.SSA.bin" or 
-		name == "cat9k_iosxe.BLD_V171_EFT-2.SSA.bin" or 
-		name == "cat9k_iosxe.V171_1S_TES2.SPA.bin" or 
-		name == "cat9k_iosxe.16.12-xFSU-eft1.bin" or 
-		name == "cat9k_iosxe.16.12-xFSU-eft2.bin" or 
-		name == "cat9k_iosxe.16.12-xFSU-eft3.bin" or 
-		name == "cat9k_iosxe.S2C.SSA.bin" or 
-		name == "cat9k_iosxe.V1611_1S_ES4.SPA.bin" or 
-		name == "cat9k_iosxe.BLD_POLARIS_DEV_LATEST_20190327_151803.SSA.bin" or 
-		name.startswith("cat9k_iosxe") and "THROTTLE" in name
+			name == "cat9k.16121.0911.bin" or 
+			name == "cat9k.16121_au.bin" or 
+			name == "cat9k_iosxe.V171_1S_TES2.SPA.bin" or 
+			name == "cat9k_bidir_updated.bin" or 
+			name == "cat9k_fraport_bidir.bin" or 
+			name == "cat9k_iosxe.16.12-xFSU-eft1.bin" or 
+			name == "cat9k_iosxe.16.12-xFSU-eft2.bin" or 
+			name == "cat9k_iosxe.16.12-xFSU-eft3.bin" or 
+			name == "cat9k_private_image_802.3bt.bin" or 
+			name == "cat9k_iosxe.BLD_V171_EFT-1.SSA.bin" or 
+			name == "cat9k_iosxe.BLD_V171_EFT-2.SSA.bin" or 
+			name.startswith("cat9k") and "THROTTLE_LATEST" in name or 
+			name.startswith("cat9k") and "prd" in name or 
+			name.startswith("cat9k") and "eft" in name
 		):
 			prodname = product ("cat9k")
 			imagecode = imagelookup ("specialbuilds")
@@ -448,25 +450,6 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			imagecode = imagelookup ("specialbuild")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
-		elif (
-			name == "cat9k.16121.0911.bin" or 
-			name == "cat9k.16121_au.bin" or 
-			name == "cat9k_iosxe.V171_1S_TES2.SPA.bin" or 
-			name == "cat9k_bidir_updated.bin" or 
-			name == "cat9k_fraport_bidir.bin" or 
-			name == "cat9k_iosxe.16.12-xFSU-eft1.bin" or 
-			name == "cat9k_iosxe.16.12-xFSU-eft2.bin" or 
-			name == "cat9k_iosxe.16.12-xFSU-eft3.bin" or 
-			name == "cat9k_private_image_802.3bt.bin" or 
-			name == "cat9k_iosxe.BLD_V171_EFT-1.SSA.bin" or 
-			name == "cat9k_iosxe.BLD_V171_EFT-2.SSA.bin" or 
-			name.startswith("cat9k") and "THROTTLE_LATEST" in name or 
-			name.startswith("cat9k") and "prd" in name or 
-			name.startswith("cat9k") and "eft" in name
-		):
-			prodname = product ("cat9k")
-			imagecode = imagelookup ("specialbuild")
-			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
 			name.startswith("cat3k") and "THROTTLE_LATEST" in name or 
@@ -718,6 +701,9 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "ASR1K-fpga_prog.16.0.1.xe.bin" or 
 		name.startswith("cat3k_caa") or 
 		name.startswith("cat9k") or 
+		name.startswith("c8000v") or 
+		name.startswith("c8000be") or 
+		name.startswith("c8000aep") or 
 		name.startswith("ttam") or 
 		name.startswith("ess3x00") or 
 		name.startswith("ie9k") or 

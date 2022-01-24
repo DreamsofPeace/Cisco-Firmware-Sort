@@ -916,6 +916,8 @@ def imagelookup (imagecode):
 		subdirectory = "DOCSIS-2-WAY-BPI-IP+-LAWFUL-INTERCEPT"
 	elif imagecode == "k8pu2":
 		subdirectory = "DOCSIS-2-WAY-BPI-LAWFUL-INTERCEPT"
+	elif imagecode == "k9pu2":
+		subdirectory = "DOCSIS-3DES-LAWFUL-INTERCEPT"
 	elif imagecode == "k9p6u2":
 		subdirectory = "DOCSIS-3DES-LAWFUL-INTERCEPT"
 	elif imagecode == "k8p6u2":
@@ -3071,6 +3073,8 @@ def product (prodcode):
 		prodname = "SWITCHES/CATALYST/Catalyst-6500-6800/MWAM"
 	elif prodcode == "svcmwam":
 		prodname = "SWITCHES/CATALYST/Catalyst-6500-6800/MWAM"
+	elif prodcode == "c8000v":
+		prodname = "SWITCHES/CATALYST/Catalyst-8000V"
 	elif prodcode == "Nexus":
 		prodname = "SWITCHES/NEXUS/"
 	elif prodcode == "n1000v":
