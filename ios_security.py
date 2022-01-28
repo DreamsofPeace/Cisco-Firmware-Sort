@@ -512,11 +512,846 @@ def sec_classic_ips (debug1,filename):
 		workname = workname.replace("-req-E4.pkg","")
 		filepath = filepath4(prodname,imagecode,engine,workname)
 		filemove (filepath, filename)
+	elif (
+	filename == "IPS-4270_20-K9-patch-7.1-11p1-E4.pkg" or 
+	filename == "IPS-4345-K9-patch-7.1-11p1-E4.pkg" or 
+	filename == "IPS-4360-K9-patch-7.1-11p1-E4.pkg" or 
+	filename == "IPS-4510-K9-patch-7.1-11p1-E4.pkg" or 
+	filename == "IPS-4520-K9-patch-7.1-11p1-E4.pkg" or 
+	filename == "IPS-SSP_10-K9-patch-7.1-11p1-E4.pkg" or 
+	filename == "IPS-SSP_20-K9-patch-7.1-11p1-E4.pkg" or 
+	filename == "IPS-SSP_40-K9-patch-7.1-11p1-E4.pkg" or 
+	filename == "IPS-SSP_60-K9-patch-7.1-11p1-E4.pkg" or 
+	filename == "IPS-SSP_5512-K9-patch-7.1-11p1-E4.pkg" or 
+	filename == "IPS-SSP_5515-K9-patch-7.1-11p1-E4.pkg" or 
+	filename == "IPS-SSP_5525-K9-patch-7.1-11p1-E4.pkg" or 
+	filename == "IPS-SSP_5545-K9-patch-7.1-11p1-E4.pkg" or 
+	filename == "IPS-SSP_5555-K9-patch-7.1-11p1-E4.pkg"
+	):
+		imagecode = imagelookup("system")
+		version = "7.1.11.E4"
+		if filename.startswith("IPS-SSP_10-"):
+			prodname = product("ipsidsasa5585xssp10")
+		elif filename.startswith("IPS-SSP_20-"):
+			prodname = product("ipsidsasa5585xssp20")
+		elif filename.startswith("IPS-SSP_40-"):
+			prodname = product("ipsidsasa5585xssp40")
+		elif filename.startswith("IPS-SSP_60-"):
+			prodname = product("ipsidsasa5585xssp60")
+		elif filename.startswith("IPS-SSP_5512-K9"):
+			prodname = product("ipsidsasa5512xssp")
+		elif filename.startswith("IPS-SSP_5515-K9"):
+			prodname = product("ipsidsasa5515xssp")
+		elif filename.startswith("IPS-SSP_5525-K9"):
+			prodname = product("ipsidsasa5525xssp")
+		elif filename.startswith("IPS-SSP_5545-K9"):
+			prodname = product("ipsidsasa5545xssp")
+		elif filename.startswith("IPS-SSP_5555-K9"):
+			prodname = product("ipsidsasa5555xssp")
+		elif filename.startswith("IPS-4240-K9"):
+			prodname = product("ipsidsips4240")
+		elif filename.startswith("IPS-4255-K9"):
+			prodname = product("ipsidsips4255")
+		elif filename.startswith("IPS-4260-K9"):
+			prodname = product("ipsidsips4260")
+		elif filename.startswith("IPS-4270_20-K9"):
+			prodname = product("ipsidsips4270")
+		elif filename.startswith("IPS-4345-K9"):
+			prodname = product("ipsidsips4345")
+		elif filename.startswith("IPS-4360-K9"):
+			prodname = product("ipsidsips4360")
+		elif filename.startswith("IPS-4510-K9"):
+			prodname = product("ipsidsips4510")
+		elif filename.startswith("IPS-4520-K9"):
+			prodname = product("ipsidsips4520")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif (
+	filename == "IPS-4345-K9-patch-7.3-5p1-E4.pkg" or 
+	filename == "IPS-4360-K9-patch-7.3-5p1-E4.pkg" or 
+	filename == "IPS-4510-K9-patch-7.3-5p1-E4.pkg" or 
+	filename == "IPS-4520-K9-patch-7.3-5p1-E4.pkg" or 
+	filename == "IPS-SSP_10-K9-patch-7.3-5p1-E4.pkg" or 
+	filename == "IPS-SSP_20-K9-patch-7.3-5p1-E4.pkg" or 
+	filename == "IPS-SSP_40-K9-patch-7.3-5p1-E4.pkg" or 
+	filename == "IPS-SSP_5512-K9-patch-7.3-5p1-E4.pkg" or 
+	filename == "IPS-SSP_5515-K9-patch-7.3-5p1-E4.pkg" or 
+	filename == "IPS-SSP_5525-K9-patch-7.3-5p1-E4.pkg" or 
+	filename == "IPS-SSP_5545-K9-patch-7.3-5p1-E4.pkg" or 
+	filename == "IPS-SSP_5555-K9-patch-7.3-5p1-E4.pkg" or 
+	filename == "IPS-SSP_60-K9-patch-7.3-5p1-E4.pkg"
+	):
+		imagecode = imagelookup("system")
+		version = "7.3.5.E4"
+		if filename.startswith("IPS-SSP_10-"):
+			prodname = product("ipsidsasa5585xssp10")
+		elif filename.startswith("IPS-SSP_20-"):
+			prodname = product("ipsidsasa5585xssp20")
+		elif filename.startswith("IPS-SSP_40-"):
+			prodname = product("ipsidsasa5585xssp40")
+		elif filename.startswith("IPS-SSP_60-"):
+			prodname = product("ipsidsasa5585xssp60")
+		elif filename.startswith("IPS-SSP_5512-K9"):
+			prodname = product("ipsidsasa5512xssp")
+		elif filename.startswith("IPS-SSP_5515-K9"):
+			prodname = product("ipsidsasa5515xssp")
+		elif filename.startswith("IPS-SSP_5525-K9"):
+			prodname = product("ipsidsasa5525xssp")
+		elif filename.startswith("IPS-SSP_5545-K9"):
+			prodname = product("ipsidsasa5545xssp")
+		elif filename.startswith("IPS-SSP_5555-K9"):
+			prodname = product("ipsidsasa5555xssp")
+		elif filename.startswith("IPS-4240-K9"):
+			prodname = product("ipsidsips4240")
+		elif filename.startswith("IPS-4255-K9"):
+			prodname = product("ipsidsips4255")
+		elif filename.startswith("IPS-4260-K9"):
+			prodname = product("ipsidsips4260")
+		elif filename.startswith("IPS-4270_20-K9"):
+			prodname = product("ipsidsips4270")
+		elif filename.startswith("IPS-4345-K9"):
+			prodname = product("ipsidsips4345")
+		elif filename.startswith("IPS-4360-K9"):
+			prodname = product("ipsidsips4360")
+		elif filename.startswith("IPS-4510-K9"):
+			prodname = product("ipsidsips4510")
+		elif filename.startswith("IPS-4520-K9"):
+			prodname = product("ipsidsips4520")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4215-K9-sys"):
+		prodname = product("ipsidsips4215")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4240-K9-sys"):
+		prodname = product("ipsidsips4240")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4255-K9-sys"):
+		prodname = product("ipsidsips4255")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4260-K9-sys"):
+		prodname = product("ipsidsips4260")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4270_20-K9-sys"):
+		prodname = product("ipsidsips4270")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4345-K9-sys"):
+		prodname = product("ipsidsips4345")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4360-K9-sys"):
+		prodname = product("ipsidsips4360")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4510-K9-sys"):
+		prodname = product("ipsidsips4510")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4520-K9-sys"):
+		prodname = product("ipsidsips4520")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-AIM-K9-sys"):
+		prodname = product("ipsidsipsaim")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-IDSM2-K9-sys"):
+		prodname = product("ipsidsipsadsm2")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-NM-CIDS-K9-sys"):
+		prodname = product("ipsidsnm")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-NME-K9-sys"):
+		prodname = product("ipsidsnm")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-NM_CIDS-K9-sys"):
+		prodname = product("ipsidsnm")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSC_5-K9-sys"):
+		prodname = product("ipsidsasassc")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSM-K9-sys"):
+		prodname = product("ipsidsasassm10")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSM_10-K9-sys"):
+		prodname = product("ipsidsasassm10")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSM_20-K9-sys"):
+		prodname = product("ipsidsasassm20")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSM_40-K9-sys"):
+		prodname = product("ipsidsasassm40")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_10-K9-sys"):
+		prodname = product("ipsidsasa5585xssp10")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_20-K9-sys"):
+		prodname = product("ipsidsasa5585xssp20")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_40-K9-sys"):
+		prodname = product("ipsidsasa5585xssp40")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_60-K9-sys"):
+		prodname = product("ipsidsasa5585xssp60")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_5512-K9-sys"):
+		prodname = product("ipsidsasa5512xssp")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_5515-K9-sys"):
+		prodname = product("ipsidsasa5515xssp")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_5525-K9-sys"):
+		prodname = product("ipsidsasa5525xssp")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_5545-K9-sys"):
+		prodname = product("ipsidsasa5545xssp")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_5555-K9-sys"):
+		prodname = product("ipsidsasa5555xssp")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("WS-SVC-IDSM2-K9-sys"):
+		prodname = product("ipsidsipsadsm2")
+		imagecode = imagelookup("system")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".img","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4215-K9-r"):
+		prodname = product("ipsidsips4215")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4240-K9-r"):
+		prodname = product("ipsidsips4240")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4255-K9-r"):
+		prodname = product("ipsidsips4255")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4260-K9-r"):
+		prodname = product("ipsidsips4260")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4270_20-K9-r"):
+		prodname = product("ipsidsips4270")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4345-K9-r"):
+		prodname = product("ipsidsips4345")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4360-K9-r"):
+		prodname = product("ipsidsips4360")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4510-K9-r"):
+		prodname = product("ipsidsips4510")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4520-K9-r"):
+		prodname = product("ipsidsips4520")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-AIM-K9-r"):
+		prodname = product("ipsidsipsaim")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-IDSM2-K9-r"):
+		prodname = product("ipsidsipsadsm2")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-NM-CIDS-K9-r"):
+		prodname = product("ipsidsnm")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-NME-K9-r"):
+		prodname = product("ipsidsnm")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-NM_CIDS-K9-r"):
+		prodname = product("ipsidsnm")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSC_5-K9-r"):
+		prodname = product("ipsidsasassc")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSM-K9-r"):
+		prodname = product("ipsidsasassm10")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSM_10-K9-r"):
+		prodname = product("ipsidsasassm10")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSM_20-K9-r"):
+		prodname = product("ipsidsasassm20")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSM_40-K9-r"):
+		prodname = product("ipsidsasassm40")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_10-K9-r"):
+		prodname = product("ipsidsasa5585xssp10")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_20-K9-r"):
+		prodname = product("ipsidsasa5585xssp20")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_40-K9-r"):
+		prodname = product("ipsidsasa5585xssp40")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_60-K9-r"):
+		prodname = product("ipsidsasa5585xssp60")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_5512-K9-r"):
+		prodname = product("ipsidsasa5512xssp")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_5515-K9-r"):
+		prodname = product("ipsidsasa5515xssp")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_5525-K9-r"):
+		prodname = product("ipsidsasa5525xssp")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_5545-K9-r"):
+		prodname = product("ipsidsasa5545xssp")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_5555-K9-r"):
+		prodname = product("ipsidsasa5555xssp")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("WS-SVC-IDSM2-K9-r"):
+		prodname = product("ipsidsipsadsm2")
+		imagecode = imagelookup("rcv")
+		splitbydash = filename.split("-",6)
+		version = splitbydash[6].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4215-K9"):
+		prodname = product("ipsidsips4215")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4240-K9"):
+		prodname = product("ipsidsips4240")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4255-K9"):
+		prodname = product("ipsidsips4255")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4260-K9"):
+		prodname = product("ipsidsips4260")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4270_20-K9"):
+		prodname = product("ipsidsips4270")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4345-K9"):
+		prodname = product("ipsidsips4345")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4360-K9"):
+		prodname = product("ipsidsips4360")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4510-K9"):
+		prodname = product("ipsidsips4510")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-4520-K9"):
+		prodname = product("ipsidsips4520")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-AIM-K9"):
+		prodname = product("ipsidsipsaim")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-IDSM2-K9"):
+		prodname = product("ipsidsipsadsm2")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-NM-CIDS-K9"):
+		prodname = product("ipsidsnm")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-NME-K9"):
+		prodname = product("ipsidsnm")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-NM_CIDS-K9"):
+		prodname = product("ipsidsnm")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSC_5-K9"):
+		prodname = product("ipsidsasassc")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSM-K9"):
+		prodname = product("ipsidsasassm10")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSM_10-K9"):
+		prodname = product("ipsidsasassm10")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSM_20-K9"):
+		prodname = product("ipsidsasassm20")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSM_40-K9"):
+		prodname = product("ipsidsasassm40")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_10-K9"):
+		prodname = product("ipsidsasa5585xssp10")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_20-K9"):
+		prodname = product("ipsidsasa5585xssp20")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_40-K9"):
+		prodname = product("ipsidsasa5585xssp40")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_60-K9"):
+		prodname = product("ipsidsasa5585xssp60")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_5512-K9"):
+		prodname = product("ipsidsasa5512xssp")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_5515-K9"):
+		prodname = product("ipsidsasa5515xssp")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_5525-K9"):
+		prodname = product("ipsidsasa5525xssp")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_5545-K9"):
+		prodname = product("ipsidsasa5545xssp")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("IPS-SSP_5555-K9"):
+		prodname = product("ipsidsasa5555xssp")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("WS-SVC-IDSM2-K9"):
+		prodname = product("ipsidsipsadsm2")
+		imagecode = imagelookup("patch")
+		splitbydash = filename.split("-",3)
+		version = splitbydash[3].replace(".pkg","")
+		version = version.replace("-",".")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+'''
+	elif (
+	filename.startswith("IPS-4510-K9-") and filename.endswith("-E4.pkg")
+	):
+		imagecode = imagelookup("system")
+		engine = imagelookup("engine4")
+		filepath = filepath4(prodname,imagecode,engine,workname)
+		filemove (filepath, filename)
 
-def sec_classic_ips_sig (debug1,filename,imagecode,engine,workname):
-	if debug1:
-		print("\tSubroutine#\tsec_classic_ips_sig")
-		
+		elif (
+		name.startswith("IOS-S") and name.endswith("-CLI.pkg") or 
+		name.startswith("IOS-S") and name.endswith(".zip")
+		):
+			prodname = product ("iosids")
+			imagecode = imagelookup ("signatures")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name.startswith("IDS-sig-") and name.endswith(".zip") or 
+		name.startswith("IDS-sig-") and name.endswith(".readme.txt")
+		):
+			prodname = product ("ipsids")
+			imagecode = imagelookup ("signatures")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name.startswith("IPS-4240-K9-") and name.endswith("-E4.pkg") or
+		name.startswith("IPS-4255-K9-") and name.endswith("-E4.pkg") or
+		name.startswith("IPS-4260-K9-") and name.endswith("-E4.pkg") or
+		name.startswith("IPS-SSM_10-K9-") and name.endswith("-E4.pkg") or
+		name.startswith("IPS-SSM_20-K9-") and name.endswith("-E4.pkg") or
+		name.startswith("IPS-SSM_40-K9-") and name.endswith("-E4.pkg")
+		):
+			prodname = product ("ipsids")
+			imagecode = imagelookup ("engine")
+			utilssinglemove (debug1,name,prodname,imagecode)
+'''
 
 def sec_fp_mgmt (debug1,filename):
 	if debug1:
