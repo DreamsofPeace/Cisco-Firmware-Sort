@@ -407,39 +407,13 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-		".cv50." in name and name.endswith(".zip")
+		".cv50." in name and name.endswith(".zip")  or 
+		".RME43." in name and name.endswith(".zip")
 		):
 			prodname = product ("cworks")
 			imagecode = imagelookup ("rme")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
-		elif (
-		name.startswith("IOS-S") and name.endswith("-CLI.pkg") or 
-		name.startswith("IOS-S") and name.endswith(".zip")
-		):
-			prodname = product ("iosids")
-			imagecode = imagelookup ("signatures")
-			utilssinglemove (debug1,name,prodname,imagecode)
-
-		elif (
-		name.startswith("IDS-sig-") and name.endswith(".zip") or 
-		name.startswith("IDS-sig-") and name.endswith(".readme.txt")
-		):
-			prodname = product ("ipsids")
-			imagecode = imagelookup ("signatures")
-			utilssinglemove (debug1,name,prodname,imagecode)
-
-		elif (
-		name.startswith("IPS-4240-K9-") and name.endswith("-E4.pkg") or
-		name.startswith("IPS-4255-K9-") and name.endswith("-E4.pkg") or
-		name.startswith("IPS-4260-K9-") and name.endswith("-E4.pkg") or
-		name.startswith("IPS-SSM_10-K9-") and name.endswith("-E4.pkg") or
-		name.startswith("IPS-SSM_20-K9-") and name.endswith("-E4.pkg") or
-		name.startswith("IPS-SSM_40-K9-") and name.endswith("-E4.pkg")
-		):
-			prodname = product ("ipsids")
-			imagecode = imagelookup ("engine")
-			utilssinglemove (debug1,name,prodname,imagecode)
 		elif (
 			name == "c3900e-universalk9-mz.SSA.152-4.M.CSCtw93694.bin" or 
 			name == "c3900e-universalk9-mz.SSA.152-4.M.CSCtw93694_Feb16.bin" or 
@@ -863,7 +837,12 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("sg") and name.endswith("adi-gz") or 
 		name.startswith("sg") and name.endswith("zip") or 
 		name.startswith("FMT-CP-Config-Extractor") or 
-		name.startswith("Firepower_Migration_Tool")
+		name.startswith("Firepower_Migration_Tool") or 
+		name.startswith("IOS-S") and name.endswith("-CLI.pkg") or 
+		name.startswith("IOS-S") and name.endswith(".zip") or 
+		name.startswith("IDS-sig-") and name.endswith(".zip") or 
+		name.startswith("IDS-sig-") and name.endswith(".readme.txt") or 
+		name.startswith("IPS")
 		):
 			fileprocessorsecurity(debug1,name,filename)
 

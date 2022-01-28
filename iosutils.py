@@ -2737,6 +2737,56 @@ def product (prodcode):
 		prodname = "SECURITY/IOS-XE-UTD"
 	elif prodcode == "ipsids":
 		prodname = "SECURITY/IDS-IPS"
+	elif prodcode == "ipsidsnm":
+		prodname = "SECURITY/IDS-IPS/ROUTER-NM"
+	elif prodcode == "ipsidsasa5585xssp10":
+		prodname = "SECURITY/IDS-IPS/ASA5585-X-SSP_10"
+	elif prodcode == "ipsidsasa5585xssp20":
+		prodname = "SECURITY/IDS-IPS/ASA5585-X-SSP_20"
+	elif prodcode == "ipsidsasa5585xssp40":
+		prodname = "SECURITY/IDS-IPS/ASA5585-X-SSP_40"
+	elif prodcode == "ipsidsasa5585xssp60":
+		prodname = "SECURITY/IDS-IPS/ASA5585-X-SSP_60"
+	elif prodcode == "ipsidsasa5512xssp":
+		prodname = "SECURITY/IDS-IPS/ASA5512-X"
+	elif prodcode == "ipsidsasa5515xssp":
+		prodname = "SECURITY/IDS-IPS/ASA5515-X"
+	elif prodcode == "ipsidsasa5525xssp":
+		prodname = "SECURITY/IDS-IPS/ASA5525-X"
+	elif prodcode == "ipsidsasa5545xssp":
+		prodname = "SECURITY/IDS-IPS/ASA5545-X"
+	elif prodcode == "ipsidsasa5555xssp":
+		prodname = "SECURITY/IDS-IPS/ASA5555-X"
+	elif prodcode == "ipsidsasassc":
+		prodname = "SECURITY/IDS-IPS/ASA-AIPSSC"
+	elif prodcode == "ipsidsasassm10":
+		prodname = "SECURITY/IDS-IPS/ASA-AIPSSM-10"
+	elif prodcode == "ipsidsasassm20":
+		prodname = "SECURITY/IDS-IPS/ASA-AIPSSM-20"
+	elif prodcode == "ipsidsasassm40":
+		prodname = "SECURITY/IDS-IPS/ASA-AIPSSM-40"
+	elif prodcode == "ipsidsipsadsm2":
+		prodname = "SECURITY/IDS-IPS/IPS-Catalyst-6500-IDSM2"
+	elif prodcode == "ipsidsipsaim":
+		prodname = "SECURITY/IDS-IPS/IPS-AIM"
+	elif prodcode == "ipsidsips4215":
+		prodname = "SECURITY/IDS-IPS/IPS-4215"
+	elif prodcode == "ipsidsips4240":
+		prodname = "SECURITY/IDS-IPS/IPS-4240"
+	elif prodcode == "ipsidsips4255":
+		prodname = "SECURITY/IDS-IPS/IPS-4255"
+	elif prodcode == "ipsidsips4260":
+		prodname = "SECURITY/IDS-IPS/IPS-4260"
+	elif prodcode == "ipsidsips4270":
+		prodname = "SECURITY/IDS-IPS/IPS-4270"
+	elif prodcode == "ipsidsips4345":
+		prodname = "SECURITY/IDS-IPS/IPS-4345"
+	elif prodcode == "ipsidsips4360":
+		prodname = "SECURITY/IDS-IPS/IPS-4360"
+	elif prodcode == "ipsidsips4510":
+		prodname = "SECURITY/IDS-IPS/IPS-4510"
+	elif prodcode == "ipsidsips4520":
+		prodname = "SECURITY/IDS-IPS/IPS-4520"
 	elif prodcode == "iosids":
 		prodname = "SECURITY/IOS-IDS"
 	elif prodcode == "ironport":
