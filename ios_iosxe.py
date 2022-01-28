@@ -217,6 +217,39 @@ def fileprocessor_iosxe(debug1,filename):
 	#		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
 
+	elif filename.startswith("c8000v"):
+		if filename.startswith("c8000v-universalk9_16G_serial"):
+			prodname = product ("c8000v")
+			imagecode = imagelookup("universalk9")
+		elif filename.startswith("c8000v-universalk9_16G_serial_efi"):
+			prodname = product ("c8000v")
+			imagecode = imagelookup("universalk9")
+		elif filename.startswith("c8000v-universalk9_16G_vga"):
+			prodname = product ("c8000v")
+			imagecode = imagelookup("universalk9")
+		elif filename.startswith("c8000v-universalk9_16G_vga_efi"):
+			prodname = product ("c8000v")
+			imagecode = imagelookup("universalk9")
+		elif filename.startswith("c8000v-universalk9_8G_serial"):
+			prodname = product ("c8000v")
+			imagecode = imagelookup("universalk9")
+		elif filename.startswith("c8000v-universalk9_8G_serial_efi"):
+			prodname = product ("c8000v")
+			imagecode = imagelookup("universalk9")
+		elif filename.startswith("c8000v-universalk9_8G_vga"):
+			prodname = product ("c8000v")
+			imagecode = imagelookup("universalk9")
+		elif filename.startswith("c8000v-universalk9_8G_vga_efi"):
+			prodname = product ("c8000v")
+			imagecode = imagelookup("universalk9")
+		elif filename.startswith("c8000v-universalk9_vga"):
+			prodname = product ("c8000v")
+			imagecode = imagelookup("universalk9")
+		splitbydot = filename.split(".")
+		iosmain = util2digit(splitbydot[1],splitbydot[2])
+		iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
+		filepath = filepath4(prodname,iosmain,iosfull,imagecode)
+		filemove (filepath, filename)
 
 	else:
 		if splitbydash[0] == "c1100":
