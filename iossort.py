@@ -333,28 +333,28 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			name.startswith("cat9k") and "eft" in name
 		):
 			prodname = product ("cat9k")
-			imagecode = imagelookup ("specialbuilds")
+			imagecode = imagelookup ("specialbuild")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
 		name.startswith("C9800-40-") and "THROTTLE" in name
 		):
 			prodname = product ("C9800-40")
-			imagecode = imagelookup ("specialbuilds")
+			imagecode = imagelookup ("specialbuild")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
 		name.startswith("C9800-80-") and "THROTTLE" in name
 		):
 			prodname = product ("C9800-80")
-			imagecode = imagelookup ("specialbuilds")
+			imagecode = imagelookup ("specialbuild")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
 		name.startswith("C9800-L-") and "THROTTLE" in name
 		):
 			prodname = product ("C9800-L")
-			imagecode = imagelookup ("specialbuilds")
+			imagecode = imagelookup ("specialbuild")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
@@ -367,21 +367,21 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("C9800-CL-") and "THROTTLE" in name
 		):
 			prodname = product ("C9800-CL")
-			imagecode = imagelookup ("specialbuilds")
+			imagecode = imagelookup ("specialbuild")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
 		name.startswith("C9800-SW-") and "THROTTLE" in name
 		):
 			prodname = product ("C9800-SW")
-			imagecode = imagelookup ("specialbuilds")
+			imagecode = imagelookup ("specialbuild")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
 		name == "c1100-universalk9.V16_12_0_136.SSA.bin"
 		):
 			prodname = product ("c1100router")
-			imagecode = imagelookup ("specialbuilds")
+			imagecode = imagelookup ("specialbuild")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
@@ -389,29 +389,21 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "asr1000rp1-advipservicesk9.V152_1_S1_CSCTR15153_3.bin"
 		):
 			prodname = product ("asr1000rp1")
-			imagecode = imagelookup ("specialbuilds")
+			imagecode = imagelookup ("specialbuild")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
 		name == "asr1000rpx86-universalk9.V1612_1_CVE_2019_1649.SPA.bin"
 		):
 			prodname = product ("asr1000rpx86")
-			imagecode = imagelookup ("specialbuilds")
+			imagecode = imagelookup ("specialbuild")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
 		name == "c180x-advipservicesk9-mz.V124_15_T1-CSCsk94464-ES.bin"
 		):
 			prodname = product ("c180x")
-			imagecode = imagelookup ("specialbuilds")
-			utilssinglemove (debug1,name,prodname,imagecode)
-
-		elif (
-		".cv50." in name and name.endswith(".zip")  or 
-		".RME43." in name and name.endswith(".zip")
-		):
-			prodname = product ("cworks")
-			imagecode = imagelookup ("rme")
+			imagecode = imagelookup ("specialbuild")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
@@ -474,6 +466,29 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
+			name == "n7000-s1-epld.5.2.0.266.gimg" or 
+			name.startswith("dino-lisp")
+		):
+			prodname = product ("n7000")
+			imagecode = imagelookup ("specialbuildlisp")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name == "C9100-universalk9_me.BLD_V1612_THROTTLE_LATEST_20190619_023732.zip"
+		):
+			prodname = product ("C9800-AP")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		".cv50." in name and name.endswith(".zip")  or 
+		".RME43." in name and name.endswith(".zip")
+		):
+			prodname = product ("cworks")
+			imagecode = imagelookup ("rme")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
 			name == "c3750-dmon-mz.122-25r.SEC" or 
 			name == "c3750-dmon-mz-122-25r.SEE4"
 		):
@@ -482,7 +497,8 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-			name == "AnyConnect-CSA.zip"
+			name == "AnyConnect-CSA.zip" or 
+			name == "CSD-for-CSA-updates.zip"
 		):
 			prodname = product ("csa")
 			imagecode = imagelookup ("export")
@@ -842,7 +858,9 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("IOS-S") and name.endswith(".zip") or 
 		name.startswith("IDS-sig-") and name.endswith(".zip") or 
 		name.startswith("IDS-sig-") and name.endswith(".readme.txt") or 
-		name.startswith("IPS")
+		name.startswith("IPS") or 
+		name.startswith("128MB.sdf") or 
+		name.startswith("256MB.sdf")
 		):
 			fileprocessorsecurity(debug1,name,filename)
 
@@ -1123,13 +1141,10 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("s52000tc") or 
 		name.startswith("ciscocm") or 
 		name.startswith("CPO") and name.endswith("zip") or 
-		name.startswith("128MB.sdf") or 
-		name.startswith("256MB.sdf") or 
 		name.startswith("MIBS") or 
 		name.startswith("sdmv10.zip") or 
 		name.startswith("SDM-V25.zip") or 
 		name.startswith("c6svc-nam") or 
-		name.startswith("CSD-for-CSA-updates.zip") or 
 		name.startswith("copfiles_iOS96.zip")
 		):
 			continue
