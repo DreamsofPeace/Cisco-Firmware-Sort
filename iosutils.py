@@ -239,12 +239,58 @@ def iostrain (train, version):
 		version = version + "JN"
 	elif train.startswith("JX"):
 		version = version + "JX"
+	elif train.startswith("JPA"):
+		version = version + "JPA"
+	elif train.startswith("JPB"):
+		version = version + "JPB"
+	elif train.startswith("JPC"):
+		version = version + "JPC"
+	elif train.startswith("JPD"):
+		version = version + "JPD"
+	elif train.startswith("JPE"):
+		version = version + "JPE"
+	elif train.startswith("JPF"):
+		version = version + "JPF"
+	elif train.startswith("JPG"):
+		version = version + "JPG"
+	elif train.startswith("JPH"):
+		version = version + "JPH"
+	elif train.startswith("JPI"):
+		version = version + "JPI"
 	elif train.startswith("JPJ"):
 		version = version + "JPJ"
 	elif train.startswith("JPK"):
 		version = version + "JPK"
-	elif train.startswith("JPI"):
-		version = version + "JPI"
+	elif train.startswith("JPL"):
+		version = version + "JPL"
+	elif train.startswith("JPM"):
+		version = version + "JPM"
+	elif train.startswith("JPN"):
+		version = version + "JPN"
+	elif train.startswith("JPO"):
+		version = version + "JPO"
+	elif train.startswith("JPP"):
+		version = version + "JPP"
+	elif train.startswith("JPQ"):
+		version = version + "JPQ"
+	elif train.startswith("JPR"):
+		version = version + "JPR"
+	elif train.startswith("JPS"):
+		version = version + "JPS"
+	elif train.startswith("JPT"):
+		version = version + "JPT"
+	elif train.startswith("JPU"):
+		version = version + "JPU"
+	elif train.startswith("JPV"):
+		version = version + "JPV"
+	elif train.startswith("JPW"):
+		version = version + "JPW"
+	elif train.startswith("JPX"):
+		version = version + "JPX"
+	elif train.startswith("JPY"):
+		version = version + "JPY"
+	elif train.startswith("JPZ"):
+		version = version + "JPZ"
 	elif train.startswith("JP"):
 		version = version + "JP"
 	elif train.startswith("JY"):
@@ -2296,6 +2342,8 @@ def imagelookup (imagecode):
 		subdirectory = "ROUTE-REFLECTOR"
 	elif imagecode == "rrvga":
 		subdirectory = "ROUTE-REFLECTOR-VGA"
+	elif imagecode == "log4j":
+		subdirectory = "LOG4SHELL-FIXES"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2773,6 +2821,8 @@ def product (prodcode):
 		prodname = "SERVERS/UCS/C-SERIES/C220M4"
 	elif prodcode == "c220m5":
 		prodname = "SERVERS/UCS/C-SERIES/C220M5"
+	elif prodcode == "c220m6":
+		prodname = "SERVERS/UCS/C-SERIES/C220M6"
 	elif prodcode == "c2x":
 		prodname = "SERVERS/UCS/C-SERIES/C22M3-C22M4"
 	elif prodcode == "c240":
@@ -2781,6 +2831,8 @@ def product (prodcode):
 		prodname = "SERVERS/UCS/C-SERIES/C240M4"
 	elif prodcode == "c240m5":
 		prodname = "SERVERS/UCS/C-SERIES/C240M5"
+	elif prodcode == "c240m6":
+		prodname = "SERVERS/UCS/C-SERIES/C240M6"
 	elif prodcode == "c250":
 		prodname = "SERVERS/UCS/C-SERIES/C250M1-C250M2"
 	elif prodcode == "c260":

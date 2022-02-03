@@ -270,13 +270,10 @@ def fileprocessorios (debug1,filename):
 		ios_spa (debug1,filename,prodname,imagecode)
 
 	elif (
-	filename.startswith ("c5921i86-entbasek9-tar.SPA") or 
-	filename.startswith ("c5921i86-entbasek9-ms.SPA.") or 
-	filename.startswith ("c5921i86-universalk9_npe-ms.SPA.") or 
-	filename.startswith ("c5921i86-universalk9_npe-tar.SPA.") or 
-	filename.startswith ("c5921i86-universalk9-ms.SPA.") or 
-	filename.startswith ("c5921i86-universalk9-tar.SPA.") or 
-	filename.startswith ("c5921i86v-universalk9-tar.SPA.")
+	filename.startswith ("c5921i86") or 
+	filename.startswith ("c5921i86v") or 
+	filename.startswith ("c5921x86") or 
+	filename.startswith ("c5921x86ise")
 	):
 		splitbydash = filename.split("-")
 		prodname = product("c5921i86")

@@ -1486,6 +1486,24 @@ def sec_ise (debug1,filename):
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
+	filename == "ise-apply-CSCwa47133_Ver_24_30_allpatches-SPA.tar.gz" or 
+	filename == "ise-rollback-CSCwa47133_Ver_24_30_allpatches-SPA.tar.gz"
+	):
+		imagecode = imagelookup("log4j")
+		imagecode = imagecode + "2.4-3.0/"
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename == "ise-rollback-CSCwa47133_3.1.0.518_patch0-SPA.tar.gz" or 
+	filename == "ise-rollback-CSCwa47133_3.1.0.518_patch1-SPA.tar.gz" or 
+	filename == "ise-apply-CSCwa47133_3.1.0.518_patch0-SPA.tar.gz" or 
+	filename == "ise-apply-CSCwa47133_3.1.0.518_patch1-SPA.tar.gz"
+	):
+		imagecode = imagelookup("log4j")
+		imagecode = imagecode + "3.1/"
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
 	filename == "ise-upgradebundle-2.6.x-3.0.x-to-3.1.0.518.SPA.x86_64.tar.gz"
 	):
 		imagecode = imagelookup("upgrade")

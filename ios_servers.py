@@ -174,21 +174,7 @@ def file_proc_servers (filename,debug1):
 	filename == "1X0DBIOSv4.8" or 
 	filename == "1X0SBIOSv4.8" or 
 	filename == "Signed_EN_BIOS_1.5.0.4.bin.SPA" or 
-	filename == "CIMC-3.2.8.bin" or 
-	filename == "CIMC_2.4.1.bin" or 
-	filename == "CIMC_2.4.2.bin" or 
-	filename == "CIMC_3.0.1.bin" or 
-	filename == "CIMC_3.0.2.bin" or 
-	filename == "CIMC_3.1.1.bin" or 
-	filename == "CIMC_3.1.2.bin" or 
-	filename == "CIMC_3.1.3.bin" or 
-	filename == "CIMC_3.1.4.bin" or 
-	filename == "CIMC_3.2.1.REL.bin" or 
-	filename == "CIMC_3.2.2.bin" or 
-	filename == "CIMC_3.2.3.bin" or 
-	filename == "CIMC_3.2.4.bin" or 
-	filename == "CIMC_3.2.6.bin" or 
-	filename == "CIMC_3.2.7.bin" or 
+	filename.startswith("CIMC_") and filename.endswith(".bin") or 
 	filename == "Signed_DW_M1M2_BIOS_2.5.0.4.bin.SPA" or 
 	filename == "Signed_DW_M1M2_BIOS_2.5.0.5.bin.SPA" or 
 	filename == "Signed_DW_M1M2_BIOS_2.5.0.6.bin.SPA" or 
