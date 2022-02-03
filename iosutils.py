@@ -962,6 +962,8 @@ def imagelookup (imagecode):
 		subdirectory = "DOCSIS-2-WAY-BPI-IP+-LAWFUL-INTERCEPT"
 	elif imagecode == "k8pu2":
 		subdirectory = "DOCSIS-2-WAY-BPI-LAWFUL-INTERCEPT"
+	elif imagecode == "k9pu2":
+		subdirectory = "DOCSIS-3DES-LAWFUL-INTERCEPT"
 	elif imagecode == "k9p6u2":
 		subdirectory = "DOCSIS-3DES-LAWFUL-INTERCEPT"
 	elif imagecode == "k8p6u2":
@@ -2324,12 +2326,12 @@ def imagelookup (imagecode):
 		subdirectory = "UNKNOWN-FEATURE-SET"
 	elif imagecode == "cme":
 		subdirectory = "CALL-MANAGER-EXPRESS"
-	elif imagecode == "specialbuilds":
-		subdirectory = "SPECIAL-BUILDS"
 	elif imagecode == "configconvert":
 		subdirectory = "CONFIG-CONVERTER"
 	elif imagecode == "specialbuild":
 		subdirectory = "SPECIAL-BUILDS"
+	elif imagecode == "specialbuildlisp":
+		subdirectory = "SPECIAL-BUILDS-LISP"
 	elif imagecode == "export":
 		subdirectory = "EXPORT-FILES"
 	elif imagecode == "external-sso":
@@ -2783,6 +2785,56 @@ def product (prodcode):
 		prodname = "SECURITY/IOS-XE-UTD"
 	elif prodcode == "ipsids":
 		prodname = "SECURITY/IDS-IPS"
+	elif prodcode == "ipsidsnm":
+		prodname = "ROUTER-NM"
+	elif prodcode == "ipsidsasa5585xssp10":
+		prodname = "ASA5585-X-SSP_10"
+	elif prodcode == "ipsidsasa5585xssp20":
+		prodname = "ASA5585-X-SSP_20"
+	elif prodcode == "ipsidsasa5585xssp40":
+		prodname = "ASA5585-X-SSP_40"
+	elif prodcode == "ipsidsasa5585xssp60":
+		prodname = "ASA5585-X-SSP_60"
+	elif prodcode == "ipsidsasa5512xssp":
+		prodname = "ASA5512-X"
+	elif prodcode == "ipsidsasa5515xssp":
+		prodname = "ASA5515-X"
+	elif prodcode == "ipsidsasa5525xssp":
+		prodname = "ASA5525-X"
+	elif prodcode == "ipsidsasa5545xssp":
+		prodname = "ASA5545-X"
+	elif prodcode == "ipsidsasa5555xssp":
+		prodname = "ASA5555-X"
+	elif prodcode == "ipsidsasassc":
+		prodname = "ASA-AIPSSC"
+	elif prodcode == "ipsidsasassm10":
+		prodname = "ASA-AIPSSM-10"
+	elif prodcode == "ipsidsasassm20":
+		prodname = "ASA-AIPSSM-20"
+	elif prodcode == "ipsidsasassm40":
+		prodname = "ASA-AIPSSM-40"
+	elif prodcode == "ipsidsipsadsm2":
+		prodname = "IPS-Catalyst-6500-IDSM2"
+	elif prodcode == "ipsidsipsaim":
+		prodname = "IPS-AIM"
+	elif prodcode == "ipsidsips4215":
+		prodname = "IPS-4215"
+	elif prodcode == "ipsidsips4240":
+		prodname = "IPS-4240"
+	elif prodcode == "ipsidsips4255":
+		prodname = "IPS-4255"
+	elif prodcode == "ipsidsips4260":
+		prodname = "IPS-4260"
+	elif prodcode == "ipsidsips4270":
+		prodname = "IPS-4270"
+	elif prodcode == "ipsidsips4345":
+		prodname = "IPS-4345"
+	elif prodcode == "ipsidsips4360":
+		prodname = "IPS-4360"
+	elif prodcode == "ipsidsips4510":
+		prodname = "IPS-4510"
+	elif prodcode == "ipsidsips4520":
+		prodname = "IPS-4520"
 	elif prodcode == "iosids":
 		prodname = "SECURITY/IOS-IDS"
 	elif prodcode == "ironport":
@@ -3123,6 +3175,8 @@ def product (prodcode):
 		prodname = "SWITCHES/CATALYST/Catalyst-6500-6800/MWAM"
 	elif prodcode == "svcmwam":
 		prodname = "SWITCHES/CATALYST/Catalyst-6500-6800/MWAM"
+	elif prodcode == "c8000v":
+		prodname = "SWITCHES/CATALYST/Catalyst-8000V"
 	elif prodcode == "Nexus":
 		prodname = "SWITCHES/NEXUS/"
 	elif prodcode == "n1000v":
@@ -3344,7 +3398,7 @@ def product (prodcode):
 	elif prodcode == "C9800-80":
 		prodname = "WIRELESS/CONTROLLER/CATALYST-9800-80"
 	elif prodcode == "C9800-AP":
-		prodname = "WIRELESS/CONTROLLER/CATALYST-9800-ACCESS-POINTs"
+		prodname = "WIRELESS/ACCESS-POINT/CATALYST-9800-ACCESS-POINTS"
 	elif prodcode == "C9800-CL":
 		prodname = "WIRELESS/CONTROLLER/CATALYST-9800-CL"
 	elif prodcode == "C9800-L":
@@ -3352,7 +3406,7 @@ def product (prodcode):
 	elif prodcode == "C9800-SW":
 		prodname = "WIRELESS/CONTROLLER/CATALYST-9800-SW"
 	elif prodcode == "CT3504":
-		prodname = "WIRELESS/CONTROLLER/CT3504"
+		prodname = "WIRELESS/CONTROLLER/3500"
 	elif prodcode == "CT7500":
 		prodname = "WIRELESS/CONTROLLER/CT7500"
 	elif prodcode == "CT8500":
