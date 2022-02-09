@@ -364,7 +364,9 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "C9800-CL-universalk9.2019-07-09_07.29_ghalwasi.SSA.bin" or 
 		name == "C9800-CL-universalk9.2019-08-07_14.47_raghasin.SSA.bin" or 
 		name == "C9800-CL-universalk9.2019-09-16_14.42_gbks.SSA.bin" or 
-		name.startswith("C9800-CL-") and "THROTTLE" in name
+		name.startswith("C9800-CL-") and "THROTTLE" in name or 
+		name.startswith("C9800-CL-") and "eft" in name or 
+		name.startswith("C9800-CL-") and "prd" in name
 		):
 			prodname = product ("C9800-CL")
 			imagecode = imagelookup ("specialbuild")
@@ -453,6 +455,15 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 
 		elif (
 			name.startswith("asr1000") and "THROTTLE_LATEST" in name
+		):
+			prodname = product ("asr1000")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name.startswith("asr1001x") and "THROTTLE_LATEST" in name or
+			name.startswith("asr1001x") and "prd" in name or
+			name.startswith("asr1001x") and "eft" in name
 		):
 			prodname = product ("asr1000")
 			imagecode = imagelookup ("specialbuild")
@@ -647,13 +658,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-		splitbydot[0] == "C9800-40-universalk9_wlc" or 
-		splitbydot[0] == "C9800-80-universalk9_wlc" or 
-		splitbydot[0] == "C9800-CL-universalk9" or 
-		splitbydot[0] == "C9800-CL-universalk9_kvm" or 
-		splitbydot[0] == "C9800-L-universalk9_wlc" or 
-		splitbydot[0] == "C9800-SW-iosxe-wlc" or 
-		splitbydot[0] == "C9800-AP-universalk9" or 
+		name.startswith("C9800-") or 
 		splitbydash[0] == "asr1000" or 
 		splitbydash[0] == "asr1001" or 
 		splitbydash[0] == "asr1001x" or 
@@ -859,6 +864,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("IDS-sig-") and name.endswith(".zip") or 
 		name.startswith("IDS-sig-") and name.endswith(".readme.txt") or 
 		name.startswith("IPS") or 
+		name.startswith("IDS") or 
 		name.startswith("128MB.sdf") or 
 		name.startswith("256MB.sdf")
 		):

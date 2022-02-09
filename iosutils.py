@@ -2051,7 +2051,17 @@ def imagelookup (imagecode):
 	elif imagecode == "iosxe":
 		subdirectory = "UNIVERSAL"
 	elif imagecode == "universalk9_kvm":
-		subdirectory = "UNIVERSAL"
+		subdirectory = "UNIVERSAL-KVM"
+	elif imagecode == "universal_google_nfvis":
+		subdirectory = "UNIVERSAL-GOOGLE-NFVIS"
+	elif imagecode == "universal_google_esxi":
+		subdirectory = "UNIVERSAL-GOOGLE-ESXI"
+	elif imagecode == "universal_google_kvm":
+		subdirectory = "UNIVERSAL-GOOGLE-KVM"
+	elif imagecode == "universalk9_cloud":
+		subdirectory = "UNIVERSAL-CLOUD"
+	elif imagecode == "universal_kvm":
+		subdirectory = "UNIVERSAL-KVM"
 	elif imagecode == "cat9k_lite_iosxe":
 		subdirectory = "UNIVERSAL-LITE"
 	elif imagecode == "system":

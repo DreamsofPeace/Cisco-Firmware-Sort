@@ -197,15 +197,7 @@ def fileprocessor_iosxe(debug1,filename):
 		else:
 			fileproc_iosxe(debug1,filename,prodname,imagecode)
 
-	elif (
-	splitbydot[0] == "C9800-40-universalk9_wlc" or 
-	splitbydot[0] == "C9800-80-universalk9_wlc" or 
-	splitbydot[0] == "C9800-CL-universalk9" or 
-	splitbydot[0] == "C9800-CL-universalk9_kvm" or 
-	splitbydot[0] == "C9800-L-universalk9_wlc" or 
-	splitbydot[0] == "C9800-SW-iosxe-wlc" or 
-	splitbydot[0] == "C9800-AP-universalk9"
-	):
+	elif filename.startswith("C9800-"):
 		fileproccontroller (debug1,filename)
 
 	elif filename.startswith("ie9k_"):
@@ -270,25 +262,88 @@ def fileproccontroller (debug1,filename):
 		print("\tSubroutine#\tfileproccontroller")
 	if filename.startswith("C9800-40-universalk9_wlc"):
 		prodname = product ("C9800-40")
-		fileproc_iosxe_noimagecode (debug1,filename,prodname)
+		fileproc_iosxe_controller (debug1,filename,prodname)
 	elif filename.startswith("C9800-80-universalk9_wlc"):
 		prodname = product ("C9800-80")
-		fileproc_iosxe_noimagecode (debug1,filename,prodname)
+		fileproc_iosxe_controller (debug1,filename,prodname)
 	elif filename.startswith("C9800-CL-universalk9_kvm"):
 		prodname = product ("C9800-CL")
-		fileproc_iosxe_noimagecode (debug1,filename,prodname)
+		fileproc_iosxe_controller (debug1,filename,prodname)
 	elif filename.startswith("C9800-CL-universalk9"):
 		prodname = product ("C9800-CL")
-		fileproc_iosxe_noimagecode (debug1,filename,prodname)
+		fileproc_iosxe_controller (debug1,filename,prodname)
 	elif filename.startswith("C9800-L-universalk9_wlc"):
 		prodname = product ("C9800-L")
-		fileproc_iosxe_noimagecode (debug1,filename,prodname)
+		fileproc_iosxe_controller (debug1,filename,prodname)
 	elif filename.startswith("C9800-SW-iosxe-wlc"):
 		prodname = product ("C9800-SW")
-		fileproc_iosxe_noimagecode (debug1,filename,prodname)
+		fileproc_iosxe_controller (debug1,filename,prodname)
 	elif filename.startswith("C9800-AP-universalk9"):
 		prodname = product ("C9800-AP")
-		fileproc_iosxe_noimagecode (debug1,filename,prodname)
+		fileproc_iosxe_controller (debug1,filename,prodname)
+
+def fileproc_iosxe_controller (debug1,filename,prodname):
+	if debug1:
+		print("\tSubroutine#\tfileproc_iosxe_controller")
+	if filename.endswith(".iso"):
+		imagecode = imagelookup("universalk9")
+		fileproc_iosxe (debug1,filename,prodname,imagecode)
+	elif filename.endswith(".ova"):
+		imagecode = imagelookup("universalk9")
+		fileproc_iosxe (debug1,filename,prodname,imagecode)
+	elif filename.endswith(".bin"):
+		imagecode = imagelookup("universalk9")
+		fileproc_iosxe (debug1,filename,prodname,imagecode)
+	elif filename.endswith(".run"):
+		if "nfvis" in filename:
+			imagecode = imagelookup("universal_google_nfvis")
+			fileproc_iosxe (debug1,filename,prodname,imagecode)
+		elif "esxi" in filename:
+			imagecode = imagelookup("universal_google_esxi")
+			fileproc_iosxe (debug1,filename,prodname,imagecode)
+		elif "kvm" in filename:
+			imagecode = imagelookup("universal_google_kvm")
+			fileproc_iosxe (debug1,filename,prodname,imagecode)
+	elif filename.endswith(".tar.gz"):
+		imagecode = imagelookup("universalk9_cloud")
+		fileproc_iosxe (debug1,filename,prodname,imagecode)
+	elif filename.endswith(".qcow2"):
+		imagecode = imagelookup("universal_kvm")
+		fileproc_iosxe (debug1,filename,prodname,imagecode)
+	elif (
+	filename.startswith("C9800-80-universalk9_wlc.") or 
+	filename.startswith("C9800-40-universalk9_wlc.") or 
+	filename.startswith("C9800-L-universalk9_wlc.")
+	):
+		imagecode = imagelookup("universalk9")
+		fileproc_iosxe (debug1,filename,prodname,imagecode)
+	elif (
+	filename.startswith("C9800-80-universalk9_kvm.") or 
+	filename.startswith("C9800-40-universalk9_kvm.") or 
+	filename.startswith("C9800-CL-universalk9_kvm.") or 
+	filename.startswith("C9800-L-universalk9_kvm.")
+	):
+		imagecode = imagelookup("universalk9_kvm")
+		fileproc_iosxe (debug1,filename,prodname,imagecode)
+
+'''Image Names (9800-80, 9800-40, and 9800-L):
+    C9800-80-universalk9_wlc.17.06.01.SPA.bin
+    C9800-40-universalk9_wlc.17.06.01.SPA.bin
+    C9800-L-universalk9_wlc.17.06.01.SPA.bin
+Image Names (9800-CL):
+    Cloud: C9800-CL-universalk9.17.06.01.SPA.bin
+    Hyper-V/ESXi/KVM: C9800-CL-universalk9.17.06.01.iso, C9800-CL-universalk9.17.06.01.ova
+    KVM: C9800-CL-universalk9.17.06.01.qcow2
+    NFVIS: C9800-CL-universalk9.17.06.01.tar.gz
+'''
+#	if filename.startswith("C9800-CL-universalk9."):
+#	if filename.startswith("C9800-40-universalk9_wlc") or 
+#	if filename.startswith("C9800-80-universalk9_wlc") or 
+#	if filename.startswith("C9800-AP-universalk9") or 
+#	if filename.startswith("C9800-CL-universalk9") or 
+#	if filename.startswith("C9800-CL-universalk9_kvm") or 
+#	if filename.startswith("C9800-L-universalk9_wlc") or 
+#	if filename.startswith("C9800-SW-iosxe-wlc")
 
 def fileproc_iosxe_noimagecode (debug1,filename,prodname):
 	if debug1:

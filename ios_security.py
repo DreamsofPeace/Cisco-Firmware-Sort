@@ -340,6 +340,9 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 
 	elif (
 		filename.startswith ("IPS") or 
+		filename.startswith ("IDS") or 
+		filename.startswith("128MB.sdf") or 
+		filename.startswith("256MB.sdf") or 
 		filename.startswith ("IOS") and filename.endswith ("-CLI.pkg")
 	):
 		sec_classic_ips (debug1,filename)
@@ -478,41 +481,67 @@ def sec_classic_ips (debug1,filename):
 		filepath = filepath4(prodname,imagecode,engine,workname)
 		filemove (filepath, filename)
 	elif (
-	filename.startswith("IPS-sig-") and filename.endswith("-req-E1.pkg")
+	filename.startswith("IDS-sig-4.1-5-") and filename.endswith(".zip")
 	):
 		imagecode = imagelookup("signatures")
-		engine = imagelookup("engine1")
-		workname = filename.replace("IPS-sig-","")
-		workname = workname.replace("-req-E1.pkg","")
+		engine = imagelookup("engine0")
+		workname = filename.replace("IDS-sig-4.1-5-","")
+		workname = workname.replace(".zip","")
+		workname = workname.replace(".readme.txt","")
 		filepath = filepath4(prodname,imagecode,engine,workname)
 		filemove (filepath, filename)
 	elif (
-	filename.startswith("IPS-sig-") and filename.endswith("-req-E2.pkg")
+	filename.startswith("IPS-sig-")
 	):
 		imagecode = imagelookup("signatures")
-		engine = imagelookup("engine2")
+		prodname = product("csm")
 		workname = filename.replace("IPS-sig-","")
-		workname = workname.replace("-req-E2.pkg","")
+		if filename.endswith("-req-E1.pkg"):
+			engine = imagelookup("engine1")
+			workname = workname.replace("-req-E1.pkg","")
+		elif filename.endswith("-req-E2.pkg"):
+			engine = imagelookup("engine2")
+			workname = workname.replace("-req-E2.pkg","")
+		elif filename.endswith("-req-E3.pkg"):
+			engine = imagelookup("engine3")
+			workname = workname.replace("-req-E3.pkg","")
+		elif filename.endswith("-req-E4.pkg"):
+			engine = imagelookup("engine4")
+			workname = workname.replace("-req-E4.pkg","")
 		filepath = filepath4(prodname,imagecode,engine,workname)
 		filemove (filepath, filename)
 	elif (
-	filename.startswith("IPS-sig-") and filename.endswith("-req-E3.pkg")
+	filename.startswith("IPS-CS-MGR-sig-")
 	):
 		imagecode = imagelookup("signatures")
-		engine = imagelookup("engine3")
-		workname = filename.replace("IPS-sig-","")
-		workname = workname.replace("-req-E3.pkg","")
+		prodname = product("csm")
+		workname = filename.replace("IPS-CS-MGR-sig-","")
+		if filename.endswith("-req-E1.zip"):
+			engine = imagelookup("engine1")
+			workname = workname.replace("-req-E1.zip","")
+		elif filename.endswith("-req-E2.zip"):
+			engine = imagelookup("engine2")
+			workname = workname.replace("-req-E2.zip","")
+		elif filename.endswith("-req-E3.zip"):
+			engine = imagelookup("engine3")
+			workname = workname.replace("-req-E3.zip","")
+		elif filename.endswith("-req-E4.zip"):
+			engine = imagelookup("engine4")
+			workname = workname.replace("-req-E4.zip","")
 		filepath = filepath4(prodname,imagecode,engine,workname)
 		filemove (filepath, filename)
-	elif (
-	filename.startswith("IPS-sig-") and filename.endswith("-req-E4.pkg")
-	):
-		imagecode = imagelookup("signatures")
-		engine = imagelookup("engine4")
-		workname = filename.replace("IPS-sig-","")
-		workname = workname.replace("-req-E4.pkg","")
-		filepath = filepath4(prodname,imagecode,engine,workname)
-		filemove (filepath, filename)
+	elif filename.startswith("IPS-CSM-K9-patch-"):
+		prodname1 = product("csm")
+		if filename == "IPS-CSM-K9-patch-7.3-5p1-E4.zip":
+			imagecode = imagelookup("system")
+			version = "7.3.5.E4"
+			filepath = filepath3(prodname1,version,imagecode)
+			filemove (filepath, filename)
+		elif filename == "IPS-CSM-K9-patch-7.1-11p1-E4.zip":
+			imagecode = imagelookup("system")
+			version = "7.1.11.E4"
+			filepath = filepath3(prodname1,version,imagecode)
+			filemove (filepath, filename)
 	elif (
 	filename == "IPS-4270_20-K9-patch-7.1-11p1-E4.pkg" or 
 	filename == "IPS-4345-K9-patch-7.1-11p1-E4.pkg" or 
@@ -656,18 +685,6 @@ def sec_classic_ips (debug1,filename):
 		#filepath = filepath3(prodname,version,imagecode)
 		filepath = filepath4(prodname1,version,prodname2,imagecode)
 		filemove (filepath, filename)
-	elif filename.startswith("IPS-CSM"):
-		prodname1 = product("csm")
-		if filename == "IPS-CSM-K9-patch-7.3-5p1-E4.zip":
-			imagecode = imagelookup("system")
-			version = "7.3.5.E4"
-			filepath = filepath3(prodname1,version,imagecode)
-			filemove (filepath, filename)
-		elif filename == "IPS-CSM-K9-patch-7.1-11p1-E4.zip":
-			imagecode = imagelookup("system")
-			version = "7.1.11.E4"
-			filepath = filepath3(prodname1,version,imagecode)
-			filemove (filepath, filename)
 	elif filename.startswith("IPS-4215-K9"):
 		prodname1 = product("ipsids")
 		prodname2 = product("ipsidsips4215")
@@ -1448,7 +1465,10 @@ def sec_classic_ips (debug1,filename):
 		filemove (filepath, filename)
 	elif (
 		filename.startswith("IOS-S") and filename.endswith("-CLI.pkg") or 
-		filename.startswith("IOS-S") and filename.endswith(".zip")
+		filename.startswith("IOS-S") and filename.endswith(".zip") or 
+		filename.startswith("128MB.sdf") or 
+		filename.startswith("256MB.sdf")
+		
 		):
 			prodname = product ("iosids")
 			imagecode = imagelookup ("signatures")
