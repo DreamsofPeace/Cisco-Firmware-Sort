@@ -887,21 +887,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name == "1X0SBIOSv4.8" or 
 		name == "B57BCMCD_v15.2.4.1.tgz" or 
 		name == "B57CiscoCD_T6.4.4.3-57712.zip" or 
-		name == "CIMC-3.2.8.bin" or 
-		name == "CIMC_2.4.1.bin" or 
-		name == "CIMC_2.4.2.bin" or 
-		name == "CIMC_3.0.1.bin" or 
-		name == "CIMC_3.0.2.bin" or 
-		name == "CIMC_3.1.1.bin" or 
-		name == "CIMC_3.1.2.bin" or 
-		name == "CIMC_3.1.3.bin" or 
-		name == "CIMC_3.1.4.bin" or 
-		name == "CIMC_3.2.1.REL.bin" or 
-		name == "CIMC_3.2.2.bin" or 
-		name == "CIMC_3.2.3.bin" or 
-		name == "CIMC_3.2.4.bin" or 
-		name == "CIMC_3.2.6.bin" or 
-		name == "CIMC_3.2.7.bin" or 
+		name.startswith("CIMC_") and name.endswith(".bin") or 
 		name == "DW_16MB_release_1029.bin" or 
 		name == "DW_BIOS.bin.SPA" or 
 		name == "DW_Signed_Bios_Image.bin.SPA" or 
