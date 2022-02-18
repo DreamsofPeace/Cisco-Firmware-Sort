@@ -494,7 +494,6 @@ def sec_classic_ips (debug1,filename):
 	filename.startswith("IPS-sig-")
 	):
 		imagecode = imagelookup("signatures")
-		prodname = product("csm")
 		workname = filename.replace("IPS-sig-","")
 		if filename.endswith("-req-E1.pkg"):
 			engine = imagelookup("engine1")
@@ -542,6 +541,13 @@ def sec_classic_ips (debug1,filename):
 			version = "7.1.11.E4"
 			filepath = filepath3(prodname1,version,imagecode)
 			filemove (filepath, filename)
+	elif filename.startswith("IPS-K9-r-1.1-a-"):
+		imagecode = imagelookup("rcv")
+		workname = filename.replace(".pkg","")
+		workname = workname.replace("IPS-K9-r-1.1-a-","")
+		workname = workname.replace("-",".")
+		filepath = filepath3(prodname,workname,imagecode)
+		filemove (filepath, filename)
 	elif (
 	filename == "IPS-4270_20-K9-patch-7.1-11p1-E4.pkg" or 
 	filename == "IPS-4345-K9-patch-7.1-11p1-E4.pkg" or 
@@ -2635,14 +2641,14 @@ def sec_ise_pic (debug1,filename):
 	prodname = product ("isepic")
 
 	if filename.startswith("pic-"):
-		sec_ise_pic_orig (filename,prodname)
+		sec_ise_pic_orig (debug1,filename,prodname)
 
 	elif filename.startswith("ise-pic-"):
-		sec_ise_pic_current (filename,prodname)
+		sec_ise_pic_current (debug1,filename,prodname)
 	else:
 		messageunknownfile()
 
-def sec_ise_pic_orig (filename,prodname):
+def sec_ise_pic_orig (debug1,filename,prodname):
 	if debug1:
 		print("\tSubroutine#\tsec_ise_pic_orig")
 	splitbydot = filename.split(".")
@@ -2652,7 +2658,7 @@ def sec_ise_pic_orig (filename,prodname):
 	filepath = filepath3 (prodname,verfour,imagecode)
 	filemove (filepath, filename)
 
-def sec_ise_pic_current (filename,prodname):
+def sec_ise_pic_current (debug1,filename,prodname):
 	if debug1:
 		print("\tSubroutine#\tsec_ise_pic_current")
 	splitbydash = filename.split("-")
