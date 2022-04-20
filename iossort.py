@@ -373,7 +373,8 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-		name.startswith("C9800-SW-") and "THROTTLE" in name
+		name.startswith("C9800-SW-") and "THROTTLE" in name or
+		name == "C9800-SW-iosxe-wlc.V171_1S_TES2.SPA.bin"
 		):
 			prodname = product ("C9800-SW")
 			imagecode = imagelookup ("specialbuild")
@@ -704,6 +705,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("ie9k") or 
 		name.startswith("s5800") or 
 		name.startswith("vg400") or 
+		name.startswith("vg420") or 
 		name.startswith("vg450") or 
 		name.startswith("CAT3650_WEBAUTH_BUNDLE") or 
 		name.startswith("CAT3850_WEBAUTH_BUNDLE") or 
