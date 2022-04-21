@@ -1217,12 +1217,13 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith ("MFG_CTVM") or 
 		name.startswith ("AP_BUNDLE") or 
 		name.startswith ("WCS-STANDARD-K9") or 
+		name.startswith ("ISR-AP1100AC") or 
 		name.startswith ("CiscoAironet-AP-to-LWAPP-Upgrade-Tool") or 
+		name.startswith ("BR350") and name.endswith ("exe") or 
+		name.startswith ("WGB350") and name.endswith ("exe") or 
 		name == "AP350-Cisco-IOS-Upgrade-Image-v2.img" or 
 		name == "AP1200-Cisco-IOS-Upgrade-Image-v3.img" or 
 		name == "Aironet-AP-Cisco-IOS-Conversion-Tool-v2.1.exe" or 
-		name.startswith ("BR350") and name.endswith ("exe") or 
-		name.startswith ("WGB350") and name.endswith ("exe") or 
 		name == "webauth_bundle.zip" or 
 		name == "webauth_bundle-1.0.2.zip"
 		):

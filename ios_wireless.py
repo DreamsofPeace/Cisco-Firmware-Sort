@@ -30,6 +30,16 @@ def fileprocessor_wireless(debug1,filename):
 		wireless_all_dash (debug1,filename,prodname,workname)
 
 	elif (
+	filename.startswith("ISR-AP1100AC-ME-") 
+	):
+		prodname = product ("ISR1100AC")
+		workname = filename.replace(".tar","")
+		workname = workname.replace(".zip","")
+		workname = workname.replace(".aes","")
+		workname = workname.replace("ISR-AP1100AC-ME-","")
+		wireless_all_dash (debug1,filename,prodname,workname)
+
+	elif (
 	filename.startswith("AIR-AP1830-K9-") 
 	):
 		newname = filename.split(".")
