@@ -510,36 +510,52 @@ def sec_classic_ips (debug1,filename):
 		filepath = filepath4(prodname,imagecode,engine,workname)
 		filemove (filepath, filename)
 	elif (
+	filename.startswith("IPS-CS-MARS-Sig-")
+	):
+		imagecode = imagelookup("signatures")
+		prodname = product("mars")
+		workname = filename.replace("IPS-CS-MARS-Sig-","")
+		workname = workname.replace(".zip","")
+		filepath = filepath3(prodname,imagecode,workname)
+		filemove (filepath, filename)
+	elif (
 	filename.startswith("IPS-CS-MGR-sig-")
 	):
 		imagecode = imagelookup("signatures")
 		prodname = product("csm")
 		workname = filename.replace("IPS-CS-MGR-sig-","")
+		workname = workname.replace("IPS-CS-MGR-Sig-","")
 		if filename.endswith("-req-E1.zip"):
 			engine = imagelookup("engine1")
 			workname = workname.replace("-req-E1.zip","")
+			filepath = filepath4(prodname,imagecode,engine,workname)
 		elif filename.endswith("-req-E2.zip"):
 			engine = imagelookup("engine2")
 			workname = workname.replace("-req-E2.zip","")
+			filepath = filepath4(prodname,imagecode,engine,workname)
 		elif filename.endswith("-req-E3.zip"):
 			engine = imagelookup("engine3")
 			workname = workname.replace("-req-E3.zip","")
+			filepath = filepath4(prodname,imagecode,engine,workname)
 		elif filename.endswith("-req-E4.zip"):
 			engine = imagelookup("engine4")
 			workname = workname.replace("-req-E4.zip","")
-		filepath = filepath4(prodname,imagecode,engine,workname)
+			filepath = filepath4(prodname,imagecode,engine,workname)
+#		else:
+#			workname = workname.replace("zip","")
+#			filepath = filepath3(prodname,imagecode,workname)
 		filemove (filepath, filename)
 	elif filename.startswith("IPS-CSM-K9-patch-"):
 		prodname1 = product("csm")
 		if filename == "IPS-CSM-K9-patch-7.3-5p1-E4.zip":
-			imagecode = imagelookup("system")
+			imagecode = imagelookup("patch")
 			version = "7.3.5.E4"
-			filepath = filepath3(prodname1,version,imagecode)
+			filepath = filepath4(prodname1,"IPS",version,imagecode)
 			filemove (filepath, filename)
 		elif filename == "IPS-CSM-K9-patch-7.1-11p1-E4.zip":
-			imagecode = imagelookup("system")
+			imagecode = imagelookup("patch")
 			version = "7.1.11.E4"
-			filepath = filepath3(prodname1,version,imagecode)
+			filepath = filepath4(prodname1,"IPS",version,imagecode)
 			filemove (filepath, filename)
 	elif filename.startswith("IPS-K9-r-1.1-a-"):
 		imagecode = imagelookup("rcv")

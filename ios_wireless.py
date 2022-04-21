@@ -223,6 +223,7 @@ def fileprocessor_wireless(debug1,filename):
 		prodname = product ("AP1840")
 		workname = filename.replace(".aes","")
 		workname = workname.replace(".zip","")
+		workname = workname.replace(".tar","")
 		workname = workname.replace("AIR-AP1840-K9-ME-","")
 		wireless_all_dash (debug1,filename,prodname,workname)
 
@@ -232,6 +233,7 @@ def fileprocessor_wireless(debug1,filename):
 		prodname = product ("AP1540")
 		workname = filename.replace(".aes","")
 		workname = workname.replace(".zip","")
+		workname = workname.replace(".tar","")
 		workname = workname.replace("AIR-AP1540-K9-ME-","")
 		wireless_all_dash (debug1,filename,prodname,workname)
 
@@ -241,6 +243,7 @@ def fileprocessor_wireless(debug1,filename):
 		prodname = product ("AP1560")
 		workname = filename.replace(".aes","")
 		workname = workname.replace(".zip","")
+		workname = workname.replace(".tar","")
 		workname = workname.replace("AIR-AP1560-K9-ME-","")
 		wireless_all_dash (debug1,filename,prodname,workname)
 
@@ -250,6 +253,7 @@ def fileprocessor_wireless(debug1,filename):
 		prodname = product ("AP2800")
 		workname = filename.replace(".aes","")
 		workname = workname.replace(".zip","")
+		workname = workname.replace(".tar","")
 		workname = workname.replace("AIR-AP2800-K9-ME-","")
 		wireless_all_dash (debug1,filename,prodname,workname)
 
@@ -259,6 +263,7 @@ def fileprocessor_wireless(debug1,filename):
 		prodname = product ("AP3800")
 		workname = filename.replace(".aes","")
 		workname = workname.replace(".zip","")
+		workname = workname.replace(".tar","")
 		workname = workname.replace("AIR-AP3800-K9-ME-","")
 		wireless_all_dash (debug1,filename,prodname,workname)
 
@@ -268,6 +273,7 @@ def fileprocessor_wireless(debug1,filename):
 		prodname = product ("AP4800")
 		workname = filename.replace(".aes","")
 		workname = workname.replace(".zip","")
+		workname = workname.replace(".tar","")
 		workname = workname.replace("AIR-AP4800-K9-ME-","")
 		wireless_all_dash (debug1,filename,prodname,workname)
 
@@ -277,6 +283,7 @@ def fileprocessor_wireless(debug1,filename):
 		prodname = product ("AP4800")
 		workname = filename.replace(".aes","")
 		workname = workname.replace(".zip","")
+		workname = workname.replace(".tar","")
 		workname = workname.replace("AIR-AP4800-K9-ME-","")
 		wireless_all_dash (debug1,filename,prodname,workname)
 
@@ -286,6 +293,7 @@ def fileprocessor_wireless(debug1,filename):
 		prodname = product ("SRE")
 		workname = filename.replace(".aes","")
 		workname = workname.replace(".zip","")
+		workname = workname.replace(".tar","")
 		workname = workname.replace("AIR-WLC-SRE-K9-","")
 		wireless_all_dash (debug1,filename,prodname,workname)
 
