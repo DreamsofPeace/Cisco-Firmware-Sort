@@ -519,6 +519,7 @@ def file_proc_servers_aci (debug1,filename,prodname):
 	):
 		imagecode = imagelookup("acisim")
 		workname = filename.replace("aci-simulator-dk9.", "")
+		workname = workname.replace(".iso", "")
 		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 
 	else:

@@ -2356,6 +2356,8 @@ def imagelookup (imagecode):
 		subdirectory = "ROUTE-REFLECTOR-VGA"
 	elif imagecode == "log4j":
 		subdirectory = "LOG4SHELL-FIXES"
+	elif imagecode == "ciscosoftwaremanager":
+		subdirectory = "CISCO-SOFTWARE-MANAGER"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory

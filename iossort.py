@@ -1022,7 +1022,10 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		name.startswith("Sightline") or 
 		name.startswith("SP_") or 
 		name.startswith("TMS_") or 
-		name.startswith("Cisco_TMS_")
+		name.startswith("Cisco_TMS_") or 
+		name.startswith("CSM.zip") or 
+		name.startswith("csm-3.5.2.zip") or 
+		name.startswith("csm-4.0.zip")
 		):
 			fileprocessor_iosxr(debug1,name)
 

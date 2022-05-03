@@ -17,6 +17,15 @@ def fileprocessor_iosxr (debug1,filename):
 	filename.startswith("asr9k-sysadmin-") and splitbydot[3].startswith("CSC")
 	):
 		iosxr_asr9ksmu (debug1,filename)
+
+	elif (
+	filename == "CSM.zip" or 
+	filename == "csm-3.5.2.zip" or 
+	filename == "csm-4.0.zip"
+	):
+		prodname = product ("asr9k")
+		imagecode = imagelookup("ciscosoftwaremanager")
+		utilssinglemove (debug1,filename,prodname,imagecode)
 	
 	elif (
 	filename.startswith("ASR9K") or 
