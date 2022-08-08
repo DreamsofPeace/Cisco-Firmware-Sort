@@ -237,6 +237,10 @@ def fileprocessor_iosxe(debug1,filename):
 		elif filename.startswith("c8000v-universalk9_vga"):
 			prodname = product ("c8000v")
 			imagecode = imagelookup("universalk9")
+		elif filename.startswith("c8000v-universalk9"):
+			prodname = product ("c8000v")
+			imagecode = imagelookup("universalk9")
+#		print (prodname, end="\n")
 		splitbydot = filename.split(".")
 		iosmain = util2digit(splitbydot[1],splitbydot[2])
 		iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
