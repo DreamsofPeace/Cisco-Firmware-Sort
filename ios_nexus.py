@@ -24,6 +24,11 @@ def fileprocessornxos (filename,debug1):
 		imagecode = imagelookup("epld")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
+	elif filename == "n7000-s2-flash-recovery-tool.10.0.2.tar.gz":
+		prodname = product("nxos")
+		imagecode = imagelookup("flashrecovery")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
 	elif (
 	filename == "poap_script.py" or 
 	filename == "poap_script.tcl"
