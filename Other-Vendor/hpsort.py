@@ -27,6 +27,8 @@ def product (prodcode):
 		prodname = "SWITCHES/HPE-ARUBA-8325"
 	elif prodcode == "8400X":
 		prodname = "SWITCHES/HPE-ARUBA-8400X"
+	elif prodcode == "10000":
+		prodname = "SWITCHES/HPE-ARUBA-10000"
 	elif prodcode == "A":
 		prodname = "SWITCHES/HPE-ARUBA-2915(A)"
 	elif prodcode == "C":
@@ -113,6 +115,12 @@ def product (prodcode):
 		prodname = "CONTROLLER/ARUBA-70xx"
 	elif prodcode == "72xx":
 		prodname = "CONTROLLER/ARUBA-72xx"
+	elif prodcode == "7280":
+		prodname = "CONTROLLER/ARUBA-7280"
+	elif prodcode == "90xx":
+		prodname = "CONTROLLER/ARUBA-90xx"
+	elif prodcode == "92xx":
+		prodname = "CONTROLLER/ARUBA-92xx"
 	elif prodcode == "MMC":
 		prodname = "CONTROLLER/ARUBA-MOBILITY-MASTER"
 	elif prodcode == "VMC":
@@ -127,9 +135,28 @@ def product (prodcode):
 		prodname = "ZIPS"
 	elif prodcode == "vsr":
 		prodname = "VSR-1000-JG811AAE"
+	elif prodcode == "ArubaInstant_Vela":
+		prodname = "Access-Points-Instant/203H-203R-207"
+	elif prodcode == "ArubaInstant_Ursa":
+		prodname = "Access-Points-Instant/300-303-303H-360"
+	elif prodcode == "ArubaInstant_Hercules":
+		prodname = "Access-Points-Instant/310-318-320-370-387"
+	elif prodcode == "ArubaInstant_Lupus":
+		prodname = "Access-Points-Instant/330"
+	elif prodcode == "ArubaInstant_Draco":
+		prodname = "Access-Points-Instant/340-510-518-570"
+	elif prodcode == "ArubaInstant_Gemini":
+		prodname = "Access-Points-Instant/500-500H-560"
+	elif prodcode == "ArubaInstant_Scorpio":
+		prodname = "Access-Points-Instant/530-550"
+	elif prodcode == "ArubaInstant_Norma":
+		prodname = "Access-Points-Instant/630-650"
+	elif prodcode == "ArubaInstant_Centaurus":
+		prodname = "Access-Points-Instant/210-220-228-270"
 	else:
 		prodname = "UNKNOWN"
 	return prodname
+
 
 #A	Switch 2615-8-PoE and Switch 2915-8G-PoE
 ###C	1600M, 2400M, 2424M, 4000M, and 8000M
@@ -359,6 +386,9 @@ def dirwalk (src,hashsha512,hashfile):
 		elif "MIBs" in filename:
 			prodname = product ("mibs")
 			base_directory_move (filename, prodname)
+		elif filename.startswith("MIB"):
+			prodname = product ("mibs")
+			base_directory_move (filename, prodname)
 		elif "NetEdit" in filename:
 			prodname = product ("NetEdit")
 			base_directory_move (filename, prodname)
@@ -439,6 +469,11 @@ def dirwalk (src,hashsha512,hashfile):
 			prodname = product ("8400X")
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_8400X_","")
+			new_style_move (filename, prodname, workname, "_")
+		elif filename.startswith("ArubaOS-CX_10000_"):
+			prodname = product ("10000")
+			workname = filename.replace(".swi","")
+			workname = workname.replace("ArubaOS-CX_10000_","")
 			new_style_move (filename, prodname, workname, "_")
 		elif filename.startswith("PL_"):
 			prodname = product ("PL")
@@ -628,6 +663,18 @@ def dirwalk (src,hashsha512,hashfile):
 			prodname = product ("72xx")
 			workname = filename.replace("ArubaOS_72xx_","")
 			new_style_move (filename, prodname, workname, ".")
+		elif filename.startswith("ArubaOS_7280_"):
+			prodname = product ("7280")
+			workname = filename.replace("ArubaOS_7280_","")
+			new_style_move (filename, prodname, workname, ".")
+		elif filename.startswith("ArubaOS_92xx_"):
+			prodname = product ("92xx")
+			workname = filename.replace("ArubaOS_92xx_","")
+			new_style_move (filename, prodname, workname, ".")
+		elif filename.startswith("ArubaOS_90xx_"):
+			prodname = product ("90xx")
+			workname = filename.replace("ArubaOS_90xx_","")
+			new_style_move (filename, prodname, workname, ".")
 		elif filename.startswith("ArubaOS_MMC_"):
 			prodname = product ("MMC")
 			workname = filename.replace("ArubaOS_MMC_","")
@@ -640,6 +687,43 @@ def dirwalk (src,hashsha512,hashfile):
 			prodname = product ("VMC")
 			workname = filename.replace("ArubaOS_VMC_","")
 			new_style_move (filename, prodname, workname, ".")
+		elif filename.startswith("ArubaInstant_Lupus_"):
+			prodname = product ("ArubaInstant_Lupus")
+			workname = filename.replace("ArubaInstant_Lupus_","")
+			new_style_move (filename, prodname, workname, ".")
+		elif filename.startswith("ArubaInstant_Vela_"):
+			prodname = product ("ArubaInstant_Vela")
+			workname = filename.replace("ArubaInstant_Vela_","")
+			new_style_move (filename, prodname, workname, ".")
+		elif filename.startswith("ArubaInstant_Ursa_"):
+			prodname = product ("ArubaInstant_Ursa")
+			workname = filename.replace("ArubaInstant_Ursa_","")
+			new_style_move (filename, prodname, workname, ".")
+		elif filename.startswith("ArubaInstant_Hercules_"):
+			prodname = product ("ArubaInstant_Hercules")
+			workname = filename.replace("ArubaInstant_Hercules_","")
+			new_style_move (filename, prodname, workname, ".")
+		elif filename.startswith("ArubaInstant_Draco_"):
+			prodname = product ("ArubaInstant_Draco")
+			workname = filename.replace("ArubaInstant_Draco_","")
+			new_style_move (filename, prodname, workname, ".")
+		elif filename.startswith("ArubaInstant_Gemini_"):
+			prodname = product ("ArubaInstant_Gemini")
+			workname = filename.replace("ArubaInstant_Gemini_","")
+			new_style_move (filename, prodname, workname, ".")
+		elif filename.startswith("ArubaInstant_Scorpio_"):
+			prodname = product ("ArubaInstant_Scorpio")
+			workname = filename.replace("ArubaInstant_Scorpio_","")
+			new_style_move (filename, prodname, workname, ".")
+		elif filename.startswith("ArubaInstant_Norma_"):
+			prodname = product ("ArubaInstant_Norma")
+			workname = filename.replace("ArubaInstant_Norma_","")
+			new_style_move (filename, prodname, workname, ".")
+		elif filename.startswith("ArubaInstant_Centaurus_"):
+			prodname = product ("ArubaInstant_Centaurus")
+			workname = filename.replace("ArubaInstant_Centaurus_","")
+			new_style_move (filename, prodname, workname, ".")
+
 		elif (
 		filename == "VSR1000_7.10.E0321.zip" or 
 		filename == "VSR1000_7.10.E0321P01.zip" or 

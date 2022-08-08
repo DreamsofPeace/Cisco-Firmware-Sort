@@ -328,6 +328,8 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			name == "cat9k_private_image_802.3bt.bin" or 
 			name == "cat9k_iosxe.BLD_V171_EFT-1.SSA.bin" or 
 			name == "cat9k_iosxe.BLD_V171_EFT-2.SSA.bin" or 
+			name == "cat9k_iosxe.16.09.01.CSCvk69552.SPA.smu.bin" or 
+			name == "cat9k_iosxe.16.09.01.CSCvk69552.SPA.smu.txt" or 
 			name.startswith("cat9k") and "THROTTLE_LATEST" in name or 
 			name.startswith("cat9k") and "prd" in name or 
 			name.startswith("cat9k") and "eft" in name
@@ -381,7 +383,9 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-		name == "c1100-universalk9.V16_12_0_136.SSA.bin"
+		name == "c1100-universalk9.V16_12_0_136.SSA.bin" or 
+		name.startswith("c1100-") and "prd" in name or 
+		name.startswith("c1100-") and "eft" in name
 		):
 			prodname = product ("c1100router")
 			imagecode = imagelookup ("specialbuild")
@@ -448,7 +452,9 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-			name.startswith("csr1000v") and "THROTTLE_LATEST" in name
+			name.startswith("csr1000v") and "THROTTLE_LATEST" in name or 
+			name == "csr1000v-universalk9.16.09.01.CSCvk69552.SPA.smu.bin" or 
+			name == "csr1000v-universalk9.16.09.01.CSCvk69552.txt"
 		):
 			prodname = product ("csr1000v")
 			imagecode = imagelookup ("specialbuild")
@@ -498,6 +504,20 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		):
 			prodname = product ("cworks")
 			imagecode = imagelookup ("rme")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name == "VMS_2_3_DST_Patch_Windows_K9.tar"
+		):
+			prodname = product ("cworks")
+			imagecode = imagelookup ("patch")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name == "Patch-CSCsc85405.tar.gz"
+		):
+			prodname = product ("perfigocca")
+			imagecode = imagelookup ("patch")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (

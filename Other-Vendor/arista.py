@@ -9,6 +9,8 @@ def product (prodcode):
 		return "CEOS"
 	elif prodcode == "cEOS64-lab":
 		return "CEOS64"
+	elif prodcode == "EOS":
+		return "EOS"
 	elif prodcode == "Aboot-veos":
 		return "ABoot"
 	else:
@@ -32,6 +34,7 @@ def process_file(filename,prod):
 		workname = filename.replace(".sha512sum","")
 		workname = workname.replace(".md5sum","")
 		workname = workname.replace(".tar.xz","")
+		workname = workname.replace(".tar.tar","")
 		workname = workname.replace(".swi","")
 		workname = workname.replace("-combined.vmdk","")
 		workname = workname.replace(".vmdk","")
@@ -44,6 +47,7 @@ def process_file(filename,prod):
 		workname = workname.replace("cEOS64-lab-","")
 		workname = workname.replace("Aboot-veos-serial-","")
 		workname = workname.replace("Aboot-veos-","")
+		workname = workname.replace(".iso","")
 		version = stringtodigit (workname)
 		filepath = filepath2(prod,version)
 		filemove (filepath, filename)
@@ -66,19 +70,29 @@ def toplevel(directory):
 			continue
 		print (filename,end="\n")
 		
-		if filename.startswith("vEOS-lab"):
+		if filename == "cEOS.tar.xz":
+			prod = product("cEOS-lab")
+			process_file(filename,prod)
+		elif filename.startswith("vEOS-lab"):
 			prod = product("vEOS-lab")
+			process_file(filename,prod)
 		elif filename.startswith("vEOS64-lab"):
 			prod = product("vEOS64-lab")
+			process_file(filename,prod)
 		elif filename.startswith("cEOS64-lab"):
 			prod = product("cEOS64-lab")
+			process_file(filename,prod)
 		elif filename.startswith("cEOS-lab"):
 			prod = product("cEOS-lab")
+			process_file(filename,prod)
+		elif filename.startswith("EOS"):
+			prod = product("EOS")
+			process_file(filename,prod)
 		elif filename.startswith("Aboot-veos"):
 			prod = product("Aboot-veos")
+			process_file(filename,prod)
 		else:
 			continue
-		process_file(filename,prod)
 
 if __name__ == "__main__":
 

@@ -2358,6 +2358,8 @@ def imagelookup (imagecode):
 		subdirectory = "LOG4SHELL-FIXES"
 	elif imagecode == "ciscosoftwaremanager":
 		subdirectory = "CISCO-SOFTWARE-MANAGER"
+	elif imagecode == "flashrecovery":
+		subdirectory = "FLASH-RECOVERY"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2383,6 +2385,8 @@ def product (prodcode):
 		prodname = "NETWORK-MANAGEMENT"
 	elif prodcode == "cworks":
 		prodname = "NETWORK-MANAGEMENT/CiscoWorks"
+	elif prodcode == "perfigocca":
+		prodname = "NETWORK-MANAGEMENT/CISCO-CLEAN-ACCESS"
 	elif prodcode == "ons15530":
 		prodname = "ROUTERS/OPTICAL/ONS-15530"
 	elif prodcode == "ons15540":
