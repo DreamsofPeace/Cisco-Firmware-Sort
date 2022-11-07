@@ -752,6 +752,8 @@ def imagelookup (imagecode):
 		subdirectory = "ATM-WORKGROUP-LANE"
 	elif imagecode == "wt":
 		subdirectory = "ATM-WORKGROUP-TRAFFIC-SHAPING"
+	elif imagecode == "hotfix":
+		subdirectory = "HOTFIX"
 	elif imagecode == "c5is":
 		subdirectory = "BASE-PDSN"
 	elif imagecode == "c5ik9s":
@@ -2204,8 +2206,12 @@ def imagelookup (imagecode):
 		subdirectory = "VOICE-IP-TO-IP-VOICE-GATEWAY-IPSEC-3DES"
 	elif imagecode == "vpnapi":
 		subdirectory = "VPNAPI"
+	elif imagecode == "spw":
+		subdirectory = "SUPPLICANT-PROVISIONING-WIZARD"
 	elif imagecode == "webauth":
 		subdirectory = "WEBAUTH-BUNDLE"
+	elif imagecode == "webagent":
+		subdirectory = "WEB-AGENT"
 	elif imagecode == "sipspawmak9":
 		subdirectory = "WEBEX-NODE"
 	elif imagecode == "websecurity":
@@ -2360,6 +2366,16 @@ def imagelookup (imagecode):
 		subdirectory = "CISCO-SOFTWARE-MANAGER"
 	elif imagecode == "flashrecovery":
 		subdirectory = "FLASH-RECOVERY"
+	elif imagecode == "nacagent":
+		subdirectory = "NAC-AGENT"
+	elif imagecode == "deploymentassistant":
+		subdirectory = "DEPLOYMENT-ASSISTANT"
+	elif imagecode == "expresswizard":
+		subdirectory = "EXPRESS-WIZARD"
+	elif imagecode == "certs":
+		subdirectory = "CERTIFICATES"
+	elif imagecode == "apbundle":
+		subdirectory = "AP-BUNDLE"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2387,6 +2403,14 @@ def product (prodcode):
 		prodname = "NETWORK-MANAGEMENT/CiscoWorks"
 	elif prodcode == "perfigocca":
 		prodname = "NETWORK-MANAGEMENT/CISCO-CLEAN-ACCESS"
+	elif prodcode == "routers":
+		prodname = "ROUTERS"
+	elif prodcode == "ir1835":
+		prodname = "ROUTERS/IR1835"
+	elif prodcode == "ir8140":
+		prodname = "ROUTERS/IR8140"
+	elif prodcode == "ir8340":
+		prodname = "ROUTERS/IR8340"
 	elif prodcode == "ons15530":
 		prodname = "ROUTERS/OPTICAL/ONS-15530"
 	elif prodcode == "ons15540":
@@ -2405,6 +2429,8 @@ def product (prodcode):
 		prodname = "ROUTERS/ASR/ASR-1000-RP2"
 	elif prodcode == "asr1000rpx86":
 		prodname = "ROUTERS/ASR/ASR-1000-RP3"
+	elif prodcode == "asr1000hx":
+		prodname = "ROUTERS/ASR/ASR-1000HX"
 	elif prodcode == "asr1001":
 		prodname = "ROUTERS/ASR/ASR-1001"
 	elif prodcode == "asr1001x":
@@ -2413,6 +2439,8 @@ def product (prodcode):
 		prodname = "ROUTERS/ASR/ASR-1002"
 	elif prodcode == "asr1002x":
 		prodname = "ROUTERS/ASR/ASR-1002X"
+	elif prodcode == "asr1002hx":
+		prodname = "ROUTERS/ASR/ASR-1002HX"
 	elif prodcode == "asr900":
 		prodname = "ROUTERS/ASR/ASR-900"
 	elif prodcode == "asr9k":
@@ -2557,6 +2585,8 @@ def product (prodcode):
 		prodname = "ROUTERS/CABLE/CVA-120"
 	elif prodcode == "cva120cvc":
 		prodname = "ROUTERS/CABLE/CVA-120"
+	elif prodcode == "esr6300":
+		prodname = "ROUTERS/EMBEDDED/ESR-6300"
 	elif prodcode == "c5915":
 		prodname = "ROUTERS/EMBEDDED/5915"
 	elif prodcode == "c5921i86":
@@ -2715,6 +2745,10 @@ def product (prodcode):
 		prodname = "ROUTERS/RUGGED/3250"
 	elif prodcode == "c3270":
 		prodname = "ROUTERS/RUGGED/3270"
+	elif prodcode == "ncs4201":
+		prodname = "ROUTERS/SP/NCS4201"
+	elif prodcode == "ncs4202":
+		prodname = "ROUTERS/SP/NCS4202"
 	elif prodcode == "c10k":
 		prodname = "ROUTERS/SP/10000/PRE1"
 	elif prodcode == "c10k2":
@@ -2789,6 +2823,8 @@ def product (prodcode):
 		prodname = "SECURITY/FIREWALL/CATALYST-6500-FWSM"
 	elif prodcode == "firepower":
 		prodname = "SECURITY/FIREWALL/FirePOWER"
+	elif prodcode == "firepowerfmc":
+		prodname = "SECURITY/FIREWALL/FirePOWER/FIREPOWER-MANAGEMENT-CENTER"
 	elif prodcode == "pix":
 		prodname = "SECURITY/FIREWALL/PIX"
 	elif prodcode == "acs":
@@ -3875,11 +3911,15 @@ def filepath5 (a,b,c,d,e):
 	z = a + "/" + b + "/" + c + "/" + d + "/" + e
 	return z
 
+def filepath6 (a,b,c,d,e,f):
+	z = a + "/" + b + "/" + c + "/" + d + "/" + e + "/" + f
+	return z
+
 def utilssinglemove (debug1,filename,prodname,imagecode):
 	if debug1:
 		print("\tModule#\t\tiosutils")
 		print("\tSubroutine#\tutilssinglemove")
-	filepath = filepath2 (prodname,imagecode)
+	filepath = filepath2 (prodname,imagecode) 
 	filemove (filepath, filename)
 
 def utilssingleprodname (debug1,filename,prodname):

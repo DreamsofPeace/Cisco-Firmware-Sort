@@ -2484,8 +2484,43 @@ def sec_ise (debug1,filename):
 	if debug1:
 		print("\tSubroutine#\tsec_ise")
 	prodname = product ("ise")
-
 	if (
+	filename == "CSCvn17524_20_P7_HotPatch_ReadMe" or 
+	filename == "ise-apply-CSCvn17524_2.0.0.306_common_1-SPA.tar.gz" or 
+	filename == "ise-rollback-CSCvn17524_2.0.0.306_common_1-SPA.tar.gz"
+	):
+		imagecode = imagelookup("struts")
+		imagecode = imagecode + "/2.0"
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename == "CSCvn17524_201_P7_HotPatch_ReadMe" or 
+	filename == "ise-apply-CSCvn17524_2.0.1.130_common_1-SPA.tar.gz" or 
+	filename == "ise-rollback-CSCvn17524_2.0.1.130_common_1-SPA.tar.gz"
+	):
+		imagecode = imagelookup("struts")
+		imagecode = imagecode + "/2.0.1"
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename == "CSCvn17524_21_P7_HotPatch_ReadMe" or 
+	filename == "ise-apply-CSCvn17524_2.1.0.474_common_1-SPA.tar.gz" or 
+	filename == "ise-rollback-CSCvn17524_2.1.0.474_common_1-SPA.tar.gz"
+	):
+		imagecode = imagelookup("struts")
+		imagecode = imagecode + "/2.1"
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename == "CSCvn17524_23_P5_HotPatch_ReadMe" or 
+	filename == "ise-apply-CSCvn17524_2.3.0.298_common_1-SPA.tar.gz" or 
+	filename == "ise-rollback-CSCvn17524_2.3.0.298_common_1-SPA.tar.gz"
+	):
+		imagecode = imagelookup("struts")
+		imagecode = imagecode + "/2.3"
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
 	filename == "README_ISE_20_201_21_22" or 
 	filename == "ise-applystrutsfix-signed.x86_64.tar.gz" or 
 	filename == "ise-rollbackstrutsfix-signed.x86_64.tar.gz"
@@ -2512,10 +2547,33 @@ def sec_ise (debug1,filename):
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
+	filename == "ise-upgradebundle-1.2.x-to-1.4.0.253.x86_64.tar.gz" or 
+	filename == "ise-upgradebundle-1.4.0.253.x86_64.tar.gz"
+	):
+		imagecode = imagelookup("upgrade")
+		imagecode = "1.4/" + imagecode
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename == "ise-upgradebundle-1.3.x-and-1.4.x-to-2.0.0.306.x86_64.tar.gz"
+	):
+		imagecode = imagelookup("upgrade")
+		imagecode = "2.0/" + imagecode
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
 	filename == "ise-upgradebundle-2.6.x-3.0.x-to-3.1.0.518.SPA.x86_64.tar.gz"
 	):
 		imagecode = imagelookup("upgrade")
 		imagecode = "3.1/" + imagecode
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename == "ise-upgradebundle-2.7.x-3.1.x-to-3.2.0.542.SPA.x86_64.tar.gz" or 
+	filename == "ise-upgradebundle-2.7.x-3.1.x-to-3.2.0.542a.SPA.x86_64.tar.gz"
+	):
+		imagecode = imagelookup("upgrade")
+		imagecode = "3.2/" + imagecode
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
@@ -2617,6 +2675,9 @@ def sec_ise_upgrade (debug1,filename,prodname,imagecode):
 
 	elif filename =="ise-upgradebundle-2.3.0.298.SPA.x86_64.tar.gz":
 		vertwo = "2.3"
+
+	elif filename =="ise-upgradebundle-2.6.x-3.0.x-to-3.1.0.518b.SPA.x86_64.tar.gz":
+		vertwo = "3.1"
 	filepath = filepath3 (prodname,vertwo,imagecode)
 	filemove (filepath, filename)
 
