@@ -63,8 +63,8 @@ def nbar (filename):
 
 def waas (filename):
 	prodname = "WAAS"
-	splitbydot = name.split(".")
-	splitbydash = name.split("-")
+	splitbydot = filename.split(".")
+	splitbydash = filename.split("-")
 
 	if splitbydash[0] == "waas":
 		if splitbydash[1] == "x86_64":
@@ -94,7 +94,7 @@ def waas (filename):
 			mylead = localdotsplit[0].lstrip("waas-")
 			mainver = mylead[0] + "." + localdotsplit[1]
 			fullver = mylead[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
-			if "npe" in name or  "NPE" in name:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "SYSTEM-SOFTWARE-32bit-NPE"
 			else:
 				imagecode = "SYSTEM-SOFTWARE-32bit"
@@ -105,7 +105,7 @@ def waas (filename):
 			localdotsplit = splitbydash[2].split(".")
 			mainver = localdotsplit[0] + "." + localdotsplit[1]
 			fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
-			if "npe" in name or  "NPE" in name:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "ACCELERATOR-NPE"
 			else:
 				imagecode = "ACCELERATOR"
@@ -116,7 +116,7 @@ def waas (filename):
 			localdotsplit = splitbydash[3].split(".")
 			mainver = localdotsplit[0] + "." + localdotsplit[1]
 			fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
-			if "npe" in name or  "NPE" in name:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "KDUMP-ADDON-NPE"
 			else:
 				imagecode = "KDUMP-ADDON"
@@ -127,7 +127,7 @@ def waas (filename):
 			localdotsplit = splitbydash[2].split(".")
 			mainver = localdotsplit[0] + "." + localdotsplit[1]
 			fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
-			if "npe" in name or  "NPE" in name:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "KDUMP-NPE"
 			else:
 				imagecode = "KDUMP"
@@ -138,7 +138,7 @@ def waas (filename):
 			localdotsplit = splitbydash[3].split(".")
 			mainver = localdotsplit[0] + "." + localdotsplit[1]
 			fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
-			if "npe" in name or  "NPE" in name:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "RESCUE-CD-NPE"
 			else:
 				imagecode = "RESCUE-CD"
@@ -149,7 +149,7 @@ def waas (filename):
 			localdotsplit = splitbydash[3].split(".")
 			mainver = localdotsplit[0] + "." + localdotsplit[1]
 			fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
-			if "npe" in name or  "NPE" in name:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "RESCUE-CD-NPE"
 			else:
 				imagecode = "RESCUE-CD"
@@ -197,7 +197,7 @@ def waas (filename):
 		fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
 #		if len(splitbydash) == "7":
 #			if splitbydash[7] == "npe.zip":
-		if "npe" in name:
+		if "npe" in filename:
 			imagecode = "vWAAS - HyperV-NPE"
 		else:
 			imagecode = "vWAAS - HyperV"
@@ -210,7 +210,7 @@ def waas (filename):
 		fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
 #		if len(splitbydash) == "7":
 #			if splitbydash[7] == "npe.zip":
-		if "npe" in name or  "NPE" in name:
+		if "npe" in filename or  "NPE" in filename:
 			imagecode = "ISR-NPE"
 		else:
 			imagecode = "ISR"
@@ -221,7 +221,7 @@ def waas (filename):
 		localdotsplit = splitbydash[3].split(".")
 		mainver = localdotsplit[0] + "." + localdotsplit[1]
 		fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
-		if "npe" in name or  "NPE" in name:
+		if "npe" in filename or  "NPE" in filename:
 			imagecode = "SM-SRE-NPE"
 		else:
 			imagecode = "SM-SRE"
@@ -232,7 +232,7 @@ def waas (filename):
 		localdotsplit = splitbydash[4].split(".")
 		mainver = localdotsplit[0] + "." + localdotsplit[1]
 		fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
-		if "npe" in name or  "NPE" in name:
+		if "npe" in filename or  "NPE" in filename:
 			imagecode = "ALARM-ERROR BOOKS-NPE"
 		else:
 			imagecode = "ALARM-ERROR BOOKS"
@@ -243,33 +243,33 @@ def waas (filename):
 		localdotsplit = splitbydash[1].split(".")
 		mainver = localdotsplit[0] + "." + localdotsplit[1]
 		fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2] + "." + localdotsplit[3]
-		if "sysimg" in name:
-			if "npe" in name or  "NPE" in name:
+		if "sysimg" in filename:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "SYSTEM-SOFTWARE-32bit-NPE"
 			else:
 				imagecode = "SYSTEM-SOFTWARE-32bit"
-		elif "bin" in name:
-			if "npe" in name or  "NPE" in name:
+		elif "bin" in filename:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "BOOT-NPE"
 			else:
 				imagecode = "BOOT"
-		elif "rescue" in name:
-			if "npe" in name or  "NPE" in name:
+		elif "rescue" in filename:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "RESCUE CD-NPE"
 			else:
 				imagecode = "RESCUE CD"
-		elif "Doc" in name or "DOC" in name:
-			if "npe" in name or  "NPE" in name:
+		elif "Doc" in filename or "DOC" in filename:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "DOCUMENTATION-NPE"
 			else:
 				imagecode = "DOCUMENTATION"
-		elif "npe" in name or  "NPE" in name:
-			if "npe" in name or  "NPE" in name:
+		elif "npe" in filename or  "NPE" in filename:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "SM-SRE-NPE"
 			else:
 				imagecode = "SM-SRE"
-		elif "npe" in name or  "NPE" in name:
-			if "npe" in name or  "NPE" in name:
+		elif "npe" in filename or  "NPE" in filename:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "ALARM-ERROR BOOKS-NPE"
 			else:
 				imagecode = "ALARM-ERROR BOOKS"
