@@ -151,7 +151,8 @@ def iosxr_asr9k (debug1,filename):
 	):
 		imagecode = imagelookup("turboboot")
 		iosxr_tab3_ver3 (debug1,filename,prodname,imagecode)
-	elif (
+	elif (
+
 	filename.startswith("ASR9K-iosxr-px") and filename.endswith("bridge_smus.tar") or 
 	filename.startswith("ASR9k-iosxr-px") and filename.endswith("bridge_smus.tar")
 	):
@@ -222,7 +223,8 @@ def iosxr_asr9k (debug1,filename):
 		iosxr_tab3_ver3 (debug1,filename,prodname,imagecode)
 	elif filename.startswith("ASR9K-iosxr-k9"):
 		imagecode = imagelookup("corek9")
-		iosxr_tab3_ver3 (debug1,filename,prodname,imagecode)
+		iosxr_tab3_ver3 (debug1,filename,prodname,imagecode)
+
 	elif filename.startswith("asr9k-ncs500x-nV-px"):
 		imagecode = imagelookup("nvsat")
 		iosxr_tab4_ver3 (debug1,filename,prodname,imagecode)

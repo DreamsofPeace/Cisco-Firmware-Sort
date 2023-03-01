@@ -829,7 +829,7 @@ def imagelookup (imagecode):
 	elif imagecode == "win":
 		subdirectory = "CLIENT/WINDOWS"
 	elif imagecode == "winarm64":
-		subdirectory = "CLIENT/WINDOWS-ARM64"
+		subdirectory = "WINDOWS-ARM64"
 	elif imagecode == "wince":
 		subdirectory = "CLIENT/WINDOWS-CE"
 	elif imagecode == "config-converter":
@@ -2376,6 +2376,10 @@ def imagelookup (imagecode):
 		subdirectory = "CERTIFICATES"
 	elif imagecode == "apbundle":
 		subdirectory = "AP-BUNDLE"
+	elif imagecode == "mgmtctr":
+		subdirectory = "MANAGEMENT-CENTER"
+	elif imagecode == "client":
+		subdirectory = "CLIENT"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2417,8 +2421,8 @@ def product (prodcode):
 		prodname = "ROUTERS/OPTICAL/ONS-15540"
 	elif prodcode == "asr1000":
 		prodname = "ROUTERS/ASR/ASR-1000"
-	elif prodcode == "isrg4moduleslte":
-		prodname = "ROUTERS/ISRG4/MODULES/LTE"
+	elif prodcode == "isrg3moduleslte":
+		prodname = "ROUTERS/ISRG3/MODULES/LTE"
 	elif prodcode == "iosxeissumatrix":
 		prodname = "ROUTERS/IOS-XE-ISSU-MATRIX"
 	elif prodcode == "iou":
@@ -2896,7 +2900,7 @@ def product (prodcode):
 	elif prodcode == "vpn3000":
 		prodname = "SECURITY/VPN-3000"
 	elif prodcode == "anyconnect":
-		prodname = "SECURITY/VPN-CLIENTS/ANYCONNECT"
+		prodname = "SECURITY/VPN-CLIENTS/ANYCONNECT (CISCO SECURE CLIENT)"
 	elif prodcode == "vpnclient":
 		prodname = "SECURITY/VPN-CLIENTS/IPSEC-CLIENT"
 	elif prodcode == "aci":

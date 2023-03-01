@@ -45,6 +45,7 @@ def process_file(filename,prod):
 		workname = workname.replace("cEOS-lab-","")
 		workname = workname.replace("cEOS64-lab-","")
 		workname = workname.replace("cEOS64-lab-","")
+		workname = workname.replace("EOS-","")
 		workname = workname.replace("Aboot-veos-serial-","")
 		workname = workname.replace("Aboot-veos-","")
 		workname = workname.replace(".iso","")

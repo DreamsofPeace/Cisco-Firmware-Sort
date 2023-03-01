@@ -176,7 +176,7 @@ def fileprocessor_iosxe(debug1,filename):
 		fileproc_iosxe_3 (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("WP76xx"):
-		prodname = product ("isrg4moduleslte")
+		prodname = product ("isrg3moduleslte")
 		utilssingleprodname (debug1,filename,prodname)
 
 	elif filename.endswith("comp_matrix.xml"):

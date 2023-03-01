@@ -25,41 +25,49 @@ def file_proc_servers (filename,debug1):
 	elif filename.startswith("DNAC") or filename.startswith("dnac"):
 		prodname = product ("dnac")
 		if filename == "dnac1307_cisco_image_verification_key.pub":
+			imagecode = imagelookup("system")
 			v2 = "1.3"
 			vf = "1.3.0.7"
 			prodpath = prodname + "/" + v2 + "/" + vf
 			filemove (prodpath, filename)
 		elif filename == "dnac1314_cisco_image_verification_key.pub":
+			imagecode = imagelookup("system")
 			v2 = "1.3"
 			vf = "1.3.1.4"
 			prodpath = prodname + "/" + v2 + "/" + vf
 			filemove (prodpath, filename)
 		elif filename == "dnac1317_cisco_image_verification_key.pub":
+			imagecode = imagelookup("system")
 			v2 = "1.3"
 			vf = "1.3.1.7"
 			prodpath = prodname + "/" + v2 + "/" + vf
 			filemove (prodpath, filename)
 		elif filename == "dnac1331_cisco_image_verification_key.pub":
+			imagecode = imagelookup("system")
 			v2 = "1.3"
 			vf = "1.3.3.1"
 			prodpath = prodname + "/" + v2 + "/" + vf
 			filemove (prodpath, filename)
 		elif filename == "dnac1333_cisco_image_verification_key.pub":
+			imagecode = imagelookup("system")
 			v2 = "1.3"
 			vf = "1.3.3.3"
 			prodpath = prodname + "/" + v2 + "/" + vf
 			filemove (prodpath, filename)
 		elif filename == "dnac1334_cisco_image_verification_key.pub":
+			imagecode = imagelookup("system")
 			v2 = "1.3"
 			vf = "1.3.3.4"
 			prodpath = prodname + "/" + v2 + "/" + vf
 			filemove (prodpath, filename)
 		elif filename == "dnac1335_cisco_image_verification_key.pub":
+			imagecode = imagelookup("system")
 			v2 = "1.3"
 			vf = "1.3.3.5"
 			prodpath = prodname + "/" + v2 + "/" + vf
 			filemove (prodpath, filename)
 		elif filename == "dnac1336_cisco_image_verification_key.pub":
+			imagecode = imagelookup("system")
 			v2 = "1.3"
 			vf = "1.3.3.6"
 			prodpath = prodname + "/" + v2 + "/" + vf
@@ -68,14 +76,18 @@ def file_proc_servers (filename,debug1):
 			workname = filename.replace("DNAC-witness-", "")
 			workname = workname.replace(".ova", "")
 			imagecode = imagelookup("witness")
-			utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
 		else:
+			imagecode = imagelookup("system")
 			workname = filename.replace("DNAC-SW-", "")
 			workname = workname.replace("dnac", "")
 			workname = workname.replace(".sig", "")
+			workname = workname.replace(".iso.part3.rar", "")
+			workname = workname.replace(".iso.part2.rar", "")
+			workname = workname.replace(".iso.part1.rar", "")
 			workname = workname.replace(".iso", "")
 			workname = workname.replace("_cisco_image_verification_key.pub", "")
-			utils_dev_v2_vf (debug1,filename,prodname,workname)
+			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
 
 	elif filename.startswith("ucs-catalog"):
 		prodname = product("ucsgeneric")

@@ -27,6 +27,10 @@ def product (prodcode):
 		prodname = "SWITCHES/HPE-ARUBA-8325"
 	elif prodcode == "8400X":
 		prodname = "SWITCHES/HPE-ARUBA-8400X"
+	elif prodcode == "9300-32D":
+		prodname = "SWITCHES/HPE-ARUBA-9300"
+	elif prodcode == "9300":
+		prodname = "SWITCHES/HPE-ARUBA-9300"
 	elif prodcode == "10000":
 		prodname = "SWITCHES/HPE-ARUBA-10000"
 	elif prodcode == "A":
@@ -153,6 +157,8 @@ def product (prodcode):
 		prodname = "Access-Points-Instant/630-650"
 	elif prodcode == "ArubaInstant_Centaurus":
 		prodname = "Access-Points-Instant/210-220-228-270"
+	elif prodcode == "psm":
+		prodname = "Pensando"
 	else:
 		prodname = "UNKNOWN"
 	return prodname
@@ -371,31 +377,29 @@ def dirwalk (src,hashsha512,hashfile):
 			continue
 		elif filename.endswith("pdf"):
 			process_pdf(filename)
-		elif filename == "16.04_July2017device-api-v3.0.zip":
+		elif (
+			filename == "16.04_July2017device-api-v3.0.zip" or 
+			filename == "16.02_device-rest-api.zip" or
+			filename == "16.02_Aug2017device-api-v1.0.zip" or
+			"API" in filename or 
+			"api" in filename
+			):
 			prodname = product ("api")
 			base_directory_move (filename, prodname)
-		elif filename == "16.02_device-rest-api.zip":
-			prodname = product ("api")
-			base_directory_move (filename, prodname)
-		elif filename == "16.02_Aug2017device-api-v1.0.zip":
-			prodname = product ("api")
-			base_directory_move (filename, prodname)
-		elif filename == "ArubaOS-CX_10.00_MIBs_Dec2017.zip":
-			prodname = product ("mibs")
-			base_directory_move (filename, prodname)
-		elif "MIBs" in filename:
-			prodname = product ("mibs")
-			base_directory_move (filename, prodname)
-		elif filename.startswith("MIB"):
+		elif (
+			filename == "ArubaOS-CX_10.00_MIBs_Dec2017.zip" or
+			"MIB" in filename or
+			"mibs" in filename
+			):
 			prodname = product ("mibs")
 			base_directory_move (filename, prodname)
 		elif "NetEdit" in filename:
 			prodname = product ("NetEdit")
 			base_directory_move (filename, prodname)
-		elif "Simulator" in filename:
-			prodname = product ("sim")
-			base_directory_move (filename, prodname)
-		elif filename.startswith("ArubaOS-CX_") and filename.endswith("_ova.zip"):
+		elif (
+			"Simulator" in filename or
+			filename.startswith("ArubaOS-CX_") and filename.endswith("_ova.zip")
+			):
 			prodname = product ("sim")
 			base_directory_move (filename, prodname)
 		elif filename == "HTML_Templates_Web-Auth-Custom-HTML-Templates-Feb2012.zip":
@@ -474,6 +478,16 @@ def dirwalk (src,hashsha512,hashfile):
 			prodname = product ("10000")
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_10000_","")
+			new_style_move (filename, prodname, workname, "_")
+		elif filename.startswith("ArubaOS-CX_9300-32D_"):
+			prodname = product ("9300")
+			workname = filename.replace(".swi","")
+			workname = workname.replace("ArubaOS-CX_9300-32D_","")
+			new_style_move (filename, prodname, workname, "_")
+		elif filename.startswith("ArubaOS-CX_9300_"):
+			prodname = product ("9300")
+			workname = filename.replace(".swi","")
+			workname = workname.replace("ArubaOS-CX_9300_","")
 			new_style_move (filename, prodname, workname, "_")
 		elif filename.startswith("PL_"):
 			prodname = product ("PL")
@@ -746,6 +760,25 @@ def dirwalk (src,hashsha512,hashfile):
 		):
 			prodname = product ("vsr")
 			process_vsr(filename,prodname)
+		elif (
+		filename.startswith("pen-install") or
+		filename.startswith("psm.apulu") or
+		filename.startswith("psm.dss") or
+		filename.startswith("psm_upgrade_bundle_")
+		):
+			prodname = product ("psm")
+			workname = filename.replace("psm.apulu.","")
+			workname = workname.replace("pen-install.dss.","")
+			workname = workname.replace("psm.dss.","")
+			workname = workname.replace("psm_upgrade_bundle_","")
+			workname = workname.replace(".tar","")
+			workname = workname.replace(".iso","")
+			workname = workname.replace(".ova","")
+			workname = workname.replace(".qcow2","")
+			workname = workname.replace("-",".")
+			filepath = prodname + "/" +  workname
+			filemove (filepath, filename)
+
 		elif filename.endswith(".zip"):
 			process_zip(filename)
 
