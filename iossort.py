@@ -416,8 +416,24 @@ def toplevel(filename):
 			fileprocessor_iosxe(debug1,name)
 		elif name == "Exp_V3_11_Release_Note.pdf":
 			fileprocessorios(debug1,name)
+		elif (
+			name == "C9100-ME-BetaGuide-v6.pdf" or
+			name == "C9100-ME-EFT-Beta Guide.pdf"
+			):
+			prodname = product("C9800-AP")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
 		elif name.endswith("pdf"):
 			continue
+
+		elif (
+			name == "Upgrade instructions.txt" or 
+			name == "ucd-update.tar" or 
+			name == "nuova-or-dplug-mzg.6.0.2.N2.7.bin"
+		):
+			prodname = product("n5000")
+			imagecode = imagelookup ("specialbuildfwupgrade")
+			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
 			name in [
@@ -433,14 +449,23 @@ def toplevel(filename):
 				"cat9k_iosxe.BLD_V171_EFT-1.SSA.bin",
 				"cat9k_iosxe.BLD_V171_EFT-2.SSA.bin",
 				"cat9k_iosxe.16.09.01.CSCvk69552.SPA.smu.bin",
-				"cat9k_iosxe.16.09.01.CSCvk69552.SPA.smu.txt"
+				"cat9k_iosxe.16.09.01.CSCvk69552.SPA.smu.txt",
+				"cat9k_iosxe.16.09.01.CSCvk69552.txt"
 				] or
 			name.startswith("cat9k") and "THROTTLE_LATEST" in name or
 			name.startswith("cat9k") and "prd" in name or
-			name.startswith("cat9k") and "eft" in name
+			name.startswith("cat9k") and "eft" in name or
+			name.startswith("cat9k") and "SSA" in name
 		):
 			prodname = product("cat9k")
 			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name == "sf-linux-1017.SSA"
+		):
+			prodname = product("cat9k")
+			imagecode = imagelookup ("hdiag")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
@@ -451,11 +476,83 @@ def toplevel(filename):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
+		name.startswith("c7200-i12o3s-mz.2005-04-14.BROILER2_BLUEWIN_EFT_REL") or 
+		name.startswith("c7200-i12s-mz.2005-04-14.BROILER2_BLUEWIN_EFT_REL") or 
+		name.startswith("c7200-i12o3s-mz.2005-07-16.BSNOP4_DAILY_BUILD") or 
+		name.startswith("c7200-i12o3s-mz.2005-07-15.BSNOP4_DAILY_BUILD") or 
+		name.startswith("c7200-p-mz_ccassar-conn_isp-l3vpn") or 
+		name == "c7200-js-mz" or 
+		name == "c7200-js-mz.symbols.gz" or 
+		name == "c7200-p-mz"
+		):
+			prodname = product ("c7200")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name.startswith("c7301-i12o3s-mz.2005-04-13.BROILER2_BLUEWIN_EFT_REL") or 
+		name.startswith("c7301-i12s-mz.2005-04-13.BROILER2_BLUEWIN_EFT_REL") or 
+		name.startswith("c7301-i12o3s-mz.2005-07-15.BSNOP4_DAILY_BUILD") or 
+		name.startswith("c7301-i12o3s-mz.2005-07-16.BSNOP4_DAILY_BUILD")
+		):
+			prodname = product ("c7301")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name.startswith("c2800nm-ipvoice-mz.v124_9")
+		):
+			prodname = product ("c2800nm")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name == "c3640-js-mz" or 
+		name == "c3640-js-mz.symbols.gz"
+		):
+			prodname = product ("c3640")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name == "c800-nsy6-mw.120-4.0.2.T1" or 
+		name == "c800-g3x-mw.120-3.4.T"
+		):
+			prodname = product ("c800")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name == "rsp-jsv-mz.infonet.uk35278" or 
+		name == "rsp-pv-mz_ccassar-conn_isp-l3vpn" or 
+		name == "rsp-jsv-mz" or 
+		name == "rsp-jsv-mz.symbols.gz"
+		):
+			prodname = product ("rsp")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name == "c7300-js-mz.debug"
+		):
+			prodname = product ("c7300")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name == "c3745.CSCse01847"
+		):
+			prodname = product ("c3745")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
 		name.startswith("C9800-40-") and "THROTTLE" in name
 		):
 			prodname = product ("C9800-40")
 			imagecode = imagelookup ("specialbuild")
 			utilssinglemove (debug1,name,prodname,imagecode)
+
 		elif (
 		name.startswith("C9800-80-") and "THROTTLE" in name
 		):
@@ -481,7 +578,8 @@ def toplevel(filename):
 				] or
 		name.startswith("C9800-CL-") and "THROTTLE" in name or
 		name.startswith("C9800-CL-") and "eft" in name or
-		name.startswith("C9800-CL-") and "prd" in name
+		name.startswith("C9800-CL-") and "prd" in name or
+		name.startswith("C9800-CL-") and "SSA" in name
 		):
 			prodname = product ("C9800-CL")
 			imagecode = imagelookup ("specialbuild")
@@ -609,9 +707,34 @@ def toplevel(filename):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-			name == "C9100-universalk9_me.BLD_V1612_THROTTLE_LATEST_20190619_023732.zip"
+			name == "C9100-universalk9_me.BLD_V1612_THROTTLE_LATEST_20190619_023732.zip" or
+			name == "C9100_ME_Site_Survey.zip"
 		):
 			prodname = product ("C9800-AP")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name.startswith("C9800-universalk9_wlc") and "THROTTLE_LATEST" in name or
+			name.startswith("C9800-universalk9_wlc") and "SSA" in name or
+			name.startswith("C9800-universalk9_wlc") and "prd" in name or
+			name == "coral-coral" and "THROTTLE_LATEST" in name
+		):
+			prodname = product ("C9800-AP")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name == "PI-Upgrade-35x_36x_to_3.7.0.0.124.tar.gz" or
+			name == "PI-Upgrade-3.5_to_3.6.0.0.129.tar.gz" or
+			name == "PI-Upgrade-3.5_to_3.6.0.0.172.tar.gz" or
+			name == "PI-Upgrade-3.5_to_3.7.0.0.45.tar.gz" or
+			name == "PI-Upgrade-3.X_to_3.5.0.0.550.tar.gz" or
+			name == "PI-Upgrade-35x_36x_to_3.7.0.0.124.tar.gz" or
+			name == "PI-Upgrade-35x_36x_to_3.7.0.0.88.tar.gz" or
+			name == "PI-VA-3.7.0.0.88-flex.ova"
+		):
+			prodname = product ("cpi")
 			imagecode = imagelookup ("specialbuild")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
@@ -627,10 +750,12 @@ def toplevel(filename):
 		"cvw6.1" in name and name.endswith(".tar")  or
 		"cvw6.1" in name and name.endswith(".zip")  or
 		".RME43." in name and name.endswith(".zip") or
-		name == "Mwr1900.zip" or
-		name == "CVCrossLaunch.zip" or
-		name == "psumeta_cwcv6_1_5.xml" or
-		name == "Cat6000IOS.zip"
+		name in [
+			"Mwr1900.zip",
+			"CVCrossLaunch.zip",
+			"psumeta_cwcv6_1_5.xml",
+			"Cat6000IOS.zip"
+		]
 		):
 			prodname = product ("cworks")
 			imagecode = imagelookup ("rme")
@@ -734,42 +859,44 @@ def toplevel(filename):
 			fileprocessorrommon(debug1,name)
 
 		elif (
+		name.startswith("Nexus1000V") or
+		name.startswith("Nexus1000V5") or
+		name.startswith("Nexus1000v") or
+		name.startswith("guestshell") or
+		name.startswith("n1000vh-dk9") or
 		name.startswith("n3000") or
 		name.startswith("n3500") or
 		name.startswith("n4000") or
 		name.startswith("n5000") or
+		name.startswith("n5000_poap_script") or
 		name.startswith("n6000") or
+		name.startswith("n6000_poap_script") or
 		name.startswith("n7000") or
 		name.startswith("n7700") or
 		name.startswith("n9000") or
-		name.startswith("nxosv") or
+		name.startswith("n9000-epld") or
+		name.startswith("nexus-1000v") or
 		name.startswith("nexus9300v") or
 		name.startswith("nexus9500v") or
 		name.startswith("nxos") or
+		name.startswith("nxos64") or
+		name.startswith("nxosv") or
 		name.startswith("oac") or
-		name.startswith("n5000_poap_script") or
-		name.startswith("n6000_poap_script") or
-		name.startswith("poap_script") or
 		name.startswith("poap_ng") or
-		name.startswith("Nexus1000v") or
-		name.startswith("Nexus1000v") or
-		name.startswith("Nexus1000V") or
-		name.startswith("Nexus1000V5") or
-		name.startswith("n1000vh-dk9") or
-		name.startswith("nexus-1000v") or
-		name == "n3k_bios_release_rn.pdf" or
+		name.startswith("poap_script") or
 		name.startswith("ssd_c400_upgrade") or
-		name == "upgrade_m500_firmware.tar.gz" or
-		name == "ntp-1.0.1-7.0.3.I2.2d.lib32_n9000.rpm" or
-		name == "ntp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm" or
-		name == "ntp-1.0.2-7.0.3.I2.2e.lib32_n9000.rpm" or
-		name == "nxos.nsqos_lc_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm" or
-		name == "nxos.nsqos_sup_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm" or
-		name == "vxlan-2.0.1.0-9.2.3.lib32_n9000.rpm" or
-		name == "snmp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm" or
-		name == "L2-L3_CT.zip" or
-		name.startswith("n9000-epld") or
-		name.startswith("guestshell")
+		name in [
+			"L2-L3_CT.zip",
+			"n3k_bios_release_rn.pdf",
+			"ntp-1.0.1-7.0.3.I2.2d.lib32_n9000.rpm",
+			"ntp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm",
+			"ntp-1.0.2-7.0.3.I2.2e.lib32_n9000.rpm",
+			"nxos.nsqos_lc_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm",
+			"nxos.nsqos_sup_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm",
+			"snmp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm",
+			"upgrade_m500_firmware.tar.gz",
+			"vxlan-2.0.1.0-9.2.3.lib32_n9000.rpm"
+		]
 		):
 			fileprocessornxos(name,debug1)
 
@@ -1107,7 +1234,8 @@ def toplevel(filename):
 			"update_pkg-ucse.combined.120808.bin",
 			"update_pkg-ucse.combined.REL.2.2.1.bin",
 			"update_pkg-ucse.combined.REL.2.2.2.bin",
-			"update_pkg-ucse.combined.REL.bin"
+			"update_pkg-ucse.combined.REL.bin",
+			"Deploy-cisco-dna-center-on-aws-using-aws-marketplace"
 			] or
 		name.startswith("APIC-EM-") or
 		name.startswith("C200M1-") or

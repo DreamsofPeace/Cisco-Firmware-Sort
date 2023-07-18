@@ -1,8 +1,6 @@
 import os, shutil
 
-
 def filemove (newpath, filename):
-#	print("Deliberately Broken")
 	if not os.path.exists(newpath):
 		os.makedirs(newpath)
 	try:
@@ -1231,11 +1229,13 @@ def imagelookup (imagecode):
 	elif imagecode == "fips":
 		subdirectory = "FIPS"
 	elif imagecode == "fpasamodule":
-		subdirectory = "FIREPOWER-ASA-MODE/ASA-MODULE"
+		subdirectory = "MODULE-ASA"
 	elif imagecode == "fpasamode":
 		subdirectory = "FIREPOWER-ASA-MODE/FIREPOWER-MODULE"
 	elif imagecode == "fpasasystem":
 		subdirectory = "FIREPOWER-ASA-MODE/SYSTEM"
+	elif imagecode == "fpftdmodule":
+		subdirectory = "MODULE-FTD"
 	elif imagecode == "fmc":
 		subdirectory = "FIREPOWER-MANAGEMENT-CENTER"
 	elif imagecode == "firepower-mibs":
@@ -2348,6 +2348,8 @@ def imagelookup (imagecode):
 		subdirectory = "SPECIAL-BUILDS"
 	elif imagecode == "specialbuildlisp":
 		subdirectory = "SPECIAL-BUILDS-LISP"
+	elif imagecode == "specialbuildfwupgrade":
+		subdirectory = "SPECIAL-BUILDS-FIRMWARE-UPGRADE"
 	elif imagecode == "export":
 		subdirectory = "EXPORT-FILES"
 	elif imagecode == "external-sso":
@@ -3257,6 +3259,8 @@ def product (prodcode):
 		prodname = "SWITCHES/NEXUS/Nexus-9000-3000"
 	elif prodcode == "nxosv":
 		prodname = "SWITCHES/NEXUS/Nexus-9000V"
+	elif prodcode == "Nexus":
+		prodname = "SWITCHES/NEXUS/"
 	elif prodcode == "nxosgeneric":
 		prodname = "SWITCHES/NEXUS/"
 	elif prodcode == "s5400":

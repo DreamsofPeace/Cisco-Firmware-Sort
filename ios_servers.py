@@ -22,9 +22,17 @@ def file_proc_servers (filename,debug1):
 		imagecode = imagelookup("driverseseries")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
-	elif filename.startswith("DNAC") or filename.startswith("dnac"):
+	elif (
+		filename.startswith("DNAC") or 
+		filename.startswith("dnac") or 
+		filename == "Deploy-cisco-dna-center-on-aws-using-aws-marketplace"
+		):
 		prodname = product ("dnac")
-		if filename == "dnac1307_cisco_image_verification_key.pub":
+		if filename == "Deploy-cisco-dna-center-on-aws-using-aws-marketplace":
+			imagecode = imagelookup("docs")
+			prodpath = filepath2(prodname,imagecode)
+			filemove (prodpath, filename)
+		elif filename == "dnac1307_cisco_image_verification_key.pub":
 			imagecode = imagelookup("system")
 			v2 = "1.3"
 			vf = "1.3.0.7"

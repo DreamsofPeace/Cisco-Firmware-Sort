@@ -18,6 +18,8 @@ def product (prodcode):
 
 def filepath2 (a,b):
 	return a + "/" + b
+def filepath3 (a,b,c):
+	return a + "/" + b + "/" + c
 
 def filemove (newpath, filename):
 	if not os.path.exists(newpath):
@@ -30,6 +32,13 @@ def filemove (newpath, filename):
 def process_file(filename,prod):
 	if prod == "UNKNOWN":
 		messageunclassifiable ()
+	elif (
+	filename == "cEOS.tar.xz" or
+	filename == "cEOS-lab.tar.xz" or
+	filename == "cEOS-lab.tar.xz.sha512sum" or
+	filename == "cEOS-lab-README-generic.txt"
+	):
+		messageunclassifiable ()
 	else:
 		workname = filename.replace(".sha512sum","")
 		workname = workname.replace(".md5sum","")
@@ -38,6 +47,8 @@ def process_file(filename,prod):
 		workname = workname.replace(".swi","")
 		workname = workname.replace("-combined.vmdk","")
 		workname = workname.replace(".vmdk","")
+		workname = workname.replace(".json","")
+		workname = workname.replace(".qcow2","")
 		workname = workname.replace("-virtualbox.box","")
 		workname = workname.replace("vEOS64-lab-","")
 		workname = workname.replace("vEOS-lab-combined-","")
@@ -50,8 +61,14 @@ def process_file(filename,prod):
 		workname = workname.replace("Aboot-veos-","")
 		workname = workname.replace(".iso","")
 		version = stringtodigit (workname)
-		filepath = filepath2(prod,version)
-		filemove (filepath, filename)
+		vertwo = version.split(".")
+		ver2 = vertwo[0] + "." + vertwo[1]
+		if filename.startswith("Aboot"):
+			filepath = filepath2(prod,version)
+			filemove (filepath, filename)
+		else:
+			filepath = filepath3(ver2,version,prod)
+			filemove (filepath, filename)
 
 def messageunclassifiable ():
 		print ("E001: This image is unknown, please update the script with the information about the image.", end="\n")

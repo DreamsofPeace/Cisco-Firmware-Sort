@@ -146,7 +146,8 @@ def fileprocessornxos (filename,debug1):
 
 	elif (
 	splitbydot[0] == "nxos" or 
-	splitbydot[0] == "nxos64"
+	splitbydot[0] == "nxos64" or 
+	splitbydot[0] == "nxos64-cs"
 	):
 		prodname = product("nxos")
 		if len(splitbydot) == 5:

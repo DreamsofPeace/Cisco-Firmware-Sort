@@ -12,19 +12,3 @@ Required Argument
 
   -d DIRECTORY, --directory DIRECTORY
 
-Optional Arguments (Any or all arguments accepted)
-
-  -hs, --hashsha512     Hash File using the SHA 512 Algorithm
-
-  -hs1, --hashsha256    Hash File using the SHA 256 Algorithm
-
-  -hs3, --hashmd5       Hash File using the MD5 Algorithm
-
-
-Options Arguments (Not Yet Implemented)
-
-(Only Supports MD5 and SHA512)
-
-(The CSV file you can obtain from the Cisco Trust Center meets this format)
-
-  -hf, --hashfile       File with Hash Info. Format is FILENAME,MD5HASH,SHA512HASH. Additional columns are ignored

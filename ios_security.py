@@ -144,6 +144,11 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 		sec_fp_asa_module (debug1,filename)
 
 	elif(
+	filename.startswith ("cisco-ftd.") and 	filename.endswith ("csp")
+	):
+		sec_fp_ftd_module (debug1,filename)
+
+	elif(
 	filename == "firepower-mibs.zip"
 	):
 		prodname = product("firepower")
@@ -475,6 +480,20 @@ def sec_newanyconnect (debug1,filename): #Cisco Secure Client
 			ver4 = util4digit (splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
 			filepath = filepath5(prodname,imagecode2,imagecode,ver2,ver4)
 			filemove (filepath, filename)
+	elif filename.startswith("anyconnect-win-arm64-"):
+		imagecode2 = imagelookup("windows")
+		workname = filename.replace("anyconnect-win-arm64-","")
+		splitbydash = workname.split("-",2)
+		splitbydot = splitbydash[0].split(".")
+		ver2 = util2digit (splitbydot[0],splitbydot[1])
+		if len(splitbydot) == 3:
+			ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
+			filepath = filepath5(prodname,imagecode2,imagecode,ver2,ver3)
+			filemove (filepath, filename)
+		elif len(splitbydot) == 4:
+			ver4 = util4digit (splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+			filepath = filepath5(prodname,imagecode2,imagecode,ver2,ver4)
+			filemove (filepath, filename)
 	elif filename.startswith("anyconnect-win-"):
 		imagecode2 = imagelookup("windows")
 		workname = filename.replace("anyconnect-win-","")
@@ -625,6 +644,9 @@ def sec_classic_ips (debug1,filename):
 		elif filename.endswith("-req-E4.pkg"):
 			engine = imagelookup("engine4")
 			workname = workname.replace("-req-E4.pkg","")
+		else:
+			engine = imagelookup("engine0")
+			workname = workname.replace(".readme.txt","")
 		filepath = filepath4(prodname,imagecode,engine,workname)
 		filemove (filepath, filename)
 	elif (
@@ -1788,6 +1810,20 @@ def sec_fp_asa_module (debug1,filename):
 		filepath = filepath4 (prodname,imagecode,verthree,verfour)
 		filemove (filepath, filename)
 
+def sec_fp_ftd_module (debug1,filename):
+	prodname = product("firepower")
+	imagecode = imagelookup("fpftdmodule")
+	splitbydot = filename.split(".")
+	if splitbydot[4] == "SPA":
+		verthree = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
+		filepath = filepath4 (prodname,imagecode,verthree,verthree)
+		filemove (filepath, filename)
+	else:
+		verthree = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
+		verfour = util4digit(splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4])
+		filepath = filepath4 (prodname,imagecode,verthree,verfour)
+		filemove (filepath, filename)
+
 def sec_csm (debug1,filename,sourcedirectory):
 	if debug1:
 		print("\tSubroutine#\tsec_csm")
@@ -2799,6 +2835,9 @@ def sec_ise_upgrade (debug1,filename,prodname,imagecode):
 
 	elif filename =="ise-upgradebundle-2.6.x-3.0.x-to-3.1.0.518b.SPA.x86_64.tar.gz":
 		vertwo = "3.1"
+
+	elif filename =="ise-upgradebundle-2.7.x-3.1.x-to-3.2.0.542b.SPA.x86_64.tar.gz":
+		vertwo = "3.2"
 	filepath = filepath3 (prodname,vertwo,imagecode)
 	filemove (filepath, filename)
 
