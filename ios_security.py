@@ -826,7 +826,7 @@ def sec_classic_ips (debug1,filename):
 		workname = filename.replace("IPS-NM-CIDS-K9-sys-1.1-a-","")
 		version = workname.replace(".img","")
 		version = version.replace("-",".")
-		filepath = filepath4(prodname1,version,prodname2,imagecode)
+		filepath = filepath4(prodname1,prodname2,version,imagecode)
 		filemove (filepath, filename)
 	elif filename.startswith("IPS-NME-K9-sys"):
 		prodname1 = product("ipsids")
