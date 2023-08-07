@@ -176,7 +176,7 @@ def fileprocessor_iosxe(debug1,filename):
 		fileproc_iosxe_3 (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("WP76xx"):
-		prodname = product ("isrg4moduleslte")
+		prodname = product ("isrg3moduleslte")
 		utilssingleprodname (debug1,filename,prodname)
 
 	elif filename.endswith("comp_matrix.xml"):
@@ -237,6 +237,10 @@ def fileprocessor_iosxe(debug1,filename):
 		elif filename.startswith("c8000v-universalk9_vga"):
 			prodname = product ("c8000v")
 			imagecode = imagelookup("universalk9")
+		elif filename.startswith("c8000v-universalk9"):
+			prodname = product ("c8000v")
+			imagecode = imagelookup("universalk9")
+#		print (prodname, end="\n")
 		splitbydot = filename.split(".")
 		iosmain = util2digit(splitbydot[1],splitbydot[2])
 		iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])

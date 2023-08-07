@@ -24,6 +24,11 @@ def fileprocessornxos (filename,debug1):
 		imagecode = imagelookup("epld")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
+	elif filename == "n7000-s2-flash-recovery-tool.10.0.2.tar.gz":
+		prodname = product("nxos")
+		imagecode = imagelookup("flashrecovery")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
 	elif (
 	filename == "poap_script.py" or 
 	filename == "poap_script.tcl"
@@ -141,7 +146,8 @@ def fileprocessornxos (filename,debug1):
 
 	elif (
 	splitbydot[0] == "nxos" or 
-	splitbydot[0] == "nxos64"
+	splitbydot[0] == "nxos64" or 
+	splitbydot[0] == "nxos64-cs"
 	):
 		prodname = product("nxos")
 		if len(splitbydot) == 5:
@@ -238,7 +244,10 @@ def fileprocessornxos (filename,debug1):
 		workname = workname.replace(".vmdk","")
 		workname = workname.replace("nxosv-final.","")
 		workname = workname.replace("nxosv.","")
+		workname = workname.replace("nexus9300v64-lite.","")
+		workname = workname.replace("nexus9300v64.","")
 		workname = workname.replace("nexus9300v.","")
+		workname = workname.replace("nexus9500v64-lite.","")
 		workname = workname.replace("nexus9500v64.","")
 		workname = workname.replace("nexus9500v.","")
 		utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)

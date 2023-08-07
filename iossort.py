@@ -1,11 +1,22 @@
-import os, shutil, sys, re, getopt, argparse
+#!/use/bin/python
+# -*- coding: utf-8 -*-
+
+# Futures
+
+# Generic/Built-in
+import argparse
+import getopt
 import hashlib
-from iosutils     import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
-from iosutils     import utils_dev_v2_vf_imagecode,utils_dev_imagecode_v2_vf,utils_dev_imagecode_v2_vf_dash
-from iosutils     import filemove,filepath2,filepath3,filepath4,filepath5
-from iosutils     import util2digit,util3digit,util4digit,util5digit,stringtolist
-from iosutils     import messageunknowndev,messageunknownfeat,messageunknownfile
-from iosutils     import fileprocessorpagent,fileprocessorrommon
+import json
+import os
+import re
+import shutil
+import sys
+
+# Other Libs
+
+# Owned
+from iosutils     import *
 from ios_nexus    import fileprocessornxos
 from ios_voice    import fileprocessorvoice
 from ios_security import fileprocessorsecurity
@@ -14,6 +25,16 @@ from ios_iosxr    import fileprocessor_iosxr
 from ios_servers  import file_proc_servers
 from ios_ios      import fileprocessorios
 from ios_wireless import fileprocessor_wireless
+
+#Credits
+__author__ = ""
+__copyright__ = ""
+__credits__ = [""]
+__license__ = ""
+__version__ = ""
+__maintainer__ = ""
+__email__ = ""
+__status__ = ""
 
 def nbar (filename):
 	prodname = product ("ntwkmgmt")
@@ -42,8 +63,8 @@ def nbar (filename):
 
 def waas (filename):
 	prodname = "WAAS"
-	splitbydot = name.split(".")
-	splitbydash = name.split("-")
+	splitbydot = filename.split(".")
+	splitbydash = filename.split("-")
 
 	if splitbydash[0] == "waas":
 		if splitbydash[1] == "x86_64":
@@ -73,7 +94,7 @@ def waas (filename):
 			mylead = localdotsplit[0].lstrip("waas-")
 			mainver = mylead[0] + "." + localdotsplit[1]
 			fullver = mylead[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
-			if "npe" in name or  "NPE" in name:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "SYSTEM-SOFTWARE-32bit-NPE"
 			else:
 				imagecode = "SYSTEM-SOFTWARE-32bit"
@@ -84,7 +105,7 @@ def waas (filename):
 			localdotsplit = splitbydash[2].split(".")
 			mainver = localdotsplit[0] + "." + localdotsplit[1]
 			fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
-			if "npe" in name or  "NPE" in name:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "ACCELERATOR-NPE"
 			else:
 				imagecode = "ACCELERATOR"
@@ -95,7 +116,7 @@ def waas (filename):
 			localdotsplit = splitbydash[3].split(".")
 			mainver = localdotsplit[0] + "." + localdotsplit[1]
 			fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
-			if "npe" in name or  "NPE" in name:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "KDUMP-ADDON-NPE"
 			else:
 				imagecode = "KDUMP-ADDON"
@@ -106,7 +127,7 @@ def waas (filename):
 			localdotsplit = splitbydash[2].split(".")
 			mainver = localdotsplit[0] + "." + localdotsplit[1]
 			fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
-			if "npe" in name or  "NPE" in name:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "KDUMP-NPE"
 			else:
 				imagecode = "KDUMP"
@@ -117,7 +138,7 @@ def waas (filename):
 			localdotsplit = splitbydash[3].split(".")
 			mainver = localdotsplit[0] + "." + localdotsplit[1]
 			fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
-			if "npe" in name or  "NPE" in name:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "RESCUE-CD-NPE"
 			else:
 				imagecode = "RESCUE-CD"
@@ -128,7 +149,7 @@ def waas (filename):
 			localdotsplit = splitbydash[3].split(".")
 			mainver = localdotsplit[0] + "." + localdotsplit[1]
 			fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
-			if "npe" in name or  "NPE" in name:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "RESCUE-CD-NPE"
 			else:
 				imagecode = "RESCUE-CD"
@@ -176,7 +197,7 @@ def waas (filename):
 		fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
 #		if len(splitbydash) == "7":
 #			if splitbydash[7] == "npe.zip":
-		if "npe" in name:
+		if "npe" in filename:
 			imagecode = "vWAAS - HyperV-NPE"
 		else:
 			imagecode = "vWAAS - HyperV"
@@ -189,7 +210,7 @@ def waas (filename):
 		fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
 #		if len(splitbydash) == "7":
 #			if splitbydash[7] == "npe.zip":
-		if "npe" in name or  "NPE" in name:
+		if "npe" in filename or  "NPE" in filename:
 			imagecode = "ISR-NPE"
 		else:
 			imagecode = "ISR"
@@ -200,7 +221,7 @@ def waas (filename):
 		localdotsplit = splitbydash[3].split(".")
 		mainver = localdotsplit[0] + "." + localdotsplit[1]
 		fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
-		if "npe" in name or  "NPE" in name:
+		if "npe" in filename or  "NPE" in filename:
 			imagecode = "SM-SRE-NPE"
 		else:
 			imagecode = "SM-SRE"
@@ -211,7 +232,7 @@ def waas (filename):
 		localdotsplit = splitbydash[4].split(".")
 		mainver = localdotsplit[0] + "." + localdotsplit[1]
 		fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2]
-		if "npe" in name or  "NPE" in name:
+		if "npe" in filename or  "NPE" in filename:
 			imagecode = "ALARM-ERROR BOOKS-NPE"
 		else:
 			imagecode = "ALARM-ERROR BOOKS"
@@ -222,43 +243,126 @@ def waas (filename):
 		localdotsplit = splitbydash[1].split(".")
 		mainver = localdotsplit[0] + "." + localdotsplit[1]
 		fullver = localdotsplit[0] + "." + localdotsplit[1] + "." + localdotsplit[2] + "." + localdotsplit[3]
-		if "sysimg" in name:
-			if "npe" in name or  "NPE" in name:
+		if "sysimg" in filename:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "SYSTEM-SOFTWARE-32bit-NPE"
 			else:
 				imagecode = "SYSTEM-SOFTWARE-32bit"
-		elif "bin" in name:
-			if "npe" in name or  "NPE" in name:
+		elif "bin" in filename:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "BOOT-NPE"
 			else:
 				imagecode = "BOOT"
-		elif "rescue" in name:
-			if "npe" in name or  "NPE" in name:
+		elif "rescue" in filename:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "RESCUE CD-NPE"
 			else:
 				imagecode = "RESCUE CD"
-		elif "Doc" in name or "DOC" in name:
-			if "npe" in name or  "NPE" in name:
+		elif "Doc" in filename or "DOC" in filename:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "DOCUMENTATION-NPE"
 			else:
 				imagecode = "DOCUMENTATION"
-		elif "npe" in name or  "NPE" in name:
-			if "npe" in name or  "NPE" in name:
+		elif "npe" in filename or  "NPE" in filename:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "SM-SRE-NPE"
 			else:
 				imagecode = "SM-SRE"
-		elif "npe" in name or  "NPE" in name:
-			if "npe" in name or  "NPE" in name:
+		elif "npe" in filename or  "NPE" in filename:
+			if "npe" in filename or  "NPE" in filename:
 				imagecode = "ALARM-ERROR BOOKS-NPE"
 			else:
 				imagecode = "ALARM-ERROR BOOKS"
 		filepath = prodname + "/" + mainver + "/" + fullver + "/" + imagecode
 		filemove (filepath, filename)
 
-def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
+def movebyfilename (name,productname,mainversion1,mainversion2,altversion,imglookup1,imglookup2):
+	#Assumes that product is defined
+	print (name,end="\n")
+#	print (name,end="\t")
+#	print (mainversion1,end="\t")
+#	print (len(mainversion1),end="\t")
+##	print (mainversion2,end="\t")
+#	print (len(mainversion2),end="\t")
+##	print (altversion,end="\t")
+#	print (len(altversion),end="\t")
+##	print (imglookup1,end="\t")
+#	print (len(imglookup1),end="\t")
+##	print (imglookup2,end="\t")
+#	print (len(imglookup2),end="\n")
+	'''
+		if mainversion1 and not mainversion2:
+	        if altversion:
+	            if imglookup1 and not imglookup2:
+	                if imglookup1 == "patch":
+
+	        else: # don't need this bit: if len(altversion) == 0:
+	            if imglookup1 and imglookup2:
+
+	            elif imglookup1 and not imglookup2:
+
+	    if not mainversion1 and not mainversion2 and not altversion:
+	            if imglookup1 and not imglookup2:
+
+	            elif imglookup1 and imglookup2:
+
+	        elif altversion and imglookup1:
+	'''
+	if mainversion1 and not mainversion2 and altversion and imglookup1 and not imglookup2:
+	#1,0,1,1,0
+		prodname  = product(productname)
+		imagecode = imagelookup(imglookup1)
+		filepath  = filepath3 (mainversion1,imagecode,altversion)
+		utilssinglemove (debug1,name,prodname,filepath)
+	elif not mainversion1 and not mainversion2 and altversion and imglookup1 and not imglookup2:
+	#0,0,1,1,0
+		prodname  = product(productname)
+		imagecode = imagelookup(imglookup1)
+		filepath  = filepath2 (imagecode,altversion)
+		utilssinglemove (debug1,name,prodname,filepath)
+	elif mainversion1 and not mainversion2 and not altversion and imglookup1 and not imglookup2:
+	#1,0,0,1,0
+		prodname  = product(productname)
+		imagecode = imagelookup(imglookup1)
+		filepath  = filepath2 (mainversion1,imagecode)
+		utilssinglemove (debug1,name,prodname,filepath)
+	elif mainversion1 and not mainversion2 and not altversion and imglookup1 and imglookup2:
+	#1,0,0,1,1
+		prodname  = product(productname)
+		icode1 = imagelookup(imglookup1)
+		icode2 = imagelookup(imglookup2)
+		filepath  = filepath3 (mainversion1,icode1,icode2)
+		utilssinglemove (debug1,name,prodname,filepath)
+	elif mainversion1 and mainversion2 and not altversion and imglookup1 and not imglookup2:
+	#1,1,0,1,0
+		prodname  = product(productname)
+		imagecode = imagelookup(imglookup1)
+		filepath  = filepath3 (mainversion1,mainversion2,imagecode)
+		utilssinglemove (debug1,name,prodname,filepath)
+
+
+def toplevel(filename):
 	src = filename
 	names = os.listdir(src)
 	os.chdir(src)
+	
+	if filefilter is not None:
+		with open(filefilter) as jsonfile:
+#			global loadedjson
+			loadedjson = json.load(jsonfile)
+#		print (loadedjson)
+	for name in names:
+		if filefilter is not None:
+			if name in loadedjson:
+				myproduct = loadedjson[name]['product']
+				mainversion1 = loadedjson[name]['mainversion1']
+				mainversion2 = loadedjson[name]['mainversion2']
+				altversion = loadedjson[name]['altversion']
+				imglookup1 = loadedjson[name]['imglookup1']
+				imglookup2 = loadedjson[name]['imglookup2']
+				movebyfilename (name,myproduct,mainversion1,mainversion2,altversion,imglookup1,imglookup2)
+	#	else:
+	names = os.listdir(src)
 	for name in names:
 		if os.path.isdir(name):
 			continue	
@@ -271,27 +375,27 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			print("\tModule#\t\tiossort")
 			print("\tSubroutine#\ttoplevel")
 		
-		if hashsha512 == True:
-			hasher = hashlib.sha512()
-			with open(name, 'rb') as afile:
-				buf = afile.read()
-				hasher.update(buf)
-			print("SHA512:", end =" ")
-			print(hasher.hexdigest())
-		if hashsha256 == True:
-			hasher = hashlib.sha256()
-			with open(name, 'rb') as afile:
-				buf = afile.read()
-				hasher.update(buf)
-			print("SHA256:", end =" ")
-			print(hasher.hexdigest())
-		if hashmd5 == True:
-			hasher = hashlib.md5()
-			with open(name, 'rb') as afile:
-				buf = afile.read()
-				hasher.update(buf)
-			print("MD5:", end =" ")
-			print(hasher.hexdigest())
+#		if hashsha512 == True:
+#			hasher = hashlib.sha512()
+#			with open(name, 'rb') as afile:
+#				buf = afile.read()
+#				hasher.update(buf)
+#			print("SHA512:", end =" ")
+#			print(hasher.hexdigest())
+#		if hashsha256 == True:
+#			hasher = hashlib.sha256()
+#			with open(name, 'rb') as afile:
+#				buf = afile.read()
+#				hasher.update(buf)
+#			print("SHA256:", end =" ")
+#			print(hasher.hexdigest())
+#		if hashmd5 == True:
+#			hasher = hashlib.md5()
+#			with open(name, 'rb') as afile:
+#				buf = afile.read()
+#				hasher.update(buf)
+#			print("MD5:", end =" ")
+#			print(hasher.hexdigest())
 
 		splitbydot = name.split(".")
 		classify = name.split("-")
@@ -301,38 +405,144 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 		thisstring = splitbydot.pop()
 		splitbydot.append(thisstring)
 
-		if name == "Thumbs.db":
-			continue
-		elif name.endswith("DS_Store"):
-			continue
-		elif name.endswith("hash"):
-			continue
-		elif name.endswith("part"):
+		if (
+			name == "Thumbs.db" or
+			name.endswith("DS_Store") or
+			name.endswith("hash") or
+			name.endswith("part")
+		):
 			continue
 		elif name == "cat9k_fpga_upgrade_utility.pdf":
 			fileprocessor_iosxe(debug1,name)
 		elif name == "Exp_V3_11_Release_Note.pdf":
 			fileprocessorios(debug1,name)
+		elif (
+			name == "C9100-ME-BetaGuide-v6.pdf" or
+			name == "C9100-ME-EFT-Beta Guide.pdf"
+			):
+			prodname = product("C9800-AP")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
 		elif name.endswith("pdf"):
 			continue
 
 		elif (
-			name == "cat9k.16121.0911.bin" or 
-			name == "cat9k.16121_au.bin" or 
-			name == "cat9k_iosxe.V171_1S_TES2.SPA.bin" or 
-			name == "cat9k_bidir_updated.bin" or 
-			name == "cat9k_fraport_bidir.bin" or 
-			name == "cat9k_iosxe.16.12-xFSU-eft1.bin" or 
-			name == "cat9k_iosxe.16.12-xFSU-eft2.bin" or 
-			name == "cat9k_iosxe.16.12-xFSU-eft3.bin" or 
-			name == "cat9k_private_image_802.3bt.bin" or 
-			name == "cat9k_iosxe.BLD_V171_EFT-1.SSA.bin" or 
-			name == "cat9k_iosxe.BLD_V171_EFT-2.SSA.bin" or 
-			name.startswith("cat9k") and "THROTTLE_LATEST" in name or 
-			name.startswith("cat9k") and "prd" in name or 
-			name.startswith("cat9k") and "eft" in name
+			name == "Upgrade instructions.txt" or 
+			name == "ucd-update.tar" or 
+			name == "nuova-or-dplug-mzg.6.0.2.N2.7.bin"
 		):
-			prodname = product ("cat9k")
+			prodname = product("n5000")
+			imagecode = imagelookup ("specialbuildfwupgrade")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name in [
+				"cat9k.16121.0911.bin",
+				"cat9k.16121_au.bin"
+				"cat9k_iosxe.V171_1S_TES2.SPA.bin",
+				"cat9k_bidir_updated.bin",
+				"cat9k_fraport_bidir.bin",
+				"cat9k_iosxe.16.12-xFSU-eft1.bin",
+				"cat9k_iosxe.16.12-xFSU-eft2.bin",
+				"cat9k_iosxe.16.12-xFSU-eft3.bin",
+				"cat9k_private_image_802.3bt.bin",
+				"cat9k_iosxe.BLD_V171_EFT-1.SSA.bin",
+				"cat9k_iosxe.BLD_V171_EFT-2.SSA.bin",
+				"cat9k_iosxe.16.09.01.CSCvk69552.SPA.smu.bin",
+				"cat9k_iosxe.16.09.01.CSCvk69552.SPA.smu.txt",
+				"cat9k_iosxe.16.09.01.CSCvk69552.txt"
+				] or
+			name.startswith("cat9k") and "THROTTLE_LATEST" in name or
+			name.startswith("cat9k") and "prd" in name or
+			name.startswith("cat9k") and "eft" in name or
+			name.startswith("cat9k") and "SSA" in name
+		):
+			prodname = product("cat9k")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name == "sf-linux-1017.SSA"
+		):
+			prodname = product("cat9k")
+			imagecode = imagelookup ("hdiag")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name == "s2t54-adventerprisek9-mz.SSA"
+		):
+			prodname = product("s2t54")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name.startswith("c7200-i12o3s-mz.2005-04-14.BROILER2_BLUEWIN_EFT_REL") or 
+		name.startswith("c7200-i12s-mz.2005-04-14.BROILER2_BLUEWIN_EFT_REL") or 
+		name.startswith("c7200-i12o3s-mz.2005-07-16.BSNOP4_DAILY_BUILD") or 
+		name.startswith("c7200-i12o3s-mz.2005-07-15.BSNOP4_DAILY_BUILD") or 
+		name.startswith("c7200-p-mz_ccassar-conn_isp-l3vpn") or 
+		name == "c7200-js-mz" or 
+		name == "c7200-js-mz.symbols.gz" or 
+		name == "c7200-p-mz"
+		):
+			prodname = product ("c7200")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name.startswith("c7301-i12o3s-mz.2005-04-13.BROILER2_BLUEWIN_EFT_REL") or 
+		name.startswith("c7301-i12s-mz.2005-04-13.BROILER2_BLUEWIN_EFT_REL") or 
+		name.startswith("c7301-i12o3s-mz.2005-07-15.BSNOP4_DAILY_BUILD") or 
+		name.startswith("c7301-i12o3s-mz.2005-07-16.BSNOP4_DAILY_BUILD")
+		):
+			prodname = product ("c7301")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name.startswith("c2800nm-ipvoice-mz.v124_9")
+		):
+			prodname = product ("c2800nm")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name == "c3640-js-mz" or 
+		name == "c3640-js-mz.symbols.gz"
+		):
+			prodname = product ("c3640")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name == "c800-nsy6-mw.120-4.0.2.T1" or 
+		name == "c800-g3x-mw.120-3.4.T"
+		):
+			prodname = product ("c800")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name == "rsp-jsv-mz.infonet.uk35278" or 
+		name == "rsp-pv-mz_ccassar-conn_isp-l3vpn" or 
+		name == "rsp-jsv-mz" or 
+		name == "rsp-jsv-mz.symbols.gz"
+		):
+			prodname = product ("rsp")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name == "c7300-js-mz.debug"
+		):
+			prodname = product ("c7300")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		name == "c3745.CSCse01847"
+		):
+			prodname = product ("c3745")
 			imagecode = imagelookup ("specialbuild")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
@@ -358,15 +568,18 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-		name == "C9800-CL-universalk9.2019-04-26_10.55_bachidam.0.CSCvo94596.SSA.apdp.bin" or 
-		name == "C9800-CL-universalk9.2019-05-13_15.09_sisharm2.SSA.bin" or 
-		name == "C9800-CL-universalk9.2019-05-16_19.27_sisharm2.SSA.bin" or 
-		name == "C9800-CL-universalk9.2019-07-09_07.29_ghalwasi.SSA.bin" or 
-		name == "C9800-CL-universalk9.2019-08-07_14.47_raghasin.SSA.bin" or 
-		name == "C9800-CL-universalk9.2019-09-16_14.42_gbks.SSA.bin" or 
-		name.startswith("C9800-CL-") and "THROTTLE" in name or 
-		name.startswith("C9800-CL-") and "eft" in name or 
-		name.startswith("C9800-CL-") and "prd" in name
+			name in [
+				"C9800-CL-universalk9.2019-04-26_10.55_bachidam.0.CSCvo94596.SSA.apdp.bin",
+				"C9800-CL-universalk9.2019-05-13_15.09_sisharm2.SSA.bin",
+				"C9800-CL-universalk9.2019-05-16_19.27_sisharm2.SSA.bin",
+				"C9800-CL-universalk9.2019-07-09_07.29_ghalwasi.SSA.bin",
+				"C9800-CL-universalk9.2019-08-07_14.47_raghasin.SSA.bin",
+				"C9800-CL-universalk9.2019-09-16_14.42_gbks.SSA.bin"
+				] or
+		name.startswith("C9800-CL-") and "THROTTLE" in name or
+		name.startswith("C9800-CL-") and "eft" in name or
+		name.startswith("C9800-CL-") and "prd" in name or
+		name.startswith("C9800-CL-") and "SSA" in name
 		):
 			prodname = product ("C9800-CL")
 			imagecode = imagelookup ("specialbuild")
@@ -381,14 +594,16 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-		name == "c1100-universalk9.V16_12_0_136.SSA.bin"
+		name == "c1100-universalk9.V16_12_0_136.SSA.bin" or
+		name.startswith("c1100-") and "prd" in name or
+		name.startswith("c1100-") and "eft" in name
 		):
 			prodname = product ("c1100router")
 			imagecode = imagelookup ("specialbuild")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-		name == "asr1000rp1-adventerprisek9.BLD_V122_33_XNC_ASR_RLS3_THROTTLE_LATEST_20090513_080032.bin" or 
+		name == "asr1000rp1-adventerprisek9.BLD_V122_33_XNC_ASR_RLS3_THROTTLE_LATEST_20090513_080032.bin" or
 		name == "asr1000rp1-advipservicesk9.V152_1_S1_CSCTR15153_3.bin"
 		):
 			prodname = product ("asr1000rp1")
@@ -410,24 +625,26 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-			name == "c3900e-universalk9-mz.SSA.152-4.M.CSCtw93694.bin" or 
-			name == "c3900e-universalk9-mz.SSA.152-4.M.CSCtw93694_Feb16.bin" or 
-			name == "c3900e-universalk9-mz.SSA.154-20160808061644.skaliath-NIGHTLY_V154_3_M_THROTTLE_201608041309-104-CSCva77149.bin" or 
-			name == "c3900e-universalk9-mz.SSA.154-20160819103204.skaliath-PRE_RELEASE_FC1_V154_3_M6-105-CSCva77149.bin"
+			name in [
+				"c3900e-universalk9-mz.SSA.152-4.M.CSCtw93694.bin",
+				"c3900e-universalk9-mz.SSA.152-4.M.CSCtw93694_Feb16.bin",
+				"c3900e-universalk9-mz.SSA.154-20160808061644.skaliath-NIGHTLY_V154_3_M_THROTTLE_201608041309-104-CSCva77149.bin",
+				"c3900e-universalk9-mz.SSA.154-20160819103204.skaliath-PRE_RELEASE_FC1_V154_3_M6-105-CSCva77149.bin"
+				]
 		):
 			prodname = product ("c3900")
 			imagecode = imagelookup ("specialbuild")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
-
 		elif (
-			name.startswith("cat3k") and "THROTTLE_LATEST" in name or 
-			name == "cat3k_caa-universalk9.2017-04-24_21.14_phkotamr.SSA.bin" or 
-			name == "cat3k_caa-universalk9.2017-05-26_21.07_phkotamr.SSA.bin" or 
-			name == "cat3k_caa-universalk9.2017-06-13_16.05_phkotamr.SSA.bin" or 
-			name == "cat3k_caa-universalk9.SSA.03.07.05.E5.662.152-3.6.62.E5.bin" or 
-			name == "cat3k_caa-universalk9.SSA.03.07.05.E5.662.152-3.6.62.E5.txt" or 
-			name == "cat3k_caa-universalk9.SSA.03.10.24.EXP.150-10.24.EXP.bin"
+			name in [
+				"cat3k_caa-universalk9.2017-04-24_21.14_phkotamr.SSA.bin",
+				"cat3k_caa-universalk9.2017-05-26_21.07_phkotamr.SSA.bin",
+				"cat3k_caa-universalk9.2017-06-13_16.05_phkotamr.SSA.bin",
+				"cat3k_caa-universalk9.SSA.03.07.05.E5.662.152-3.6.62.E5.bin",
+				"cat3k_caa-universalk9.SSA.03.07.05.E5.662.152-3.6.62.E5.txt",
+				] or
+			name.startswith("cat3k") and "THROTTLE_LATEST" in name
 		):
 			prodname = product ("cat3k_caa")
 			imagecode = imagelookup ("specialbuild")
@@ -448,6 +665,10 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
+			name in [
+				"csr1000v-universalk9.16.09.01.CSCvk69552.SPA.smu.bin",
+				"csr1000v-universalk9.16.09.01.CSCvk69552.txt",
+				] or
 			name.startswith("csr1000v") and "THROTTLE_LATEST" in name
 		):
 			prodname = product ("csr1000v")
@@ -478,7 +699,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-			name == "n7000-s1-epld.5.2.0.266.gimg" or 
+			name == "n7000-s1-epld.5.2.0.266.gimg" or
 			name.startswith("dino-lisp")
 		):
 			prodname = product ("n7000")
@@ -486,147 +707,211 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-			name == "C9100-universalk9_me.BLD_V1612_THROTTLE_LATEST_20190619_023732.zip"
+			name == "C9100-universalk9_me.BLD_V1612_THROTTLE_LATEST_20190619_023732.zip" or
+			name == "C9100_ME_Site_Survey.zip"
 		):
 			prodname = product ("C9800-AP")
 			imagecode = imagelookup ("specialbuild")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-		".cv50." in name and name.endswith(".zip")  or 
-		".RME43." in name and name.endswith(".zip")
+			name.startswith("C9800-universalk9_wlc") and "THROTTLE_LATEST" in name or
+			name.startswith("C9800-universalk9_wlc") and "SSA" in name or
+			name.startswith("C9800-universalk9_wlc") and "prd" in name or
+			name == "coral-coral" and "THROTTLE_LATEST" in name
+		):
+			prodname = product ("C9800-AP")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name == "PI-Upgrade-35x_36x_to_3.7.0.0.124.tar.gz" or
+			name == "PI-Upgrade-3.5_to_3.6.0.0.129.tar.gz" or
+			name == "PI-Upgrade-3.5_to_3.6.0.0.172.tar.gz" or
+			name == "PI-Upgrade-3.5_to_3.7.0.0.45.tar.gz" or
+			name == "PI-Upgrade-3.X_to_3.5.0.0.550.tar.gz" or
+			name == "PI-Upgrade-35x_36x_to_3.7.0.0.124.tar.gz" or
+			name == "PI-Upgrade-35x_36x_to_3.7.0.0.88.tar.gz" or
+			name == "PI-VA-3.7.0.0.88-flex.ova"
+		):
+			prodname = product ("cpi")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+		".cv50." in name and name.endswith(".zip")  or
+		".cv50." in name and name.endswith(".readme")  or
+		".cv53." in name and name.endswith(".zip")  or
+		".cv53." in name and name.endswith(".readme")  or
+		".cv61." in name and name.endswith(".zip")  or
+		".cv61." in name and name.endswith(".readme")  or
+		"nmidb." in name and name.endswith(".zip")  or
+		"nmidb." in name and name.endswith(".readme")  or
+		"cvw6.1" in name and name.endswith(".tar")  or
+		"cvw6.1" in name and name.endswith(".zip")  or
+		".RME43." in name and name.endswith(".zip") or
+		name in [
+			"Mwr1900.zip",
+			"CVCrossLaunch.zip",
+			"psumeta_cwcv6_1_5.xml",
+			"Cat6000IOS.zip"
+		]
 		):
 			prodname = product ("cworks")
 			imagecode = imagelookup ("rme")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-			name == "c3750-dmon-mz.122-25r.SEC" or 
-			name == "c3750-dmon-mz-122-25r.SEE4"
+			name == "VMS_2_3_DST_Patch_Windows_K9.tar"
+		):
+			prodname = product ("cworks")
+			imagecode = imagelookup ("patch")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name == "Patch-CSCsc85405.tar.gz"
+		):
+			prodname = product ("perfigocca")
+			imagecode = imagelookup ("patch")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name in [
+				"c3750-dmon-mz.122-25r.SEC",
+				"c3750-dmon-mz-122-25r.SEE4",
+				]
 		):
 			prodname = product ("c3750")
 			imagecode = imagelookup ("hdiag")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-			name == "AnyConnect-CSA.zip" or 
-			name == "CSD-for-CSA-updates.zip"
+			name in [
+				"AnyConnect-CSA.zip",
+				"CSD-for-CSA-updates.zip",
+				]
 		):
 			prodname = product ("csa")
 			imagecode = imagelookup ("export")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-		name.startswith("i86bi") or 
+		name.startswith("i86bi") or
 		name.startswith("I86BI")
 		):
 			prodname = product ("iou")
 			utilssingleprodname (debug1,name,prodname)
 
 		elif (
-		name.startswith("vios") or 
+		name.startswith("vios") or
 		name.startswith("vIOS")
 		):
-			prodname = product ("vios")
+			prodname = product("vios")
 			utilssingleprodname (debug1,name,prodname)
 
 		elif (
-		name.startswith("ata") or 
-		name.startswith("cmterm") or 
-		name.startswith("vgc-main") or 
-		name.startswith("CME") or 
+		name.startswith("ata") or
+		name.startswith("cmterm") or
+		name.startswith("vgc-main") or
+		name.startswith("CME") or
 		name.startswith("cme")
 		):
 			fileprocessorvoice(debug1,name)
 
 		elif (
-		"tsjspgen" in name or 
-		"tpcgen" in name or 
-		"tpgen" in name or 
-		"tpcgenx" in name or 
-		"tscgen" in name or 
-		"tscgenx" in name or 
+		"tsjspgen" in name or
+		"tpcgen" in name or
+		"tpgen" in name or
+		"tpcgenx" in name or
+		"tscgen" in name or
+		"tscgenx" in name or
 		"tipv6" in name
 		):
 			fileprocessorpagent(name)
 
 		elif(
-		"srec" in name or 
-		"rommon" in name or 
-		"ROMMON" in name or 
-		"promupgrade" in name or 
-		"governator" in name or 
-		"C7200_NPEG1_RM" in name or 
-		"C7200_NPEG2_RM" in name or 
-		"C7200_NPEG1_BOOT_ROM" in name or 
-		"c6880x_rm" in name or 
-		"cat6000-CPBOOT" in name or 
-		"tinyrom" in name or 
-		name == "Rommon-123-8r.YH13-notes" or 
-		name == "Rommon-124-22r.YB5-notes" or 
-		name == "Rommon-151-1r.T4-notes" or 
-		name == "Rommon-151-1r.T5-notes" or 
-		name == "Rommon-150-1r.M12-notes" or 
-		name == "asr900_15_6_43r_s_rommon.pkg" or 
-		name == "ASR1000_RM_16_3_2R.bin" or 
-		name == "C2400_RM2.symbols.123-7r.T2" or 
-		name.startswith("firmwareupgrade") or 
-		name.startswith("transformer_rm") or 
-		name.startswith("sup6t_rm") or 
+			name in [
+			"Rommon-123-8r.YH13-notes",
+			"Rommon-124-22r.YB5-notes",
+			"Rommon-151-1r.T4-notes",
+			"Rommon-151-1r.T5-notes",
+			"Rommon-150-1r.M12-notes",
+			"asr900_15_6_43r_s_rommon.pkg",
+			"ASR1000_RM_16_3_2R.bin",
+			"C2400_RM2.symbols.123-7r.T2"
+			] or
+		"srec" in name or
+		"rommon" in name or
+		"ROMMON" in name or
+		"promupgrade" in name or
+		"governator" in name or
+		"C7200_NPEG1_RM" in name or
+		"C7200_NPEG2_RM" in name or
+		"C7200_NPEG1_BOOT_ROM" in name or
+		"c6880x_rm" in name or
+		"cat6000-CPBOOT" in name or
+		"tinyrom" in name or
+		name.startswith("firmwareupgrade") or
+		name.startswith("transformer_rm") or
+		name.startswith("sup6t_rm") or
 		name.startswith("asr920-rommon")
 		):
 			fileprocessorrommon(debug1,name)
 
 		elif (
-		name.startswith("n3000") or 
-		name.startswith("n3500") or 
-		name.startswith("n4000") or 
-		name.startswith("n5000") or 
-		name.startswith("n6000") or 
-		name.startswith("n7000") or 
-		name.startswith("n7700") or 
-		name.startswith("n9000") or 
-		name.startswith("nxosv") or 
-		name.startswith("nexus9300v") or 
-		name.startswith("nexus9500v") or 
-		name.startswith("nxos") or 
-		name.startswith("oac") or 
-		name.startswith("n5000_poap_script") or 
-		name.startswith("n6000_poap_script") or 
-		name.startswith("poap_script") or 
-		name.startswith("poap_ng") or 
-		name.startswith("Nexus1000v") or 
-		name.startswith("Nexus1000v") or 
-		name.startswith("Nexus1000V") or 
-		name.startswith("Nexus1000V5") or 
-		name.startswith("n1000vh-dk9") or 
-		name.startswith("nexus-1000v") or 
-		name == "n3k_bios_release_rn.pdf" or 
-		name.startswith("ssd_c400_upgrade") or 
-		name == "upgrade_m500_firmware.tar.gz" or 
-		name == "ntp-1.0.1-7.0.3.I2.2d.lib32_n9000.rpm" or 
-		name == "ntp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm" or 
-		name == "ntp-1.0.2-7.0.3.I2.2e.lib32_n9000.rpm" or 
-		name == "nxos.nsqos_lc_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm" or 
-		name == "nxos.nsqos_sup_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm" or 
-		name == "vxlan-2.0.1.0-9.2.3.lib32_n9000.rpm" or 
-		name == "snmp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm" or 
-		name == "L2-L3_CT.zip" or 
-		name.startswith("n9000-epld") or 
-		name.startswith("guestshell")
+		name.startswith("Nexus1000V") or
+		name.startswith("Nexus1000V5") or
+		name.startswith("Nexus1000v") or
+		name.startswith("guestshell") or
+		name.startswith("n1000vh-dk9") or
+		name.startswith("n3000") or
+		name.startswith("n3500") or
+		name.startswith("n4000") or
+		name.startswith("n5000") or
+		name.startswith("n5000_poap_script") or
+		name.startswith("n6000") or
+		name.startswith("n6000_poap_script") or
+		name.startswith("n7000") or
+		name.startswith("n7700") or
+		name.startswith("n9000") or
+		name.startswith("n9000-epld") or
+		name.startswith("nexus-1000v") or
+		name.startswith("nexus9300v") or
+		name.startswith("nexus9500v") or
+		name.startswith("nxos") or
+		name.startswith("nxos64") or
+		name.startswith("nxosv") or
+		name.startswith("oac") or
+		name.startswith("poap_ng") or
+		name.startswith("poap_script") or
+		name.startswith("ssd_c400_upgrade") or
+		name in [
+			"L2-L3_CT.zip",
+			"n3k_bios_release_rn.pdf",
+			"ntp-1.0.1-7.0.3.I2.2d.lib32_n9000.rpm",
+			"ntp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm",
+			"ntp-1.0.2-7.0.3.I2.2e.lib32_n9000.rpm",
+			"nxos.nsqos_lc_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm",
+			"nxos.nsqos_sup_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm",
+			"snmp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm",
+			"upgrade_m500_firmware.tar.gz",
+			"vxlan-2.0.1.0-9.2.3.lib32_n9000.rpm"
+		]
 		):
 			fileprocessornxos(name,debug1)
 
 		elif (
-		name.startswith("np.0.8.11.1.spe") or 
-		name.startswith("np.0.8.11.2.spe") or 
-		name.startswith("np.0.10.8.0.spe") or 
-		name.startswith("np.6.106.spe") or 
-		name.startswith("np.6.93.spe") or 
-		name.startswith("np.7.16.spe") or 
-		name.startswith("np.7.9.spe") or 
-		name.startswith("np.8.8.1.spe") or 
-		name.startswith("np.spe")
+			name in [
+			"np.0.8.11.1.spe",
+			"np.0.8.11.2.spe",
+			"np.0.10.8.0.spe",
+			"np.6.106.spe",
+			"np.6.93.spe",
+			"np.7.16.spe",
+			"np.7.9.spe",
+			"np.8.8.1.spe",
+			"np.spe"
+			]
 		):
 			prodname = product ("mica-modem")
 			imagecode = imagelookup ("np")
@@ -640,8 +925,8 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-		name.startswith("8705_") or 
-		name.startswith("8775_") or 
+		name.startswith("8705_") or
+		name.startswith("8775_") or
 		name.startswith("8790_")
 		):
 			prodname = product ("ISRG1GENERIC")
@@ -659,411 +944,430 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-		name.startswith("C9800-") or 
-		splitbydash[0] == "asr1000" or 
-		splitbydash[0] == "asr1001" or 
-		splitbydash[0] == "asr1001x" or 
-		splitbydash[0] == "asr1002" or 
-		splitbydash[0] == "asr1002x" or 
-		splitbydash[0] == "asr1000rp1" or 
-		splitbydash[0] == "asr1000rp2" or 
-		splitbydash[0] == "asr1000rpx86" or 
-		splitbydash[0] == "asr900rsp1" or 
-		splitbydash[0] == "asr900rsp2" or 
-		splitbydash[0] == "asr900rsp3" or 
-#		splitbydash[0] == "asr901" or 
-		splitbydash[0] == "asr901rsp1" or 
-		splitbydash[0] == "asr901rsp2" or 
-		splitbydash[0] == "asr903rsp1" or 
-		splitbydash[0] == "asr903rsp2" or 
-		splitbydash[0] == "asr903rsp2" or 
-		splitbydash[0] == "asr920" or 
-		splitbydash[0] == "asr920igp" or 
-		splitbydash[0] == "ct5760" or 
-		splitbydash[0] == "csr1000v" or 
-		splitbydash[0] == "csr1000v_milplr" or 
-		splitbydash[0] == "ie3x00" or 
-		name.startswith("isr4400") or 
-		name.startswith("isr4300") or 
-		name.startswith("isr4200") or 
-		name.startswith("ir1101") or 
-		name.startswith("isr4400v2") or 
-		name.startswith("c1100-universalk9") or 
-		name.startswith("c1100-ucmk9") or 
-		name.startswith("cat4500es8") or 
-		name == "asr1000-hw-programmables.16.08.01.SPA.pkg" or 
-		name == "isr-hw-programmables.03.13.02.S.154-3.S2-ext.SPA.pkg" or 
-		name == "isr-hw-programmables.03.15.03.S.155-2.S3-ext.SPA.pkg" or 
-		name == "ASR1K-fpga_prog.16.0.1.xe.bin" or 
-		name.startswith("cat3k_caa") or 
-		name.startswith("cat9k") or 
-		name.startswith("c8000v") or 
-		name.startswith("c8000be") or 
-		name.startswith("c8000aep") or 
-		name.startswith("ttam") or 
-		name.startswith("ess3x00") or 
-		name.startswith("ie9k") or 
-		name.startswith("s5800") or 
-		name.startswith("vg400") or 
-		name.startswith("vg420") or 
-		name.startswith("vg450") or 
-		name.startswith("CAT3650_WEBAUTH_BUNDLE") or 
-		name.startswith("CAT3850_WEBAUTH_BUNDLE") or 
-		name.startswith("iosxe-sd-avc") or 
-		name.startswith("iosxe-remote-mgmt") or 
-		name.startswith("c1100_gfast_") or 
-		name.startswith("c1100_phy_") or 
-		name == "nim_vab_phy_fw_A39t_B39g1_Bond39t.pkg" or 
-		name == "nim_vab_phy_fw_A39x3_B39x3_Bond39t.pkg" or 
-		name == "asr1000rp1-advipservicesk9.V152_1_S1_CSCTR15153_3.bin" or 
-		name == "asr903rsp1-universalk9_npe.V154_3_S3_SR637267017_1.bin" or 
-		name == "asr1000rp1-adventerprisek9.BLD_V122_33_XNC_ASR_RLS3_THROTTLE_LATEST_20090513_080032.bin" or 
-		name.startswith ("WP76xx") or 
-		name.endswith ("comp_matrix.xml")
+			name in [
+			"ASR1K-fpga_prog.16.0.1.xe.bin",
+			"isr-hw-programmables.03.13.02.S.154-3.S2-ext.SPA.pkg",
+			"isr-hw-programmables.03.15.03.S.155-2.S3-ext.SPA.pkg",
+			"nim_vab_phy_fw_A39t_B39g1_Bond39t.pkg",
+			"nim_vab_phy_fw_A39x3_B39x3_Bond39t.pkg"
+			] or
+		name.endswith ("comp_matrix.xml") or
+		name.startswith ("WP76xx") or
+		name.startswith("C9800-") or
+		name.startswith("CAT3650_WEBAUTH_BUNDLE") or
+		name.startswith("CAT3850_WEBAUTH_BUNDLE") or
+		name.startswith("asr1000") or
+		name.startswith("asr1000rp1") or
+		name.startswith("asr1000rp2") or
+		name.startswith("asr1000rpx86") or
+		name.startswith("asr1001") or
+		name.startswith("asr1001x") or
+		name.startswith("asr1002") or
+		name.startswith("asr1002x") or
+		name.startswith("asr900rsp1") or
+		name.startswith("asr900rsp2") or
+		name.startswith("asr900rsp3") or
+		name.startswith("asr901") or
+		name.startswith("asr901rsp1") or
+		name.startswith("asr901rsp2") or
+		name.startswith("asr903rsp1") or
+		name.startswith("asr903rsp2") or
+		name.startswith("asr920") or
+		name.startswith("asr920igp") or
+		name.startswith("c1100-ucmk9") or
+		name.startswith("c1100-universalk9") or
+		name.startswith("c1100_gfast_") or
+		name.startswith("c1100_phy_") or
+		name.startswith("c8000aep") or
+		name.startswith("c8000be") or
+		name.startswith("c8000v") or
+		name.startswith("cat3k_caa") or
+		name.startswith("cat4500es8") or
+		name.startswith("cat9k") or
+		name.startswith("csr1000v") or
+		name.startswith("csr1000v_milplr") or
+		name.startswith("ct5760") or
+		name.startswith("ess3x00") or
+		name.startswith("ie3x00") or
+		name.startswith("ie9k") or
+		name.startswith("iosxe-remote-mgmt") or
+		name.startswith("iosxe-sd-avc") or
+		name.startswith("ir1101") or
+		name.startswith("isr4200") or
+		name.startswith("isr4300") or
+		name.startswith("isr4400") or
+		name.startswith("isr4400v2") or
+		name.startswith("s5800") or
+		name.startswith("ttam") or
+		name.startswith("vg400") or
+		name.startswith("vg420") or
+		name.startswith("vg450")
 		):
 			fileprocessor_iosxe(debug1,name)
 
 
 		elif (
-		name == "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429-Readme.txt" or 
-		name == "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429.zip" or 
-		name == "ACS57BasePatch.tar.gz" or 
-		name == "BOOTX64.EFI" or 
-		name == "PIX_to_ASA_1_0.dmg" or 
-		name == "PIXtoASA_1_0.zip" or 
-		name == "PIXtoASAsetup_1_0.exe" or 
-		name == "README-occ-121.rtf" or 
-		name == "README_ISE_20_201_21_22" or 
-		name == "README_WebAgent.txt" or 
-		name == "ReadMe_for_ACS_5.6_Upgrade_Package-txt" or 
-		name == "VPN-5.0.00.0340-MSI.exe" or 
-		name == "VPN_Client_Support_Matrix2.txt" or 
-		name == "VPNDisable_ServiceProfile.xml" or 
-		name == "Vista-VPN-Troubleshooting.txt" or 
-		name == "WebSecurityCert.zip" or 
-		name == "anyconnect_app_selector_1.0.zip" or 
-		name == "anyconnect_app_selector_2.0.zip" or 
-		name == "cisco_vpn_auth.jar" or 
-		name == "citrix_plugin_howto.doc" or 
-		name == "cvdm-css-1.0.zip" or 
-		name == "cvdm-css-1.0_K9.zip" or 
-		name == "fcs-csa-hotfix-5.2.0.238-w2k3-k9-CSM.zip" or 
-		name == "fcs-csamc-4.5.1.616-CSA-Policy-Descriptions.zip" or 
-		name == "firepower-mibs.zip" or 
-		name == "grub.efi" or 
-		name == "occ-121.gz" or 
-		name == "occ-121.zip" or 
-		name == "pic-2.2.0.470.SPA.x86_64.iso" or 
-		name == "pic-2.4.0.357.SPA.x86_64.iso" or 
-		name == "pnLogAgent_1.1.zip" or 
-		name == "pnLogAgent_4-1-3.zip" or 
-		name == "pnLogAgent_4-1-3.zip.txt" or 
-		name == "pxGrid_Mitigation_Remediation_v1.0.tgz" or 
-		name == "rawrite.exe" or 
-		name == "release_duration_tool.tar" or 
-		name == "vpn30xxboot-4.0.Rel.hex" or 
-		name == "webAgent_1-0.zip" or 
-		name == "webAgent_1-0.zip.txt" or 
-		name == "webAgent_1-1.zip" or 
-		name == "webAgent_1-1.zip.txt" or 
-		name == "rdp_09.11.2012.jar" or 
-		name == "cisco_vpn_auth.jar" or 
-		name.startswith ("5-") or 
-		name.startswith ("ACS") or 
-		name.startswith ("Acs") or 
-		name.startswith ("CSM4") and name.endswith("Service_Pack1.exe") or 
-		name.startswith ("CSM4") and name.endswith("Service_Pack2.exe") or 
-		name.startswith ("CUCM-CSA-") or 
-		name.startswith ("CiscoCM-CSA-") or 
-		name.startswith ("CiscoCVP-CSA-") or 
-		name.startswith ("CiscoICM-CSA-") or 
-		name.startswith ("CiscoISN-CSA-") or 
-		name.startswith ("CiscoPA-CSA-") or 
-		name.startswith ("CiscoUnity-CSA-") or 
-		name.startswith ("Cisco_FTD") or 
-		name.startswith ("Cisco_Firepower") or 
-		name.startswith ("Cisco_Firepower_GEODB") or 
-		name.startswith ("Cisco_Firepower_SRU") or
-		name.startswith ("Cisco_Firepower_Threat") or 
-		name.startswith ("Cisco_Network_Sensor") or 
-		name.startswith ("Cisco_VDB_Fingerprint_Database") or
-		name.startswith ("lsp-rel-") or
-		name.startswith ("Clean") or 
-		name.startswith ("Firepower") or 
-		name.startswith ("IPS") or 
-		name.startswith ("ISE") or 
-		name.startswith ("PIX") and name.endswith(".bin") or 
-		name.startswith ("PIX") or 
-		name.startswith ("SNS-35x5-BIOS") or 
-		name.startswith ("SNS-35x5-firmware") or 
-		name.startswith ("SNS-36xx-BIOS") or 
-		name.startswith ("SNS-36xx-firmware") or 
-		name.startswith ("SNS-36xx-HUU") or 
-		name.startswith ("Sourcefire") or
-		name.startswith ("UCP") or 
-		name.startswith ("UTD-STD-SIGNATURE") or 
-		name.startswith ("VPN3000") or 
-		name.startswith ("applAcs") or 
-		name.startswith ("asa") or 
-		name.startswith ("asasfr") or 
-		name.startswith ("asdm") or 
-		name.startswith ("bh") and name.endswith(".bin") or 
-		name.startswith ("cda") and name.endswith("iso") or 
-		name.startswith ("cisco-asa") or 
-		name.startswith ("coeus") or 
-		name.startswith ("csd") or 
-		name.startswith ("csm") or 
-		name.startswith ("csm-maxmind-geolitecity-") or 
-		name.startswith ("csmars") or 
-		name.startswith ("fcs-CSM") or
-		name.startswith ("fcs-cms") or
-		name.startswith ("fcs-csamc") or 
-		name.startswith ("fcs-csm") or
-		name.startswith ("fcs-mcp") or
-		name.startswith ("fcs-mcp") or 
-		name.startswith ("fcs-rme") or
-		name.startswith ("firepower") or 
-		name.startswith ("ftd") or 
-		name.startswith ("fwsm_migration") or 
-		name.startswith ("fxos") or 
-		name.startswith ("hostscan") or
-		name.startswith ("iosxe-utd") or
-		name.startswith ("iosxe-utd-ips") or
-		name.startswith ("iox-iosxe-utd") or
-		name.startswith ("ise") or 
-		name.startswith ("ise-pic") or 
-		name.startswith ("mac-spw-dmg") or 
-		name.startswith ("np") and name.endswith(".bin") or 
-		name.startswith ("pdm") and name.endswith(".bin") or 
-		name.startswith ("phoebe") or 
-		name.startswith ("pix") and name.endswith(".bin") or 
-		name.startswith ("pix") or 
-		name.startswith ("sampleTransforms") or 
-		name.startswith ("secapp-ucmk9") or
-		name.startswith ("secapp-utd") or
-		name.startswith ("thirdparty") or 
-		name.startswith ("tools-anyconnect") or 
-		name.startswith ("upd-pkg-SNS-35x5-cimc") or
-		name.startswith ("upd-pkg-SNS-36xx-cimc") or
-		name.startswith ("update-") and name.endswith ("-major-K9.zip") or 
-		name.startswith ("vpn3000") or 
-		name.startswith ("vpn3002") or 
-		name.startswith ("vpn3005") or 
-		name.startswith ("vpnclient") or 
-		name.startswith ("webagent") or 
-		name.startswith ("win_spw") or 
-		name.startswith("anyconnect") or 
-		name.startswith("external-sso") or 
-		name.startswith("c6svc-fwm-k9") or 
+			name in [
+			"ACS-4.1.1.23-CSTacacs-SW-CSCsg97429-Readme.txt",
+			"ACS-4.1.1.23-CSTacacs-SW-CSCsg97429.zip",
+			"ACS57BasePatch.tar.gz",
+			"APIC_FMC_Remediation_module_1.0.1_7.tgz",
+			"APIC_FMC_Remediation_module_1.0.2_1.tgz",
+			"APIC_FirePOWER_Remediation_Module_2.0.1.1.tgz",
+			"APIC_Secure_Firewall_Remediation_Module_2.0.2.1.tgz",
+			"BOOTX64.EFI",
+			"PIX_to_ASA_1_0.dmg",
+			"PIXtoASA_1_0.zip",
+			"PIXtoASAsetup_1_0.exe",
+			"README-occ-121.rtf",
+			"README_ISE_20_201_21_22",
+			"README_WebAgent.txt",
+			"ReadMe_for_ACS_5.6_Upgrade_Package-txt",
+			"Secure_Workload_Remediation_Module_1.0.3.tgz",
+			"VPN-5.0.00.0340-MSI.exe",
+			"VPNDisable_ServiceProfile.xml",
+			"VPN_Client_Support_Matrix2.txt",
+			"Vista-VPN-Troubleshooting.txt",
+			"WebSecurityCert.zip",
+			"anyconnect_app_selector_1.0.zip",
+			"anyconnect_app_selector_2.0.zip",
+			"cisco_vpn_auth.jar",
+			"citrix_plugin_howto.doc",
+			"cvdm-css-1.0.zip",
+			"cvdm-css-1.0_K9.zip",
+			"fcs-csa-hotfix-5.2.0.238-w2k3-k9-CSM.zip",
+			"fcs-csamc-4.5.1.616-CSA-Policy-Descriptions.zip",
+			"firepower-mibs.zip",
+			"grub.efi",
+			"occ-121.gz",
+			"occ-121.zip",
+			"pic-2.2.0.470.SPA.x86_64.iso",
+			"pic-2.4.0.357.SPA.x86_64.iso",
+			"pnLogAgent_1.1.zip",
+			"pnLogAgent_4-1-3.zip",
+			"pnLogAgent_4-1-3.zip.txt",
+			"pxGrid_Mitigation_Remediation_v1.0.tgz",
+			"rawrite.exe",
+			"rdp_09.11.2012.jar",
+			"release_duration_tool.tar",
+			"vpn30xxboot-4.0.Rel.hex",
+			"webAgent_1-0.zip",
+			"webAgent_1-0.zip.txt",
+			"webAgent_1-1.zip",
+			"webAgent_1-1.zip.txt"
+			] or
+		name.startswith("128MB.sdf") or
+		name.startswith("256MB.sdf") or
+		name.startswith("5-") or
+		name.startswith("ACS") or
+		name.startswith("Acs") or
+		name.startswith("CSCvn17524") or
+		name.startswith("CSM4") and name.endswith("Service_Pack1.exe") or
+		name.startswith("CSM4") and name.endswith("Service_Pack2.exe") or
+		name.startswith("CUCM-CSA-") or
+		name.startswith("CiscoCM-CSA-") or
+		name.startswith("CiscoCVP-CSA-") or
+		name.startswith("CiscoICM-CSA-") or
+		name.startswith("CiscoISE") or
+		name.startswith("CiscoISN-CSA-") or
+		name.startswith("CiscoPA-CSA-") or
+		name.startswith("CiscoUnity-CSA-") or
+		name.startswith("Cisco_FTD") or
+		name.startswith("Cisco_Firepower") or
+		name.startswith("Cisco_Firepower_GEODB") or
+		name.startswith("Cisco_Firepower_SRU") or
+		name.startswith("Cisco_Firepower_Threat") or
+		name.startswith("Cisco_Network_Sensor") or
+		name.startswith("Cisco_VDB_Fingerprint_Database") or
+		name.startswith("Clean") or
+		name.startswith("FMT-CP-Config-Extractor") or
+		name.startswith("Firepower") or
+		name.startswith("Firepower_Migration_Tool") or
+		name.startswith("IDS") or
+		name.startswith("IDS-sig-") and name.endswith(".readme.txt") or
+		name.startswith("IDS-sig-") and name.endswith(".zip") or
+		name.startswith("IOS-S") and name.endswith("-CLI.pkg") or
+		name.startswith("IOS-S") and name.endswith(".zip") or
+		name.startswith("IPS") or
+		name.startswith("ISE") or
+		name.startswith("PIX") and name.endswith(".bin") or
+		name.startswith("PIX") or
+		name.startswith("SNS-35x5-BIOS") or
+		name.startswith("SNS-35x5-firmware") or
+		name.startswith("SNS-36xx-BIOS") or
+		name.startswith("SNS-36xx-HUU") or
+		name.startswith("SNS-36xx-firmware") or
+		name.startswith("Sourcefire") or
+		name.startswith("UCP") or
+		name.startswith("UTD-STD-SIGNATURE") or
+		name.startswith("VPN3000") or
+		name.startswith("anyconnect") or
+		name.startswith("applAcs") or
+		name.startswith("asa") or
+		name.startswith("asasfr") or
+		name.startswith("asdm") or
+		name.startswith("bh") and name.endswith(".bin") or
+		name.startswith("c6svc-fwm-k9") or
+		name.startswith("cda") and name.endswith("iso") or
+		name.startswith("cisco-asa") or
 		name.startswith("cisco-ftd") or
-		name.startswith("sg") and name.endswith("adi") or 
-		name.startswith("sg") and name.endswith("adi-gz") or 
-		name.startswith("sg") and name.endswith("zip") or 
-		name.startswith("FMT-CP-Config-Extractor") or 
-		name.startswith("Firepower_Migration_Tool") or 
-		name.startswith("IOS-S") and name.endswith("-CLI.pkg") or 
-		name.startswith("IOS-S") and name.endswith(".zip") or 
-		name.startswith("IDS-sig-") and name.endswith(".zip") or 
-		name.startswith("IDS-sig-") and name.endswith(".readme.txt") or 
-		name.startswith("IPS") or 
-		name.startswith("IDS") or 
-		name.startswith("128MB.sdf") or 
-		name.startswith("256MB.sdf")
+		name.startswith("cisco-secure-client") or
+		name.startswith("coeus") or
+		name.startswith("csd") or
+		name.startswith("csm") or
+		name.startswith("csm-maxmind-geolitecity-") or
+		name.startswith("csmars") or
+		name.startswith("external-sso") or
+		name.startswith("fcs-CSM") or
+		name.startswith("fcs-cms") or
+		name.startswith("fcs-csamc") or
+		name.startswith("fcs-csm") or
+		name.startswith("fcs-mcp") or
+		name.startswith("fcs-rme") or
+		name.startswith("firepower") or
+		name.startswith("ftd") or
+		name.startswith("fwsm_migration") or
+		name.startswith("fxos") or
+		name.startswith("hostscan") or
+		name.startswith("iosxe-utd") or
+		name.startswith("iosxe-utd-ips") or
+		name.startswith("iox-iosxe-utd") or
+		name.startswith("ise") or
+		name.startswith("ise-pic") or
+		name.startswith("lsp-rel-") or
+		name.startswith("mac-spw-dmg") or
+		name.startswith("np") and name.endswith(".bin") or
+		name.startswith("pdm") and name.endswith(".bin") or
+		name.startswith("phoebe") or
+		name.startswith("pix") and name.endswith(".bin") or
+		name.startswith("pix") or
+		name.startswith("sampleTransforms") or
+		name.startswith("secapp-ucmk9") or
+		name.startswith("secapp-utd") or
+		name.startswith("sg") and name.endswith("adi") or
+		name.startswith("sg") and name.endswith("adi-gz") or
+		name.startswith("sg") and name.endswith("zip") or
+		name.startswith("thirdparty") or
+		name.startswith("tools-anyconnect") or
+		name.startswith("tools-cisco-secure-client") or
+		name.startswith("upd-pkg-SNS-35x5-cimc") or
+		name.startswith("upd-pkg-SNS-36xx-cimc") or
+		name.startswith("update-") and name.endswith ("-major-K9.zip") or
+		name.startswith("vpn3000") or
+		name.startswith("vpn3002") or
+		name.startswith("vpn3005") or
+		name.startswith("vpnclient") or
+		name.startswith("webagent") or
+		name.startswith("win_spw") or
+		name.startswith("zeus")
 		):
 			fileprocessorsecurity(debug1,name,filename)
 
 		elif (
-		name.startswith("UCSC-C240-M5-") or 
-		name.startswith("hostUpgrade_v") or 
-		name.startswith("hostupgrade_v") or 
-		name.startswith("C200M1-") or 
-		name.startswith("ucs") or 
-		name.startswith("update_pkg-ucse") or 
-		name.startswith("pid-ctlg") or 
-		name.startswith("delnorte") or 
-		name.startswith("delnorte2") or 
-		name.startswith("plumas") or 
-		name.startswith("plumas2") or 
-		name == "Signed_EN_BIOS_1.5.0.4.bin.SPA" or 
-		name == "1X0DBIOSv4.8" or 
-		name == "1X0SBIOSv4.8" or 
-		name == "B57BCMCD_v15.2.4.1.tgz" or 
-		name == "B57CiscoCD_T6.4.4.3-57712.zip" or 
-		name.startswith("CIMC_") and name.endswith(".bin") or 
-		name == "DW_16MB_release_1029.bin" or 
-		name == "DW_BIOS.bin.SPA" or 
-		name == "DW_Signed_Bios_Image.bin.SPA" or 
-		name == "Intel_Windows_drv_MR_6.714.18.00_pv.zip" or 
-		name == "LSI_x64_Signed_Driver_5.2.116.64.zip" or 
-		name == "MR_WINDOWS_DRIVER-6.506.02.00-WHQL.zip" or 
-		name == "Signed_DW_M1M2_BIOS_2.5.0.4.bin.SPA" or 
-		name == "Signed_DW_M1M2_BIOS_2.5.0.5.bin.SPA" or 
-		name == "Signed_DW_M1M2_BIOS_2.5.0.6.bin.SPA" or 
-		name == "Signed_DW_M1M2_Bios_Image_041015.bin.SPA" or 
-		name == "Signed_EN_BIOS_1.5.0.5.bin.SPA" or 
-		name == "Signed_EN_BIOS_1.5.0.6.bin.SPA" or 
-		name == "Signed_SW_M2_BIOS_1.5.0.6.bin.SPA" or 
-		name == "Signed_SW_M2_BIOS_1.5.0.7.bin.SPA" or 
-		name == "Signed_SW_M2_BIOS_1.5.0.8.bin.SPA" or 
-		name == "Signed_SW_M2_Bios_1.5.0.5.bin.SPA" or 
-		name == "UCSEDM3_BIOS_2.4.SPA" or 
-		name == "UCSEDM3_BIOS_2.5.SPA" or 
-		name == "UCSEDM3_BIOS_2.6.SPA" or 
-		name == "UCSE_CIMC_2.3.1.bin" or 
-		name == "UCSE_CIMC_2.3.2.bin" or 
-		name == "UCSE_CIMC_2.3.3.bin" or 
-		name == "UCSE_CIMC_2.3.5.bin" or 
-		name == "efi-obd-v12-07-18.diag" or 
-		name == "efi-obd-v13-10-15.diag" or 
-		name == "efi-obd-v13-7-3.diag" or 
-		name == "ucse-huu-2.1.1.iso" or 
-		name == "huu-2.3.1.iso" or 
-		name == "huu-2.3.2.iso" or 
-		name == "huu-2.3.3.iso" or 
-		name == "huu-2.4.1.iso" or 
-		name == "huu-3.0.1.iso" or 
-		name == "huu-3.1.1.iso" or 
-		name == "huu_3.1.2.iso" or 
-		name == "huu_3.1.3.iso" or 
-		name == "huu_3.1.4.iso" or 
-		name == "huu_3.2.6.v3.iso" or 
-		name == "intel9.2.3.1023.tar" or 
-		name == "rste_4.5.0.1335_install.zip" or 
-		name == "update_pkg-Mar-22-MR-rebuild.bin" or 
-		name == "update_pkg-ucse.combined.120808.bin" or 
-		name == "update_pkg-ucse.combined.REL.2.2.1.bin" or 
-		name == "update_pkg-ucse.combined.REL.2.2.2.bin" or 
-		name == "update_pkg-ucse.combined.REL.bin" or 
-		name == "SW_16MB_release_1102.bin" or 
-		name == "SW_Signed_Bios_Image.bin.SPA" or 
-		name == "UCS_docs_20110510.iso" or 
-		name == "c2xx-m1-utils-1.0.2.iso" or 
-		name == "b2xx-m1-drivers-1.1.1j.iso" or 
-		name.startswith ("Cisco_ACI") or 
-		name.startswith ("acisim") or 
-		name.startswith ("aci-simulator") or 
-		name.startswith ("aci-apic") or 
-		name.startswith ("aci-vpod") or 
-		name.startswith ("aci-msft-pkg") or 
-		name.startswith ("aci-n9000-dk9") or 
-		name.startswith ("apic-vrealize") or 
-		name.startswith ("esx-msc") or 
-		name.startswith ("msc") or 
-		name.startswith ("vcenter-plugin") or 
-		name.startswith ("tools-msc") or 
-		name.startswith ("storfs-packages") or 
-		name.startswith ("HX-ESXi") or 
-		name.startswith ("HX-Kubernetes") or 
-		name.startswith ("Cisco-HX-Data-Platform-Installer") or 
-		name.startswith ("cisco-HX-Data-Platform-Installer") or 
-		name.startswith ("HyperFlex-VC-HTML") or 
-		name.startswith ("hxcsi") or 
-		name.startswith ("HyperFlex-Witness-") or 
-		name.startswith ("HxClone-HyperV") or 
-		name.startswith ("DCNM") or 
-		name.startswith ("dcnm") or 
-		name.startswith ("Collector") or 
-		name.startswith ("collector") or 
-		name == "cspc28backupscript.zip" or 
-		name == "readme_10.2.1.ST.1" or 
-		name == "JeOS_Patch_To_Enable_ASD.zip" or 
-		name.startswith ("apic_em_update-apic-") or 
-		name.startswith ("APIC-EM-") or 
-		name.startswith ("CiscoPI3.4.pem") or 
-		name.startswith ("CiscoPI3.5.pem") or 
-		name == "operations_center_pi_2_1_2_enable_update.ubf" or 
-		name == "pi212_20141118_01.ubf" or 
-		name == "pi212_PIGEN_CSCur43834_01.ubf" or 
-		name == "BashFix-update-0-x86_64.tar.gz" or 
-		name.startswith ("cisco-prime-pnp-app-k9-") or 
-		name.startswith ("PI-VA-") or 
-		name.startswith ("PI-APL-") or 
-		name.startswith ("PI-UCS-APL-") or 
-		name.startswith ("PI-Upgrade-") or 
-		name.startswith ("ucs-cxx") or 
-		name == "BashFix-update-0-x86_64.tar.gz" or 
-		name == "Datacenter_Technology_Pack-1.0.53.ubf" or 
-		name == "Datacenter_Technology_Pack_Update_1_Patch-1.0.58.ubf" or 
-		name == "GlibcFix-pi22-update-0-x86_64.tar.gz" or 
-		name == "PrimeInfra.pem" or 
-		name == "ca_technology_package-2.1.0.0.41.ubf" or 
-		name == "operations_center_pi_2_1_2_enable_update.ubf" or 
-		name == "rhel-vulnerability-patch-pnp-2.2.0.14.tar.gz" or 
-		name == "InstallerUpdateBE-1.0.5.tar.gz" or 
-		name == "ca_technology_package-2.1.0.0.41.ubf" or 
-		name.startswith ("Device-Pack") or 
-		name.startswith ("DnacPreCheckASSESMENTUbf") or 
-		name.startswith ("CiscoPI") or 
-		name.startswith ("PI") or 
-		name.startswith ("pi") or 
-		name.startswith ("PNP-GATEWAY-VM-") or 
-		name.startswith ("cisco-prime-pnp") or 
-		name.startswith ("pnp-") or 
-		name.startswith ("DNAC-") or 
-		name.startswith ("dnac") or 
-		name.startswith ("UCSC-C220-M5-")
+			name in [
+			"1X0DBIOSv4.8",
+			"1X0SBIOSv4.8",
+			"B57BCMCD_v15.2.4.1.tgz",
+			"B57CiscoCD_T6.4.4.3-57712.zip",
+			"BashFix-update-0-x86_64.tar.gz",
+			"CSCwb00526.sh",
+			"CSCwb00526.sh.zip", 
+			"DW_16MB_release_1029.bin",
+			"DW_BIOS.bin.SPA",
+			"DW_Signed_Bios_Image.bin.SPA",
+			"Datacenter_Technology_Pack-1.0.53.ubf",
+			"Datacenter_Technology_Pack_Update_1_Patch-1.0.58.ubf",
+			"GlibcFix-pi22-update-0-x86_64.tar.gz",
+			"InstallerUpdateBE-1.0.5.tar.gz",
+			"Intel_Windows_drv_MR_6.714.18.00_pv.zip",
+			"JeOS_Patch_To_Enable_ASD.zip",
+			"LSI_x64_Signed_Driver_5.2.116.64.zip",
+			"MR_WINDOWS_DRIVER-6.506.02.00-WHQL.zip",
+			"PrimeInfra.pem",
+			"SW_16MB_release_1102.bin",
+			"SW_Signed_Bios_Image.bin.SPA",
+			"Signed_DW_M1M2_BIOS_2.5.0.4.bin.SPA",
+			"Signed_DW_M1M2_BIOS_2.5.0.5.bin.SPA",
+			"Signed_DW_M1M2_BIOS_2.5.0.6.bin.SPA",
+			"Signed_DW_M1M2_Bios_Image_041015.bin.SPA",
+			"Signed_EN_BIOS_1.5.0.4.bin.SPA",
+			"Signed_EN_BIOS_1.5.0.5.bin.SPA",
+			"Signed_EN_BIOS_1.5.0.6.bin.SPA",
+			"Signed_SW_M2_BIOS_1.5.0.6.bin.SPA",
+			"Signed_SW_M2_BIOS_1.5.0.7.bin.SPA",
+			"Signed_SW_M2_BIOS_1.5.0.8.bin.SPA",
+			"Signed_SW_M2_Bios_1.5.0.5.bin.SPA",
+			"UCSEDM3_BIOS_2.4.SPA",
+			"UCSEDM3_BIOS_2.5.SPA",
+			"UCSEDM3_BIOS_2.6.SPA",
+			"UCSE_CIMC_2.3.1.bin",
+			"UCSE_CIMC_2.3.2.bin",
+			"UCSE_CIMC_2.3.3.bin",
+			"UCSE_CIMC_2.3.5.bin",
+			"UCS_docs_20110510.iso",
+			"b2xx-m1-drivers-1.1.1j.iso",
+			"c2xx-m1-utils-1.0.2.iso",
+			"ca_technology_package-2.1.0.0.41.ubf",
+			"cspc28backupscript.zip",
+			"efi-obd-v12-07-18.diag",
+			"efi-obd-v13-10-15.diag",
+			"efi-obd-v13-7-3.diag",
+			"huu-2.3.1.iso",
+			"huu-2.3.2.iso",
+			"huu-2.3.3.iso",
+			"huu-2.4.1.iso",
+			"huu-3.0.1.iso",
+			"huu-3.1.1.iso",
+			"huu_3.1.2.iso",
+			"huu_3.1.3.iso",
+			"huu_3.1.4.iso",
+			"huu_3.2.6.v3.iso",
+			"intel9.2.3.1023.tar",
+			"operations_center_pi_2_1_2_enable_update.ubf",
+			"pi212_20141118_01.ubf",
+			"pi212_PIGEN_CSCur43834_01.ubf",
+			"readme_10.2.1.ST.1",
+			"rhel-vulnerability-patch-pnp-2.2.0.14.tar.gz",
+			"rste_4.5.0.1335_install.zip",
+			"ucse-huu-2.1.1.iso",
+			"update_pkg-Mar-22-MR-rebuild.bin",
+			"update_pkg-ucse.combined.120808.bin",
+			"update_pkg-ucse.combined.REL.2.2.1.bin",
+			"update_pkg-ucse.combined.REL.2.2.2.bin",
+			"update_pkg-ucse.combined.REL.bin",
+			"Deploy-cisco-dna-center-on-aws-using-aws-marketplace"
+			] or
+		name.startswith("APIC-EM-") or
+		name.startswith("C200M1-") or
+		name.startswith("CIMC_") and name.endswith(".bin") or
+		name.startswith("CSLU_Installer") or
+		name.startswith("Cisco-HX-Data-Platform-Installer") or
+		name.startswith("CiscoPI") or
+		name.startswith("CiscoPI3.4.pem") or
+		name.startswith("CiscoPI3.5.pem") or
+		name.startswith("Cisco_ACI") or
+		name.startswith("Collector") or
+		name.startswith("DCNM") or
+		name.startswith("DNAC-") or
+		name.startswith("Device-Pack") or
+		name.startswith("DnacPreCheckASSESMENTUbf") or
+		name.startswith("HX-ESXi") or
+		name.startswith("HX-Kubernetes") or
+		name.startswith("HxClone-HyperV") or
+		name.startswith("HyperFlex-VC-HTML") or
+		name.startswith("HyperFlex-Witness-") or
+		name.startswith("PI") or
+		name.startswith("PI-APL-") or
+		name.startswith("PI-UCS-APL-") or
+		name.startswith("PI-Upgrade-") or
+		name.startswith("PI-VA-") or
+		name.startswith("PNP-GATEWAY-VM-") or
+		name.startswith("SSMS") or
+		name.startswith("SSM_On-Prem") or
+		name.startswith("UCSC-C220-M5-") or
+		name.startswith("UCSC-C240-M5-") or
+		name.startswith("aci-apic") or
+		name.startswith("aci-msft-pkg") or
+		name.startswith("aci-n9000-dk9") or
+		name.startswith("aci-simulator") or
+		name.startswith("aci-vpod") or
+		name.startswith("acisim") or
+		name.startswith("apic-vrealize") or
+		name.startswith("apic_em_update-apic-") or
+		name.startswith("cisco-HX-Data-Platform-Installer") or
+		name.startswith("cisco-prime-pnp") or
+		name.startswith("cisco-prime-pnp-app-k9-") or
+		name.startswith("collector") or
+		name.startswith("dcnm") or
+		name.startswith("delnorte") or
+		name.startswith("delnorte2") or
+		name.startswith("dnac") or
+		name.startswith("esx-msc") or
+		name.startswith("hostUpgrade_v") or
+		name.startswith("hostupgrade_v") or
+		name.startswith("hxcsi") or
+		name.startswith("msc") or
+		name.startswith("pi") or
+		name.startswith("pid-ctlg") or
+		name.startswith("plumas") or
+		name.startswith("plumas2") or
+		name.startswith("pnp-") or
+		name.startswith("ssms") or
+		name.startswith("storfs-packages") or
+		name.startswith("tools-msc") or
+		name.startswith("ucs") or
+		name.startswith("ucs-cxx") or
+		name.startswith("update_pkg-ucse") or
+		name.startswith("vcenter-plugin")
 		):
 			file_proc_servers(name,debug1)
 
 		elif (
-		name == "xrvr-fullk9-4.3.2.vmdk" or 
-		name == "xrvr-full-4.3.2.vmdk" or 
-		name == "xrv9k-fullk9-x.qcow2-6.0.0" or 
-		name.startswith("fullk9-R-XRV9000") or 
-		name.startswith("asr9k") or 
-		name.startswith("xrv9k") or 
-		name.startswith("XRV9K") or 
-		name.startswith("XRV9000") or 
-		name.startswith("ASR9K") or 
-		name.startswith("ASR9k") or 
-		name.startswith("XR12000") or 
-		name.startswith("csm-") or 
-		name.startswith("iosxrv") or 
-		name.startswith("Sightline") or 
-		name.startswith("SP_") or 
-		name.startswith("TMS_") or 
-		name.startswith("Cisco_TMS_")
+			name in [
+			"xrvr-fullk9-4.3.2.vmdk",
+			"xrvr-full-4.3.2.vmdk",
+			"xrv9k-fullk9-x.qcow2-6.0.0"
+			] or
+		name.startswith("ASR9K") or
+		name.startswith("ASR9k") or
+		name.startswith("CSM.zip") or
+		name.startswith("Cisco_TMS_") or
+		name.startswith("SP_") or
+		name.startswith("Sightline") or
+		name.startswith("TMS_") or
+		name.startswith("XR12000") or
+		name.startswith("XRV9000") or
+		name.startswith("XRV9K") or
+		name.startswith("asr9k") or
+		name.startswith("csm-") or
+		name.startswith("csm-3.5.2.zip") or
+		name.startswith("csm-4.0.zip") or
+		name.startswith("fullk9-R-XRV9000") or
+		name.startswith("iosxrv") or
+		name.startswith("xrv9k")
 		):
 			fileprocessor_iosxr(debug1,name)
 
 		elif (
-		name.startswith ("sprom") or 
-		name.startswith ("epld-sup2") or 
-		name.startswith ("epld-6548getx") or 
-		name.startswith ("6509neba") or 
-		name.startswith ("6516agbic") or 
-		name.startswith ("6548getx") or 
-		name.startswith ("66748getx") or 
-		name == "sconvertit0-11.tar" or 
-		name == "sconvertit0-12.tar" or 
-		name == "wconvertit0-11.zip" or 
-		name == "wconvertit0-12.zip" or 
-		name.startswith ("MC7700") or 
-		name.startswith ("MC7710") or 
-		name.startswith ("MC7750") or 
-		name.startswith ("MC735X") and name.endswith ("spk") or 
-		name.startswith ("MC7354") and name.endswith ("spk") or 
-		name.startswith ("MC7350") and name.endswith ("spk") or 
-		name.startswith ("MC7304") and name.endswith ("spk") or 
-		name == "fw_upgrade.tcl" or 
-		name == "sprint_v16904_package.tar" or 
-		name == "Release-Notes-V3.12.1" or 
-		name == "Release-Notes-V3.12.2" or 
-		name == "2730_rel_note" or 
-		name == "Exp_V3_11.axf" or 
-		name == "Exp_v10_10.spe" or 
-		name.startswith ("V3_") and name.endswith ("axf") or 
-		name.startswith ("VAE2_") and name.endswith ("bin") or 
-		name.startswith ("VAEW_") and name.endswith ("bin") or 
-		name.startswith ("VA_") or 
-		name == "portware.2730.ios" or 
-		name.startswith ("vdsl.bin") or 
-		name.startswith("mica-modem-pw") or 
-		name.startswith("mica-pw") or 	
-		name.startswith("c2900XL") or 
-		name.startswith("c2900xl") or 
-		name.startswith("c3500XL") or 
-		name.startswith("c3500xl")
+			name in [
+			"2730_rel_note",
+			"Exp_V3_11.axf",
+			"Exp_v10_10.spe",
+			"Release-Notes-V3.12.1",
+			"Release-Notes-V3.12.2",
+			"fw_upgrade.tcl",
+			"portware.2730.ios",
+			"sconvertit0-11.tar",
+			"sconvertit0-12.tar",
+			"sprint_v16904_package.tar",
+			"wconvertit0-11.zip",
+			"wconvertit0-12.zip"
+			] or
+		name.startswith("6509neba") or
+		name.startswith("6516agbic") or
+		name.startswith("6548getx") or
+		name.startswith("66748getx") or
+		name.startswith("MC7304") and name.endswith ("spk") or
+		name.startswith("MC7350") and name.endswith ("spk") or
+		name.startswith("MC7354") and name.endswith ("spk") or
+		name.startswith("MC735X") and name.endswith ("spk") or
+		name.startswith("MC7700") or
+		name.startswith("MC7710") or
+		name.startswith("MC7750") or
+		name.startswith("V3_") and name.endswith ("axf") or
+		name.startswith("VAE2_") and name.endswith ("bin") or
+		name.startswith("VAEW_") and name.endswith ("bin") or
+		name.startswith("VA_") or
+		name.startswith("c2900XL") or
+		name.startswith("c2900xl") or
+		name.startswith("c3500XL") or
+		name.startswith("c3500xl") or
+		name.startswith("epld-6548getx") or
+		name.startswith("epld-sup2") or
+		name.startswith("mica-modem-pw") or
+		name.startswith("mica-pw") or
+		name.startswith("sprom") or
+		name.startswith("vdsl.bin")
 		):
 			fileprocessorios(debug1,name)
 
@@ -1073,16 +1377,18 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			continue
 
 		elif (
-		name == "Cisco_usbconsole_driver.zip" or 
-		name == "Cisco_usbconsole_driver_3_1.zip" or 
-		name == "asr-9xx_usbconsole_drivers.zip"
+			name in [
+			"Cisco_usbconsole_driver.zip",
+			"Cisco_usbconsole_driver_3_1.zip",
+			"asr-9xx_usbconsole_drivers.zip"
+			]
 		):
 			prodname = product ("usbconsole")
 			utilssingleprodname (debug1,name,prodname)
 
 		elif (
-		name.startswith("8705_") or 
-		name.startswith("8775_") or 
+		name.startswith("8705_") or
+		name.startswith("8775_") or
 		name.startswith("8790_")
 		):
 			continue
@@ -1093,13 +1399,13 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			continue
 
 		elif (
-		name == "p1021_c800.V1.1.0.bin" or 
+		name == "p1021_c800.V1.1.0.bin" or
 		name == "PRL_60779.prl"
 		):
 			continue
 
 		elif (
-		name == "all-in-one-VM-1.2.1-194.ova" or 
+		name == "all-in-one-VM-1.2.1-194.ova" or
 		name == "all-in-one-VM-1.3.0.181.ova"
 		):
 			prodname = product ("onepk")
@@ -1112,7 +1418,7 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssingleprodname (debug1,name,prodname)
 
 		elif (
-		name.startswith("cat2800") or 
+		name.startswith("cat2800") or
 		name.startswith("cat2820")
 		):
 			prodname = product ("cat2800")
@@ -1131,59 +1437,59 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssingleprodname (debug1,name,prodname)
 
 		elif (
-		name.startswith("uccx") or 
-		name.startswith("s52000tc") or 
-		name.startswith("ciscocm") or 
-		name.startswith("CPO") and name.endswith("zip") or 
-		name.startswith("MIBS") or 
-		name.startswith("sdmv10.zip") or 
-		name.startswith("SDM-V25.zip") or 
-		name.startswith("c6svc-nam") or 
-		name.startswith("copfiles_iOS96.zip")
+		name.startswith("CPO") and name.endswith("zip") or
+		name.startswith("MIBS") or
+		name.startswith("SDM-V25.zip") or
+		name.startswith("c6svc-nam") or
+		name.startswith("ciscocm") or
+		name.startswith("copfiles_iOS96.zip") or
+		name.startswith("s52000tc") or
+		name.startswith("sdmv10.zip") or
+		name.startswith("uccx")
 		):
 			continue
 
 		elif (
-		name.startswith("axsm_") or 
-		name.startswith("axsmxg_") or 
-		name.startswith("pxm45_") or 
+		name.startswith("axsm_") or
+		name.startswith("axsmxg_") or
+		name.startswith("pxm45_") or
 		name == "mgx8880rel5600mib.tar"
 		):
 			#MGX8850
 			continue
 
 		elif (
-		name.startswith("Sx500") or 
-		name.startswith("Sx350") or 
-		name.startswith("Sx300") or 
-		name.startswith("Sx250") or 
-		name.startswith("Sx220") or 
-		name.startswith("Sx200") or 
-		name.startswith("MIBs_Sx500") or 
-		name.startswith("SPA30x_SPA50x_") or 
+		name.startswith("Sx500") or
+		name.startswith("Sx350") or
+		name.startswith("Sx300") or
+		name.startswith("Sx250") or
+		name.startswith("Sx220") or
+		name.startswith("Sx200") or
+		name.startswith("MIBs_Sx500") or
+		name.startswith("SPA30x_SPA50x_") or
 		name.startswith("AP541N-K9")
 		):
 			prodname = product ("smallbusiness")
 			utilssingleprodname (debug1,name,prodname)
 
 		elif (
-		name.startswith("c1200-k9") or 
-		name.startswith("c1200-rcvk9w8") or 
-		name.startswith("c1100-k9") or 
+		name.startswith("c1200-k9") or
+		name.startswith("c1200-rcvk9w8") or
+		name.startswith("c1100-k9") or
 		name.startswith("c1100-rcvk9w8")
 		):
 			fileprocessorios (debug1,name)
 
 		elif (
-		name.startswith("c1200") or 
-		name.startswith("dmp") or 
+		name.startswith("c1200") or
+		name.startswith("dmp") or
 		name.startswith("nmp")
 		):
 			prodname = product ("cat1200")
 			utilssingleprodname (debug1,name,prodname)
 
 		elif (
-		name == "c3750-dmon-mz-122-25r.SEE4" or 
+		name == "c3750-dmon-mz-122-25r.SEE4" or
 		name == "c3750-dmon-mz.122-25r.SEC"
 		):
 			prodname = product ("c3750")
@@ -1191,18 +1497,20 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-		name == "17_1_1t_mib.zip" or 
-		name == "17_2_1_mib.zip" or 
-		name == "17_2_1a_mib.zip" or
-		name == "mibs_1610.zip" or
-		name == "mibs_1611.zip" or
-		name == "mibs_16121.zip" or
-		name == "mibs_16121s.zip" or
-		name == "mibs_16121t.zip" or
-		name == "mibs_16122s.zip" or
-		name == "mibs_16123.zip" or
-		name == "mibs_16124a.zip" or
-		name == "mibs_16125.zip" or 
+			name in [
+			"17_1_1t_mib.zip",
+			"17_2_1_mib.zip",
+			"17_2_1a_mib.zip",
+			"mibs_1610.zip",
+			"mibs_1611.zip",
+			"mibs_16121.zip",
+			"mibs_16121s.zip",
+			"mibs_16121t.zip",
+			"mibs_16122s.zip",
+			"mibs_16123.zip",
+			"mibs_16124a.zip",
+			"mibs_16125.zip"
+			] or
 		name.startswith ("Standard-MIBS-Cisco_")
 		):
 			prodname = product ("wireless")
@@ -1210,48 +1518,50 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
-		name.startswith ("c1100") or 
-		name.startswith ("AIR") or 
-		name.startswith ("SWISMK9") or 
-		name.startswith ("SWLC3750K9") or 
-		name.startswith ("AIR_CTVM_LARGE-K9") or 
-		name.startswith ("AIR_CTVM-K9") or 
-		name.startswith ("MFG_CTVM") or 
-		name.startswith ("AP_BUNDLE") or 
-		name.startswith ("WCS-STANDARD-K9") or 
-		name.startswith ("CiscoAironet-AP-to-LWAPP-Upgrade-Tool") or 
-		name == "AP350-Cisco-IOS-Upgrade-Image-v2.img" or 
-		name == "AP1200-Cisco-IOS-Upgrade-Image-v3.img" or 
-		name == "Aironet-AP-Cisco-IOS-Conversion-Tool-v2.1.exe" or 
-		name.startswith ("BR350") and name.endswith ("exe") or 
-		name.startswith ("WGB350") and name.endswith ("exe") or 
-		name == "webauth_bundle.zip" or 
-		name == "webauth_bundle-1.0.2.zip"
+			name in [
+			"AP350-Cisco-IOS-Upgrade-Image-v2.img",
+			"AP1200-Cisco-IOS-Upgrade-Image-v3.img",
+			"Aironet-AP-Cisco-IOS-Conversion-Tool-v2.1.exe",
+			"webauth_bundle-1.0.2.zip"
+			] or
+		name.startswith ("c1100") or
+		name.startswith ("AIR") or
+		name.startswith ("SWISMK9") or
+		name.startswith ("SWLC3750K9") or
+		name.startswith ("AIR_CTVM_LARGE-K9") or
+		name.startswith ("AIR_CTVM-K9") or
+		name.startswith ("MFG_CTVM") or
+		name.startswith ("AP_BUNDLE") or
+		name.startswith ("WCS-STANDARD-K9") or
+		name.startswith ("ISR-AP1100AC") or
+		name.startswith ("CiscoAironet-AP-to-LWAPP-Upgrade-Tool") or
+		name.startswith ("BR350") and name.endswith ("exe") or
+		name.startswith ("WGB350") and name.endswith ("exe")
 		):
 			fileprocessor_wireless(debug1,name)
 
 		elif (
-		name.startswith ("m9000") or 
-		name.startswith ("m9100") or 
-		name.startswith ("m9200") or 
-		name.startswith ("m9250") or 
-		name.startswith ("m9300") or 
-		name.startswith ("m9500") or 
+		name.startswith ("m9000") or
+		name.startswith ("m9100") or
+		name.startswith ("m9200") or
+		name.startswith ("m9250") or
+		name.startswith ("m9300") or
+		name.startswith ("m9500") or
 		name.startswith ("m9700")
 		):
 			fileprocessornxos(name,debug1)
 
 		elif (
-		name == "CPUpdate.xml" or 
-		name.startswith("Cisco-config-pro") or 
+		name == "CPUpdate.xml" or
+		name.startswith("Cisco-config-pro") or
 		name.startswith("cisco-config-pro")
 		):
 			prodname = product ("ccp")
 			utilssingleprodname (debug1,name,prodname)
 
 		elif (
-		name == "cna-1_0-windows-k9-installer.1-0-1a.exe" or 
-		name.startswith("cna-mac-k9") or 
+		name == "cna-1_0-windows-k9-installer.1-0-1a.exe" or
+		name.startswith("cna-mac-k9") or
 		name.startswith("cna-windows-k9")
 		):
 			prodname = product ("cna")
@@ -1265,13 +1575,13 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 #			utilssingleprodname (debug1,name,prodname)
 
 		elif (
-		name.startswith("c3560cx-cwml") or 
-		name.startswith("c2960x-cwml") or 
-		name.startswith("c2960l-cwml") or 
-		name.startswith("c2960cx-cwml") or 
-		name.startswith("c2960-cwml") or 
-		name.startswith("c2960c405-cwml") or 
-		name.startswith("c1000-cwml") or 
+		name.startswith("c1000-cwml") or
+		name.startswith("c2960-cwml") or
+		name.startswith("c2960c405-cwml") or
+		name.startswith("c2960cx-cwml") or
+		name.startswith("c2960l-cwml") or
+		name.startswith("c2960x-cwml") or
+		name.startswith("c3560cx-cwml") or 
 		name.startswith("cdb-cwml")
 		):
 			prodname = product ("ccpc")
@@ -1583,21 +1893,37 @@ def toplevel(filename,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1):
 if __name__ == "__main__":
 
 	parser = argparse.ArgumentParser()
-	parser.add_argument('-d','--directory', help='Directory to sort', required=True)
-	parser.add_argument('-hs','--hashsha512', help='Hash File using the SHA 512 Algorithm', action='store_true', required=False)
-	parser.add_argument('-hs1','--hashsha256', help='Hash File using the SHA 256 Algorithm', action='store_true', required=False)
-	parser.add_argument('-hs3','--hashmd5', help='Hash File using the MD5 Algorithm', action='store_true', required=False)
-	parser.add_argument('-hf','--hashfile', help='File with Hash Info. Format is FILENAME,MD5HASH,SHA512HASH. Additional columns are ignored', action='store_true', required=False)
-	parser.add_argument('-d0','--debug0', help='Debug Level 0 (No Output) (NYI)', action='store_true', required=False)
-	parser.add_argument('-d1','--debug1', help='Print Debug Commands (Level 1) (partially implemented)', action='store_true', required=False)
+	parser.add_argument('-d','--directory',       help='Directory to sort', required=True)
+#	parser.add_argument('-hs','--hashsha512',     help='Hash File using the SHA 512 Algorithm', action='store_true', required=False)
+#	parser.add_argument('-hs1','--hashsha256',    help='Hash File using the SHA 256 Algorithm', action='store_true', required=False)
+#	parser.add_argument('-hs3','--hashmd5',       help='Hash File using the MD5 Algorithm', action='store_true', required=False)
+#	parser.add_argument('-hf','--hashfile',       help='File with Hash Info. Format is FILENAME,MD5HASH,SHA512HASH. Additional columns are ignored', action='store_true', required=False)
+	parser.add_argument('-d0','--debug0',         help='Debug Level 0 (No Output) (NYI)', action='store_true', required=False)
+	parser.add_argument('-d1','--debug1',         help='Print Debug Commands (Level 1) (partially implemented)', action='store_true', required=False)
+#	parser.add_argument('-ff','--filefilter',     help='First Run moves files based on json file.', action='store_true', required=False)
+#	parser.add_argument('-ff','--filefilter',     help='Sort files based on json.', type=ascii, required=False)
+	parser.add_argument('-ff','--filefilter',     help='Sort files based on json.', required=False)
 	
-	args = parser.parse_args()
-	dirpass = args.directory
-	hashsha512 = args.hashsha512
-	hashsha256 = args.hashsha256
-	hashmd5    = args.hashmd5
-	hashfile   = args.hashfile
-	debug1     = args.debug1
-	debug0     = args.debug0
+	global dirpass
+#	global hashsha512
+#	global hashsha256
+#	global hashmd5
+#	global hashfile
+	global debug1
+	global debug0
+	global filefilter
+#	global filefiltername
 
-	toplevel(dirpass,hashsha512,hashsha256,hashmd5,hashfile,debug0,debug1)
+	args = parser.parse_args()
+	dirpass        = args.directory
+#	hashsha512     = args.hashsha512
+#	hashsha256     = args.hashsha256
+#	hashmd5        = args.hashmd5
+#	hashfile       = args.hashfile
+	debug1         = args.debug1
+	debug0         = args.debug0
+	filefilter     = args.filefilter
+#	filefiltername = args.filefiltername
+	
+
+	toplevel(dirpass)

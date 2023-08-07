@@ -9,6 +9,8 @@ def product (prodcode):
 		return "CEOS"
 	elif prodcode == "cEOS64-lab":
 		return "CEOS64"
+	elif prodcode == "EOS":
+		return "EOS"
 	elif prodcode == "Aboot-veos":
 		return "ABoot"
 	else:
@@ -16,6 +18,8 @@ def product (prodcode):
 
 def filepath2 (a,b):
 	return a + "/" + b
+def filepath3 (a,b,c):
+	return a + "/" + b + "/" + c
 
 def filemove (newpath, filename):
 	if not os.path.exists(newpath):
@@ -28,13 +32,23 @@ def filemove (newpath, filename):
 def process_file(filename,prod):
 	if prod == "UNKNOWN":
 		messageunclassifiable ()
+	elif (
+	filename == "cEOS.tar.xz" or
+	filename == "cEOS-lab.tar.xz" or
+	filename == "cEOS-lab.tar.xz.sha512sum" or
+	filename == "cEOS-lab-README-generic.txt"
+	):
+		messageunclassifiable ()
 	else:
 		workname = filename.replace(".sha512sum","")
 		workname = workname.replace(".md5sum","")
 		workname = workname.replace(".tar.xz","")
+		workname = workname.replace(".tar.tar","")
 		workname = workname.replace(".swi","")
 		workname = workname.replace("-combined.vmdk","")
 		workname = workname.replace(".vmdk","")
+		workname = workname.replace(".json","")
+		workname = workname.replace(".qcow2","")
 		workname = workname.replace("-virtualbox.box","")
 		workname = workname.replace("vEOS64-lab-","")
 		workname = workname.replace("vEOS-lab-combined-","")
@@ -42,11 +56,19 @@ def process_file(filename,prod):
 		workname = workname.replace("cEOS-lab-","")
 		workname = workname.replace("cEOS64-lab-","")
 		workname = workname.replace("cEOS64-lab-","")
+		workname = workname.replace("EOS-","")
 		workname = workname.replace("Aboot-veos-serial-","")
 		workname = workname.replace("Aboot-veos-","")
+		workname = workname.replace(".iso","")
 		version = stringtodigit (workname)
-		filepath = filepath2(prod,version)
-		filemove (filepath, filename)
+		vertwo = version.split(".")
+		ver2 = vertwo[0] + "." + vertwo[1]
+		if filename.startswith("Aboot"):
+			filepath = filepath2(prod,version)
+			filemove (filepath, filename)
+		else:
+			filepath = filepath3(ver2,version,prod)
+			filemove (filepath, filename)
 
 def messageunclassifiable ():
 		print ("E001: This image is unknown, please update the script with the information about the image.", end="\n")
@@ -66,19 +88,29 @@ def toplevel(directory):
 			continue
 		print (filename,end="\n")
 		
-		if filename.startswith("vEOS-lab"):
+		if filename == "cEOS.tar.xz":
+			prod = product("cEOS-lab")
+			process_file(filename,prod)
+		elif filename.startswith("vEOS-lab"):
 			prod = product("vEOS-lab")
+			process_file(filename,prod)
 		elif filename.startswith("vEOS64-lab"):
 			prod = product("vEOS64-lab")
+			process_file(filename,prod)
 		elif filename.startswith("cEOS64-lab"):
 			prod = product("cEOS64-lab")
+			process_file(filename,prod)
 		elif filename.startswith("cEOS-lab"):
 			prod = product("cEOS-lab")
+			process_file(filename,prod)
+		elif filename.startswith("EOS"):
+			prod = product("EOS")
+			process_file(filename,prod)
 		elif filename.startswith("Aboot-veos"):
 			prod = product("Aboot-veos")
+			process_file(filename,prod)
 		else:
 			continue
-		process_file(filename,prod)
 
 if __name__ == "__main__":
 

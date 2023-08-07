@@ -17,6 +17,15 @@ def fileprocessor_iosxr (debug1,filename):
 	filename.startswith("asr9k-sysadmin-") and splitbydot[3].startswith("CSC")
 	):
 		iosxr_asr9ksmu (debug1,filename)
+
+	elif (
+	filename == "CSM.zip" or 
+	filename == "csm-3.5.2.zip" or 
+	filename == "csm-4.0.zip"
+	):
+		prodname = product ("asr9k")
+		imagecode = imagelookup("ciscosoftwaremanager")
+		utilssinglemove (debug1,filename,prodname,imagecode)
 	
 	elif (
 	filename.startswith("ASR9K") or 
@@ -142,7 +151,8 @@ def iosxr_asr9k (debug1,filename):
 	):
 		imagecode = imagelookup("turboboot")
 		iosxr_tab3_ver3 (debug1,filename,prodname,imagecode)
-	elif (
+	elif (
+
 	filename.startswith("ASR9K-iosxr-px") and filename.endswith("bridge_smus.tar") or 
 	filename.startswith("ASR9k-iosxr-px") and filename.endswith("bridge_smus.tar")
 	):
@@ -213,7 +223,8 @@ def iosxr_asr9k (debug1,filename):
 		iosxr_tab3_ver3 (debug1,filename,prodname,imagecode)
 	elif filename.startswith("ASR9K-iosxr-k9"):
 		imagecode = imagelookup("corek9")
-		iosxr_tab3_ver3 (debug1,filename,prodname,imagecode)
+		iosxr_tab3_ver3 (debug1,filename,prodname,imagecode)
+
 	elif filename.startswith("asr9k-ncs500x-nV-px"):
 		imagecode = imagelookup("nvsat")
 		iosxr_tab4_ver3 (debug1,filename,prodname,imagecode)

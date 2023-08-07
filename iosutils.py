@@ -1,8 +1,6 @@
 import os, shutil
 
-
 def filemove (newpath, filename):
-#	print("Deliberately Broken")
 	if not os.path.exists(newpath):
 		os.makedirs(newpath)
 	try:
@@ -752,6 +750,8 @@ def imagelookup (imagecode):
 		subdirectory = "ATM-WORKGROUP-LANE"
 	elif imagecode == "wt":
 		subdirectory = "ATM-WORKGROUP-TRAFFIC-SHAPING"
+	elif imagecode == "hotfix":
+		subdirectory = "HOTFIX"
 	elif imagecode == "c5is":
 		subdirectory = "BASE-PDSN"
 	elif imagecode == "c5ik9s":
@@ -827,7 +827,7 @@ def imagelookup (imagecode):
 	elif imagecode == "win":
 		subdirectory = "CLIENT/WINDOWS"
 	elif imagecode == "winarm64":
-		subdirectory = "CLIENT/WINDOWS-ARM64"
+		subdirectory = "WINDOWS-ARM64"
 	elif imagecode == "wince":
 		subdirectory = "CLIENT/WINDOWS-CE"
 	elif imagecode == "config-converter":
@@ -1229,11 +1229,13 @@ def imagelookup (imagecode):
 	elif imagecode == "fips":
 		subdirectory = "FIPS"
 	elif imagecode == "fpasamodule":
-		subdirectory = "FIREPOWER-ASA-MODE/ASA-MODULE"
+		subdirectory = "MODULE-ASA"
 	elif imagecode == "fpasamode":
 		subdirectory = "FIREPOWER-ASA-MODE/FIREPOWER-MODULE"
 	elif imagecode == "fpasasystem":
 		subdirectory = "FIREPOWER-ASA-MODE/SYSTEM"
+	elif imagecode == "fpftdmodule":
+		subdirectory = "MODULE-FTD"
 	elif imagecode == "fmc":
 		subdirectory = "FIREPOWER-MANAGEMENT-CENTER"
 	elif imagecode == "firepower-mibs":
@@ -2204,8 +2206,12 @@ def imagelookup (imagecode):
 		subdirectory = "VOICE-IP-TO-IP-VOICE-GATEWAY-IPSEC-3DES"
 	elif imagecode == "vpnapi":
 		subdirectory = "VPNAPI"
+	elif imagecode == "spw":
+		subdirectory = "SUPPLICANT-PROVISIONING-WIZARD"
 	elif imagecode == "webauth":
 		subdirectory = "WEBAUTH-BUNDLE"
+	elif imagecode == "webagent":
+		subdirectory = "WEB-AGENT"
 	elif imagecode == "sipspawmak9":
 		subdirectory = "WEBEX-NODE"
 	elif imagecode == "websecurity":
@@ -2342,6 +2348,8 @@ def imagelookup (imagecode):
 		subdirectory = "SPECIAL-BUILDS"
 	elif imagecode == "specialbuildlisp":
 		subdirectory = "SPECIAL-BUILDS-LISP"
+	elif imagecode == "specialbuildfwupgrade":
+		subdirectory = "SPECIAL-BUILDS-FIRMWARE-UPGRADE"
 	elif imagecode == "export":
 		subdirectory = "EXPORT-FILES"
 	elif imagecode == "external-sso":
@@ -2356,6 +2364,24 @@ def imagelookup (imagecode):
 		subdirectory = "ROUTE-REFLECTOR-VGA"
 	elif imagecode == "log4j":
 		subdirectory = "LOG4SHELL-FIXES"
+	elif imagecode == "ciscosoftwaremanager":
+		subdirectory = "CISCO-SOFTWARE-MANAGER"
+	elif imagecode == "flashrecovery":
+		subdirectory = "FLASH-RECOVERY"
+	elif imagecode == "nacagent":
+		subdirectory = "NAC-AGENT"
+	elif imagecode == "deploymentassistant":
+		subdirectory = "DEPLOYMENT-ASSISTANT"
+	elif imagecode == "expresswizard":
+		subdirectory = "EXPRESS-WIZARD"
+	elif imagecode == "certs":
+		subdirectory = "CERTIFICATES"
+	elif imagecode == "apbundle":
+		subdirectory = "AP-BUNDLE"
+	elif imagecode == "mgmtctr":
+		subdirectory = "MANAGEMENT-CENTER"
+	elif imagecode == "client":
+		subdirectory = "CLIENT"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2381,14 +2407,24 @@ def product (prodcode):
 		prodname = "NETWORK-MANAGEMENT"
 	elif prodcode == "cworks":
 		prodname = "NETWORK-MANAGEMENT/CiscoWorks"
+	elif prodcode == "perfigocca":
+		prodname = "NETWORK-MANAGEMENT/CISCO-CLEAN-ACCESS"
+	elif prodcode == "routers":
+		prodname = "ROUTERS"
+	elif prodcode == "ir1835":
+		prodname = "ROUTERS/IR1835"
+	elif prodcode == "ir8140":
+		prodname = "ROUTERS/IR8140"
+	elif prodcode == "ir8340":
+		prodname = "ROUTERS/IR8340"
 	elif prodcode == "ons15530":
 		prodname = "ROUTERS/OPTICAL/ONS-15530"
 	elif prodcode == "ons15540":
 		prodname = "ROUTERS/OPTICAL/ONS-15540"
 	elif prodcode == "asr1000":
 		prodname = "ROUTERS/ASR/ASR-1000"
-	elif prodcode == "isrg4moduleslte":
-		prodname = "ROUTERS/ISRG4/MODULES/LTE"
+	elif prodcode == "isrg3moduleslte":
+		prodname = "ROUTERS/ISRG3/MODULES/LTE"
 	elif prodcode == "iosxeissumatrix":
 		prodname = "ROUTERS/IOS-XE-ISSU-MATRIX"
 	elif prodcode == "iou":
@@ -2399,6 +2435,8 @@ def product (prodcode):
 		prodname = "ROUTERS/ASR/ASR-1000-RP2"
 	elif prodcode == "asr1000rpx86":
 		prodname = "ROUTERS/ASR/ASR-1000-RP3"
+	elif prodcode == "asr1000hx":
+		prodname = "ROUTERS/ASR/ASR-1000HX"
 	elif prodcode == "asr1001":
 		prodname = "ROUTERS/ASR/ASR-1001"
 	elif prodcode == "asr1001x":
@@ -2407,6 +2445,8 @@ def product (prodcode):
 		prodname = "ROUTERS/ASR/ASR-1002"
 	elif prodcode == "asr1002x":
 		prodname = "ROUTERS/ASR/ASR-1002X"
+	elif prodcode == "asr1002hx":
+		prodname = "ROUTERS/ASR/ASR-1002HX"
 	elif prodcode == "asr900":
 		prodname = "ROUTERS/ASR/ASR-900"
 	elif prodcode == "asr9k":
@@ -2551,6 +2591,8 @@ def product (prodcode):
 		prodname = "ROUTERS/CABLE/CVA-120"
 	elif prodcode == "cva120cvc":
 		prodname = "ROUTERS/CABLE/CVA-120"
+	elif prodcode == "esr6300":
+		prodname = "ROUTERS/EMBEDDED/ESR-6300"
 	elif prodcode == "c5915":
 		prodname = "ROUTERS/EMBEDDED/5915"
 	elif prodcode == "c5921i86":
@@ -2709,6 +2751,10 @@ def product (prodcode):
 		prodname = "ROUTERS/RUGGED/3250"
 	elif prodcode == "c3270":
 		prodname = "ROUTERS/RUGGED/3270"
+	elif prodcode == "ncs4201":
+		prodname = "ROUTERS/SP/NCS4201"
+	elif prodcode == "ncs4202":
+		prodname = "ROUTERS/SP/NCS4202"
 	elif prodcode == "c10k":
 		prodname = "ROUTERS/SP/10000/PRE1"
 	elif prodcode == "c10k2":
@@ -2783,6 +2829,8 @@ def product (prodcode):
 		prodname = "SECURITY/FIREWALL/CATALYST-6500-FWSM"
 	elif prodcode == "firepower":
 		prodname = "SECURITY/FIREWALL/FirePOWER"
+	elif prodcode == "firepowerfmc":
+		prodname = "SECURITY/FIREWALL/FirePOWER/FIREPOWER-MANAGEMENT-CENTER"
 	elif prodcode == "pix":
 		prodname = "SECURITY/FIREWALL/PIX"
 	elif prodcode == "acs":
@@ -2854,7 +2902,7 @@ def product (prodcode):
 	elif prodcode == "vpn3000":
 		prodname = "SECURITY/VPN-3000"
 	elif prodcode == "anyconnect":
-		prodname = "SECURITY/VPN-CLIENTS/ANYCONNECT"
+		prodname = "SECURITY/VPN-CLIENTS/ANYCONNECT (CISCO SECURE CLIENT)"
 	elif prodcode == "vpnclient":
 		prodname = "SECURITY/VPN-CLIENTS/IPSEC-CLIENT"
 	elif prodcode == "aci":
@@ -3211,6 +3259,8 @@ def product (prodcode):
 		prodname = "SWITCHES/NEXUS/Nexus-9000-3000"
 	elif prodcode == "nxosv":
 		prodname = "SWITCHES/NEXUS/Nexus-9000V"
+	elif prodcode == "Nexus":
+		prodname = "SWITCHES/NEXUS/"
 	elif prodcode == "nxosgeneric":
 		prodname = "SWITCHES/NEXUS/"
 	elif prodcode == "s5400":
@@ -3335,6 +3385,8 @@ def product (prodcode):
 		prodname = "WIRELESS/ACCESS-POINT/AIRONET-1500-Mesh-AP"
 	elif prodcode == "c1570":
 		prodname = "WIRELESS/ACCESS-POINT/AIRONET-1570"
+	elif prodcode == "c1550":
+		prodname = "WIRELESS/ACCESS-POINT/AIRONET-1550"
 	elif prodcode == "c350":
 		prodname = "WIRELESS/ACCESS-POINT/AIRONET-350"
 	elif prodcode == "c520":
@@ -3389,6 +3441,8 @@ def product (prodcode):
 		prodname = "WIRELESS/ACCESS-POINT/AP4800"
 	elif prodcode == "AP6300":
 		prodname = "WIRELESS/ACCESS-POINT/AP6300"
+	elif prodcode == "ISR1100AC":
+		prodname = "WIRELESS/ACCESS-POINT/ISR-AP1100AC"
 	elif prodcode == "CT2500":
 		prodname = "WIRELESS/CONTROLLER/2500"
 	elif prodcode == "CT5500":
@@ -3865,11 +3919,15 @@ def filepath5 (a,b,c,d,e):
 	z = a + "/" + b + "/" + c + "/" + d + "/" + e
 	return z
 
+def filepath6 (a,b,c,d,e,f):
+	z = a + "/" + b + "/" + c + "/" + d + "/" + e + "/" + f
+	return z
+
 def utilssinglemove (debug1,filename,prodname,imagecode):
 	if debug1:
 		print("\tModule#\t\tiosutils")
 		print("\tSubroutine#\tutilssinglemove")
-	filepath = filepath2 (prodname,imagecode)
+	filepath = filepath2 (prodname,imagecode) 
 	filemove (filepath, filename)
 
 def utilssingleprodname (debug1,filename,prodname):
