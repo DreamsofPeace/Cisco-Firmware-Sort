@@ -462,6 +462,14 @@ def toplevel(filename):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
+			name.startswith("csr1000v") and "eft" in name or
+			name.startswith("csr1000v") and "prd" in name
+		):
+			prodname = product("csr1000v")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
 			name == "sf-linux-1017.SSA"
 		):
 			prodname = product("cat9k")
@@ -1298,7 +1306,9 @@ def toplevel(filename):
 		name.startswith("ucs") or
 		name.startswith("ucs-cxx") or
 		name.startswith("update_pkg-ucse") or
-		name.startswith("vcenter-plugin")
+		name.startswith("vcenter-plugin") or
+		name.startswith("Launchpad-desktop") or
+		name.startswith("DNA_Center_VA")
 		):
 			file_proc_servers(name,debug1)
 
