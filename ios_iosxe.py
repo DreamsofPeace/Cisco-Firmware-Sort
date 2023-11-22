@@ -201,12 +201,17 @@ def fileprocessor_iosxe(debug1,filename):
 		fileproccontroller (debug1,filename)
 
 	elif filename.startswith("ie9k_"):
-		if filename.startswith("ie9k_iosxe"):
+		if filename.startswith("ie9k_iosxe_npe."):
+			prodname = product ("ie9k")
+			imagecode = imagelookup("cat9k_iosxe_npe")
+			workname = filename.replace("ie9k_iosxe_npe.","")
+			workname = workname.replace(".SPA.bin","")
+			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("ie9k_iosxe"):
 			prodname = product ("ie9k")
 			imagecode = imagelookup("iosxe")
 			workname = filename.replace("ie9k_iosxe.","")
 			workname = workname.replace(".SPA.bin","")
-	#		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
 
 	elif filename.startswith("c8000v"):

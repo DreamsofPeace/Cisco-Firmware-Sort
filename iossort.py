@@ -1009,7 +1009,8 @@ def toplevel(filename):
 		name.startswith("ttam") or
 		name.startswith("vg400") or
 		name.startswith("vg420") or
-		name.startswith("vg450")
+		name.startswith("vg450") or
+		name.startswith("ie9k_iosxe")
 		):
 			fileprocessor_iosxe(debug1,name)
 
@@ -1896,6 +1897,13 @@ def toplevel(filename):
 
 		elif name.startswith("mre_workflow_signed"):
 			continue
+
+		elif name.startswith("UCSPE"):
+			prodname = product ("ucspe")
+			workname = name.replace(".ova","")
+			workname = workname.replace(".zip","")
+			workname = workname.replace("UCSPE_","")
+			utils_dev_vf (debug1,filename,prodname,workname)
 
 		else:
 			fileprocessorios (debug1,name)

@@ -220,6 +220,7 @@ def fileprocessornxos (filename,debug1):
 		prodname = product("Nexus")
 		imagecode = imagelookup("guestshell")
 		workname = filename.replace(".ova","")
+		workname = workname.replace("guestshell_","")
 		workname = workname.replace("guestshell.","")
 		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 

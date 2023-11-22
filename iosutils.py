@@ -2604,7 +2604,7 @@ def product (prodcode):
 	elif prodcode == "c5930":
 		prodname = "ROUTERS/EMBEDDED/5930"
 	elif prodcode == "ie9k":
-		prodname = "ROUTERS/EMBEDDED/CATALYST-9300-EMBEDDED"
+		prodname = "SWITCHES/INDUSTRIAL/CATALYST-9300-INDUSTRIAL"
 	elif prodcode == "cgr2010":
 		prodname = "ROUTERS/GRID/CGR-2010"
 	elif prodcode == "soho70":
@@ -3499,6 +3499,8 @@ def product (prodcode):
 		prodname = "WIRELESS/CONTROLLER/WLC8540"
 	elif prodcode == "wcs":
 		prodname = "WIRELESS/CONTROLLER/WCS"
+	elif prodcode == "ucspe":
+		prodname = "DEVELOPER-TOOLS/UCE-PLATFORM-EMULATOR"
 	else:
 		prodname = "UNKNOWN"
 	return prodname
@@ -3899,6 +3901,10 @@ def util5digit (a,b,c,d,e):
 	z = a + "." + b + "." + c + "." + d + "." + e
 	return z
 
+def util6digit (a,b,c,d,e,f):
+	z = a + "." + b + "." + c + "." + d + "." + e + "." + f
+	return z
+
 def stringtolist (a):
 	z = list(a)
 	return z
@@ -3936,6 +3942,25 @@ def utilssingleprodname (debug1,filename,prodname):
 		print("\tSubroutine#\tutilssingleprodname")
 	filemove (prodname, filename)
 
+def utils_dev_vf (debug1,filename,prodname,workname):
+	if debug1:
+		print("\tModule#\t\tiosutils")
+		print("\tSubroutine#\tutils_dev_vf")
+	if prodname == "UNKNOWN":
+		messageunknowndev()
+	else:
+		splitbydot = workname.split(".")
+		if len(splitbydot) == 3:
+			version2 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		elif len(splitbydot) == 4:
+			version2 = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+		elif len(splitbydot) == 5:
+			version2 = util5digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4])
+		elif len(splitbydot) == 6:
+			version2 = util6digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4],splitbydot[5])
+		filepath = filepath2(prodname,version2)
+		filemove (filepath, filename)
+
 def utils_dev_v2_vf (debug1,filename,prodname,workname):
 	if debug1:
 		print("\tModule#\t\tiosutils")
@@ -3953,6 +3978,9 @@ def utils_dev_v2_vf (debug1,filename,prodname,workname):
 		elif len(splitbydot) == 5:
 			version2 = util2digit(splitbydot[0],splitbydot[1])
 			version3 = util5digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4])
+		elif len(splitbydot) == 5:
+			version2 = util2digit(splitbydot[0],splitbydot[1])
+			version3 = util6digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4],splitbydot[5])
 		filepath = filepath3(prodname,version2,version3)
 		filemove (filepath, filename)
 
@@ -3997,6 +4025,9 @@ def utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname):
 		elif len(splitbydot) == 5:
 			version2 = util2digit(splitbydot[0],splitbydot[1])
 			version3 = util5digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4])
+		elif len(splitbydot) == 6:
+			version2 = util2digit(splitbydot[0],splitbydot[1])
+			version3 = util6digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4],splitbydot[5])
 		filepath = filepath4(prodname,imagecode,version2,version3)
 		filemove (filepath, filename)
 
