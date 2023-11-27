@@ -992,6 +992,7 @@ def toplevel(filename):
 		name.startswith("cat3k_caa") or
 		name.startswith("cat4500es8") or
 		name.startswith("cat9k") or
+		name.startswith("c8000aes") or
 		name.startswith("csr1000v") or
 		name.startswith("csr1000v_milplr") or
 		name.startswith("ct5760") or

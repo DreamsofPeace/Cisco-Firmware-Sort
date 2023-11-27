@@ -3124,9 +3124,11 @@ def product (prodcode):
 	elif prodcode == "c6880x":
 		prodname = "SWITCHES/CATALYST/Catalyst-6880-X"
 	elif prodcode == "c8000be":
-		prodname = "SWITCHES/CATALYST/Catalyst-8300-Edge"
+		prodname = "ROUTERS/CATALYST/Catalyst-8300-Edge"
 	elif prodcode == "c8000aep":
-		prodname = "SWITCHES/CATALYST/Catalyst-8500-Edge"
+		prodname = "ROUTERS/CATALYST/Catalyst-8500-Edge"
+	elif prodcode == "c8000aes":
+		prodname = "ROUTERS/CATALYST/Catalyst-8500L-Edge"
 	elif prodcode == "cat8510c":
 		prodname = "SWITCHES/CATALYST/Catalyst-8510CSR"
 	elif prodcode == "cat8510m":
@@ -3234,7 +3236,7 @@ def product (prodcode):
 	elif prodcode == "svcmwam":
 		prodname = "SWITCHES/CATALYST/Catalyst-6500-6800/MWAM"
 	elif prodcode == "c8000v":
-		prodname = "SWITCHES/CATALYST/Catalyst-8000V"
+		prodname = "ROUTERS/CATALYST/Catalyst-8000V"
 	elif prodcode == "Nexus":
 		prodname = "SWITCHES/NEXUS/"
 	elif prodcode == "n1000v":
