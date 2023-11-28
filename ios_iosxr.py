@@ -227,7 +227,7 @@ def iosxr_asr9k (debug1,filename):
 		workname = workname.replace(".ova","")
 		workname = workname.replace("asr9k-vsm-cgv6-","")
 		workname = workname.replace("asr9k-vsm-cgv6.","")
-		iosxr_dot_workname (debug1,filename,prodname,imagecode,workname)
+		iosxr_dot_workname_1ver (debug1,filename,prodname,imagecode,workname)
 	elif filename.startswith("asr9k-ncs500x-nV-px"):
 		imagecode = imagelookup("nvsat")
 		iosxr_tab4_ver3 (debug1,filename,prodname,imagecode)
@@ -241,7 +241,7 @@ def iosxr_asr9k (debug1,filename):
 		imagecode = imagelookup("goldenk9")
 		iosxr_tab3_ver3 (debug1,filename,prodname,imagecode)
 
-def iosxr_dot_workname (debug1,filename,prodname,imagecode,workname):
+def iosxr_dot_workname_1ver (debug1,filename,prodname,imagecode,workname):
 	if debug1:
 		print("\tSubroutine#\tiosxr_dot_workname")
 	splitbydot = workname.split(".")
