@@ -1095,6 +1095,7 @@ def toplevel(filename):
 		name.startswith("FMT-CP-Config-Extractor") or
 		name.startswith("Firepower") or
 		name.startswith("Firepower_Migration_Tool") or
+		name.startswith("Firewall_Migration_Tool") or
 		name.startswith("IDS") or
 		name.startswith("IDS-sig-") and name.endswith(".readme.txt") or
 		name.startswith("IDS-sig-") and name.endswith(".zip") or

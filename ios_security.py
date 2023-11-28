@@ -100,7 +100,8 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 
 	elif(
 	filename.startswith("FMT-CP-Config-Extractor") or 
-	filename.startswith("Firepower_Migration_Tool")
+	filename.startswith("Firepower_Migration_Tool") or 
+	filename.startswith("Firewall_Migration_Tool")
 	):
 		prodname = product("firepower")
 		imagecode = imagelookup("configconvert")
