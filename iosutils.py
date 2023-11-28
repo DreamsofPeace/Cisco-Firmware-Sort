@@ -3013,6 +3013,8 @@ def product (prodcode):
 		prodname = "SWITCHES/BLADE-SWITCHES/IBM-Blade-Switch"
 	elif prodcode == "cgesm":
 		prodname = "SWITCHES/BLADE-SWITCHES/IBM-Blade-Switch"
+	elif prodcode == "cmicr":
+		prodname = "SWITCHES/CATALYST/Catalyst-MICRO-SWITCHES"
 	elif prodcode == "cat1200":
 		prodname = "SWITCHES/CATALYST/Catalyst-1200"
 	elif prodcode == "cat1600":

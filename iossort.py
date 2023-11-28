@@ -1078,6 +1078,8 @@ def toplevel(filename):
 		name.startswith("CiscoCM-CSA-") or
 		name.startswith("CiscoCVP-CSA-") or
 		name.startswith("CiscoICM-CSA-") or
+		name.startswith("Cisco-ISE") or
+		name.startswith("Cisco-vISE") or
 		name.startswith("CiscoISE") or
 		name.startswith("CiscoISN-CSA-") or
 		name.startswith("CiscoPA-CSA-") or

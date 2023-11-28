@@ -285,6 +285,8 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	elif (
 		filename == "README_ISE_20_201_21_22" or 
 		filename.startswith("PI") or 
+		filename.startswith("Cisco-vISE") or 
+		filename.startswith("Cisco-ISE") or 
 		filename.startswith("ISE") or 
 		filename.startswith("ise") or 
 		filename.startswith("mac-spw-dmg") or 
@@ -2781,6 +2783,8 @@ def sec_ise (debug1,filename):
 		sec_ise_patch (debug1,filename,prodname,imagecode)
 
 	elif (
+	filename.startswith("Cisco-vISE") and filename.endswith("ova") or 
+	filename.startswith("Cisco-ISE-") and filename.endswith("iso") or 
 	filename.startswith("ISE-") and filename.endswith("ova") or 
 	filename.startswith("ise-") and filename.endswith("iso")
 	):
@@ -2885,8 +2889,15 @@ def sec_ise_upgrade (debug1,filename,prodname,imagecode):
 def sec_ise_install (debug1,filename,prodname,imagecode):
 	if debug1:
 		print("\tSubroutine#\tsec_ise_install")
-	workname = filename.replace("ise-","")
+	workname = filename.replace("Cisco-vISE-2400-","")
+	workname = workname.replace("Cisco-vISE-1800-","")
+	workname = workname.replace("Cisco-vISE-1200-","")
+	workname = workname.replace("Cisco-vISE-600-","")
+	workname = workname.replace("Cisco-vISE-300-","")
+	workname = workname.replace("Cisco-ISE-","")
 	workname = workname.replace("ISE-","")
+	workname = workname.replace("ise-","")
+	workname = workname.replace(".ova","")
 	splitbydot = workname.split(".")
 	vertwo = util2digit(splitbydot[0],splitbydot[1])
 	filepath = filepath3 (prodname,vertwo,imagecode)
