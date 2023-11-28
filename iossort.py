@@ -1102,16 +1102,16 @@ def toplevel(filename):
 		name.startswith("ISE") or
 		name.startswith("PIX") and name.endswith(".bin") or
 		name.startswith("PIX") or
-		name.startswith("SNS-35x5-BIOS") or
-		name.startswith("SNS-35x5-firmware") or
-		name.startswith("SNS-36xx-BIOS") or
-		name.startswith("SNS-36xx-HUU") or
-		name.startswith("SNS-36xx-firmware") or
+		name.startswith("SNS-35x5") or
+		name.startswith("SNS-36xx") or
+		name.startswith("SNS-37xx") or
+		name.startswith("SSM_On-Prem") or
 		name.startswith("Sourcefire") or
 		name.startswith("UCP") or
 		name.startswith("UTD-STD-SIGNATURE") or
 		name.startswith("VPN3000") or
 		name.startswith("anyconnect") or
+		name.startswith("secure-firewall-posture") or
 		name.startswith("applAcs") or
 		name.startswith("asa") or
 		name.startswith("asasfr") or

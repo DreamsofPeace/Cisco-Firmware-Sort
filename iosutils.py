@@ -1882,6 +1882,8 @@ def imagelookup (imagecode):
 		subdirectory = "PLUG-INS/VREALIZE"
 	elif imagecode == "poap":
 		subdirectory = "POAP"
+	elif imagecode == "posture":
+		subdirectory = "POSTURE"
 	elif imagecode == "poap_ng":
 		subdirectory = "POAP-NG"
 	elif imagecode == "profileeditor":
@@ -2234,6 +2236,8 @@ def imagelookup (imagecode):
 		subdirectory = "XML-SCHEMA"
 	elif imagecode == "oac":
 		subdirectory = "OPEN-AGENT-CONTAINER"
+	elif imagecode == "sns37xx":
+		subdirectory = "SNS-37xx"
 	elif imagecode == "sns36xx":
 		subdirectory = "SNS-36xx"
 	elif imagecode == "sns35xx":
@@ -2403,6 +2407,8 @@ def product (prodcode):
 		prodname = "NETWORK-MANAGEMENT/DNA-CENTER-TRAFFIC"
 	elif prodcode == "cna":
 		prodname = "NETWORK-MANAGEMENT/NETWORK-ASSISTANT"
+	elif prodcode == "SSM_On-Prem":
+		prodname = "NETWORK-MANAGEMENT/SMART LICENSE ON-PREM"
 	elif prodcode == "ntwkmgmt":
 		prodname = "NETWORK-MANAGEMENT"
 	elif prodcode == "cworks":

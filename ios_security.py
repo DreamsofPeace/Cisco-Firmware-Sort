@@ -164,6 +164,13 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif(
+	filename.startswith ("SNS-37xx-")
+	):
+		prodname = product("ise")
+		imagecode = imagelookup("sns37xx")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif(
 	filename.startswith ("SNS-36xx-BIOS") or 
 	filename.startswith ("SNS-36xx-firmware") or 
 	filename.startswith ("upd-pkg-SNS-36xx-cimc") or 
@@ -226,7 +233,8 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	filename.startswith("cisco-secure-client") or 
 	filename.startswith("tools-cisco-secure-client") or 
 	filename.startswith("anyconnect-android-") or 
-	filename.startswith("anyconnect-win-")
+	filename.startswith("anyconnect-win-") or 
+	filename.startswith("secure-firewall-")
 	):
 		sec_newanyconnect (debug1,filename)
 
@@ -398,9 +406,25 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	):
 		sec_ipsec_client (debug1,filename)
 
+	elif (
+		filename.startswith ("SSM_On-Prem") 
+	):
+		sec_ssm_onprem (debug1,filename)
+
 	else:
 		messageunknownfile()
-		
+
+def sec_ssm_onprem (debug1,filename): #Cisco Smart License On-Prem Server
+	if debug1:
+		print("\tSubroutine#\tsec_ssm_onprem")
+	prodname = product("SSM_On-Prem")
+	workname = filename.replace("SSM_On-Prem_8-","")
+	workname = workname.replace(".iso","")
+	workname = workname.replace("_Full.zip","")
+	workname = workname.replace("_Upgrade.zip","")
+	filepath = filepath2(prodname,workname)
+	filemove (filepath, filename)
+
 def sec_newanyconnect (debug1,filename): #Cisco Secure Client
 	if debug1:
 		print("\tSubroutine#\tsec_newanyconnect")
@@ -421,7 +445,10 @@ def sec_newanyconnect (debug1,filename): #Cisco Secure Client
 		imagecode = imagelookup("transforms")
 	elif "android" in filename:
 		imagecode = imagelookup("client")
+	elif "posture" in filename:
+		imagecode = imagelookup("posture")
 	else:
+		print ("Unknown Sub Product",end="\n")
 		return
 
 	if filename.startswith("cisco-secure-client-linux64-"):
@@ -522,6 +549,13 @@ def sec_newanyconnect (debug1,filename): #Cisco Secure Client
 			ver4 = util4digit (splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
 			filepath = filepath5(prodname,imagecode2,imagecode,ver2,ver4)
 			filemove (filepath, filename)
+	elif filename.startswith("secure-firewall-posture-"):
+		workname = filename.replace("secure-firewall-posture-","")
+		workname = filename.replace("-k9.pkg","")
+		splitbydot = workname.split(".")
+		version = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
+		filepath = filepath4(prodname,imagecode,imagecode,version)
+		filemove (filepath, filename)
 
 def sec_ipsec_client (debug1,filename):
 	if debug1:
@@ -3105,7 +3139,11 @@ def sec_fxos (debug1,filename):
 		imagecode = imagelookup(splitbydot[0])
 		sec_fxos_firmware_recovery (debug1,filename,prodname,imagecode)
 
-	elif splitbydot[0] == "fxos-mibs-fp9k-fp4k" or splitbydot[0] == "firepower-mibs":
+	elif (
+		splitbydot[0] == "fxos-mibs-fp9k-fp3k" or 
+		splitbydot[0] == "fxos-mibs-fp9k-fp4k" or 
+		splitbydot[0] == "firepower-mibs"
+	):
 		imagecode = imagelookup(splitbydot[0])
 		sec_fxos_firmware_d4_1_4 (debug1,filename,prodname,imagecode)
 
