@@ -1330,6 +1330,7 @@ def toplevel(filename):
 		name.startswith("XR12000") or
 		name.startswith("XRV9000") or
 		name.startswith("XRV9K") or
+		name.startswith("xrd") or
 		name.startswith("asr9k") or
 		name.startswith("csm-") or
 		name.startswith("csm-3.5.2.zip") or

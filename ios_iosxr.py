@@ -46,9 +46,9 @@ def fileprocessor_iosxr (debug1,filename):
 		iosxr_asr9kvsmu (debug1,filename)
 
 	elif (
-	filename == "XRV9K-docs-7.4.1.tar" or 
 	filename == "XRV9000-docs-623.tar" or 
-	filename == "XRV9000-docs-6225.tar"
+	filename == "XRV9000-docs-6225.tar" or 
+	filename.startswith("XRV9K-docs")
 	):
 		prodname = product ("iosxrvfull")
 		imagecode = imagelookup("docs")
@@ -68,6 +68,27 @@ def fileprocessor_iosxr (debug1,filename):
 	filename.startswith("iosxrv-k9-demo")
 	):
 		iosxr_iosxrv_demo (debug1,filename)
+
+	elif (
+	filename.startswith("xrd-control-plane-container-")
+	):
+		prodname = product ("xrvcontainer")
+		imagecode = imagelookup("control-plane")
+		workname = filename.replace(".tgz","")
+		workname = workname.replace("xrd-control-plane-container-x64.","")
+		workname = workname.replace("xrd-control-plane-container-x86.","")
+		iosxr_dot_workname_1ver (debug1,filename,prodname,imagecode,workname)
+
+	elif (
+	filename.startswith("xrd-vrouter-container-")
+	):
+		prodname = product ("xrvcontainer")
+		imagecode = imagelookup("data-plane")
+		workname = filename.replace(".tgz","")
+		workname = workname.replace("xrd-vrouter-container-x64.","")
+		workname = workname.replace("xrd-vrouter-container-x86.","")
+		iosxr_dot_workname_1ver (debug1,filename,prodname,imagecode,workname)
+
 	else:
 #		if prodname == "UNKNOWN":
 #			messageunknowndev()

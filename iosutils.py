@@ -2386,6 +2386,10 @@ def imagelookup (imagecode):
 		subdirectory = "MANAGEMENT-CENTER"
 	elif imagecode == "client":
 		subdirectory = "CLIENT"
+	elif imagecode == "control-plane":
+		subdirectory = "CONTROL-PLANE"
+	elif imagecode == "data-plane":
+		subdirectory = "DATA-PLANE"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2823,6 +2827,8 @@ def product (prodcode):
 		prodname = "ROUTERS/VIRTUAL/IOS-XRv"
 	elif prodcode == "iosxrvfull":
 		prodname = "ROUTERS/VIRTUAL/IOS-XRv9000"
+	elif prodcode == "xrvcontainer":
+		prodname = "ROUTERS/VIRTUAL/IOS-XRv-CONTAINER"
 	elif prodcode == "csa":
 		prodname = "SECURITY/CISCO-SECURITY-AGENT"
 	elif prodcode == "csm":
