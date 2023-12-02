@@ -1882,8 +1882,8 @@ def imagelookup (imagecode):
 		subdirectory = "PLUG-INS/VREALIZE"
 	elif imagecode == "poap":
 		subdirectory = "POAP"
-	elif imagecode == "posture":
-		subdirectory = "POSTURE"
+	elif imagecode == "anyconnect_posture":
+		subdirectory = "POSTURE (FORMERLY HOST-SCAN)"
 	elif imagecode == "poap_ng":
 		subdirectory = "POAP-NG"
 	elif imagecode == "profileeditor":
@@ -3014,7 +3014,7 @@ def product (prodcode):
 	elif prodcode == "cgesm":
 		prodname = "SWITCHES/BLADE-SWITCHES/IBM-Blade-Switch"
 	elif prodcode == "cmicr":
-		prodname = "SWITCHES/CATALYST/Catalyst-MICRO-SWITCHES"
+		prodname = "SWITCHES/CATALYST/Catalyst-Micro-Switches"
 	elif prodcode == "cat1200":
 		prodname = "SWITCHES/CATALYST/Catalyst-1200"
 	elif prodcode == "cat1600":
@@ -3250,7 +3250,7 @@ def product (prodcode):
 	elif prodcode == "svcmwam":
 		prodname = "SWITCHES/CATALYST/Catalyst-6500-6800/MWAM"
 	elif prodcode == "c8000v":
-		prodname = "ROUTERS/CATALYST/Catalyst-8000V"
+		prodname = "ROUTERS/VIRTUAL/Catalyst-8000V"
 	elif prodcode == "Nexus":
 		prodname = "SWITCHES/NEXUS/"
 	elif prodcode == "n1000v":
