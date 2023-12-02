@@ -986,6 +986,7 @@ def toplevel(filename):
 		name.startswith("c1100-universalk9") or
 		name.startswith("c1100_gfast_") or
 		name.startswith("c1100_phy_") or
+		name.startswith("isr1100be") or
 		name.startswith("c8000aep") or
 		name.startswith("c8000be") or
 		name.startswith("c8000v") or
@@ -1011,7 +1012,8 @@ def toplevel(filename):
 		name.startswith("vg400") or
 		name.startswith("vg420") or
 		name.startswith("vg450") or
-		name.startswith("ie9k_iosxe")
+		name.startswith("ie9k_iosxe") or
+		name.startswith("isr1100be")
 		):
 			fileprocessor_iosxe(debug1,name)
 

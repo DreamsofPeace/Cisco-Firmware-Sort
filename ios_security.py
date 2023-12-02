@@ -449,7 +449,7 @@ def sec_newanyconnect (debug1,filename): #Cisco Secure Client
 	elif "android" in filename:
 		imagecode = imagelookup("client")
 	elif "posture" in filename:
-		imagecode = imagelookup("posture")
+		imagecode = imagelookup("anyconnect_posture")
 	else:
 		print ("Unknown Sub Product",end="\n")
 		return
@@ -554,10 +554,10 @@ def sec_newanyconnect (debug1,filename): #Cisco Secure Client
 			filemove (filepath, filename)
 	elif filename.startswith("secure-firewall-posture-"):
 		workname = filename.replace("secure-firewall-posture-","")
-		workname = filename.replace("-k9.pkg","")
+		workname = workname.replace("-k9.pkg","")
 		splitbydot = workname.split(".")
 		version = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-		filepath = filepath4(prodname,imagecode,imagecode,version)
+		filepath = filepath3(prodname,imagecode,version)
 		filemove (filepath, filename)
 
 def sec_ipsec_client (debug1,filename):
