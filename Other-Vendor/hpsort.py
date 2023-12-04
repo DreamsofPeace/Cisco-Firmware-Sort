@@ -370,7 +370,7 @@ def dirwalk (src,hashsha512,hashfile):
 		print(filename)
 
 		if (
-			filename == "Thumbs.db or
+			filename == "Thumbs.db" or
 			filename == ".DS_Store" or
 			filename == ".DS_Store.hash"
 		):

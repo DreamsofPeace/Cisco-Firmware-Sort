@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
 from iosutils import utils_dev_v2_vf_imagecode,utils_dev_imagecode_v2_vf,utils_dev_imagecode_v2_vf_dash,utils_dev_v2_vf
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
