@@ -1882,6 +1882,8 @@ def imagelookup (imagecode):
 		subdirectory = "PLUG-INS/VREALIZE"
 	elif imagecode == "poap":
 		subdirectory = "POAP"
+	elif imagecode == "anyconnect_posture":
+		subdirectory = "POSTURE (FORMERLY HOST-SCAN)"
 	elif imagecode == "poap_ng":
 		subdirectory = "POAP-NG"
 	elif imagecode == "profileeditor":
@@ -2234,6 +2236,8 @@ def imagelookup (imagecode):
 		subdirectory = "XML-SCHEMA"
 	elif imagecode == "oac":
 		subdirectory = "OPEN-AGENT-CONTAINER"
+	elif imagecode == "sns37xx":
+		subdirectory = "SNS-37xx"
 	elif imagecode == "sns36xx":
 		subdirectory = "SNS-36xx"
 	elif imagecode == "sns35xx":
@@ -2382,6 +2386,10 @@ def imagelookup (imagecode):
 		subdirectory = "MANAGEMENT-CENTER"
 	elif imagecode == "client":
 		subdirectory = "CLIENT"
+	elif imagecode == "control-plane":
+		subdirectory = "CONTROL-PLANE"
+	elif imagecode == "data-plane":
+		subdirectory = "DATA-PLANE"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2403,6 +2411,8 @@ def product (prodcode):
 		prodname = "NETWORK-MANAGEMENT/DNA-CENTER-TRAFFIC"
 	elif prodcode == "cna":
 		prodname = "NETWORK-MANAGEMENT/NETWORK-ASSISTANT"
+	elif prodcode == "SSM_On-Prem":
+		prodname = "NETWORK-MANAGEMENT/SMART LICENSE ON-PREM"
 	elif prodcode == "ntwkmgmt":
 		prodname = "NETWORK-MANAGEMENT"
 	elif prodcode == "cworks":
@@ -2604,7 +2614,7 @@ def product (prodcode):
 	elif prodcode == "c5930":
 		prodname = "ROUTERS/EMBEDDED/5930"
 	elif prodcode == "ie9k":
-		prodname = "ROUTERS/EMBEDDED/CATALYST-9300-EMBEDDED"
+		prodname = "SWITCHES/INDUSTRIAL/CATALYST-9300-INDUSTRIAL"
 	elif prodcode == "cgr2010":
 		prodname = "ROUTERS/GRID/CGR-2010"
 	elif prodcode == "soho70":
@@ -2817,6 +2827,8 @@ def product (prodcode):
 		prodname = "ROUTERS/VIRTUAL/IOS-XRv"
 	elif prodcode == "iosxrvfull":
 		prodname = "ROUTERS/VIRTUAL/IOS-XRv9000"
+	elif prodcode == "xrvcontainer":
+		prodname = "ROUTERS/VIRTUAL/IOS-XRv-CONTAINER"
 	elif prodcode == "csa":
 		prodname = "SECURITY/CISCO-SECURITY-AGENT"
 	elif prodcode == "csm":
@@ -3001,6 +3013,8 @@ def product (prodcode):
 		prodname = "SWITCHES/BLADE-SWITCHES/IBM-Blade-Switch"
 	elif prodcode == "cgesm":
 		prodname = "SWITCHES/BLADE-SWITCHES/IBM-Blade-Switch"
+	elif prodcode == "cmicr":
+		prodname = "SWITCHES/CATALYST/Catalyst-Micro-Switches"
 	elif prodcode == "cat1200":
 		prodname = "SWITCHES/CATALYST/Catalyst-1200"
 	elif prodcode == "cat1600":
@@ -3124,9 +3138,11 @@ def product (prodcode):
 	elif prodcode == "c6880x":
 		prodname = "SWITCHES/CATALYST/Catalyst-6880-X"
 	elif prodcode == "c8000be":
-		prodname = "SWITCHES/CATALYST/Catalyst-8300-Edge"
+		prodname = "ROUTERS/CATALYST/Catalyst-8300-Edge"
 	elif prodcode == "c8000aep":
-		prodname = "SWITCHES/CATALYST/Catalyst-8500-Edge"
+		prodname = "ROUTERS/CATALYST/Catalyst-8500-Edge"
+	elif prodcode == "c8000aes":
+		prodname = "ROUTERS/CATALYST/Catalyst-8500L-Edge"
 	elif prodcode == "cat8510c":
 		prodname = "SWITCHES/CATALYST/Catalyst-8510CSR"
 	elif prodcode == "cat8510m":
@@ -3234,7 +3250,7 @@ def product (prodcode):
 	elif prodcode == "svcmwam":
 		prodname = "SWITCHES/CATALYST/Catalyst-6500-6800/MWAM"
 	elif prodcode == "c8000v":
-		prodname = "SWITCHES/CATALYST/Catalyst-8000V"
+		prodname = "ROUTERS/VIRTUAL/Catalyst-8000V"
 	elif prodcode == "Nexus":
 		prodname = "SWITCHES/NEXUS/"
 	elif prodcode == "n1000v":
@@ -3499,6 +3515,8 @@ def product (prodcode):
 		prodname = "WIRELESS/CONTROLLER/WLC8540"
 	elif prodcode == "wcs":
 		prodname = "WIRELESS/CONTROLLER/WCS"
+	elif prodcode == "ucspe":
+		prodname = "DEVELOPER-TOOLS/UCE-PLATFORM-EMULATOR"
 	else:
 		prodname = "UNKNOWN"
 	return prodname
@@ -3899,6 +3917,10 @@ def util5digit (a,b,c,d,e):
 	z = a + "." + b + "." + c + "." + d + "." + e
 	return z
 
+def util6digit (a,b,c,d,e,f):
+	z = a + "." + b + "." + c + "." + d + "." + e + "." + f
+	return z
+
 def stringtolist (a):
 	z = list(a)
 	return z
@@ -3936,6 +3958,25 @@ def utilssingleprodname (debug1,filename,prodname):
 		print("\tSubroutine#\tutilssingleprodname")
 	filemove (prodname, filename)
 
+def utils_dev_vf (debug1,filename,prodname,workname):
+	if debug1:
+		print("\tModule#\t\tiosutils")
+		print("\tSubroutine#\tutils_dev_vf")
+	if prodname == "UNKNOWN":
+		messageunknowndev()
+	else:
+		splitbydot = workname.split(".")
+		if len(splitbydot) == 3:
+			version2 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		elif len(splitbydot) == 4:
+			version2 = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+		elif len(splitbydot) == 5:
+			version2 = util5digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4])
+		elif len(splitbydot) == 6:
+			version2 = util6digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4],splitbydot[5])
+		filepath = filepath2(prodname,version2)
+		filemove (filepath, filename)
+
 def utils_dev_v2_vf (debug1,filename,prodname,workname):
 	if debug1:
 		print("\tModule#\t\tiosutils")
@@ -3953,6 +3994,9 @@ def utils_dev_v2_vf (debug1,filename,prodname,workname):
 		elif len(splitbydot) == 5:
 			version2 = util2digit(splitbydot[0],splitbydot[1])
 			version3 = util5digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4])
+		elif len(splitbydot) == 5:
+			version2 = util2digit(splitbydot[0],splitbydot[1])
+			version3 = util6digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4],splitbydot[5])
 		filepath = filepath3(prodname,version2,version3)
 		filemove (filepath, filename)
 
@@ -3997,6 +4041,9 @@ def utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname):
 		elif len(splitbydot) == 5:
 			version2 = util2digit(splitbydot[0],splitbydot[1])
 			version3 = util5digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4])
+		elif len(splitbydot) == 6:
+			version2 = util2digit(splitbydot[0],splitbydot[1])
+			version3 = util6digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4],splitbydot[5])
 		filepath = filepath4(prodname,imagecode,version2,version3)
 		filemove (filepath, filename)
 

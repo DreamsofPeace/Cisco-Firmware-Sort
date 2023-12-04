@@ -147,7 +147,9 @@ def fileprocessornxos (filename,debug1):
 	elif (
 	splitbydot[0] == "nxos" or 
 	splitbydot[0] == "nxos64" or 
-	splitbydot[0] == "nxos64-cs"
+	splitbydot[0] == "nxos64-cs" or 
+	splitbydot[0] == "nxos64-cs-lite" or 
+	splitbydot[0] == "nxos64-msll"
 	):
 		prodname = product("nxos")
 		if len(splitbydot) == 5:
@@ -220,6 +222,8 @@ def fileprocessornxos (filename,debug1):
 		prodname = product("Nexus")
 		imagecode = imagelookup("guestshell")
 		workname = filename.replace(".ova","")
+		workname = workname.replace("guestshell_4.0.","")
+		workname = workname.replace("guestshell_","")
 		workname = workname.replace("guestshell.","")
 		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 

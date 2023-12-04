@@ -462,6 +462,14 @@ def toplevel(filename):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
+			name.startswith("csr1000v") and "eft" in name or
+			name.startswith("csr1000v") and "prd" in name
+		):
+			prodname = product("csr1000v")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
 			name == "sf-linux-1017.SSA"
 		):
 			prodname = product("cat9k")
@@ -978,12 +986,14 @@ def toplevel(filename):
 		name.startswith("c1100-universalk9") or
 		name.startswith("c1100_gfast_") or
 		name.startswith("c1100_phy_") or
+		name.startswith("isr1100be") or
 		name.startswith("c8000aep") or
 		name.startswith("c8000be") or
 		name.startswith("c8000v") or
 		name.startswith("cat3k_caa") or
 		name.startswith("cat4500es8") or
 		name.startswith("cat9k") or
+		name.startswith("c8000aes") or
 		name.startswith("csr1000v") or
 		name.startswith("csr1000v_milplr") or
 		name.startswith("ct5760") or
@@ -1001,7 +1011,9 @@ def toplevel(filename):
 		name.startswith("ttam") or
 		name.startswith("vg400") or
 		name.startswith("vg420") or
-		name.startswith("vg450")
+		name.startswith("vg450") or
+		name.startswith("ie9k_iosxe") or
+		name.startswith("isr1100be")
 		):
 			fileprocessor_iosxe(debug1,name)
 
@@ -1068,6 +1080,8 @@ def toplevel(filename):
 		name.startswith("CiscoCM-CSA-") or
 		name.startswith("CiscoCVP-CSA-") or
 		name.startswith("CiscoICM-CSA-") or
+		name.startswith("Cisco-ISE") or
+		name.startswith("Cisco-vISE") or
 		name.startswith("CiscoISE") or
 		name.startswith("CiscoISN-CSA-") or
 		name.startswith("CiscoPA-CSA-") or
@@ -1083,6 +1097,7 @@ def toplevel(filename):
 		name.startswith("FMT-CP-Config-Extractor") or
 		name.startswith("Firepower") or
 		name.startswith("Firepower_Migration_Tool") or
+		name.startswith("Firewall_Migration_Tool") or
 		name.startswith("IDS") or
 		name.startswith("IDS-sig-") and name.endswith(".readme.txt") or
 		name.startswith("IDS-sig-") and name.endswith(".zip") or
@@ -1092,16 +1107,16 @@ def toplevel(filename):
 		name.startswith("ISE") or
 		name.startswith("PIX") and name.endswith(".bin") or
 		name.startswith("PIX") or
-		name.startswith("SNS-35x5-BIOS") or
-		name.startswith("SNS-35x5-firmware") or
-		name.startswith("SNS-36xx-BIOS") or
-		name.startswith("SNS-36xx-HUU") or
-		name.startswith("SNS-36xx-firmware") or
+		name.startswith("SNS-35x5") or
+		name.startswith("SNS-36xx") or
+		name.startswith("SNS-37xx") or
+		name.startswith("SSM_On-Prem") or
 		name.startswith("Sourcefire") or
 		name.startswith("UCP") or
 		name.startswith("UTD-STD-SIGNATURE") or
 		name.startswith("VPN3000") or
 		name.startswith("anyconnect") or
+		name.startswith("secure-firewall-posture") or
 		name.startswith("applAcs") or
 		name.startswith("asa") or
 		name.startswith("asasfr") or
@@ -1298,7 +1313,9 @@ def toplevel(filename):
 		name.startswith("ucs") or
 		name.startswith("ucs-cxx") or
 		name.startswith("update_pkg-ucse") or
-		name.startswith("vcenter-plugin")
+		name.startswith("vcenter-plugin") or
+		name.startswith("Launchpad-desktop") or
+		name.startswith("DNA_Center_VA")
 		):
 			file_proc_servers(name,debug1)
 
@@ -1318,6 +1335,7 @@ def toplevel(filename):
 		name.startswith("XR12000") or
 		name.startswith("XRV9000") or
 		name.startswith("XRV9K") or
+		name.startswith("xrd") or
 		name.startswith("asr9k") or
 		name.startswith("csm-") or
 		name.startswith("csm-3.5.2.zip") or
@@ -1886,6 +1904,13 @@ def toplevel(filename):
 
 		elif name.startswith("mre_workflow_signed"):
 			continue
+
+		elif name.startswith("UCSPE"):
+			prodname = product ("ucspe")
+			workname = name.replace(".ova","")
+			workname = workname.replace(".zip","")
+			workname = workname.replace("UCSPE_","")
+			utils_dev_vf (debug1,filename,prodname,workname)
 
 		else:
 			fileprocessorios (debug1,name)

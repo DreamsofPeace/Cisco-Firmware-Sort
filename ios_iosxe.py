@@ -201,12 +201,17 @@ def fileprocessor_iosxe(debug1,filename):
 		fileproccontroller (debug1,filename)
 
 	elif filename.startswith("ie9k_"):
-		if filename.startswith("ie9k_iosxe"):
+		if filename.startswith("ie9k_iosxe_npe."):
+			prodname = product ("ie9k")
+			imagecode = imagelookup("cat9k_iosxe_npe")
+			workname = filename.replace("ie9k_iosxe_npe.","")
+			workname = workname.replace(".SPA.bin","")
+			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
+		elif filename.startswith("ie9k_iosxe"):
 			prodname = product ("ie9k")
 			imagecode = imagelookup("iosxe")
 			workname = filename.replace("ie9k_iosxe.","")
 			workname = workname.replace(".SPA.bin","")
-	#		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
 
 	elif filename.startswith("c8000v"):
@@ -240,15 +245,18 @@ def fileprocessor_iosxe(debug1,filename):
 		elif filename.startswith("c8000v-universalk9"):
 			prodname = product ("c8000v")
 			imagecode = imagelookup("universalk9")
+		fileproc_iosxe(debug1,filename,prodname,imagecode)
 #		print (prodname, end="\n")
-		splitbydot = filename.split(".")
-		iosmain = util2digit(splitbydot[1],splitbydot[2])
-		iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
-		filepath = filepath4(prodname,iosmain,iosfull,imagecode)
-		filemove (filepath, filename)
+#		splitbydot = filename.split(".")
+#		iosmain = util2digit(splitbydot[1],splitbydot[2])
+#		iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
+#		filepath = filepath4(prodname,iosmain,iosfull,imagecode)
+#		filemove (filepath, filename)
 
 	else:
 		if splitbydash[0] == "c1100":
+			prodname = product ("c1100router")
+		elif splitbydash[0] == "isr1100be":
 			prodname = product ("c1100router")
 		else:
 			prodname = product (splitbydash[0])
@@ -373,8 +381,10 @@ def fileproc_iosxe_3 (debug1,filename,prodname,imagecode):
 		print("\tSubroutine#\tfileproc_iosxe_3")
 	splitbydot = filename.split(".")
 	if splitbydot[4].startswith("CSC") and splitbydot[6]  == "smu":
+		imagecode2 = imagelookup("smu")
+		iosmain = util2digit(splitbydot[1],splitbydot[2])
 		iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
-		filepath = filepath4(prodname,"SMU",iosfull,splitbydot[4])
+		filepath = filepath5(prodname,iosmain,iosfull,imagecode2,splitbydot[4])
 		filemove (filepath, filename)
 	else:
 		iosmain = util2digit(splitbydot[2],splitbydot[3])
@@ -387,16 +397,22 @@ def fileproc_iosxe (debug1,filename,prodname,imagecode):
 		print("\tSubroutine#\tfileproc_iosxe")
 	splitbydot = filename.split(".")
 	splitbydot[3] = splitbydot[3].replace("-serial", "")
-	splitbydot[3] = splitbydot[3].replace("-nfvis", "")
+	splitbydot[3] = splitbydot[3].replace("-nfvis", "")	
 	splitbydot[3] = splitbydot[3].replace("-esxi", "")
 	splitbydot[3] = splitbydot[3].replace("-kvm", "")
 	#Checks to make sure that it is a regular firmware image, not a SMU
 	if splitbydot[4].startswith("CSC") and splitbydot[6]  == "smu":
+		imagecode2 = imagelookup("smu")
+		iosmain = util2digit(splitbydot[1],splitbydot[2])
 		iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
-		filepath = filepath4(prodname,"SMU",iosfull,splitbydot[4])
+		filepath = filepath5(prodname,iosmain,iosfull,imagecode2,splitbydot[4])
 		filemove (filepath, filename)
 	else:
 		iosmain = util2digit(splitbydot[1],splitbydot[2])
 		iosfull = util3digit(splitbydot[1],splitbydot[2],splitbydot[3])
 		filepath = filepath4(prodname,iosmain,iosfull,imagecode)
 		filemove (filepath, filename)
+
+def file_prepare_standard_iosxe (debug1,filename,prodname,imagecode,workname):
+	if debug1:
+		print("\tSubroutine#\tfile_prepare_standard_iosxe")

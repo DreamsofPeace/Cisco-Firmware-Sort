@@ -1,6 +1,6 @@
 from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
-from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
+from iosutils import util2digit,util3digit,util4digit,util5digit,util6digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
 
 def fileprocessor_iosxr (debug1,filename):
@@ -46,9 +46,9 @@ def fileprocessor_iosxr (debug1,filename):
 		iosxr_asr9kvsmu (debug1,filename)
 
 	elif (
-	filename == "XRV9K-docs-7.4.1.tar" or 
 	filename == "XRV9000-docs-623.tar" or 
-	filename == "XRV9000-docs-6225.tar"
+	filename == "XRV9000-docs-6225.tar" or 
+	filename.startswith("XRV9K-docs")
 	):
 		prodname = product ("iosxrvfull")
 		imagecode = imagelookup("docs")
@@ -68,6 +68,27 @@ def fileprocessor_iosxr (debug1,filename):
 	filename.startswith("iosxrv-k9-demo")
 	):
 		iosxr_iosxrv_demo (debug1,filename)
+
+	elif (
+	filename.startswith("xrd-control-plane-container-")
+	):
+		prodname = product ("xrvcontainer")
+		imagecode = imagelookup("control-plane")
+		workname = filename.replace(".tgz","")
+		workname = workname.replace("xrd-control-plane-container-x64.","")
+		workname = workname.replace("xrd-control-plane-container-x86.","")
+		iosxr_dot_workname_1ver (debug1,filename,prodname,imagecode,workname)
+
+	elif (
+	filename.startswith("xrd-vrouter-container-")
+	):
+		prodname = product ("xrvcontainer")
+		imagecode = imagelookup("data-plane")
+		workname = filename.replace(".tgz","")
+		workname = workname.replace("xrd-vrouter-container-x64.","")
+		workname = workname.replace("xrd-vrouter-container-x86.","")
+		iosxr_dot_workname_1ver (debug1,filename,prodname,imagecode,workname)
+
 	else:
 #		if prodname == "UNKNOWN":
 #			messageunknowndev()
@@ -197,9 +218,6 @@ def iosxr_asr9k (debug1,filename):
 	elif filename.startswith("asr9k-mini-x64-"):
 		imagecode = imagelookup("mini-x64")
 		iosxr_tab3_ver3 (debug1,filename,prodname,imagecode)
-	elif filename.startswith("asr9k-vsm-cgv6"):
-		imagecode = imagelookup("cgv6")
-		iosxr_tab3_ver3 (debug1,filename,prodname,imagecode)
 	elif filename.startswith("ASR9K-x64-iosxr-px-k9"):
 		imagecode = imagelookup("core64k9")
 		iosxr_tab5_ver3 (debug1,filename,prodname,imagecode)
@@ -224,7 +242,13 @@ def iosxr_asr9k (debug1,filename):
 	elif filename.startswith("ASR9K-iosxr-k9"):
 		imagecode = imagelookup("corek9")
 		iosxr_tab3_ver3 (debug1,filename,prodname,imagecode)
-
+	elif filename.startswith("asr9k-vsm-cgv6"):
+		imagecode = imagelookup("cgv6")
+		workname = filename.replace("\n","")
+		workname = workname.replace(".ova","")
+		workname = workname.replace("asr9k-vsm-cgv6-","")
+		workname = workname.replace("asr9k-vsm-cgv6.","")
+		iosxr_dot_workname_1ver (debug1,filename,prodname,imagecode,workname)
 	elif filename.startswith("asr9k-ncs500x-nV-px"):
 		imagecode = imagelookup("nvsat")
 		iosxr_tab4_ver3 (debug1,filename,prodname,imagecode)
@@ -237,6 +261,29 @@ def iosxr_asr9k (debug1,filename):
 	elif filename.startswith("asr9k-goldenk9-x64-"):
 		imagecode = imagelookup("goldenk9")
 		iosxr_tab3_ver3 (debug1,filename,prodname,imagecode)
+
+def iosxr_dot_workname_1ver (debug1,filename,prodname,imagecode,workname):
+	if debug1:
+		print("\tSubroutine#\tiosxr_dot_workname")
+	splitbydot = workname.split(".")
+	if len(splitbydot) == 2:
+		version = util2digit(splitbydot[0],splitbydot[1])
+		filepath = filepath3 (prodname,imagecode,version)
+	elif len(splitbydot) == 3:
+		version = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		filepath = filepath3 (prodname,imagecode,version)
+	elif len(splitbydot) == 4:
+		version = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+		filepath = filepath3 (prodname,imagecode,version)
+	elif len(splitbydot) == 5:
+		version = util5digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4])
+		filepath = filepath3 (prodname,imagecode,version)
+	elif len(splitbydot) == 6:
+		version = util6digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4],splitbydot[5])
+		filepath = filepath3 (prodname,imagecode,version)
+	else:
+		filepath = filepath2 (prodname,imagecode)
+	filemove (filepath, filename)
 
 def iosxr_dot1_ver3 (debug1,filename,prodname,imagecode):
 	if debug1:
