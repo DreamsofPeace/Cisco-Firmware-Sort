@@ -3152,7 +3152,7 @@ def sec_fxos (debug1,filename):
 		sec_fxos_firmware_recovery (debug1,filename,prodname,imagecode)
 
 	elif (
-		splitbydot[0] == "fxos-mibs-fp9k-fp3k" or 
+		splitbydot[0] == "fxos-mibs-fp3k" or 
 		splitbydot[0] == "fxos-mibs-fp9k-fp4k" or 
 		splitbydot[0] == "firepower-mibs"
 	):
