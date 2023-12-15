@@ -438,10 +438,11 @@ def toplevel(filename):
 		elif (
 			name in [
 				"cat9k.16121.0911.bin",
-				"cat9k.16121_au.bin"
+				"cat9k.16121_au.bin",
 				"cat9k_iosxe.V171_1S_TES2.SPA.bin",
 				"cat9k_bidir_updated.bin",
 				"cat9k_fraport_bidir.bin",
+				"cat9k_iosxe.V1611_1S_ES4.SPA.bin",
 				"cat9k_iosxe.16.12-xFSU-eft1.bin",
 				"cat9k_iosxe.16.12-xFSU-eft2.bin",
 				"cat9k_iosxe.16.12-xFSU-eft3.bin",

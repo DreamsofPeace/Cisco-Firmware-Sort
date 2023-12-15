@@ -734,6 +734,10 @@ def imagelookup (imagecode):
 		subdirectory = "ANDROID"
 	elif imagecode == "apic":
 		subdirectory = "APIC-CONTROLLER"
+	elif imagecode == "apdp":
+		subdirectory = "ACCESS-POINT-DEVICE-PACK"
+	elif imagecode == "apsp":
+		subdirectory = "ACCESS-POINT-SERVICE-PACK"
 	elif imagecode == "app_selector":
 		subdirectory = "APP-SELECTOR"
 	elif imagecode == "lfbff":
@@ -2097,7 +2101,7 @@ def imagelookup (imagecode):
 	elif imagecode == "supplicantpw":
 		subdirectory = "SUPPLICANT-PROVISIONING-WIZARD"
 	elif imagecode == "cat9k_iosxe":
-		subdirectory = "SYSTEM"
+		subdirectory = "UNIVERSAL"
 	elif imagecode == "iosxe":
 		subdirectory = "UNIVERSAL"
 	elif imagecode == "universalk9_kvm":
