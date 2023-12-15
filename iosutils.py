@@ -2394,6 +2394,8 @@ def imagelookup (imagecode):
 		subdirectory = "CONTROL-PLANE"
 	elif imagecode == "data-plane":
 		subdirectory = "DATA-PLANE"
+	elif imagecode == "cnbng":
+		subdirectory = "PACKAGE-BROADBAND-NETWORK-GATEWAY"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
