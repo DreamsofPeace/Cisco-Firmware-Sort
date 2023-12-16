@@ -2847,6 +2847,14 @@ def product (prodcode):
 		prodname = "SECURITY/FIREWALL/CATALYST-6500-FWSM"
 	elif prodcode == "firepower":
 		prodname = "SECURITY/FIREWALL/FirePOWER"
+	elif prodcode == "firepower1k":
+		prodname = "SECURITY/FIREWALL/FirePOWER/FIREPOWER-1xxx"
+	elif prodcode == "firepower2k":
+		prodname = "SECURITY/FIREWALL/FirePOWER/FIREPOWER-2xxx"
+	elif prodcode == "firepower3k":
+		prodname = "SECURITY/FIREWALL/FirePOWER/FIREPOWER-3xxx"
+	elif prodcode == "firepower4k9k":
+		prodname = "SECURITY/FIREWALL/FirePOWER/FIREPOWER-4xxx-9xxx"
 	elif prodcode == "firepowerfmc":
 		prodname = "SECURITY/FIREWALL/FirePOWER/FIREPOWER-MANAGEMENT-CENTER"
 	elif prodcode == "pix":
