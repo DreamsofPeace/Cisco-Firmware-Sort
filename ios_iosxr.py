@@ -28,6 +28,28 @@ def fileprocessor_iosxr (debug1,filename):
 		utilssinglemove (debug1,filename,prodname,imagecode)
 	
 	elif (
+	filename.startswith("asr9k-cnbng-x64-")
+	):
+		prodname = product ("asr9k")
+		imagecode = imagelookup("cnbng")
+		workname = filename.replace("asr9k-cnbng-x64-","")
+		workname = workname.replace("1.0.0.0-r","")
+		workname = workname.replace("2.0.0.0-r","")
+		workname = workname.replace(".x86_64.rpm","")
+		postsplit = list(workname)
+		if 4 == len(postsplit):
+			verjoin = postsplit[1] + postsplit[2]
+			vertwo   = util2digit(postsplit[0],verjoin)
+			verthree = util3digit(postsplit[0],verjoin,postsplit[2])
+			filepath = filepath4 (prodname,vertwo,verthree,imagecode)
+			filemove (filepath, filename)
+		elif 3 == len(postsplit):
+			vertwo   = util2digit(postsplit[0],postsplit[1])
+			verthree = util3digit(postsplit[0],postsplit[1],postsplit[2])
+			filepath = filepath4 (prodname,vertwo,verthree,imagecode)
+			filemove (filepath, filename)
+
+	elif (
 	filename.startswith("ASR9K") or 
 	filename.startswith("ASR9k") or 
 	filename.startswith("ASR9000") or 

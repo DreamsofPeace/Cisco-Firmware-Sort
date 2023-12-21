@@ -136,7 +136,10 @@ def fileprocessor_iosxe(debug1,filename):
 		imagecode = imagelookup("hardware")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
-	elif filename.startswith("cat9k_iosxe") or filename.startswith("cat9k_lite"):
+	elif (
+		filename.startswith("cat9k_iosxe") or 
+		filename.startswith("cat9k_lite")
+		):
 		if filename.startswith("cat9k_iosxe"):
 			prodname = product ("cat9k")
 		elif filename.startswith("cat9k_lite"):
@@ -146,6 +149,12 @@ def fileprocessor_iosxe(debug1,filename):
 		else:
 			if filename.endswith("smu.bin"):
 				imagecode = imagelookup("smu")
+				fileproc_iosxe (debug1,filename,prodname,imagecode)
+			elif filename.endswith("apdp.bin"):
+				imagecode = imagelookup("apdp")
+				fileproc_iosxe (debug1,filename,prodname,imagecode)
+			elif filename.endswith("apsp.bin"):
+				imagecode = imagelookup("apsp")
 				fileproc_iosxe (debug1,filename,prodname,imagecode)
 			else:
 				imagecode = imagelookup(splitbydot[0])

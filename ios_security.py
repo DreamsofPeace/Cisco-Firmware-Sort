@@ -137,9 +137,48 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	filename.startswith ("zeus")
 	):
 		sec_ironportv (debug1,filename)
+		
+	elif (
+		filename.startswith ("cisco-asa-fp1k.") or
+		filename.startswith ("cisco-ftd-fp1k") or
+		filename.startswith ("Cisco_FTD_SSP_FP1K_Upgrade-") or
+		filename.startswith ("Cisco_FTD_SSP_FP1K_Patch-") or
+		filename.startswith ("Cisco_FTD_SSP_FP1K_Hotfix") or
+		filename.startswith ("fxos-mibs-fp1k") 
+	):
+		sec_fp1k (debug1,filename)
+		
+	elif (
+		filename.startswith ("cisco-asa-fp2k.") or
+		filename.startswith ("cisco-ftd-fp2k") or
+		filename.startswith ("Cisco_FTD_SSP_FP2K_Upgrade-") or
+		filename.startswith ("Cisco_FTD_SSP_FP2K_Patch-") or
+		filename.startswith ("Cisco_FTD_SSP_FP2K_Hotfix") or
+		filename.startswith ("fxos-mibs-fp2k") 
+	):
+		sec_fp2k (debug1,filename)
+		
+	elif (
+		filename.startswith ("cisco-asa-fp3k.") or
+		filename.startswith ("cisco-ftd-fp3k") or
+		filename.startswith ("Cisco_FTD_SSP_FP3K_Upgrade-") or
+		filename.startswith ("Cisco_FTD_SSP_FP3K_Patch-") or
+		filename.startswith ("Cisco_FTD_SSP_FP3K_Hotfix") or
+		filename.startswith ("fxos-mibs-fp3k") 
+	):
+		sec_fp3k (debug1,filename)
+		
+	elif (
+		filename.startswith ("cisco-asa.") or
+		filename.startswith ("cisco-ftd.") or
+		filename.startswith ("Cisco_FTD_SSP_Upgrade-") or
+		filename.startswith ("Cisco_FTD_SSP_Patch-") or
+		filename.startswith ("Cisco_FTD_SSP_Hotfix") or
+		filename.startswith ("fxos-mibs") 
+	):
+		sec_fp4k_9k (debug1,filename)
 
 	elif(
-	filename.startswith ("cisco-asa-fp2k") or 
 	filename.startswith ("cisco-asa")
 	):
 		sec_fp_asa_module (debug1,filename)
@@ -231,8 +270,19 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 		sec_hostscan (debug1,filename)
 
 	elif (
+		filename.startswith("tools-cisco-secure-client-win-") or 
+		filename.startswith("tools-anyconnect-win-")
+		):
+		prodname = product("anyconnect")
+		if filename.endswith("-profileeditor-k9.msi"):
+			imagecode = imagelookup("profileeditor")
+			sec_workname_imagecode (debug1,filename,prodname,imagecode)
+		elif filename.endswith("-transforms.zip"):
+			imagecode = imagelookup("transforms")
+			sec_workname_imagecode (debug1,filename,prodname,imagecode)
+
+	elif (
 	filename.startswith("cisco-secure-client") or 
-	filename.startswith("tools-cisco-secure-client") or 
 	filename.startswith("anyconnect-android-") or 
 	filename.startswith("anyconnect-win-") or 
 	filename.startswith("secure-firewall-")
@@ -243,7 +293,6 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	filename.startswith("anyconnect") or 
 	filename.startswith("hostscan-") or 
 	filename.startswith("thirdparty") or 
-	filename.startswith("tools-anyconnect") or 
 	filename.startswith("sampleTransforms") or 
 	filename.startswith("external-sso")
 	):
@@ -260,12 +309,6 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	filename.startswith("Sourcefire_3D_Defense_Center_S3_Hotfix")
 	):
 		sec_sourcefire_fmc_patch (debug1,filename)
-
-	elif (
-	filename.startswith("Cisco_FTD_Patch") or 
-	filename.startswith("Cisco_FTD_SSP_Patch")
-	):
-		sec_sourcefire_ftd_patch (debug1,filename)
 
 	elif (
 	filename.startswith("Sourcefire_3D_Device_S3_Patch") or 
@@ -414,8 +457,335 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	):
 		sec_ssm_onprem (debug1,filename)
 
+
 	else:
 		messageunknownfile()
+
+def sec_fp1k (debug1,filename): #Firepower 1010/11xx Firewalls
+	if debug1:
+		print("\tSubroutine#\tsec_fp1k")
+	prodname = product("firepower1k")
+	if filename.startswith("fxos-mibs-fp1k"):
+		imagecode = imagelookup("mibs")
+		filepath = filepath2(prodname,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("cisco-ftd-fp1k"):
+		imagecode = imagelookup("fpftdmodule")
+		workname = filename.replace("cisco-ftd-fp1k.","")
+		workname = workname.replace(".SPA","")
+		head, sep, tail = workname.partition('-')
+		aftersplit = head.split(".")
+		ver2 = util2digit (aftersplit[0],aftersplit[1])
+		if len(aftersplit) == 3:
+			verfull = util3digit (aftersplit[0],aftersplit[1],aftersplit[2])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+		elif len(aftersplit) == 4:
+			verfull = util4digit (aftersplit[0],aftersplit[1],aftersplit[2],aftersplit[3])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+	elif filename.startswith("cisco-asa-fp1k."):
+		imagecode = imagelookup("fpasamodule")
+		workname = filename.replace("cisco-asa-fp1k.","")
+		workname = workname.replace(".SPA","")
+		aftersplit = workname.split(".")
+		ver2 = util2digit (aftersplit[0],aftersplit[1])
+		if len(aftersplit) == 3:
+			verfull = util3digit (aftersplit[0],aftersplit[1],aftersplit[2])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+		elif len(aftersplit) == 4:
+			verfull = util4digit (aftersplit[0],aftersplit[1],aftersplit[2],aftersplit[3])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+	elif filename.startswith("Cisco_FTD_SSP_FP1K_Patch"):
+		imagecode = imagelookup("patch")
+		workname = filename.replace("Cisco_FTD_SSP_FP1K_Patch-","")
+		aftersplit = workname.split(".")
+		head, sep, tail = workname.partition('-')
+		aftersplit = head.split(".")
+		ver2 = util2digit (aftersplit[0],aftersplit[1])
+		if len(aftersplit) == 3:
+			verfull = util3digit (aftersplit[0],aftersplit[1],aftersplit[2])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+		elif len(aftersplit) == 4:
+			verfull = util4digit (aftersplit[0],aftersplit[1],aftersplit[2],aftersplit[3])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+	elif filename.startswith("Cisco_FTD_SSP_FP1K_Upgrade"):
+		imagecode = imagelookup("upgrade")
+		workname = filename.replace("Cisco_FTD_SSP_FP1K_Upgrade-","")
+		aftersplit = workname.split(".")
+		head, sep, tail = workname.partition('-')
+		aftersplit = head.split(".")
+		ver2 = util2digit (aftersplit[0],aftersplit[1])
+		if len(aftersplit) == 3:
+			verfull = util3digit (aftersplit[0],aftersplit[1],aftersplit[2])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+		elif len(aftersplit) == 4:
+			verfull = util4digit (aftersplit[0],aftersplit[1],aftersplit[2],aftersplit[3])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_AY-6.4.0.9-3.sh.REL.tar":
+		imagecode = imagelookup("patch")
+		filepath = filepath4(prodname,imagecode,"6.4","6.4.0.9")
+	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_BM-6.4.0.10-2.sh.REL.tar":
+		imagecode = imagelookup("patch")
+		filepath = filepath4(prodname,imagecode,"6.4","6.4.0.10")
+	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_EP-6.4.0.14-9.sh.REL.tar":
+		imagecode = imagelookup("patch")
+		filepath = filepath4(prodname,imagecode,"6.4","6.4.0.14")
+
+	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_DA-6.6.5.2-4.sh.REL.tar":
+		imagecode = imagelookup("patch")
+		filepath = filepath4(prodname,imagecode,"6.6","6.6.5.2")
+	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_DE-6.6.5.2-8.sh.REL.tar":
+		imagecode = imagelookup("patch")
+		filepath = filepath4(prodname,imagecode,"6.6","6.6.5.2")
+	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_DE_6.6.5.2-8.sh.REL.tar":
+		imagecode = imagelookup("patch")
+		filepath = filepath4(prodname,imagecode,"6.6","6.6.5.2")
+
+	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_Y-6.7.0.3-7.sh.REL.tar":
+		imagecode = imagelookup("patch")
+		filepath = filepath4(prodname,imagecode,"6.7","6.7.0.3")
+	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_AA-6.7.0.4-2.sh.REL.tar":
+		imagecode = imagelookup("patch")
+		filepath = filepath4(prodname,imagecode,"6.7","6.7.0.4")
+
+	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_S-7.0.1.1-10.sh.REL.tar":
+		imagecode = imagelookup("patch")
+		filepath = filepath4(prodname,imagecode,"7.0","7.0.1.1")
+	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_EI-7.0.6.1-3.sh.REL.tar":
+		imagecode = imagelookup("patch")
+		filepath = filepath4(prodname,imagecode,"7.0","7.0.6.1")
+
+	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_A-7.1.0.1-7.sh.REL.tar":
+		imagecode = imagelookup("patch")
+		filepath = filepath4(prodname,imagecode,"7.1","7.1.0.1")
+	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_P-7.1.0.2-2.sh.REL.tar":
+		imagecode = imagelookup("patch")
+		filepath = filepath4(prodname,imagecode,"7.1","7.1.0.2")
+	elif filename == "Cisco_FTD_SSP_FP3K_Hotfix_Q-7.1.0.3-2.sh.REL.tar":
+		imagecode = imagelookup("patch")
+		filepath = filepath4(prodname,imagecode,"7.1","7.1.0.3")
+
+	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_AW-7.2.4.1-1.sh.REL.tar":
+		imagecode = imagelookup("patch")
+		filepath = filepath4(prodname,imagecode,"7.2","7.2.4.1")
+	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_BJ-7.2.5.1-1.sh.REL.tar":
+		imagecode = imagelookup("patch")
+		filepath = filepath4(prodname,imagecode,"7.2","7.2.5.1")
+
+
+def sec_fp2k (debug1,filename): #Firepower 21xx Firewalls
+	if debug1:
+		print("\tSubroutine#\tsec_fp2k")
+	prodname = product("firepower2k")
+	if filename.startswith("fxos-mibs-fp2k"):
+		imagecode = imagelookup("mibs")
+		filepath = filepath2(prodname,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("cisco-ftd-fp2k"):
+		imagecode = imagelookup("fpftdmodule")
+		workname = filename.replace("cisco-ftd-fp2k.","")
+		workname = workname.replace(".SPA","")
+		head, sep, tail = workname.partition('-')
+		aftersplit = head.split(".")
+		ver2 = util2digit (aftersplit[0],aftersplit[1])
+		if len(aftersplit) == 3:
+			verfull = util3digit (aftersplit[0],aftersplit[1],aftersplit[2])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+		elif len(aftersplit) == 4:
+			verfull = util4digit (aftersplit[0],aftersplit[1],aftersplit[2],aftersplit[3])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+	elif filename.startswith("cisco-asa-fp2k."):
+		imagecode = imagelookup("fpasamodule")
+		workname = filename.replace("cisco-asa-fp2k.","")
+		workname = workname.replace(".SPA","")
+		aftersplit = workname.split(".")
+		ver2 = util2digit (aftersplit[0],aftersplit[1])
+		if len(aftersplit) == 3:
+			verfull = util3digit (aftersplit[0],aftersplit[1],aftersplit[2])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+		elif len(aftersplit) == 4:
+			verfull = util4digit (aftersplit[0],aftersplit[1],aftersplit[2],aftersplit[3])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+	elif filename.startswith("Cisco_FTD_SSP_FP2K_Patch"):
+		imagecode = imagelookup("patch")
+		workname = filename.replace("Cisco_FTD_SSP_FP2K_Patch-","")
+		aftersplit = workname.split(".")
+		head, sep, tail = workname.partition('-')
+		aftersplit = head.split(".")
+		ver2 = util2digit (aftersplit[0],aftersplit[1])
+		if len(aftersplit) == 3:
+			verfull = util3digit (aftersplit[0],aftersplit[1],aftersplit[2])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+		elif len(aftersplit) == 4:
+			verfull = util4digit (aftersplit[0],aftersplit[1],aftersplit[2],aftersplit[3])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+	elif filename.startswith("Cisco_FTD_SSP_FP2K_Upgrade"):
+		imagecode = imagelookup("upgrade")
+		workname = filename.replace("Cisco_FTD_SSP_FP2K_Upgrade-","")
+		aftersplit = workname.split(".")
+		head, sep, tail = workname.partition('-')
+		aftersplit = head.split(".")
+		ver2 = util2digit (aftersplit[0],aftersplit[1])
+		if len(aftersplit) == 3:
+			verfull = util3digit (aftersplit[0],aftersplit[1],aftersplit[2])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+		elif len(aftersplit) == 4:
+			verfull = util4digit (aftersplit[0],aftersplit[1],aftersplit[2],aftersplit[3])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+
+
+def sec_fp3k (debug1,filename): #Firepower 31xx Firewalls
+	if debug1:
+		print("\tSubroutine#\tsec_fp3k")
+	prodname = product("firepower3k")
+	if filename.startswith("fxos-mibs-fp3k"):
+		imagecode = imagelookup("mibs")
+		filepath = filepath2(prodname,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("cisco-ftd-fp3k"):
+		imagecode = imagelookup("fpftdmodule")
+		workname = filename.replace("cisco-ftd-fp3k.","")
+		workname = workname.replace(".SPA","")
+		head, sep, tail = workname.partition('-')
+		aftersplit = head.split(".")
+		ver2 = util2digit (aftersplit[0],aftersplit[1])
+		if len(aftersplit) == 3:
+			verfull = util3digit (aftersplit[0],aftersplit[1],aftersplit[2])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+		elif len(aftersplit) == 4:
+			verfull = util4digit (aftersplit[0],aftersplit[1],aftersplit[2],aftersplit[3])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+	elif filename.startswith("cisco-asa-fp3k."):
+		imagecode = imagelookup("fpasamodule")
+		workname = filename.replace("cisco-asa-fp3k.","")
+		workname = workname.replace(".SPA","")
+		aftersplit = workname.split(".")
+		ver2 = util2digit (aftersplit[0],aftersplit[1])
+		if len(aftersplit) == 3:
+			verfull = util3digit (aftersplit[0],aftersplit[1],aftersplit[2])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+		elif len(aftersplit) == 4:
+			verfull = util4digit (aftersplit[0],aftersplit[1],aftersplit[2],aftersplit[3])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+	elif filename.startswith("Cisco_FTD_SSP_FP3K_Patch"):
+		imagecode = imagelookup("patch")
+		workname = filename.replace("Cisco_FTD_SSP_FP3K_Patch-","")
+		aftersplit = workname.split(".")
+		head, sep, tail = workname.partition('-')
+		aftersplit = head.split(".")
+		ver2 = util2digit (aftersplit[0],aftersplit[1])
+		if len(aftersplit) == 3:
+			verfull = util3digit (aftersplit[0],aftersplit[1],aftersplit[2])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+		elif len(aftersplit) == 4:
+			verfull = util4digit (aftersplit[0],aftersplit[1],aftersplit[2],aftersplit[3])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+	elif filename.startswith("Cisco_FTD_SSP_FP3K_Upgrade"):
+		imagecode = imagelookup("upgrade")
+		workname = filename.replace("Cisco_FTD_SSP_FP3K_Upgrade-","")
+		aftersplit = workname.split(".")
+		head, sep, tail = workname.partition('-')
+		aftersplit = head.split(".")
+		ver2 = util2digit (aftersplit[0],aftersplit[1])
+		if len(aftersplit) == 3:
+			verfull = util3digit (aftersplit[0],aftersplit[1],aftersplit[2])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+		elif len(aftersplit) == 4:
+			verfull = util4digit (aftersplit[0],aftersplit[1],aftersplit[2],aftersplit[3])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+
+
+def sec_fp4k_9k (debug1,filename): #Firepower 31xx Firewalls
+	if debug1:
+		print("\tSubroutine#\tsec_fp4k_9k")
+	prodname = product("firepower4k9k")
+	if filename.startswith("fxos-mibs"):
+		imagecode = imagelookup("mibs")
+		filepath = filepath2(prodname,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("cisco-ftd"):
+		imagecode = imagelookup("fpftdmodule")
+		workname = filename.replace("cisco-ftd.","")
+		workname = workname.replace(".SPA.csp","")
+		head, sep, tail = workname.partition('-')
+		aftersplit = head.split(".")
+		ver2 = util2digit (aftersplit[0],aftersplit[1])
+		if len(aftersplit) == 3:
+			verfull = util3digit (aftersplit[0],aftersplit[1],aftersplit[2])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+		elif len(aftersplit) == 4:
+			verfull = util4digit (aftersplit[0],aftersplit[1],aftersplit[2],aftersplit[3])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+	elif filename.startswith("cisco-asa."):
+		imagecode = imagelookup("fpasamodule")
+		workname = filename.replace("cisco-asa.","")
+		workname = workname.replace(".SPA.csp","")
+		aftersplit = workname.split(".")
+		ver2 = util2digit (aftersplit[0],aftersplit[1])
+		if len(aftersplit) == 3:
+			verfull = util3digit (aftersplit[0],aftersplit[1],aftersplit[2])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+		elif len(aftersplit) == 4:
+			verfull = util4digit (aftersplit[0],aftersplit[1],aftersplit[2],aftersplit[3])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+	elif filename.startswith("Cisco_FTD_SSP_Patch"):
+		imagecode = imagelookup("patch")
+		workname = filename.replace("Cisco_FTD_SSP_Patch-","")
+		aftersplit = workname.split(".")
+		head, sep, tail = workname.partition('-')
+		aftersplit = head.split(".")
+		ver2 = util2digit (aftersplit[0],aftersplit[1])
+		if len(aftersplit) == 3:
+			verfull = util3digit (aftersplit[0],aftersplit[1],aftersplit[2])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+		elif len(aftersplit) == 4:
+			verfull = util4digit (aftersplit[0],aftersplit[1],aftersplit[2],aftersplit[3])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+	elif filename.startswith("Cisco_FTD_SSP_Upgrade"):
+		imagecode = imagelookup("upgrade")
+		workname = filename.replace("Cisco_FTD_SSP_Upgrade-","")
+		aftersplit = workname.split(".")
+		head, sep, tail = workname.partition('-')
+		aftersplit = head.split(".")
+		ver2 = util2digit (aftersplit[0],aftersplit[1])
+		if len(aftersplit) == 3:
+			verfull = util3digit (aftersplit[0],aftersplit[1],aftersplit[2])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+		elif len(aftersplit) == 4:
+			verfull = util4digit (aftersplit[0],aftersplit[1],aftersplit[2],aftersplit[3])
+			filepath = filepath4(prodname,imagecode,ver2,verfull)
+			filemove (filepath, filename)
+
 
 def sec_ssm_onprem (debug1,filename): #Cisco Smart License On-Prem Server
 	if debug1:
@@ -3006,18 +3376,6 @@ def sec_sourcefire_fmc_patch (debug1,filename):
 		filepath = filepath4 (prodname,imagecode,verthree,verfour)
 		filemove (filepath, filename)
 
-def sec_sourcefire_ftd_patch (debug1,filename):
-	if debug1:
-		print("\tSubroutine#\tsec_sourcefire_ftd_patch")
-	prodname = product ("firepower")
-	imagecode = imagelookup("ngfw")
-	splitbydash = filename.split("-")
-	splitbydot = splitbydash[1].split(".")
-	vertwo = util2digit(splitbydot[0],splitbydot[1])
-	verfour = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
-	filepath = filepath4 (prodname,imagecode,vertwo,verfour)
-	filemove (filepath, filename)
-
 def sec_sourcefire_device (debug1,filename):
 	if debug1:
 		print("\tSubroutine#\tsec_sourcefire_device")
@@ -3151,7 +3509,7 @@ def sec_fxos (debug1,filename):
 		sec_fxos_firmware_recovery (debug1,filename,prodname,imagecode)
 
 	elif (
-		splitbydot[0] == "fxos-mibs-fp9k-fp3k" or 
+		splitbydot[0] == "fxos-mibs-fp3k" or 
 		splitbydot[0] == "fxos-mibs-fp9k-fp4k" or 
 		splitbydot[0] == "firepower-mibs"
 	):
@@ -3319,6 +3677,35 @@ def sec_anyconnect_p4_d3_v (debug1,filename,prodname,imagecode):
 	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
 	filepath = filepath4(prodname,imagecode,ver2,ver3)
 	filemove (filepath, filename)
+
+def sec_anyconnect_p4_d3_v (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_anyconnect_p4_d3_v")
+	splitbydash = filename.split("-")
+	splitbydot = splitbydash[4].split(".")
+	ver2 = util2digit (splitbydot[0],splitbydot[1])
+	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
+	filepath = filepath4(prodname,imagecode,ver2,ver3)
+	filemove (filepath, filename)
+
+def sec_workname_imagecode (debug1,filename,prodname,imagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_workname_imagecode")
+	workname = filename.replace("tools-cisco-secure-client-win-","")
+	workname = workname.replace("tools-anyconnect-win-","")
+	workname = workname.replace("-profileeditor-k9.msi","")
+	workname = workname.replace("-transforms.zip","")
+	splitbydot = workname.split(".")
+	if len(splitbydot) == 3:
+		ver2 = util2digit (splitbydot[0],splitbydot[1])
+		ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
+		filepath = filepath4(prodname,imagecode,ver2,ver3)
+		filemove (filepath, filename)
+	elif len(splitbydot) == 4:
+		ver2 = util2digit (splitbydot[0],splitbydot[1])
+		ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+		filepath = filepath4(prodname,imagecode,ver2,ver3)
+		filemove (filepath, filename)
 
 def sec_anyconnect (debug1,filename):
 	if debug1:
@@ -3567,18 +3954,6 @@ def sec_anyconnect (debug1,filename):
 	filename.startswith("anyconnect-websecurity-win-")
 	):
 		imagecode = imagelookup("websecurity")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("tools-anyconnect-win-") and filename.endswith("-profileeditor-k9.msi")
-	):
-		imagecode = imagelookup("profileeditor")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("tools-anyconnect-win-") and filename.endswith("-transforms.zip")
-	):
-		imagecode = imagelookup("transforms")
 		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
 
 	elif (

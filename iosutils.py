@@ -734,6 +734,10 @@ def imagelookup (imagecode):
 		subdirectory = "ANDROID"
 	elif imagecode == "apic":
 		subdirectory = "APIC-CONTROLLER"
+	elif imagecode == "apdp":
+		subdirectory = "ACCESS-POINT-DEVICE-PACK"
+	elif imagecode == "apsp":
+		subdirectory = "ACCESS-POINT-SERVICE-PACK"
 	elif imagecode == "app_selector":
 		subdirectory = "APP-SELECTOR"
 	elif imagecode == "lfbff":
@@ -2097,7 +2101,7 @@ def imagelookup (imagecode):
 	elif imagecode == "supplicantpw":
 		subdirectory = "SUPPLICANT-PROVISIONING-WIZARD"
 	elif imagecode == "cat9k_iosxe":
-		subdirectory = "SYSTEM"
+		subdirectory = "UNIVERSAL"
 	elif imagecode == "iosxe":
 		subdirectory = "UNIVERSAL"
 	elif imagecode == "universalk9_kvm":
@@ -2390,6 +2394,8 @@ def imagelookup (imagecode):
 		subdirectory = "CONTROL-PLANE"
 	elif imagecode == "data-plane":
 		subdirectory = "DATA-PLANE"
+	elif imagecode == "cnbng":
+		subdirectory = "PACKAGE-BROADBAND-NETWORK-GATEWAY"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2841,6 +2847,14 @@ def product (prodcode):
 		prodname = "SECURITY/FIREWALL/CATALYST-6500-FWSM"
 	elif prodcode == "firepower":
 		prodname = "SECURITY/FIREWALL/FirePOWER"
+	elif prodcode == "firepower1k":
+		prodname = "SECURITY/FIREWALL/FirePOWER/FIREPOWER-1xxx"
+	elif prodcode == "firepower2k":
+		prodname = "SECURITY/FIREWALL/FirePOWER/FIREPOWER-2xxx"
+	elif prodcode == "firepower3k":
+		prodname = "SECURITY/FIREWALL/FirePOWER/FIREPOWER-3xxx"
+	elif prodcode == "firepower4k9k":
+		prodname = "SECURITY/FIREWALL/FirePOWER/FIREPOWER-4xxx-9xxx"
 	elif prodcode == "firepowerfmc":
 		prodname = "SECURITY/FIREWALL/FirePOWER/FIREPOWER-MANAGEMENT-CENTER"
 	elif prodcode == "pix":
