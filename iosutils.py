@@ -2106,13 +2106,13 @@ def imagelookup (imagecode):
 		subdirectory = "UNIVERSAL"
 	elif imagecode == "universalk9_kvm":
 		subdirectory = "UNIVERSAL-KVM"
-	elif imagecode == "universal_google_nfvis":
-		subdirectory = "UNIVERSAL-GOOGLE-NFVIS"
-	elif imagecode == "universal_google_esxi":
-		subdirectory = "UNIVERSAL-GOOGLE-ESXI"
-	elif imagecode == "universal_google_kvm":
-		subdirectory = "UNIVERSAL-GOOGLE-KVM"
-	elif imagecode == "universalk9_cloud":
+	elif imagecode == "universal_cloud_nfvis":
+		subdirectory = "UNIVERSAL-CLOUD-NFVIS"
+	elif imagecode == "universal_cloud_esxi":
+		subdirectory = "UNIVERSAL-CLOUD-ESXI"
+	elif imagecode == "universal_loud_kvm":
+		subdirectory = "UNIVERSAL-CLOUD-KVM"
+	elif imagecode == "universal_cloud":
 		subdirectory = "UNIVERSAL-CLOUD"
 	elif imagecode == "universal_kvm":
 		subdirectory = "UNIVERSAL-KVM"
@@ -2396,6 +2396,8 @@ def imagelookup (imagecode):
 		subdirectory = "DATA-PLANE"
 	elif imagecode == "cnbng":
 		subdirectory = "PACKAGE-BROADBAND-NETWORK-GATEWAY"
+	elif imagecode == "stripped-firmware":
+		subdirectory = "STRIPPED-FIRMWARE"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2499,6 +2501,28 @@ def product (prodcode):
 		prodname = "ROUTERS/ATM/MGX-8850"
 	elif prodcode == "rpmxf":
 		prodname = "ROUTERS/ATM/MGX-8850"
+	elif prodcode == "c600":
+		prodname = "ROUTERS/BRANCH/600"
+	elif prodcode == "c800":
+		prodname = "ROUTERS/BRANCH/800"
+	elif prodcode == "c805":
+		prodname = "ROUTERS/BRANCH/805"
+	elif prodcode == "c806":
+		prodname = "ROUTERS/BRANCH/806"
+	elif prodcode == "c815":
+		prodname = "ROUTERS/BRANCH/815"
+	elif prodcode == "c820":
+		prodname = "ROUTERS/BRANCH/820"
+	elif prodcode == "c827v":
+		prodname = "ROUTERS/BRANCH/827"
+	elif prodcode == "c828":
+		prodname = "ROUTERS/BRANCH/828"
+	elif prodcode == "c831":
+		prodname = "ROUTERS/BRANCH/831"
+	elif prodcode == "c836":
+		prodname = "ROUTERS/BRANCH/836"
+	elif prodcode == "c837":
+		prodname = "ROUTERS/BRANCH/837"
 	elif prodcode == "c1004":
 		prodname = "ROUTERS/BRANCH/1004"
 	elif prodcode == "c1005":
@@ -2535,14 +2559,6 @@ def product (prodcode):
 		prodname = "ROUTERS/BRANCH/3640"
 	elif prodcode == "c3660":
 		prodname = "ROUTERS/BRANCH/3660"
-	elif prodcode == "c3660":
-		prodname = "ROUTERS/BRANCH/3660"
-	elif prodcode == "c3660":
-		prodname = "ROUTERS/BRANCH/3660"
-	elif prodcode == "c3660":
-		prodname = "ROUTERS/BRANCH/3660"
-	elif prodcode == "c3660":
-		prodname = "ROUTERS/BRANCH/3660"
 	elif prodcode == "c3725":
 		prodname = "ROUTERS/BRANCH/3725"
 	elif prodcode == "c3745":
@@ -2551,26 +2567,6 @@ def product (prodcode):
 		prodname = "ROUTERS/BRANCH/4000"
 	elif prodcode == "c4500":
 		prodname = "ROUTERS/BRANCH/4700M"
-	elif prodcode == "c800":
-		prodname = "ROUTERS/BRANCH/800"
-	elif prodcode == "c805":
-		prodname = "ROUTERS/BRANCH/805"
-	elif prodcode == "c806":
-		prodname = "ROUTERS/BRANCH/806"
-	elif prodcode == "c815":
-		prodname = "ROUTERS/BRANCH/815"
-	elif prodcode == "c820":
-		prodname = "ROUTERS/BRANCH/820"
-	elif prodcode == "c827v":
-		prodname = "ROUTERS/BRANCH/827"
-	elif prodcode == "c828":
-		prodname = "ROUTERS/BRANCH/828"
-	elif prodcode == "c831":
-		prodname = "ROUTERS/BRANCH/831"
-	elif prodcode == "c836":
-		prodname = "ROUTERS/BRANCH/836"
-	elif prodcode == "c837":
-		prodname = "ROUTERS/BRANCH/837"
 	elif prodcode == "mc3810":
 		prodname = "ROUTERS/BRANCH/MC-3810"
 	elif prodcode == "branchmodules":
@@ -3980,7 +3976,9 @@ def utils_dev_vf (debug1,filename,prodname,workname):
 		messageunknowndev()
 	else:
 		splitbydot = workname.split(".")
-		if len(splitbydot) == 3:
+		if len(splitbydot) == 2:
+			version2 = util2digit(splitbydot[0],splitbydot[1])
+		elif len(splitbydot) == 3:
 			version2 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
 		elif len(splitbydot) == 4:
 			version2 = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
@@ -4059,6 +4057,27 @@ def utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname):
 			version2 = util2digit(splitbydot[0],splitbydot[1])
 			version3 = util6digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4],splitbydot[5])
 		filepath = filepath4(prodname,imagecode,version2,version3)
+		filemove (filepath, filename)
+
+def utils_dev_imagecode_vf (debug1,filename,prodname,imagecode,workname):
+	if debug1:
+		print("\tModule#\t\tiosutils")
+		print("\tSubroutine#\tutils_dev_imagecode_v2_vf")
+	if prodname == "UNKNOWN":
+		messageunknowndev()
+	elif imagecode == "UNKNOWN":
+		messageunknownfeat()
+	else:
+		splitbydot = workname.split(".")
+		if len(splitbydot) == 3:
+			version3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		elif len(splitbydot) == 4:
+			version3 = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+		elif len(splitbydot) == 5:
+			version3 = util5digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4])
+		elif len(splitbydot) == 6:
+			version3 = util6digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4],splitbydot[5])
+		filepath = filepath3(prodname,imagecode,version3)
 		filemove (filepath, filename)
 
 def utils_dev_v2_vf_imagecode_dash (debug1,filename,prodname,imagecode,workname):

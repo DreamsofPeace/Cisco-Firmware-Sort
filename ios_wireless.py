@@ -10,11 +10,10 @@ def fileprocessor_wireless(debug1,filename):
 		print("\tSubroutine#\tfileprocessor_wireless")
 
 	if (
-	filename.startswith("AIR_CTVM_LARGE-K9_") or 
-	filename.startswith("AIR_CTVM_LARGE_") or 
-	filename.startswith("MFG_CTVM_SMALL_") or 
-	filename.startswith("AIR_CTVM-K9_") or 
-	filename.startswith("MFG_CTVM_")
+	filename.startswith("AIR-CTVM") or 
+	filename.startswith("AIR_CTVM") or 
+	filename.startswith("MFG_CTVM") or 
+	filename.startswith("AP_BUNDLE_CTVM_")
 	):
 		prodname = product ("CTVM")
 		wireless_controller_virtual (debug1,filename,prodname)
@@ -451,24 +450,66 @@ def wireless_all_dash (debug1,filename,prodname,workname):
 def wireless_controller_virtual (debug1,filename,prodname):
 	if debug1:
 		print("\tSubroutine#\twireless_controller_virtual")
-	workname = filename.replace("AIR_CTVM_LARGE-K9_","")
-	workname = workname.replace("AIR_CTVM_LARGE_","")
-	workname = workname.replace("MFG_CTVM_SMALL_","")
-	workname = workname.replace("AIR_CTVM-K9_","")
-	workname = workname.replace("MFG_CTVM_LARGE_","")
-	workname = workname.replace("MFG_CTVM_","")
-	workname = workname.replace(".ova","")
-	workname = workname.replace(".iso","")
-	workname = workname.replace(".aes","")
-	splitbyuscore = workname.split("_")
-	splitbydot    = workname.split(".")
-	if len(splitbyuscore) < len(splitbydot):
-		vertwo = util2digit(splitbydot[0],splitbydot[1])
-		verfour = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
-		filepath = filepath3(prodname,vertwo,verfour)
+	if filename == "AIR-CTVM-K9-1-10-0-0-FUS.aes":
+		imagecode = imagelookup("fpd")
+		filepath = filepath2(prodname,imagecode)
 		filemove (filepath, filename)
-	elif len(splitbyuscore) > len(splitbydot):
-		vertwo = util2digit(splitbyuscore[0],splitbyuscore[1])
-		verfour = util4digit(splitbyuscore[0],splitbyuscore[1],splitbyuscore[2],splitbyuscore[3])
-		filepath = filepath3(prodname,vertwo,verfour)
+	elif (
+		filename.startswith("AP_BUNDLE_CTVM_LARGE_") or 
+		filename.startswith("AP_BUNDLE_CTVM_SMALL_")
+		):
+		imagecode = imagelookup("apbundle")
+		workname = filename.replace("AP_BUNDLE_CTVM_LARGE_","")
+		workname = workname.replace("AP_BUNDLE_CTVM_SMALL_","")
+		workname = workname.replace(".aes","")
+		xuscore = workname.count("_")
+		xdash = workname.count("-")
+		if xuscore > xdash:
+			filenamesplit = workname.split("_")
+		elif xuscore < xdash:
+			filenamesplit = workname.split("-")
+		vertwo = util2digit(filenamesplit[0],filenamesplit[1])
+		verfour = util4digit(filenamesplit[0],filenamesplit[1],filenamesplit[2],filenamesplit[3])
+		filepath = filepath4(prodname,vertwo,verfour,imagecode)
+		filemove (filepath, filename)
+	elif (
+		filename.startswith("AIR-CTVM-K9") and filename.endswith(".aes") or 
+		filename.startswith("AIR_CTVM_LARGE") and filename.endswith(".aes")
+		):
+		imagecode = imagelookup("upgrade")
+		workname = filename.replace("AIR_CTVM_LARGE-K9_","")
+		workname = workname.replace("AIR-CTVM-K9-","")
+		workname = workname.replace(".aes","")
+		xuscore = workname.count("_")
+		xdash = workname.count("-")
+		if xuscore > xdash:
+			filenamesplit = workname.split("_")
+		elif xuscore < xdash:
+			filenamesplit = workname.split("-")
+		vertwo = util2digit(filenamesplit[0],filenamesplit[1])
+		verfour = util4digit(filenamesplit[0],filenamesplit[1],filenamesplit[2],filenamesplit[3])
+		filepath = filepath4(prodname,vertwo,verfour,imagecode)
+		filemove (filepath, filename)
+	else:
+		workname = filename.replace("AIR_CTVM-K9_","")
+		workname = workname.replace("AIR_CTVM_LARGE-K9_","")
+		workname = workname.replace("AIR_CTVM_LARGE-","")
+		workname = workname.replace("MFG_CTVM_LARGE_","")
+		workname = workname.replace("MFG_CTVM_SMALL_","")
+		workname = workname.replace("MFG_CTVM_","")
+		workname = workname.replace(".ova","")
+		workname = workname.replace(".iso","")
+		imagecode = imagelookup("install")
+		xuscore = workname.count("_")
+		xdash = workname.count("-")
+		xdot = workname.count(".")
+		if xuscore > xdash:
+			filenamesplit = workname.split("_")
+		elif xuscore < xdash:
+			filenamesplit = workname.split("-")
+		elif xdot > 2:
+			filenamesplit = workname.split(".")
+		vertwo = util2digit(filenamesplit[0],filenamesplit[1])
+		verfour = util4digit(filenamesplit[0],filenamesplit[1],filenamesplit[2],filenamesplit[3])
+		filepath = filepath4(prodname,vertwo,verfour,imagecode)
 		filemove (filepath, filename)

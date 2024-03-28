@@ -321,6 +321,8 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 
 	elif (
 	filename.startswith("ise-pic") or 
+	filename.startswith("pic") or
+	filename.startswith("Cisco-ISE-PIC") or 
 	filename == "pic-2.2.0.470.SPA.x86_64.iso" or 
 	filename == "pic-2.4.0.357.SPA.x86_64.iso"
 	):
@@ -3294,32 +3296,17 @@ def sec_ise_urtbundle (debug1,filename,prodname,imagecode):
 	filepath = filepath3 (prodname,vertwo,imagecode)
 	filemove (filepath, filename)
 
+
 def sec_ise_pic (debug1,filename):
 	if debug1:
 		print("\tSubroutine#\tsec_ise_pic")
 	prodname = product ("isepic")
-
-	if filename.startswith("pic-"):
-		sec_ise_pic_orig (debug1,filename,prodname)
-
-	elif filename.startswith("ise-pic-"):
-		sec_ise_pic_current (debug1,filename,prodname)
-	else:
-		messageunknownfile()
-
-def sec_ise_pic_orig (debug1,filename,prodname):
-	if debug1:
-		print("\tSubroutine#\tsec_ise_pic_orig")
-	splitbydot = filename.split(".")
-	splitbydot[0] = splitbydot[0].replace("pic-","")
-	imagecode = imagelookup("install")
-	verfour = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
-	filepath = filepath3 (prodname,verfour,imagecode)
-	filemove (filepath, filename)
-
-def sec_ise_pic_current (debug1,filename,prodname):
-	if debug1:
-		print("\tSubroutine#\tsec_ise_pic_current")
+	workname = filename.replace("ise-pic-","")
+	workname = workname.replace("ise-pic-patchbundle-","")
+	workname = workname.replace("Cisco-ISE-PIC-","")
+	workname = workname.replace("pic-","")
+	workname = workname.replace(".SPA.x86_64.iso","")
+	workname = workname.replace(".SPA.x86_64.tar.gz","")
 	splitbydash = filename.split("-")
 
 	if filename.startswith("ise-pic-patchbundle-"):
@@ -3328,14 +3315,12 @@ def sec_ise_pic_current (debug1,filename,prodname):
 		imagecode = imagelookup("patch")
 		filepath = filepath4 (prodname,version,imagecode,splitbydash[4])
 		filemove (filepath, filename)
-
-	elif filename.startswith("ise-pic-"):
-		version = splitbydash[2]
+	else:
+#		splitbydot = workname.split(".")
+#		version = splitbydash[2]
 		imagecode = imagelookup("install")
 		filepath = filepath3 (prodname,version,imagecode)
 		filemove (filepath, filename)
-	else:
-		messageunknownfile()
 
 def sec_sourcefire_fmc_patch (debug1,filename):
 	if debug1:

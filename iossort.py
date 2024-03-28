@@ -36,10 +36,59 @@ __maintainer__ = ""
 __email__ = ""
 __status__ = ""
 
+def ucspe (debug1,filename):
+	if debug1:
+		print("\tSubroutine#\tucspe")
+	prodname = product ("ucspe")
+	if filename.endswith("pdf"):
+		imagecode = imagelookup("docs")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+	elif (
+		filename == "ucsm_object_docs.zip" or
+		filename == "UCSPE 3.1(2e) 6248 1340 export.txt"
+	):
+		imagecode = "3.1.2e"
+		utilssinglemove (debug1,filename,prodname,imagecode)
+	elif (
+		filename == "export_6248_ch1_b200m5.xml" or
+		filename == "swift_stack_3260_cfg_export.xml"
+	):
+		imagecode = "3.2.3e"
+		utilssinglemove (debug1,filename,prodname,imagecode)
+	elif (
+		filename == "export_6248_ch1_b200m5.xml.txt" or
+		filename == "swift_stack_3260_cfg_export.xml.txt" or
+		filename == "ucspe_6296_chassis1_export.xml.txt" or
+		filename == "ucspe_6454_chassis1_export.xml.txt"
+	):
+		imagecode = "4.1.2cPE1"
+		utilssinglemove (debug1,filename,prodname,imagecode)
+	elif filename.startswith("UCSM") and filename.endswith("stripped-firmware.zip"):
+		imagecode = imagelookup("stripped-firmware")
+		workname = filename.replace("-stripped-firmware.zip","")
+		workname = workname.replace("UCSM-","")
+		workname = workname.replace(")","")
+		workname = workname.replace("(",".")
+		utils_dev_imagecode_vf (debug1,filename,prodname,imagecode,workname)
+	else:
+		workname = filename.replace(".ova.zip","")
+		workname = workname.replace(".ova","")
+		workname = workname.replace(".zip","")
+		workname = workname.replace("UCSPE_","")
+		workname = workname.replace("cimc_emulator-","")
+		workname = workname.replace("Cisco_UCS_Platform_Emulator_v","")
+		workname = workname.replace("Cisco_UCS_Platform_Emulator_","")
+		workname = workname.replace(".73034.361150.7z","")
+		workname = workname.replace("c220-m4-emu-cimc.","")
+		workname = workname.replace("c240-m4-emu-cimc.","")
+		workname = workname.replace("c460-m4-emu-cimc.","")
+		utils_dev_vf (debug1,filename,prodname,workname)
+
 def nbar (filename):
 	prodname = product ("ntwkmgmt")
 	imagecode = imagelookup ("nbar")
-	workname = filename.replace(".pack","")
+	workname = filename.replace(".pack.zip","")
+	workname = workname.replace(".pack","")
 	splitbydash = workname.split("-")
 	if filename.startswith("pp-adv-nam-18-"):
 		workname = workname.replace("pp-adv-nam-18-","")
@@ -423,6 +472,29 @@ def toplevel(filename):
 			prodname = product("C9800-AP")
 			imagecode = imagelookup ("specialbuild")
 			utilssinglemove (debug1,name,prodname,imagecode)
+		elif (
+			name in [
+				"ucsm_object_docs.zip",
+				"UCSPE 3.1(2e) 6248 1340 export.txt",
+				"export_6248_ch1_b200m5.xml",
+				"swift_stack_3260_cfg_export.xml",
+				"export_6248_ch1_b200m5.xml.txt",
+				"swift_stack_3260_cfg_export.xml.txt",
+				"ucspe_6296_chassis1_export.xml.txt",
+				"ucspe_6454_chassis1_export.xml.txt"
+				] or
+			"Cisco UCS Platform Emulator" in name and name.endswith("pdf") or
+			"Cisco_UCS_Platform_Emulator" in name and name.endswith("pdf") or
+			"UCSPE" in name and name.endswith("pdf") or 
+			name.startswith("UCSPE") or
+			name.startswith("UCSM") and name.endswith("stripped-firmware.zip") or
+			name.startswith("Cisco_UCS_Platform_Emulator_") or
+			name.startswith("cimc_emulator-") or
+			name.startswith("c220-m4-emu-cimc.") or
+			name.startswith("c240-m4-emu-cimc.") or
+			name.startswith("c460-m4-emu-cimc.")
+			):
+			ucspe (debug1,name)
 		elif name.endswith("pdf"):
 			continue
 
@@ -1054,8 +1126,6 @@ def toplevel(filename):
 			"grub.efi",
 			"occ-121.gz",
 			"occ-121.zip",
-			"pic-2.2.0.470.SPA.x86_64.iso",
-			"pic-2.4.0.357.SPA.x86_64.iso",
 			"pnLogAgent_1.1.zip",
 			"pnLogAgent_4-1-3.zip",
 			"pnLogAgent_4-1-3.zip.txt",
@@ -1150,6 +1220,8 @@ def toplevel(filename):
 		name.startswith("iox-iosxe-utd") or
 		name.startswith("ise") or
 		name.startswith("ise-pic") or
+		name.startswith("pic") or
+		name.startswith("Cisco-ISE-PIC") or
 		name.startswith("lsp-rel-") or
 		name.startswith("mac-spw-dmg") or
 		name.startswith("np") and name.endswith(".bin") or
@@ -1506,6 +1578,21 @@ def toplevel(filename):
 		):
 			prodname = product ("cat1200")
 			utilssingleprodname (debug1,name,prodname)
+			
+		elif (
+			name.startswith ("c627") or
+			name.startswith ("c633") or
+			name.startswith ("c673") or
+			name.startswith ("c675") or
+			name.startswith ("c676") or
+			name.startswith ("c677") or
+			name.startswith ("c677i") or
+			name.startswith ("c678cap") or
+			name.startswith ("c678dmt") or
+			name.startswith ("nsrouter")
+		):
+			prodname = product ("c600")
+			utilssingleprodname (debug1,name,prodname)
 
 		elif (
 		name == "c3750-dmon-mz-122-25r.SEE4" or
@@ -1549,7 +1636,9 @@ def toplevel(filename):
 		name.startswith ("SWLC3750K9") or
 		name.startswith ("AIR_CTVM_LARGE-K9") or
 		name.startswith ("AIR_CTVM-K9") or
+		name.startswith ("AIR_CTVM") or
 		name.startswith ("MFG_CTVM") or
+		name.startswith ("AP_BUNDLE_CTVM") or
 		name.startswith ("AP_BUNDLE") or
 		name.startswith ("WCS-STANDARD-K9") or
 		name.startswith ("ISR-AP1100AC") or
@@ -1905,13 +1994,6 @@ def toplevel(filename):
 
 		elif name.startswith("mre_workflow_signed"):
 			continue
-
-		elif name.startswith("UCSPE"):
-			prodname = product ("ucspe")
-			workname = name.replace(".ova","")
-			workname = workname.replace(".zip","")
-			workname = workname.replace("UCSPE_","")
-			utils_dev_vf (debug1,filename,prodname,workname)
 
 		else:
 			fileprocessorios (debug1,name)

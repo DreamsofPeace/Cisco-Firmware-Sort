@@ -306,30 +306,29 @@ def fileproccontroller (debug1,filename):
 def fileproc_iosxe_controller (debug1,filename,prodname):
 	if debug1:
 		print("\tSubroutine#\tfileproc_iosxe_controller")
-	if filename.endswith(".iso"):
-		imagecode = imagelookup("universalk9")
+	if filename.endswith(".tar.gz"):
+		imagecode = imagelookup("universal_cloud")
 		fileproc_iosxe (debug1,filename,prodname,imagecode)
-	elif filename.endswith(".ova"):
-		imagecode = imagelookup("universalk9")
+	elif "nfvis" in filename:
+		imagecode = imagelookup("universal_cloud_nfvis")
 		fileproc_iosxe (debug1,filename,prodname,imagecode)
-	elif filename.endswith(".bin"):
-		imagecode = imagelookup("universalk9")
+	elif "esxi" in filename:
+		imagecode = imagelookup("universal_cloud_esxi")
 		fileproc_iosxe (debug1,filename,prodname,imagecode)
-	elif filename.endswith(".run"):
-		if "nfvis" in filename:
-			imagecode = imagelookup("universal_google_nfvis")
-			fileproc_iosxe (debug1,filename,prodname,imagecode)
-		elif "esxi" in filename:
-			imagecode = imagelookup("universal_google_esxi")
-			fileproc_iosxe (debug1,filename,prodname,imagecode)
-		elif "kvm" in filename:
-			imagecode = imagelookup("universal_google_kvm")
-			fileproc_iosxe (debug1,filename,prodname,imagecode)
-	elif filename.endswith(".tar.gz"):
-		imagecode = imagelookup("universalk9_cloud")
+	elif "kvm" in filename:
+		imagecode = imagelookup("universal_cloud_kvm")
 		fileproc_iosxe (debug1,filename,prodname,imagecode)
 	elif filename.endswith(".qcow2"):
 		imagecode = imagelookup("universal_kvm")
+		fileproc_iosxe (debug1,filename,prodname,imagecode)
+	elif filename.endswith(".ova"):
+		imagecode = imagelookup("install")
+		fileproc_iosxe (debug1,filename,prodname,imagecode)
+	elif filename.endswith(".iso"):
+		imagecode = imagelookup("install")
+		fileproc_iosxe (debug1,filename,prodname,imagecode)
+	elif filename.endswith(".bin"):
+		imagecode = imagelookup("upgrade")
 		fileproc_iosxe (debug1,filename,prodname,imagecode)
 	elif (
 	filename.startswith("C9800-80-universalk9_wlc.") or 
