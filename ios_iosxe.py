@@ -341,7 +341,8 @@ def fileproc_iosxe_controller (debug1,filename,prodname):
 	filename.startswith("C9800-80-universalk9_kvm.") or 
 	filename.startswith("C9800-40-universalk9_kvm.") or 
 	filename.startswith("C9800-CL-universalk9_kvm.") or 
-	filename.startswith("C9800-L-universalk9_kvm.")
+	filename.startswith("C9800-L-universalk9_kvm.") or 
+	filename.startswith("C9800-CL-universalk9.") and filename.endswith(".run") 
 	):
 		imagecode = imagelookup("universalk9_kvm")
 		fileproc_iosxe (debug1,filename,prodname,imagecode)

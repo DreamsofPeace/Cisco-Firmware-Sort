@@ -1059,23 +1059,27 @@ def toplevel(filename):
 		name.startswith("c1100-universalk9") or
 		name.startswith("c1100_gfast_") or
 		name.startswith("c1100_phy_") or
-		name.startswith("isr1100be") or
 		name.startswith("c8000aep") or
+		name.startswith("c8000aes") or
 		name.startswith("c8000be") or
 		name.startswith("c8000v") or
 		name.startswith("cat3k_caa") or
 		name.startswith("cat4500es8") or
 		name.startswith("cat9k") or
-		name.startswith("c8000aes") or
+		name.startswith("ccg110") or
 		name.startswith("csr1000v") or
 		name.startswith("csr1000v_milplr") or
 		name.startswith("ct5760") or
 		name.startswith("ess3x00") or
+		name.startswith("ie31xx") or
 		name.startswith("ie3x00") or
 		name.startswith("ie9k") or
+		name.startswith("ie9k_iosxe") or
 		name.startswith("iosxe-remote-mgmt") or
 		name.startswith("iosxe-sd-avc") or
 		name.startswith("ir1101") or
+		name.startswith("ir8340") or
+		name.startswith("isr1100be") or
 		name.startswith("isr4200") or
 		name.startswith("isr4300") or
 		name.startswith("isr4400") or
@@ -1084,9 +1088,7 @@ def toplevel(filename):
 		name.startswith("ttam") or
 		name.startswith("vg400") or
 		name.startswith("vg420") or
-		name.startswith("vg450") or
-		name.startswith("ie9k_iosxe") or
-		name.startswith("isr1100be")
+		name.startswith("vg450")
 		):
 			fileprocessor_iosxe(debug1,name)
 

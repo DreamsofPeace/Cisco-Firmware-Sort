@@ -3688,7 +3688,7 @@ def sec_workname_imagecode (debug1,filename,prodname,imagecode):
 		filemove (filepath, filename)
 	elif len(splitbydot) == 4:
 		ver2 = util2digit (splitbydot[0],splitbydot[1])
-		ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+		ver3 = util4digit (splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
 		filepath = filepath4(prodname,imagecode,ver2,ver3)
 		filemove (filepath, filename)
 

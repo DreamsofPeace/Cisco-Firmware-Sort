@@ -3199,6 +3199,8 @@ def product (prodcode):
 		prodname = "SWITCHES/INDUSTRIAL-ETHERNET/IE-3000"
 	elif prodcode == "ie3010":
 		prodname = "SWITCHES/INDUSTRIAL-ETHERNET/IE-3010"
+	elif prodcode == "ie31xx":
+		prodname = "SWITCHES/INDUSTRIAL-ETHERNET/IE-3100"
 	elif prodcode == "ie3x00":
 		prodname = "SWITCHES/INDUSTRIAL-ETHERNET/IE-3x00"
 	elif prodcode == "ie4000":
@@ -3207,6 +3209,8 @@ def product (prodcode):
 		prodname = "SWITCHES/INDUSTRIAL-ETHERNET/IE-4010"
 	elif prodcode == "ie5000":
 		prodname = "SWITCHES/INDUSTRIAL-ETHERNET/IE-5000"
+	elif prodcode == "ir8340":
+		prodname = "ROUTERS/INDUSTRIAL/8340"
 	elif prodcode == "s6523":
 		prodname = "SWITCHES/METRO/Catalyst-6500ME"
 	elif prodcode == "me1200":
@@ -3525,6 +3529,10 @@ def product (prodcode):
 		prodname = "WIRELESS/CONTROLLER/WLC8540"
 	elif prodcode == "wcs":
 		prodname = "WIRELESS/CONTROLLER/WCS"
+	elif prodcode == "ccg110":
+		prodname = "WIRELESS/GATEWAYS/CATAYLST-WIRELESS-GATEWAY"
+	elif prodcode == "cg":
+		prodname = "WIRELESS/GATEWAYS/CATAYLST-CELLULAR-GATEWAY"
 	elif prodcode == "ucspe":
 		prodname = "DEVELOPER-TOOLS/UCE-PLATFORM-EMULATOR"
 	else:
