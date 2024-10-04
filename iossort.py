@@ -557,6 +557,48 @@ def toplevel(filename):
 			utilssinglemove (debug1,name,prodname,imagecode)
 
 		elif (
+			name == "s72033-adventerprisek9_wan_dbg-mz.CSCsv69594_sxf"
+		):
+			prodname = product("s72033")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name == "c2600-p-mz.991126"
+		):
+			prodname = product("c2600")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name == "c3620-i-mz.bin"
+		):
+			prodname = product("c3620")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name == "c3620-i-mz.bin"
+		):
+			prodname = product("c3620")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name == "c5350-boot-mz.12-1.bin"
+		):
+			prodname = product("c5350")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name == "c5800-p4scgen-3101m-mz.sit"
+		):
+			prodname = product("c5800")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
 		name.startswith("c7200-i12o3s-mz.2005-04-14.BROILER2_BLUEWIN_EFT_REL") or 
 		name.startswith("c7200-i12s-mz.2005-04-14.BROILER2_BLUEWIN_EFT_REL") or 
 		name.startswith("c7200-i12o3s-mz.2005-07-16.BSNOP4_DAILY_BUILD") or 
@@ -1034,7 +1076,11 @@ def toplevel(filename):
 			] or
 		name.endswith ("comp_matrix.xml") or
 		name.startswith ("WP76xx") or
+		name.startswith ("WP7601") or
+		name.startswith ("WP7603") or
 		name.startswith("C9800-") or
+		name.startswith("CW9800H") or
+		name.startswith("CW9800M") or
 		name.startswith("CAT3650_WEBAUTH_BUNDLE") or
 		name.startswith("CAT3850_WEBAUTH_BUNDLE") or
 		name.startswith("asr1000") or
@@ -1055,6 +1101,7 @@ def toplevel(filename):
 		name.startswith("asr903rsp2") or
 		name.startswith("asr920") or
 		name.startswith("asr920igp") or
+		name.startswith("c1100tg") or
 		name.startswith("c1100-ucmk9") or
 		name.startswith("c1100-universalk9") or
 		name.startswith("c1100_gfast_") or
@@ -1088,7 +1135,8 @@ def toplevel(filename):
 		name.startswith("ttam") or
 		name.startswith("vg400") or
 		name.startswith("vg420") or
-		name.startswith("vg450")
+		name.startswith("vg450") or
+		name.startswith("appqoe")
 		):
 			fileprocessor_iosxe(debug1,name)
 
@@ -1165,6 +1213,7 @@ def toplevel(filename):
 		name.startswith("Cisco_Firepower_SRU") or
 		name.startswith("Cisco_Firepower_Threat") or
 		name.startswith("Cisco_Network_Sensor") or
+		name.startswith("Cisco_Secure_FW_TD_4200") or
 		name.startswith("Cisco_VDB_Fingerprint_Database") or
 		name.startswith("Clean") or
 		name.startswith("FMT-CP-Config-Extractor") or
@@ -1299,6 +1348,7 @@ def toplevel(filename):
 			"c2xx-m1-utils-1.0.2.iso",
 			"ca_technology_package-2.1.0.0.41.ubf",
 			"cspc28backupscript.zip",
+			"cspc210backupscript.zip",
 			"efi-obd-v12-07-18.diag",
 			"efi-obd-v13-10-15.diag",
 			"efi-obd-v13-7-3.diag",
@@ -1390,7 +1440,9 @@ def toplevel(filename):
 		name.startswith("update_pkg-ucse") or
 		name.startswith("vcenter-plugin") or
 		name.startswith("Launchpad-desktop") or
-		name.startswith("DNA_Center_VA")
+		name.startswith("DNA_Center_VA") or
+		name.startswith("CIMCS") or
+		name.startswith("cimcs")
 		):
 			file_proc_servers(name,debug1)
 

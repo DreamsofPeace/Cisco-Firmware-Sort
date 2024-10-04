@@ -25,6 +25,7 @@ def file_proc_servers (filename,debug1):
 	elif (
 		filename.startswith("DNAC") or 
 		filename.startswith("dnac") or 
+		filename.startswith("trustidevcodesigning5") or 
 		filename == "Deploy-cisco-dna-center-on-aws-using-aws-marketplace"
 		):
 		prodname = product ("dnac")
@@ -85,6 +86,24 @@ def file_proc_servers (filename,debug1):
 			workname = workname.replace(".ova", "")
 			imagecode = imagelookup("witness")
 			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
+		elif (
+			filename.startswith("DNAC-SW-Launcher-") or 
+			filename.startswith("trustidevcodesigning5") or 
+			filename.endswith("-VA_cisco_image_verification_key.pub") or 
+			filename.endswith("-VA.ova")
+			):
+			imagecode = imagelookup("virtualapp")
+			workname = filename.replace("trustidevcodesigning5-", "")
+			workname = workname.replace("DNAC-SW-Launcher-", "")
+			workname = workname.replace("-VA.tar.gz.sig", "")
+			workname = workname.replace("-VA.tar.gz", "")
+			workname = workname.replace("-VA.ova", "")
+			workname = workname.replace("-VA_cisco_image_verification_key.pub", "")
+			splitbydot = workname.split(".")
+			version2 = util2digit(splitbydot[0],splitbydot[1])
+			version4 = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+			filepath = filepath4(prodname,version2,version4,imagecode)
+			filemove (filepath, filename)
 		else:
 			imagecode = imagelookup("system")
 			workname = filename.replace("DNAC-SW-", "")
@@ -117,11 +136,17 @@ def file_proc_servers (filename,debug1):
 
 	elif (
 	filename.startswith("plumas1") or 
+	filename.startswith("UCSC-C220-M5-")
+	):
+		prodname = product("c220m5")
+		imagecode = imagelookup("catalog")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
 	filename.startswith("plumas2") or 
-	filename.startswith("UCSC-C220-M5-") or 
 	filename.startswith("UCSC-C240-M5-")
 	):
-		prodname = product("c2xxm5")
+		prodname = product("c240m5")
 		imagecode = imagelookup("catalog")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
@@ -129,7 +154,8 @@ def file_proc_servers (filename,debug1):
 	filename.startswith ("Collector") or 
 	filename.startswith ("collector") or 
 	filename == "JeOS_Patch_To_Enable_ASD.zip" or 
-	filename == "cspc28backupscript.zip"
+	filename == "cspc28backupscript.zip" or 
+	filename == "cspc210backupscript.zip"
 	):
 		prodname = product("cspc")
 		utilssingleprodname (debug1,filename,prodname)

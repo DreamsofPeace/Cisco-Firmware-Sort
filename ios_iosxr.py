@@ -1,6 +1,7 @@
 from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
 from iosutils import util2digit,util3digit,util4digit,util5digit,util6digit,stringtolist
+from iosutils import util2collapse
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
 
 def fileprocessor_iosxr (debug1,filename):
@@ -58,24 +59,13 @@ def fileprocessor_iosxr (debug1,filename):
 		iosxr_asr9k (debug1,filename)
 
 	elif (
-	filename.startswith("fullk9")
-	):
-		iosxr_asr9kv (debug1,filename)
-
-	elif (
-	filename.startswith("xrv9k")
-	):
-		iosxr_asr9kvsmu (debug1,filename)
-
-	elif (
-	filename == "XRV9000-docs-623.tar" or 
-	filename == "XRV9000-docs-6225.tar" or 
+	filename.startswith("fullk9") or
+	filename.startswith("xrv9k") or
+	filename.startswith("XRV9000-docs") or
 	filename.startswith("XRV9K-docs")
 	):
 		prodname = product ("iosxrvfull")
-		imagecode = imagelookup("docs")
-		filepath = filepath2 (prodname,imagecode)
-		filemove (filepath, filename)
+		iosxr_iosxrv (debug1,filename,prodname)
 
 	elif (
 	filename == "xrvr-full-4.3.2.vmdk" or
@@ -97,6 +87,8 @@ def fileprocessor_iosxr (debug1,filename):
 		prodname = product ("xrvcontainer")
 		imagecode = imagelookup("control-plane")
 		workname = filename.replace(".tgz","")
+		workname = workname.replace("xrd-control-plane-container-x64.dockerv1.tgz-","")
+		workname = workname.replace("xrd-control-plane-container-x64.dockerv1-","")
 		workname = workname.replace("xrd-control-plane-container-x64.","")
 		workname = workname.replace("xrd-control-plane-container-x86.","")
 		iosxr_dot_workname_1ver (debug1,filename,prodname,imagecode,workname)
@@ -107,6 +99,8 @@ def fileprocessor_iosxr (debug1,filename):
 		prodname = product ("xrvcontainer")
 		imagecode = imagelookup("data-plane")
 		workname = filename.replace(".tgz","")
+		workname = workname.replace("xrd-vrouter-container-x64.dockerv1.tgz-","")
+		workname = workname.replace("xrd-vrouter-container-x64.dockerv1-","")
 		workname = workname.replace("xrd-vrouter-container-x64.","")
 		workname = workname.replace("xrd-vrouter-container-x86.","")
 		iosxr_dot_workname_1ver (debug1,filename,prodname,imagecode,workname)
@@ -117,6 +111,67 @@ def fileprocessor_iosxr (debug1,filename):
 #		elif imagecode == "UNKNOWN":
 #			messageunknownfeat()
 		messageunknowndev()
+
+def iosxr_iosxrv (debug1,filename,prodname):
+	if debug1:
+		print("\tSubroutine#\tiosxr_iosxrv")
+	workname = filename.replace("fullk9-R-XRV9000-","")
+	workname = workname.replace("-RRVG","")
+	workname = workname.replace("-RR","")
+	workname = workname.replace("-VG","")
+	workname = workname.replace(".tar","")
+	workname = workname.replace("XRV9K-docs-","")
+	workname = workname.replace("XRV9000-docs-","")
+	if filename.startswith("XRV9K-docs-"):
+		splitbydot = workname.split(".")
+		version2 = util2digit(splitbydot[0],splitbydot[1])
+		imagecode = imagelookup("docs")
+		filepath = filepath4 (prodname,version2,workname,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("XRV9000-docs-"):
+		splitbynone = list(workname)
+		imagecode = imagelookup("docs")
+		if len(splitbynone) == 3:
+			version2 = util2digit(splitbynone[0],splitbynone[1])
+			version3 = util3digit(splitbynone[0],splitbynone[1],splitbynone[2])
+			filepath = filepath4 (prodname,version2,version3,imagecode)
+			filemove (filepath, filename)
+		elif len(splitbynone) == 4:
+			version2 = util2digit(splitbynone[0],splitbynone[1])
+			version3 = util3digit(splitbynone[0],splitbynone[1],util2collapse(splitbynone[2],splitbynone[3]))
+			filepath = filepath4 (prodname,version2,version3,imagecode)
+			filemove (filepath, filename)
+	splitbynone = stringtolist(workname)
+	if filename.contains("CSC"):
+		workname = workname.replace("xrv9k-","")
+		splitbydot = workname.split(".")
+		imagecode = imagelookup("smu")
+		version2 = util2digit(splitbydot[0],splitbydot[1])
+		version3 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		filepath = filepath4 (prodname,version2,version3,imagecode,splitbydot[2])
+		filemove (filepath, filename)
+	if filename.endswith("-RRVG.tar"):
+		imagecode = imagelookup("rrvga")
+	elif filename.endswith("-RR.tar"):
+		imagecode = imagelookup("rr")
+	elif filename.endswith("-VG.tar"):
+		imagecode = imagelookup("basevga")
+	elif filename.endswith(".tar"):
+		imagecode = imagelookup("base")
+	if (
+	isinstance(splitbynone, list) and len(splitbynone) > 1 and
+	splitbynone[0] == "2" and splitbynone[1] == "4" or
+	splitbynone[0] == "2" and splitbynone[1] == "5" or
+	splitbynone[0] == "2" and splitbynone[1] == "6" or
+	splitbynone[0] == "2" and splitbynone[1] == "7" or
+	splitbynone[0] == "2" and splitbynone[1] == "8" or
+	splitbynone[0] == "2" and splitbynone[1] == "9"
+	):
+		version2 = util2digit(util2collapse(splitbynone[0],splitbynone[1]),splitbynone[2])
+		version3 = util3digit(util2collapse(splitbynone[0],splitbynone[1]),splitbynone[2],splitbynone[3])
+		filepath = filepath4 (prodname,version2,version3,imagecode)
+		filemove (filepath, filename)
+
 
 def iosxr_iosxrv_demo (debug1,filename):
 	if debug1:
@@ -290,19 +345,19 @@ def iosxr_dot_workname_1ver (debug1,filename,prodname,imagecode,workname):
 	splitbydot = workname.split(".")
 	if len(splitbydot) == 2:
 		version = util2digit(splitbydot[0],splitbydot[1])
-		filepath = filepath3 (prodname,imagecode,version)
+		filepath = filepath3 (prodname,version,imagecode)
 	elif len(splitbydot) == 3:
 		version = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
-		filepath = filepath3 (prodname,imagecode,version)
+		filepath = filepath3 (prodname,version,imagecode)
 	elif len(splitbydot) == 4:
 		version = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
-		filepath = filepath3 (prodname,imagecode,version)
+		filepath = filepath3 (prodname,version,imagecode)
 	elif len(splitbydot) == 5:
 		version = util5digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4])
-		filepath = filepath3 (prodname,imagecode,version)
+		filepath = filepath3 (prodname,version,imagecode)
 	elif len(splitbydot) == 6:
 		version = util6digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4],splitbydot[5])
-		filepath = filepath3 (prodname,imagecode,version)
+		filepath = filepath3 (prodname,version,imagecode)
 	else:
 		filepath = filepath2 (prodname,imagecode)
 	filemove (filepath, filename)

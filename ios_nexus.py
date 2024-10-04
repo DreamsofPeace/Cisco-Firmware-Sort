@@ -12,11 +12,18 @@ def fileprocessornxos (filename,debug1):
 	splitbydot = filename.split(".")
 
 	if (
-	filename.startswith("ssd_c400_upgrade") or 
+	filename.startswith("ssd_c400_upgrade")
+	):
+		prodname = product("nxos")
+		imagecode = imagelookup("firmware")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	if (
 	filename == "upgrade_m500_firmware.tar.gz"
 	):
 		prodname = product("nxos")
 		imagecode = imagelookup("firmware")
+		imagecode = imagecode + "/9.3.6"
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename == "n9000-epld-secure-boot-update.img":
@@ -57,47 +64,19 @@ def fileprocessornxos (filename,debug1):
 		workname = workname.replace("nxos.","")
 		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 
-	elif filename == "ntp-1.0.1-7.0.3.I2.2d.lib32_n9000.rpm":
+	elif (
+	filename == "ntp-1.0.1-7.0.3.I2.2d.lib32_n9000.rpm" or 
+	filename == "ntp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm" or 
+	filename == "ntp-1.0.2-7.0.3.I2.2e.lib32_n9000.rpm" or 
+	filename == "nxos.nsqos_lc_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm" or 
+	filename == "nxos.nsqos_sup_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm" or 
+	filename == "snmp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm" or 
+	filename == "vxlan-2.0.1.0-9.2.3.lib32_n9000.rpm" or
+	filename.startswith("nxos") and "CSC" in filename
+	):
 		prodname = product("nxos")
 		imagecode = imagelookup("smu")
-		imagecode = imagecode + "/7.0/7.0.3.I2.2d/NTP"
-		utilssinglemove (debug1,filename,prodname,imagecode)
-
-	elif filename == "ntp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm":
-		prodname = product("nxos")
-		imagecode = imagelookup("smu")
-		imagecode = imagecode + "/7.0/7.0.3.I2.2e/NTP"
-		utilssinglemove (debug1,filename,prodname,imagecode)
-
-	elif filename == "ntp-1.0.2-7.0.3.I2.2e.lib32_n9000.rpm":
-		prodname = product("nxos")
-		imagecode = imagelookup("smu")
-		imagecode = imagecode + "/7.0/7.0.3.I2.2e/NTP"
-		utilssinglemove (debug1,filename,prodname,imagecode)
-
-	elif filename == "nxos.nsqos_lc_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm":
-		prodname = product("nxos")
-		imagecode = imagelookup("smu")
-		imagecode = imagecode + "/7.0/7.0.3.I2.2e/QoS"
-		utilssinglemove (debug1,filename,prodname,imagecode)
-
-	elif filename == "nxos.nsqos_sup_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm":
-		prodname = product("nxos")
-		imagecode = imagelookup("smu")
-		imagecode = imagecode + "/7.0/7.0.3.I2.2e/QoS"
-		utilssinglemove (debug1,filename,prodname,imagecode)
-
-	elif filename == "snmp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm":
-		prodname = product("nxos")
-		imagecode = imagelookup("smu")
-		imagecode = imagecode + "/7.0/7.0.3.I2.2e/SNMP"
-		utilssinglemove (debug1,filename,prodname,imagecode)
-
-	elif filename == "vxlan-2.0.1.0-9.2.3.lib32_n9000.rpm":
-		prodname = product("nxos")
-		imagecode = imagelookup("smu")
-		imagecode = imagecode + "/9.2/9.2.3/VXLAN"
-		utilssinglemove (debug1,filename,prodname,imagecode)
+		fileprocessornxos9ksmu(filename,prodname,imagecode,debug1)
 
 	elif filename.startswith("n6000_poap_script"):
 		prodname = product("n6000")
@@ -164,9 +143,6 @@ def fileprocessornxos (filename,debug1):
 		elif len(splitbydot) == 7:
 			imagecode = imagelookup("system")
 			fileprocnxosfivedigit (filename,prodname,imagecode,debug1)
-		elif splitbydot[1].startswith("CSC"):
-			imagecode = imagelookup("smu")
-			fileprocessornxos9ksmu(filename,prodname,imagecode,debug1)
 
 	elif splitbydash[0] == "n6000":
 		prodname = product(splitbydash[0])
@@ -222,6 +198,7 @@ def fileprocessornxos (filename,debug1):
 		prodname = product("Nexus")
 		imagecode = imagelookup("guestshell")
 		workname = filename.replace(".ova","")
+		workname = workname.replace("guestshell_4.1.","")
 		workname = workname.replace("guestshell_4.0.","")
 		workname = workname.replace("guestshell_","")
 		workname = workname.replace("guestshell.","")
@@ -570,7 +547,7 @@ def fileprocnxosthreedigit (filename,prodname,imagecode,debug1):
 	if imagecode == "FIRMWARE-EPLD":
 		filepath = filepath4 (prodname,imagecode,nxosver,nxosfull)
 	elif imagecode == "SMU":
-		filepath = filepath5 (prodname,imagecode,nxosver,nxosfull,splitbydot[4])
+		filepath = filepath5 (prodname,nxosver,nxosfull,imagecode,splitbydot[4])
 	else:
 		filepath = filepath4 (prodname,nxosver,nxosfull,imagecode)
 	filemove (filepath, filename)
@@ -584,7 +561,7 @@ def fileprocnxosfivedigit (filename,prodname,imagecode,debug1):
 	if imagecode == "FIRMWARE-EPLD":
 		filepath = filepath4 (prodname,imagecode,nxosver,nxosfull)
 	elif imagecode == "SMU":
-		filepath = filepath5 (prodname,imagecode,nxosver,nxosfull,splitbydot[6])
+		filepath = filepath5 (prodname,nxosver,nxosfull,imagecode,splitbydot[6])
 	else:
 		filepath = filepath4 (prodname,nxosver,nxosfull,imagecode)
 	filemove (filepath, filename)
@@ -645,33 +622,79 @@ def fileprocnxos1000v (debug1,filename,prodname):
 def fileprocessornxos9ksmu (filename,prodname,imagecode,debug1):
 	if debug1:
 		print("\tSubroutine#\tfileprocessornxos9ksmu")
-	splitbydot = filename.split(".")
-	csc = splitbydot[1].replace("-n9k_ALL-1","")
-	csc = csc.replace("_EOR-n9k_EOR-1","")
-	csc = csc.replace("_TOR-n9k_TOR-1","")
-	csc = csc.replace("_eth-n9k_TOR-1","")
-	csc = csc.replace("_eth-n9k_EOR-1","")
-	csc = csc.replace("-n9k_EOR-1","")
-	csc = csc.replace("-n9k_TOR-1","")
-	csc = csc.replace("_modular_lc-1","")
-	csc = csc.replace("_modular_sup-1","")
-	csc = csc.replace("01-1","")
-	csc = csc.replace("-1","")
-	if splitbydot[3] == "0-9":
-		digitone = "9"
-	elif splitbydot[3] == "0-10":
-		digitone = "10"
-	elif splitbydot[3] == "0-8":
-		digitone = "8"
-	elif splitbydot[3] == "0-7" or splitbydot[3] == "1-7":
-		digitone = "7"
-	if digitone == "9" or digitone == "10":
-		nxosver = util2digit (digitone,splitbydot[4])
-		nxosfull = util3digit (digitone,splitbydot[4],splitbydot[5])
-		filepath = filepath5 (prodname,imagecode,nxosver,nxosfull,csc)
+	workname = filename.replace(".lib32_n9000.rpm","")
+	workname = workname.replace(".lib32_n9000.tgz","")
+	workname = workname.replace(".lib32_n9000.tar","")
+	workname = workname.replace(".lib32_nxos.tar","")
+	workname = workname.replace(".lib32_64_n9000.rpm","")
+	workname = workname.replace(".lib32_64_n9000.tar","")
+	workname = workname.replace("nxos.nsqos_lc_tor-n9k_TOR-1.0.0-","")
+	workname = workname.replace("nxos.nsqos_sup_tor-n9k_TOR-1.0.0-","")
+	workname = workname.replace("vxlan-2.0.1.0-","vxlan.")
+	workname = workname.replace("snmp-1.0.1-","snmp.")
+	workname = workname.replace("ntp-1.0.2-","ntp.")
+	workname = workname.replace("ntp-1.0.1-","ntp.")
+	workname = workname.replace("nxos.","")
+	workname = workname.replace("nxos64-cs.","")
+	workname = workname.replace("nxos64.","")
+	workname = workname.replace("-core-n9k_ALL-1.0.0-",".")
+	workname = workname.replace("_EOR-n9k_EOR-1.0.0-",".")
+	workname = workname.replace("_TOR-n9k_TOR-1.0.0-",".")
+	workname = workname.replace("_eth-n9k_EOR-1.0.0-",".")
+	workname = workname.replace("_eth-n9k_TOR-1.0.0-",".")
+	workname = workname.replace("-n9k_ALL-1.0.0-",".")
+	workname = workname.replace("-n9k_ALL-1.0.1-",".")
+	workname = workname.replace("-n9k_ALL-2.0.0-",".")
+	workname = workname.replace("-n9k_TOR-1.0.0-",".")
+	workname = workname.replace("-n9k_EOR-1.0.0-",".")
+	workname = workname.replace("_TOR-1.0.0-",".")
+	workname = workname.replace("_modular_sup-1.0.0-",".")
+	workname = workname.replace("_modular_lc-1.0.0-",".")
+	workname = workname.replace("nsqos_lc_tor-n9k_TOR-1.0.0-",".")
+	workname = workname.replace("nsqos_sup_tor-n9k_TOR-1.0.0-",".")
+	workname = workname.replace("-1.0.0-",".")
+
+	worknamesplit = workname.split(".")
+	if len(worknamesplit) == 3:
+		mainversion = util2digit(worknamesplit[1],worknamesplit[2])
+		fullversion = util2digit(worknamesplit[1],worknamesplit[2])
+	elif len(worknamesplit) == 4:
+		mainversion = util2digit(worknamesplit[1],worknamesplit[2])
+		fullversion = util3digit(worknamesplit[1],worknamesplit[2],worknamesplit[3])
+	elif len(worknamesplit) == 5:
+		mainversion = util2digit(worknamesplit[1],worknamesplit[2])
+		fullversion = util4digit(worknamesplit[1],worknamesplit[2],worknamesplit[3],worknamesplit[4])
+	elif len(worknamesplit) == 6:
+		mainversion = util2digit(worknamesplit[1],worknamesplit[2])
+		fullversion = util5digit(worknamesplit[1],worknamesplit[2],worknamesplit[3],worknamesplit[4],worknamesplit[5])
+	if (
+		filename == "ntp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm" or 
+		filename == "ntp-1.0.2-7.0.3.I2.2e.lib32_n9000.rpm"
+	):
+		bugcode = "NTP"
+		filepath = filepath5(prodname,mainversion,fullversion,imagecode,bugcode)
 		filemove (filepath, filename)
-	elif digitone == "7":
-		nxosver = util2digit (digitone,splitbydot[4])
-		nxosfull = util5digit (digitone,splitbydot[4],splitbydot[5],splitbydot[6],splitbydot[7])
-		filepath = filepath5 (prodname,imagecode,nxosver,nxosfull,csc)
+	elif (
+		filename == "snmp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm"
+	):
+		bugcode = "SNMP"
+		filepath = filepath5(prodname,mainversion,fullversion,imagecode,bugcode)
 		filemove (filepath, filename)
+	elif (
+		filename == "vxlan-2.0.1.0-9.2.3.lib32_n9000.rpm"
+	):
+		bugcode = "VXLAN"
+		filepath = filepath5(prodname,mainversion,fullversion,imagecode,bugcode)
+		filemove (filepath, filename)
+	elif (
+		filename == "nxos.nsqos_lc_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm" or
+		filename == "nxos.nsqos_sup_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm"
+	):
+		bugcode = "TCAM"
+		filepath = filepath5(prodname,mainversion,fullversion,imagecode,bugcode)
+		filemove (filepath, filename)
+	else:
+		bugcode = worknamesplit[0]
+		filepath = filepath5(prodname,mainversion,fullversion,imagecode,bugcode)
+		filemove (filepath, filename)
+

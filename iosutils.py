@@ -813,9 +813,7 @@ def imagelookup (imagecode):
 	elif imagecode == "clientandroid":
 		subdirectory = "CLIENT/ANDROID"
 	elif imagecode == "linux":
-		subdirectory = "CLIENT/LINUX"
-	elif imagecode == "linux64":
-		subdirectory = "CLIENT/LINUX-64"
+		subdirectory = "LINUX"
 	elif imagecode == "linuxbare":
 		subdirectory = "LINUX"
 	elif imagecode == "solaris":
@@ -1240,6 +1238,8 @@ def imagelookup (imagecode):
 		subdirectory = "FIREPOWER-ASA-MODE/SYSTEM"
 	elif imagecode == "fpftdmodule":
 		subdirectory = "MODULE-FTD"
+	elif imagecode == "fpftdsoftware":
+		subdirectory = "SOFTWARE-FTD"
 	elif imagecode == "fmc":
 		subdirectory = "FIREPOWER-MANAGEMENT-CENTER"
 	elif imagecode == "firepower-mibs":
@@ -2398,6 +2398,10 @@ def imagelookup (imagecode):
 		subdirectory = "PACKAGE-BROADBAND-NETWORK-GATEWAY"
 	elif imagecode == "stripped-firmware":
 		subdirectory = "STRIPPED-FIRMWARE"
+	elif imagecode == "virtualapp":
+		subdirectory = "VIRTUAL-APPLIANCE"
+	elif imagecode == "appqoe":
+		subdirectory = "QoE"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2425,16 +2429,18 @@ def product (prodcode):
 		prodname = "NETWORK-MANAGEMENT"
 	elif prodcode == "cworks":
 		prodname = "NETWORK-MANAGEMENT/CiscoWorks"
+	elif prodcode == "c1100tg":
+		prodname = "NETWORK-MANAGEMENT/TERMINAL-SERVICES-GATEWAY"
 	elif prodcode == "perfigocca":
 		prodname = "NETWORK-MANAGEMENT/CISCO-CLEAN-ACCESS"
 	elif prodcode == "routers":
 		prodname = "ROUTERS"
-	elif prodcode == "ir1835":
-		prodname = "ROUTERS/IR1835"
-	elif prodcode == "ir8140":
-		prodname = "ROUTERS/IR8140"
+	elif prodcode == "ir1800":
+		prodname = "ROUTERS/INDUSTRIAL/IR18XX"
+	elif prodcode == "ir8100":
+		prodname = "ROUTERS/INDUSTRIAL/IR8100"
 	elif prodcode == "ir8340":
-		prodname = "ROUTERS/IR8340"
+		prodname = "ROUTERS/INDUSTRIAL/IR8340"
 	elif prodcode == "ons15530":
 		prodname = "ROUTERS/OPTICAL/ONS-15530"
 	elif prodcode == "ons15540":
@@ -2501,6 +2507,8 @@ def product (prodcode):
 		prodname = "ROUTERS/ATM/MGX-8850"
 	elif prodcode == "rpmxf":
 		prodname = "ROUTERS/ATM/MGX-8850"
+	elif prodcode == "sdwan":
+		prodname = "ROUTERS/SD-WAN"
 	elif prodcode == "c600":
 		prodname = "ROUTERS/BRANCH/600"
 	elif prodcode == "c800":
@@ -2616,7 +2624,7 @@ def product (prodcode):
 	elif prodcode == "c5930":
 		prodname = "ROUTERS/EMBEDDED/5930"
 	elif prodcode == "ie9k":
-		prodname = "SWITCHES/INDUSTRIAL/CATALYST-9300-INDUSTRIAL"
+		prodname = "SWITCHES/INDUSTRIAL-ETHERNET/CATALYST-9300-INDUSTRIAL"
 	elif prodcode == "cgr2010":
 		prodname = "ROUTERS/GRID/CGR-2010"
 	elif prodcode == "soho70":
@@ -2726,13 +2734,15 @@ def product (prodcode):
 	elif prodcode == "c800g3":
 		prodname = "ROUTERS/ISRG3/800"
 	elif prodcode == "ir1101":
-		prodname = "ROUTERS/ISRG3/IR-1101"
+		prodname = "ROUTERS/INDUSTRIAL/IR-1101"
 	elif prodcode == "ir800":
-		prodname = "ROUTERS/ISRG3/IR-800"
+		prodname = "ROUTERS/INDUSTRIAL/IR-800"
 	elif prodcode == "c1000router":
 		prodname = "ROUTERS/BRANCH/1000"
 	elif prodcode == "c1100router":
 		prodname = "ROUTERS/ISRG3/ISR-1100"
+	elif prodcode == "isr1100be":
+		prodname = "ROUTERS/ISRG3/ISR-1100X"
 	elif prodcode == "isr4200":
 		prodname = "ROUTERS/ISRG3/ISR-4200"
 	elif prodcode == "isr4200-4300":
@@ -2851,6 +2861,12 @@ def product (prodcode):
 		prodname = "SECURITY/FIREWALL/FirePOWER/FIREPOWER-3xxx"
 	elif prodcode == "firepower4k9k":
 		prodname = "SECURITY/FIREWALL/FirePOWER/FIREPOWER-4xxx-9xxx"
+	elif prodcode == "firepower4200":
+		prodname = "SECURITY/FIREWALL/FirePOWER/FIREPOWER-42xx"
+	elif prodcode == "firepowerisa3000":
+		prodname = "SECURITY/FIREWALL/FirePOWER/ISA-3000"
+	elif prodcode == "firepowertd":
+		prodname = "SECURITY/FIREWALL/FirePOWER/VIRTUAL-FIREWALL"
 	elif prodcode == "firepowerfmc":
 		prodname = "SECURITY/FIREWALL/FirePOWER/FIREPOWER-MANAGEMENT-CENTER"
 	elif prodcode == "pix":
@@ -2955,6 +2971,8 @@ def product (prodcode):
 		prodname = "SERVERS/UCS/C-SERIES/C220M5"
 	elif prodcode == "c220m6":
 		prodname = "SERVERS/UCS/C-SERIES/C220M6"
+	elif prodcode == "c220m7":
+		prodname = "SERVERS/UCS/C-SERIES/C220M7"
 	elif prodcode == "c2x":
 		prodname = "SERVERS/UCS/C-SERIES/C22M3-C22M4"
 	elif prodcode == "c240":
@@ -2965,6 +2983,8 @@ def product (prodcode):
 		prodname = "SERVERS/UCS/C-SERIES/C240M5"
 	elif prodcode == "c240m6":
 		prodname = "SERVERS/UCS/C-SERIES/C240M6"
+	elif prodcode == "c240m7":
+		prodname = "SERVERS/UCS/C-SERIES/C240M7"
 	elif prodcode == "c250":
 		prodname = "SERVERS/UCS/C-SERIES/C250M1-C250M2"
 	elif prodcode == "c260":
@@ -2975,6 +2995,10 @@ def product (prodcode):
 		prodname = "SERVERS/UCS/C-SERIES/C2XXM4"
 	elif prodcode == "c2xxm5":
 		prodname = "SERVERS/UCS/C-SERIES/C2XXM5"
+	elif prodcode == "c2xxm6":
+		prodname = "SERVERS/UCS/C-SERIES/C2XXM6"
+	elif prodcode == "c2xxm7":
+		prodname = "SERVERS/UCS/C-SERIES/C2XXM7"
 	elif prodcode == "c3160":
 		prodname = "SERVERS/UCS/C-SERIES/C3160"
 	elif prodcode == "c3260":
@@ -3210,7 +3234,7 @@ def product (prodcode):
 	elif prodcode == "ie5000":
 		prodname = "SWITCHES/INDUSTRIAL-ETHERNET/IE-5000"
 	elif prodcode == "ir8340":
-		prodname = "ROUTERS/INDUSTRIAL/8340"
+		prodname = "ROUTERS/INDUSTRIAL/IR8340"
 	elif prodcode == "s6523":
 		prodname = "SWITCHES/METRO/Catalyst-6500ME"
 	elif prodcode == "me1200":
@@ -3495,10 +3519,16 @@ def product (prodcode):
 		prodname = "WIRELESS/CONTROLLER/CATALYST-9800-80"
 	elif prodcode == "C9800-AP":
 		prodname = "WIRELESS/ACCESS-POINT/CATALYST-9800-ACCESS-POINTS"
+	elif prodcode == "C9800-APC":
+		prodname = "WIRELESS/CONTROLLER/CATALYST-9100-ACCESS-POINTS"
 	elif prodcode == "C9800-CL":
 		prodname = "WIRELESS/CONTROLLER/CATALYST-9800-CL"
 	elif prodcode == "C9800-L":
 		prodname = "WIRELESS/CONTROLLER/CATALYST-9800-L"
+	elif prodcode == "CW9800H":
+		prodname = "WIRELESS/CONTROLLER/CATALYST-9800H"
+	elif prodcode == "CW9800M":
+		prodname = "WIRELESS/CONTROLLER/CATALYST-9800M"
 	elif prodcode == "C9800-SW":
 		prodname = "WIRELESS/CONTROLLER/CATALYST-9800-SW"
 	elif prodcode == "CT3504":
@@ -3530,11 +3560,11 @@ def product (prodcode):
 	elif prodcode == "wcs":
 		prodname = "WIRELESS/CONTROLLER/WCS"
 	elif prodcode == "ccg110":
-		prodname = "WIRELESS/GATEWAYS/CATAYLST-WIRELESS-GATEWAY"
+		prodname = "WIRELESS/GATEWAYS/CATALYST-WIRELESS-GATEWAY"
 	elif prodcode == "cg":
-		prodname = "WIRELESS/GATEWAYS/CATAYLST-CELLULAR-GATEWAY"
+		prodname = "WIRELESS/GATEWAYS/CATALYST-CELLULAR-GATEWAY"
 	elif prodcode == "ucspe":
-		prodname = "DEVELOPER-TOOLS/UCE-PLATFORM-EMULATOR"
+		prodname = "DEVELOPER-TOOLS/UCS-PLATFORM-EMULATOR"
 	else:
 		prodname = "UNKNOWN"
 	return prodname
@@ -3940,8 +3970,7 @@ def util6digit (a,b,c,d,e,f):
 	return z
 
 def stringtolist (a):
-	z = list(a)
-	return z
+	return list(a)
 
 def filepath2 (a,b):
 	z = a + "/" + b
@@ -3962,6 +3991,9 @@ def filepath5 (a,b,c,d,e):
 def filepath6 (a,b,c,d,e,f):
 	z = a + "/" + b + "/" + c + "/" + d + "/" + e + "/" + f
 	return z
+
+def util2collapse (a,b):
+	return a + b
 
 def utilssinglemove (debug1,filename,prodname,imagecode):
 	if debug1:

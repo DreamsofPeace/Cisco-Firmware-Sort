@@ -1,6 +1,6 @@
 from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssingleprodname
 from iosutils import utils_dev_v2_vf_imagecode,utils_dev_imagecode_v2_vf,utils_dev_imagecode_v2_vf_dash,utils_dev_v2_vf
-from iosutils import filemove,filepath2,filepath3,filepath4,filepath5
+from iosutils import filemove,filepath2,filepath3,filepath4,filepath5,filepath6
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
 from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
 import os
@@ -11,13 +11,20 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	if debug1:
 		print("\tSubroutine#\tfileprocessorsecurity")
 
-	if(
-	filename == "anyconnect_app_selector_1.0.zip" or 
-	filename == "anyconnect_app_selector_2.0.zip"
-	):
-		prodname = product("anyconnect")
-		imagecode = imagelookup("app_selector")
-		utilssinglemove (debug1,filename,prodname,imagecode)
+	if (
+		filename.startswith("anyconnect") or
+		filename.startswith("cisco-secure-client") or
+		filename.startswith("csd") or
+		filename.startswith("external-sso") or
+		filename.startswith("hostscan") or
+		filename.startswith("sampleTransforms") or
+		filename.startswith("secure-firewall-posture") or
+		filename.startswith("thirdparty") or
+		filename.startswith("tools-anyconnect") or
+		filename.startswith("tools-cisco-secure-client")
+		):
+		prodname = product ("anyconnect")
+		sec_anyconnect_new (debug1,filename)
 
 	elif filename == "release_duration_tool.tar":
 		prodname = product ("firepower")
@@ -137,43 +144,55 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	filename.startswith ("zeus")
 	):
 		sec_ironportv (debug1,filename)
-		
+
+	elif (
+		filename.startswith ("Cisco_FTD_SSP_FP1K_Hotfix") or
+		filename.startswith ("Cisco_FTD_SSP_FP2K_Hotfix") or
+		filename.startswith ("Cisco_FTD_SSP_FP3K_Hotfix") or
+		filename.startswith ("Cisco_FTD_SSP_Hotfix")
+		):
+		sec_fpr_hotfixes (debug1,filename)
+
 	elif (
 		filename.startswith ("cisco-asa-fp1k.") or
 		filename.startswith ("cisco-ftd-fp1k") or
 		filename.startswith ("Cisco_FTD_SSP_FP1K_Upgrade-") or
 		filename.startswith ("Cisco_FTD_SSP_FP1K_Patch-") or
-		filename.startswith ("Cisco_FTD_SSP_FP1K_Hotfix") or
 		filename.startswith ("fxos-mibs-fp1k") 
 	):
 		sec_fp1k (debug1,filename)
-		
+
 	elif (
 		filename.startswith ("cisco-asa-fp2k.") or
 		filename.startswith ("cisco-ftd-fp2k") or
 		filename.startswith ("Cisco_FTD_SSP_FP2K_Upgrade-") or
 		filename.startswith ("Cisco_FTD_SSP_FP2K_Patch-") or
-		filename.startswith ("Cisco_FTD_SSP_FP2K_Hotfix") or
 		filename.startswith ("fxos-mibs-fp2k") 
 	):
 		sec_fp2k (debug1,filename)
-		
+
 	elif (
 		filename.startswith ("cisco-asa-fp3k.") or
 		filename.startswith ("cisco-ftd-fp3k") or
 		filename.startswith ("Cisco_FTD_SSP_FP3K_Upgrade-") or
 		filename.startswith ("Cisco_FTD_SSP_FP3K_Patch-") or
-		filename.startswith ("Cisco_FTD_SSP_FP3K_Hotfix") or
 		filename.startswith ("fxos-mibs-fp3k") 
 	):
 		sec_fp3k (debug1,filename)
-		
+
+	elif (
+		filename.startswith ("cisco-asa-fp4200") or
+		filename.startswith ("Cisco_Secure_FW_TD_4200_Patch-") or
+		filename.startswith ("Cisco_Secure_FW_TD_4200-") or
+		filename.startswith ("fxos-mibs-fp4200.")
+	):
+		sec_fp4200 (debug1,filename)
+
 	elif (
 		filename.startswith ("cisco-asa.") or
 		filename.startswith ("cisco-ftd.") or
 		filename.startswith ("Cisco_FTD_SSP_Upgrade-") or
 		filename.startswith ("Cisco_FTD_SSP_Patch-") or
-		filename.startswith ("Cisco_FTD_SSP_Hotfix") or
 		filename.startswith ("fxos-mibs") 
 	):
 		sec_fp4k_9k (debug1,filename)
@@ -223,7 +242,9 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	elif(
 	filename.startswith ("SNS-35x5-BIOS") or 
 	filename.startswith ("SNS-35x5-firmware") or 
-	filename.startswith ("upd-pkg-SNS-35x5-cimc")
+	filename.startswith ("SNS-35xx-firmware") or 
+	filename.startswith ("upd-pkg-SNS-35x5-cimc") or 
+	filename.startswith ("upd-pkg-SNS-35xx-cimc")
 	):
 		prodname = product("ise")
 		imagecode = imagelookup("sns35xx")
@@ -268,35 +289,6 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 
 	elif filename.startswith("hostscan_"):
 		sec_hostscan (debug1,filename)
-
-	elif (
-		filename.startswith("tools-cisco-secure-client-win-") or 
-		filename.startswith("tools-anyconnect-win-")
-		):
-		prodname = product("anyconnect")
-		if filename.endswith("-profileeditor-k9.msi"):
-			imagecode = imagelookup("profileeditor")
-			sec_workname_imagecode (debug1,filename,prodname,imagecode)
-		elif filename.endswith("-transforms.zip"):
-			imagecode = imagelookup("transforms")
-			sec_workname_imagecode (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("cisco-secure-client") or 
-	filename.startswith("anyconnect-android-") or 
-	filename.startswith("anyconnect-win-") or 
-	filename.startswith("secure-firewall-")
-	):
-		sec_newanyconnect (debug1,filename)
-
-	elif (
-	filename.startswith("anyconnect") or 
-	filename.startswith("hostscan-") or 
-	filename.startswith("thirdparty") or 
-	filename.startswith("sampleTransforms") or 
-	filename.startswith("external-sso")
-	):
-		sec_anyconnect (debug1,filename)
 
 	elif (
 	filename.startswith("fxos") or 
@@ -459,9 +451,122 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	):
 		sec_ssm_onprem (debug1,filename)
 
-
 	else:
 		messageunknownfile()
+		
+
+def sec_anyconnect_new (debug1,filename): #Anyconnect / Cisco Secure Client
+	if debug1:
+		print("\tSubroutine#\tsec_anyconnect_new")
+	if (
+		filename.startswith("hostscan_") or
+		filename.startswith("hostscan-posture-linux-x64-") or
+		filename.startswith("hostscan-posture-macosx-i386-") or
+		filename.startswith("hostscan-win-")
+	):
+		workname = filename.replace("hostscan_","")
+		workname = workname.replace("hostscan-posture-linux-x64-","")
+		workname = workname.replace("hostscan-posture-macosx-i386-","")
+		workname = workname.replace("hostscan-win-","")
+		workname = workname.replace("-k9.pkg","")
+		workname = workname.replace("-pre-deploy-k9.tar.gz","")
+		workname = workname.replace("-pre-deploy-k9.dmg","")
+		workname = workname.replace("-pre-deploy-k9.msi","")
+		imagecode = imagelookup("hostscan")
+		sec_anyconnect_file_setup (debug1,filename,workname,imagecode)
+	elif (
+		filename.startswith("anyconnect-amp-win-")
+	):
+		workname = filename.replace("anyconnect-amp-win-","")
+		workname = workname.replace("-pre-deploy-k9.msi","")
+		imagecode = imagelookup("amp")
+		sec_anyconnect_file_setup (debug1,filename,workname,imagecode)
+	elif (
+		filename.startswith("anyconnect-android-")
+	):
+		workname = filename.replace("anyconnect-android-","")
+		workname = workname.replace("-release.apk","")
+		imagecode = imagelookup("android")
+		sec_anyconnect_file_setup (debug1,filename,workname,imagecode)
+	elif (
+		filename.startswith("anyconnect-dart-win-")
+	):
+		workname = filename.replace("anyconnect-dart-win-","")
+		workname = workname.replace("-k9.pkg","")
+		workname = workname.replace("-k9.msi","")
+		imagecode = imagelookup("dart")
+		sec_anyconnect_file_setup (debug1,filename,workname,imagecode)
+	elif (
+		filename.startswith("cisco-secure-client-linux64-") or
+		filename.startswith("anyconnect-Linux_64-")
+	):
+		workname = filename.replace("cisco-secure-client-linux64-","")
+		workname = workname.replace("anyconnect-Linux_64-","")
+		workname = workname.replace("anyconnect-linux-64-","")
+		workname = workname.replace("anyconnect-linux-","")
+		workname = workname.replace("anyconnect-linux64-","")
+		workname = workname.replace("-nvm-standalone.tar.gz","")
+		workname = workname.replace("-predeploy-rpm-k9.tar.gz","")
+		workname = workname.replace("-predeploy-deb-k9.tar.gz","")
+		workname = workname.replace("-predeploy-k9.tar.gz","")
+		workname = workname.replace("-k9.tar.gz","")
+		imagecode1 = imagelookup("client")
+		imagecode2 = imagelookup("linux")
+		if "isecompliance" in filename:
+			imagecode3 = imagelookup("isecompliance")
+			sec_anyconnect_file_setup_subcode_first (debug1,filename,workname,imagecode3,imagecode2)
+		elif "nvm" in filename:
+			imagecode3 = imagelookup("nvm")
+			sec_anyconnect_file_setup_subcode_verlast (debug1,filename,workname,imagecode3,imagecode2)
+		elif "predeploy" in filename:
+			imagecode3 = imagelookup("predeploy")
+			sec_anyconnect_file_setup_subcode_three (debug1,filename,workname,imagecode1,imagecode2,imagecode3)
+		elif "vpnapi" in filename:
+			imagecode3 = imagelookup("vpnapi")
+			sec_anyconnect_file_setup_subcode_verlast (debug1,filename,workname,imagecode3,imagecode2)
+
+#Anyconnect Setup File Paths and Moving
+def sec_anyconnect_file_setup (debug1,filename,version_file,imagecode): 
+	if debug1:
+		print("\tSubroutine#\tsec_anyconnect_file_setup")
+	prodname = product("anyconnect")
+	splitbydot = version_file.split(".")
+	ver2 = util2digit (splitbydot[0],splitbydot[1])
+	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
+	filepath = filepath4(prodname,imagecode,ver2,ver3)
+	filemove (filepath, filename)
+
+#Anyconnect Setup File Paths and Moving with subimagecode
+def sec_anyconnect_file_setup_subcode_verlast (debug1,filename,version_file,imagecode,subimagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_anyconnect_file_setup_subcode")
+	prodname = product("anyconnect")
+	splitbydot = version_file.split(".")
+	ver2 = util2digit (splitbydot[0],splitbydot[1])
+	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
+	filepath = filepath5(prodname,imagecode,subimagecode,ver2,ver3)
+	filemove (filepath, filename)
+#Anyconnect Setup File Paths and Moving with subimagecode
+def sec_anyconnect_file_setup_subcode_three (debug1,filename,version_file,imagecode1,imagecode2,imagecode3):
+	if debug1:
+		print("\tSubroutine#\tsec_anyconnect_file_setup_subcode")
+	prodname = product("anyconnect")
+	splitbydot = version_file.split(".")
+	ver2 = util2digit (splitbydot[0],splitbydot[1])
+	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
+	filepath = filepath6(prodname,imagecode1,imagecode2,ver2,ver3,imagecode3)
+	filemove (filepath, filename)
+
+#Anyconnect Setup File Paths and Moving with subimagecode first
+def sec_anyconnect_file_setup_subcode_first (debug1,filename,version_file,imagecode,subimagecode):
+	if debug1:
+		print("\tSubroutine#\tsec_anyconnect_file_setup_subcode_first")
+	prodname = product("anyconnect")
+	splitbydot = version_file.split(".")
+	ver2 = util2digit (splitbydot[0],splitbydot[1])
+	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
+	filepath = filepath5(prodname,subimagecode,imagecode,ver2,ver3)
+	filemove (filepath, filename)
 
 def sec_fp1k (debug1,filename): #Firepower 1010/11xx Firewalls
 	if debug1:
@@ -530,57 +635,6 @@ def sec_fp1k (debug1,filename): #Firepower 1010/11xx Firewalls
 			verfull = util4digit (aftersplit[0],aftersplit[1],aftersplit[2],aftersplit[3])
 			filepath = filepath4(prodname,imagecode,ver2,verfull)
 			filemove (filepath, filename)
-	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_AY-6.4.0.9-3.sh.REL.tar":
-		imagecode = imagelookup("patch")
-		filepath = filepath4(prodname,imagecode,"6.4","6.4.0.9")
-	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_BM-6.4.0.10-2.sh.REL.tar":
-		imagecode = imagelookup("patch")
-		filepath = filepath4(prodname,imagecode,"6.4","6.4.0.10")
-	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_EP-6.4.0.14-9.sh.REL.tar":
-		imagecode = imagelookup("patch")
-		filepath = filepath4(prodname,imagecode,"6.4","6.4.0.14")
-
-	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_DA-6.6.5.2-4.sh.REL.tar":
-		imagecode = imagelookup("patch")
-		filepath = filepath4(prodname,imagecode,"6.6","6.6.5.2")
-	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_DE-6.6.5.2-8.sh.REL.tar":
-		imagecode = imagelookup("patch")
-		filepath = filepath4(prodname,imagecode,"6.6","6.6.5.2")
-	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_DE_6.6.5.2-8.sh.REL.tar":
-		imagecode = imagelookup("patch")
-		filepath = filepath4(prodname,imagecode,"6.6","6.6.5.2")
-
-	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_Y-6.7.0.3-7.sh.REL.tar":
-		imagecode = imagelookup("patch")
-		filepath = filepath4(prodname,imagecode,"6.7","6.7.0.3")
-	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_AA-6.7.0.4-2.sh.REL.tar":
-		imagecode = imagelookup("patch")
-		filepath = filepath4(prodname,imagecode,"6.7","6.7.0.4")
-
-	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_S-7.0.1.1-10.sh.REL.tar":
-		imagecode = imagelookup("patch")
-		filepath = filepath4(prodname,imagecode,"7.0","7.0.1.1")
-	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_EI-7.0.6.1-3.sh.REL.tar":
-		imagecode = imagelookup("patch")
-		filepath = filepath4(prodname,imagecode,"7.0","7.0.6.1")
-
-	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_A-7.1.0.1-7.sh.REL.tar":
-		imagecode = imagelookup("patch")
-		filepath = filepath4(prodname,imagecode,"7.1","7.1.0.1")
-	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_P-7.1.0.2-2.sh.REL.tar":
-		imagecode = imagelookup("patch")
-		filepath = filepath4(prodname,imagecode,"7.1","7.1.0.2")
-	elif filename == "Cisco_FTD_SSP_FP3K_Hotfix_Q-7.1.0.3-2.sh.REL.tar":
-		imagecode = imagelookup("patch")
-		filepath = filepath4(prodname,imagecode,"7.1","7.1.0.3")
-
-	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_AW-7.2.4.1-1.sh.REL.tar":
-		imagecode = imagelookup("patch")
-		filepath = filepath4(prodname,imagecode,"7.2","7.2.4.1")
-	elif filename == "Cisco_FTD_SSP_FP1K_Hotfix_BJ-7.2.5.1-1.sh.REL.tar":
-		imagecode = imagelookup("patch")
-		filepath = filepath4(prodname,imagecode,"7.2","7.2.5.1")
-
 
 def sec_fp2k (debug1,filename): #Firepower 21xx Firewalls
 	if debug1:
@@ -650,7 +704,6 @@ def sec_fp2k (debug1,filename): #Firepower 21xx Firewalls
 			filepath = filepath4(prodname,imagecode,ver2,verfull)
 			filemove (filepath, filename)
 
-
 def sec_fp3k (debug1,filename): #Firepower 31xx Firewalls
 	if debug1:
 		print("\tSubroutine#\tsec_fp3k")
@@ -718,7 +771,6 @@ def sec_fp3k (debug1,filename): #Firepower 31xx Firewalls
 			verfull = util4digit (aftersplit[0],aftersplit[1],aftersplit[2],aftersplit[3])
 			filepath = filepath4(prodname,imagecode,ver2,verfull)
 			filemove (filepath, filename)
-
 
 def sec_fp4k_9k (debug1,filename): #Firepower 31xx Firewalls
 	if debug1:
@@ -788,149 +840,84 @@ def sec_fp4k_9k (debug1,filename): #Firepower 31xx Firewalls
 			filepath = filepath4(prodname,imagecode,ver2,verfull)
 			filemove (filepath, filename)
 
+def sec_fp4200 (debug1,filename): #Firepower 4200 Firewalls
+	if debug1:
+		print("\tSubroutine#\tsec_fp4200")
+	prodname = product("firepower4200")
+	if filename.startswith("fxos-mibs-fp4200"):
+		imagecode = imagelookup("mibs")
+		filepath = filepath2(prodname,imagecode)
+		filemove (filepath, filename)
+	elif filename.startswith("cisco-asa-fp4200."):
+		imagecode = imagelookup("fpasamodule")
+		workname = filename.replace("cisco-asa-fp4200.","")
+		workname = workname.replace(".SPA","")
+		splitbydot = workname.split(".")
+		versionmain = util2digit (splitbydot[0],splitbydot[1])
+		if len(splitbydot) == 3:
+			versionfull = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
+		elif len(splitbydot) == 4:
+			versionfull = util4digit (splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+		filepath = filepath4(prodname,imagecode,versionmain,versionfull)
+		filemove (filepath, filename)
+	elif filename.startswith("Cisco_Secure_FW_TD_4200-"):
+		imagecode = imagelookup("fpftdsoftware")
+		workname = filename.replace("Cisco_Secure_FW_TD_4200-","")
+		workname = workname.replace(".sh.REL.tar","")
+		version, dash, throwaway = workname.partition('-')
+		splitbydot = version.split(".")
+		versionmain = util2digit (splitbydot[0],splitbydot[1])
+		if len(splitbydot) == 3:
+			versionfull = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		elif len(splitbydot) == 4:
+			versionfull = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+		filepath = filepath4(prodname,imagecode,versionmain,versionfull)
+		filemove (filepath, filename)
+
+def sec_fpr_hotfixes (debug1,filename): #Hotfixes
+	if debug1:
+		print("\tSubroutine#\tsec_ssm_onprem")
+	filename_map = {
+		"Cisco_Secure_FW_TD_4200_Patch-7.4.1.1-12.sh.REL.tar": {
+			"prodname": "firepower4200", "imagecode": "fpftdsoftware", "versionmain": "7.4", "versionfull": "7.4.1"
+		},
+		"Cisco_FTD_SSP_FP1K_Hotfix_P-7.1.0.2-2": {
+			"prodname": "firepower1k", "imagecode": "fpftdsoftware", "versionmain": "7.1", "versionfull": "7.1.0.1"
+		},
+		"Cisco_FTD_SSP_FP2K_Hotfix_P-7.1.0.2-2": {
+			"prodname": "firepower2k", "imagecode": "fpftdsoftware", "versionmain": "7.1", "versionfull": "7.1.0.1"
+		},
+		"Cisco_FTD_SSP_Hotfix_P-7.1.0.2-2": {
+			"prodname": "firepower4k9k", "imagecode": "fpftdsoftware", "versionmain": "7.1", "versionfull": "7.1.0.1"
+		},
+		"Cisco_FTD_Hotfix_P-7.1.0.2-2": {
+			"prodname": "firepowerisa3000", "imagecode": "fpftdsoftware", "versionmain": "7.1", "versionfull": "7.1.0.1"
+		},
+		"Cisco_FTD_Hotfix_P-7.1.0.2-2": {
+			"prodname": "firepowertd", "imagecode": "fpftdsoftware", "versionmain": "7.1", "versionfull": "7.1.0.1"
+		}
+	}
+	if filename in filename_map:
+		details = filename_map[filename]
+		prodname = product(details["prodname"])
+		imagecode = imagelookup(details["imagecode"])
+		versionmain = details["versionmain"]
+		versionfull = details["versionfull"]
+		filepath = filepath4(prodname,imagecode,versionmain,versionfull)
+		filemove (filepath, filename)
 
 def sec_ssm_onprem (debug1,filename): #Cisco Smart License On-Prem Server
 	if debug1:
 		print("\tSubroutine#\tsec_ssm_onprem")
 	prodname = product("SSM_On-Prem")
-	workname = filename.replace("SSM_On-Prem_8-","")
+	workname = filename.replace("SSM_On-Prem_","")
 	workname = workname.replace(".iso","")
 	workname = workname.replace("_Full.zip","")
+	workname = workname.replace("_upgrade.zip","")
 	workname = workname.replace("_Upgrade.zip","")
+	workname = workname.replace("_AlmaLinux.zip","")
 	filepath = filepath2(prodname,workname)
 	filemove (filepath, filename)
-
-def sec_newanyconnect (debug1,filename): #Cisco Secure Client
-	if debug1:
-		print("\tSubroutine#\tsec_newanyconnect")
-	prodname = product("anyconnect")
-	if "isecompliance" in filename:
-		imagecode = imagelookup("isecompliance")
-	elif "predeploy" in filename:
-		imagecode = imagelookup("client")
-	elif "webdeploy" in filename:
-		imagecode = imagelookup("client")
-	elif "vpnapi" in filename:
-		imagecode = imagelookup("vpnapi")
-	elif "nvm" in filename:
-		imagecode = imagelookup("nvm")
-	elif "profileeditor" in filename:
-		imagecode = imagelookup("profileeditor")
-	elif "transforms" in filename:
-		imagecode = imagelookup("transforms")
-	elif "android" in filename:
-		imagecode = imagelookup("client")
-	elif "posture" in filename:
-		imagecode = imagelookup("anyconnect_posture")
-	else:
-		print ("Unknown Sub Product",end="\n")
-		return
-
-	if filename.startswith("cisco-secure-client-linux64-"):
-		imagecode2 = imagelookup("linuxbare")
-		workname = filename.replace("cisco-secure-client-linux64-","")
-		splitbydash = workname.split("-",2)
-		splitbydot = splitbydash[0].split(".")
-		ver2 = util2digit (splitbydot[0],splitbydot[1])
-		if len(splitbydot) == 3:
-			ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-			filepath = filepath5(prodname,imagecode2,imagecode,ver2,ver3)
-			filemove (filepath, filename)
-		elif len(splitbydot) == 4:
-			ver4 = util4digit (splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
-			filepath = filepath5(prodname,imagecode2,imagecode,ver2,ver4)
-			filemove (filepath, filename)
-	elif filename.startswith("cisco-secure-client-macos-"):
-		imagecode2 = imagelookup("macintosh")
-		workname = filename.replace("cisco-secure-client-macos-","")
-		splitbydash = workname.split("-",2)
-		splitbydot = splitbydash[0].split(".")
-		ver2 = util2digit (splitbydot[0],splitbydot[1])
-		if len(splitbydot) == 3:
-			ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-			filepath = filepath5(prodname,imagecode2,imagecode,ver2,ver3)
-			filemove (filepath, filename)
-		elif len(splitbydot) == 4:
-			ver4 = util4digit (splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
-			filepath = filepath5(prodname,imagecode2,imagecode,ver2,ver4)
-			filemove (filepath, filename)
-	elif filename.startswith("cisco-secure-client-win-arm64-"):
-		imagecode2 = imagelookup("windows")
-		workname = filename.replace("cisco-secure-client-win-arm64-","")
-		splitbydash = workname.split("-",2)
-		splitbydot = splitbydash[0].split(".")
-		ver2 = util2digit (splitbydot[0],splitbydot[1])
-		if len(splitbydot) == 3:
-			ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-			filepath = filepath5(prodname,imagecode2,imagecode,ver2,ver3)
-			filemove (filepath, filename)
-		elif len(splitbydot) == 4:
-			ver4 = util4digit (splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
-			filepath = filepath5(prodname,imagecode2,imagecode,ver2,ver4)
-			filemove (filepath, filename)
-	elif filename.startswith("cisco-secure-client-win-"):
-		imagecode2 = imagelookup("windows")
-		workname = filename.replace("cisco-secure-client-win-","")
-		splitbydash = workname.split("-",2)
-		splitbydot = splitbydash[0].split(".")
-		ver2 = util2digit (splitbydot[0],splitbydot[1])
-		if len(splitbydot) == 3:
-			ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-			filepath = filepath5(prodname,imagecode2,imagecode,ver2,ver3)
-			filemove (filepath, filename)
-		elif len(splitbydot) == 4:
-			ver4 = util4digit (splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
-			filepath = filepath5(prodname,imagecode2,imagecode,ver2,ver4)
-			filemove (filepath, filename)
-	elif filename.startswith("anyconnect-win-arm64-"):
-		imagecode2 = imagelookup("windows")
-		workname = filename.replace("anyconnect-win-arm64-","")
-		splitbydash = workname.split("-",2)
-		splitbydot = splitbydash[0].split(".")
-		ver2 = util2digit (splitbydot[0],splitbydot[1])
-		if len(splitbydot) == 3:
-			ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-			filepath = filepath5(prodname,imagecode2,imagecode,ver2,ver3)
-			filemove (filepath, filename)
-		elif len(splitbydot) == 4:
-			ver4 = util4digit (splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
-			filepath = filepath5(prodname,imagecode2,imagecode,ver2,ver4)
-			filemove (filepath, filename)
-	elif filename.startswith("anyconnect-win-"):
-		imagecode2 = imagelookup("windows")
-		workname = filename.replace("anyconnect-win-","")
-		splitbydash = workname.split("-",2)
-		splitbydot = splitbydash[0].split(".")
-		ver2 = util2digit (splitbydot[0],splitbydot[1])
-		if len(splitbydot) == 3:
-			ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-			filepath = filepath5(prodname,imagecode2,imagecode,ver2,ver3)
-			filemove (filepath, filename)
-		elif len(splitbydot) == 4:
-			ver4 = util4digit (splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
-			filepath = filepath5(prodname,imagecode2,imagecode,ver2,ver4)
-			filemove (filepath, filename)
-	elif filename.startswith("anyconnect-android-"):
-		imagecode2 = imagelookup("android")
-		workname = filename.replace("anyconnect-android-","")
-		splitbydash = workname.split("-",2)
-		splitbydot = splitbydash[0].split(".")
-		ver2 = util2digit (splitbydot[0],splitbydot[1])
-		if len(splitbydot) == 3:
-			ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-			filepath = filepath5(prodname,imagecode2,imagecode,ver2,ver3)
-			filemove (filepath, filename)
-		elif len(splitbydot) == 4:
-			ver4 = util4digit (splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
-			filepath = filepath5(prodname,imagecode2,imagecode,ver2,ver4)
-			filemove (filepath, filename)
-	elif filename.startswith("secure-firewall-posture-"):
-		workname = filename.replace("secure-firewall-posture-","")
-		workname = workname.replace("-k9.pkg","")
-		splitbydot = workname.split(".")
-		version = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-		filepath = filepath3(prodname,imagecode,version)
-		filemove (filepath, filename)
 
 def sec_ipsec_client (debug1,filename):
 	if debug1:
@@ -2395,7 +2382,6 @@ def sec_csm (debug1,filename,sourcedirectory):
 #	else:
 #		file_size = os.path.getsize(filename)
 
-
 def sec_csm_geoip (debug1,filename,prodname,imagecode):
 	if debug1:
 		print("\tSubroutine#\tsec_csm_geoip")
@@ -2408,7 +2394,6 @@ def sec_csm_geoip (debug1,filename,prodname,imagecode):
 	releasedate = myyear + "-" + mymonth + "-" + myday
 	filepath = filepath3 (prodname,imagecode,releasedate)
 	filemove (filepath, filename)
-
 
 def sec_pix (debug1,filename,prodname):
 	if debug1:
@@ -2503,7 +2488,6 @@ def sec_asa_rest_api (debug1,filename,prodname):
 		myver = util4digit(mylist[0],mylist[1],mylist[2],v3)
 	filepath = filepath3 (prodname,imagecode,myver)
 	filemove (filepath, filename)
-
 
 def sec_asa_firmware_v9 (debug1,filename,prodname):
 	if debug1:
@@ -3135,17 +3119,26 @@ def sec_ise (debug1,filename):
 
 	elif (
 	filename == "ise-upgradebundle-2.7.x-3.1.x-to-3.2.0.542.SPA.x86_64.tar.gz" or 
-	filename == "ise-upgradebundle-2.7.x-3.1.x-to-3.2.0.542a.SPA.x86_64.tar.gz"
+	filename == "ise-upgradebundle-2.7.x-3.1.x-to-3.2.0.542a.SPA.x86_64.tar.gz" or 
+	filename == "ise-upgradebundle-2.7.x-3.1.x-to-3.2.0.542c.SPA.x86_64.tar.gz"
 	):
 		imagecode = imagelookup("upgrade")
 		imagecode = "3.2/" + imagecode
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
-	filename == "ise-upgradebundle-3.0.x-3.2.x-to-3.3.0.430.SPA.x86_64.tar.gz"
+	filename == "ise-upgradebundle-3.0.x-3.2.x-to-3.3.0.430.SPA.x86_64.tar.gz" or 
+	filename == "ise-upgradebundle-3.0.x-3.2.x-to-3.3.0.430b.SPA.x86_64.tar.gz"
 	):
 		imagecode = imagelookup("upgrade")
 		imagecode = "3.3/" + imagecode
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename == "ise-upgradebundle-3.1.x-3.3.x-to-3.4.0.608.SPA.x86_64.tar.gz"
+	):
+		imagecode = imagelookup("upgrade")
+		imagecode = "3.4/" + imagecode
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
@@ -3295,7 +3288,6 @@ def sec_ise_urtbundle (debug1,filename,prodname,imagecode):
 	vertwo = util2digit(splitbydot[0],splitbydot[1])
 	filepath = filepath3 (prodname,vertwo,imagecode)
 	filemove (filepath, filename)
-
 
 def sec_ise_pic (debug1,filename):
 	if debug1:
@@ -3580,385 +3572,6 @@ def sec_fwsm (debug1,filename):
 	prodname = product("c6svc-fwm")
 	filepath = filepath3(prodname,vertwo,verthree)
 	filemove (filepath, filename)
-
-def sec_hostscan (debug1,filename):
-	if debug1:
-		print("\tSubroutine#\tsec_hostscan")
-	splitbyuscore = filename.split("_")
-	splitbyuscore[1] = splitbyuscore[1].replace("-k9.pkg", "")
-	splitbydot = splitbyuscore[1].split(".")
-	prodname = product("anyconnect")
-	imagecode = imagelookup("hostscan")
-	ver2 = util2digit (splitbydot[0],splitbydot[1])
-	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-	filepath = filepath4(prodname,imagecode,ver2,ver3)
-	filemove (filepath, filename)
-
-def sec_csd (debug1,filename):
-	if debug1:
-		print("\tSubroutine#\tsec_csd")
-	prodname = product("anyconnect")
-	imagecode = imagelookup("csd")
-	workname = filename.replace("-k9_Japanese_translation.zip", "")
-	workname = workname.replace("-k9.pkg", "")
-	workname = workname.replace("csd_", "")
-	workname = workname.replace("csd-", "")
-	workname = workname.replace("-macosx-i386-k9.dmg", "")
-	workname = workname.replace("-macosx-ppc-k9.dmg", "")
-	workname = workname.replace("-linux-i386-k9.tar.gz", "")
-	workname = workname.replace("-linux-x64-k9.tar.gz", "")
-	workname = workname.replace("-wince-k9.cab", "")
-	workname = workname.replace("-wince-k9.zip", "")
-	workname = workname.replace("-wince-k9.msi", "")
-	workname = workname.replace("-windows-k9.msi", "")
-	utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
-
-def sec_anyconnect_p1_d3_u (debug1,filename,prodname,imagecode):
-	if debug1:
-		print("\tSubroutine#\tsec_anyconnect_p1_d3_u")
-	splitbyuscore = filename.split("_")
-	splitbydot = splitbyuscore[1].split(".")
-	ver2 = util2digit (splitbydot[0],splitbydot[1])
-	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-	filepath = filepath4(prodname,imagecode,ver2,ver3)
-	filemove (filepath, filename)
-
-def sec_anyconnect_p1_d3_v (debug1,filename,prodname,imagecode):
-	if debug1:
-		print("\tSubroutine#\tsec_anyconnect_p1_d3_v")
-	splitbydash = filename.split("-")
-	splitbydot = splitbydash[1].split(".")
-	ver2 = util2digit (splitbydot[0],splitbydot[1])
-	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-	filepath = filepath4(prodname,imagecode,ver2,ver3)
-	filemove (filepath, filename)
-
-def sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode):
-	if debug1:
-		print("\tSubroutine#\tsec_anyconnect_p2_d3_v")
-	splitbydash = filename.split("-")
-	splitbydot = splitbydash[2].split(".")
-	ver2 = util2digit (splitbydot[0],splitbydot[1])
-	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-	filepath = filepath4(prodname,imagecode,ver2,ver3)
-	filemove (filepath, filename)
-
-def sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode):
-	if debug1:
-		print("\tSubroutine#\tsec_anyconnect_p3_d3_v")
-	splitbydash = filename.split("-")
-	splitbydot = splitbydash[3].split(".")
-	ver2 = util2digit (splitbydot[0],splitbydot[1])
-	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-	filepath = filepath4(prodname,imagecode,ver2,ver3)
-	filemove (filepath, filename)
-
-def sec_anyconnect_p4_d3_v (debug1,filename,prodname,imagecode):
-	if debug1:
-		print("\tSubroutine#\tsec_anyconnect_p4_d3_v")
-	splitbydash = filename.split("-")
-	splitbydot = splitbydash[4].split(".")
-	ver2 = util2digit (splitbydot[0],splitbydot[1])
-	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-	filepath = filepath4(prodname,imagecode,ver2,ver3)
-	filemove (filepath, filename)
-
-def sec_anyconnect_p4_d3_v (debug1,filename,prodname,imagecode):
-	if debug1:
-		print("\tSubroutine#\tsec_anyconnect_p4_d3_v")
-	splitbydash = filename.split("-")
-	splitbydot = splitbydash[4].split(".")
-	ver2 = util2digit (splitbydot[0],splitbydot[1])
-	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-	filepath = filepath4(prodname,imagecode,ver2,ver3)
-	filemove (filepath, filename)
-
-def sec_workname_imagecode (debug1,filename,prodname,imagecode):
-	if debug1:
-		print("\tSubroutine#\tsec_workname_imagecode")
-	workname = filename.replace("tools-cisco-secure-client-win-","")
-	workname = workname.replace("tools-anyconnect-win-","")
-	workname = workname.replace("-profileeditor-k9.msi","")
-	workname = workname.replace("-transforms.zip","")
-	splitbydot = workname.split(".")
-	if len(splitbydot) == 3:
-		ver2 = util2digit (splitbydot[0],splitbydot[1])
-		ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-		filepath = filepath4(prodname,imagecode,ver2,ver3)
-		filemove (filepath, filename)
-	elif len(splitbydot) == 4:
-		ver2 = util2digit (splitbydot[0],splitbydot[1])
-		ver3 = util4digit (splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
-		filepath = filepath4(prodname,imagecode,ver2,ver3)
-		filemove (filepath, filename)
-
-def sec_anyconnect (debug1,filename):
-	if debug1:
-		print("\tSubroutine#\tsec_anyconnect")
-	prodname = product("anyconnect")
-	splitbydash = filename.split("-")
-
-	if (
-	filename.startswith("thirdparty_") and filename.endswith("_3eTI_Docs.zip")
-	):
-		imagecode = imagelookup("thirdparty")
-		sec_anyconnect_p1_d3_u (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("sampleTransforms-")
-	):
-		imagecode = imagelookup("transforms")
-		sec_anyconnect_p1_d3_v (debug1,filename,prodname,imagecode)
-
-	elif(
-	filename.startswith("hostscan-posture-macosx-i386-") and filename.endswith("-pre-deploy-k9.dmg") or 
-	filename.startswith("hostscan-posture-linux-x64-") and filename.endswith("-pre-deploy-k9.tar.gz")
-	):
-		imagecode = imagelookup("iseposture")
-		sec_anyconnect_p4_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("external-sso-")
-	):
-		imagecode = imagelookup("external-sso")
-		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-posture-win-") or 
-	filename.startswith("anyconnect-posture-mac-")
-	):
-		imagecode = imagelookup("iseposture")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif splitbydash[1] == "isecompliance" and splitbydash[2] == "win" or splitbydash[2] == "macosx":
-		imagecode = imagelookup("isecompliance")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-win-compliance-")
-	):
-		imagecode = imagelookup("isecompliance")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-macosx-i386-compliance-")
-	):
-		imagecode = imagelookup("isecompliance")
-		sec_anyconnect_p4_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.endswith("-isecompliance-predeploy-k9.msi") or 
-	filename.endswith("-isecompliance-webdeploy-k9.pkg") or 
-	filename.endswith("-isecompliance-predeploy-k9.dmg")
-	):
-		imagecode = imagelookup("isecompliance")
-		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("hostscan-win-") and filename.endswith("-pre-deploy-k9.msi")
-	):
-		imagecode = imagelookup("hostscan")
-		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-macosx-powerpc-") and filename.endswith("-vpnapi.tar.gz") or 
-	filename.startswith("anyconnect-macosx-i386-") and filename.endswith("-vpnapi.tar.gz") or 
-	filename.startswith("anyconnect-linux-64-") and filename.endswith("-vpnapi.tar.gz") or 
-	filename.startswith("anyconnect-win-vpnapi-")
-	):
-		imagecode = imagelookup("vpnapi")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-macos-") and filename.endswith("-vpnapi.tar.gz") or 
-	filename.startswith("anyconnect-linux64-") and filename.endswith("-vpnapi.tar.gz") or 
-	filename.startswith("anyconnect-linux-") and filename.endswith("-vpnapi.tar.gz") or 
-	filename.startswith("anyconnect-win-") and filename.endswith("-vpnapi.zip")
-	):
-		imagecode = imagelookup("vpnapi")
-		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-macosx-i386-") and filename.endswith("-EnableFIPS.tar.gz") or 
-	filename.startswith("anyconnect-macosx-powerpc-") and filename.endswith("-EnableFIPS.tar.gz") or 
-	filename.startswith("anyconnect-linux-64-") and filename.endswith("-EnableFIPS.tar.gz")
-	):
-		imagecode = imagelookup("fips")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-linux-") and filename.endswith("-EnableFIPS.tar.gz")
-	):
-		imagecode = imagelookup("fips")
-		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
-
-	elif splitbydash[1] == "EnableFIPS" and splitbydash[2] == "win":
-		imagecode = imagelookup("fips")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif splitbydash[1] == "dart" and splitbydash[2] == "win":
-		imagecode = imagelookup("dart")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif splitbydash[1] == "gina" and splitbydash[2] == "win":
-		imagecode = imagelookup("gina")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif filename.startswith("anyconnect-gina-"):
-		imagecode = imagelookup("gina")
-		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
-
-	elif filename.startswith("anyconnect-profileeditor-win"):
-		imagecode = imagelookup(splitbydash[1])
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-win-") and filename.endswith("-nvm-standalone-k9.msi") or 
-	filename.startswith("anyconnect-macos-") and filename.endswith("-nvm-standalone.dmg") or 
-	filename.startswith("anyconnect-linux64-") and filename.endswith("-nvm-standalone.tar.gz")
-	):
-		imagecode = imagelookup("nvm")
-		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-nvm-win-")
-	):
-		imagecode = imagelookup("nvm")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-wince-ARMv4I-activesync-")
-	):
-		imagecode = imagelookup("wince")
-		sec_anyconnect_p4_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-wince-ARMv4I-")
-	):
-		imagecode = imagelookup("wince")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-win-arm64-")
-	):
-		imagecode = imagelookup("winarm64")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-win-k9-")
-	):
-		imagecode = imagelookup("win")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-win-")
-	):
-		imagecode = imagelookup("win")
-		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-macosx-i386-k9-")
-	):
-		imagecode = imagelookup("macosxi386")
-		sec_anyconnect_p4_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-macosx-powerpc-k9-")
-	):
-		imagecode = imagelookup("macosxi386")
-		sec_anyconnect_p4_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-macosx-i386-")
-	):
-		imagecode = imagelookup("macosxi386")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-macosx-powerpc-")
-	):
-		imagecode = imagelookup("macosxpowerpc")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-macos-")
-	):
-		imagecode = imagelookup("macos")
-		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-predeploy-linux-64-")
-	):
-		imagecode = imagelookup("linux64")
-		sec_anyconnect_p4_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-predeploy-linux-")
-	):
-		imagecode = imagelookup("linux")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-linux-k9-")
-	):
-		imagecode = imagelookup("linux")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-linux64-") or 
-	filename.startswith("anyconnect-Linux_64-")
-	):
-		imagecode = imagelookup("linux64")
-		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-linux-64-")
-	):
-		imagecode = imagelookup("linux64")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-linux-")
-	):
-		imagecode = imagelookup("linux")
-		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-android-")
-	):
-		imagecode = imagelookup("clientandroid")
-		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-nam-win-")
-	):
-		imagecode = imagelookup("anyconnectnam")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-websecurity-win-")
-	):
-		imagecode = imagelookup("websecurity")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-amp-win-")
-	):
-		imagecode = imagelookup("amp")
-		sec_anyconnect_p3_d3_v (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-translations-")
-	):
-		imagecode = imagelookup("translations")
-		utilssinglemove (debug1,filename,prodname,imagecode)
-
-	elif (
-	filename.startswith("anyconnect-android-")
-	):
-		imagecode = imagelookup("android")
-		sec_anyconnect_p2_d3_v (debug1,filename,prodname,imagecode)
-
 
 def sec_css (debug1,filename):
 	if debug1:

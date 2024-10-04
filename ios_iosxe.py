@@ -184,7 +184,11 @@ def fileprocessor_iosxe(debug1,filename):
 		imagecode = imagelookup(mdash[1])
 		fileproc_iosxe_3 (debug1,filename,prodname,imagecode)
 
-	elif filename.startswith("WP76xx"):
+	elif (
+		filename.startswith("WP76xx") or
+		filename.startswith("WP7601") or
+		filename.startswith("WP7603")
+		):
 		prodname = product ("isrg3moduleslte")
 		utilssingleprodname (debug1,filename,prodname)
 
@@ -206,7 +210,11 @@ def fileprocessor_iosxe(debug1,filename):
 		else:
 			fileproc_iosxe(debug1,filename,prodname,imagecode)
 
-	elif filename.startswith("C9800-"):
+	elif (
+		filename.startswith("C9800-") or 
+		filename.startswith("CW9800H") or
+		filename.startswith("CW9800M")
+		):
 		fileproccontroller (debug1,filename)
 
 	elif filename.startswith("ie9k_"):
@@ -222,6 +230,12 @@ def fileprocessor_iosxe(debug1,filename):
 			workname = filename.replace("ie9k_iosxe.","")
 			workname = workname.replace(".SPA.bin","")
 			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
+
+	elif filename.startswith("appqoe-dre"):
+		prodname = product ("sdwan")
+		imagecode = imagelookup("appqoe")
+		filepath = filepath2(prodname,imagecode)
+		filemove (filepath, filename)
 
 	elif filename.startswith("c8000v"):
 		if filename.startswith("c8000v-universalk9_16G_serial"):
@@ -262,10 +276,12 @@ def fileprocessor_iosxe(debug1,filename):
 #		filepath = filepath4(prodname,iosmain,iosfull,imagecode)
 #		filemove (filepath, filename)
 
+	elif filename.startswith("c1100tg"):
+			prodname = product ("c1100tg")
+			imagecode = imagelookup("universalk9")
+			fileproc_iosxe(debug1,filename,prodname,imagecode)
 	else:
 		if splitbydash[0] == "c1100":
-			prodname = product ("c1100router")
-		elif splitbydash[0] == "isr1100be":
 			prodname = product ("c1100router")
 		else:
 			prodname = product (splitbydash[0])
@@ -281,7 +297,13 @@ def fileprocessor_iosxe(debug1,filename):
 def fileproccontroller (debug1,filename):
 	if debug1:
 		print("\tSubroutine#\tfileproccontroller")
-	if filename.startswith("C9800-40-universalk9_wlc"):
+	if filename.startswith("C9800-AP-universalk9."):
+		prodname = product ("C9800-APC")
+		imagecode = imagelookup("universalk9")
+		workname = filename.replace("C9800-AP-universalk9.","")
+		workname = workname.replace(".zip","")
+		file_prepare_standard_iosxe (debug1,filename,prodname,imagecode,workname)
+	elif filename.startswith("C9800-40-universalk9_wlc"):
 		prodname = product ("C9800-40")
 		fileproc_iosxe_controller (debug1,filename,prodname)
 	elif filename.startswith("C9800-80-universalk9_wlc"):
@@ -299,8 +321,11 @@ def fileproccontroller (debug1,filename):
 	elif filename.startswith("C9800-SW-iosxe-wlc"):
 		prodname = product ("C9800-SW")
 		fileproc_iosxe_controller (debug1,filename,prodname)
-	elif filename.startswith("C9800-AP-universalk9"):
-		prodname = product ("C9800-AP")
+	elif filename.startswith("CW9800H"):
+		prodname = product ("CW9800H")
+		fileproc_iosxe_controller (debug1,filename,prodname)
+	elif filename.startswith("CW9800M"):
+		prodname = product ("CW9800M")
 		fileproc_iosxe_controller (debug1,filename,prodname)
 
 def fileproc_iosxe_controller (debug1,filename,prodname):
@@ -323,6 +348,9 @@ def fileproc_iosxe_controller (debug1,filename,prodname):
 		fileproc_iosxe (debug1,filename,prodname,imagecode)
 	elif filename.endswith(".ova"):
 		imagecode = imagelookup("install")
+		fileproc_iosxe (debug1,filename,prodname,imagecode)
+	elif "-wlc-universalk9." in filename:
+		imagecode = imagelookup("universalk9")
 		fileproc_iosxe (debug1,filename,prodname,imagecode)
 	elif filename.endswith(".iso"):
 		imagecode = imagelookup("install")
@@ -425,3 +453,10 @@ def fileproc_iosxe (debug1,filename,prodname,imagecode):
 def file_prepare_standard_iosxe (debug1,filename,prodname,imagecode,workname):
 	if debug1:
 		print("\tSubroutine#\tfile_prepare_standard_iosxe")
+	splitbydot = workname.split(".")
+	if len(splitbydot) == 3:
+		version_main = util2digit(splitbydot[0],splitbydot[1])
+		version_full = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		filepath = filepath4(prodname,version_main,version_full,imagecode)
+		filemove (filepath, filename)
+	
