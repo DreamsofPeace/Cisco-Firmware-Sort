@@ -26,6 +26,12 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 		prodname = product ("anyconnect")
 		sec_anyconnect_new (debug1,filename)
 
+	elif (
+		filename.startswith ("ise-apply-") or
+		filename.startswith ("ise-rollback-")
+	):
+		sec_ise_hotfix (debug1,filename)
+
 	elif filename == "release_duration_tool.tar":
 		prodname = product ("firepower")
 		imagecode = imagelookup("fmc")
@@ -263,6 +269,7 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 		sec_asa_fp_sys (debug1,filename)
 
 	elif (
+	filename.startswith("asac") or
 	filename.startswith("asav") or
 	filename.startswith("asa")
 	):
@@ -454,6 +461,96 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	else:
 		messageunknownfile()
 		
+		
+		
+def sec_ise_hotfix (debug1,filename): #ISE Hotfixes
+	if debug1:
+		print("\tSubroutine#\tsec_ise_hotfix")
+	prodname = product("ise")
+	if (
+		filename == "ise-apply-CSCwb29140_2.7.0.356_patch7-SPA.tar.gz" or
+		filename == "ise-rollback-CSCwb29140_2.7.0.356_patch7-SPA.tar.gz"
+	):
+		version = "3.2"
+		patchversion = "7"
+		imagecode1 = imagelookup("patch")
+		imagecode2 = imagelookup("hotfix")
+		final = patchversion + "-" + imagecode2
+		filepath = filepath3(prodname,version,imagecode1,final)
+		filemove (filepath, filename)
+	elif (
+		filename == "ise-apply-CSCwi06794_3.0.0.458_patch8-SPA.tar.gz"
+	):
+		version = "3.0"
+		patchversion = "8"
+		imagecode1 = imagelookup("patch")
+		imagecode2 = imagelookup("hotfix")
+		final = patchversion + "-" + imagecode2
+		filepath = filepath3(prodname,version,imagecode1,final)
+		filemove (filepath, filename)
+	elif (
+		filename == "ise-apply-CSCvm14030_1.4_common_1-SPA.tar.gz"
+	):
+		version = "1.4"
+		imagecode = imagelookup("universal")
+		filepath = filepath3(prodname,version,imagecode)
+		filemove (filepath, filename)
+
+	elif (
+		filename == "ise-apply-CSCvm14030_2.0.0.306_common_1-SPA.tar.gz" or
+		filename == "ise-rollback-CSCvm14030_2.0.0.306_common_1-SPA.tar.gz"
+	):
+		version = "2.0"
+		imagecode = imagelookup("universal")
+		imagecode2  = "CSCvm14030"
+		filepath = filepath4(prodname,version,imagecode,imagecode2)
+		filemove (filepath, filename)
+	elif (
+		filename == "ise-apply-CSCvm14030_2.0.1.130_common_1-SPA.tar.gz" or
+		filename == "ise-rollback-CSCvm14030_2.0.1.130_common_1-SPA.tar.gz"
+	):
+		version = "2.0.1"
+		imagecode = imagelookup("universal")
+		imagecode2  = "CSCvm14030"
+		filepath = filepath4(prodname,version,imagecode,imagecode2)
+		filemove (filepath, filename)
+	elif (
+		filename == "ise-apply-CSCvm14030_2.1.0.474_common_1-SPA.tar.gz" or
+		filename == "ise-rollback-CSCvm14030_2.1.0.474_common_1-SPA.tar.gz"
+	):
+		version = "2.1"
+		imagecode = imagelookup("universal")
+		imagecode2  = "CSCvm14030"
+		filepath = filepath4(prodname,version,imagecode,imagecode2)
+		filemove (filepath, filename)
+	elif (
+		filename == "ise-apply-CSCvm14030_2.2.0.470_common_1-SPA.tar.gz" or
+		filename == "ise-rollback-CSCvm14030_2.2.0.470_common_1-SPA.tar.gz"
+	):
+		version = "2.2"
+		imagecode = imagelookup("universal")
+		imagecode2  = "CSCvm14030"
+		filepath = filepath4(prodname,version,imagecode,imagecode2)
+		filemove (filepath, filename)
+	elif (
+		filename == "ise-apply-CSCvm14030_2.3.0.298_common_1-SPA.tar.gz" or
+		filename == "ise-rollback-CSCvm14030_2.3.0.298_common_1-SPA.tar.gz"
+	):
+		version = "2.3"
+		imagecode = imagelookup("universal")
+		imagecode2  = "CSCvm14030"
+		filepath = filepath4(prodname,version,imagecode,imagecode2)
+		filemove (filepath, filename)
+	elif (
+		filename == "ise-apply-CSCvm14030_2.4.0.357_common_1-SPA.tar.gz" or
+		filename == "ise-rollback-CSCvm14030_2.4.0.357_common_1-SPA.tar.gz"
+	):
+		version = "2.4"
+		imagecode = imagelookup("universal")
+		imagecode2  = "CSCvm14030"
+		filepath = filepath4(prodname,version,imagecode,imagecode2)
+		filemove (filepath, filename)
+
 
 def sec_anyconnect_new (debug1,filename): #Anyconnect / Cisco Secure Client
 	if debug1:
@@ -881,20 +978,20 @@ def sec_fpr_hotfixes (debug1,filename): #Hotfixes
 		"Cisco_Secure_FW_TD_4200_Patch-7.4.1.1-12.sh.REL.tar": {
 			"prodname": "firepower4200", "imagecode": "fpftdsoftware", "versionmain": "7.4", "versionfull": "7.4.1"
 		},
-		"Cisco_FTD_SSP_FP1K_Hotfix_P-7.1.0.2-2": {
+		"Cisco_FTD_SSP_FP1K_Hotfix_P-7.1.0.2-2.sh.REL.tar": {
 			"prodname": "firepower1k", "imagecode": "fpftdsoftware", "versionmain": "7.1", "versionfull": "7.1.0.1"
 		},
-		"Cisco_FTD_SSP_FP2K_Hotfix_P-7.1.0.2-2": {
+		"Cisco_FTD_SSP_FP2K_Hotfix_P-7.1.0.2-2.sh.REL.tar": {
 			"prodname": "firepower2k", "imagecode": "fpftdsoftware", "versionmain": "7.1", "versionfull": "7.1.0.1"
 		},
-		"Cisco_FTD_SSP_Hotfix_P-7.1.0.2-2": {
+		"Cisco_FTD_SSP_Hotfix_P-7.1.0.2-2.sh.REL.tar": {
 			"prodname": "firepower4k9k", "imagecode": "fpftdsoftware", "versionmain": "7.1", "versionfull": "7.1.0.1"
 		},
-		"Cisco_FTD_Hotfix_P-7.1.0.2-2": {
-			"prodname": "firepowerisa3000", "imagecode": "fpftdsoftware", "versionmain": "7.1", "versionfull": "7.1.0.1"
-		},
-		"Cisco_FTD_Hotfix_P-7.1.0.2-2": {
+		"Cisco_FTD_Hotfix_P-7.1.0.2-2.sh.REL.tar": {
 			"prodname": "firepowertd", "imagecode": "fpftdsoftware", "versionmain": "7.1", "versionfull": "7.1.0.1"
+		},
+		"Cisco_FTD_SSP_FP3K_Hotfix_Q-7.1.0.3-2.sh.REL.tar": {
+			"prodname": "firepower3k", "imagecode": "fpftdsoftware", "versionmain": "7.1", "versionfull": "7.1.0.1"
 		}
 	}
 	if filename in filename_map:
@@ -2453,6 +2550,7 @@ def sec_asa_firmware (debug1,filename):
 	if (
 	filename.startswith("asa9") or 
 	filename.startswith("asav9") or 
+	filename.startswith("asac9") or 
 	filename.startswith("asa871")
 	):
 		prodname = product ("asa")
@@ -2506,6 +2604,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 
 	elif len(splitbydash) == 1:
 		workname = filename.replace("asav", "")
+		workname = workname.replace("asac", "")
 		workname = workname.replace("asa", "")
 		splitbydot = workname.split(".")
 		verlist = list(splitbydot[0])
@@ -2526,6 +2625,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 		filename.endswith(".vhd.bz2")
 		):
 			workname = filename.replace("asav", "")
+			workname = workname.replace("asac", "")
 			workname = workname.replace("asa", "")
 			workname = workname.replace(".qcow2", "")
 			workname = workname.replace(".vhd.bz2", "")
@@ -2533,6 +2633,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 			workname = workname.replace(".vmdk", "")
 			workname = workname.replace(".vhdx", "")
 			workname = workname.replace(".zip", "")
+			workname = workname.replace(".tar", "")
 			mysplitdashworkname = workname.split("-")
 			verlist = list(mysplitdashworkname[0])
 			vertwo = util2digit(verlist[0],verlist[1])
@@ -2541,6 +2642,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 			filemove (filepath, filename)
 		else:
 			workname = filename.replace("asav", "")
+			workname = workname.replace("asac", "")
 			workname = workname.replace("asa", "")
 			mysplitdashworkname = workname.split("-")
 			verlist = list(mysplitdashworkname[0])
@@ -2564,6 +2666,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 		splitbydash[2] == "k8.bin"
 		):
 			workname = filename.replace("asav", "")
+			workname = workname.replace("asac", "")
 			workname = workname.replace("asa", "")
 			mysplitdashworkname = workname.split("-")
 			verlist = list(mysplitdashworkname[0])
@@ -2576,6 +2679,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 		splitbydash[2] == "k8.bin"
 		):
 			workname = filename.replace("asav", "")
+			workname = workname.replace("asac", "")
 			workname = workname.replace("asa", "")
 			mysplitdashworkname = workname.split("-")
 			verlist = list(mysplitdashworkname[0])
@@ -2590,6 +2694,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 		):
 			imagecode = imagelookup("lfbff")
 			workname = filename.replace("asav", "")
+			workname = workname.replace("asac", "")
 			workname = workname.replace("asa", "")
 			
 			mysplitdashworkname = workname.split("-")
@@ -2600,13 +2705,16 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 			filemove (filepath, filename)
 		elif (
 		splitbydash[0] == "asav9" or
+		splitbydash[0] == "asac9" or
 		splitbydash[0] == "asa9"
 		):
 			workname = filename.replace(".qcow2", "")
 			workname = workname.replace(".vhdx", "")
 			workname = workname.replace(".zip", "")
+			workname = workname.replace(".tar", "")
 			workname = workname.replace(".vhd.bz2", "")
 			workname = workname.replace("asav", "")
+			workname = workname.replace("asac", "")
 			workname = workname.replace("asa", "")
 			workname = workname.replace("-smp-k8.bin", "")
 			mysplitdashworkname = workname.split("-")
@@ -2626,8 +2734,10 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 			workname = filename.replace(".qcow2", "")
 			workname = workname.replace(".vhdx", "")
 			workname = workname.replace(".zip", "")
+			workname = workname.replace(".tar", "")
 			workname = workname.replace(".vhd.bz2", "")
 			workname = workname.replace("asav", "")
+			workname = workname.replace("asac", "")
 			workname = workname.replace("asa", "")
 			workname = workname.replace("-smp-k8.bin", "")
 			mysplitdashworkname = workname.split("-")
@@ -2642,6 +2752,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 		):
 			imagecode = imagelookup("lfbff")
 			workname = filename.replace("asav", "")
+			workname = workname.replace("asac", "")
 			workname = workname.replace("asa", "")
 			mysplitdashworkname = workname.split("-")
 			verlist = list(mysplitdashworkname[0])
@@ -2651,13 +2762,16 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 			filemove (filepath, filename)
 		elif (
 		splitbydash[0] == "asav9" or
+		splitbydash[0] == "asac9" or
 		splitbydash[0] == "asa9"
 		):
 			workname = filename.replace(".qcow2", "")
 			workname = workname.replace(".vhdx", "")
 			workname = workname.replace(".zip", "")
+			workname = workname.replace(".tar", "")
 			workname = workname.replace(".vhd.bz2", "")
 			workname = workname.replace("asav", "")
+			workname = workname.replace("asac", "")
 			workname = workname.replace("asa", "")
 			workname = workname.replace("-smp-k8.bin", "")
 			mysplitdashworkname = workname.split("-")
@@ -2675,6 +2789,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 		splitbydash[4] == "k8.bin"
 		):
 			workname = filename.replace("asav", "")
+			workname = workname.replace("asac", "")
 			workname = workname.replace("asa", "")
 			mysplitdashworkname = workname.split("-")
 			vertwo = util2digit(mysplitdashworkname[0],mysplitdashworkname[1])
@@ -2687,6 +2802,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 		):
 			imagecode = imagelookup("lfbff")
 			workname = filename.replace("asav", "")
+			workname = workname.replace("asac", "")
 			workname = workname.replace("asa", "")
 			mysplitdashworkname = workname.split("-")
 			vertwo = util2digit(mysplitdashworkname[0],mysplitdashworkname[1])
@@ -2702,6 +2818,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 		splitbydash[5] == "k8.bin"
 		):
 			workname = filename.replace("asav", "")
+			workname = workname.replace("asac", "")
 			workname = workname.replace("asa", "")
 			mysplitdashworkname = workname.split("-")
 			vertwo = util2digit(mysplitdashworkname[0],mysplitdashworkname[1])
@@ -2714,6 +2831,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 		):
 			imagecode = imagelookup("lfbff")
 			workname = filename.replace("asav", "")
+			workname = workname.replace("asac", "")
 			workname = workname.replace("asa", "")
 			mysplitdashworkname = workname.split("-")
 			vertwo = util2digit(mysplitdashworkname[0],mysplitdashworkname[1])
@@ -3248,6 +3366,12 @@ def sec_ise_upgrade (debug1,filename,prodname,imagecode):
 
 	elif filename =="ise-upgradebundle-2.7.x-3.1.x-to-3.2.0.542b.SPA.x86_64.tar.gz":
 		vertwo = "3.2"
+
+	elif filename =="ise-upgradebundle-3.0.x-3.2.x-to-3.3.0.430b.SPA.x86_64.tar.gz":
+		vertwo = "3.3"
+
+	elif filename =="ise-upgradebundle-3.1.x-3.3.x-to-3.4.0.608a.SPA.x86_64.tar.gz":
+		vertwo = "3.4"
 	filepath = filepath3 (prodname,vertwo,imagecode)
 	filemove (filepath, filename)
 
@@ -3308,8 +3432,8 @@ def sec_ise_pic (debug1,filename):
 		filepath = filepath4 (prodname,version,imagecode,splitbydash[4])
 		filemove (filepath, filename)
 	else:
-#		splitbydot = workname.split(".")
-#		version = splitbydash[2]
+		splitbydot = workname.split(".")
+		version = splitbydash[2]
 		imagecode = imagelookup("install")
 		filepath = filepath3 (prodname,version,imagecode)
 		filemove (filepath, filename)

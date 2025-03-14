@@ -392,7 +392,8 @@ def dirwalk (src,hashsha512,hashfile):
 		filename.startswith("MIBS") or 
 		filename.startswith("MIBs") or 
 		filename.startswith("standard-mibs_") or 
-		filename.startswith("aruba-mibs_")
+		filename.startswith("aruba-mibs_") or 
+		"MIBs" in filename
 		):
 			prodname = product ("mibs")
 			base_directory_move (filename, prodname)
@@ -506,12 +507,18 @@ def dirwalk (src,hashsha512,hashfile):
 		elif filename.startswith("ArubaOS-CX_8360"):
 			prodname = product ("8360")
 			workname = filename.replace(".swi","")
+			workname = workname.replace("ArubaOS-CX_8360-8100_","")
 			workname = workname.replace("ArubaOS-CX_8360_","")
 			new_style_move (filename, prodname, workname, "_")
 		elif filename.startswith("ArubaOS-CX_8400X"):
 			prodname = product ("8400X")
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_8400X_","")
+			new_style_move (filename, prodname, workname, "_")
+		elif filename.startswith("ArubaOS-CX_9300S-32C8D_"):
+			prodname = product ("9300")
+			workname = filename.replace(".swi","")
+			workname = workname.replace("ArubaOS-CX_9300S-32C8D_","")
 			new_style_move (filename, prodname, workname, "_")
 		elif filename.startswith("ArubaOS-CX_9300-32D_"):
 			prodname = product ("9300")
@@ -559,9 +566,17 @@ def dirwalk (src,hashsha512,hashfile):
 			prodname = product ("MMC")
 			workname = filename.replace("ArubaOS_MM_","")
 			new_style_move (filename, prodname, workname, ".")
-		elif filename.startswith("ArubaOS_VMC_"):
+		elif (
+		filename.startswith("ArubaOS_VMC_") or
+		filename.startswith("ArubaOS_VGW_")
+		):
 			prodname = product ("VMC")
 			workname = filename.replace("ArubaOS_VMC_","")
+			workname = workname.replace("ArubaOS_VGW_","")
+			workname = workname.replace(".iso","")
+			workname = workname.replace(".img.tar.gz","")
+			workname = workname.replace(".vhd.gz","")
+			workname = workname.replace(".ova","")
 			new_style_move (filename, prodname, workname, ".")
 		elif filename.startswith("A_"):
 			prodname = product ("A")
@@ -757,6 +772,7 @@ def dirwalk (src,hashsha512,hashfile):
 			workname = workname.replace("psm_upgrade_bundle_","")
 			workname = workname.replace(".tar","")
 			workname = workname.replace(".iso","")
+			workname = workname.replace(".vhd","")
 			workname = workname.replace(".ova","")
 			workname = workname.replace(".qcow2","")
 			workname = workname.replace("-",".")

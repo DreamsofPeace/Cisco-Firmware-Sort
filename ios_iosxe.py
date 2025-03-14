@@ -38,11 +38,10 @@ def fileprocessor_iosxe(debug1,filename):
 		utilssingleprodname (debug1,filename,prodname)
 
 	elif (
-	filename.startswith("c1100_gfast") or 
-	filename.startswith("c1100_phy")
+	filename.startswith("isr1100-bootloader")
 	):
 		prodname = product ("c1100router")
-		imagecode = imagelookup ("dslfirmware")
+		imagecode = imagelookup ("rommon")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
@@ -74,30 +73,10 @@ def fileprocessor_iosxe(debug1,filename):
 		prodname = product ("cat3k_caa")
 		imagecode = imagelookup ("webauth")
 		utilssinglemove (debug1,filename,prodname,imagecode)
-
+#4221 & 4221X
 	elif filename.startswith("isr4200-firmware_nim_xdsl"):
 		prodname = product ("isr4200")
 		imagecode = imagelookup ("dslfirmware")
-		utilssinglemove (debug1,filename,prodname,imagecode)
-
-	elif filename.startswith("isr4400-firmware_nim_xdsl"):
-		prodname = product ("isr4400")
-		imagecode = imagelookup ("dslfirmware")
-		utilssinglemove (debug1,filename,prodname,imagecode)
-
-	elif filename.startswith("isr4400v2-firmware_nim_xdsl"):
-		prodname = product ("isr4400v2")
-		imagecode = imagelookup ("dslfirmware")
-		utilssinglemove (debug1,filename,prodname,imagecode)
-
-	elif filename.startswith("isr4300-hw-programmables"):
-		prodname = product ("isr4300")
-		imagecode = imagelookup ("hardware")
-		utilssinglemove (debug1,filename,prodname,imagecode)
-
-	elif filename.startswith("isr-hw-programmables"):
-		prodname = product ("isr4400")
-		imagecode = imagelookup ("hardware")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("isr4200_cpld_update"):
@@ -105,9 +84,25 @@ def fileprocessor_iosxe(debug1,filename):
 		imagecode = imagelookup ("cpld_update")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
+	elif filename.startswith("isr4200-universalk9"):
+		prodname = product ("isr4200")
+		temp = splitbydot[0].replace("isr4200-","")
+		imagecode = imagelookup(temp)
+		fileproc_iosxe (debug1,filename,prodname,imagecode)
+#4351, 4331, 4331-DC, 4321
+	elif filename.startswith("isr4300-hw-programmables"):
+		prodname = product ("isr4300")
+		imagecode = imagelookup ("hardware")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
 	elif filename.startswith("isr4300_cpld_update"):
 		prodname = product ("isr4300")
 		imagecode = imagelookup ("cpld_update")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+# 4451, 4431
+	elif filename.startswith("isr4400-firmware_nim_xdsl"):
+		prodname = product ("isr4400")
+		imagecode = imagelookup ("dslfirmware")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("isr4400_cpld_update"):
@@ -115,7 +110,20 @@ def fileprocessor_iosxe(debug1,filename):
 		imagecode = imagelookup ("cpld_update")
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
-	elif filename.startswith("isr4400v2_cpld_update"):
+	elif filename.startswith("isr-hw-programmables"):
+		prodname = product ("isr4400")
+		imagecode = imagelookup ("hardware")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+#ISR 4461
+	elif filename.startswith("isr4400v2-firmware_nim_xdsl"):
+		prodname = product ("isr4400v2")
+		imagecode = imagelookup ("dslfirmware")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+		filename.startswith("isr4400v2_cpld_update") or
+		filename.startswith("isr4400v2-hw-programmable")
+		):
 		prodname = product ("isr4400v2")
 		imagecode = imagelookup ("cpld_update")
 		utilssinglemove (debug1,filename,prodname,imagecode)

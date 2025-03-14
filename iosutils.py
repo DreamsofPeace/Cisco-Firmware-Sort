@@ -2104,6 +2104,8 @@ def imagelookup (imagecode):
 		subdirectory = "UNIVERSAL"
 	elif imagecode == "iosxe":
 		subdirectory = "UNIVERSAL"
+	elif imagecode == "universal":
+		subdirectory = "UNIVERSAL"
 	elif imagecode == "universalk9_kvm":
 		subdirectory = "UNIVERSAL-KVM"
 	elif imagecode == "universal_cloud_nfvis":
@@ -2402,6 +2404,10 @@ def imagelookup (imagecode):
 		subdirectory = "VIRTUAL-APPLIANCE"
 	elif imagecode == "appqoe":
 		subdirectory = "QoE"
+	elif imagecode == "migration":
+		subdirectory = "MIGRATION"
+	elif imagecode == "launcher":
+		subdirectory = "LAUNCHER"
 	else:
 		subdirectory = "UNKNOWN"
 	return subdirectory
@@ -2433,6 +2439,8 @@ def product (prodcode):
 		prodname = "NETWORK-MANAGEMENT/TERMINAL-SERVICES-GATEWAY"
 	elif prodcode == "perfigocca":
 		prodname = "NETWORK-MANAGEMENT/CISCO-CLEAN-ACCESS"
+	elif prodcode == "cimcs":
+		prodname = "SERVERS/CIMC-SUPERVISOR"
 	elif prodcode == "routers":
 		prodname = "ROUTERS"
 	elif prodcode == "ir1800":
@@ -2582,7 +2590,9 @@ def product (prodcode):
 	elif prodcode == "ni2":
 		prodname = "ROUTERS/BROADBAND/NI-2"
 	elif prodcode == "rfgw":
-		prodname = "ROUTERS/BROADBAND/RF-Gateway"
+		prodname = "ROUTERS/BROADBAND/RF-Gateway 1"
+	elif prodcode == "rfgwk10":
+		prodname = "ROUTERS/BROADBAND/RF-Gateway 10"
 	elif prodcode == "sb101":
 		prodname = "ROUTERS/BROADBAND/SB-101"
 	elif prodcode == "sb107":
@@ -2973,6 +2983,10 @@ def product (prodcode):
 		prodname = "SERVERS/UCS/C-SERIES/C220M6"
 	elif prodcode == "c220m7":
 		prodname = "SERVERS/UCS/C-SERIES/C220M7"
+	elif prodcode == "c225m6":
+		prodname = "SERVERS/UCS/C-SERIES/C225M6"
+	elif prodcode == "c225m8":
+		prodname = "SERVERS/UCS/C-SERIES/C225M8"
 	elif prodcode == "c2x":
 		prodname = "SERVERS/UCS/C-SERIES/C22M3-C22M4"
 	elif prodcode == "c240":
@@ -2985,6 +2999,10 @@ def product (prodcode):
 		prodname = "SERVERS/UCS/C-SERIES/C240M6"
 	elif prodcode == "c240m7":
 		prodname = "SERVERS/UCS/C-SERIES/C240M7"
+	elif prodcode == "c245m6":
+		prodname = "SERVERS/UCS/C-SERIES/C245M6"
+	elif prodcode == "c245m8":
+		prodname = "SERVERS/UCS/C-SERIES/C245M8"
 	elif prodcode == "c250":
 		prodname = "SERVERS/UCS/C-SERIES/C250M1-C250M2"
 	elif prodcode == "c260":
@@ -3019,6 +3037,8 @@ def product (prodcode):
 		prodname = "SERVERS/UCS/E-SERIES/"
 	elif prodcode == "e100":
 		prodname = "SERVERS/UCS/E-SERIES/E1XX"
+	elif prodcode == "ucs":
+		prodname = "SERVERS/UCS/"
 	elif prodcode == "c6400r":
 		prodname = "SERVICE-GATEWAY/6400-NSP"
 	elif prodcode == "c6400r2sp":

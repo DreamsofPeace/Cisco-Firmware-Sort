@@ -16,6 +16,7 @@ import sys
 # Other Libs
 
 # Owned
+# Owned
 from iosutils     import *
 from ios_nexus    import fileprocessornxos
 from ios_voice    import fileprocessorvoice
@@ -606,7 +607,8 @@ def toplevel(filename):
 		name.startswith("c7200-p-mz_ccassar-conn_isp-l3vpn") or 
 		name == "c7200-js-mz" or 
 		name == "c7200-js-mz.symbols.gz" or 
-		name == "c7200-p-mz"
+		name == "c7200-p-mz" or 
+		name == "c7200-is-mz.123-3.20040113"
 		):
 			prodname = product ("c7200")
 			imagecode = imagelookup ("specialbuild")
@@ -818,6 +820,20 @@ def toplevel(filename):
 			name.startswith("asr1002x") and "THROTTLE_LATEST" in name
 		):
 			prodname = product ("asr1002x")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name.startswith("c8000aep") and "CSC" in name
+		):
+			prodname = product ("c8000aep")
+			imagecode = imagelookup ("specialbuild")
+			utilssinglemove (debug1,name,prodname,imagecode)
+
+		elif (
+			name.startswith("isr4300") and "CSC" in name
+		):
+			prodname = product ("isr4300")
 			imagecode = imagelookup ("specialbuild")
 			utilssinglemove (debug1,name,prodname,imagecode)
 
@@ -1126,7 +1142,6 @@ def toplevel(filename):
 		name.startswith("iosxe-sd-avc") or
 		name.startswith("ir1101") or
 		name.startswith("ir8340") or
-		name.startswith("isr1100be") or
 		name.startswith("isr4200") or
 		name.startswith("isr4300") or
 		name.startswith("isr4400") or
@@ -1136,7 +1151,8 @@ def toplevel(filename):
 		name.startswith("vg400") or
 		name.startswith("vg420") or
 		name.startswith("vg450") or
-		name.startswith("appqoe")
+		name.startswith("appqoe") or
+		name.startswith("isr1100")
 		):
 			fileprocessor_iosxe(debug1,name)
 
@@ -1406,6 +1422,12 @@ def toplevel(filename):
 		name.startswith("SSM_On-Prem") or
 		name.startswith("UCSC-C220-M5-") or
 		name.startswith("UCSC-C240-M5-") or
+		name.startswith("UCSC-C220-M6-") or
+		name.startswith("UCSC-C240-M6-") or
+		name.startswith("UCSC-C220-M7-") or
+		name.startswith("UCSC-C240-M7-") or
+		name.startswith("UCSC-C225-M6-") or
+		name.startswith("UCSC-C225-M8-") or
 		name.startswith("aci-apic") or
 		name.startswith("aci-msft-pkg") or
 		name.startswith("aci-n9000-dk9") or
@@ -1442,7 +1464,9 @@ def toplevel(filename):
 		name.startswith("Launchpad-desktop") or
 		name.startswith("DNA_Center_VA") or
 		name.startswith("CIMCS") or
-		name.startswith("cimcs")
+		name.startswith("cimcs") or
+		name.startswith("CatC") or
+		name.startswith("trustidevcodesigning5")
 		):
 			file_proc_servers(name,debug1)
 
@@ -1696,6 +1720,7 @@ def toplevel(filename):
 		name.startswith ("AP_BUNDLE") or
 		name.startswith ("WCS-STANDARD-K9") or
 		name.startswith ("ISR-AP1100AC") or
+		name.startswith ("AS_7500") or
 		name.startswith ("CiscoAironet-AP-to-LWAPP-Upgrade-Tool") or
 		name.startswith ("BR350") and name.endswith ("exe") or
 		name.startswith ("WGB350") and name.endswith ("exe")

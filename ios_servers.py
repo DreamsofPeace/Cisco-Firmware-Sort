@@ -23,98 +23,12 @@ def file_proc_servers (filename,debug1):
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
+		filename.startswith("CatC") or 
 		filename.startswith("DNAC") or 
 		filename.startswith("dnac") or 
-		filename.startswith("trustidevcodesigning5") or 
-		filename == "Deploy-cisco-dna-center-on-aws-using-aws-marketplace"
+		filename.startswith("trustidevcodesigning5")
 		):
-		prodname = product ("dnac")
-		if filename == "Deploy-cisco-dna-center-on-aws-using-aws-marketplace":
-			imagecode = imagelookup("docs")
-			prodpath = filepath2(prodname,imagecode)
-			filemove (prodpath, filename)
-		elif filename == "dnac1307_cisco_image_verification_key.pub":
-			imagecode = imagelookup("system")
-			v2 = "1.3"
-			vf = "1.3.0.7"
-			prodpath = prodname + "/" + v2 + "/" + vf
-			filemove (prodpath, filename)
-		elif filename == "dnac1314_cisco_image_verification_key.pub":
-			imagecode = imagelookup("system")
-			v2 = "1.3"
-			vf = "1.3.1.4"
-			prodpath = prodname + "/" + v2 + "/" + vf
-			filemove (prodpath, filename)
-		elif filename == "dnac1317_cisco_image_verification_key.pub":
-			imagecode = imagelookup("system")
-			v2 = "1.3"
-			vf = "1.3.1.7"
-			prodpath = prodname + "/" + v2 + "/" + vf
-			filemove (prodpath, filename)
-		elif filename == "dnac1331_cisco_image_verification_key.pub":
-			imagecode = imagelookup("system")
-			v2 = "1.3"
-			vf = "1.3.3.1"
-			prodpath = prodname + "/" + v2 + "/" + vf
-			filemove (prodpath, filename)
-		elif filename == "dnac1333_cisco_image_verification_key.pub":
-			imagecode = imagelookup("system")
-			v2 = "1.3"
-			vf = "1.3.3.3"
-			prodpath = prodname + "/" + v2 + "/" + vf
-			filemove (prodpath, filename)
-		elif filename == "dnac1334_cisco_image_verification_key.pub":
-			imagecode = imagelookup("system")
-			v2 = "1.3"
-			vf = "1.3.3.4"
-			prodpath = prodname + "/" + v2 + "/" + vf
-			filemove (prodpath, filename)
-		elif filename == "dnac1335_cisco_image_verification_key.pub":
-			imagecode = imagelookup("system")
-			v2 = "1.3"
-			vf = "1.3.3.5"
-			prodpath = prodname + "/" + v2 + "/" + vf
-			filemove (prodpath, filename)
-		elif filename == "dnac1336_cisco_image_verification_key.pub":
-			imagecode = imagelookup("system")
-			v2 = "1.3"
-			vf = "1.3.3.6"
-			prodpath = prodname + "/" + v2 + "/" + vf
-			filemove (prodpath, filename)
-		elif filename.startswith("DNAC-witness"):
-			workname = filename.replace("DNAC-witness-", "")
-			workname = workname.replace(".ova", "")
-			imagecode = imagelookup("witness")
-			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
-		elif (
-			filename.startswith("DNAC-SW-Launcher-") or 
-			filename.startswith("trustidevcodesigning5") or 
-			filename.endswith("-VA_cisco_image_verification_key.pub") or 
-			filename.endswith("-VA.ova")
-			):
-			imagecode = imagelookup("virtualapp")
-			workname = filename.replace("trustidevcodesigning5-", "")
-			workname = workname.replace("DNAC-SW-Launcher-", "")
-			workname = workname.replace("-VA.tar.gz.sig", "")
-			workname = workname.replace("-VA.tar.gz", "")
-			workname = workname.replace("-VA.ova", "")
-			workname = workname.replace("-VA_cisco_image_verification_key.pub", "")
-			splitbydot = workname.split(".")
-			version2 = util2digit(splitbydot[0],splitbydot[1])
-			version4 = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
-			filepath = filepath4(prodname,version2,version4,imagecode)
-			filemove (filepath, filename)
-		else:
-			imagecode = imagelookup("system")
-			workname = filename.replace("DNAC-SW-", "")
-			workname = workname.replace("dnac", "")
-			workname = workname.replace(".sig", "")
-			workname = workname.replace(".iso.part3.rar", "")
-			workname = workname.replace(".iso.part2.rar", "")
-			workname = workname.replace(".iso.part1.rar", "")
-			workname = workname.replace(".iso", "")
-			workname = workname.replace("_cisco_image_verification_key.pub", "")
-			utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname)
+		file_proc_servers_catc (debug1,filename)
 
 	elif filename.startswith("ucs-catalog"):
 		prodname = product("ucsgeneric")
@@ -151,6 +65,27 @@ def file_proc_servers (filename,debug1):
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
+	filename.startswith("UCSC-C220-M6-")
+	):
+		prodname = product("c220m6")
+		imagecode = imagelookup("catalog")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename.startswith("UCSC-C225-M6-")
+	):
+		prodname = product("c225m6")
+		imagecode = imagelookup("catalog")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
+	filename.startswith("UCSC-C240-M6-")
+	):
+		prodname = product("c240m6")
+		imagecode = imagelookup("catalog")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
 	filename.startswith ("Collector") or 
 	filename.startswith ("collector") or 
 	filename == "JeOS_Patch_To_Enable_ASD.zip" or 
@@ -170,17 +105,24 @@ def file_proc_servers (filename,debug1):
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
-	filename.startswith ("ucs-cxx-diag")
+	filename.startswith ("ucs-cxxx-diag") or
+	filename.startswith ("ucs-cxx-diag") or
+	filename.startswith ("ucs-cxxx-sdu")
 	):
 		prodname = product("ucscseries")
 		imagecode = imagelookup("hdiag")
-		utilssinglemove (debug1,filename,prodname,imagecode)
+		workname = filename.replace("ucs-cxxx-diag-", "")
+		workname = workname.replace("ucs-cxxx-sdu-", "")
+		workname = workname.replace("ucs-cxx-diag-", "")
+		workname = workname.replace(".iso", "")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 
 	elif (
 	filename.startswith ("ucs-cxxx-scu") or 
+	filename.startswith ("ucs-cxx-scu") or 
 	filename.startswith ("ucs-cxx-scu")
 	):
-		prodname = product("ucscseries")
+		prodname = product("ucs")
 		imagecode = imagelookup("scu")
 		workname = filename.replace("ucs-cxxx-scu-", "")
 		workname = workname.replace("ucs-cxx-scu-", "")
@@ -188,12 +130,24 @@ def file_proc_servers (filename,debug1):
 		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 
 	elif (
-	filename.startswith ("ucs-blade-diags") or 
-	filename.startswith ("ucs-blade-server-diags")
+	filename.startswith ("ucs-scu-")
 	):
-		prodname = product("ucsbseries")
+		prodname = product("ucs")
+		imagecode = imagelookup("scu")
+		workname = filename.replace("ucs-scu-", "")
+		workname = workname.replace(".iso", "")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
+
+	elif (
+	filename.startswith ("ucs-uefi-diag-") or 
+	filename.startswith ("ucs-diag-")
+	):
+		prodname = product("ucs")
 		imagecode = imagelookup("hdiag")
-		utilssinglemove (debug1,filename,prodname,imagecode)
+		workname = filename.replace("ucs-diag-", "")
+		workname = workname.replace("ucs-uefi-diag-", "")
+		workname = workname.replace(".iso", "")
+		utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname)
 
 	elif (
 	filename == "huu-2.3.1.iso" or 
@@ -333,8 +287,128 @@ def file_proc_servers (filename,debug1):
 	):
 		file_proc_servers_apicem(debug1,filename)
 
+	elif (
+	filename.startswith ("CIMCS_") or 
+	filename.startswith ("cimcs_")
+	):
+		file_proc_servers_cimcsup (debug1,filename)
+
 	else:
 		messageunknownfile()
+
+def file_proc_servers_cimcsup (debug1,filename): 
+	if debug1:
+		print("\tSubroutine#\tfile_proc_servers_cimcsup")
+	prodname = product("cimcs")
+	workname = filename.replace("CIMCS_", "")
+	workname = workname.replace("cimcs_patch_", "")
+	workname = workname.replace("_eval_signed.zip", "")
+	workname = workname.replace("_signed.zip", "")
+	workname = workname.replace(".zip", "")
+	workname = workname.replace("_VMWARE_EVAL", "")
+	workname = workname.replace("_VMWARE_GA", "")
+	workname = workname.replace("_HYPERV_EVAL", "")
+	workname = workname.replace("_HYPERV_GA", "")
+	workname = workname.replace("_HYPERV_SIGNED_EVAL", "")
+	workname = workname.replace("_VMWARE_SIGNED_EVAL", "")
+	workname = workname.replace("_VMWARE", "")
+	workname = workname.replace("_HYPERV", "")
+	splitbyuscore= workname.split("_")
+	version2 = util2digit(splitbyuscore[0],splitbyuscore[1])
+	version4 = util4digit(splitbyuscore[0],splitbyuscore[1],splitbyuscore[2],splitbyuscore[3])
+	filepath = filepath3(prodname,version2,version4)
+	filemove (filepath, filename)
+
+def file_proc_servers_catc (debug1,filename): 
+	if debug1:
+		print("\tSubroutine#\tfile_proc_servers_catc")
+	prodname = product("dnac")
+	workname = filename.replace("trustidevcodesigning5-", "")
+	workname = workname.replace("CatC-SW-Launcher-", "")
+	workname = workname.replace("DNAC-SW-Launcher-", "")
+	workname = workname.replace("CatC-SW-", "")
+	workname = workname.replace("CatC-witness-", "")
+	workname = workname.replace("CatC-", "")
+	workname = workname.replace("dnac", "")
+	workname = workname.replace("DNAC-SW-", "")
+	workname = workname.replace("-upgrade.tar.gz.sig", "")
+	workname = workname.replace("-upgrade.tar.gz", "")
+	workname = workname.replace("_MigrationScript_v1.tar.gz.sig", "")
+	workname = workname.replace("_MigrationScript_v1.tar.gz", "")
+	workname = workname.replace("_cisco_image_verification_key.pub", "")
+	workname = workname.replace(".tar.gz.sig", "")
+	workname = workname.replace(".tar.gz", "")
+	workname = workname.replace(".iso.part1.rar", "")
+	workname = workname.replace(".iso.part2.rar", "")
+	workname = workname.replace(".iso.part2.rar", "")
+	workname = workname.replace(".iso", "")
+	workname = workname.replace(".sig", "")
+	workname = workname.replace(".ova", "")
+	splitbydot = workname.split(".")
+	version2 = util2digit(splitbydot[0],splitbydot[1])
+	try:
+		versionfull = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
+	except:
+		versionfull = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+	
+	if "MigrationScript" in filename:
+		imagecode = imagelookup("migration")
+		filepath = filepath4(prodname,version2,versionfull,imagecode)
+		filemove (filepath, filename)
+	elif "Launcher" in filename:
+		imagecode = imagelookup("launcher")
+		filepath = filepath4(prodname,version2,versionfull,imagecode)
+		filemove (filepath, filename)
+	elif "trustidevcodesigning5" in filename:
+		imagecode = imagelookup("certs")
+		filepath = filepath4(prodname,version2,versionfull,imagecode)
+		filemove (filepath, filename)
+	elif "CatC-witness-" in filename:
+		imagecode = imagelookup("witness")
+		filepath = filepath4(prodname,version2,versionfull,imagecode)
+		filemove (filepath, filename)
+	elif "-upgrade.tar.gz" in filename:
+		imagecode = imagelookup("upgrade")
+		filepath = filepath4(prodname,version2,versionfull,imagecode)
+		filemove (filepath, filename)
+	elif (
+		"_cisco_image_verification_key.pub" in filename or 
+		".ova" in filename or
+		".iso.sig" in filename or
+		".iso" in filename 
+		):
+		imagecode = imagelookup("system")
+		filepath = filepath4(prodname,version2,versionfull,imagecode)
+		filemove (filepath, filename)
+		
+#	filename_map = {
+#		"Cisco_Secure_FW_TD_4200_Patch-7.4.1.1-12.sh.REL.tar": {
+#			"prodname": "firepower4200", "imagecode": "fpftdsoftware", "versionmain": "7.4", "versionfull": "7.4.1"
+#		},
+#		"Cisco_FTD_SSP_FP1K_Hotfix_P-7.1.0.2-2.sh.REL.tar": {
+#			"prodname": "firepower1k", "imagecode": "fpftdsoftware", "versionmain": "7.1", "versionfull": "7.1.0.1"
+#		},
+#		"Cisco_FTD_SSP_FP2K_Hotfix_P-7.1.0.2-2.sh.REL.tar": {
+#			"prodname": "firepower2k", "imagecode": "fpftdsoftware", "versionmain": "7.1", "versionfull": "7.1.0.1"
+#		},
+#		"Cisco_FTD_SSP_Hotfix_P-7.1.0.2-2.sh.REL.tar": {
+#			"prodname": "firepower4k9k", "imagecode": "fpftdsoftware", "versionmain": "7.1", "versionfull": "7.1.0.1"
+#		},
+#		"Cisco_FTD_Hotfix_P-7.1.0.2-2.sh.REL.tar": {
+#			"prodname": "firepowertd", "imagecode": "fpftdsoftware", "versionmain": "7.1", "versionfull": "7.1.0.1"
+#		},
+#		"Cisco_FTD_SSP_FP3K_Hotfix_Q-7.1.0.3-2.sh.REL.tar": {
+#			"prodname": "firepower3k", "imagecode": "fpftdsoftware", "versionmain": "7.1", "versionfull": "7.1.0.1"
+#		}
+#	}
+#	if filename in filename_map:
+#		details = filename_map[filename]
+#		prodname = product(details["prodname"])
+#		imagecode = imagelookup(details["imagecode"])
+#		versionmain = details["versionmain"]
+#		versionfull = details["versionfull"]
+#		filepath = filepath4(prodname,imagecode,versionmain,versionfull)
+#		filemove (filepath, filename)
 
 def file_proc_servers_apicem (debug1,filename):
 	splitbydash = filename.split("-")
@@ -420,7 +494,6 @@ def file_proc_servers_dcnm (debug1,filename,prodname):
 		filepath = filepath4(prodname,vertwo,verthree,imagecode)
 		filemove (filepath, filename)
 
-
 def file_proc_servers_hyperflex (debug1,filename,prodname):
 	if debug1:
 		print("\tSubroutine#\tfile_proc_servers_hyperflex")
@@ -448,8 +521,8 @@ def file_proc_servers_hyperflex (debug1,filename,prodname):
 		filepath = filepath4(prodname,imagecode,vertwo,verthree)
 		filemove (filepath, filename)
 	elif (
-	filename.startswith ("Cisco-HX-Data-Platform-Installer") or 
-	filename.startswith ("cisco-HX-Data-Platform-Installer")
+		filename.startswith ("Cisco-HX-Data-Platform-Installer") or 
+		filename.startswith ("cisco-HX-Data-Platform-Installer")
 	):
 		workname = filename.replace("Cisco-HX-Data-Platform-Installer-v", "")
 		workname = workname.replace("cisco-HX-Data-Platform-Installer-v", "")
