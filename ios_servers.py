@@ -293,8 +293,57 @@ def file_proc_servers (filename,debug1):
 	):
 		file_proc_servers_cimcsup (debug1,filename)
 
+	elif (
+	filename.startswith ("cml2") or 
+	filename.startswith ("refplat")
+	):
+		file_proc_servers_cml (debug1,filename)
+
 	else:
 		messageunknownfile()
+
+def file_proc_servers_cml (debug1,filename): 
+	if debug1:
+		print("\tSubroutine#\tfile_proc_servers_cimcsup")
+	if filename.startswith("cml2_f_"):
+		prodname = product("cmlf")
+		workname = filename.replace("cml2_f_", "")
+		workname = workname.replace("_amd64-32-iso.zip", "")
+		workname = workname.replace("_amd64-32-pkg.zip", "")
+		workname = workname.replace("_amd64-32.ova", "")
+		workname = workname.replace("_amd64-32-iso.zip", "")
+		splitbydot = workname.split(".")
+		version2 = util2digit(splitbydot[0],splitbydot[1])
+		version4 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		filepath = filepath3(prodname,version2,version4)
+		filemove (filepath, filename)
+	elif filename.startswith("cml2_"):
+		prodname = product("cml")
+		workname = filename.replace("cml2_", "")
+		workname = workname.replace("_amd64-32-iso.zip", "")
+		workname = workname.replace("_amd64-32-pkg.zip", "")
+		workname = workname.replace("_amd64-32.ova", "")
+		workname = workname.replace("_amd64-32-iso.zip", "")
+		splitbydot = workname.split(".")
+		version2 = util2digit(splitbydot[0],splitbydot[1])
+		version4 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
+		filepath = filepath3(prodname,version2,version4)
+		filemove (filepath, filename)
+	elif filename.startswith("refplat"):
+		prodname = product("refplat")
+		workname = filename.replace("refplat-", "")
+		workname = workname.replace("-freetier-iso.zip", "")
+		workname = workname.replace("-supplemental-iso.zip", "")
+		workname = workname.replace("-fcs-iso.zip", "")
+		workname = workname.replace("-fcs.iso", "")
+		splitbydot = list(workname)
+		versionyear = splitbydot[0] + splitbydot[1] + splitbydot[2] + splitbydot[3]
+		versionmon = splitbydot[4] + splitbydot[5]
+		versionday = splitbydot[6] + splitbydot[7]
+		version = versionyear + "-" + versionmon + "-" + versionday
+		filepath = filepath2(prodname,version)
+		filemove (filepath, filename)
+		
 
 def file_proc_servers_cimcsup (debug1,filename): 
 	if debug1:

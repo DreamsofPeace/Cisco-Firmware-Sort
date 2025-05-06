@@ -1466,7 +1466,9 @@ def toplevel(filename):
 		name.startswith("CIMCS") or
 		name.startswith("cimcs") or
 		name.startswith("CatC") or
-		name.startswith("trustidevcodesigning5")
+		name.startswith("trustidevcodesigning5") or
+		name.startswith("cml2") or
+		name.startswith("refplat")
 		):
 			file_proc_servers(name,debug1)
 

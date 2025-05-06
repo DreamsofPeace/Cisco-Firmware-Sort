@@ -2439,6 +2439,12 @@ def product (prodcode):
 		prodname = "NETWORK-MANAGEMENT/TERMINAL-SERVICES-GATEWAY"
 	elif prodcode == "perfigocca":
 		prodname = "NETWORK-MANAGEMENT/CISCO-CLEAN-ACCESS"
+	elif prodcode == "cml":
+		prodname = "NETWORK-MANAGEMENT/MODELING-LABS"
+	elif prodcode == "cmlf":
+		prodname = "NETWORK-MANAGEMENT/MODELING-LABS-FREE"
+	elif prodcode == "refplat":
+		prodname = "NETWORK-MANAGEMENT/MODELING-LABS-REFERENCE-PLATFORM"
 	elif prodcode == "cimcs":
 		prodname = "SERVERS/CIMC-SUPERVISOR"
 	elif prodcode == "routers":
