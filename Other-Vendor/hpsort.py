@@ -9,138 +9,10 @@ def filemove (newpath, filename):
 		print("There is a file with the same name at the destination!.")
 
 def product (prodcode):
-	if prodcode == "6400-6300":
-		prodname = "SWITCHES/HPE-ARUBA-6400-6300"
-	elif prodcode == "6200":
-		prodname = "SWITCHES/HPE-ARUBA-6200"
-	elif prodcode == "6100":
-		prodname = "SWITCHES/HPE-ARUBA-6100-6000"
-	elif prodcode == "6100-6000":
-		prodname = "SWITCHES/HPE-ARUBA-6100-6000"
-	elif prodcode == "8320":
-		prodname = "SWITCHES/HPE-ARUBA-8320"
-	elif prodcode == "8360":
-		prodname = "SWITCHES/HPE-ARUBA-8360"
-	elif prodcode == "4100i":
-		prodname = "SWITCHES/HPE-ARUBA-4100i"
-	elif prodcode == "8325":
-		prodname = "SWITCHES/HPE-ARUBA-8325"
-	elif prodcode == "8400X":
-		prodname = "SWITCHES/HPE-ARUBA-8400X"
-	elif prodcode == "9300-32D":
-		prodname = "SWITCHES/HPE-ARUBA-9300"
-	elif prodcode == "9300":
-		prodname = "SWITCHES/HPE-ARUBA-9300"
-	elif prodcode == "10000":
-		prodname = "SWITCHES/HPE-ARUBA-10000"
-	elif prodcode == "A":
-		prodname = "SWITCHES/HPE-ARUBA-2915(A)"
-	elif prodcode == "C":
-		prodname = "SWITCHES/HP-1600M-2400M-4000M-8000M(C)"
-	elif prodcode == "H":
-		prodname = "SWITCHES/HP-2600(H)"
-	elif prodcode == "J":
-		prodname = "SWITCHES/HP-5520(J)"
-	elif prodcode == "K":
-		prodname = "SWITCHES/HPE-ARUBA-5400zl(K)"
-	elif prodcode == "KA":
-		prodname = "SWITCHES/HPE-ARUBA-3800(KA)"
-	elif prodcode == "KB":
-		prodname = "SWITCHES/HPE-ARUBA-3810-5400zl2(KB)"
-	elif prodcode == "P":
-		prodname = "SWITCHES/HP-1810G-8-24(P)"
-	elif prodcode == "N":
-		prodname = "SWITCHES/HP-2810(N)"
-	elif prodcode == "PA":
-		prodname = "SWITCHES/HP-1800-8G(PA)"
-	elif prodcode == "PB":
-		prodname = "SWITCHES/HP-1800-24G(PB)"
-	elif prodcode == "PK":
-		prodname = "SWITCHES/HP-1800-48G(PK)"
-	elif prodcode == "PL":
-		prodname = "SWITCHES/HP-1810G-v2(PL)"
-	elif prodcode == "PM":
-		prodname = "SWITCHES/HP-1810-v2(PM)"
-	elif prodcode == "PS":
-		prodname = "SWITCHES/HP-1810G(PS)"
-	elif prodcode == "Q":
-		prodname = "SWITCHES/HP-2510-24(Q)"
-	elif prodcode == "M":
-		prodname = "SWITCHES/HP-3400cl-6500cl(M)"
-	elif prodcode == "E":
-		prodname = "SWITCHES/HP-5300xl(E)"
-	elif prodcode == "I":
-		prodname = "SWITCHES/HP-2824-2828(I)"
-	elif prodcode == "CY":
-		prodname = "SWITCHES/HP-EDGE-8100fl(CY)"
-	elif prodcode == "L":
-		prodname = "SWITCHES/HP-4200vl(L)"
-	elif prodcode == "R":
-		prodname = "SWITCHES/HPE-2610(R)"
-	elif prodcode == "RA":
-		prodname = "SWITCHES/HPE-ARUBA-2620(RA)"
-	elif prodcode == "S":
-		prodname = "SWITCHES/HP-2520(S)"
-	elif prodcode == "T":
-		prodname = "SWITCHES/HP-2900(T)"
-	elif prodcode == "U":
-		prodname = "SWITCHES/HPE-2510-48(U)"
-	elif prodcode == "VA":
-		prodname = "SWITCHES/HP-1700-8(VA)"
-	elif prodcode == "VB":
-		prodname = "SWITCHES/HP-1700-24(VB)"
-	elif prodcode == "W":
-		prodname = "SWITCHES/HP-2910(W)"
-	elif prodcode == "WB":
-		prodname = "SWITCHES/HPE-ARUBA-2920(WB)"
-	elif prodcode == "WC":
-		prodname = "SWITCHES/HPE-ARUBA-2930(WC)"
-	elif prodcode == "Y":
-		prodname = "SWITCHES/HPE-2510(Y)"
-	elif prodcode == "YA":
-		prodname = "SWITCHES/HPE-ARUBA-2530(YA)"
-	elif prodcode == "YB":
-		prodname = "SWITCHES/HPE-ARUBA-2530(YB)"
-	elif prodcode == "YC":
-		prodname = "SWITCHES/HPE-ARUBA-2540(YC)"
-	elif prodcode == "api":
-		prodname = "REST-API"
-	elif prodcode == "sim":
-		prodname = "SIMULATOR"
-	elif prodcode == "mibs":
-		prodname = "MIBS"
-	elif prodcode == "NetEdit":
-		prodname = "NetEdit"
-	elif prodcode == "MAS":
-		prodname = "SWITCHES/ARUBA-x500"
-	elif prodcode == "6xx":
-		prodname = "CONTROLLER/ARUBA-6x0"
-	elif prodcode == "70xx":
-		prodname = "CONTROLLER/ARUBA-70xx"
-	elif prodcode == "72xx":
-		prodname = "CONTROLLER/ARUBA-72xx"
-	elif prodcode == "7280":
-		prodname = "CONTROLLER/ARUBA-7280"
-	elif prodcode == "90xx":
-		prodname = "CONTROLLER/ARUBA-90xx"
-	elif prodcode == "92xx":
-		prodname = "CONTROLLER/ARUBA-92xx"
-	elif prodcode == "MMC":
-		prodname = "CONTROLLER/ARUBA-MOBILITY-MASTER"
-	elif prodcode == "VMC":
-		prodname = "CONTROLLER/ARUBA-VIRTUAL-MOBILITY-CONTROLLER"
-	elif prodcode == "usb":
-		prodname = "USB-CONSOLE"
-	elif prodcode == "pdf":
-		prodname = "DOCUMENTATION"
-	elif prodcode == "webauth":
-		prodname = "WEB-AUTH"
-	elif prodcode == "zip":
-		prodname = "ZIPS"
-	elif prodcode == "vsr":
-		prodname = "VSR-1000-JG811AAE"
-	elif prodcode == "ArubaInstant_Vela":
+	if prodcode == "ArubaInstant_Vela":
 		prodname = "Access-Points-Instant/203H-203R-207"
+	elif prodcode == "ArubaInstant_Centaurus":
+		prodname = "Access-Points-Instant/210-220-228-270"
 	elif prodcode == "ArubaInstant_Ursa":
 		prodname = "Access-Points-Instant/300-303-303H-360"
 	elif prodcode == "ArubaInstant_Hercules":
@@ -155,12 +27,153 @@ def product (prodcode):
 		prodname = "Access-Points-Instant/530-550"
 	elif prodcode == "ArubaInstant_Norma":
 		prodname = "Access-Points-Instant/630-650"
-	elif prodcode == "ArubaInstant_Centaurus":
-		prodname = "Access-Points-Instant/210-220-228-270"
+	elif prodcode == "6xx":
+		prodname = "CONTROLLER/ARUBA-6x0"
+	elif prodcode == "70xx":
+		prodname = "CONTROLLER/ARUBA-70xx"
+	elif prodcode == "7280":
+		prodname = "CONTROLLER/ARUBA-7280"
+	elif prodcode == "72xx":
+		prodname = "CONTROLLER/ARUBA-72xx"
+	elif prodcode == "90xx":
+		prodname = "CONTROLLER/ARUBA-90xx"
+	elif prodcode == "91xx":
+		prodname = "CONTROLLER/ARUBA-91xx"
+	elif prodcode == "92xx":
+		prodname = "CONTROLLER/ARUBA-92xx"
+	elif prodcode == "MMC":
+		prodname = "CONTROLLER/ARUBA-MOBILITY-MASTER"
+	elif prodcode == "VMC":
+		prodname = "CONTROLLER/ARUBA-VIRTUAL-MOBILITY-CONTROLLER"
+	elif prodcode == "pdf":
+		prodname = "DOCUMENTATION"
+	elif prodcode == "mibs":
+		prodname = "MIBS"
+	elif prodcode == "NetEdit":
+		prodname = "NetEdit"
 	elif prodcode == "psm":
 		prodname = "Pensando"
+	elif prodcode == "api":
+		prodname = "REST-API"
+	elif prodcode == "sim":
+		prodname = "SIMULATOR"
+	elif prodcode == "MAS":
+		prodname = "SWITCHES/ARUBA-x500"
+	elif prodcode == "C":
+		prodname = "SWITCHES/HP-1600M-2400M-4000M-8000M(C)"
+	elif prodcode == "VB":
+		prodname = "SWITCHES/HP-1700-24(VB)"
+	elif prodcode == "VA":
+		prodname = "SWITCHES/HP-1700-8(VA)"
+	elif prodcode == "PB":
+		prodname = "SWITCHES/HP-1800-24G(PB)"
+	elif prodcode == "PK":
+		prodname = "SWITCHES/HP-1800-48G(PK)"
+	elif prodcode == "PA":
+		prodname = "SWITCHES/HP-1800-8G(PA)"
+	elif prodcode == "PS":
+		prodname = "SWITCHES/HP-1810G(PS)"
+	elif prodcode == "P":
+		prodname = "SWITCHES/HP-1810G-8-24(P)"
+	elif prodcode == "PL":
+		prodname = "SWITCHES/HP-1810G-v2(PL)"
+	elif prodcode == "PM":
+		prodname = "SWITCHES/HP-1810-v2(PM)"
+	elif prodcode == "Q":
+		prodname = "SWITCHES/HP-2510-24(Q)"
+	elif prodcode == "S":
+		prodname = "SWITCHES/HP-2520(S)"
+	elif prodcode == "H":
+		prodname = "SWITCHES/HP-2600(H)"
+	elif prodcode == "N":
+		prodname = "SWITCHES/HP-2810(N)"
+	elif prodcode == "I":
+		prodname = "SWITCHES/HP-2824-2828(I)"
+	elif prodcode == "T":
+		prodname = "SWITCHES/HP-2900(T)"
+	elif prodcode == "W":
+		prodname = "SWITCHES/HP-2910(W)"
+	elif prodcode == "M":
+		prodname = "SWITCHES/HP-3400cl-6500cl(M)"
+	elif prodcode == "L":
+		prodname = "SWITCHES/HP-4200vl(L)"
+	elif prodcode == "E":
+		prodname = "SWITCHES/HP-5300xl(E)"
+	elif prodcode == "J":
+		prodname = "SWITCHES/HP-5520(J)"
+	elif prodcode == "CY":
+		prodname = "SWITCHES/HP-EDGE-8100fl(CY)"
+	elif prodcode == "Y":
+		prodname = "SWITCHES/HPE-2510(Y)"
+	elif prodcode == "U":
+		prodname = "SWITCHES/HPE-2510-48(U)"
+	elif prodcode == "R":
+		prodname = "SWITCHES/HPE-2610(R)"
+	elif prodcode == "YA":
+		prodname = "SWITCHES/HPE-ARUBA-2530(YA)"
+	elif prodcode == "YB":
+		prodname = "SWITCHES/HPE-ARUBA-2530(YB)"
+	elif prodcode == "YC":
+		prodname = "SWITCHES/HPE-ARUBA-2540(YC)"
+	elif prodcode == "RA":
+		prodname = "SWITCHES/HPE-ARUBA-2620(RA)"
+	elif prodcode == "A":
+		prodname = "SWITCHES/HPE-ARUBA-2915(A)"
+	elif prodcode == "WB":
+		prodname = "SWITCHES/HPE-ARUBA-2920(WB)"
+	elif prodcode == "WC":
+		prodname = "SWITCHES/HPE-ARUBA-2930(WC)"
+	elif prodcode == "K":
+		prodname = "SWITCHES/HPE-ARUBA-5400zl(K)"
+	elif prodcode == "KA":
+		prodname = "SWITCHES/HPE-ARUBA-3800(KA)"
+	elif prodcode == "KB":
+		prodname = "SWITCHES/HPE-ARUBA-3810-5400zl2(KB)"
+	elif prodcode == "4100i":
+		prodname = "SWITCHES/HPE-ARUBA-4100i"
+	elif prodcode == "5420":
+		prodname = "SWITCHES/HPE-ARUBA-5420"
+	elif prodcode == "6100":
+		prodname = "SWITCHES/HPE-ARUBA-6100-6000"
+	elif prodcode == "6100-6000":
+		prodname = "SWITCHES/HPE-ARUBA-6100-6000"
+	elif prodcode == "6200":
+		prodname = "SWITCHES/HPE-ARUBA-6200"
+	elif prodcode == "6300L":
+		prodname = "SWITCHES/HPE-ARUBA-6300L"
+	elif prodcode == "6400-6300":
+		prodname = "SWITCHES/HPE-ARUBA-6400-6300"
+	elif prodcode == "8320":
+		prodname = "SWITCHES/HPE-ARUBA-8320"
+	elif prodcode == "8325":
+		prodname = "SWITCHES/HPE-ARUBA-8325"
+	elif prodcode == "8325H":
+		prodname = "SWITCHES/HPE-ARUBA-8325H"
+	elif prodcode == "8360":
+		prodname = "SWITCHES/HPE-ARUBA-8360"
+	elif prodcode == "8360-8100":
+		prodname = "SWITCHES/HPE-ARUBA-8360-8100"
+	elif prodcode == "8400X":
+		prodname = "SWITCHES/HPE-ARUBA-8400X"
+	elif prodcode == "9300":
+		prodname = "SWITCHES/HPE-ARUBA-9300"
+	elif prodcode == "9300-32D":
+		prodname = "SWITCHES/HPE-ARUBA-9300-32D"
+	elif prodcode == "9300S-32C8D":
+		prodname = "SWITCHES/HPE-ARUBA-9300S-32C8D"
+	elif prodcode == "10000":
+		prodname = "SWITCHES/HPE-ARUBA-10000"
+	elif prodcode == "usb":
+		prodname = "USB-CONSOLE"
+	elif prodcode == "vsr":
+		prodname = "VSR-1000-JG811AAE"
+	elif prodcode == "webauth":
+		prodname = "WEB-AUTH"
+	elif prodcode == "zip":
+		prodname = "ZIPS"
 	else:
 		prodname = "UNKNOWN"
+
 	return prodname
 
 
@@ -464,45 +477,96 @@ def dirwalk (src,hashsha512,hashfile):
 			prodname = product ("ArubaInstant_Vela")
 			workname = filename.replace("ArubaInstant_Vela_","")
 			new_style_move (filename, prodname, workname, ".")
-		elif filename.startswith("ArubaOS-CX_10000_"):
+		elif (
+			filename.startswith("ArubaOS-CX_10000_") or
+			filename.startswith("AOS-CX_10000")
+			):
 			prodname = product ("10000")
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_10000_","")
+			workname = workname.replace("AOS-CX_10000_","")
 			new_style_move (filename, prodname, workname, "_")
-		elif filename.startswith("ArubaOS-CX_4100i_"):
+		elif (
+			filename.startswith("ArubaOS-CX_4100i_") or
+			filename.startswith("AOS-CX_4100i_")
+			):
 			prodname = product ("4100i")
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_4100i_","")
+			workname = workname.replace("AOS-CX_4100i_","")
 			new_style_move (filename, prodname, workname, "_")
-		elif filename.startswith("ArubaOS-CX_6100-6000_"):
+		elif (
+			filename.startswith("ArubaOS-CX_6100-6000_") or
+			filename.startswith("AOS-CX_6100-6000_")
+			):
 			prodname = product ("6100-6000")
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_6100-6000_","")
+			workname = workname.replace("AOS-CX_6100-6000_","")
 			new_style_move (filename, prodname, workname, "_")
 		elif filename.startswith("ArubaOS-CX_6100_"):
 			prodname = product ("6100")
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_6100_","")
 			new_style_move (filename, prodname, workname, "_")
-		elif filename.startswith("ArubaOS-CX_6200_"):
+		elif (
+			filename.startswith("AOS-CX_5420_")
+			):
+			prodname = product ("5420")
+			workname = filename.replace(".swi","")
+			workname = workname.replace("AOS-CX_5420_","")
+			new_style_move (filename, prodname, workname, "_")
+		elif (
+			filename.startswith("ArubaOS-CX_6200_") or
+			filename.startswith("AOS-CX_6200_")
+			):
 			prodname = product ("6200")
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_6200_","")
+			workname = workname.replace("AOS-CX_6200_","")
 			new_style_move (filename, prodname, workname, "_")
-		elif filename.startswith("ArubaOS-CX_6400-6300"):
+		elif (
+			filename.startswith("ArubaOS-CX_6400-6300") or
+			filename.startswith("AOS-CX_6400-6300")
+			):
 			prodname = product ("6400-6300")
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_6400-6300_","")
+			workname = workname.replace("AOS-CX_6400-6300_","")
 			new_style_move (filename, prodname, workname, "_")
-		elif filename.startswith("ArubaOS-CX_8320"):
+		elif (
+			filename.startswith("ArubaOS-CX_6300L") or
+			filename.startswith("AOS-CX_6300L")
+			):
+			prodname = product ("6300L")
+			workname = filename.replace(".swi","")
+			workname = workname.replace("ArubaOS-CX_6300L_","")
+			workname = workname.replace("AOS-CX_6300L_","")
+			new_style_move (filename, prodname, workname, "_")
+		elif (
+			filename.startswith("ArubaOS-CX_8320") or
+			filename.startswith("AOS-CX_8320")
+			):
 			prodname = product ("8320")
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_8320_","")
+			workname = workname.replace("AOS-CX_8320_","")
 			new_style_move (filename, prodname, workname, "_")
-		elif filename.startswith("ArubaOS-CX_8325"):
+		elif (
+			filename.startswith("AOS-CX_8325H_")
+			):
+			prodname = product ("8325H")
+			workname = filename.replace(".swi","")
+			workname = workname.replace("AOS-CX_8325H_","")
+			new_style_move (filename, prodname, workname, "_")
+		elif (
+			filename.startswith("ArubaOS-CX_8325") or
+			filename.startswith("AOS-CX_8325")
+			):
 			prodname = product ("8325")
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_8325_","")
+			workname = workname.replace("AOS-CX_8325_","")
 			new_style_move (filename, prodname, workname, "_")
 		elif filename.startswith("ArubaOS-CX_8360"):
 			prodname = product ("8360")
@@ -510,20 +574,39 @@ def dirwalk (src,hashsha512,hashfile):
 			workname = workname.replace("ArubaOS-CX_8360-8100_","")
 			workname = workname.replace("ArubaOS-CX_8360_","")
 			new_style_move (filename, prodname, workname, "_")
-		elif filename.startswith("ArubaOS-CX_8400X"):
+		elif (
+			filename.startswith("ArubaOS-CX_8400X") or
+			filename.startswith("AOS-CX_8400X")
+			):
 			prodname = product ("8400X")
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_8400X_","")
+			workname = workname.replace("AOS-CX_8400X_","")
 			new_style_move (filename, prodname, workname, "_")
-		elif filename.startswith("ArubaOS-CX_9300S-32C8D_"):
-			prodname = product ("9300")
+		elif (
+			filename.startswith("AOS-CX_8360-8100_")
+			):
+			prodname = product ("8360-8100")
+			workname = filename.replace(".swi","")
+			workname = workname.replace("AOS-CX_8360-8100_","")
+			new_style_move (filename, prodname, workname, "_")
+		elif (
+			filename.startswith("ArubaOS-CX_9300S-32C8D_") or
+			filename.startswith("AOS-CX_9300S-32C8D_")
+			):
+			prodname = product ("9300S-32C8D")
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_9300S-32C8D_","")
+			workname = workname.replace("AOS-CX_9300S-32C8D_","")
 			new_style_move (filename, prodname, workname, "_")
-		elif filename.startswith("ArubaOS-CX_9300-32D_"):
-			prodname = product ("9300")
+		elif (
+			filename.startswith("ArubaOS-CX_9300-32D_") or
+			filename.startswith("AOS-CX_9300-32D_")
+			):
+			prodname = product ("9300-32D")
 			workname = filename.replace(".swi","")
 			workname = workname.replace("ArubaOS-CX_9300-32D_","")
+			workname = workname.replace("AOS-CX_9300-32D_","")
 			new_style_move (filename, prodname, workname, "_")
 		elif filename.startswith("ArubaOS-CX_9300_"):
 			prodname = product ("9300")
@@ -549,6 +632,10 @@ def dirwalk (src,hashsha512,hashfile):
 		elif filename.startswith("ArubaOS_90xx_"):
 			prodname = product ("90xx")
 			workname = filename.replace("ArubaOS_90xx_","")
+			new_style_move (filename, prodname, workname, ".")
+		elif filename.startswith("ArubaOS_91xx_"):
+			prodname = product ("91xx")
+			workname = filename.replace("ArubaOS_91xx_","")
 			new_style_move (filename, prodname, workname, ".")
 		elif filename.startswith("ArubaOS_92xx_"):
 			prodname = product ("92xx")

@@ -9,6 +9,8 @@ def product (prodcode):
 		return "CEOS"
 	elif prodcode == "cEOS64-lab":
 		return "CEOS64"
+	elif prodcode == "cEOSarm":
+		return "cEOSarm"
 	elif prodcode == "EOS":
 		return "EOS"
 	elif prodcode == "Aboot-veos":
@@ -53,9 +55,9 @@ def process_file(filename,prod):
 		workname = workname.replace("vEOS64-lab-","")
 		workname = workname.replace("vEOS-lab-combined-","")
 		workname = workname.replace("vEOS-lab-","")
+		workname = workname.replace("cEOSarm-lab-","")
+		workname = workname.replace("cEOS64-lab-","")
 		workname = workname.replace("cEOS-lab-","")
-		workname = workname.replace("cEOS64-lab-","")
-		workname = workname.replace("cEOS64-lab-","")
 		workname = workname.replace("EOS64-","")
 		workname = workname.replace("EOS-2GB-PDP-","")
 		workname = workname.replace("EOS-2GB-","")
@@ -100,6 +102,9 @@ def toplevel(directory):
 			process_file(filename,prod)
 		elif filename.startswith("vEOS64-lab"):
 			prod = product("vEOS64-lab")
+			process_file(filename,prod)
+		elif filename.startswith("cEOSarm-lab"):
+			prod = product("cEOSarm")
 			process_file(filename,prod)
 		elif filename.startswith("cEOS64-lab"):
 			prod = product("cEOS64-lab")
