@@ -669,1750 +669,854 @@ def iostrain (train, version):
 		version = version + "ZZ"
 	return version
 
-def imagelookup (imagecode):
-	if imagecode == "sm10g":
-		subdirectory = "10-GIG-MODULE"
-	elif imagecode == "migrate_to_eXR":
-		subdirectory = "64BIT-MIGRATION"
-	elif imagecode == "goldenk9":
-		subdirectory = "GOLDEN-IMAGE"
-	elif imagecode == "i12o3s":
-		subdirectory = "ACCELERATED-BB-WITH-FW-INTRUSION-DETECTION"
-	elif imagecode == "i12s":
-		subdirectory = "ACCELERATED-BROADBAND-LAC-LNS-PTA"
-	elif imagecode == "acisim":
-		subdirectory = "ACI-SIMULATOR"
-	elif imagecode == "acive":
-		subdirectory = "ACI-VIRTUAL-EDGE"
-	elif imagecode == "acs_mig":
-		subdirectory = "ACS-MIGRATION"
-	elif imagecode == "asdm":
-		subdirectory = "ADAPTIVE-SECURITY-DEVICE-MANAGER"
-	elif imagecode == "asdmf":
-		subdirectory = "ADAPTIVE-SECURITY-DEVICE-MANAGER-ASASM"
-	elif imagecode == "adventerprisek9":
-		subdirectory = "ADVANCED-ENTERPRISE-SERVICES"
-	elif imagecode == "adventerprisek9_wan":
-		subdirectory = "ADVANCED-ENTERPRISE-SERVICES"
-	elif imagecode == "adventerprise":
-		subdirectory = "ADVANCED-ENTERPRISE-SERVICES-NO-CRYPTO"
-	elif imagecode == "adventerprise_wan":
-		subdirectory = "ADVANCED-ENTERPRISE-SERVICES-NO-CRYPTO"
-	elif imagecode == "adventerprisek9_noli":
-		subdirectory = "ADVANCED-ENTERPRISE-SERVICES-NO-LAWFUL-INTERCEPT"
-	elif imagecode == "adventerprisek9_npe":
-		subdirectory = "ADVANCED-ENTERPRISE-SERVICES-NPE"
-	elif imagecode == "adventerprisek9_sna":
-		subdirectory = "ADVANCED-ENTERPRISE-SERVICES-SNA"
-	elif imagecode == "adventerprisek9_li":
-		subdirectory = "ADVANCED-ENTERPRISE-SERVICES-WITH-LAWFUL-INTERCEPT"
-	elif imagecode == "advipservicesk9":
-		subdirectory = "ADVANCED-IP-SERVICES"
-	elif imagecode == "advipservicesk9_wan":
-		subdirectory = "ADVANCED-IP-SERVICES"
-	elif imagecode == "advipservices":
-		subdirectory = "ADVANCED-IP-SERVICES-NO-CRYPTO"
-	elif imagecode == "advipservicesk9_npe":
-		subdirectory = "ADVANCED-IP-SERVICES-NPE"
-	elif imagecode == "advipservicesk9_li":
-		subdirectory = "ADVANCED-IP-SERVICES-WITH-LAWFUL-INTERCEPT"
-	elif imagecode == "advipservicesk9_noli":
-		subdirectory = "ADVANCED-IP-SERVICES-WITHOUT-LAWFUL-INTERCEPT"
-	elif imagecode == "amp":
-		subdirectory = "ADVANCED-MALWARE-PROTECTION"
-	elif imagecode == "advsecurityk9":
-		subdirectory = "ADVANCED-SECURITY"
-	elif imagecode == "advseck9":
-		subdirectory = "ADVANCED-SECURITY"
-	elif imagecode == "advsecurityk9_npe":
-		subdirectory = "ADVANCED-SECURITY-NPE"
-	elif imagecode == "advseck9_npe":
-		subdirectory = "ADVANCED-SECURITY-NPE"
-	elif imagecode == "analogmodem":
-		subdirectory = "ANALOG-MODEM"
-	elif imagecode == "android":
-		subdirectory = "ANDROID"
-	elif imagecode == "apic":
-		subdirectory = "APIC-CONTROLLER"
-	elif imagecode == "apdp":
-		subdirectory = "ACCESS-POINT-DEVICE-PACK"
-	elif imagecode == "apsp":
-		subdirectory = "ACCESS-POINT-SERVICE-PACK"
-	elif imagecode == "app_selector":
-		subdirectory = "APP-SELECTOR"
-	elif imagecode == "lfbff":
-		subdirectory = "ASA-FIREPOWER"
-	elif imagecode == "m":
-		subdirectory = "ATM"
-	elif imagecode == "wpk2":
-		subdirectory = "ATM-LAYER-3-SSH-3DES"
-	elif imagecode == "lc":
-		subdirectory = "ATM-LINE-CARD"
-	elif imagecode == "wi":
-		subdirectory = "ATM"
-	elif imagecode == "wl":
-		subdirectory = "ATM-WORKGROUP-LANE"
-	elif imagecode == "wt":
-		subdirectory = "ATM-WORKGROUP-TRAFFIC-SHAPING"
-	elif imagecode == "hotfix":
-		subdirectory = "HOTFIX"
-	elif imagecode == "c5is":
-		subdirectory = "BASE-PDSN"
-	elif imagecode == "c5ik9s":
-		subdirectory = "BASE-PDSN-3DES"
-	elif imagecode == "k9sy":
-		subdirectory = "BASIC-IP-3DES-PLUS"
-	elif imagecode == "k9o3sy":
-		subdirectory = "BASIC-IP-FIREWALL-2-3DES-PLUS"
-	elif imagecode == "k9sv3y":
-		subdirectory = "BASIC-IP-VOICE-3DES-PLUS"
-	elif imagecode == "i9s":
-		subdirectory = "BASIC-L3"
-	elif imagecode == "i9k91sc":
-		subdirectory = "BASIC-L3-3DES"
-	elif imagecode == "bios":
-		subdirectory = "BIOS"
-	elif imagecode == "boot":
-		subdirectory = "BOOT"
-	elif imagecode == "cboot":
-		subdirectory = "BOOT"
-	elif imagecode == "dboot":
-		subdirectory = "BOOT"
-	elif imagecode == "dboot2":
-		subdirectory = "BOOT"
-	elif imagecode == "eboot":
-		subdirectory = "BOOT"
-	elif imagecode == "k8boot":
-		subdirectory = "BOOT"
-	elif imagecode == "kboot":
-		subdirectory = "BOOT"
-	elif imagecode == "mboot":
-		subdirectory = "BOOT"
-	elif imagecode == "wboot":
-		subdirectory = "BOOT"
-	elif imagecode == "rboot":
-		subdirectory = "BOOT"
-	elif imagecode == "m":
-		subdirectory = "ATM-OC3-LANE"
-	elif imagecode == "bridge_smus":
-		subdirectory = "BRIDGE-SMUS"
-	elif imagecode == "driversucsb":
-		subdirectory = "B-SERIES/DRIVERS"
-	elif imagecode == "utilsbseries":
-		subdirectory = "B-SERIES/UTILS"
-	elif imagecode == "ucsbundle":
-		subdirectory = "BUNDLE"
-	elif imagecode == "capacity-emulator":
-		subdirectory = "CAPACITY-EMULATOR"
-	elif imagecode == "cgv6":
-		subdirectory = "CARRIER-GRADE-NAT-V4-V6"
-	elif imagecode == "csd":
-		subdirectory = "CISCO-SECURE-DESKTOP"
-	elif imagecode == "clean":
-		subdirectory = "CLEAN-UTILITY"
-	elif imagecode == "clientandroid":
-		subdirectory = "CLIENT/ANDROID"
-	elif imagecode == "linux":
-		subdirectory = "LINUX"
-	elif imagecode == "linuxbare":
-		subdirectory = "LINUX"
-	elif imagecode == "solaris":
-		subdirectory = "SOLARIS"
-	elif imagecode == "macintosh":
-		subdirectory = "MAC"
-	elif imagecode == "macos":
-		subdirectory = "CLIENT/MACOSX"
-	elif imagecode == "macosxi386":
-		subdirectory = "CLIENT/MACOSX-i386"
-	elif imagecode == "macosxpowerpc":
-		subdirectory = "CLIENT/MACOSX-PowerPC"
-	elif imagecode == "win":
-		subdirectory = "CLIENT/WINDOWS"
-	elif imagecode == "winarm64":
-		subdirectory = "WINDOWS-ARM64"
-	elif imagecode == "wince":
-		subdirectory = "CLIENT/WINDOWS-CE"
-	elif imagecode == "config-converter":
-		subdirectory = "CONFIG-CONVERTER"
-	elif imagecode == "core":
-		subdirectory = "CORE-SOFTWARE"
-	elif imagecode == "corek9":
-		subdirectory = "CORE-SOFTWARE-CRYPTO"
-	elif imagecode == "core64":
-		subdirectory = "CORE-SOFTWARE-X64"
-	elif imagecode == "core64k9":
-		subdirectory = "CORE-SOFTWARE-X64-CRYPTO"
-	elif imagecode == "cpld_update":
-		subdirectory = "CPLD-UPDATE"
-	elif imagecode == "driversucsc":
-		subdirectory = "C-SERIES/DRIVERS"
-	elif imagecode == "utilscseries":
-		subdirectory = "C-SERIES/UTILS"
-	elif imagecode == "csgk9":
-		subdirectory = "CSG2-RTU-SAMI"
-	elif imagecode == "csg":
-		subdirectory = "CSG2-RTU-SAMI-NO-CRYPTO"
-	elif imagecode == "csmgeoip":
-		subdirectory = "CSM-GEOIP-DB"
-#	elif imagecode == "ds":
-#		subdirectory = "DESKTOP"
-	elif imagecode == "dsv":
-		subdirectory = "DESKTOP-IBM"
-	elif imagecode == "do3s":
-		subdirectory = "DESKTOP-IBM-FW-IDS"
-	elif imagecode == "do3sv":
-		subdirectory = "DESKTOP-IBM-FW-IDS"
-	elif imagecode == "dk2o3sv":
-		subdirectory = "DESKTOP-IBM-FW-IDS-IPSEC-3DES"
-	elif imagecode == "dk9o3s":
-		subdirectory = "DESKTOP-IBM-FW-IDS-IPSEC-3DES"
-	elif imagecode == "dk9o3sv":
-		subdirectory = "DESKTOP-IBM-FW-IDS-IPSEC-3DES"
-	elif imagecode == "dk8o3s":
-		subdirectory = "DESKTOP-IBM-FW-IDS-IPSEC-56"
-	elif imagecode == "dk8o3sv":
-		subdirectory = "DESKTOP-IBM-FW-IDS-IPSEC-56"
-	elif imagecode == "do3s56i":
-		subdirectory = "DESKTOP-IBM-FW-IDS-IPSEC-56"
-	elif imagecode == "do3sv56i":
-		subdirectory = "DESKTOP-IBM-FW-IDS-IPSEC-56"
-	elif imagecode == "dk8s":
-		subdirectory = "DESKTOP-IBM-IPSEC-56"
-	elif imagecode == "dk8sv":
-		subdirectory = "DESKTOP-IBM-IPSEC-56"
-	elif imagecode == "jos56":
-		subdirectory = "ENTERPRISE-FW-PLUS-56"
-	elif imagecode == "nsy56":
-		subdirectory = "IP-IPX-PLUS-56"
-	elif imagecode == "nsy40":
-		subdirectory = "IP-IPX-PLUS-40"
-	elif imagecode == "nr2y":
-		subdirectory = "IP-IPX-IBM"
-	elif imagecode == "nr2sy":
-		subdirectory = "IP-IPX-IBM-PLUS"
-	elif imagecode == "nr2sy40":
-		subdirectory = "IP-IPX-IBM-PLUS-40"
-	elif imagecode == "nr2sy56":
-		subdirectory = "IP-IPX-IBM-PLUS-56"
-	elif imagecode == "by":
-		subdirectory = "IP-AT"
-	elif imagecode == "bsy":
-		subdirectory = "IP-AT-PLUS"
-	elif imagecode == "bsy40":
-		subdirectory = "IP-AT-PLUS-40"
-	elif imagecode == "bsy56":
-		subdirectory = "IP-AT-PLUS-56"
-	elif imagecode == "ads":
-		subdirectory = "DESKTOP-IBM"
-	elif imagecode == "bnr2sy56i":
-		subdirectory = "IP-IPX-AT-IBM-PLUS-IPSEC-56"
-	elif imagecode == "bnor2sy56i":
-		subdirectory = "IP-IPX-AT-IBM-FW-PLUS-IPSEC-56"
-	elif imagecode == "bnor2sy56":
-		subdirectory = "IP-IPX-AT-IBM-FW-PLUS-IPSEC-56"
-	elif imagecode == "ads40":
-		subdirectory = "DESKTOP-IBM-40"
-	elif imagecode == "ads56":
-		subdirectory = "DESKTOP-IBM-56"
-	elif imagecode == "ds56":
-		subdirectory = "DESKTOP-IBM-56"
-	elif imagecode == "ds56i":
-		subdirectory = "DESKTOP-IBM-IPSEC-56"
-	elif imagecode == "dsv56i":
-		subdirectory = "DESKTOP-IBM-IPSEC-56"
-	elif imagecode == "dsv56":
-		subdirectory = "DESKTOP-IBM-IPSEC-56"
-	elif imagecode == "adsv":
-		subdirectory = "DESKTOP-IBM-APPN"
-	elif imagecode == "ajsv56i":
-		subdirectory = "ENTERPRISE-APPN-IPSEC-56"
-	elif imagecode == "itv":
-		subdirectory = "IP-ACIP"
-#	elif imagecode == "ajs":
-#		subdirectory = "ENTERPRISE-APPN"
-#	elif imagecode == "ajs40":
-#		subdirectory = "ENTERPRISE-APPN-40"
-#	elif imagecode == "ajs56":
-#		subdirectory = "ENTERPRISE-APPN-56"
-	elif imagecode == "adjv":
-		subdirectory = "ENTERPRISE-APPN"
-	elif imagecode == "adjv40":
-		subdirectory = "ENTERPRISE-APPN-40"
-	elif imagecode == "adjv56":
-		subdirectory = "ENTERPRISE-APPN-56"
-	elif imagecode == "dsv40":
-		subdirectory = "DESKTOP-IPSEC-40"
-	elif imagecode == "catalog":
-		subdirectory = "DEVICE-CATALOG"
-	elif imagecode == "devicemgr":
-		subdirectory = "DEVICE-MANAGER"
-	elif imagecode == "inu":
-		subdirectory = "NETWORK-LAYER-3-SWITCHING"
-	elif imagecode == "device-pack":
-		subdirectory = "DEVICE-PACK"
-	elif imagecode == "hdiag":
-		subdirectory = "DIAGNOSTICS"
-	elif imagecode == "dart":
-		subdirectory = "DIAGNOSTICS-AND-REPORTING"
-	elif imagecode == "dsc":
-		subdirectory = "DIAL-SHELF-CONTROLLER"
-	elif imagecode == "w3":
-		subdirectory = "DISTRIBUTED-DIRECTOR-SYSTEM-SOFTWARE"
-	elif imagecode == "dmon":
-		subdirectory = "DMON"
-	elif imagecode == "ik8su2":
-		subdirectory = "DOCSIS-2-WAY-BPI-IP+-LAWFUL-INTERCEPT"
-	elif imagecode == "k8pu2":
-		subdirectory = "DOCSIS-2-WAY-BPI-LAWFUL-INTERCEPT"
-	elif imagecode == "k9pu2":
-		subdirectory = "DOCSIS-3DES-LAWFUL-INTERCEPT"
-	elif imagecode == "k9p6u2":
-		subdirectory = "DOCSIS-3DES-LAWFUL-INTERCEPT"
-	elif imagecode == "k8p6u2":
-		subdirectory = "DOCSIS-BPI-LAWFUL-INTERCEPT"
-	elif imagecode == "docs":
-		subdirectory = "DOCUMENTATION"
-	elif imagecode == "drivers":
-		subdirectory = "DRIVERS"
-	elif imagecode == "driverseseries":
-		subdirectory = "DRIVERS"
-	elif imagecode == "dsl":
-		subdirectory = "DSL"
-	elif imagecode == "dslfirmware":
-		subdirectory = "DSL-FIRMWARE"
-	elif imagecode == "p10":
-		subdirectory = "EDGE-SERVICES-ROUTER"
-	elif imagecode == "p11":
-		subdirectory = "EDGE-SERVICES-ROUTER"
-	elif imagecode == "efi":
-		subdirectory = "EFI"
-	elif imagecode == "EHWICCELLATT":
-		subdirectory = "EHWIC-4G-LTE-A"
-	elif imagecode == "EHWICCELLBE":
-		subdirectory = "EHWIC-4G-LTE-BE"
-	elif imagecode == "EHWICCELLEU":
-		subdirectory = "EHWIC-4G-LTE-EU"
-	elif imagecode == "EHWICCELLG":
-		subdirectory = "EHWIC-4G-LTE-G"
-	elif imagecode == "EHWICCELLVZW":
-		subdirectory = "EHWIC-4G-LTE-V"
-	elif imagecode == "EHWIC4GLTEST":
-		subdirectory = "EHWIC-4G-LTE-ST"
-	elif imagecode == "EHWIC4GLTEAT":
-		subdirectory = "EHWIC-4G-LTE-AT"
-	elif imagecode == "EHWIC4GLTECA":
-		subdirectory = "EHWIC-4G-LTE-CA"
-	elif imagecode == "EHWIC4GLTEAU":
-		subdirectory = "EHWIC-4G-LTE-AU"
-	elif imagecode == "EHWIC4GLTEGB":
-		subdirectory = "EHWIC-4G-LTE-GB"
-	elif imagecode == "EHWIC4GLTEVZ":
-		subdirectory = "EHWIC-4G-LTE-VZ"
-	elif imagecode == "C819GWLTEMNAAK9":
-		subdirectory = "C819GW-LTE-MNA-AK9"
-	elif imagecode == "EHWICVADSLB":
-		subdirectory = "EHWIC-VA-DSL-B-C886VA-C896VA"
-	elif imagecode == "i6k2l2q4":
-		subdirectory = "EI-AND-SI-CRYPTO"
-	elif imagecode == "emailsecurity":
-		subdirectory = "EMAIL-SECURITY-APPLIANCE"
-	elif imagecode == "engine":
-		subdirectory = "ENGINE"
-	elif imagecode == "engine0":
-		subdirectory = "ENGINE-0"
-	elif imagecode == "engine1":
-		subdirectory = "ENGINE-1"
-	elif imagecode == "engine2":
-		subdirectory = "ENGINE-2"
-	elif imagecode == "engine3":
-		subdirectory = "ENGINE-3"
-	elif imagecode == "engine4":
-		subdirectory = "ENGINE-4"
-	elif imagecode == "i5s":
-		subdirectory = "ENHANCED-L3"
-	elif imagecode == "i5k91s":
-		subdirectory = "ENHANCED-L3-3DES"
-	elif imagecode == "c6is":
-		subdirectory = "ENHANCED-PDSN"
-	elif imagecode == "c6ik9s":
-		subdirectory = "ENHANCED-PDSN-WITH-CRYPTO"
-	elif imagecode == "j":
-		subdirectory = "ENTERPRISE"
-	elif imagecode == "jsv":
-		subdirectory = "ENTERPRISE"
-	elif imagecode == "k":
-		subdirectory = "ENTERPRISE"
-	elif imagecode == "jsv40":
-		subdirectory = "ENTERPRISE-40"
-	elif imagecode == "jsv56":
-		subdirectory = "ENTERPRISE-56"
-	elif imagecode == "js40":
-		subdirectory = "ENTERPRISE-PLUS-40"
-	elif imagecode == "js56":
-		subdirectory = "ENTERPRISE-PLUS-56"
-	elif imagecode == "ajs":
-		subdirectory = "ENTERPRISE-APPN-PLUS"
-	elif imagecode == "ajs40":
-		subdirectory = "ENTERPRISE-APPN-PLUS-IPSEC-40"
-	elif imagecode == "ajs56i":
-		subdirectory = "ENTERPRISE-APPN-PLUS-IPSEC-56"
-	elif imagecode == "ajsv":
-		subdirectory = "ENTERPRISE-APPN"
-	elif imagecode == "ajsv40":
-		subdirectory = "ENTERPRISE-APPN-40"
-	elif imagecode == "ajsv56":
-		subdirectory = "ENTERPRISE-APPN-56"
-	elif imagecode == "aejs":
-		subdirectory = "ENTERPRISE/APPN/DBCONN"
-	elif imagecode == "aejs40":
-		subdirectory = "ENTERPRISE/APPN/DBCONN 40"
-	elif imagecode == "aejs56i":
-		subdirectory = "ENTERPRISE/APPN/DBCONN IPSEC 56"
-	elif imagecode == "aejs":
-		subdirectory = "ENTERPRISE-APPN-DBCONN"
-	elif imagecode == "aejsv":
-		subdirectory = "ENTERPRISE-APPN-DBCONN"
-	elif imagecode == "aejsv40":
-		subdirectory = "ENTERPRISE-APPN-DBCONN-40"
-	elif imagecode == "aejsv56i":
-		subdirectory = "ENTERPRISE-APPN-DBCONNC-56"
-	elif imagecode == "entbasek9":
-		subdirectory = "ENTERPRISE-BASE"
-	elif imagecode == "entbase":
-		subdirectory = "ENTERPRISE-BASE-NO-CRYPTO"
-	elif imagecode == "j1s3":
-		subdirectory = "ENTERPRISE-BASIC"
-	elif imagecode == "k2":
-		subdirectory = "ENTERPRISE-CIP2"
-	elif imagecode == "k2o3sv3y":
-		subdirectory = "IP-FW-VOICE-PLUS-IPSEC-3DES"
-	elif imagecode == "k2sv3y":
-		subdirectory = "IP-VOICE-PLUS-IPSEC-3DES"
-	elif imagecode == "bk2no3r2sy":
-		subdirectory = "IP-IPX-AT-IBM-FW-PLUS-IPSEC-3DES"
-	elif imagecode == "sv3y56i":
-		subdirectory = "IP-VOICE-PLUS-IPSEC-56"
-	elif imagecode == "o3sv3y56i":
-		subdirectory = "IP-FW-VOICE-PLUS-IPSEC-56"
-	elif imagecode == "k2o3sy":
-		subdirectory = "IP-FW-PLUS-IPSEC-3DES"
-	elif imagecode == "sv3y756i":
-		subdirectory = "IP-VOICE-PLUS-IPSEC-56-ADSL"
-	elif imagecode == "bno3r2sv3y56i":
-		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-56"
-	elif imagecode == "bk2no3r2sv3y":
-		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-3DES"
-	elif imagecode == "isv":
-		subdirectory = "IP"
-#	elif imagecode == "is":
-#		subdirectory = "IP"
-	elif imagecode == "isv40":
-		subdirectory = "IP-40"
-	elif imagecode == "isv56":
-		subdirectory = "IP-56"
-	elif imagecode == "c3h2s":
-		subdirectory = "ENTERPRISE-COMMAND-CAPABLE"
-	elif imagecode == "jo3s":
-		subdirectory = "ENTERPRISE-FW-IDS"
-	elif imagecode == "ainr":
-		subdirectory = "IP-IPX-IBM-APPN"
-	elif imagecode == "jo3sv":
-		subdirectory = "ENTERPRISE-FW-IDS"
-	elif imagecode == "bnr2y":
-		subdirectory = "IP-IPX-AT-IBM"
-	elif imagecode == "bnr2sy":
-		subdirectory = "IP-IPX-AT-IBM-PLUS"
-	elif imagecode == "bnr2sy40":
-		subdirectory = "IP-IPX-AT-IBM-PLUS-40"
-	elif imagecode == "bnr2sy56":
-		subdirectory = "IP-IPX-AT-IBM-PLUS-56"
-	elif imagecode == "jk2o3sv":
-		subdirectory = "ENTERPRISE-FW-IDS-IPSEC-3DES"
-	elif imagecode == "jk9o3s":
-		subdirectory = "ENTERPRISE-FW-IDS-IPSEC-3DES"
-	elif imagecode == "io3s56i":
-		subdirectory = "IP-FW-PLUS-IPSEC-56"
-	elif imagecode == "jk8o3s":
-		subdirectory = "ENTERPRISE-FW-IDS-IPSEC-56"
-	elif imagecode == "jk8o3sv":
-		subdirectory = "ENTERPRISE-FW-IDS-IPSEC-56"
-	elif imagecode == "jo3s56i":
-		subdirectory = "ENTERPRISE-FW-IDS-IPSEC-56"
-	elif imagecode == "jo3sv56i":
-		subdirectory = "ENTERPRISE-FW-IDS-IPSEC-56"
-	elif imagecode == "jk2o3s":
-		subdirectory = "ENTERPRISE-FW-IDS-PLUS-IPSEC-3DES"
-	elif imagecode == "jk9o3sv":
-		subdirectory = "ENTERPRISE-FW-MPLS-IPV6-SSH-3DES"
-	elif imagecode == "jk8os":
-		subdirectory = "ENTERPRISE-FW-PLUS-IPSEC-56"
-	elif imagecode == "jos56i":
-		subdirectory = "ENTERPRISE-FW-PLUS-IPSEC-56"
-	elif imagecode == "jk2sv":
-		subdirectory = "ENTERPRISE-IPSEC-3DES"
-	elif imagecode == "jk9s":
-		subdirectory = "ENTERPRISE-IPSEC-3DES"
-	elif imagecode == "jk9su2":
-		subdirectory = "ENTERPRISE-IPSEC-3DES-LAWFUL-INTERCEPT"
-	elif imagecode == "jk9su2v":
-		subdirectory = "ENTERPRISE-IPSEC-3DES-LAWFUL-INTERCEPT"
-	elif imagecode == "jk8s":
-		subdirectory = "ENTERPRISE-IPSEC-56"
-	elif imagecode == "jk8sv":
-		subdirectory = "ENTERPRISE-IPSEC-56"
-	elif imagecode == "jsv56i":
-		subdirectory = "ENTERPRISE-IPSEC-56"
-	elif imagecode == "jk9sv":
-		subdirectory = "ENTERPRISE-IPV6-SSH-3DES"
-	elif imagecode == "jsu2":
-		subdirectory = "ENTERPRISE-LAWFUL-INTERCEPT"
-	elif imagecode == "jx2":
-		subdirectory = "ENTERPRISE-MCM"
-	elif imagecode == "js":
-		subdirectory = "ENTERPRISE-PLUS"
-	elif imagecode == "js56":
-		subdirectory = "ENTERPRISE-PLUS-56"
-	elif imagecode == "a2jsv5x":
-		subdirectory = "ENTERPRISE-PLUS-H323-MCM"
-	elif imagecode == "jsx":
-		subdirectory = "ENTERPRISE-PLUS-H323-MCM"
-	elif imagecode == "js56i":
-		subdirectory = "ENTERPRISE-PLUS-IPSEC-56"
-	elif imagecode == "a2jsv5":
-		subdirectory = "ENTERPRISE-PLUS-VOIP-VOATM"
-	elif imagecode == "a2jk2sv5":
-		subdirectory = "ENTERPRISE-PLUS-VOIP-VOATM-IPSEC-3DES"
-	elif imagecode == "a2jk9sv5":
-		subdirectory = "ENTERPRISE-PLUS-VOIP-VOATM-IPSEC-3DES"
-	elif imagecode == "a2jk8sv5":
-		subdirectory = "ENTERPRISE-PLUS-VOIP-VOATM-IPSEC-56"
-	elif imagecode == "entservicesk9":
-		subdirectory = "ENTERPRISE-SERVICES"
-	elif imagecode == "entservicesk9_wan":
-		subdirectory = "ENTERPRISE-SERVICES"
-	elif imagecode == "entservices":
-		subdirectory = "ENTERPRISE-SERVICES-NO-CRYPTO"
-	elif imagecode == "entservices_wan":
-		subdirectory = "ENTERPRISE-SERVICES-NO-CRYPTO"
-	elif imagecode == "a3jsv":
-		subdirectory = "ENTERPRISE-SNASW"
-	elif imagecode == "a3jk2sv":
-		subdirectory = "ENTERPRISE-SNASW-IPSEC-3DES"
-	elif imagecode == "a3jk9s":
-		subdirectory = "ENTERPRISE-SNASW-IPSEC-3DES"
-	elif imagecode == "a3jk9sv":
-		subdirectory = "ENTERPRISE-SNASW-IPSEC-3DES"
-	elif imagecode == "a3jk8s":
-		subdirectory = "ENTERPRISE-SNASW-IPSEC-56"
-	elif imagecode == "a3jk8sv":
-		subdirectory = "ENTERPRISE-SNASW-IPSEC-56"
-	elif imagecode == "a3jsv56i":
-		subdirectory = "ENTERPRISE-SNASW-IPSEC-56"
-	elif imagecode == "a3js":
-		subdirectory = "ENTERPRISE-SNASW-PLUS"
-	elif imagecode == "a3jk91s":
-		subdirectory = "ENTERPRISE-SNASW-SSH-3DES"
-	elif imagecode == "g4js":
-		subdirectory = "ENTERPRISE-SSG"
-	elif imagecode == "jk2s":
-		subdirectory = "ENTERPRISE-SSH-3DES-LAN-ONLY"
-	elif imagecode == "g5js":
-		subdirectory = "ENTERPRISE-WIRELESS"
-	elif imagecode == "g5jk8s":
-		subdirectory = "ENTERPRISE-WIRELESS-IPSEC-56"
-	elif imagecode == "driversucse":
-		subdirectory = "E-SERIES/DRIVERS"
-	elif imagecode == "events":
-		subdirectory = "EVENTS"
-	elif imagecode == "fdiagsbflc":
-		subdirectory = "FIELD-DIAGNOSTICS-LINECARD-IMAGE"
-	elif imagecode == "fpd":
-		subdirectory = "FIELD-PROGRAMABLE-DEVICE"
-	elif imagecode == "fips":
-		subdirectory = "FIPS"
-	elif imagecode == "fpasamodule":
-		subdirectory = "MODULE-ASA"
-	elif imagecode == "fpasamode":
-		subdirectory = "FIREPOWER-ASA-MODE/FIREPOWER-MODULE"
-	elif imagecode == "fpasasystem":
-		subdirectory = "FIREPOWER-ASA-MODE/SYSTEM"
-	elif imagecode == "fpftdmodule":
-		subdirectory = "MODULE-FTD"
-	elif imagecode == "fpftdsoftware":
-		subdirectory = "SOFTWARE-FTD"
-	elif imagecode == "fmc":
-		subdirectory = "FIREPOWER-MANAGEMENT-CENTER"
-	elif imagecode == "firepower-mibs":
-		subdirectory = "FIREPOWER-MIBS"
-	elif imagecode == "fxos-mibs-fp9k-fp4k":
-		subdirectory = "FIREPOWER-MIBS-9K-4K"
-	elif imagecode == "firmware":
-		subdirectory = "FIRMWARE"
-	elif imagecode == "firmwareeseries":
-		subdirectory = "FIRMWARE"
-	elif imagecode == "fxos-k9-fpr4k-firmware":
-		subdirectory = "FIRMWARE-4K"
-	elif imagecode == "fxos-k9-fpr9k-firmware":
-		subdirectory = "FIRMWARE-9K"
-	elif imagecode == "epld":
-		subdirectory = "FIRMWARE-EPLD"
-	elif imagecode == "fpga":
-		subdirectory = "FPGA-UPGRADE"
-	elif imagecode == "f":
-		subdirectory = "FRAD"
-	elif imagecode == "fin":
-		subdirectory = "FRAD-EIGRP"
-	elif imagecode == "fwsmtoasasm":
-		subdirectory = "FWSM-TO-ASASM-CONVERSION"
-	elif imagecode == "fxos-k9":
-		subdirectory = "FXOS"
-	elif imagecode == "fxos-k9-kickstart":
-		subdirectory = "FXOS-RECOVERY/KICKSTART"
-	elif imagecode == "fxos-k9-manager":
-		subdirectory = "FXOS-RECOVERY/MANAGER"
-	elif imagecode == "fxos-k9-system":
-		subdirectory = "FXOS-RECOVERY/SYSTEM"
-	elif imagecode == "sfgeodb":
-		subdirectory = "GeoDB-SRU-VDB/Geodb"
-	elif imagecode == "csfgeodb":
-		subdirectory = "GeoDB-SRU-VDB/Geodb-6.4-AND-LATER"
-	elif imagecode == "sfrules":
-		subdirectory = "GeoDB-SRU-VDB/Rules"
-	elif imagecode == "csfrules":
-		subdirectory = "GeoDB-SRU-VDB/Rules-6.4-AND-LATER"
-	elif imagecode == "sfvdb":
-		subdirectory = "GeoDB-SRU-VDB/VDB"
-	elif imagecode == "csfvdb":
-		subdirectory = "GeoDB-SRU-VDB/VDB-6.4-AND-LATER"
-	elif imagecode == "lsprel":
-		subdirectory = "GeoDB-SRU-VDB/Lightweight-Security-Package"
-	elif imagecode == "g6ik9s":
-		subdirectory = "GGSN-4.0-3DES"
-	elif imagecode == "g6is":
-		subdirectory = "GGSN-4.0-BASE"
-	elif imagecode == "g6ik8s":
-		subdirectory = "GGSN-4.0-IPSEC"
-	elif imagecode == "entservices_mw":
-		subdirectory = "GGSN-RELEASE-6"
-	elif imagecode == "adventerprisek9_mw":
-		subdirectory = "GGSN-RELEASE-6-IPSEC"
-	elif imagecode == "g7is":
-		subdirectory = "GGSN-SERIES-4-BASE"
-	elif imagecode == "g8ik9s":
-		subdirectory = "GGSN-SERIES-6-3DES"
-	elif imagecode == "g8ik8s":
-		subdirectory = "GGSN-SERIES-6-IPSEC"
-	elif imagecode == "g8is":
-		subdirectory = "GGSN-SERIES-6-BASE"
-	elif imagecode == "gina":
-		subdirectory = "GINA-MODULE"
-	elif imagecode == "hardware":
-		subdirectory = "HARDWARE-PROGRAMMABLES"
-	elif imagecode == "k1v4y5":
-		subdirectory = "HOME-OFFICE-VOICE-(SGCP-and-H.323)"
-	elif imagecode == "hostscan":
-		subdirectory = "HOST-SCAN"
-	elif imagecode == "ins":
-		subdirectory = "IP-IPX-PLUS"
-	elif imagecode == "huu":
-		subdirectory = "HOST-UPGRADE-UTILITY"
-	elif imagecode == "html":
-		subdirectory = "HTML"
-	elif imagecode == "HWIC3GGSM":
-		subdirectory = "HWIC-3G-GSM"
-	elif imagecode == "HWICCABLE":
-		subdirectory = "HWIC-CABLE"
-	elif imagecode == "hyperv":
-		subdirectory = "HYPERv"
-	elif imagecode == "install":
-		subdirectory = "INSTALL"
-	elif imagecode == "installer":
-		subdirectory = "INSTALLER"
-	elif imagecode == "installer-ase":
-		subdirectory = "INSTALLER-ASE"
-	elif imagecode == "ipvoice_ivs":
-		subdirectory = "INT-VOICE-VIDEO,-IPIP-GW,-TDMIP-GW"
-	elif imagecode == "adventerprisek9_ivs":
-		subdirectory = "INT-VOICE-VIDEO-GK,-IPIP-GW,-TDMIP-GW-AES"
-	elif imagecode == "adventerprisek9_ivs_li":
-		subdirectory = "INT-VOICE-VIDEO-GK,-IPIP-GW,-TDMIP-GW-AES,-LI"
-	elif imagecode == "js_ivs":
-		subdirectory = "INT-VOICE-VIDEO-IPIP-GW,-TDMIP-GW"
-	elif imagecode == "jk9su2_ivs":
-		subdirectory = "INT-VOICE-VIDEO-IPIP-GW,-TDMIP-GW-LI"
-	elif imagecode == "ucmk9":
-		subdirectory = "IOS-XE-SD-WAN"
-	elif imagecode == "i":
-		subdirectory = "IP"
-	elif imagecode == "isv":
-		subdirectory = "IP"
-	elif imagecode == "y":
-		subdirectory = "IP"
-	elif imagecode == "y1":
-		subdirectory = "IP"
-	elif imagecode == "y6":
-		subdirectory = "IP"
-	elif imagecode == "y7":
-		subdirectory = "IP-ADSL"
-	elif imagecode == "k9o3sy7":
-		subdirectory = "IP-ADSL-FW-IDS-PLUS-IPSEC-3DES"
-	elif imagecode == "k8o3sy7":
-		subdirectory = "IP-ADSL-FW-IDS-PLUS-IPSEC-56"
-	elif imagecode == "bk9no3r2sy7":
-		subdirectory = "IP-ADSL-IPX-AT-IBM-FW-IDS-PLUS-IPSEC-3DES"
-	elif imagecode == "bk8no3r2sy7":
-		subdirectory = "IP-ADSL-IPX-AT-IBM-FW-IDS-PLUS-IPSEC-56"
-	elif imagecode == "bnr2sy7":
-		subdirectory = "IP-ADSL-IPX-AT-IBM-PLUS"
-	elif imagecode == "bk9no3r2sv3y7":
-		subdirectory = "IP-ADSL-IPX-AT-IBM-VOICE-FW-IDS-PLUS-IPSEC-3DES"
-	elif imagecode == "bk8no3r2sv3y7":
-		subdirectory = "IP-ADSL-IPX-AT-IBM-VOICE-FW-IDS-PLUS-IPSEC-56"
-	elif imagecode == "bk9no3r2sv8y7":
-		subdirectory = "IP-ADSL-IPX-AT-IBM-VOX-FW-IDS-PLUS-IPSEC-3DES"
-	elif imagecode == "bk8no3r2sv8y7":
-		subdirectory = "IP-ADSL-IPX-AT-IBM-VOX-FW-IDS-PLUS-IPSEC-56"
-	elif imagecode == "no3sy7":
-		subdirectory = "IP-ADSL-IPX-FW-IDS-PLUS"
-	elif imagecode == "no3sv3y7":
-		subdirectory = "IP-ADSL-IPX-VOICE-FW-IDS-PLUS"
-	elif imagecode == "no3sv8y7":
-		subdirectory = "IP-ADSL-IPX-VOX-FW-IDS-PLUS"
-	elif imagecode == "sy7":
-		subdirectory = "IP-ADSL-PLUS"
-	elif imagecode == "k9sy7":
-		subdirectory = "IP-ADSL-PLUS-IPSEC-3DES"
-	elif imagecode == "k8sy7":
-		subdirectory = "IP-ADSL-PLUS-IPSEC-56"
-	elif imagecode == "o3sv3y7":
-		subdirectory = "IP-ADSL-VOICE-FW-IDS-PLUS"
-	elif imagecode == "k9o3sv3y7":
-		subdirectory = "IP-ADSL-VOICE-FW-IDS-PLUS-IPSEC-3DES"
-	elif imagecode == "k8o3sv3y7":
-		subdirectory = "IP-ADSL-VOICE-FW-IDS-PLUS-IPSEC-56"
-	elif imagecode == "sv3y7":
-		subdirectory = "IP-ADSL-VOICE-PLUS"
-	elif imagecode == "k9sv3y7":
-		subdirectory = "IP-ADSL-VOICE-PLUS-IPSEC-3DES"
-	elif imagecode == "k8sv3y7":
-		subdirectory = "IP-ADSL-VOICE-PLUS-IPSEC-56"
-	elif imagecode == "o3sv8y7":
-		subdirectory = "IP-ADSL-VOX-FW-IDS-PLUS"
-	elif imagecode == "k9o3sv8y7":
-		subdirectory = "IP-ADSL-VOX-FW-IDS-PLUS-IPSEC-3DES"
-	elif imagecode == "k8o3sv8y7":
-		subdirectory = "IP-ADSL-VOX-FW-IDS-PLUS-IPSEC-56"
-	elif imagecode == "sv8y7":
-		subdirectory = "IP-ADSL-VOX-PLUS"
-	elif imagecode == "k9sv8y7":
-		subdirectory = "IP-ADSL-VOX-PLUS-IPSEC-3DES"
-	elif imagecode == "k8sv8y7":
-		subdirectory = "IP-ADSL-VOX-PLUS-IPSEC-56"
-	elif imagecode == "qy":
-		subdirectory = "IP-ASYNC"
-	elif imagecode == "by":
-		subdirectory = "IP-AT"
-	elif imagecode == "a2i5k8s":
-		subdirectory = "IP-ATM-PLUS-IPSEC-56-NO-ISDN"
-	elif imagecode == "a2i5s":
-		subdirectory = "IP-ATM-PLUS-NO-ISDN"
-	elif imagecode == "a2i8sv5":
-		subdirectory = "IP-ATM-VOIP-VOATM"
-	elif imagecode == "a2i8k8sv5":
-		subdirectory = "IP-ATM-VOIP-VOATM-PLUS-IPSEC-56"
-	elif imagecode == "i9k2":
-		subdirectory = "IP-BASE"
-	elif imagecode == "i9k2l2q3":
-		subdirectory = "IP-BASE"
-	elif imagecode == "i9k91":
-		subdirectory = "IP-BASE"
-	elif imagecode == "i9k91l2q3":
-		subdirectory = "IP-BASE"
-	elif imagecode == "ipbasek9":
-		subdirectory = "IP-BASE"
-	elif imagecode == "ipbasek9_wan":
-		subdirectory = "IP-BASE"
-	elif imagecode == "ipbasek9_access":
-		subdirectory = "IP-BASE-ACCESS-ONLY"
-	elif imagecode == "ipbase_access":
-		subdirectory = "IP-BASE-ACCESS-ONLY-NO-CRYPTO"
-	elif imagecode == "i9":
-		subdirectory = "IP-BASE-NO-CRYPTO"
-	elif imagecode == "i9q3l2":
-		subdirectory = "IP-BASE-NO-CRYPTO"
-	elif imagecode == "ipbase":
-		subdirectory = "IP-BASE-NO-CRYPTO"
-	elif imagecode == "ipbase_wan":
-		subdirectory = "IP-BASE-NO-CRYPTO"
-	elif imagecode == "ipbaselm":
-		subdirectory = "IP-BASE-NO-CRYPTO-WITH-EXPRESS-SETUP"
-	elif imagecode == "ipbasek9_npe":
-		subdirectory = "IP-BASE-NPE"
-	elif imagecode == "ipbasek9npe":
-		subdirectory = "IP-BASE-NPE"
-	elif imagecode == "ipbaselmk9":
-		subdirectory = "IP-BASE-WITH-EXPRESS-SETUP"
-	elif imagecode == "in":
-		subdirectory = "IP-BRIDGING"
-	elif imagecode == "broadband":
-		subdirectory = "IP-BROADBAND"
-	elif imagecode == "io":
-		subdirectory = "IP-FW"
-	elif imagecode == "oy":
-		subdirectory = "IP-FW"
-	elif imagecode == "oy1":
-		subdirectory = "IP-FW"
-	elif imagecode == "oy6":
-		subdirectory = "IP-FW"
-	elif imagecode == "k9o3y6":
-		subdirectory = "IP-FW-3DES"
-	elif imagecode == "k9oy1":
-		subdirectory = "IP-FW-3DES"
-	elif imagecode == "k9oy6":
-		subdirectory = "IP-FW-3DES"
-	elif imagecode == "io3":
-		subdirectory = "IP-FW-IDS"
-	elif imagecode == "io3s":
-		subdirectory = "IP-FW-IDS"
-	elif imagecode == "io3sv":
-		subdirectory = "IP-FW-IDS"
-	elif imagecode == "o3y":
-		subdirectory = "IP-FW-IDS"
-	elif imagecode == "ik2o3s":
-		subdirectory = "IP-FW-IDS-IPSEC-3DES"
-	elif imagecode == "ik2o3sv":
-		subdirectory = "IP-FW-IDS-IPSEC-3DES"
-	elif imagecode == "ik9o3s":
-		subdirectory = "IP-FW-IDS-IPSEC-3DES"
-	elif imagecode == "ik9o3sv":
-		subdirectory = "IP-FW-IDS-IPSEC-3DES"
-	elif imagecode == "ik8o3s":
-		subdirectory = "IP-FW-IDS-IPSEC-56"
-	elif imagecode == "ik8o3sv":
-		subdirectory = "IP-FW-IDS-IPSEC-56"
-	elif imagecode == "io3sv56i":
-		subdirectory = "IP-FW-IDS-IPSEC-56"
-	elif imagecode == "o3sy56i":
-		subdirectory = "IP-FW-IDS-PLUS-IPSEC-3DES"
-	elif imagecode == "ik9o3s3":
-		subdirectory = "IP-FW-IDS-PLUS-IPSEC-3DES-BASIC"
-	elif imagecode == "ik9o3s6":
-		subdirectory = "IP-FW-IDS-PLUS-IPSEC-3DES-BASIC-NO-ATM"
-	elif imagecode == "ik9o3s7":
-		subdirectory = "IP-FW-IDS-PLUS-IPSEC-3DES-BASIC-NO-VOICE"
-	elif imagecode == "k8o3sy":
-		subdirectory = "IP-FW-IDS-PLUS-IPSEC-56"
-	elif imagecode == "o3sy6":
-		subdirectory = "IP-FW-PLUS"
-	elif imagecode == "osy6":
-		subdirectory = "IP-FW-PLUS"
-	elif imagecode == "k9o3sy6":
-		subdirectory = "IP-FW-PLUS-3DES"
-	elif imagecode == "k2osy6":
-		subdirectory = "IP-FW-PLUS-IPSEC-3DES"
-	elif imagecode == "k9osy6":
-		subdirectory = "IP-FW-PLUS-IPSEC-3DES"
-	elif imagecode == "ik8os":
-		subdirectory = "IP-FW-PLUS-IPSEC-56"
-	elif imagecode == "ios56i":
-		subdirectory = "IP-FW-PLUS-IPSEC-56"
-	elif imagecode == "k8osy":
-		subdirectory = "IP-FW-PLUS-IPSEC-56"
-	elif imagecode == "k8osy6":
-		subdirectory = "IP-FW-PLUS-IPSEC-56"
-	elif imagecode == "osy56i":
-		subdirectory = "IP-FW-PLUS-IPSEC-56"
-	elif imagecode == "osy656i":
-		subdirectory = "IP-FW-PLUS-IPSEC-56"
-	elif imagecode == "k9o3s8y6":
-		subdirectory = "IP-FW-PLUS-ISDN-DIAL-BACKUP-3DES-VPN"
-	elif imagecode == "ov6y6":
-		subdirectory = "IP-FW-VOICE"
-	elif imagecode == "k9osv6y6":
-		subdirectory = "IP-FW-VOICE-PLUS-3DES"
-	elif imagecode == "k9o3sv3y":
-		subdirectory = "IP-FW-VOICE-PLUS-IPSEC-3DES"
-	elif imagecode == "ix":
-		subdirectory = "IP-H323"
-	elif imagecode == "is3x":
-		subdirectory = "IP-H323-PLUS-BASIC"
-	elif imagecode == "ai3r4":
-		subdirectory = "IP-IBM-APPN7"
-	elif imagecode == "a3i3r4":
-		subdirectory = "IP-IBM-SNASW"
-	elif imagecode == "ik2s":
-		subdirectory = "IP-PLUS-IPSEC-3DES"
-	elif imagecode == "ik9su2":
-		subdirectory = "IP-IPSEC-3DES-LAWFUL-INTERCEPT"
-	elif imagecode == "ik8sv":
-		subdirectory = "IP-IPSEC-56"
-	elif imagecode == "isv56i":
-		subdirectory = "IP-IPSEC-56"
-	elif imagecode == "ny":
-		subdirectory = "IP-IPX"
-	elif imagecode == "bin":
-		subdirectory = "IP-IPX-APPLETALK"
-	elif imagecode == "bins":
-		subdirectory = "IP-IPX-APPLETALK-PLUS"
-	elif imagecode == "bino3s":
-		subdirectory = "IP-IPX-APPLETALK-PLUS-FW-IDS"
-	elif imagecode == "nqy":
-		subdirectory = "IP-IPX-ASYNC"
-	elif imagecode == "bny":
-		subdirectory = "IP-IPX-AT"
-	elif imagecode == "d":
-		subdirectory = "IP-IPX-AT-DEC"
-	elif imagecode == "dos":
-		subdirectory = "IP-IPX-AT-DEC-FW-PLUS"
-	elif imagecode == "ds":
-		subdirectory = "IP-IPX-AT-DEC-PLUS"
-	elif imagecode == "ds40":
-		subdirectory = "IP-IPX-AT-DEC-PLUS-40"
-	elif imagecode == "bino3s3":
-		subdirectory = "IP-IPX-AT-FW-IDS-PLUS-BASIC"
-	elif imagecode == "bnr2y":
-		subdirectory = "IP-IPX-AT-IBM"
-	elif imagecode == "bk8no3r2sy":
-		subdirectory = "IP-IPX-AT-IBM-FW-IDS-PLUS-IPSEC-56"
-	elif imagecode == "bk8nor2sy":
-		subdirectory = "IP-IPX-AT-IBM-FW-PLUS-IPSEC-56"
-	elif imagecode == "bno3r2sy56i":
-		subdirectory = "IP-IPX-AT-IBM-FW-PLUS-IPSEC-56"
-	elif imagecode == "bnor2sy56i":
-		subdirectory = "IP-IPX-AT-IBM-FW-PLUS-IPSEC-56"
-	elif imagecode == "bk9no3r2sv3y":
-		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-3DES"
-	elif imagecode == "bk8no3r2sv3":
-		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-56"
-	elif imagecode == "bnr2sy":
-		subdirectory = "IP-IPX-AT-IBM-PLUS"
-	elif imagecode == "bk8no3r2sv3y":
-		subdirectory = "IP-IPX-AT-IBM-VOICE-FW-IDS-PLUS-IPSEC-56"
-	elif imagecode == "bnr2sv3y":
-		subdirectory = "IP-IPX-AT-IBM-VOICE-PLUS"
-	elif imagecode == "bnsy":
-		subdirectory = "IP-IPX-AT-PLUS"
-	elif imagecode == "bnsy40":
-		subdirectory = "IP-IPX-AT-PLUS-40"
-	elif imagecode == "bnsy56":
-		subdirectory = "IP-IPX-AT-PLUS-56"
-	elif imagecode == "no3sy":
-		subdirectory = "IP-IPX-FW-IDS-PLUS"
-	elif imagecode == "ino3s3":
-		subdirectory = "IP-IPX-FW-IDS-PLUS-BASIC"
-	elif imagecode == "nosy":
-		subdirectory = "IP-IPX-FW-PLUS"
-	elif imagecode == "k2nosy6":
-		subdirectory = "IP-IPX-FW-PLUS-IPSEC-3DES"
-	elif imagecode == "k9nosy6":
-		subdirectory = "IP-IPX-FW-PLUS-IPSEC-3DES"
-	elif imagecode == "k8nosy6":
-		subdirectory = "IP-IPX-FW-PLUS-IPSEC-56"
-	elif imagecode == "nosy656i":
-		subdirectory = "IP-IPX-FW-PLUS-IPSEC-56"
-	elif imagecode == "nsy":
-		subdirectory = "IP-IPX-PLUS"
-	elif imagecode == "nsy6":
-		subdirectory = "IP-IPX-PLUS"
-	elif imagecode == "no3sv3y":
-		subdirectory = "IP-IPX-VOICE-FW-IDS-PLUS"
-	elif imagecode == "isu2":
-		subdirectory = "IP-LAWFUL-INTERCEPT"
-	elif imagecode == "itpk9":
-		subdirectory = "IP-MAP-GATEWAY-BASE"
-	elif imagecode == "iosxr":
-		subdirectory = "IP-MPLS"
-	elif imagecode == "y2":
-		subdirectory = "IP-OSPF-PIM"
-	elif imagecode == "i4s":
-		subdirectory = "IP-PLUS"
-	elif imagecode == "is":
-		subdirectory = "IP-PLUS"
-	elif imagecode == "sy":
-		subdirectory = "IP-PLUS"
-	elif imagecode == "sy6":
-		subdirectory = "IP-PLUS"
-	elif imagecode == "ik2sx3":
-		subdirectory = "IP-PLUS-3DES"
-	elif imagecode == "ik2o3sx3":
-		subdirectory = "IP-PLUS-3DES-FW"
-	elif imagecode == "is40":
-		subdirectory = "IP-PLUS-40"
-	elif imagecode == "is56":
-		subdirectory = "IP-PLUS-56"
-	elif imagecode == "is5":
-		subdirectory = "IP-PLUS-BASIC-WITHOUT-HD-ANALOG-AIM-ATM-VOICE"
-	elif imagecode == "is4":
-		subdirectory = "IP-PLUS-BASIC-WITHOUT-SWITCHING"
-	elif imagecode == "io3sx3":
-		subdirectory = "IP-PLUS-FW"
-	elif imagecode == "a3inro3sx3":
-		subdirectory = "IP-PLUS-FW-IPX-SNA"
-	elif imagecode == "ik2sv":
-		subdirectory = "IP-PLUS-IPSEC-3DES"
-	elif imagecode == "ik9s":
-		subdirectory = "IP-PLUS-IPSEC-3DES"
-	elif imagecode == "ik9sv":
-		subdirectory = "IP-PLUS-IPSEC-3DES"
-	elif imagecode == "k2sy":
-		subdirectory = "IP-PLUS-IPSEC-3DES"
-	elif imagecode == "i5k9s":
-		subdirectory = "IP-PLUS-IPSEC-3DES-NO-ISDN"
-	elif imagecode == "ik8s":
-		subdirectory = "IP-PLUS-IPSEC-56"
-	elif imagecode == "is56i":
-		subdirectory = "IP-PLUS-IPSEC-56"
-	elif imagecode == "isx356i":
-		subdirectory = "IP-PLUS-IPSEC-56"
-	elif imagecode == "k8sy":
-		subdirectory = "IP-PLUS-IPSEC-56"
-	elif imagecode == "sy56i":
-		subdirectory = "IP-PLUS-IPSEC-56"
-	elif imagecode == "io3sx356i":
-		subdirectory = "IP-PLUS-IPSEC-56-FW"
-	elif imagecode == "i5k8s":
-		subdirectory = "IP-PLUS-IPSEC-56-NO-ISDN"
-	elif imagecode == "bk9no3r2sy":
-		subdirectory = "IP-PLUS-IPX-AT-IBM-FW_IDS-IPSEC-3DES"
-	elif imagecode == "a3inrsx3c":
-		subdirectory = "IP-PLUS-IPX-SNA"
-	elif imagecode == "a3is":
-		subdirectory = "IP-PLUS-SNASW-PLUS"
-	elif imagecode == "ik91s":
-		subdirectory = "IP-PLUS-SSH-3DES"
-	elif imagecode == "a2isv5":
-		subdirectory = "IP-PLUS-VOIP-VOATM"
-	elif imagecode == "a2ik8sv5":
-		subdirectory = "IP-PLUS-VOIP-VOATM-IPSEC-56"
-	elif imagecode == "i5k2":
-		subdirectory = "IP-SERVICES"
-	elif imagecode == "i5k2l2q3":
-		subdirectory = "IP-SERVICES"
-	elif imagecode == "i5k91":
-		subdirectory = "IP-SERVICES"
-	elif imagecode == "i5k91l2q3":
-		subdirectory = "IP-SERVICES"
-	elif imagecode == "i5q312":
-		subdirectory = "IP-SERVICES"
-	elif imagecode == "ipservicesk9":
-		subdirectory = "IP-SERVICES"
-	elif imagecode == "ipservicesk9_wan":
-		subdirectory = "IP-SERVICES"
-	elif imagecode == "ipserviceslmk9_en":
-		subdirectory = "IP-SERVICES-EXPRESS-SETUP-ENGLISH"
-	elif imagecode == "i5":
-		subdirectory = "IP-SERVICES-NO-CRYPTO"
-	elif imagecode == "i5q3l2":
-		subdirectory = "IP-SERVICES-NO-CRYPTO"
-	elif imagecode == "ipservices":
-		subdirectory = "IP-SERVICES-NO-CRYPTO"
-	elif imagecode == "ipservices_wan":
-		subdirectory = "IP-SERVICES-NO-CRYPTO"
-	elif imagecode == "ipserviceslm":
-		subdirectory = "IP-SERVICES-NO-CRYPTO-WITH-EXPRESS-SETUP"
-	elif imagecode == "ipservicesk9_npe":
-		subdirectory = "IP-SERVICES-NPE"
-	elif imagecode == "ipserviceslmk9":
-		subdirectory = "IP-SERVICES-WITH-EXPRESS-SETUP"
-	elif imagecode == "ipservicesk9_li":
-		subdirectory = "IP-SERVICES-WITH-LAWFUL-INTERCEPT"
-	elif imagecode == "pk9sv":
-		subdirectory = "IP-SSH-3DES"
-	elif imagecode == "pk9s":
-		subdirectory = "IP-SSH-3DES-LAN-ONLY"
-	elif imagecode == "i6k9o3s":
-		subdirectory = "IP-SUBSET-IPSEC-56-FW-VOICE"
-	elif imagecode == "i6k9s":
-		subdirectory = "IP-SUBSET-IPSEC-64-BIT-VOICE"
-	elif imagecode == "i6s":
-		subdirectory = "IP-SUBSET-VOICE"
-	elif imagecode == "ipv":
-		subdirectory = "IP-TRANSFER-POINT"
-	elif imagecode == "itp":
-		subdirectory = "IP-TRANSFER-POINT"
-	elif imagecode == "itpk9v":
-		subdirectory = "IP-TRANSFER-POINT"
-	elif imagecode == "itpv":
-		subdirectory = "IP-TRANSFER-POINT"
-	elif imagecode == "ipvoicek9":
-		subdirectory = "IP-VOICE"
-	elif imagecode == "isx3":
-		subdirectory = "IP-VOICE"
-	elif imagecode == "v6y6":
-		subdirectory = "IP-VOICE"
-	elif imagecode == "o3sv3y":
-		subdirectory = "IP-VOICE-FW-IDS-PLUS"
-	elif imagecode == "k8o3sv3y":
-		subdirectory = "IP-VOICE-FW-IDS-PLUS-IPSEC"
-	elif imagecode == "binrsx3":
-		subdirectory = "IP-VOICE-IPV6-IPX-APPLE-TALK"
-	elif imagecode == "a3bik9no3rsx3":
-		subdirectory = "IP-VOICE-IPX-SNA-FW-IDS-WAN-3DES"
-	elif imagecode == "ipvoice":
-		subdirectory = "IP-VOICE-NO-CRYPTO"
-	elif imagecode == "sv3y":
-		subdirectory = "IP-VOICE-PLUS"
-	elif imagecode == "sv6y6":
-		subdirectory = "IP-VOICE-PLUS"
-	elif imagecode == "k8sv3y":
-		subdirectory = "IP-VOICE-PLUS-IPSEC-56"
-	elif imagecode == "sv8y":
-		subdirectory = "IP-VOX-PLUS"
-	elif imagecode == "g":
-		subdirectory = "ISDN"
-	elif imagecode == "isecompliance":
-		subdirectory = "ISE-COMPLIANCE"
-	elif imagecode == "iseposture":
-		subdirectory = "ISE-POSTURE"
-	elif imagecode == "ISRG2PVDMODEM":
-		subdirectory = "ISR-G2-DIGITAL-MODEM"
-	elif imagecode == "kickstart":
-		subdirectory = "KICKSTART"
-	elif imagecode == "kickstart-npe":
-		subdirectory = "KICKSTART-NPE"
-	elif imagecode == "kubernetes":
-		subdirectory = "KUBERNETES"
-	elif imagecode == "kvm":
-		subdirectory = "KVM"
-	elif imagecode == "l2l3cvt":
-		subdirectory = "L2-L3-CONVERSION"
-	elif imagecode == "i9k91s":
-		subdirectory = "L3-VOICE"
-	elif imagecode == "lanbase":
-		subdirectory = "LAN-BASE"
-	elif imagecode == "lanbasek9":
-		subdirectory = "LAN-BASE-SSH"
-	elif imagecode == "lanbasek9_en":
-		subdirectory = "LAN-BASE-SSH-ENGLISH"
-	elif imagecode == "lanbaselmk9":
-		subdirectory = "LAN-BASE-SSH-WITH-EXPRESS-SETUP"
-	elif imagecode == "lanbaselmk9_en":
-		subdirectory = "LAN-BASE-SSH-WITH-EXPRESS-SETUP-ENGLISH"
-	elif imagecode == "fin-l":
-		subdirectory = "LAN-FRAD"
-	elif imagecode == "f2in":
-		subdirectory = "LAN-FRAD-OSPF"
-	elif imagecode == "lanlite":
-		subdirectory = "LAN-LITE"
-	elif imagecode == "lanlitek9":
-		subdirectory = "LAN-LITE-SSH"
-	elif imagecode == "u2p10":
-		subdirectory = "LAWFUL-INTERCEPT"
-	elif imagecode == "k4u2p10":
-		subdirectory = "LAWFUL-INTERCEPT-SECURED-SHELL-3DES"
-	elif imagecode == "k9p11u2":
-		subdirectory = "LAWFUL-INTERCEPT-SECURED-SHELL-3DES"
-	elif imagecode == "k8p11u2":
-		subdirectory = "LAWFUL-INTERCEPT-SECURED-SHELL-DES"
-	elif imagecode == "i6q4l2":
-		subdirectory = "LAYER-2"
-	elif imagecode == "ucslinux":
-		subdirectory = "LINUX"
-	elif imagecode == "logagent":
-		subdirectory = "LOG-AGENT"
-	elif imagecode == "c3h2l9s":
-		subdirectory = "LONG-REACH-ETHERNET"
-	elif imagecode == "i6l2q4":
-		subdirectory = "LONG-REACH-ETHERNET-NO-CRYPTO"
-	elif imagecode == "mcp":
-		subdirectory = "MANAGEMENT-CENTER-FOR-PERFORMANCE"
-	elif imagecode == "metroaccessk9":
-		subdirectory = "METRO-ACCESS"
-	elif imagecode == "metroaccess":
-		subdirectory = "METRO-ACCESS-NO-CRYPTO"
-	elif imagecode == "metrobasek9":
-		subdirectory = "METRO-BASE"
-	elif imagecode == "metrobase":
-		subdirectory = "METRO-BASE-NO-CRYPTO"
-	elif imagecode == "metroipaccessk9":
-		subdirectory = "METRO-IP-ACCESS"
-	elif imagecode == "metroipaccess":
-		subdirectory = "METRO-IP-ACCESS-NO-CRYPTO"
-	elif imagecode == "mibs":
-		subdirectory = "MIBS"
-	elif imagecode == "mp":
-		subdirectory = "MAINTENANCE-PARTITION"
-	elif imagecode == "mini":
-		subdirectory = "MINI"
-	elif imagecode == "mini-x64":
-		subdirectory = "MINI-X64"
-	elif imagecode == "i9su3":
-		subdirectory = "MPEG-2-L2"
-	elif imagecode == "i5su3":
-		subdirectory = "MPEG-2-L3"
-	elif imagecode == "mso":
-		subdirectory = "MULTI-SITE-ORCHESTRATOR"
-	elif imagecode == "h1is":
-		subdirectory = "MW-HOME-AGENT"
-	elif imagecode == "anyconnectnam":
-		subdirectory = "NETWORK-ACCESS-MANAGER"
-	elif imagecode == "nvm":
-		subdirectory = "NETWORK-VISIBILITY-MODULE"
-	elif imagecode == "np":
-		subdirectory = "NEXTPORT-FIRMWARE"
-	elif imagecode == "mica-modem":
-		subdirectory = "NEXTPORT-MODEM-FIRMWARE"
-	elif imagecode == "n9kacim":
-		subdirectory = "NEXUS-9000-ACI-MODE"
-	elif imagecode == "guestshell":
-		subdirectory = "Nexus-Guestshell"
-	elif imagecode == "ngfw":
-		subdirectory = "NGFW"
-	elif imagecode == "ngfwv":
-		subdirectory = "NGFWV"
-	elif imagecode == "wp":
-		subdirectory = "NSP"
-	elif imagecode == "g4p5":
-		subdirectory = "NSP-SYSTEM"
-	elif imagecode == "nvsat":
-		subdirectory = "NVSATELLITE"
-	elif imagecode == "virtual-ovf":
-		subdirectory = "OVF-DEFINITION-FILES"
-	elif imagecode == "pixpasswordrecovery":
-		subdirectory = "PASSWORD-RECOVERY"
-	elif imagecode == "patch":
-		subdirectory = "PATCH"
-	elif imagecode == "mpatch":
-		subdirectory = "MODULARITY-PATCH"
-	elif imagecode == "k9o3sv9y5":
-		subdirectory = "PERFORMANCE-SMALL-OFFICE-VOICE-FW-IPSEC-3DES"
-	elif imagecode == "pdm":
-		subdirectory = "PIX-DEVICE-MANAGER"
-	elif imagecode == "PIXtoASA":
-		subdirectory = "PIX-TO-ASA"
-	elif imagecode == "aciplgms":
-		subdirectory = "PLUG-INS/MICROSOFT"
-	elif imagecode == "aciplgvc":
-		subdirectory = "PLUG-INS/VCENTER"
-	elif imagecode == "aciplgvs":
-		subdirectory = "PLUG-INS/VREALIZE"
-	elif imagecode == "poap":
-		subdirectory = "POAP"
-	elif imagecode == "anyconnect_posture":
-		subdirectory = "POSTURE (FORMERLY HOST-SCAN)"
-	elif imagecode == "poap_ng":
-		subdirectory = "POAP-NG"
-	elif imagecode == "profileeditor":
-		subdirectory = "PROFILE-EDITOR"
-	elif imagecode == "adviprank9":
-		subdirectory = "RAN-OPTIMIZATION"
-	elif imagecode == "iprank9":
-		subdirectory = "RAN-OPTIMIZATION"
-	elif imagecode == "ipran":
-		subdirectory = "RAN-OPTIMIZATION-NO-CRYPTO"
-	elif imagecode == "rcv":
-		subdirectory = "RECOVERY"
-	elif imagecode == "sv12y10":
-		subdirectory = "REDUCED-IP-ANALOG-VOICE-PLUS"
-	elif imagecode == "sv3y10":
-		subdirectory = "REDUCED-IP-VOICE-PLUS"
-	elif imagecode == "c":
-		subdirectory = "REMOTE-ACCESS-SERVER-(RAS)"
-	elif imagecode == "restapi":
-		subdirectory = "REST-API"
-	elif imagecode == "rommon":
-		subdirectory = "ROMMON"
-	elif imagecode == "san-client":
-		subdirectory = "SAN-CLIENT"
-	elif imagecode == "sccp":
-		subdirectory = "SCCP"
-	elif imagecode == "sp1":
-		subdirectory = "SERVICE-PACK-1"
-	elif imagecode == "sp2":
-		subdirectory = "SERVICE-PACK-2"
-	elif imagecode == "sp3":
-		subdirectory = "SERVICE-PACK-3"
-	elif imagecode == "sp4":
-		subdirectory = "SERVICE-PACK-4"
-	elif imagecode == "sp5":
-		subdirectory = "SERVICE-PACK-5"
-	elif imagecode == "sp6":
-		subdirectory = "SERVICE-PACK-6"
-	elif imagecode == "sp7":
-		subdirectory = "SERVICE-PACK-7"
-	elif imagecode == "sp8":
-		subdirectory = "SERVICE-PACK-8"
-	elif imagecode == "sp9":
-		subdirectory = "SERVICE-PACK-9"
-	elif imagecode == "sp10":
-		subdirectory = "SERVICE-PACK-10"
-	elif imagecode == "sp11":
-		subdirectory = "SERVICE-PACK-11"
-	elif imagecode == "sp12":
-		subdirectory = "SERVICE-PACK-12"
-	elif imagecode == "p":
-		subdirectory = "SERVICE-PROVIDER"
-	elif imagecode == "p12":
-		subdirectory = "SERVICE-PROVIDER"
-	elif imagecode == "p4":
-		subdirectory = "SERVICE-PROVIDER"
-	elif imagecode == "pv":
-		subdirectory = "SERVICE-PROVIDER"
-	elif imagecode == "spservicesk9":
-		subdirectory = "SERVICE-PROVIDER"
-	elif imagecode == "p456i":
-		subdirectory = "SERVICE-PROVIDER-ALTERNATE"
-	elif imagecode == "pk9u2":
-		subdirectory = "SERVICE-PROVIDER-IPSEC-3DES-LAWFUL-INTERCEPT"
-	elif imagecode == "k8p4":
-		subdirectory = "SERVICE-PROVIDER-IPSEC-56"
-	elif imagecode == "ps":
-		subdirectory = "SERVICE-PROVIDER-LAN-ONLY"
-	elif imagecode == "p9":
-		subdirectory = "SERVICE-PROVIDER-PLUS"
-	elif imagecode == "k8p9":
-		subdirectory = "SERVICE-PROVIDER-PLUS-IPSEC-3DES"
-	elif imagecode == "k9p9":
-		subdirectory = "SERVICE-PROVIDER-PLUS-IPSEC-3DES"
-	elif imagecode == "k9p9u2":
-		subdirectory = "SERVICE-PROVIDER-PLUS-IPSEC-3DES-LAWFUL-INTERCEPT"
-	elif imagecode == "k3pv":
-		subdirectory = "SERVICE-PROVIDER-SECURED-SHELL-3DES"
-	elif imagecode == "k4p":
-		subdirectory = "SERVICE-PROVIDER-SECURED-SHELL-3DES"
-	elif imagecode == "k4p10":
-		subdirectory = "SERVICE-PROVIDER-SECURED-SHELL-3DES"
-	elif imagecode == "k91pv":
-		subdirectory = "SERVICE-PROVIDER-SECURED-SHELL-3DES"
-	elif imagecode == "dk2o3s":
-		subdirectory = "DESKTOP-IBM-FW-IDS-IPSEC-3DES"
-	elif imagecode == "a3js56i":
-		subdirectory = "ENTERPRISE-SNASW-PLUS-IPSEC-56"
-	elif imagecode == "a3jk2s":
-		subdirectory = "ENTERPRISE-SNASW-PLUS-IPSEC-3DES"
-	elif imagecode == "k9p11":
-		subdirectory = "SERVICE-PROVIDER-SECURED-SHELL-3DES"
-	elif imagecode == "k3p":
-		subdirectory = "SERVICE-PROVIDER-SECURED-SHELL-56"
-	elif imagecode == "k4pv":
-		subdirectory = "SERVICE-PROVIDER-SECURED-SHELL-56"
-	elif imagecode == "k91p":
-		subdirectory = "SERVICE-PROVIDER-SECURE-SHELL-3DES"
-	elif imagecode == "k9p":
-		subdirectory = "SERVICE-PROVIDER-SSH-3DES"
-	elif imagecode == "pk2s":
-		subdirectory = "SERVICE-PROVIDER-SSH-3DES-LAN-ONLY"
-	elif imagecode == "k9p12":
-		subdirectory = "SERVICE-PROVIDER-WITH-CRYPTO"
-	elif imagecode == "po3sv":
-		subdirectory = "SERVICE-PROVIDER-WITH-FW-AND-VIP"
-	elif imagecode == "pk2o3sv":
-		subdirectory = "SERVICE-PROVIDER-WITH-FW-AND-VIP-3DES"
-	elif imagecode == "p7":
-		subdirectory = "SERVICE-PROVIDER-WITH-PT-TARP"
-	elif imagecode == "psv":
-		subdirectory = "SERVICE-PROVIDER-WITH-VIP"
-	elif imagecode == "pk2sv":
-		subdirectory = "SERVICE-PROVIDER-WITH-VIP-3DES"
-	elif imagecode == "signatures":
-		subdirectory = "SIGNATURES"
-	elif imagecode == "silent-installer":
-		subdirectory = "SILENT-INSTALLER"
-	elif imagecode == "sip":
-		subdirectory = "SIP"
-	elif imagecode == "k1o3sv4y556i":
-		subdirectory = "SMALL-OFFICE+-VOICE-FW-IDS-IPSEC-56-(SGCP-and-H.323)"
-	elif imagecode == "k1k2o3sv4y5":
-		subdirectory = "SMALL-OFFICE+-VOICE-FW-IPSEC-3DES-(SGCP-and-H.323)"
-	elif imagecode == "k1o3v4y5":
-		subdirectory = "SMALL-OFFICE-VOICE-FW-IDS-(SGCP-and-H.323)"
-	elif imagecode == "smu":
-		subdirectory = "SMU"
-	elif imagecode == "sourcefiredev":
-		subdirectory = "SOURCEFIRE-8350"
-	elif imagecode == "sprom":
-		subdirectory = "SPROM-EPLD"
-	elif imagecode == "ipss7":
-		subdirectory = "SS7-SIGNALING-LINK"
-	elif imagecode == "h2":
-		subdirectory = "STANDARD"
-	elif imagecode == "c3h2":
-		subdirectory = "STANDARD-COMMAND-CAPABLE"
-	elif imagecode == "struts":
-		subdirectory = "STRUTS-FIX"
-	elif imagecode == "sup":
-		subdirectory = "SUP-1"
-	elif imagecode == "sup8m":
-		subdirectory = "SUP-1-8M"
-	elif imagecode == "supk8":
-		subdirectory = "SUP-1"
-	elif imagecode == "s1":
-		subdirectory = "SUP-1"
-	elif imagecode == "s1ek9":
-		subdirectory = "SUP-1/BASE"
-	elif imagecode == "supcv":
-		subdirectory = "SUP-1/CISCOVIEW"
-	elif imagecode == "supcvk8":
-		subdirectory = "SUP-1/CISCOVIEW"
-	elif imagecode == "supcvk9":
-		subdirectory = "SUP-1/CISCOVIEW-AND-SSH"
-	elif imagecode == "supk9":
-		subdirectory = "SUP-1/SSH"
-	elif imagecode == "sup2":
-		subdirectory = "SUP-2"
-	elif imagecode == "sup2k8":
-		subdirectory = "SUP-2"
-	elif imagecode == "s2":
-		subdirectory = "SUP-2"
-	elif imagecode == "s2ek9":
-		subdirectory = "SUP-2"
-	elif imagecode == "sup2cv":
-		subdirectory = "SUP-2/CISCOVIEW"
-	elif imagecode == "sup2cvk8":
-		subdirectory = "SUP-2/CISCOVIEW"
-	elif imagecode == "sup2cvk9":
-		subdirectory = "SUP-2/CISCOVIEW-AND-SSH"
-	elif imagecode == "sup2k9":
-		subdirectory = "SUP-2/SSH"
-	elif imagecode == "s3":
-		subdirectory = "SUP-3"
-	elif imagecode == "sup3":
-		subdirectory = "SUP-3"
-	elif imagecode == "sup3k9":
-		subdirectory = "SUP-3/SSH"
-	elif imagecode == "supg":
-		subdirectory = "SUP-3/BASE"
-	elif imagecode == "supgk9":
-		subdirectory = "SUP-3/SSH"
-	elif imagecode == "sup3cvk9":
-		subdirectory = "SUP-3/CISCOVIEW-AND-SSH"
-	elif imagecode == "sup3cv":
-		subdirectory = "SUP-3/CISCOVIEW"
-	elif imagecode == "s3ek9":
-		subdirectory = "SUP-3"
-	elif imagecode == "sup32pfc3k8":
-		subdirectory = "SUP-32/BASE"
-	elif imagecode == "sup32pfc3cvk8":
-		subdirectory = "SUP-32/CISCOVIEW"
-	elif imagecode == "sup32pfc3cvk9":
-		subdirectory = "SUP-32/CISCOVIEW-AND-SSH"
-	elif imagecode == "sup32pfc3k9":
-		subdirectory = "SUP-32/SSH"
-	elif imagecode == "s4ek9":
-		subdirectory = "SUP-4"
-	elif imagecode == "s5ek9":
-		subdirectory = "SUP-5"
-	elif imagecode == "sup720k8":
-		subdirectory = "SUP-720/BASE"
-	elif imagecode == "sup720cvk8":
-		subdirectory = "SUP-720/CISCOVIEW"
-	elif imagecode == "sup720cvk9":
-		subdirectory = "SUP-720/CISCOVIEW-AND-SSH"
-	elif imagecode == "sup720k9":
-		subdirectory = "SUP-720/SSH"
-	elif imagecode == "supplicantpw":
-		subdirectory = "SUPPLICANT-PROVISIONING-WIZARD"
-	elif imagecode == "cat9k_iosxe":
-		subdirectory = "UNIVERSAL"
-	elif imagecode == "iosxe":
-		subdirectory = "UNIVERSAL"
-	elif imagecode == "universal":
-		subdirectory = "UNIVERSAL"
-	elif imagecode == "universalk9_kvm":
-		subdirectory = "UNIVERSAL-KVM"
-	elif imagecode == "universal_cloud_nfvis":
-		subdirectory = "UNIVERSAL-CLOUD-NFVIS"
-	elif imagecode == "universal_cloud_esxi":
-		subdirectory = "UNIVERSAL-CLOUD-ESXI"
-	elif imagecode == "universal_loud_kvm":
-		subdirectory = "UNIVERSAL-CLOUD-KVM"
-	elif imagecode == "universal_cloud":
-		subdirectory = "UNIVERSAL-CLOUD"
-	elif imagecode == "universal_kvm":
-		subdirectory = "UNIVERSAL-KVM"
-	elif imagecode == "cat9k_lite_iosxe":
-		subdirectory = "UNIVERSAL-LITE"
-	elif imagecode == "system":
-		subdirectory = "SYSTEM"
-	elif imagecode == "cat9k_iosxeldpe":
-		subdirectory = "UNIVERSAL-NO-DTLS"
-	elif imagecode == "cat9k_iosxe_npe":
-		subdirectory = "UNIVERSAL-NPE"
-	elif imagecode == "cat9k_lite_iosxe_npe":
-		subdirectory = "UNIVERSAL-LITE-NPE"
-	elif imagecode == "system-npe":
-		subdirectory = "SYSTEM-NPE"
-	elif imagecode == "telco":
-		subdirectory = "TELCO-FEATURE-SET"
-	elif imagecode == "telcoent":
-		subdirectory = "TELCO-PLUS-FEATURE-SET"
-	elif imagecode == "telcoentk9":
-		subdirectory = "TELCO-PLUS-FEATURE-SET-IPSEC-3DES"
-	elif imagecode == "k1k2sv4y5":
-		subdirectory = "TELECOMMUTER+-VOICE-IPSEC-3DES-(SGCP-and-H.323)"
-	elif imagecode == "k1sv4y556i":
-		subdirectory = "TELECOMMUTER-VOICE-IPSEC-56-(SGCP-and-H.323)"
-	elif imagecode == "templates":
-		subdirectory = "TEMPLATES"
-	elif imagecode == "thirdparty":
-		subdirectory = "THIRD-PARTY-UTILS"
-	elif imagecode == "transforms":
-		subdirectory = "TRANSFORMS"
-	elif imagecode == "translations":
-		subdirectory = "TRANSLATIONS"
-	elif imagecode == "turboboot":
-		subdirectory = "TURBO-BOOT"
-	elif imagecode == "universalk9milplr":
-		subdirectory = "UNIVERSAL-MILITARY"
-	elif imagecode == "universalk9":
-		subdirectory = "UNIVERSAL"
-	elif imagecode == "universalk9_ias":
-		subdirectory = "UNIVERSAL"
-	elif imagecode == "universalk9azn":
-		subdirectory = "UNIVERSAL-AZURE-CLOUD"
-	elif imagecode == "universal":
-		subdirectory = "UNIVERSAL-NO-CRYPTO"
-	elif imagecode == "universalk9_en":
-		subdirectory = "UNIVERSAL-ENGLISH"
-	elif imagecode == "universalk9_iox":
-		subdirectory = "UNIVERSAL-IOX"
-	elif imagecode == "universalk9_iox_npe":
-		subdirectory = "UNIVERSAL-IOX-NPE"
-	elif imagecode == "universalk9_lite":
-		subdirectory = "UNIVERSAL-LITE"
-	elif imagecode == "universal_lite":
-		subdirectory = "UNIVERSAL-LITE-NO-CRYPTO"
-	elif imagecode == "universalk9npe_lite":
-		subdirectory = "UNIVERSAL-LITE-NPE"
-	elif imagecode == "universalk9_noli":
-		subdirectory = "UNIVERSAL-NO-LAWFUL-INTERCEPT"
-	elif imagecode == "universalk9_ias_npe":
-		subdirectory = "UNIVERSAL-NPE"
-	elif imagecode == "universalk9_npe":
-		subdirectory = "UNIVERSAL-NPE"
-	elif imagecode == "universalk9ldpe":
-		subdirectory = "UNIVERSAL-NPE"
-	elif imagecode == "universalk9npe":
-		subdirectory = "UNIVERSAL-NPE"
-	elif imagecode == "universalk9_npe_noli":
-		subdirectory = "UNIVERSAL-NPE-NO-LAWFUL-INTERCEPT"
-	elif imagecode == "universalk9_wlc":
-		subdirectory = "UNIVERSAL-WIRELESS"
-	elif imagecode == "upgrade":
-		subdirectory = "UPGRADE"
-	elif imagecode == "urtbundle":
-		subdirectory = "UPGRADE-READINESS-TOOL"
-	elif imagecode == "k91p11":
-		subdirectory = "UP-TO-8K-SUBSCRIBERS-WITH-3DES"
-	elif imagecode == "p11u2":
-		subdirectory = "UP-TO-8K-SUBSCRIBERS-WITH-LAWFUL-INTERCEPT"
-	elif imagecode == "k91p11u2":
-		subdirectory = "UP-TO-8K-SUBSCRIBERS-WITH-LAWFUL-INTERCEPT-3DES"
-	elif imagecode == "usb_boot":
-		subdirectory = "USB-BOOT"
-	elif imagecode == "vchtmlplug":
-		subdirectory = "VCENTER-HTML-PLUGIN"
-	elif imagecode == "vcw-vfc-mz":
-		subdirectory = "VCWare"
-	elif imagecode == "va":
-		subdirectory = "VIRTUAL-APPLIANCE"
-	elif imagecode == "vmware":
-		subdirectory = "VMWARE"
-	elif imagecode == "k8o3v9y5":
-		subdirectory = "VOICE-H323-MGCP-SIP-FW-IPSEC56"
-	elif imagecode == "js2":
-		subdirectory = "VOICE-IP-TO-IP-VOICE-GATEWAY"
-	elif imagecode == "jk9s2":
-		subdirectory = "VOICE-IP-TO-IP-VOICE-GATEWAY-IPSEC-3DES"
-	elif imagecode == "vpnapi":
-		subdirectory = "VPNAPI"
-	elif imagecode == "spw":
-		subdirectory = "SUPPLICANT-PROVISIONING-WIZARD"
-	elif imagecode == "webauth":
-		subdirectory = "WEBAUTH-BUNDLE"
-	elif imagecode == "webagent":
-		subdirectory = "WEB-AGENT"
-	elif imagecode == "sipspawmak9":
-		subdirectory = "WEBEX-NODE"
-	elif imagecode == "websecurity":
-		subdirectory = "WEB-SECURITY"
-	elif imagecode == "websecurity":
-		subdirectory = "WEB-SECURITY-APPLIANCE"
-	elif imagecode == "w1is":
-		subdirectory = "WIMAX-ASNGW-1.0-CRYPTO"
-	elif imagecode == "windows":
-		subdirectory = "WINDOWS"
-	elif imagecode == "k9w7":
-		subdirectory = "WIRELESS-LAN-AUTONOMOUS"
-	elif imagecode == "k9w8":
-		subdirectory = "WIRELESS-LAN-LIGHTWEIGHT-FULL"
-	elif imagecode == "rcvk9w8":
-		subdirectory = "WIRELESS-LAN-LIGHTWEIGHT-RECOVERY"
-	elif imagecode == "witness":
-		subdirectory = "WITNESS-NODE"
-	elif imagecode == "xsd":
-		subdirectory = "XML-SCHEMA"
-	elif imagecode == "oac":
-		subdirectory = "OPEN-AGENT-CONTAINER"
-	elif imagecode == "sns37xx":
-		subdirectory = "SNS-37xx"
-	elif imagecode == "sns36xx":
-		subdirectory = "SNS-36xx"
-	elif imagecode == "sns35xx":
-		subdirectory = "SNS-35xx"
-	elif imagecode == "qed":
-		subdirectory = "DEVICE-ENABLER"
-	elif imagecode == "vxworks":
-		subdirectory = "VXWorks"
-	elif imagecode == "WKGBDG":
-		subdirectory = "WORKGROUP-BRIDGE"
-	elif imagecode == "WRLBDG":
-		subdirectory = "WIRELESS-BRIDGE"
-	elif imagecode == "imgwrt":
-		subdirectory = "IMAGE-WRITING"
-	elif imagecode == "occtoacl":
-		subdirectory = "OCC-TO-ACL-CONVERTER"
-	elif imagecode == "aptolwapp":
-		subdirectory = "AP-TO-LWAPP-CONVERTER"
-	elif imagecode == "nbar":
-		subdirectory = "NBAR2"
-	elif imagecode == "vxworkstoios":
-		subdirectory = "VXWorks-to-IOS-CONVERSION-TOOL"
-	elif imagecode == "rme":
-		subdirectory = "RESOURCE-MANAGER-ESSENTIALS"
-	elif imagecode == "scu":
-		subdirectory = "SERVER-CONFIGURATION-UTILITY"
-	elif imagecode == "ssi":
-		subdirectory = "STORAGE-SERVICE-INTERFACE"
-	elif imagecode == "fabman":
-		subdirectory = "FABRIC-MANAGER"
-	elif imagecode == "sv3y7":
-		subdirectory = "IP-VOICE-PLUS-ADSL"
-	elif imagecode == "sy756i":
-		subdirectory = "IP-PLUS-IPSEC-56-ADSL"
-	elif imagecode == "o3sy756i":
-		subdirectory = "IP-FW-PLUS-IPSEC-56-ADSL"
-	elif imagecode == "o3sv3y756i":
-		subdirectory = "IP-VOICE-FW-IDS-PLUS-IPSEC-56-ADSL"
-	elif imagecode == "k2sy7":
-		subdirectory = "IP-PLUS-IPSEC-3DES-ADSL"
-	elif imagecode == "k2sv3y7":
-		subdirectory = "IP-VOICE-PLUS-IPSEC-3DES-ADSL"
-	elif imagecode == "k2o3sy7":
-		subdirectory = "IP-FW-PLUS-IPSEC-3DES-ADSL"
-	elif imagecode == "k2o3sv3y7":
-		subdirectory = "IP-FW-VOICE-PLUS-IPSEC-3DES-ADSL"
-	elif imagecode == "bno3r2sy756i":
-		subdirectory = "IP-IPX-AT-IBM-FW-PLUS-IPSEC-56-ADSL"
-	elif imagecode == "bno3r2sv3y756i":
-		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-56-ADSL"
-	elif imagecode == "bk2no3r2sy7":
-		subdirectory = "IP-IPX-AT-IBM-FW-PLUS-IPSEC-3DES-ADSL"
-	elif imagecode == "bk2no3r2sv3y7":
-		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-3DES-ADSL"
-	elif imagecode == "sy40":
-		subdirectory = "IP-PLUS-40"
-	elif imagecode == "sy56":
-		subdirectory = "IP-PLUS-56"
-	elif imagecode == "sy56i":
-		subdirectory = "IP-PLUS-IPSEC-56"
-	elif imagecode == "sy56i":
-		subdirectory = "IP-PLUS-IPSEC-56"
-	elif imagecode == "k2sy":
-		subdirectory = "IP-PLUS-IPSEC-3DES"
-	elif imagecode == "oy":
-		subdirectory = "IP-FW"
-	elif imagecode == "nosy":
-		subdirectory = "IP-IPX-FW-PLUS"
-	elif imagecode == "osy56i":
-		subdirectory = "IP-FW-PLUS-IPSEC-56"
-	elif imagecode == "k2osy":
-		subdirectory = "IP-FW-PLUS-IPSEC-3DES"
-	elif imagecode == "ny":
-		subdirectory = "IP-IPX"
-	elif imagecode == "bnr2y":
-		subdirectory = "IP-IPX-AT-IBM"
-	elif imagecode == "bnr2sy":
-		subdirectory = "IP-IPX-AT-IBM-PLUS"
-	elif imagecode == "bnor2sy56i":
-		subdirectory = "IP-IPX-AT-IBM-FW-PLUS-IPSEC-56"
-	elif imagecode == "bk2nor2sy":
-		subdirectory = "IP-IPX-AT-IBM-FW-PLUS-IPSEC-3DES"
-	elif imagecode == "sv3y":
-		subdirectory = "IP-VOICE-PLUS"
-	elif imagecode == "sv3y40":
-		subdirectory = "IP-VOICE-PLUS-IPSEC-40"
-	elif imagecode == "sv3y56i":
-		subdirectory = "IP-VOICE-PLUS-IPSEC-56"
-	elif imagecode == "sv3y56":
-		subdirectory = "IP-VOICE-PLUS-IPSEC-56"
-	elif imagecode == "k2sv3y":
-		subdirectory = "IP-VOICE-PLUS-IPSEC-3DES"
-	elif imagecode == "osv3y":
-		subdirectory = "IP-FW-VOICE-PLUS"
-	elif imagecode == "osv3y56i":
-		subdirectory = "IP-FW-VOICE-PLUS-IPSEC-56"
-	elif imagecode == "k2osv3y":
-		subdirectory = "IP-FW-VOICE-PLUS-IPSEC-3DES"
-	elif imagecode == "nosv3y":
-		subdirectory = "IP-IPX-FW-VOICE-PLUS"
-	elif imagecode == "bnor2sv3y56i":
-		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-56"
-	elif imagecode == "bk2nor2sv3y":
-		subdirectory = "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-3DES"
-	elif imagecode == "xy":
-		subdirectory = "UNKNOWN-FEATURE-SET"
-	elif imagecode == "cme":
-		subdirectory = "CALL-MANAGER-EXPRESS"
-	elif imagecode == "configconvert":
-		subdirectory = "CONFIG-CONVERTER"
-	elif imagecode == "specialbuild":
-		subdirectory = "SPECIAL-BUILDS"
-	elif imagecode == "specialbuildlisp":
-		subdirectory = "SPECIAL-BUILDS-LISP"
-	elif imagecode == "specialbuildfwupgrade":
-		subdirectory = "SPECIAL-BUILDS-FIRMWARE-UPGRADE"
-	elif imagecode == "export":
-		subdirectory = "EXPORT-FILES"
-	elif imagecode == "external-sso":
-		subdirectory = "EXTERNAL-SSO"
-	elif imagecode == "base":
-		subdirectory = "BASE"
-	elif imagecode == "basevga":
-		subdirectory = "BASE-VGA"
-	elif imagecode == "rr":
-		subdirectory = "ROUTE-REFLECTOR"
-	elif imagecode == "rrvga":
-		subdirectory = "ROUTE-REFLECTOR-VGA"
-	elif imagecode == "log4j":
-		subdirectory = "LOG4SHELL-FIXES"
-	elif imagecode == "ciscosoftwaremanager":
-		subdirectory = "CISCO-SOFTWARE-MANAGER"
-	elif imagecode == "flashrecovery":
-		subdirectory = "FLASH-RECOVERY"
-	elif imagecode == "nacagent":
-		subdirectory = "NAC-AGENT"
-	elif imagecode == "deploymentassistant":
-		subdirectory = "DEPLOYMENT-ASSISTANT"
-	elif imagecode == "expresswizard":
-		subdirectory = "EXPRESS-WIZARD"
-	elif imagecode == "certs":
-		subdirectory = "CERTIFICATES"
-	elif imagecode == "apbundle":
-		subdirectory = "AP-BUNDLE"
-	elif imagecode == "mgmtctr":
-		subdirectory = "MANAGEMENT-CENTER"
-	elif imagecode == "client":
-		subdirectory = "CLIENT"
-	elif imagecode == "control-plane":
-		subdirectory = "CONTROL-PLANE"
-	elif imagecode == "data-plane":
-		subdirectory = "DATA-PLANE"
-	elif imagecode == "cnbng":
-		subdirectory = "PACKAGE-BROADBAND-NETWORK-GATEWAY"
-	elif imagecode == "stripped-firmware":
-		subdirectory = "STRIPPED-FIRMWARE"
-	elif imagecode == "virtualapp":
-		subdirectory = "VIRTUAL-APPLIANCE"
-	elif imagecode == "appqoe":
-		subdirectory = "QoE"
-	elif imagecode == "migration":
-		subdirectory = "MIGRATION"
-	elif imagecode == "launcher":
-		subdirectory = "LAUNCHER"
-	else:
-		subdirectory = "UNKNOWN"
-	return subdirectory
+def imagelookup(imagecode):
+	imagecode_to_subdirectory = {
+		"a2i5k8s: "IP-ATM-PLUS-IPSEC-56-NO-ISDN",
+		"a2i5s: "IP-ATM-PLUS-NO-ISDN",
+		"a2i8k8sv5: "IP-ATM-VOIP-VOATM-PLUS-IPSEC-56",
+		"a2i8sv5: "IP-ATM-VOIP-VOATM",
+		"a2ik8sv5: "IP-PLUS-VOIP-VOATM-IPSEC-56",
+		"a2isv5: "IP-PLUS-VOIP-VOATM",
+		"a2jk2sv5: "ENTERPRISE-PLUS-VOIP-VOATM-IPSEC-3DES",
+		"a2jk8sv5: "ENTERPRISE-PLUS-VOIP-VOATM-IPSEC-56",
+		"a2jk9sv5: "ENTERPRISE-PLUS-VOIP-VOATM-IPSEC-3DES",
+		"a2jsv5: "ENTERPRISE-PLUS-VOIP-VOATM",
+		"a2jsv5x: "ENTERPRISE-PLUS-H323-MCM",
+		"a3bik9no3rsx3: "IP-VOICE-IPX-SNA-FW-IDS-WAN-3DES",
+		"a3i3r4: "IP-IBM-SNASW",
+		"a3inro3sx3: "IP-PLUS-FW-IPX-SNA",
+		"a3inrsx3c: "IP-PLUS-IPX-SNA",
+		"a3is: "IP-PLUS-SNASW-PLUS",
+		"a3jk2s: "ENTERPRISE-SNASW-PLUS-IPSEC-3DES",
+		"a3jk2sv: "ENTERPRISE-SNASW-IPSEC-3DES",
+		"a3jk8s: "ENTERPRISE-SNASW-IPSEC-56",
+		"a3jk8sv: "ENTERPRISE-SNASW-IPSEC-56",
+		"a3jk91s: "ENTERPRISE-SNASW-SSH-3DES",
+		"a3jk9s: "ENTERPRISE-SNASW-IPSEC-3DES",
+		"a3jk9sv: "ENTERPRISE-SNASW-IPSEC-3DES",
+		"a3js: "ENTERPRISE-SNASW-PLUS",
+		"a3js56i: "ENTERPRISE-SNASW-PLUS-IPSEC-56",
+		"a3jsv: "ENTERPRISE-SNASW",
+		"a3jsv56i: "ENTERPRISE-SNASW-IPSEC-56",
+		"aciplgms: "PLUG-INS/MICROSOFT",
+		"aciplgvc: "PLUG-INS/VCENTER",
+		"aciplgvs: "PLUG-INS/VREALIZE",
+		"acisim: "ACI-SIMULATOR",
+		"acive: "ACI-VIRTUAL-EDGE",
+		"acs_mig: "ACS-MIGRATION",
+		"adjv: "ENTERPRISE-APPN",
+		"adjv40: "ENTERPRISE-APPN-40",
+		"adjv56: "ENTERPRISE-APPN-56",
+		"ads: "DESKTOP-IBM",
+		"ads40: "DESKTOP-IBM-40",
+		"ads56: "DESKTOP-IBM-56",
+		"adsv: "DESKTOP-IBM-APPN",
+		"adventerprise: "ADVANCED-ENTERPRISE-SERVICES-NO-CRYPTO",
+		"adventerprise_wan: "ADVANCED-ENTERPRISE-SERVICES-NO-CRYPTO",
+		"adventerprisek9: "ADVANCED-ENTERPRISE-SERVICES",
+		"adventerprisek9_ivs: "INT-VOICE-VIDEO-GK,-IPIP-GW,-TDMIP-GW-AES",
+		"adventerprisek9_ivs_li: "INT-VOICE-VIDEO-GK,-IPIP-GW,-TDMIP-GW-AES,-LI",
+		"adventerprisek9_li: "ADVANCED-ENTERPRISE-SERVICES-WITH-LAWFUL-INTERCEPT",
+		"adventerprisek9_mw: "GGSN-RELEASE-6-IPSEC",
+		"adventerprisek9_noli: "ADVANCED-ENTERPRISE-SERVICES-NO-LAWFUL-INTERCEPT",
+		"adventerprisek9_npe: "ADVANCED-ENTERPRISE-SERVICES-NPE",
+		"adventerprisek9_sna: "ADVANCED-ENTERPRISE-SERVICES-SNA",
+		"adventerprisek9_wan: "ADVANCED-ENTERPRISE-SERVICES",
+		"adviprank9: "RAN-OPTIMIZATION",
+		"advipservices: "ADVANCED-IP-SERVICES-NO-CRYPTO",
+		"advipservicesk9: "ADVANCED-IP-SERVICES",
+		"advipservicesk9_li: "ADVANCED-IP-SERVICES-WITH-LAWFUL-INTERCEPT",
+		"advipservicesk9_noli: "ADVANCED-IP-SERVICES-WITHOUT-LAWFUL-INTERCEPT",
+		"advipservicesk9_npe: "ADVANCED-IP-SERVICES-NPE",
+		"advipservicesk9_wan: "ADVANCED-IP-SERVICES",
+		"advseck9: "ADVANCED-SECURITY",
+		"advseck9_npe: "ADVANCED-SECURITY-NPE",
+		"advsecurityk9: "ADVANCED-SECURITY",
+		"advsecurityk9_npe: "ADVANCED-SECURITY-NPE",
+		"aejs: "ENTERPRISE/APPN/DBCONN",
+		"aejs: "ENTERPRISE-APPN-DBCONN",
+		"aejs40: "ENTERPRISE/APPN/DBCONN 40",
+		"aejs56i: "ENTERPRISE/APPN/DBCONN IPSEC 56",
+		"aejsv: "ENTERPRISE-APPN-DBCONN",
+		"aejsv40: "ENTERPRISE-APPN-DBCONN-40",
+		"aejsv56i: "ENTERPRISE-APPN-DBCONNC-56",
+		"ai3r4: "IP-IBM-APPN7",
+		"ainr: "IP-IPX-IBM-APPN",
+		"ajs: "ENTERPRISE-APPN-PLUS",
+		"ajs40: "ENTERPRISE-APPN-PLUS-IPSEC-40",
+		"ajs56i: "ENTERPRISE-APPN-PLUS-IPSEC-56",
+		"ajsv: "ENTERPRISE-APPN",
+		"ajsv40: "ENTERPRISE-APPN-40",
+		"ajsv56: "ENTERPRISE-APPN-56",
+		"ajsv56i: "ENTERPRISE-APPN-IPSEC-56",
+		"amp: "ADVANCED-MALWARE-PROTECTION",
+		"analogmodem: "ANALOG-MODEM",
+		"android: "ANDROID",
+		"anyconnect_posture: "POSTURE (FORMERLY HOST-SCAN)",
+		"anyconnectnam: "NETWORK-ACCESS-MANAGER",
+		"apbundle: "AP-BUNDLE",
+		"apdp: "ACCESS-POINT-DEVICE-PACK",
+		"apic: "APIC-CONTROLLER",
+		"app_selector: "APP-SELECTOR",
+		"appqoe: "QoE",
+		"apsp: "ACCESS-POINT-SERVICE-PACK",
+		"aptolwapp: "AP-TO-LWAPP-CONVERTER",
+		"asdm: "ADAPTIVE-SECURITY-DEVICE-MANAGER",
+		"asdmf: "ADAPTIVE-SECURITY-DEVICE-MANAGER-ASASM",
+		"base: "BASE",
+		"basevga: "BASE-VGA",
+		"bin: "IP-IPX-APPLETALK",
+		"bino3s: "IP-IPX-APPLETALK-PLUS-FW-IDS",
+		"bino3s3: "IP-IPX-AT-FW-IDS-PLUS-BASIC",
+		"binrsx3: "IP-VOICE-IPV6-IPX-APPLE-TALK",
+		"bins: "IP-IPX-APPLETALK-PLUS",
+		"bios: "BIOS",
+		"bk2no3r2sv3y: "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-3DES",
+		"bk2no3r2sv3y7: "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-3DES-ADSL",
+		"bk2no3r2sy: "IP-IPX-AT-IBM-FW-PLUS-IPSEC-3DES",
+		"bk2no3r2sy7: "IP-IPX-AT-IBM-FW-PLUS-IPSEC-3DES-ADSL",
+		"bk2nor2sv3y: "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-3DES",
+		"bk2nor2sy: "IP-IPX-AT-IBM-FW-PLUS-IPSEC-3DES",
+		"bk8no3r2sv3: "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-56",
+		"bk8no3r2sv3y: "IP-IPX-AT-IBM-VOICE-FW-IDS-PLUS-IPSEC-56",
+		"bk8no3r2sv3y7: "IP-ADSL-IPX-AT-IBM-VOICE-FW-IDS-PLUS-IPSEC-56",
+		"bk8no3r2sv8y7: "IP-ADSL-IPX-AT-IBM-VOX-FW-IDS-PLUS-IPSEC-56",
+		"bk8no3r2sy: "IP-IPX-AT-IBM-FW-IDS-PLUS-IPSEC-56",
+		"bk8no3r2sy7: "IP-ADSL-IPX-AT-IBM-FW-IDS-PLUS-IPSEC-56",
+		"bk8nor2sy: "IP-IPX-AT-IBM-FW-PLUS-IPSEC-56",
+		"bk9no3r2sv3y: "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-3DES",
+		"bk9no3r2sv3y7: "IP-ADSL-IPX-AT-IBM-VOICE-FW-IDS-PLUS-IPSEC-3DES",
+		"bk9no3r2sv8y7: "IP-ADSL-IPX-AT-IBM-VOX-FW-IDS-PLUS-IPSEC-3DES",
+		"bk9no3r2sy: "IP-PLUS-IPX-AT-IBM-FW_IDS-IPSEC-3DES",
+		"bk9no3r2sy7: "IP-ADSL-IPX-AT-IBM-FW-IDS-PLUS-IPSEC-3DES",
+		"bno3r2sv3y56i: "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-56",
+		"bno3r2sv3y756i: "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-56-ADSL",
+		"bno3r2sy56i: "IP-IPX-AT-IBM-FW-PLUS-IPSEC-56",
+		"bno3r2sy756i: "IP-IPX-AT-IBM-FW-PLUS-IPSEC-56-ADSL",
+		"bnor2sv3y56i: "IP-IPX-AT-IBM-FW-VOICE-PLUS-IPSEC-56",
+		"bnor2sy56: "IP-IPX-AT-IBM-FW-PLUS-IPSEC-56",
+		"bnor2sy56i: "IP-IPX-AT-IBM-FW-PLUS-IPSEC-56",
+		"bnr2sv3y: "IP-IPX-AT-IBM-VOICE-PLUS",
+		"bnr2sy: "IP-IPX-AT-IBM-PLUS",
+		"bnr2sy40: "IP-IPX-AT-IBM-PLUS-40",
+		"bnr2sy56: "IP-IPX-AT-IBM-PLUS-56",
+		"bnr2sy56i: "IP-IPX-AT-IBM-PLUS-IPSEC-56",
+		"bnr2sy7: "IP-ADSL-IPX-AT-IBM-PLUS",
+		"bnr2y: "IP-IPX-AT-IBM",
+		"bnsy: "IP-IPX-AT-PLUS",
+		"bnsy40: "IP-IPX-AT-PLUS-40",
+		"bnsy56: "IP-IPX-AT-PLUS-56",
+		"bny: "IP-IPX-AT",
+		"boot: "BOOT",
+		"bridge_smus: "BRIDGE-SMUS",
+		"broadband: "IP-BROADBAND",
+		"bsy: "IP-AT-PLUS",
+		"bsy40: "IP-AT-PLUS-40",
+		"bsy56: "IP-AT-PLUS-56",
+		"by: "IP-AT",
+		"c: "REMOTE-ACCESS-SERVER-(RAS)",
+		"c3h2: "STANDARD-COMMAND-CAPABLE",
+		"c3h2l9s: "LONG-REACH-ETHERNET",
+		"c3h2s: "ENTERPRISE-COMMAND-CAPABLE",
+		"c5ik9s: "BASE-PDSN-3DES",
+		"c5is: "BASE-PDSN",
+		"c6ik9s: "ENHANCED-PDSN-WITH-CRYPTO",
+		"c6is: "ENHANCED-PDSN",
+		"C819GWLTEMNAAK9: "C819GW-LTE-MNA-AK9",
+		"capacity-emulator: "CAPACITY-EMULATOR",
+		"cat9k_iosxe: "UNIVERSAL",
+		"cat9k_iosxe_npe: "UNIVERSAL-NPE",
+		"cat9k_iosxeldpe: "UNIVERSAL-NO-DTLS",
+		"cat9k_lite_iosxe: "UNIVERSAL-LITE",
+		"cat9k_lite_iosxe_npe: "UNIVERSAL-LITE-NPE",
+		"catalog: "DEVICE-CATALOG",
+		"cboot: "BOOT",
+		"certs: "CERTIFICATES",
+		"cgv6: "CARRIER-GRADE-NAT-V4-V6",
+		"ciscosoftwaremanager: "CISCO-SOFTWARE-MANAGER",
+		"clean: "CLEAN-UTILITY",
+		"client: "CLIENT",
+		"cme: "CALL-MANAGER-EXPRESS",
+		"cnbng: "PACKAGE-BROADBAND-NETWORK-GATEWAY",
+		"configconvert: "CONFIG-CONVERTER",
+		"config-converter: "CONFIG-CONVERTER",
+		"control-plane: "CONTROL-PLANE",
+		"core: "CORE-SOFTWARE",
+		"core64: "CORE-SOFTWARE-X64",
+		"core64k9: "CORE-SOFTWARE-X64-CRYPTO",
+		"corek9: "CORE-SOFTWARE-CRYPTO",
+		"cpld_update: "CPLD-UPDATE",
+		"csd: "CISCO-SECURE-DESKTOP",
+		"csfgeodb: "GeoDB-SRU-VDB/Geodb-6.4-AND-LATER",
+		"csfrules: "GeoDB-SRU-VDB/Rules-6.4-AND-LATER",
+		"csfvdb: "GeoDB-SRU-VDB/VDB-6.4-AND-LATER",
+		"csg: "CSG2-RTU-SAMI-NO-CRYPTO",
+		"csgk9: "CSG2-RTU-SAMI",
+		"csmgeoip: "CSM-GEOIP-DB",
+		"d: "IP-IPX-AT-DEC",
+		"dart: "DIAGNOSTICS-AND-REPORTING",
+		"data-plane: "DATA-PLANE",
+		"dboot: "BOOT",
+		"dboot2: "BOOT",
+		"deploymentassistant: "DEPLOYMENT-ASSISTANT",
+		"devicemgr: "DEVICE-MANAGER",
+		"device-pack: "DEVICE-PACK",
+		"dk2o3s: "DESKTOP-IBM-FW-IDS-IPSEC-3DES",
+		"dk2o3sv: "DESKTOP-IBM-FW-IDS-IPSEC-3DES",
+		"dk8o3s: "DESKTOP-IBM-FW-IDS-IPSEC-56",
+		"dk8o3sv: "DESKTOP-IBM-FW-IDS-IPSEC-56",
+		"dk8s: "DESKTOP-IBM-IPSEC-56",
+		"dk8sv: "DESKTOP-IBM-IPSEC-56",
+		"dk9o3s: "DESKTOP-IBM-FW-IDS-IPSEC-3DES",
+		"dk9o3sv: "DESKTOP-IBM-FW-IDS-IPSEC-3DES",
+		"dmon: "DMON",
+		"do3s: "DESKTOP-IBM-FW-IDS",
+		"do3s56i: "DESKTOP-IBM-FW-IDS-IPSEC-56",
+		"do3sv: "DESKTOP-IBM-FW-IDS",
+		"do3sv56i: "DESKTOP-IBM-FW-IDS-IPSEC-56",
+		"docs: "DOCUMENTATION",
+		"dos: "IP-IPX-AT-DEC-FW-PLUS",
+		"drivers: "DRIVERS",
+		"driverseseries: "DRIVERS",
+		"driversucsb: "B-SERIES/DRIVERS",
+		"driversucsc: "C-SERIES/DRIVERS",
+		"driversucse: "E-SERIES/DRIVERS",
+		"ds: "IP-IPX-AT-DEC-PLUS",
+		"ds40: "IP-IPX-AT-DEC-PLUS-40",
+		"ds56: "DESKTOP-IBM-56",
+		"ds56i: "DESKTOP-IBM-IPSEC-56",
+		"dsc: "DIAL-SHELF-CONTROLLER",
+		"dsl: "DSL",
+		"dslfirmware: "DSL-FIRMWARE",
+		"dsv: "DESKTOP-IBM",
+		"dsv40: "DESKTOP-IPSEC-40",
+		"dsv56: "DESKTOP-IBM-IPSEC-56",
+		"dsv56i: "DESKTOP-IBM-IPSEC-56",
+		"eboot: "BOOT",
+		"efi: "EFI",
+		"EHWIC4GLTEAT: "EHWIC-4G-LTE-AT",
+		"EHWIC4GLTEAU: "EHWIC-4G-LTE-AU",
+		"EHWIC4GLTECA: "EHWIC-4G-LTE-CA",
+		"EHWIC4GLTEGB: "EHWIC-4G-LTE-GB",
+		"EHWIC4GLTEST: "EHWIC-4G-LTE-ST",
+		"EHWIC4GLTEVZ: "EHWIC-4G-LTE-VZ",
+		"EHWICCELLATT: "EHWIC-4G-LTE-A",
+		"EHWICCELLBE: "EHWIC-4G-LTE-BE",
+		"EHWICCELLEU: "EHWIC-4G-LTE-EU",
+		"EHWICCELLG: "EHWIC-4G-LTE-G",
+		"EHWICCELLVZW: "EHWIC-4G-LTE-V",
+		"EHWICVADSLB: "EHWIC-VA-DSL-B-C886VA-C896VA",
+		"emailsecurity: "EMAIL-SECURITY-APPLIANCE",
+		"engine: "ENGINE",
+		"engine0: "ENGINE-0",
+		"engine1: "ENGINE-1",
+		"engine2: "ENGINE-2",
+		"engine3: "ENGINE-3",
+		"engine4: "ENGINE-4",
+		"entbase: "ENTERPRISE-BASE-NO-CRYPTO",
+		"entbasek9: "ENTERPRISE-BASE",
+		"entservices: "ENTERPRISE-SERVICES-NO-CRYPTO",
+		"entservices_mw: "GGSN-RELEASE-6",
+		"entservices_wan: "ENTERPRISE-SERVICES-NO-CRYPTO",
+		"entservicesk9: "ENTERPRISE-SERVICES",
+		"entservicesk9_wan: "ENTERPRISE-SERVICES",
+		"epld: "FIRMWARE-EPLD",
+		"events: "EVENTS",
+		"export: "EXPORT-FILES",
+		"expresswizard: "EXPRESS-WIZARD",
+		"external-sso: "EXTERNAL-SSO",
+		"f: "FRAD",
+		"f2in: "LAN-FRAD-OSPF",
+		"fabman: "FABRIC-MANAGER",
+		"fdiagsbflc: "FIELD-DIAGNOSTICS-LINECARD-IMAGE",
+		"fin: "FRAD-EIGRP",
+		"fin-l: "LAN-FRAD",
+		"fips: "FIPS",
+		"firepower-mibs: "FIREPOWER-MIBS",
+		"firmware: "FIRMWARE",
+		"firmwareeseries: "FIRMWARE",
+		"flashrecovery: "FLASH-RECOVERY",
+		"fmc: "FIREPOWER-MANAGEMENT-CENTER",
+		"fpasamode: "FIREPOWER-ASA-MODE/FIREPOWER-MODULE",
+		"fpasamodule: "MODULE-ASA",
+		"fpasasystem: "FIREPOWER-ASA-MODE/SYSTEM",
+		"fpd: "FIELD-PROGRAMABLE-DEVICE",
+		"fpftdmodule: "MODULE-FTD",
+		"fpftdsoftware: "SOFTWARE-FTD",
+		"fpga: "FPGA-UPGRADE",
+		"fwsmtoasasm: "FWSM-TO-ASASM-CONVERSION",
+		"fxos-k9: "FXOS",
+		"fxos-k9-fpr4k-firmware: "FIRMWARE-4K",
+		"fxos-k9-fpr9k-firmware: "FIRMWARE-9K",
+		"fxos-k9-kickstart: "FXOS-RECOVERY/KICKSTART",
+		"fxos-k9-manager: "FXOS-RECOVERY/MANAGER",
+		"fxos-k9-system: "FXOS-RECOVERY/SYSTEM",
+		"fxos-mibs-fp9k-fp4k: "FIREPOWER-MIBS-9K-4K",
+		"g: "ISDN",
+		"g4js: "ENTERPRISE-SSG",
+		"g4p5: "NSP-SYSTEM",
+		"g5jk8s: "ENTERPRISE-WIRELESS-IPSEC-56",
+		"g5js: "ENTERPRISE-WIRELESS",
+		"g6ik8s: "GGSN-4.0-IPSEC",
+		"g6ik9s: "GGSN-4.0-3DES",
+		"g6is: "GGSN-4.0-BASE",
+		"g7is: "GGSN-SERIES-4-BASE",
+		"g8ik8s: "GGSN-SERIES-6-IPSEC",
+		"g8ik9s: "GGSN-SERIES-6-3DES",
+		"g8is: "GGSN-SERIES-6-BASE",
+		"gina: "GINA-MODULE",
+		"goldenk9: "GOLDEN-IMAGE",
+		"guestshell: "Nexus-Guestshell",
+		"h1is: "MW-HOME-AGENT",
+		"h2: "STANDARD",
+		"hardware: "HARDWARE-PROGRAMMABLES",
+		"hdiag: "DIAGNOSTICS",
+		"hostscan: "HOST-SCAN",
+		"hotfix: "HOTFIX",
+		"html: "HTML",
+		"huu: "HOST-UPGRADE-UTILITY",
+		"HWIC3GGSM: "HWIC-3G-GSM",
+		"HWICCABLE: "HWIC-CABLE",
+		"hyperv: "HYPERv",
+		"i: "IP",
+		"i12o3s: "ACCELERATED-BB-WITH-FW-INTRUSION-DETECTION",
+		"i12s: "ACCELERATED-BROADBAND-LAC-LNS-PTA",
+		"i4s: "IP-PLUS",
+		"i5: "IP-SERVICES-NO-CRYPTO",
+		"i5k2: "IP-SERVICES",
+		"i5k2l2q3: "IP-SERVICES",
+		"i5k8s: "IP-PLUS-IPSEC-56-NO-ISDN",
+		"i5k91: "IP-SERVICES",
+		"i5k91l2q3: "IP-SERVICES",
+		"i5k91s: "ENHANCED-L3-3DES",
+		"i5k9s: "IP-PLUS-IPSEC-3DES-NO-ISDN",
+		"i5q312: "IP-SERVICES",
+		"i5q3l2: "IP-SERVICES-NO-CRYPTO",
+		"i5s: "ENHANCED-L3",
+		"i5su3: "MPEG-2-L3",
+		"i6k2l2q4: "EI-AND-SI-CRYPTO",
+		"i6k9o3s: "IP-SUBSET-IPSEC-56-FW-VOICE",
+		"i6k9s: "IP-SUBSET-IPSEC-64-BIT-VOICE",
+		"i6l2q4: "LONG-REACH-ETHERNET-NO-CRYPTO",
+		"i6q4l2: "LAYER-2",
+		"i6s: "IP-SUBSET-VOICE",
+		"i9: "IP-BASE-NO-CRYPTO",
+		"i9k2: "IP-BASE",
+		"i9k2l2q3: "IP-BASE",
+		"i9k91: "IP-BASE",
+		"i9k91l2q3: "IP-BASE",
+		"i9k91s: "L3-VOICE",
+		"i9k91sc: "BASIC-L3-3DES",
+		"i9q3l2: "IP-BASE-NO-CRYPTO",
+		"i9s: "BASIC-L3",
+		"i9su3: "MPEG-2-L2",
+		"ik2o3s: "IP-FW-IDS-IPSEC-3DES",
+		"ik2o3sv: "IP-FW-IDS-IPSEC-3DES",
+		"ik2o3sx3: "IP-PLUS-3DES-FW",
+		"ik2s: "IP-PLUS-IPSEC-3DES",
+		"ik2sv: "IP-PLUS-IPSEC-3DES",
+		"ik2sx3: "IP-PLUS-3DES",
+		"ik8o3s: "IP-FW-IDS-IPSEC-56",
+		"ik8o3sv: "IP-FW-IDS-IPSEC-56",
+		"ik8os: "IP-FW-PLUS-IPSEC-56",
+		"ik8s: "IP-PLUS-IPSEC-56",
+		"ik8su2: "DOCSIS-2-WAY-BPI-IP+-LAWFUL-INTERCEPT",
+		"ik8sv: "IP-IPSEC-56",
+		"ik91s: "IP-PLUS-SSH-3DES",
+		"ik9o3s: "IP-FW-IDS-IPSEC-3DES",
+		"ik9o3s3: "IP-FW-IDS-PLUS-IPSEC-3DES-BASIC",
+		"ik9o3s6: "IP-FW-IDS-PLUS-IPSEC-3DES-BASIC-NO-ATM",
+		"ik9o3s7: "IP-FW-IDS-PLUS-IPSEC-3DES-BASIC-NO-VOICE",
+		"ik9o3sv: "IP-FW-IDS-IPSEC-3DES",
+		"ik9s: "IP-PLUS-IPSEC-3DES",
+		"ik9su2: "IP-IPSEC-3DES-LAWFUL-INTERCEPT",
+		"ik9sv: "IP-PLUS-IPSEC-3DES",
+		"imgwrt: "IMAGE-WRITING",
+		"in: "IP-BRIDGING",
+		"ino3s3: "IP-IPX-FW-IDS-PLUS-BASIC",
+		"ins: "IP-IPX-PLUS",
+		"install: "INSTALL",
+		"installer: "INSTALLER",
+		"installer-ase: "INSTALLER-ASE",
+		"inu: "NETWORK-LAYER-3-SWITCHING",
+		"io: "IP-FW",
+		"io3: "IP-FW-IDS",
+		"io3s: "IP-FW-IDS",
+		"io3s56i: "IP-FW-PLUS-IPSEC-56",
+		"io3sv: "IP-FW-IDS",
+		"io3sv56i: "IP-FW-IDS-IPSEC-56",
+		"io3sx3: "IP-PLUS-FW",
+		"io3sx356i: "IP-PLUS-IPSEC-56-FW",
+		"ios56i: "IP-FW-PLUS-IPSEC-56",
+		"iosxe: "UNIVERSAL",
+		"iosxr: "IP-MPLS",
+		"ipbase: "IP-BASE-NO-CRYPTO",
+		"ipbase_access: "IP-BASE-ACCESS-ONLY-NO-CRYPTO",
+		"ipbase_wan: "IP-BASE-NO-CRYPTO",
+		"ipbasek9: "IP-BASE",
+		"ipbasek9_access: "IP-BASE-ACCESS-ONLY",
+		"ipbasek9_npe: "IP-BASE-NPE",
+		"ipbasek9_wan: "IP-BASE",
+		"ipbasek9npe: "IP-BASE-NPE",
+		"ipbaselm: "IP-BASE-NO-CRYPTO-WITH-EXPRESS-SETUP",
+		"ipbaselmk9: "IP-BASE-WITH-EXPRESS-SETUP",
+		"ipran: "RAN-OPTIMIZATION-NO-CRYPTO",
+		"iprank9: "RAN-OPTIMIZATION",
+		"ipservices: "IP-SERVICES-NO-CRYPTO",
+		"ipservices_wan: "IP-SERVICES-NO-CRYPTO",
+		"ipservicesk9: "IP-SERVICES",
+		"ipservicesk9_li: "IP-SERVICES-WITH-LAWFUL-INTERCEPT",
+		"ipservicesk9_npe: "IP-SERVICES-NPE",
+		"ipservicesk9_wan: "IP-SERVICES",
+		"ipserviceslm: "IP-SERVICES-NO-CRYPTO-WITH-EXPRESS-SETUP",
+		"ipserviceslmk9: "IP-SERVICES-WITH-EXPRESS-SETUP",
+		"ipserviceslmk9_en: "IP-SERVICES-EXPRESS-SETUP-ENGLISH",
+		"ipss7: "SS7-SIGNALING-LINK",
+		"ipv: "IP-TRANSFER-POINT",
+		"ipvoice: "IP-VOICE-NO-CRYPTO",
+		"ipvoice_ivs: "INT-VOICE-VIDEO,-IPIP-GW,-TDMIP-GW",
+		"ipvoicek9: "IP-VOICE",
+		"is: "IP-PLUS",
+		"is3x: "IP-H323-PLUS-BASIC",
+		"is4: "IP-PLUS-BASIC-WITHOUT-SWITCHING",
+		"is40: "IP-PLUS-40",
+		"is5: "IP-PLUS-BASIC-WITHOUT-HD-ANALOG-AIM-ATM-VOICE",
+		"is56: "IP-PLUS-56",
+		"is56i: "IP-PLUS-IPSEC-56",
+		"isecompliance: "ISE-COMPLIANCE",
+		"iseposture: "ISE-POSTURE",
+		"ISRG2PVDMODEM: "ISR-G2-DIGITAL-MODEM",
+		"isu2: "IP-LAWFUL-INTERCEPT",
+		"isv: "IP",
+		"isv40: "IP-40",
+		"isv56: "IP-56",
+		"isv56i: "IP-IPSEC-56",
+		"isx3: "IP-VOICE",
+		"isx356i: "IP-PLUS-IPSEC-56",
+		"itp: "IP-TRANSFER-POINT",
+		"itpk9: "IP-MAP-GATEWAY-BASE",
+		"itpk9v: "IP-TRANSFER-POINT",
+		"itpv: "IP-TRANSFER-POINT",
+		"itv: "IP-ACIP",
+		"ix: "IP-H323",
+		"j: "ENTERPRISE",
+		"j1s3: "ENTERPRISE-BASIC",
+		"jk2o3s: "ENTERPRISE-FW-IDS-PLUS-IPSEC-3DES",
+		"jk2o3sv: "ENTERPRISE-FW-IDS-IPSEC-3DES",
+		"jk2s: "ENTERPRISE-SSH-3DES-LAN-ONLY",
+		"jk2sv: "ENTERPRISE-IPSEC-3DES",
+		"jk8o3s: "ENTERPRISE-FW-IDS-IPSEC-56",
+		"jk8o3sv: "ENTERPRISE-FW-IDS-IPSEC-56",
+		"jk8os: "ENTERPRISE-FW-PLUS-IPSEC-56",
+		"jk8s: "ENTERPRISE-IPSEC-56",
+		"jk8sv: "ENTERPRISE-IPSEC-56",
+		"jk9o3s: "ENTERPRISE-FW-IDS-IPSEC-3DES",
+		"jk9o3sv: "ENTERPRISE-FW-MPLS-IPV6-SSH-3DES",
+		"jk9s: "ENTERPRISE-IPSEC-3DES",
+		"jk9s2: "VOICE-IP-TO-IP-VOICE-GATEWAY-IPSEC-3DES",
+		"jk9su2: "ENTERPRISE-IPSEC-3DES-LAWFUL-INTERCEPT",
+		"jk9su2_ivs: "INT-VOICE-VIDEO-IPIP-GW,-TDMIP-GW-LI",
+		"jk9su2v: "ENTERPRISE-IPSEC-3DES-LAWFUL-INTERCEPT",
+		"jk9sv: "ENTERPRISE-IPV6-SSH-3DES",
+		"jo3s: "ENTERPRISE-FW-IDS",
+		"jo3s56i: "ENTERPRISE-FW-IDS-IPSEC-56",
+		"jo3sv: "ENTERPRISE-FW-IDS",
+		"jo3sv56i: "ENTERPRISE-FW-IDS-IPSEC-56",
+		"jos56: "ENTERPRISE-FW-PLUS-56",
+		"jos56i: "ENTERPRISE-FW-PLUS-IPSEC-56",
+		"js: "ENTERPRISE-PLUS",
+		"js_ivs: "INT-VOICE-VIDEO-IPIP-GW,-TDMIP-GW",
+		"js2: "VOICE-IP-TO-IP-VOICE-GATEWAY",
+		"js40: "ENTERPRISE-PLUS-40",
+		"js56: "ENTERPRISE-PLUS-56",
+		"js56i: "ENTERPRISE-PLUS-IPSEC-56",
+		"jsu2: "ENTERPRISE-LAWFUL-INTERCEPT",
+		"jsv: "ENTERPRISE",
+		"jsv40: "ENTERPRISE-40",
+		"jsv56: "ENTERPRISE-56",
+		"jsv56i: "ENTERPRISE-IPSEC-56",
+		"jsx: "ENTERPRISE-PLUS-H323-MCM",
+		"jx2: "ENTERPRISE-MCM",
+		"k: "ENTERPRISE",
+		"k1k2o3sv4y5: "SMALL-OFFICE+-VOICE-FW-IPSEC-3DES-(SGCP-and-H.323)",
+		"k1k2sv4y5: "TELECOMMUTER+-VOICE-IPSEC-3DES-(SGCP-and-H.323)",
+		"k1o3sv4y556i: "SMALL-OFFICE+-VOICE-FW-IDS-IPSEC-56-(SGCP-and-H.323)",
+		"k1o3v4y5: "SMALL-OFFICE-VOICE-FW-IDS-(SGCP-and-H.323)",
+		"k1sv4y556i: "TELECOMMUTER-VOICE-IPSEC-56-(SGCP-and-H.323)",
+		"k1v4y5: "HOME-OFFICE-VOICE-(SGCP-and-H.323)",
+		"k2: "ENTERPRISE-CIP2",
+		"k2nosy6: "IP-IPX-FW-PLUS-IPSEC-3DES",
+		"k2o3sv3y: "IP-FW-VOICE-PLUS-IPSEC-3DES",
+		"k2o3sv3y7: "IP-FW-VOICE-PLUS-IPSEC-3DES-ADSL",
+		"k2o3sy: "IP-FW-PLUS-IPSEC-3DES",
+		"k2o3sy7: "IP-FW-PLUS-IPSEC-3DES-ADSL",
+		"k2osv3y: "IP-FW-VOICE-PLUS-IPSEC-3DES",
+		"k2osy: "IP-FW-PLUS-IPSEC-3DES",
+		"k2osy6: "IP-FW-PLUS-IPSEC-3DES",
+		"k2sv3y: "IP-VOICE-PLUS-IPSEC-3DES",
+		"k2sv3y7: "IP-VOICE-PLUS-IPSEC-3DES-ADSL",
+		"k2sy: "IP-PLUS-IPSEC-3DES",
+		"k2sy7: "IP-PLUS-IPSEC-3DES-ADSL",
+		"k3p: "SERVICE-PROVIDER-SECURED-SHELL-56",
+		"k3pv: "SERVICE-PROVIDER-SECURED-SHELL-3DES",
+		"k4p: "SERVICE-PROVIDER-SECURED-SHELL-3DES",
+		"k4p10: "SERVICE-PROVIDER-SECURED-SHELL-3DES",
+		"k4pv: "SERVICE-PROVIDER-SECURED-SHELL-56",
+		"k4u2p10: "LAWFUL-INTERCEPT-SECURED-SHELL-3DES",
+		"k8boot: "BOOT",
+		"k8nosy6: "IP-IPX-FW-PLUS-IPSEC-56",
+		"k8o3sv3y: "IP-VOICE-FW-IDS-PLUS-IPSEC",
+		"k8o3sv3y7: "IP-ADSL-VOICE-FW-IDS-PLUS-IPSEC-56",
+		"k8o3sv8y7: "IP-ADSL-VOX-FW-IDS-PLUS-IPSEC-56",
+		"k8o3sy: "IP-FW-IDS-PLUS-IPSEC-56",
+		"k8o3sy7: "IP-ADSL-FW-IDS-PLUS-IPSEC-56",
+		"k8o3v9y5: "VOICE-H323-MGCP-SIP-FW-IPSEC56",
+		"k8osy: "IP-FW-PLUS-IPSEC-56",
+		"k8osy6: "IP-FW-PLUS-IPSEC-56",
+		"k8p11u2: "LAWFUL-INTERCEPT-SECURED-SHELL-DES",
+		"k8p4: "SERVICE-PROVIDER-IPSEC-56",
+		"k8p6u2: "DOCSIS-BPI-LAWFUL-INTERCEPT",
+		"k8p9: "SERVICE-PROVIDER-PLUS-IPSEC-3DES",
+		"k8pu2: "DOCSIS-2-WAY-BPI-LAWFUL-INTERCEPT",
+		"k8sv3y: "IP-VOICE-PLUS-IPSEC-56",
+		"k8sv3y7: "IP-ADSL-VOICE-PLUS-IPSEC-56",
+		"k8sv8y7: "IP-ADSL-VOX-PLUS-IPSEC-56",
+		"k8sy: "IP-PLUS-IPSEC-56",
+		"k8sy7: "IP-ADSL-PLUS-IPSEC-56",
+		"k91p: "SERVICE-PROVIDER-SECURE-SHELL-3DES",
+		"k91p11: "UP-TO-8K-SUBSCRIBERS-WITH-3DES",
+		"k91p11u2: "UP-TO-8K-SUBSCRIBERS-WITH-LAWFUL-INTERCEPT-3DES",
+		"k91pv: "SERVICE-PROVIDER-SECURED-SHELL-3DES",
+		"k9nosy6: "IP-IPX-FW-PLUS-IPSEC-3DES",
+		"k9o3s8y6: "IP-FW-PLUS-ISDN-DIAL-BACKUP-3DES-VPN",
+		"k9o3sv3y: "IP-FW-VOICE-PLUS-IPSEC-3DES",
+		"k9o3sv3y7: "IP-ADSL-VOICE-FW-IDS-PLUS-IPSEC-3DES",
+		"k9o3sv8y7: "IP-ADSL-VOX-FW-IDS-PLUS-IPSEC-3DES",
+		"k9o3sv9y5: "PERFORMANCE-SMALL-OFFICE-VOICE-FW-IPSEC-3DES",
+		"k9o3sy: "BASIC-IP-FIREWALL-2-3DES-PLUS",
+		"k9o3sy6: "IP-FW-PLUS-3DES",
+		"k9o3sy7: "IP-ADSL-FW-IDS-PLUS-IPSEC-3DES",
+		"k9o3y6: "IP-FW-3DES",
+		"k9osv6y6: "IP-FW-VOICE-PLUS-3DES",
+		"k9osy6: "IP-FW-PLUS-IPSEC-3DES",
+		"k9oy1: "IP-FW-3DES",
+		"k9oy6: "IP-FW-3DES",
+		"k9p: "SERVICE-PROVIDER-SSH-3DES",
+		"k9p11: "SERVICE-PROVIDER-SECURED-SHELL-3DES",
+		"k9p11u2: "LAWFUL-INTERCEPT-SECURED-SHELL-3DES",
+		"k9p12: "SERVICE-PROVIDER-WITH-CRYPTO",
+		"k9p6u2: "DOCSIS-3DES-LAWFUL-INTERCEPT",
+		"k9p9: "SERVICE-PROVIDER-PLUS-IPSEC-3DES",
+		"k9p9u2: "SERVICE-PROVIDER-PLUS-IPSEC-3DES-LAWFUL-INTERCEPT",
+		"k9pu2: "DOCSIS-3DES-LAWFUL-INTERCEPT",
+		"k9sv3y: "BASIC-IP-VOICE-3DES-PLUS",
+		"k9sv3y7: "IP-ADSL-VOICE-PLUS-IPSEC-3DES",
+		"k9sv8y7: "IP-ADSL-VOX-PLUS-IPSEC-3DES",
+		"k9sy: "BASIC-IP-3DES-PLUS",
+		"k9sy7: "IP-ADSL-PLUS-IPSEC-3DES",
+		"k9w7: "WIRELESS-LAN-AUTONOMOUS",
+		"k9w8: "WIRELESS-LAN-LIGHTWEIGHT-FULL",
+		"kboot: "BOOT",
+		"kickstart: "KICKSTART",
+		"kickstart-npe: "KICKSTART-NPE",
+		"kubernetes: "KUBERNETES",
+		"kvm: "KVM",
+		"l2l3cvt: "L2-L3-CONVERSION",
+		"lanbase: "LAN-BASE",
+		"lanbasek9: "LAN-BASE-SSH",
+		"lanbasek9_en: "LAN-BASE-SSH-ENGLISH",
+		"lanbaselmk9: "LAN-BASE-SSH-WITH-EXPRESS-SETUP",
+		"lanbaselmk9_en: "LAN-BASE-SSH-WITH-EXPRESS-SETUP-ENGLISH",
+		"lanlite: "LAN-LITE",
+		"lanlitek9: "LAN-LITE-SSH",
+		"launcher: "LAUNCHER",
+		"lc: "ATM-LINE-CARD",
+		"lfbff: "ASA-FIREPOWER",
+		"linux: "LINUX",
+		"linuxbare: "LINUX",
+		"log4j: "LOG4SHELL-FIXES",
+		"logagent: "LOG-AGENT",
+		"lsprel: "GeoDB-SRU-VDB/Lightweight-Security-Package",
+		"m: "ATM",
+		"m: "ATM-OC3-LANE",
+		"macintosh: "MAC",
+		"macos: "MACOSX",
+		"macosxi386: "MACOSX-i386",
+		"macosxpowerpc: "MACOSX-PowerPC",
+		"mboot: "BOOT",
+		"mcp: "MANAGEMENT-CENTER-FOR-PERFORMANCE",
+		"metroaccess: "METRO-ACCESS-NO-CRYPTO",
+		"metroaccessk9: "METRO-ACCESS",
+		"metrobase: "METRO-BASE-NO-CRYPTO",
+		"metrobasek9: "METRO-BASE",
+		"metroipaccess: "METRO-IP-ACCESS-NO-CRYPTO",
+		"metroipaccessk9: "METRO-IP-ACCESS",
+		"mgmtctr: "MANAGEMENT-CENTER",
+		"mibs: "MIBS",
+		"mica-modem: "NEXTPORT-MODEM-FIRMWARE",
+		"migrate_to_eXR: "64BIT-MIGRATION",
+		"migration: "MIGRATION",
+		"mini: "MINI",
+		"mini-x64: "MINI-X64",
+		"mp: "MAINTENANCE-PARTITION",
+		"mpatch: "MODULARITY-PATCH",
+		"mso: "MULTI-SITE-ORCHESTRATOR",
+		"n9kacim: "NEXUS-9000-ACI-MODE",
+		"nacagent: "NAC-AGENT",
+		"nbar: "NBAR2",
+		"ngfw: "NGFW",
+		"ngfwv: "NGFWV",
+		"no3sv3y: "IP-IPX-VOICE-FW-IDS-PLUS",
+		"no3sv3y7: "IP-ADSL-IPX-VOICE-FW-IDS-PLUS",
+		"no3sv8y7: "IP-ADSL-IPX-VOX-FW-IDS-PLUS",
+		"no3sy: "IP-IPX-FW-IDS-PLUS",
+		"no3sy7: "IP-ADSL-IPX-FW-IDS-PLUS",
+		"nosv3y: "IP-IPX-FW-VOICE-PLUS",
+		"nosy: "IP-IPX-FW-PLUS",
+		"nosy656i: "IP-IPX-FW-PLUS-IPSEC-56",
+		"np: "NEXTPORT-FIRMWARE",
+		"nqy: "IP-IPX-ASYNC",
+		"nr2sy: "IP-IPX-IBM-PLUS",
+		"nr2sy40: "IP-IPX-IBM-PLUS-40",
+		"nr2sy56: "IP-IPX-IBM-PLUS-56",
+		"nr2y: "IP-IPX-IBM",
+		"nsy: "IP-IPX-PLUS",
+		"nsy40: "IP-IPX-PLUS-40",
+		"nsy56: "IP-IPX-PLUS-56",
+		"nsy6: "IP-IPX-PLUS",
+		"nvm: "NETWORK-VISIBILITY-MODULE",
+		"nvsat: "NVSATELLITE",
+		"ny: "IP-IPX",
+		"o3sv3y: "IP-VOICE-FW-IDS-PLUS",
+		"o3sv3y56i: "IP-FW-VOICE-PLUS-IPSEC-56",
+		"o3sv3y7: "IP-ADSL-VOICE-FW-IDS-PLUS",
+		"o3sv3y756i: "IP-VOICE-FW-IDS-PLUS-IPSEC-56-ADSL",
+		"o3sv8y7: "IP-ADSL-VOX-FW-IDS-PLUS",
+		"o3sy56i: "IP-FW-IDS-PLUS-IPSEC-3DES",
+		"o3sy6: "IP-FW-PLUS",
+		"o3sy756i: "IP-FW-PLUS-IPSEC-56-ADSL",
+		"o3y: "IP-FW-IDS",
+		"oac: "OPEN-AGENT-CONTAINER",
+		"occtoacl: "OCC-TO-ACL-CONVERTER",
+		"osv3y: "IP-FW-VOICE-PLUS",
+		"osv3y56i: "IP-FW-VOICE-PLUS-IPSEC-56",
+		"osy56i: "IP-FW-PLUS-IPSEC-56",
+		"osy6: "IP-FW-PLUS",
+		"osy656i: "IP-FW-PLUS-IPSEC-56",
+		"ov6y6: "IP-FW-VOICE",
+		"oy: "IP-FW",
+		"oy1: "IP-FW",
+		"oy6: "IP-FW",
+		"p: "SERVICE-PROVIDER",
+		"p10: "EDGE-SERVICES-ROUTER",
+		"p11: "EDGE-SERVICES-ROUTER",
+		"p11u2: "UP-TO-8K-SUBSCRIBERS-WITH-LAWFUL-INTERCEPT",
+		"p12: "SERVICE-PROVIDER",
+		"p4: "SERVICE-PROVIDER",
+		"p456i: "SERVICE-PROVIDER-ALTERNATE",
+		"p7: "SERVICE-PROVIDER-WITH-PT-TARP",
+		"p9: "SERVICE-PROVIDER-PLUS",
+		"patch: "PATCH",
+		"pdm: "PIX-DEVICE-MANAGER",
+		"pixpasswordrecovery: "PASSWORD-RECOVERY",
+		"PIXtoASA: "PIX-TO-ASA",
+		"pk2o3sv: "SERVICE-PROVIDER-WITH-FW-AND-VIP-3DES",
+		"pk2s: "SERVICE-PROVIDER-SSH-3DES-LAN-ONLY",
+		"pk2sv: "SERVICE-PROVIDER-WITH-VIP-3DES",
+		"pk9s: "IP-SSH-3DES-LAN-ONLY",
+		"pk9sv: "IP-SSH-3DES",
+		"pk9u2: "SERVICE-PROVIDER-IPSEC-3DES-LAWFUL-INTERCEPT",
+		"po3sv: "SERVICE-PROVIDER-WITH-FW-AND-VIP",
+		"poap: "POAP",
+		"poap_ng: "POAP-NG",
+		"profileeditor: "PROFILE-EDITOR",
+		"ps: "SERVICE-PROVIDER-LAN-ONLY",
+		"psv: "SERVICE-PROVIDER-WITH-VIP",
+		"pv: "SERVICE-PROVIDER",
+		"qed: "DEVICE-ENABLER",
+		"qy: "IP-ASYNC",
+		"rboot: "BOOT",
+		"rcv: "RECOVERY",
+		"rcvk9w8: "WIRELESS-LAN-LIGHTWEIGHT-RECOVERY",
+		"restapi: "REST-API",
+		"rme: "RESOURCE-MANAGER-ESSENTIALS",
+		"rommon: "ROMMON",
+		"rr: "ROUTE-REFLECTOR",
+		"rrvga: "ROUTE-REFLECTOR-VGA",
+		"s1: "SUP-1",
+		"s1ek9: "SUP-1/BASE",
+		"s2: "SUP-2",
+		"s2ek9: "SUP-2",
+		"s3: "SUP-3",
+		"s3ek9: "SUP-3",
+		"s4ek9: "SUP-4",
+		"s5ek9: "SUP-5",
+		"san-client: "SAN-CLIENT",
+		"sccp: "SCCP",
+		"scu: "SERVER-CONFIGURATION-UTILITY",
+		"sfgeodb: "GeoDB-SRU-VDB/Geodb",
+		"sfrules: "GeoDB-SRU-VDB/Rules",
+		"sfvdb: "GeoDB-SRU-VDB/VDB",
+		"signatures: "SIGNATURES",
+		"silent-installer: "SILENT-INSTALLER",
+		"sip: "SIP",
+		"sipspawmak9: "WEBEX-NODE",
+		"sm10g: "10-GIG-MODULE",
+		"smu: "SMU",
+		"sns35xx: "SNS-35xx",
+		"sns36xx: "SNS-36xx",
+		"sns37xx: "SNS-37xx",
+		"solaris: "SOLARIS",
+		"sourcefiredev: "SOURCEFIRE-8350",
+		"sp1: "SERVICE-PACK-1",
+		"sp10: "SERVICE-PACK-10",
+		"sp11: "SERVICE-PACK-11",
+		"sp12: "SERVICE-PACK-12",
+		"sp2: "SERVICE-PACK-2",
+		"sp3: "SERVICE-PACK-3",
+		"sp4: "SERVICE-PACK-4",
+		"sp5: "SERVICE-PACK-5",
+		"sp6: "SERVICE-PACK-6",
+		"sp7: "SERVICE-PACK-7",
+		"sp8: "SERVICE-PACK-8",
+		"sp9: "SERVICE-PACK-9",
+		"specialbuild: "SPECIAL-BUILDS",
+		"specialbuildfwupgrade: "SPECIAL-BUILDS-FIRMWARE-UPGRADE",
+		"specialbuildlisp: "SPECIAL-BUILDS-LISP",
+		"sprom: "SPROM-EPLD",
+		"spservicesk9: "SERVICE-PROVIDER",
+		"spw: "SUPPLICANT-PROVISIONING-WIZARD",
+		"ssi: "STORAGE-SERVICE-INTERFACE",
+		"stripped-firmware: "STRIPPED-FIRMWARE",
+		"struts: "STRUTS-FIX",
+		"sup: "SUP-1",
+		"sup2: "SUP-2",
+		"sup2cv: "SUP-2/CISCOVIEW",
+		"sup2cvk8: "SUP-2/CISCOVIEW",
+		"sup2cvk9: "SUP-2/CISCOVIEW-AND-SSH",
+		"sup2k8: "SUP-2",
+		"sup2k9: "SUP-2/SSH",
+		"sup3: "SUP-3",
+		"sup32pfc3cvk8: "SUP-32/CISCOVIEW",
+		"sup32pfc3cvk9: "SUP-32/CISCOVIEW-AND-SSH",
+		"sup32pfc3k8: "SUP-32/BASE",
+		"sup32pfc3k9: "SUP-32/SSH",
+		"sup3cv: "SUP-3/CISCOVIEW",
+		"sup3cvk9: "SUP-3/CISCOVIEW-AND-SSH",
+		"sup3k9: "SUP-3/SSH",
+		"sup720cvk8: "SUP-720/CISCOVIEW",
+		"sup720cvk9: "SUP-720/CISCOVIEW-AND-SSH",
+		"sup720k8: "SUP-720/BASE",
+		"sup720k9: "SUP-720/SSH",
+		"sup8m: "SUP-1-8M",
+		"supcv: "SUP-1/CISCOVIEW",
+		"supcvk8: "SUP-1/CISCOVIEW",
+		"supcvk9: "SUP-1/CISCOVIEW-AND-SSH",
+		"supg: "SUP-3/BASE",
+		"supgk9: "SUP-3/SSH",
+		"supk8: "SUP-1",
+		"supk9: "SUP-1/SSH",
+		"supplicantpw: "SUPPLICANT-PROVISIONING-WIZARD",
+		"sv12y10: "REDUCED-IP-ANALOG-VOICE-PLUS",
+		"sv3y: "IP-VOICE-PLUS",
+		"sv3y10: "REDUCED-IP-VOICE-PLUS",
+		"sv3y40: "IP-VOICE-PLUS-IPSEC-40",
+		"sv3y56: "IP-VOICE-PLUS-IPSEC-56",
+		"sv3y56i: "IP-VOICE-PLUS-IPSEC-56",
+		"sv3y7: "IP-ADSL-VOICE-PLUS",
+		"sv3y7: "IP-VOICE-PLUS-ADSL",
+		"sv3y756i: "IP-VOICE-PLUS-IPSEC-56-ADSL",
+		"sv6y6: "IP-VOICE-PLUS",
+		"sv8y: "IP-VOX-PLUS",
+		"sv8y7: "IP-ADSL-VOX-PLUS",
+		"sy: "IP-PLUS",
+		"sy40: "IP-PLUS-40",
+		"sy56: "IP-PLUS-56",
+		"sy56i: "IP-PLUS-IPSEC-56",
+		"sy6: "IP-PLUS",
+		"sy7: "IP-ADSL-PLUS",
+		"sy756i: "IP-PLUS-IPSEC-56-ADSL",
+		"system: "SYSTEM",
+		"system-npe: "SYSTEM-NPE",
+		"telco: "TELCO-FEATURE-SET",
+		"telcoent: "TELCO-PLUS-FEATURE-SET",
+		"telcoentk9: "TELCO-PLUS-FEATURE-SET-IPSEC-3DES",
+		"templates: "TEMPLATES",
+		"thirdparty: "THIRD-PARTY-UTILS",
+		"transforms: "TRANSFORMS",
+		"translations: "TRANSLATIONS",
+		"turboboot: "TURBO-BOOT",
+		"u2p10: "LAWFUL-INTERCEPT",
+		"ucmk9: "IOS-XE-SD-WAN",
+		"ucsbundle: "BUNDLE",
+		"ucslinux: "LINUX",
+		"universal: "UNIVERSAL",
+		"universal: "UNIVERSAL-NO-CRYPTO",
+		"universal_cloud: "UNIVERSAL-CLOUD",
+		"universal_cloud_esxi: "UNIVERSAL-CLOUD-ESXI",
+		"universal_cloud_nfvis: "UNIVERSAL-CLOUD-NFVIS",
+		"universal_kvm: "UNIVERSAL-KVM",
+		"universal_lite: "UNIVERSAL-LITE-NO-CRYPTO",
+		"universal_loud_kvm: "UNIVERSAL-CLOUD-KVM",
+		"universalk9: "UNIVERSAL",
+		"universalk9_en: "UNIVERSAL-ENGLISH",
+		"universalk9_ias: "UNIVERSAL",
+		"universalk9_ias_npe: "UNIVERSAL-NPE",
+		"universalk9_iox: "UNIVERSAL-IOX",
+		"universalk9_iox_npe: "UNIVERSAL-IOX-NPE",
+		"universalk9_kvm: "UNIVERSAL-KVM",
+		"universalk9_lite: "UNIVERSAL-LITE",
+		"universalk9_noli: "UNIVERSAL-NO-LAWFUL-INTERCEPT",
+		"universalk9_npe: "UNIVERSAL-NPE",
+		"universalk9_npe_noli: "UNIVERSAL-NPE-NO-LAWFUL-INTERCEPT",
+		"universalk9_wlc: "UNIVERSAL-WIRELESS",
+		"universalk9azn: "UNIVERSAL-AZURE-CLOUD",
+		"universalk9ldpe: "UNIVERSAL-NPE",
+		"universalk9milplr: "UNIVERSAL-MILITARY",
+		"universalk9npe: "UNIVERSAL-NPE",
+		"universalk9npe_lite: "UNIVERSAL-LITE-NPE",
+		"upgrade: "UPGRADE",
+		"urtbundle: "UPGRADE-READINESS-TOOL",
+		"usb_boot: "USB-BOOT",
+		"utilsbseries: "B-SERIES/UTILS",
+		"utilscseries: "C-SERIES/UTILS",
+		"v6y6: "IP-VOICE",
+		"va: "VIRTUAL-APPLIANCE",
+		"vchtmlplug: "VCENTER-HTML-PLUGIN",
+		"vcw-vfc-mz: "VCWare",
+		"virtualapp: "VIRTUAL-APPLIANCE",
+		"virtual-ovf: "OVF-DEFINITION-FILES",
+		"vmware: "VMWARE",
+		"vpnapi: "VPNAPI",
+		"vxworks: "VXWorks",
+		"vxworkstoios: "VXWorks-to-IOS-CONVERSION-TOOL",
+		"w1is: "WIMAX-ASNGW-1.0-CRYPTO",
+		"w3: "DISTRIBUTED-DIRECTOR-SYSTEM-SOFTWARE",
+		"wboot: "BOOT",
+		"webagent: "WEB-AGENT",
+		"webauth: "WEBAUTH-BUNDLE",
+		"websecurity: "WEB-SECURITY",
+		"websecurity: "WEB-SECURITY-APPLIANCE",
+		"wi: "ATM",
+		"winarm64: "WINDOWS-ARM64",
+		"wince: "WINDOWS-CE",
+		"windows: "WINDOWS",
+		"witness: "WITNESS-NODE",
+		"WKGBDG: "WORKGROUP-BRIDGE",
+		"wl: "ATM-WORKGROUP-LANE",
+		"wp: "NSP",
+		"wpk2: "ATM-LAYER-3-SSH-3DES",
+		"WRLBDG: "WIRELESS-BRIDGE",
+		"wt: "ATM-WORKGROUP-TRAFFIC-SHAPING",
+		"xsd: "XML-SCHEMA",
+		"xy: "UNKNOWN-FEATURE-SET",
+		"y: "IP",
+		"y1: "IP",
+		"y2: "IP-OSPF-PIM",
+		"y6: "IP",
+		"y7: "IP-ADSL"
+	}
+	return imagecode_to_subdirectory.get(imagecode, "UNKNOWN")
 
 def product (prodcode):
 	if prodcode == "apicem":
