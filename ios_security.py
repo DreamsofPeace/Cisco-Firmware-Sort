@@ -550,6 +550,42 @@ def sec_ise_hotfix (debug1,filename): #ISE Hotfixes
 		imagecode2  = "CSCvm14030"
 		filepath = filepath4(prodname,version,imagecode,imagecode2)
 		filemove (filepath, filename)
+	elif (
+		filename == "ise-apply-CSCwm88519_3.3.0.430_patch4-SPA.tar.gz" or
+		filename == "ise-rollback-CSCwm88519_3.3.0.430_patch4-SPA.tar.gz"
+	):
+		version = "3.3"
+		imagecode = imagelookup("patch")
+		imagecode2 = "4-" + imagelookup("hotfix")
+		filepath = filepath4(prodname,version,imagecode,imagecode2)
+		filemove (filepath, filename)
+	elif (
+		filename == "ise-rollback-CSCwk61938_3.1_patchall-SPA.tar.gz" or
+		filename == "ise-apply-CSCwk61938_3.1_patchall-SPA.tar.gz"
+	):
+		version = "3.1"
+		imagecode = imagelookup("patch")
+		imagecode2 = imagelookup("universal")
+		filepath = filepath4(prodname,version,imagecode,imagecode2)
+		filemove (filepath, filename)
+	elif (
+		filename == "ise-rollback-CSCwk61938_3.2_patchall-SPA.tar.gz" or
+		filename == "ise-apply-CSCwk61938_3.2_patchall-SPA.tar.gz" or
+		filename == "ise-apply-CSCwf02093_3.2.x_patchall-SPA.tar.gz"
+	):
+		version = "3.2"
+		imagecode = imagelookup("patch")
+		imagecode2 = imagelookup("universal")
+		filepath = filepath4(prodname,version,imagecode,imagecode2)
+		filemove (filepath, filename)
+	elif (
+		filename == "ise-apply-CSCwi47249_3.2.0.542_patch7-SPA.tar.gz"
+	):
+		version = "3.2"
+		imagecode = imagelookup("patch")
+		imagecode2 = "7-" + imagelookup("hotfix")
+		filepath = filepath4(prodname,version,imagecode,imagecode2)
+		filemove (filepath, filename)
 
 
 def sec_anyconnect_new (debug1,filename): #Anyconnect / Cisco Secure Client
@@ -2551,6 +2587,7 @@ def sec_asa_firmware (debug1,filename):
 	filename.startswith("asa9") or 
 	filename.startswith("asav9") or 
 	filename.startswith("asac9") or 
+	filename.startswith("asac-9") or 
 	filename.startswith("asa871")
 	):
 		prodname = product ("asa")
@@ -2763,6 +2800,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 		elif (
 		splitbydash[0] == "asav9" or
 		splitbydash[0] == "asac9" or
+		splitbydash[0] == "asac-" or
 		splitbydash[0] == "asa9"
 		):
 			workname = filename.replace(".qcow2", "")
@@ -2771,6 +2809,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 			workname = workname.replace(".tar", "")
 			workname = workname.replace(".vhd.bz2", "")
 			workname = workname.replace("asav", "")
+			workname = workname.replace("asac-", "")
 			workname = workname.replace("asac", "")
 			workname = workname.replace("asa", "")
 			workname = workname.replace("-smp-k8.bin", "")
@@ -3229,6 +3268,13 @@ def sec_ise (debug1,filename):
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
+	filename == "ise-upgradebundle-2.4.x-2.7.x-to-3.0.0.458.SPA.x86_64.tar.gz"
+	):
+		imagecode = imagelookup("upgrade")
+		imagecode = "3.0/" + imagecode
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
 	filename == "ise-upgradebundle-2.6.x-3.0.x-to-3.1.0.518.SPA.x86_64.tar.gz"
 	):
 		imagecode = imagelookup("upgrade")
@@ -3275,7 +3321,8 @@ def sec_ise (debug1,filename):
 		sec_ise_install (debug1,filename,prodname,imagecode)
 
 	elif (
-	filename.startswith("ise-upgradebundle-")
+	filename.startswith("ise-upgradebundle-") or 
+	filename.startswith("ise-appbundle-")
 	):
 		imagecode = imagelookup("upgrade")
 		sec_ise_upgrade (debug1,filename,prodname,imagecode)
@@ -3321,56 +3368,153 @@ def sec_ise_spw (debug1,filename,prodname,imagecode):
 	workname = workname.replace("-isebundle.zip","")
 	splitbydot = workname.split(".")
 	vertwo = util2digit(splitbydot[0],splitbydot[1])
+
+	if (
+	filename == "win_spw-1.0.0.23-isebundle.zip" or
+	filename == "mac-spw-1.0.0.11.zip" or
+	filename == "win_spw-1.0.0.22-isebundle.zip"
+	):
+		vertwo = "1.1.1"
+	elif (
+	filename == "win_spw-1.0.0.33-isebundle.zip" or
+	filename == "mac-spw-1.0.0.18.zip" or
+	filename == "win_spw-1.0.0.28-isebundle.zip"
+	):
+		vertwo = "1.1.3"
+	elif (
+	filename == "mac-spw-1.0.0.21.zip" or
+	filename == "mac-spw-dmg-1.0.0.27-isebundle.zip" or
+	filename == "mac-spw-dmg-1.0.0.29-isebundle.zip" or
+	filename == "spw-1.2.39.apk" or
+	filename == "win_spw-1.0.0.34-isebundle.zip" or
+	filename == "win_spw-1.0.0.35-isebundle.zip" or
+	filename == "win_spw-1.0.0.41-isebundle.zip"
+	):
+		vertwo = "1.2"
+	elif (
+	filename == "mac-spw-dmg-1.0.0.30-isebundle.zip" or
+	filename == "spw-1.2.40.apk" or
+	filename == "win_spw-1.0.0.43-isebundle.zip"
+	):
+		vertwo = "1.3"
+	elif (
+	filename == "mac-spw-dmg-1.0.0.36-isebundle.zip" or
+	filename == "mac-spw-dmg-2.0.2.37-isebundle.zip" or
+	filename == "win_spw-2.0.1.46-isebundle.zip" or
+	filename == "spw-1.2.46.apk"
+	):
+		vertwo = "2.0"
+	elif (
+	filename == "mac-spw-dmg-2.1.0.42-isebundle.zip" or
+	filename == "mac-spw-dmg-2.1.0.40-isebundle.zip" or
+	filename == "win_spw-2.1.0.51-isebundle.zip"
+	):
+		vertwo = "2.1"
+	elif (
+	filename == "win_spw-2.2.0.52-isebundle.zip"
+	):
+		vertwo = "2.2"
+	elif (
+	filename == "win_spw-2.2.1.53-isebundle.zip" or
+	filename == "mac-spw-dmg-2.2.1.43-isebundle.zip"
+	):
+		vertwo = "2.3"
+	elif filename == "win_spw-2.4.0.1-isebundle.zip":
+		vertwo = "2.4"
+	elif (
+	filename == "mac-spw-dmg-2.6.0.2-isebundle.zip" or
+	filename == "mac-spw-dmg-2.6.0.1-isebundle.zip" or
+	filename == "mac-spw-dmg-2.5.0.7-isebundle.zip"
+	):
+		vertwo = "2.6"
+	elif (
+	filename == "mac-spw-dmg-3.1.0.2-isebundle.zip" or
+	filename == "mac-spw-dmg-3.1.0.1-isebundle.zip" or
+	filename == "win_spw-3.0.0.2-isebundle.zip" or
+	filename == "win_spw-2.7.0.1-isebundle.zip" or
+	filename == "mac-spw-dmg-2.7.0.1-isebundle.zip"
+	):
+		vertwo = "2.7"
+	elif (
+	filename == "mac-spw-dmg-2.7.0.1-isebundle-v1.zip" or 
+	filename == "win_spw-3.0.0.2-isebundle-v1.zip"
+	):
+		vertwo = "3.0"
+	elif (
+	filename == "mac-spw-dmg-3.2.0.1-isebundle.zip"
+	):
+		vertwo = "3.1"
+	elif (
+	filename == "mac-spw-dmg-3.4.0.0-isebundle.zip" or 
+	filename == "win_spw-3.0.0.2-isebundle-v1.zip"
+	):
+		vertwo = "3.3"
 	filepath = filepath3 (prodname,vertwo,imagecode)
 	filemove (filepath, filename)
+
 
 def sec_ise_upgrade (debug1,filename,prodname,imagecode):
 	if debug1:
 		print("\tSubroutine#\tsec_ise_upgrade")
-
-	if filename =="ise-upgradebundle-1.4.x-to-2.2.0.470.1808.x86_64.tar.gz":
-		vertwo = "2.2"
-
-	elif filename =="ise-upgradebundle-2.0.x-2.3.x-to-2.4.0.357.SPA.x86_64.tar.gz":
-		vertwo = "2.4"
-
-	elif filename =="ise-upgradebundle-2.0.x-to-2.1.0.474.SPA.x86_64.tar.gz":
+		
+	if filename == "ise-appbundle-1.1.1.268.i386.tar.gz":
+		vertwo = "1.1.1"
+	elif filename == "ise-appbundle-1.1.2.145.i386.tar.gz":
+		vertwo = "1.1.2"
+	elif filename == "ise-appbundle-1.1.3.124.i386.tar.gz":
+		vertwo = "1.1.3"
+	elif filename == "ise-appbundle-1.1.4.218.i386.tar.gz":
+		vertwo = "1.1.4"
+	elif (
+		filename == "ise-upgradebundle-1.1.x-to-1.2.0.899.i386.tar.gz" or
+		filename == "ise-upgradebundle-1.2.0.899.x86_64.tar.gz"
+	):
+		vertwo = "1.2"
+	elif (
+		filename == "ise-upgradebundle-1.1.x-to-1.2.1.198.i386.tar.gz" or
+		filename == "ise-upgradebundle-1.2.1.198.x86_64.tar.gz"
+	):
+		vertwo = "1.2.1"
+	elif (
+		filename == "ise-upgradebundle-1.2.x-to-1.3.0.876.repackaged.x86_64.tar.gz"
+	):
+		vertwo = "1.3"
+	elif (
+		filename == "ise-upgradebundle-1.2.x-to-1.4.0.253.x86_64.tar.gz" or
+		filename == "ise-upgradebundle-1.4.0.253.x86_64.tar.gz"
+	):
+		vertwo = "1.4"
+	elif (
+		filename == "ise-upgradebundle-1.3.x-1.4.x-to-2.1.0.474.1808.x86_64.tar.gz" or
+		filename == "ise-upgradebundle-2.0.x-to-2.1.0.474.SPA.x86_64.tar.gz"
+	):
 		vertwo = "2.1"
-
-	elif filename =="ise-upgradebundle-2.0.x-to-2.2.0.470.1808.SPA.x86_64.tar.gz":
+	elif (
+		filename == "ise-upgradebundle-1.4.x-to-2.2.0.470.1808.x86_64.tar.gz" or
+		filename == "ise-upgradebundle-2.0.x-to-2.2.0.470.1808.SPA.x86_64.tar.gz" or
+		filename == "ise-upgradebundle-2.0.x-to-2.2.0.470.SPA.x86_64.tar.gz" or
+		filename == "ise-upgradebundle-2.2.0.470.1808.SPA.x86_64.tar.gz" or
+		filename == "ise-upgradebundle-2.2.0.470.SPA.x86_64.tar.gz"
+	):
 		vertwo = "2.2"
-
-	elif filename =="ise-upgradebundle-2.0.x-to-2.2.0.470.SPA.x86_64.tar.gz":
-		vertwo = "2.2"
-
-	elif filename =="ise-upgradebundle-2.0.x-to-2.3.0.298.1808.SPA.x86_64.tar.gz":
+	elif (
+	filename == "ise-upgradebundle-2.0.x-to-2.3.0.298.1808.SPA.x86_64.tar.gz" or
+	filename == "ise-upgradebundle-2.3.0.298.SPA.x86_64.tar.gz"
+	):
 		vertwo = "2.3"
-
-	elif filename =="ise-upgradebundle-2.1.x-2.4.x-to-2.6.0.156.SPA.x86_64.tar.gz":
+	elif filename == "ise-upgradebundle-2.0.x-2.3.x-to-2.4.0.357.SPA.x86_64.tar.gz":
+		vertwo = "2.4"
+	elif filename == "ise-upgradebundle-2.1.x-2.4.x-to-2.6.0.156.SPA.x86_64.tar.gz":
 		vertwo = "2.6"
-
-	elif filename =="ise-upgradebundle-2.2.0.470.1808.SPA.x86_64.tar.gz":
-		vertwo = "2.2"
-
-	elif filename =="ise-upgradebundle-2.2.0.470.SPA.x86_64.tar.gz":
-		vertwo = "2.2"
-
-	elif filename =="ise-upgradebundle-2.2.x-2.6.x-to-2.7.0.356.SPA.x86_64.tar.gz":
+	elif filename == "ise-upgradebundle-2.2.x-2.6.x-to-2.7.0.356.SPA.x86_64.tar.gz":
 		vertwo = "2.7"
-
-	elif filename =="ise-upgradebundle-2.3.0.298.SPA.x86_64.tar.gz":
-		vertwo = "2.3"
-
-	elif filename =="ise-upgradebundle-2.6.x-3.0.x-to-3.1.0.518b.SPA.x86_64.tar.gz":
+	elif filename == "ise-upgradebundle-2.6.x-3.0.x-to-3.1.0.518b.SPA.x86_64.tar.gz":
 		vertwo = "3.1"
-
-	elif filename =="ise-upgradebundle-2.7.x-3.1.x-to-3.2.0.542b.SPA.x86_64.tar.gz":
+	elif filename == "ise-upgradebundle-2.7.x-3.1.x-to-3.2.0.542b.SPA.x86_64.tar.gz":
 		vertwo = "3.2"
-
-	elif filename =="ise-upgradebundle-3.0.x-3.2.x-to-3.3.0.430b.SPA.x86_64.tar.gz":
+	elif filename == "ise-upgradebundle-3.0.x-3.2.x-to-3.3.0.430b.SPA.x86_64.tar.gz":
 		vertwo = "3.3"
-
-	elif filename =="ise-upgradebundle-3.1.x-3.3.x-to-3.4.0.608a.SPA.x86_64.tar.gz":
+	elif filename == "ise-upgradebundle-3.1.x-3.3.x-to-3.4.0.608a.SPA.x86_64.tar.gz":
 		vertwo = "3.4"
 	filepath = filepath3 (prodname,vertwo,imagecode)
 	filemove (filepath, filename)
@@ -3417,8 +3561,8 @@ def sec_ise_pic (debug1,filename):
 	if debug1:
 		print("\tSubroutine#\tsec_ise_pic")
 	prodname = product ("isepic")
-	workname = filename.replace("ise-pic-","")
-	workname = workname.replace("ise-pic-patchbundle-","")
+	workname = filename.replace("ise-pic-patchbundle-","")
+	workname = workname.replace("ise-pic-","")
 	workname = workname.replace("Cisco-ISE-PIC-","")
 	workname = workname.replace("pic-","")
 	workname = workname.replace(".SPA.x86_64.iso","")
@@ -3433,7 +3577,7 @@ def sec_ise_pic (debug1,filename):
 		filemove (filepath, filename)
 	else:
 		splitbydot = workname.split(".")
-		version = splitbydash[2]
+		version = util2digit(splitbydot[0],splitbydot[1])
 		imagecode = imagelookup("install")
 		filepath = filepath3 (prodname,version,imagecode)
 		filemove (filepath, filename)

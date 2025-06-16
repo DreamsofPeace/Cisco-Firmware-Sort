@@ -652,6 +652,8 @@ def dirwalk (src,hashsha512,hashfile):
 		elif filename.startswith("ArubaOS_MM_"):
 			prodname = product ("MMC")
 			workname = filename.replace("ArubaOS_MM_","")
+			workname = workname.replace(".iso","")
+			workname = workname.replace(".ova","")
 			new_style_move (filename, prodname, workname, ".")
 		elif (
 		filename.startswith("ArubaOS_VMC_") or
@@ -663,6 +665,7 @@ def dirwalk (src,hashsha512,hashfile):
 			workname = workname.replace(".iso","")
 			workname = workname.replace(".img.tar.gz","")
 			workname = workname.replace(".vhd.gz","")
+			workname = workname.replace(".vhd","")
 			workname = workname.replace(".ova","")
 			new_style_move (filename, prodname, workname, ".")
 		elif filename.startswith("A_"):

@@ -9,6 +9,10 @@ def product (prodcode):
 		return "X31X"
 	elif prodcode == "TS-X35A":
 		return "X35A"
+	elif prodcode == "TS-X32":
+		return "X32"
+	elif prodcode == "TS-X42":
+		return "X42"
 	else:
 		return "UNKNOWN"
 
@@ -57,7 +61,8 @@ def toplevel(directory):
 			prod = product("TS-X31X")
 			filepath = filepath2(prod,"4.3.4")
 			filemove (filepath, filename)
-		elif (
+		elif (
+
 		filename == "QTS_Patch_434.0455.0_arm_al.qfix" or 
 		filename == "QTS_Patch_434.0455.0_arm_al.qfix.zip"
 		):
@@ -75,6 +80,12 @@ def toplevel(directory):
 			process_file(filename,prod)
 		elif filename.startswith("TS-X35A"):
 			prod = product("TS-X35A")
+			process_file(filename,prod)
+		elif filename.startswith("TS-X32"):
+			prod = product("TS-X32")
+			process_file(filename,prod)
+		elif filename.startswith("TS-X42"):
+			prod = product("TS-X42")
 			process_file(filename,prod)
 		else:
 			continue

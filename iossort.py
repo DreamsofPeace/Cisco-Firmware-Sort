@@ -1152,7 +1152,9 @@ def toplevel(filename):
 		name.startswith("vg420") or
 		name.startswith("vg450") or
 		name.startswith("appqoe") or
-		name.startswith("isr1100")
+		name.startswith("isr1100") or
+		name.startswith("C8000-1N") or
+		name.startswith("C8000-2N2S")
 		):
 			fileprocessor_iosxe(debug1,name)
 
@@ -1606,6 +1608,11 @@ def toplevel(filename):
 		):
 			prodname = product ("cat3000")
 			utilssingleprodname (debug1,name,prodname)
+
+		elif (
+		name.startswith("c6svc-mp")
+		):
+			fileprocessorios (debug1,name)
 
 		elif (
 		name.startswith("CPO") and name.endswith("zip") or

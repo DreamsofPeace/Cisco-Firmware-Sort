@@ -45,6 +45,14 @@ def fileprocessor_iosxe(debug1,filename):
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
+	filename.startswith("C8000-2N2S") or
+	filename.startswith("C8000-1N")
+	):
+		prodname = product ("c8000be")
+		imagecode = imagelookup ("rommon")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
 	filename == "nim_vab_phy_fw_A39x3_B39x3_Bond39t.pkg" or 
 	filename == "nim_vab_phy_fw_A39t_B39g1_Bond39t.pkg" or 
 	filename == "nim_vab_phy_fw_A39t_B39g1_Bond39t.pkg" or 

@@ -1830,6 +1830,8 @@ def imagelookup (imagecode):
 		subdirectory = "METRO-IP-ACCESS-NO-CRYPTO"
 	elif imagecode == "mibs":
 		subdirectory = "MIBS"
+	elif imagecode == "mp":
+		subdirectory = "MAINTENANCE-PARTITION"
 	elif imagecode == "mini":
 		subdirectory = "MINI"
 	elif imagecode == "mini-x64":
