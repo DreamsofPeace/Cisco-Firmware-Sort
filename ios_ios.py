@@ -25,6 +25,13 @@ def fileprocessorios (debug1,filename):
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
+	filename.startswith ("c6svc-mp")
+	):
+		prodname = product ("c6500")
+		imagecode = imagelookup("mp")
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
 	filename.startswith ("s72033-itpk9v") or
 	filename.startswith ("s72033") and splitbydot[2].startswith ("SR")
 	):

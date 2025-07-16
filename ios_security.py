@@ -2,7 +2,7 @@ from iosutils import product,imagelookup,iostrain,utilssinglemove,utilssinglepro
 from iosutils import utils_dev_v2_vf_imagecode,utils_dev_imagecode_v2_vf,utils_dev_imagecode_v2_vf_dash,utils_dev_v2_vf
 from iosutils import filemove,filepath2,filepath3,filepath4,filepath5,filepath6
 from iosutils import util2digit,util3digit,util4digit,util5digit,stringtolist
-from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile
+from iosutils import messageunknowndev,messageunknownfeat,messageunknownfile,messageunknownversion
 import os
 
 def fileprocessorsecurity (debug1,filename,sourcedirectory):
@@ -23,8 +23,7 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 		filename.startswith("tools-anyconnect") or
 		filename.startswith("tools-cisco-secure-client")
 		):
-		prodname = product ("anyconnect")
-		sec_anyconnect_new (debug1,filename)
+		sec_anyconnect (debug1,filename)
 
 	elif (
 		filename.startswith ("ise-apply-") or
@@ -233,7 +232,7 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	):
 		prodname = product("ise")
 		imagecode = imagelookup("sns37xx")
-		utilssinglemove (debug1,filename,prodname,imagecode)
+		sec_ise_bios (debug1,filename,prodname,imagecode)
 
 	elif(
 	filename.startswith ("SNS-36xx-BIOS") or 
@@ -243,10 +242,11 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	):
 		prodname = product("ise")
 		imagecode = imagelookup("sns36xx")
-		utilssinglemove (debug1,filename,prodname,imagecode)
+		sec_ise_bios (debug1,filename,prodname,imagecode)
 
 	elif(
 	filename.startswith ("SNS-35x5-BIOS") or 
+	filename.startswith ("SNS-35xx-BIOS") or 
 	filename.startswith ("SNS-35x5-firmware") or 
 	filename.startswith ("SNS-35xx-firmware") or 
 	filename.startswith ("upd-pkg-SNS-35x5-cimc") or 
@@ -254,7 +254,7 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 	):
 		prodname = product("ise")
 		imagecode = imagelookup("sns35xx")
-		utilssinglemove (debug1,filename,prodname,imagecode)
+		sec_ise_bios (debug1,filename,prodname,imagecode)
 
 	elif filename.startswith("asdm"):
 		sec_asa_asdm (debug1,filename)
@@ -462,6 +462,158 @@ def fileprocessorsecurity (debug1,filename,sourcedirectory):
 		messageunknownfile()
 		
 		
+def sec_ise_bios (debug1,filename,prodname,imagecode): #ISE BIOS / Firmware
+	if debug1:
+		print("\tSubroutine#\tsec_ise_bios")
+	version = "UNKNOWN"
+	if (
+		filename == "SNS-35x5-BIOS-3-0-3c-0_ISE1_signed.cap" or
+		filename == "upd-pkg-SNS-35x5-cimc.full.3.0.3f.bin"
+	):
+		version = "3.0.3f"
+	elif (
+		filename == "SNS-35x5-BIOS-3-0-4b-0_ISE2a_signed.cap" or
+		filename == "upd-pkg-SNS-35x5-cimc.full.3.0.4j.bin" or
+		filename == "SNS-35x5-firmware-3-0-4j_upgrade_guide.zip"
+	):
+		version = "3.0.4j"
+	elif (
+		filename == "SNS-35x5-BIOS-2-0-9a-0_ISE1a_signed.cap" or
+		filename == "upd-pkg-SNS-35x5-cimc.full.2.0.9c.bin"
+	):
+		version = "2.0.9c"
+	elif (
+		filename == "upd-pkg-SNS-35xx-cimc.full.4.0.2h.bin" or
+		filename == "SNS-35xx-BIOS-4-0-2d-0_ISE.cap" or
+		filename == "SNS-35xx-firmware-4-0-2h_upgrade_guide.zip"
+	):
+		version = "4.0.2h"
+	elif (
+		filename == "upd-pkg-SNS-35xx-cimc.full.4.0.2n.bin" or
+		filename == "SNS-35xx-BIOS-4-0-2f-0_ISE.cap" or
+		filename == "SNS-35xx-firmware-4-0-2n_upgrade_guide.zip"
+	):
+		version = "4.0.2n"
+	elif (
+		filename == "upd-pkg-SNS-35xx-cimc.full.4.1.2m.bin" or
+		filename == "SNS-35xx-firmware-4-1-2m_upgrade_guide.zip"
+	):
+		version = "4.1.2m"
+	elif (
+		filename == "SNS-36xx-BIOS-4-3-2b_ISE.cap" or
+		filename == "SNS-36xx-HUU-4.3.2.240053_ISE.iso" or
+		filename == "SNS-36xx-HUU-4.3.2.240077_ISE.iso"
+	):
+		version = "4.3.2b"
+	elif (
+		filename == "SNS-37xx-BIOS-4-2-3c-0_ISE.pkg" or
+		filename == "SNS-37xx-HUU-4.2.3g_ISE.iso"
+	):
+		version = "4.2.3g"
+	elif (
+		filename == "SNS-37xx-BIOS-4-3-2e_ISE.pkg" or
+		filename == "SNS-37xx-HUU-4.3.2.240009_ISE.iso"
+	):
+		version = "4.3.2e"
+	elif (
+		filename == "SNS-37xx-BIOS-4-3-2c_ISE.pkg" or
+		filename == "SNS-37xx-HUU-4.3.2.230207_ISE.iso" or
+		filename == "SNS-36xx-BIOS-4-3-2c_ISE.cap" or
+		filename == "SNS-36xx-HUU-4.3.2.240107_ISE.iso"
+	):
+		version = "4.3.2c"
+	elif (
+		filename == "SNS-37xx-BIOS-4-3-4a_ISE.pkg" or
+		filename == "SNS-37xx-HUU-4.3.4.240152_ISE.iso" or
+		filename == "SNS-37xx-HUU-4.3.4.241063_ISE.iso"
+	):
+		version = "4.3.4a"
+	elif (
+		filename == "SNS-37xx-BIOS-4-3-4b_ISE.pkg" or
+		filename == "SNS-37xx-HUU-4.3.4.242038_ISE.iso"
+	):
+		version = "4.3.4b"
+	elif (
+		filename == "SNS-37xx-BIOS-4-3-4d_ISE.pkg" or
+		filename == "SNS-37xx-HUU-4.3.5.250001_ISE.iso"
+	):
+		version = "4.3.4d"
+	elif (
+		filename == "SNS-37xx-BIOS-4-3-6a_ISE.pkg" or
+		filename == "SNS-37xx-HUU-4.3.6.250040_ISE.iso"
+	):
+		version = "4.3.6a"
+
+	elif (
+		filename == "SNS-36xx-BIOS-4-3-2c_ISE.cap" or
+		filename == "SNS-36xx-HUU-4.3.2.240107_ISE.iso"
+	):
+		version = "4.3.2c"
+
+	elif (
+		filename == "SNS-36xx-BIOS-4-3-2b_ISE.cap" or
+		filename == "SNS-36xx-HUU-4.3.2.240077_ISE.iso"
+	):
+		version = "4.3.2b"
+
+	elif (
+		filename == "SNS-36xx-BIOS-4-3-2a_ISE.cap" or
+		filename == "SNS-36xx-HUU-4.3.2.230207_ISE.iso" or
+		filename == "SNS-36xx-HUU-4.3.2.240009_ISE.iso"
+	):
+		version = "4.3.2a"
+
+	elif (
+		filename == "SNS-36xx-BIOS-4-2-3c-0_ISE.cap" or
+		filename == "SNS-36xx-HUU-4.2.3d_ISE.iso"
+	):
+		version = "4.2.3d"
+
+	elif (
+		filename == "SNS-36xx-BIOS-4-2-2b-0_ISE.cap" or
+		filename == "SNS-36xx-HUU-4.2.2a_ISE.iso"
+	):
+		version = "4.2.2a"
+
+	elif (
+		filename == "SNS-36xx-BIOS-4-1-3m-0_ISE.cap" or
+		filename == "SNS-36xx-HUU-4.1.3i_ISE.iso"
+	):
+		version = "4.1.3i"
+
+	elif (
+		filename == "SNS-36xx-BIOS-4-1-3e-0_ISE.cap" or
+		filename == "SNS-36xx-HUU-4.1.3b_ISE.iso"
+	):
+		version = "4.1.3b"
+
+	elif (
+		filename == "SNS-36xx-firmware-4-0-4m_upgrade_guide.zip" or
+		filename == "SNS-36xx-BIOS-4-0-4q-0_ISE.cap" or
+		filename == "upd-pkg-SNS-36xx-cimc.full.4.0.4m.bin"
+	):
+		version = "4.0.4m"
+
+	elif (
+		filename == "SNS-36xx-firmware-4-0-1g_upgrade_guide.zip" or
+		filename == "SNS-36xx-BIOS-4-0-1i-0_ISE.cap" or
+		filename == "upd-pkg-SNS-36xx-cimc.full.4.0.1g.bin"
+	):
+		version = "4.0.1g"
+
+	elif (
+		filename == "SNS-36xx-firmware-4-0-4h_upgrade_guide.zip" or
+		filename == "upd-pkg-SNS-36xx-cimc.full.4.0.4h.bin" or
+		filename == "SNS-36xx-BIOS-4-0-4i-0_ISE.cap"
+	):
+		version = "4.0.4h"
+
+	if version == "UNKNOWN":
+		messageunknownversion()
+	else:
+		filepath = filepath3(prodname,imagecode,version)
+		filemove (filepath, filename)
+		
 		
 def sec_ise_hotfix (debug1,filename): #ISE Hotfixes
 	if debug1:
@@ -476,7 +628,7 @@ def sec_ise_hotfix (debug1,filename): #ISE Hotfixes
 		imagecode1 = imagelookup("patch")
 		imagecode2 = imagelookup("hotfix")
 		final = patchversion + "-" + imagecode2
-		filepath = filepath3(prodname,version,imagecode1,final)
+		filepath = filepath43(prodname,version,imagecode1,final)
 		filemove (filepath, filename)
 	elif (
 		filename == "ise-apply-CSCwi06794_3.0.0.458_patch8-SPA.tar.gz"
@@ -486,7 +638,7 @@ def sec_ise_hotfix (debug1,filename): #ISE Hotfixes
 		imagecode1 = imagelookup("patch")
 		imagecode2 = imagelookup("hotfix")
 		final = patchversion + "-" + imagecode2
-		filepath = filepath3(prodname,version,imagecode1,final)
+		filepath = filepath4(prodname,version,imagecode1,final)
 		filemove (filepath, filename)
 	elif (
 		filename == "ise-apply-CSCvm14030_1.4_common_1-SPA.tar.gz"
@@ -550,11 +702,66 @@ def sec_ise_hotfix (debug1,filename): #ISE Hotfixes
 		imagecode2  = "CSCvm14030"
 		filepath = filepath4(prodname,version,imagecode,imagecode2)
 		filemove (filepath, filename)
+	elif (
+		filename == "ise-apply-CSCwm88519_3.3.0.430_patch4-SPA.tar.gz" or
+		filename == "ise-rollback-CSCwm88519_3.3.0.430_patch4-SPA.tar.gz"
+	):
+		version = "3.3"
+		imagecode = imagelookup("patch")
+		imagecode2 = "4-" + imagelookup("hotfix") + "-CSCwm88519"
+		filepath = filepath4(prodname,version,imagecode,imagecode2)
+		filemove (filepath, filename)
+	elif (
+		filename == "ise-apply-CSCwo99449_3.3.0.430_patch4-SPA.tar.gz" or
+		filename == "ise-rollback-CSCwo99449_3.3.0.430_patch4-SPA.tar.gz"
+	):
+		version = "3.3"
+		imagecode = imagelookup("patch")
+		imagecode2 = "4-" + imagelookup("hotfix") + "-CSCwo99449"
+		filepath = filepath4(prodname,version,imagecode,imagecode2)
+		filemove (filepath, filename)
+	elif (
+		filename == "ise-rollback-CSCwk61938_3.1_patchall-SPA.tar.gz" or
+		filename == "ise-apply-CSCwk61938_3.1_patchall-SPA.tar.gz"
+	):
+		version = "3.1"
+		imagecode = imagelookup("patch")
+		imagecode2 = imagelookup("universal")
+		filepath = filepath4(prodname,version,imagecode,imagecode2)
+		filemove (filepath, filename)
+	elif (
+		filename == "ise-rollback-CSCwk61938_3.2_patchall-SPA.tar.gz" or
+		filename == "ise-apply-CSCwk61938_3.2_patchall-SPA.tar.gz" or
+		filename == "ise-apply-CSCwf02093_3.2.x_patchall-SPA.tar.gz"
+	):
+		version = "3.2"
+		imagecode = imagelookup("patch")
+		imagecode2 = imagelookup("universal")
+		filepath = filepath4(prodname,version,imagecode,imagecode2)
+		filemove (filepath, filename)
+	elif (
+		filename == "ise-apply-CSCwi47249_3.2.0.542_patch7-SPA.tar.gz"
+	):
+		version = "3.2"
+		imagecode = imagelookup("patch")
+		imagecode2 = "7-" + imagelookup("hotfix")
+		filepath = filepath4(prodname,version,imagecode,imagecode2)
+		filemove (filepath, filename)
+	elif (
+		filename == "ise-apply-CSCwo99449_3.4.0.608_patch1-SPA.tar.gz" or
+		filename == "ise-rollback-CSCwo99449_3.4.0.608_patch1-SPA.tar.gz"
+	):
+		version = "3.4"
+		imagecode = imagelookup("patch")
+		imagecode2 = "1-" + imagelookup("hotfix") + "CSCwo99449"
+		filepath = filepath4(prodname,version,imagecode,imagecode2)
+		filemove (filepath, filename)
 
 
-def sec_anyconnect_new (debug1,filename): #Anyconnect / Cisco Secure Client
+def sec_anyconnect (debug1,filename): #Anyconnect / Cisco Secure Client
 	if debug1:
-		print("\tSubroutine#\tsec_anyconnect_new")
+		print("\tSubroutine#\tsec_anyconnect")
+	prodcode = product("anyconnect")
 	if (
 		filename.startswith("hostscan_") or
 		filename.startswith("hostscan-posture-linux-x64-") or
@@ -570,100 +777,130 @@ def sec_anyconnect_new (debug1,filename): #Anyconnect / Cisco Secure Client
 		workname = workname.replace("-pre-deploy-k9.dmg","")
 		workname = workname.replace("-pre-deploy-k9.msi","")
 		imagecode = imagelookup("hostscan")
-		sec_anyconnect_file_setup (debug1,filename,workname,imagecode)
+		splitbydot = workname.split(".")
+		versionmain = util2digit (splitbydot[0],splitbydot[1])
+		filepath = filepath4(prodcode,imagecode,versionmain,workname)
+		filemove (filepath, filename)
 	elif (
-		filename.startswith("anyconnect-amp-win-")
+		filename.endswith("-isecompliance-webdeploy-k9.pkg") or
+		filename.endswith("-isecompliance-predeploy-k9.tar.gz")
 	):
-		workname = filename.replace("anyconnect-amp-win-","")
-		workname = workname.replace("-pre-deploy-k9.msi","")
-		imagecode = imagelookup("amp")
-		sec_anyconnect_file_setup (debug1,filename,workname,imagecode)
-	elif (
-		filename.startswith("anyconnect-android-")
-	):
-		workname = filename.replace("anyconnect-android-","")
-		workname = workname.replace("-release.apk","")
-		imagecode = imagelookup("android")
-		sec_anyconnect_file_setup (debug1,filename,workname,imagecode)
-	elif (
-		filename.startswith("anyconnect-dart-win-")
-	):
-		workname = filename.replace("anyconnect-dart-win-","")
+		workname = filename.replace("-isecompliance-predeploy-k9.tar.gz","")
+		workname = workname.replace("-isecompliance-webdeploy-k9.pkg","")
 		workname = workname.replace("-k9.pkg","")
-		workname = workname.replace("-k9.msi","")
-		imagecode = imagelookup("dart")
-		sec_anyconnect_file_setup (debug1,filename,workname,imagecode)
-	elif (
-		filename.startswith("cisco-secure-client-linux64-") or
-		filename.startswith("anyconnect-Linux_64-")
-	):
-		workname = filename.replace("cisco-secure-client-linux64-","")
-		workname = workname.replace("anyconnect-Linux_64-","")
-		workname = workname.replace("anyconnect-linux-64-","")
-		workname = workname.replace("anyconnect-linux-","")
-		workname = workname.replace("anyconnect-linux64-","")
-		workname = workname.replace("-nvm-standalone.tar.gz","")
-		workname = workname.replace("-predeploy-rpm-k9.tar.gz","")
-		workname = workname.replace("-predeploy-deb-k9.tar.gz","")
-		workname = workname.replace("-predeploy-k9.tar.gz","")
 		workname = workname.replace("-k9.tar.gz","")
-		imagecode1 = imagelookup("client")
+		imagecode = imagelookup("isecompliance")
+		if filename.startswith("cisco-secure-client-linux64-"):
+			imagecode2 = imagelookup("linux")
+			workname = workname.replace("cisco-secure-client-linux64-","")
+			filepath = filepath4(prodcode,imagecode,imagecode2,workname)
+			filemove (filepath, filename)
+	#Cisco Secure Client Posture Module
+	elif (
+		filename.startswith("secure-firewall-posture-")
+	):
+		workname = filename.replace("secure-firewall-posture-","")
+		workname = workname.replace("-k9.pkg","")
+		imagecode = imagelookup("anyconnect_posture")
+		splitbydot = workname.split(".")
+		versionmain = util2digit (splitbydot[0],splitbydot[1])
+		filepath = filepath4(prodcode,imagecode,versionmain,workname)
+		filemove (filepath, filename)
+	#Cisco Secure Client Profile Editor
+	elif (
+		filename.startswith("tools-cisco-secure-client-win-") and
+		filename.endswith("-profileeditor-k9.msi")
+		
+	):
+		workname = filename.replace("tools-cisco-secure-client-win-","")
+		workname = workname.replace("-profileeditor-k9.msi","")
+		imagecode = imagelookup("profileeditor")
+		splitbydot = workname.split(".")
+		versionmain = util2digit (splitbydot[0],splitbydot[1])
+		filepath = filepath4(prodcode,imagecode,versionmain,workname)
+		filemove (filepath, filename)
+	#Cisco Secure Client Transforms
+	elif (
+		filename.startswith("tools-cisco-secure-client-win-") and
+		filename.endswith("-transforms.zip")
+		
+	):
+		workname = filename.replace("tools-cisco-secure-client-win-","")
+		workname = workname.replace("-transforms.zip","")
+		imagecode = imagelookup("transforms")
+		splitbydot = workname.split(".")
+		versionmain = util2digit (splitbydot[0],splitbydot[1])
+		filepath = filepath4(prodcode,imagecode,versionmain,workname)
+		filemove (filepath, filename)
+	#Cisco Secure Client SSO Module
+	elif (
+		filename.startswith("external-sso-") and
+		filename.endswith("-webdeploy-k9.pkg")
+		
+	):
+		workname = filename.replace("external-sso-","")
+		workname = workname.replace("-webdeploy-k9.pkg","")
+		imagecode = imagelookup("external-sso")
+		splitbydot = workname.split(".")
+		versionmain = util2digit (splitbydot[0],splitbydot[1])
+		filepath = filepath4(prodcode,imagecode,versionmain,workname)
+		filemove (filepath, filename)
+	elif (
+		filename.startswith("anyconnect-win-") or
+		filename.startswith("anyconnect-gina-win-") or
+		filename.startswith("anyconnect-wince-ARMv4I-")
+	):
+		workname = filename.replace("anyconnect-win-","")
+		workname = workname.replace("anyconnect-gina-win-","")
+		workname = workname.replace("anyconnect-wince-ARMv4I-","")
+		workname = workname.replace("activesync-","")
+		workname = workname.replace("-k9.pkg","")
+		workname = workname.replace("-k9.cab","")
+		workname = workname.replace("-k9.msi","")
+		workname = workname.replace("-pre-deploy-k9.msi","")
+		workname = workname.replace("-pre-deploy-k9-lang.zip","")
+		workname = workname.replace("-web-deploy-k9-lang.zip","")
+		workname = workname.replace("-web-deploy-k9.exe","")
+		imagecode = imagelookup("client")
+		imagecode2 = imagelookup("windows")
+		splitbydot = workname.split(".")
+		versionmain = util2digit (splitbydot[0],splitbydot[1])
+		filepath = filepath5(prodcode,imagecode,imagecode2,versionmain,workname)
+		filemove (filepath, filename)
+	elif (
+		filename.startswith("anyconnect-linux-") or
+		filename.startswith("cisco-secure-client-linux64-")
+	):
+		workname = filename.replace("anyconnect-linux-","")
+		workname = workname.replace("cisco-secure-client-linux64-","")
+		workname = workname.replace("-webdeploy-k9.pkg","")
+		workname = workname.replace("-predeploy-deb-k9.tar.gz","")
+		workname = workname.replace("-predeploy-rpm-k9.tar.gz","")
+		workname = workname.replace("-predeploy-k9.tar.gz","")
+		workname = workname.replace("-k9.pkg","")
+		workname = workname.replace("-k9.tar.gz","")
+		imagecode = imagelookup("client")
 		imagecode2 = imagelookup("linux")
-		if "isecompliance" in filename:
-			imagecode3 = imagelookup("isecompliance")
-			sec_anyconnect_file_setup_subcode_first (debug1,filename,workname,imagecode3,imagecode2)
-		elif "nvm" in filename:
-			imagecode3 = imagelookup("nvm")
-			sec_anyconnect_file_setup_subcode_verlast (debug1,filename,workname,imagecode3,imagecode2)
-		elif "predeploy" in filename:
-			imagecode3 = imagelookup("predeploy")
-			sec_anyconnect_file_setup_subcode_three (debug1,filename,workname,imagecode1,imagecode2,imagecode3)
-		elif "vpnapi" in filename:
-			imagecode3 = imagelookup("vpnapi")
-			sec_anyconnect_file_setup_subcode_verlast (debug1,filename,workname,imagecode3,imagecode2)
+		splitbydot = workname.split(".")
+		versionmain = util2digit (splitbydot[0],splitbydot[1])
+		filepath = filepath5(prodcode,imagecode,imagecode2,versionmain,workname)
+		filemove (filepath, filename)
+	elif (
+		filename.startswith("anyconnect-macosx-powerpc-") or
+		filename.startswith("anyconnect-macosx-i386-")
+	):
+		workname = filename.replace("anyconnect-macosx-powerpc-","")
+		workname = workname.replace("anyconnect-macosx-i386-","")
+		workname = workname.replace("-k9.pkg","")
+		workname = workname.replace("-k9.tar.gz","")
+		imagecode = imagelookup("client")
+		imagecode2 = imagelookup("macintosh")
+		splitbydot = workname.split(".")
+		versionmain = util2digit (splitbydot[0],splitbydot[1])
+		filepath = filepath5(prodcode,imagecode,imagecode2,versionmain,workname)
+		filemove (filepath, filename)
 
-#Anyconnect Setup File Paths and Moving
-def sec_anyconnect_file_setup (debug1,filename,version_file,imagecode): 
-	if debug1:
-		print("\tSubroutine#\tsec_anyconnect_file_setup")
-	prodname = product("anyconnect")
-	splitbydot = version_file.split(".")
-	ver2 = util2digit (splitbydot[0],splitbydot[1])
-	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-	filepath = filepath4(prodname,imagecode,ver2,ver3)
-	filemove (filepath, filename)
 
-#Anyconnect Setup File Paths and Moving with subimagecode
-def sec_anyconnect_file_setup_subcode_verlast (debug1,filename,version_file,imagecode,subimagecode):
-	if debug1:
-		print("\tSubroutine#\tsec_anyconnect_file_setup_subcode")
-	prodname = product("anyconnect")
-	splitbydot = version_file.split(".")
-	ver2 = util2digit (splitbydot[0],splitbydot[1])
-	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-	filepath = filepath5(prodname,imagecode,subimagecode,ver2,ver3)
-	filemove (filepath, filename)
-#Anyconnect Setup File Paths and Moving with subimagecode
-def sec_anyconnect_file_setup_subcode_three (debug1,filename,version_file,imagecode1,imagecode2,imagecode3):
-	if debug1:
-		print("\tSubroutine#\tsec_anyconnect_file_setup_subcode")
-	prodname = product("anyconnect")
-	splitbydot = version_file.split(".")
-	ver2 = util2digit (splitbydot[0],splitbydot[1])
-	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-	filepath = filepath6(prodname,imagecode1,imagecode2,ver2,ver3,imagecode3)
-	filemove (filepath, filename)
-
-#Anyconnect Setup File Paths and Moving with subimagecode first
-def sec_anyconnect_file_setup_subcode_first (debug1,filename,version_file,imagecode,subimagecode):
-	if debug1:
-		print("\tSubroutine#\tsec_anyconnect_file_setup_subcode_first")
-	prodname = product("anyconnect")
-	splitbydot = version_file.split(".")
-	ver2 = util2digit (splitbydot[0],splitbydot[1])
-	ver3 = util3digit (splitbydot[0],splitbydot[1],splitbydot[2])
-	filepath = filepath5(prodname,subimagecode,imagecode,ver2,ver3)
-	filemove (filepath, filename)
 
 def sec_fp1k (debug1,filename): #Firepower 1010/11xx Firewalls
 	if debug1:
@@ -2551,6 +2788,7 @@ def sec_asa_firmware (debug1,filename):
 	filename.startswith("asa9") or 
 	filename.startswith("asav9") or 
 	filename.startswith("asac9") or 
+	filename.startswith("asac-9") or 
 	filename.startswith("asa871")
 	):
 		prodname = product ("asa")
@@ -2591,7 +2829,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 	if debug1:
 		print("\tSubroutine#\tsec_asa_firmware_v9")
 	splitbydash = filename.split("-")
-#	print (len(splitbydash), end="\n")
+	print (len(splitbydash), end="\n")
 
 	if (
 	filename == "asa9101-smp-k8.bin" or 
@@ -2600,6 +2838,19 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 	filename == "asav9101.zip"
 	):
 		filepath = filepath3 (prodname,"9.10","9.10.1")
+		filemove (filepath, filename)
+
+	elif (
+		filename.startswith("asac")
+	):
+		workname = filename.replace("asac-", "")
+		workname = workname.replace("asac", "")
+		workname = workname.replace("-app-SPA.tar", "")
+		workname = workname.replace(".tar", "")
+		workname = workname.replace("-", ".") #converting all dashes to dots to simplify logic
+		splitbydot = filename.split(".")
+		vertwo = util2digit(splitbydot[0],splitbydot[1])
+		filepath = filepath3 (prodname,vertwo,workname)
 		filemove (filepath, filename)
 
 	elif len(splitbydash) == 1:
@@ -2763,6 +3014,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 		elif (
 		splitbydash[0] == "asav9" or
 		splitbydash[0] == "asac9" or
+		splitbydash[0] == "asac-" or
 		splitbydash[0] == "asa9"
 		):
 			workname = filename.replace(".qcow2", "")
@@ -2771,6 +3023,7 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 			workname = workname.replace(".tar", "")
 			workname = workname.replace(".vhd.bz2", "")
 			workname = workname.replace("asav", "")
+			workname = workname.replace("asac-", "")
 			workname = workname.replace("asac", "")
 			workname = workname.replace("asa", "")
 			workname = workname.replace("-smp-k8.bin", "")
@@ -2838,7 +3091,8 @@ def sec_asa_firmware_v9 (debug1,filename,prodname):
 			verfour = util4digit(mysplitdashworkname[0],mysplitdashworkname[1],mysplitdashworkname[2],mysplitdashworkname[3])
 			filepath = filepath4 (prodname,imagecode,vertwo,verfour)
 			filemove (filepath, filename)
-
+			
+	
 	else:
 		messageunknownfile()
 
@@ -3229,6 +3483,13 @@ def sec_ise (debug1,filename):
 		utilssinglemove (debug1,filename,prodname,imagecode)
 
 	elif (
+	filename == "ise-upgradebundle-2.4.x-2.7.x-to-3.0.0.458.SPA.x86_64.tar.gz"
+	):
+		imagecode = imagelookup("upgrade")
+		imagecode = "3.0/" + imagecode
+		utilssinglemove (debug1,filename,prodname,imagecode)
+
+	elif (
 	filename == "ise-upgradebundle-2.6.x-3.0.x-to-3.1.0.518.SPA.x86_64.tar.gz"
 	):
 		imagecode = imagelookup("upgrade")
@@ -3275,7 +3536,8 @@ def sec_ise (debug1,filename):
 		sec_ise_install (debug1,filename,prodname,imagecode)
 
 	elif (
-	filename.startswith("ise-upgradebundle-")
+	filename.startswith("ise-upgradebundle-") or 
+	filename.startswith("ise-appbundle-")
 	):
 		imagecode = imagelookup("upgrade")
 		sec_ise_upgrade (debug1,filename,prodname,imagecode)
@@ -3321,56 +3583,153 @@ def sec_ise_spw (debug1,filename,prodname,imagecode):
 	workname = workname.replace("-isebundle.zip","")
 	splitbydot = workname.split(".")
 	vertwo = util2digit(splitbydot[0],splitbydot[1])
+
+	if (
+	filename == "win_spw-1.0.0.23-isebundle.zip" or
+	filename == "mac-spw-1.0.0.11.zip" or
+	filename == "win_spw-1.0.0.22-isebundle.zip"
+	):
+		vertwo = "1.1.1"
+	elif (
+	filename == "win_spw-1.0.0.33-isebundle.zip" or
+	filename == "mac-spw-1.0.0.18.zip" or
+	filename == "win_spw-1.0.0.28-isebundle.zip"
+	):
+		vertwo = "1.1.3"
+	elif (
+	filename == "mac-spw-1.0.0.21.zip" or
+	filename == "mac-spw-dmg-1.0.0.27-isebundle.zip" or
+	filename == "mac-spw-dmg-1.0.0.29-isebundle.zip" or
+	filename == "spw-1.2.39.apk" or
+	filename == "win_spw-1.0.0.34-isebundle.zip" or
+	filename == "win_spw-1.0.0.35-isebundle.zip" or
+	filename == "win_spw-1.0.0.41-isebundle.zip"
+	):
+		vertwo = "1.2"
+	elif (
+	filename == "mac-spw-dmg-1.0.0.30-isebundle.zip" or
+	filename == "spw-1.2.40.apk" or
+	filename == "win_spw-1.0.0.43-isebundle.zip"
+	):
+		vertwo = "1.3"
+	elif (
+	filename == "mac-spw-dmg-1.0.0.36-isebundle.zip" or
+	filename == "mac-spw-dmg-2.0.2.37-isebundle.zip" or
+	filename == "win_spw-2.0.1.46-isebundle.zip" or
+	filename == "spw-1.2.46.apk"
+	):
+		vertwo = "2.0"
+	elif (
+	filename == "mac-spw-dmg-2.1.0.42-isebundle.zip" or
+	filename == "mac-spw-dmg-2.1.0.40-isebundle.zip" or
+	filename == "win_spw-2.1.0.51-isebundle.zip"
+	):
+		vertwo = "2.1"
+	elif (
+	filename == "win_spw-2.2.0.52-isebundle.zip"
+	):
+		vertwo = "2.2"
+	elif (
+	filename == "win_spw-2.2.1.53-isebundle.zip" or
+	filename == "mac-spw-dmg-2.2.1.43-isebundle.zip"
+	):
+		vertwo = "2.3"
+	elif filename == "win_spw-2.4.0.1-isebundle.zip":
+		vertwo = "2.4"
+	elif (
+	filename == "mac-spw-dmg-2.6.0.2-isebundle.zip" or
+	filename == "mac-spw-dmg-2.6.0.1-isebundle.zip" or
+	filename == "mac-spw-dmg-2.5.0.7-isebundle.zip"
+	):
+		vertwo = "2.6"
+	elif (
+	filename == "mac-spw-dmg-3.1.0.2-isebundle.zip" or
+	filename == "mac-spw-dmg-3.1.0.1-isebundle.zip" or
+	filename == "win_spw-3.0.0.2-isebundle.zip" or
+	filename == "win_spw-2.7.0.1-isebundle.zip" or
+	filename == "mac-spw-dmg-2.7.0.1-isebundle.zip"
+	):
+		vertwo = "2.7"
+	elif (
+	filename == "mac-spw-dmg-2.7.0.1-isebundle-v1.zip" or 
+	filename == "win_spw-3.0.0.2-isebundle-v1.zip"
+	):
+		vertwo = "3.0"
+	elif (
+	filename == "mac-spw-dmg-3.2.0.1-isebundle.zip"
+	):
+		vertwo = "3.1"
+	elif (
+	filename == "mac-spw-dmg-3.4.0.0-isebundle.zip" or 
+	filename == "win_spw-3.0.0.2-isebundle-v1.zip"
+	):
+		vertwo = "3.3"
 	filepath = filepath3 (prodname,vertwo,imagecode)
 	filemove (filepath, filename)
+
 
 def sec_ise_upgrade (debug1,filename,prodname,imagecode):
 	if debug1:
 		print("\tSubroutine#\tsec_ise_upgrade")
-
-	if filename =="ise-upgradebundle-1.4.x-to-2.2.0.470.1808.x86_64.tar.gz":
-		vertwo = "2.2"
-
-	elif filename =="ise-upgradebundle-2.0.x-2.3.x-to-2.4.0.357.SPA.x86_64.tar.gz":
-		vertwo = "2.4"
-
-	elif filename =="ise-upgradebundle-2.0.x-to-2.1.0.474.SPA.x86_64.tar.gz":
+		
+	if filename == "ise-appbundle-1.1.1.268.i386.tar.gz":
+		vertwo = "1.1.1"
+	elif filename == "ise-appbundle-1.1.2.145.i386.tar.gz":
+		vertwo = "1.1.2"
+	elif filename == "ise-appbundle-1.1.3.124.i386.tar.gz":
+		vertwo = "1.1.3"
+	elif filename == "ise-appbundle-1.1.4.218.i386.tar.gz":
+		vertwo = "1.1.4"
+	elif (
+		filename == "ise-upgradebundle-1.1.x-to-1.2.0.899.i386.tar.gz" or
+		filename == "ise-upgradebundle-1.2.0.899.x86_64.tar.gz"
+	):
+		vertwo = "1.2"
+	elif (
+		filename == "ise-upgradebundle-1.1.x-to-1.2.1.198.i386.tar.gz" or
+		filename == "ise-upgradebundle-1.2.1.198.x86_64.tar.gz"
+	):
+		vertwo = "1.2.1"
+	elif (
+		filename == "ise-upgradebundle-1.2.x-to-1.3.0.876.repackaged.x86_64.tar.gz"
+	):
+		vertwo = "1.3"
+	elif (
+		filename == "ise-upgradebundle-1.2.x-to-1.4.0.253.x86_64.tar.gz" or
+		filename == "ise-upgradebundle-1.4.0.253.x86_64.tar.gz"
+	):
+		vertwo = "1.4"
+	elif (
+		filename == "ise-upgradebundle-1.3.x-1.4.x-to-2.1.0.474.1808.x86_64.tar.gz" or
+		filename == "ise-upgradebundle-2.0.x-to-2.1.0.474.SPA.x86_64.tar.gz"
+	):
 		vertwo = "2.1"
-
-	elif filename =="ise-upgradebundle-2.0.x-to-2.2.0.470.1808.SPA.x86_64.tar.gz":
+	elif (
+		filename == "ise-upgradebundle-1.4.x-to-2.2.0.470.1808.x86_64.tar.gz" or
+		filename == "ise-upgradebundle-2.0.x-to-2.2.0.470.1808.SPA.x86_64.tar.gz" or
+		filename == "ise-upgradebundle-2.0.x-to-2.2.0.470.SPA.x86_64.tar.gz" or
+		filename == "ise-upgradebundle-2.2.0.470.1808.SPA.x86_64.tar.gz" or
+		filename == "ise-upgradebundle-2.2.0.470.SPA.x86_64.tar.gz"
+	):
 		vertwo = "2.2"
-
-	elif filename =="ise-upgradebundle-2.0.x-to-2.2.0.470.SPA.x86_64.tar.gz":
-		vertwo = "2.2"
-
-	elif filename =="ise-upgradebundle-2.0.x-to-2.3.0.298.1808.SPA.x86_64.tar.gz":
+	elif (
+	filename == "ise-upgradebundle-2.0.x-to-2.3.0.298.1808.SPA.x86_64.tar.gz" or
+	filename == "ise-upgradebundle-2.3.0.298.SPA.x86_64.tar.gz"
+	):
 		vertwo = "2.3"
-
-	elif filename =="ise-upgradebundle-2.1.x-2.4.x-to-2.6.0.156.SPA.x86_64.tar.gz":
+	elif filename == "ise-upgradebundle-2.0.x-2.3.x-to-2.4.0.357.SPA.x86_64.tar.gz":
+		vertwo = "2.4"
+	elif filename == "ise-upgradebundle-2.1.x-2.4.x-to-2.6.0.156.SPA.x86_64.tar.gz":
 		vertwo = "2.6"
-
-	elif filename =="ise-upgradebundle-2.2.0.470.1808.SPA.x86_64.tar.gz":
-		vertwo = "2.2"
-
-	elif filename =="ise-upgradebundle-2.2.0.470.SPA.x86_64.tar.gz":
-		vertwo = "2.2"
-
-	elif filename =="ise-upgradebundle-2.2.x-2.6.x-to-2.7.0.356.SPA.x86_64.tar.gz":
+	elif filename == "ise-upgradebundle-2.2.x-2.6.x-to-2.7.0.356.SPA.x86_64.tar.gz":
 		vertwo = "2.7"
-
-	elif filename =="ise-upgradebundle-2.3.0.298.SPA.x86_64.tar.gz":
-		vertwo = "2.3"
-
-	elif filename =="ise-upgradebundle-2.6.x-3.0.x-to-3.1.0.518b.SPA.x86_64.tar.gz":
+	elif filename == "ise-upgradebundle-2.6.x-3.0.x-to-3.1.0.518b.SPA.x86_64.tar.gz":
 		vertwo = "3.1"
-
-	elif filename =="ise-upgradebundle-2.7.x-3.1.x-to-3.2.0.542b.SPA.x86_64.tar.gz":
+	elif filename == "ise-upgradebundle-2.7.x-3.1.x-to-3.2.0.542b.SPA.x86_64.tar.gz":
 		vertwo = "3.2"
-
-	elif filename =="ise-upgradebundle-3.0.x-3.2.x-to-3.3.0.430b.SPA.x86_64.tar.gz":
+	elif filename == "ise-upgradebundle-3.0.x-3.2.x-to-3.3.0.430b.SPA.x86_64.tar.gz":
 		vertwo = "3.3"
-
-	elif filename =="ise-upgradebundle-3.1.x-3.3.x-to-3.4.0.608a.SPA.x86_64.tar.gz":
+	elif filename == "ise-upgradebundle-3.1.x-3.3.x-to-3.4.0.608a.SPA.x86_64.tar.gz":
 		vertwo = "3.4"
 	filepath = filepath3 (prodname,vertwo,imagecode)
 	filemove (filepath, filename)
@@ -3417,8 +3776,8 @@ def sec_ise_pic (debug1,filename):
 	if debug1:
 		print("\tSubroutine#\tsec_ise_pic")
 	prodname = product ("isepic")
-	workname = filename.replace("ise-pic-","")
-	workname = workname.replace("ise-pic-patchbundle-","")
+	workname = filename.replace("ise-pic-patchbundle-","")
+	workname = workname.replace("ise-pic-","")
 	workname = workname.replace("Cisco-ISE-PIC-","")
 	workname = workname.replace("pic-","")
 	workname = workname.replace(".SPA.x86_64.iso","")
@@ -3433,7 +3792,7 @@ def sec_ise_pic (debug1,filename):
 		filemove (filepath, filename)
 	else:
 		splitbydot = workname.split(".")
-		version = splitbydash[2]
+		version = util2digit(splitbydot[0],splitbydot[1])
 		imagecode = imagelookup("install")
 		filepath = filepath3 (prodname,version,imagecode)
 		filemove (filepath, filename)

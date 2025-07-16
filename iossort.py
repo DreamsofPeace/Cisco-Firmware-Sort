@@ -1152,7 +1152,9 @@ def toplevel(filename):
 		name.startswith("vg420") or
 		name.startswith("vg450") or
 		name.startswith("appqoe") or
-		name.startswith("isr1100")
+		name.startswith("isr1100") or
+		name.startswith("C8000-1N") or
+		name.startswith("C8000-2N2S")
 		):
 			fileprocessor_iosxe(debug1,name)
 
@@ -1246,6 +1248,7 @@ def toplevel(filename):
 		name.startswith("PIX") and name.endswith(".bin") or
 		name.startswith("PIX") or
 		name.startswith("SNS-35x5") or
+		name.startswith("SNS-35xx") or
 		name.startswith("SNS-36xx") or
 		name.startswith("SNS-37xx") or
 		name.startswith("SSM_On-Prem") or
@@ -1306,6 +1309,7 @@ def toplevel(filename):
 		name.startswith("tools-anyconnect") or
 		name.startswith("tools-cisco-secure-client") or
 		name.startswith("upd-pkg-SNS-35x5-cimc") or
+		name.startswith("upd-pkg-SNS-35xx") or
 		name.startswith("upd-pkg-SNS-36xx-cimc") or
 		name.startswith("update-") and name.endswith ("-major-K9.zip") or
 		name.startswith("vpn3000") or
@@ -1606,6 +1610,11 @@ def toplevel(filename):
 		):
 			prodname = product ("cat3000")
 			utilssingleprodname (debug1,name,prodname)
+
+		elif (
+		name.startswith("c6svc-mp")
+		):
+			fileprocessorios (debug1,name)
 
 		elif (
 		name.startswith("CPO") and name.endswith("zip") or
