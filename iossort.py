@@ -353,7 +353,7 @@ def toplevel(filename):
         splitbydot = name.split(".")
         splitbydash = name.split("-")
         splitbydashsub = splitbydot[0].split("-")
-        
+
         thisstring = splitbydot.pop()
         splitbydot.append(thisstring)
 
