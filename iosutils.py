@@ -1,15 +1,20 @@
 import os
+import re
 import shutil
 import logging
+import warnings
+from typing import Optional
 
-def filemove (newpath, filename):
-    if not os.path.exists(newpath):
-        os.makedirs(newpath)
+def filemove(new_path, file_name):
+    """Move a file to a new directory, creating the directory if it doesn't exist."""
+    os.makedirs(new_path, exist_ok=True)
+    
     try:
-        shutil.move(filename, newpath)
-    except:
-        logging.debug("Unable to move file.")
-#        print("There is a file with the same name at the destination!.")
+        shutil.move(file_name, new_path)
+        logging.debug(f"File '{file_name}' to '{new_path}'")
+    except Exception as e:
+        logging.debug(f"Unable to move file '{file_name}' to '{new_path}': {e}")
+
 
 def iostrain(train, version):
     prefixes = [
@@ -224,6 +229,7 @@ def imagelookup(imagecode):
         "C819GWLTEMNAAK9": "C819GW-LTE-MNA-AK9",
         "capacity-emulator": "CAPACITY-EMULATOR",
         "cat9k_iosxe": "UNIVERSAL",
+        "cisco9k_iosxe": "UNIVERSAL",
         "cat9k_iosxe_npe": "UNIVERSAL-NPE",
         "cat9k_iosxeldpe": "UNIVERSAL-NO-DTLS",
         "cat9k_lite_iosxe": "UNIVERSAL-LITE",
@@ -435,6 +441,9 @@ def imagelookup(imagecode):
         "ino3s3": "IP-IPX-FW-IDS-PLUS-BASIC",
         "ins": "IP-IPX-PLUS",
         "install": "INSTALL",
+        "install-esxi":  "INSTALL-ESXi",
+        "install-nfvis": "INSTALL-NFVIS",
+        "install-kvm":   "INSTALL-KVM",
         "installer": "INSTALLER",
         "installer-ase": "INSTALLER-ASE",
         "inu": "NETWORK-LAYER-3-SWITCHING",
@@ -716,6 +725,7 @@ def imagelookup(imagecode):
         "p7": "SERVICE-PROVIDER-WITH-PT-TARP",
         "p9": "SERVICE-PROVIDER-PLUS",
         "patch": "PATCH",
+        "pagent": "PACKET GENERATOR",
         "pdm": "PIX-DEVICE-MANAGER",
         "pixpasswordrecovery": "PASSWORD-RECOVERY",
         "PIXtoASA": "PIX-TO-ASA",
@@ -913,7 +923,9 @@ def imagelookup(imagecode):
         "y1": "IP",
         "y2": "IP-OSPF-PIM",
         "y6": "IP",
-        "y7": "IP-ADSL"
+        "y7": "IP-ADSL",
+        "ncs500x-nV": "NCS500x-SATELLITE",
+        "vsm": "Virtual Services Module",
     }
     return imagecode_to_subdirectory.get(imagecode, "UNKNOWN")
 
@@ -970,6 +982,7 @@ def product(prodcode):
         "asr903rsp2": "ROUTERS/ASR/ASR-903-RSP2",
         "asr920": "ROUTERS/ASR/ASR-920",
         "asr920igp": "ROUTERS/ASR/ASR-920IGP",
+        "ncs540": "ROUTERS/NCS/NCS-540",
         "urm": "ROUTERS/ATM/IGX-8400",
         "rpm": "ROUTERS/ATM/MGX-8850",
         "rpmxf": "ROUTERS/ATM/MGX-8850",
@@ -1068,14 +1081,14 @@ def product(prodcode):
         "ISRG1GENERIC": "ROUTERS/ISRG1/MODULES",
         "c1900": "ROUTERS/ISRG2/1900",
         "c1900-2900": "ROUTERS/ISRG2/1900-2900",
-        "c1900c": "ROUTERS/ISRG2/1900-CHINA",
-        "c2900": "ROUTERS/ISRG2/2900",
-        "c2911a": "ROUTERS/ISRG2/2911a",
-        "c2951": "ROUTERS/ISRG2/2951",
-        "c3900": "ROUTERS/ISRG2/3900",
-        "c3900e": "ROUTERS/ISRG2/3900E",
-        "c800m": "ROUTERS/ISRG2/800m",
-        "c800j": "ROUTERS/ISRG2/800J",
+        "c1900c":  "ROUTERS/ISRG2/1900-CHINA",
+        "c2900":   "ROUTERS/ISRG2/2900",
+        "c2911a":  "ROUTERS/ISRG2/2911a",
+        "c2951":   "ROUTERS/ISRG2/2951",
+        "c3900":   "ROUTERS/ISRG2/3900",
+        "c3900e":  "ROUTERS/ISRG2/3900E",
+        "c800m":   "ROUTERS/ISRG2/800m",
+        "c800j":   "ROUTERS/ISRG2/800J",
         "c860vae": "ROUTERS/ISRG2/860-VAE",
         "c860vae2": "ROUTERS/ISRG2/860-VAE2",
         "c860vaej": "ROUTERS/ISRG2/860-VAEJ",
@@ -1107,28 +1120,31 @@ def product(prodcode):
         "c3230": "ROUTERS/RUGGED/3230",
         "c3250": "ROUTERS/RUGGED/3250",
         "c3270": "ROUTERS/RUGGED/3270",
-        "ncs4201": "ROUTERS/SP/NCS4201",
-        "ncs4202": "ROUTERS/SP/NCS4202",
-        "c10k": "ROUTERS/SP/10000/PRE1",
-        "c10k2": "ROUTERS/SP/10000/PRE2",
-        "c10k3": "ROUTERS/SP/10000/PRE3",
-        "c10k4": "ROUTERS/SP/10000/PRE4",
-        "c10700": "ROUTERS/SP/10700",
-        "c12k": "ROUTERS/SP/12000",
-        "c12kprp": "ROUTERS/SP/12000",
-        "gsr": "ROUTERS/SP/12000",
-        "XR12000": "ROUTERS/SP/12000-XR",
-        "c7000": "ROUTERS/SP/7000",
-        "c7100": "ROUTERS/SP/7100",
-        "c7200": "ROUTERS/SP/7200/NPEG1",
-        "c7200p": "ROUTERS/SP/7200/NPEG2",
-        "c7300": "ROUTERS/SP/7300",
-        "c7301": "ROUTERS/SP/7301",
-        "c7304": "ROUTERS/SP/7304",
-        "spa": "ROUTERS/SP/7304",
-        "c7400": "ROUTERS/SP/7400",
-        "rsp": "ROUTERS/SP/7500",
-        "c7600": "ROUTERS/SP/7600",
+        "ncs4201":  "ROUTERS/SP/NCS4201",
+        "ncs4202":  "ROUTERS/SP/NCS4202",
+        "c81g2be":  "ROUTERS/Secure 8000/Secure 8100 - Gen 2",
+        "c8kg2be":  "ROUTERS/Secure 8000/Secure 8200-8300 - Gen 2",
+        "c84g2aes": "ROUTERS/Secure 8000/Secure 8400 - Gen 2",
+        "c10k":     "ROUTERS/SP/10000/PRE1",
+        "c10k2":    "ROUTERS/SP/10000/PRE2",
+        "c10k3":    "ROUTERS/SP/10000/PRE3",
+        "c10k4":    "ROUTERS/SP/10000/PRE4",
+        "c10700":   "ROUTERS/SP/10700",
+        "c12k":     "ROUTERS/SP/12000",
+        "c12kprp":  "ROUTERS/SP/12000",
+        "gsr":      "ROUTERS/SP/12000",
+        "XR12000":  "ROUTERS/SP/12000-XR",
+        "c7000":    "ROUTERS/SP/7000",
+        "c7100":    "ROUTERS/SP/7100",
+        "c7200":    "ROUTERS/SP/7200/NPEG1",
+        "c7200p":   "ROUTERS/SP/7200/NPEG2",
+        "c7300":    "ROUTERS/SP/7300",
+        "c7301":    "ROUTERS/SP/7301",
+        "c7304":    "ROUTERS/SP/7304",
+        "spa":      "ROUTERS/SP/7304",
+        "c7400":    "ROUTERS/SP/7400",
+        "rsp":      "ROUTERS/SP/7500",
+        "c7600":    "ROUTERS/SP/7600",
         "c7600rsp72043": "ROUTERS/SP/7600/RSP720",
         "rsp72043": "ROUTERS/SP/7600/RSP720",
         "c7svcsami": "ROUTERS/SP/7600/SAMI",
@@ -1141,26 +1157,26 @@ def product(prodcode):
         "iosxrvdemo": "ROUTERS/VIRTUAL/IOS-XRv",
         "iosxrvfull": "ROUTERS/VIRTUAL/IOS-XRv9000",
         "xrvcontainer": "ROUTERS/VIRTUAL/IOS-XRv-CONTAINER",
-        "csa": "SECURITY/CISCO-SECURITY-AGENT",
-        "csm": "SECURITY/CISCO-SECURITY-MANAGER",
-        "asa": "SECURITY/FIREWALL/ASA",
-        "asacx": "SECURITY/FIREWALL/ASA-CX-MODULE",
-        "c6svc-fwm": "SECURITY/FIREWALL/CATALYST-6500-FWSM",
-        "firepower": "SECURITY/FIREWALL/FirePOWER",
-        "firepower1k": "SECURITY/FIREWALL/FirePOWER/FIREPOWER-1xxx",
-        "firepower2k": "SECURITY/FIREWALL/FirePOWER/FIREPOWER-2xxx",
-        "firepower3k": "SECURITY/FIREWALL/FirePOWER/FIREPOWER-3xxx",
-        "firepower4k9k": "SECURITY/FIREWALL/FirePOWER/FIREPOWER-4xxx-9xxx",
-        "firepower4200": "SECURITY/FIREWALL/FirePOWER/FIREPOWER-42xx",
-        "firepowerisa3000": "SECURITY/FIREWALL/FirePOWER/ISA-3000",
-        "firepowertd": "SECURITY/FIREWALL/FirePOWER/VIRTUAL-FIREWALL",
-        "firepowerfmc": "SECURITY/FIREWALL/FirePOWER/FIREPOWER-MANAGEMENT-CENTER",
-        "pix": "SECURITY/FIREWALL/PIX",
-        "acs": "SECURITY/IDENTITY/ACS",
-        "ise": "SECURITY/IDENTITY/IDENTITY-SERVICES-ENGINE",
-        "isepic": "SECURITY/IDENTITY/IDENTITY-SERVICES-ENGINE-PIC",
+        "csa":                 "SECURITY/CISCO-SECURITY-AGENT",
+        "csm":                 "SECURITY/CISCO-SECURITY-MANAGER",
+        "asa":                 "SECURITY/FIREWALL/ASA",
+        "asacx":               "SECURITY/FIREWALL/ASA-CX-MODULE",
+        "c6svc-fwm":           "SECURITY/FIREWALL/CATALYST-6500-FWSM",
+        "firepower":           "SECURITY/FIREWALL/FirePOWER",
+        "firepower1k":         "SECURITY/FIREWALL/FirePOWER/FIREPOWER-1xxx",
+        "firepower2k":         "SECURITY/FIREWALL/FirePOWER/FIREPOWER-2xxx",
+        "firepower3k":         "SECURITY/FIREWALL/FirePOWER/FIREPOWER-3xxx",
+        "firepower4k9k":       "SECURITY/FIREWALL/FirePOWER/FIREPOWER-4xxx-9xxx",
+        "firepower4200":       "SECURITY/FIREWALL/FirePOWER/FIREPOWER-42xx",
+        "firepowerisa3000":    "SECURITY/FIREWALL/FirePOWER/ISA-3000",
+        "firepowertd":         "SECURITY/FIREWALL/FirePOWER/VIRTUAL-FIREWALL",
+        "firepowerfmc":        "SECURITY/FIREWALL/FirePOWER/FIREPOWER-MANAGEMENT-CENTER",
+        "pix":      "SECURITY/FIREWALL/PIX",
+        "acs":      "SECURITY/IDENTITY/ACS",
+        "ise":      "SECURITY/IDENTITY/IDENTITY-SERVICES-ENGINE",
+        "isepic":   "SECURITY/IDENTITY/IDENTITY-SERVICES-ENGINE-PIC",
         "ciscoutd": "SECURITY/IOS-XE-UTD",
-        "ipsids": "SECURITY/IDS-IPS",
+        "ipsids":   "SECURITY/IDS-IPS",
         "ipsidsnm": "ROUTER-NM",
         "ipsidsasa5585xssp10": "ASA5585-X-SSP_10",
         "ipsidsasa5585xssp20": "ASA5585-X-SSP_20",
@@ -1171,46 +1187,46 @@ def product(prodcode):
         "ipsidsasa5525xssp": "ASA5525-X",
         "ipsidsasa5545xssp": "ASA5545-X",
         "ipsidsasa5555xssp": "ASA5555-X",
-        "ipsidsasassc": "ASA-AIPSSC",
+        "ipsidsasassc":   "ASA-AIPSSC",
         "ipsidsasassm10": "ASA-AIPSSM-10",
         "ipsidsasassm20": "ASA-AIPSSM-20",
         "ipsidsasassm40": "ASA-AIPSSM-40",
         "ipsidsipsadsm2": "IPS-Catalyst-6500-IDSM2",
-        "ipsidsipsaim": "IPS-AIM",
-        "ipsidsips4215": "IPS-4215",
-        "ipsidsips4240": "IPS-4240",
-        "ipsidsips4255": "IPS-4255",
-        "ipsidsips4260": "IPS-4260",
-        "ipsidsips4270": "IPS-4270",
-        "ipsidsips4345": "IPS-4345",
-        "ipsidsips4360": "IPS-4360",
-        "ipsidsips4510": "IPS-4510",
-        "ipsidsips4520": "IPS-4520",
-        "iosids": "SECURITY/IOS-IDS",
-        "ironport": "SECURITY/IRONPORT",
-        "mars": "SECURITY/MARS",
-        "vpn3000": "SECURITY/VPN-3000",
-        "anyconnect": "SECURITY/VPN-CLIENTS/ANYCONNECT (CISCO SECURE CLIENT)",
-        "vpnclient": "SECURITY/VPN-CLIENTS/IPSEC-CLIENT",
-        "aci": "SERVERS/APIC",
-        "css": "SERVERS/CSS",
-        "dcnm": "SERVERS/DATA-CENTER-NETWORK-MANAGER",
-        "dnac": "SERVERS/DNAC",
-        "hyperflex": "SERVERS/HYPERFLEX",
-        "onepk": "SERVERS/ONE-PK",
-        "ucsgeneric": "SERVERS/UCS",
-        "smallbusiness": "Small-Business",
-        "c125": "SERVERS/UCS/C-SERIES/C125M5",
-        "c200": "SERVERS/UCS/C-SERIES/C200M1-C200M2-C210M1-C210M2",
-        "c220": "SERVERS/UCS/C-SERIES/C220M3",
-        "c220m4": "SERVERS/UCS/C-SERIES/C220M4",
-        "c220m5": "SERVERS/UCS/C-SERIES/C220M5",
-        "c220m6": "SERVERS/UCS/C-SERIES/C220M6",
-        "c220m7": "SERVERS/UCS/C-SERIES/C220M7",
-        "c225m6": "SERVERS/UCS/C-SERIES/C225M6",
-        "c225m8": "SERVERS/UCS/C-SERIES/C225M8",
-        "c2x": "SERVERS/UCS/C-SERIES/C22M3-C22M4",
-        "c240": "SERVERS/UCS/C-SERIES/C240M3",
+        "ipsidsipsaim":   "IPS-AIM",
+        "ipsidsips4215":  "IPS-4215",
+        "ipsidsips4240":  "IPS-4240",
+        "ipsidsips4255":  "IPS-4255",
+        "ipsidsips4260":  "IPS-4260",
+        "ipsidsips4270":  "IPS-4270",
+        "ipsidsips4345":  "IPS-4345",
+        "ipsidsips4360":  "IPS-4360",
+        "ipsidsips4510":  "IPS-4510",
+        "ipsidsips4520":  "IPS-4520",
+        "iosids":         "SECURITY/IOS-IDS",
+        "ironport":       "SECURITY/IRONPORT",
+        "mars":           "SECURITY/MARS",
+        "vpn3000":        "SECURITY/VPN-3000",
+        "anyconnect":     "SECURITY/VPN-CLIENTS/ANYCONNECT (CISCO SECURE CLIENT)",
+        "vpnclient":      "SECURITY/VPN-CLIENTS/IPSEC-CLIENT",
+        "aci":            "SERVERS/APIC",
+        "css":            "SERVERS/CSS",
+        "dcnm":           "SERVERS/DATA-CENTER-NETWORK-MANAGER",
+        "dnac":           "SERVERS/DNAC",
+        "hyperflex":      "SERVERS/HYPERFLEX",
+        "onepk":          "SERVERS/ONE-PK",
+        "ucsgeneric":     "SERVERS/UCS",
+        "smallbusiness":  "Small-Business",
+        "c125":           "SERVERS/UCS/C-SERIES/C125M5",
+        "c200":           "SERVERS/UCS/C-SERIES/C200M1-C200M2-C210M1-C210M2",
+        "c220":           "SERVERS/UCS/C-SERIES/C220M3",
+        "c220m4":         "SERVERS/UCS/C-SERIES/C220M4",
+        "c220m5":         "SERVERS/UCS/C-SERIES/C220M5",
+        "c220m6":         "SERVERS/UCS/C-SERIES/C220M6",
+        "c220m7":         "SERVERS/UCS/C-SERIES/C220M7",
+        "c225m6":         "SERVERS/UCS/C-SERIES/C225M6",
+        "c225m8":         "SERVERS/UCS/C-SERIES/C225M8",
+        "c2x":            "SERVERS/UCS/C-SERIES/C22M3-C22M4",
+        "c240":           "SERVERS/UCS/C-SERIES/C240M3",
         "c240m4": "SERVERS/UCS/C-SERIES/C240M4",
         "c240m5": "SERVERS/UCS/C-SERIES/C240M5",
         "c240m6": "SERVERS/UCS/C-SERIES/C240M6",
@@ -1237,47 +1253,47 @@ def product(prodcode):
         "ucs": "SERVERS/UCS/",
         "c6400r": "SERVICE-GATEWAY/6400-NSP",
         "c6400r2sp": "SERVICE-GATEWAY/6400-NSP",
-        "c6400s": "SERVICE-GATEWAY/6400-NSP",
-        "ni2": "SERVICE-GATEWAY/6XXX-DSL-Switch",
-        "m9100": "STORAGE/MDS-9100",
-        "m9200": "STORAGE/MDS-9200",
-        "m9250": "STORAGE/MDS-9250",
-        "m9500": "STORAGE/MDS-9500",
-        "m9700": "STORAGE/MDS-9700",
-        "ls1010": "SWITCHES/ATM/Lightspeed-1010",
+        "c6400s":  "SERVICE-GATEWAY/6400-NSP",
+        "ni2":     "SERVICE-GATEWAY/6XXX-DSL-Switch",
+        "m9100":   "STORAGE/MDS-9100",
+        "m9200":   "STORAGE/MDS-9200",
+        "m9250":   "STORAGE/MDS-9250",
+        "m9500":   "STORAGE/MDS-9500",
+        "m9700":   "STORAGE/MDS-9700",
+        "ls1010":  "SWITCHES/ATM/Lightspeed-1010",
         "cbs30x0": "SWITCHES/BLADE-SWITCHES/CATALYST-3000-DELL-Blade",
         "cbs31x0": "SWITCHES/BLADE-SWITCHES/CATALYST-3100-DELL-Blade",
-        "cigesm": "SWITCHES/BLADE-SWITCHES/IBM-Blade-Switch",
-        "cgesm": "SWITCHES/BLADE-SWITCHES/IBM-Blade-Switch",
-        "cmicr": "SWITCHES/CATALYST/Catalyst-Micro-Switches",
+        "cigesm":  "SWITCHES/BLADE-SWITCHES/IBM-Blade-Switch",
+        "cgesm":   "SWITCHES/BLADE-SWITCHES/IBM-Blade-Switch",
+        "cmicr":   "SWITCHES/CATALYST/Catalyst-Micro-Switches",
         "cat1200": "SWITCHES/CATALYST/Catalyst-1200",
         "cat1600": "SWITCHES/CATALYST/Catalyst-1600",
         "cat1900": "SWITCHES/CATALYST/Catalyst-1900",
-        "c2350": "SWITCHES/CATALYST/Catalyst-2350",
-        "c2360": "SWITCHES/CATALYST/Catalyst-2360",
+        "c2350":   "SWITCHES/CATALYST/Catalyst-2350",
+        "c2360":   "SWITCHES/CATALYST/Catalyst-2360",
         "cat2800": "SWITCHES/CATALYST/Catalyst-2800",
-        "c2800": "SWITCHES/CATALYST/Catalyst-2800",
-        "c29atm": "SWITCHES/CATALYST/Catalyst-2900-ATM",
+        "c2800":   "SWITCHES/CATALYST/Catalyst-2800",
+        "c29atm":  "SWITCHES/CATALYST/Catalyst-2900-ATM",
         "c2900XL": "SWITCHES/CATALYST/Catalyst-2900XL",
         "c2900xl": "SWITCHES/CATALYST/Catalyst-2900XL",
-        "c2918": "SWITCHES/CATALYST/Catalyst-2918",
-        "c2928": "SWITCHES/CATALYST/Catalyst-2928",
-        "c2940": "SWITCHES/CATALYST/Catalyst-2940",
+        "c2918":   "SWITCHES/CATALYST/Catalyst-2918",
+        "c2928":   "SWITCHES/CATALYST/Catalyst-2928",
+        "c2940":   "SWITCHES/CATALYST/Catalyst-2940",
         "cat2948g": "SWITCHES/CATALYST/Catalyst-2948G",
-        "c2950": "SWITCHES/CATALYST/Catalyst-2950",
+        "c2950":    "SWITCHES/CATALYST/Catalyst-2950",
         "c2950lre": "SWITCHES/CATALYST/Catalyst-2950-LRE",
-        "c2955": "SWITCHES/CATALYST/Catalyst-2955",
-        "c2960": "SWITCHES/CATALYST/Catalyst-2960",
-        "c2960l": "SWITCHES/CATALYST/Catalyst-2960L",
-        "c2960s": "SWITCHES/CATALYST/Catalyst-2960S",
-        "c2960x": "SWITCHES/CATALYST/Catalyst-2960X",
-        "c2970": "SWITCHES/CATALYST/Catalyst-2970",
-        "c2975": "SWITCHES/CATALYST/Catalyst-2975",
+        "c2955":   "SWITCHES/CATALYST/Catalyst-2955",
+        "c2960":   "SWITCHES/CATALYST/Catalyst-2960",
+        "c2960l":  "SWITCHES/CATALYST/Catalyst-2960L",
+        "c2960s":  "SWITCHES/CATALYST/Catalyst-2960S",
+        "c2960x":  "SWITCHES/CATALYST/Catalyst-2960X",
+        "c2970":   "SWITCHES/CATALYST/Catalyst-2970",
+        "c2975":   "SWITCHES/CATALYST/Catalyst-2975",
         "cat3000": "SWITCHES/CATALYST/Catalyst-3000",
         "c3500xl": "SWITCHES/CATALYST/Catalyst-3500XL",
         "c3500XL": "SWITCHES/CATALYST/Catalyst-3500XL",
-        "c3550": "SWITCHES/CATALYST/Catalyst-3550",
-        "c3560": "SWITCHES/CATALYST/Catalyst-3560",
+        "c3550":   "SWITCHES/CATALYST/Catalyst-3550",
+        "c3560":   "SWITCHES/CATALYST/Catalyst-3560",
         "c3560e": "SWITCHES/CATALYST/Catalyst-3560E",
         "c3560x": "SWITCHES/CATALYST/Catalyst-3560X",
         "c3750": "SWITCHES/CATALYST/Catalyst-3750",
@@ -1312,7 +1328,7 @@ def product(prodcode):
         "c6848x": "SWITCHES/CATALYST/Catalyst-6840-X",
         "c6880x": "SWITCHES/CATALYST/Catalyst-6880-X",
         "c8000be": "ROUTERS/CATALYST/Catalyst-8300-Edge",
-        "c8000aep": "ROUTERS/CATALYST/Catalyst-8500-Edge",
+        "c8000aep": "ROUTERS/CATALYST/Catalyst-8500-Edge - 8500 Gen 2",
         "c8000aes": "ROUTERS/CATALYST/Catalyst-8500L-Edge",
         "cat8510c": "SWITCHES/CATALYST/Catalyst-8510CSR",
         "cat8510m": "SWITCHES/CATALYST/Catalyst-8510MSR",
@@ -1320,6 +1336,7 @@ def product(prodcode):
         "cat8540m": "SWITCHES/CATALYST/Catalyst-8540MSR",
         "cat9k": "SWITCHES/CATALYST/Catalyst-9000",
         "cat9k_lite": "SWITCHES/CATALYST/Catalyst-9200",
+        "cisco9k_iosxe": "SWITCHES/CATALYST/Catalyst-9350",
         "c1000": "SWITCHES/COMPACT/Catalyst-1000",
         "c2960c405": "SWITCHES/COMPACT/Catalyst-2960C",
         "c2960c405ex": "SWITCHES/COMPACT/Catalyst-2960CG",
@@ -1327,18 +1344,20 @@ def product(prodcode):
         "c3560c": "SWITCHES/COMPACT/Catalyst-3560C",
         "c3560c405": "SWITCHES/COMPACT/Catalyst-3560C",
         "c3560c405ex": "SWITCHES/COMPACT/Catalyst-3560CG",
-        "c3560cx": "SWITCHES/COMPACT/Catalyst-3560CX",
-        "cdb": "SWITCHES/COMPACT/CATALYST-DIGITAL-BUILDING",
+        "c3560cx": "SWITCHES/COMPACcat9T/Catalyst-3560CX",
+        "cdb": "SWITCHES/COMPACT/Catalyst-Digital-Building",
         "c2020": "SWITCHES/EMBEDDED/2020",
         "ess3x00": "SWITCHES/EMBEDDED/3300",
         "cgs2520": "SWITCHES/GRID/CGS-2520",
         "grwicdes": "SWITCHES/GRID/CGS-Module",
+        "ie1000": "SWITCHES/INDUSTRIAL-ETHERNET/IE-1000",
         "ie2000": "SWITCHES/INDUSTRIAL-ETHERNET/IE-2000",
         "ie2000u": "SWITCHES/INDUSTRIAL-ETHERNET/IE-2000U",
         "ies": "SWITCHES/INDUSTRIAL-ETHERNET/IE-3000",
         "ie3010": "SWITCHES/INDUSTRIAL-ETHERNET/IE-3010",
         "ie31xx": "SWITCHES/INDUSTRIAL-ETHERNET/IE-3100",
         "ie3x00": "SWITCHES/INDUSTRIAL-ETHERNET/IE-3x00",
+        "ie35xx": "SWITCHES/INDUSTRIAL-ETHERNET/IE-3500",
         "ie4000": "SWITCHES/INDUSTRIAL-ETHERNET/IE-4000",
         "ie4010": "SWITCHES/INDUSTRIAL-ETHERNET/IE-4010",
         "ie5000": "SWITCHES/INDUSTRIAL-ETHERNET/IE-5000",
@@ -1456,6 +1475,7 @@ def product(prodcode):
         "ap1g6": "WIRELESS/ACCESS-POINT/AIRONET-AP1G6-(c9117)",
         "ap1g6a": "WIRELESS/ACCESS-POINT/AIRONET-AP1G6a-(c9130)",
         "ap1g7": "WIRELESS/ACCESS-POINT/AIRONET-AP1G7-(C9115-9120)",
+        "ap1g8": "WIRELESS/Access-Point/Aironet-AP1G8 (9105i)",
         "ap3g1": "WIRELESS/ACCESS-POINT/AIRONET-AP3G1-(1260,3500)",
         "ap3g2": "WIRELESS/ACCESS-POINT/AIRONET-AP3G2-(1600,1700,2600,2700,3600,3700)",
         "c3700": "WIRELESS/ACCESS-POINT/AIRONET-AP3G2-(1600,1700,2600,2700,3600,3700)",
@@ -1484,8 +1504,8 @@ def product(prodcode):
         "WISM2": "WIRELESS/CONTROLLER/CATALYST-6500-WISM2",
         "C9800-40": "WIRELESS/CONTROLLER/CATALYST-9800-40",
         "C9800-80": "WIRELESS/CONTROLLER/CATALYST-9800-80",
-        "C9800-AP": "WIRELESS/ACCESS-POINT/CATALYST-9800-ACCESS-POINTS",
-        "C9800-APC": "WIRELESS/CONTROLLER/CATALYST-9100-ACCESS-POINTS",
+        "C9800-AP": "WIRELESS/CONTROLLER/CATALYST EMBEDDED WIRELESS CONTROLLER",
+        "C9800-APC": "WIRELESS/CONTROLLER/CATALYST EMBEDDED WIRELESS CONTROLLER",
         "C9800-CL": "WIRELESS/CONTROLLER/CATALYST-9800-CL",
         "C9800-L": "WIRELESS/CONTROLLER/CATALYST-9800-L",
         "CW9800H": "WIRELESS/CONTROLLER/CATALYST-9800H",
@@ -1512,24 +1532,22 @@ def product(prodcode):
 
     return prod_map.get(prodcode, f"UNKNOWN PRODUCT CODE: {prodcode}")
 
-def fileprocessorrommon(debug1, filename):
-    if debug1:
-        print("\tModule#\tiosutils")
-        print("\tSubroutine#\tfileprocessorrommon")
+def fileprocessorrommon(filename):
+    logging.debug("Module: iosutils")
+    logging.debug("Sub:    fileprocessorrommon")
 
     basepath = "ROMMON"
 
-    # (patterns, product name or None for direct move)
     pattern_map = [
         # Direct filename matches for asr900
-        (["asr900_15_6_43r_s_rommon.pkg", "rsp2_15_6_15r_s_rommon.pkg", "rsp2_15_6_19r_s_rommon.pkg", 
+        (["asr900_15_6_43r_s_rommon.pkg", "rsp2_15_6_15r_s_rommon.pkg", "rsp2_15_6_19r_s_rommon.pkg",
           "rsp2_15_6_30r_s_rommon.pkg", "rsp2_rommon_15_4_3r_S5.pkg"], "asr900"),
 
         # ASR1000
         (["asr1000", "ASR1000_RM_16_3_2R.bin"], "asr1000"),
 
         # Catalyst 6500
-        (["c6msfc2", "c6msfc2a", "c6msfc3", "c6ksup32", "c6ksup3", "c6dfc", "c6dfc3", "c2lc", "c6ksup720", 
+        (["c6msfc2", "c6msfc2a", "c6msfc3", "c6ksup32", "c6ksup3", "c6dfc", "c6dfc3", "c2lc", "c6ksup720",
           "sup6t_rm", "pyramid_rm2", "cat6000-CPBOOT", "cat6000-sup2-rm2"], "c6500"),
 
         # c6848x
@@ -1586,7 +1604,7 @@ def fileprocessorrommon(debug1, filename):
         (["isr4400v2_rommon"], "isr4400v2"),
 
         # ASR9K rommon tarballs
-        (["ROMMON", "rommon"], "asr9k"),  # Will be filtered by .endswith("tar")
+        (["ROMMON", "rommon"], "asr9k"),
 
         # RSP720
         (["rsp720_10ge_rp-rm2", "rsp720_10ge_sp-rm2", "rsp720_rp-rm2", "rsp720_sp-rm2"], "c7600"),
@@ -1599,21 +1617,14 @@ def fileprocessorrommon(debug1, filename):
         (["C9800-80-rommon"], "C9800-80"),
 
         # Notes files — no product name needed
-        (["Rommon-123-8r.YH13-notes", "Rommon-124-22r.YB5-notes", 
-          "Rommon-151-1r.T4-notes", "Rommon-151-1r.T5-notes", 
+        (["Rommon-123-8r.YH13-notes", "Rommon-124-22r.YB5-notes",
+          "Rommon-151-1r.T4-notes", "Rommon-151-1r.T5-notes",
           "Rommon-150-1r.M12-notes"], None),
     ]
 
-    def matches(patterns, fname):
-        for pat in patterns:
-            if fname == pat or fname.startswith(pat):
-                return True
-        return False
-
     for patterns, prod in pattern_map:
-        if matches(patterns, filename):
+        if any(filename == pat or filename.startswith(pat) for pat in patterns):
             if prod is not None:
-                # Special case: asr9k tarballs
                 if prod == "asr9k" and not filename.endswith(".tar"):
                     continue
                 prodname = product(prod)
@@ -1621,31 +1632,56 @@ def fileprocessorrommon(debug1, filename):
                 filemove(filepath, filename)
             else:
                 filemove(basepath, filename)
-            return  # Match found and handled
-
-    if debug1:
-        print(f"\t[DEBUG] No match found for {filename}")
-
-def fileprocessorpagent (filename):
-    filepath = "ROUTERS/PAGENT/"
-    filemove (filepath, filename)
+            return
+        
+    logging.debug(f"No match for filename {filename}")
 
 def util_dot_join(*args):
     return ".".join(args)
 
 def util2digit(a, b):
+    warnings.warn(
+    "util2digit(a, b) is deprecated and will be removed in a future release. "
+    "Use util_dot_join(*args) instead.",
+    DeprecationWarning,
+    stacklevel=2,
+)
     return util_dot_join(a, b)
 
 def util3digit(a, b, c):
+    warnings.warn(
+    "util3digit(a, b) is deprecated and will be removed in a future release. "
+    "Use util_dot_join(*args) instead.",
+    DeprecationWarning,
+    stacklevel=2,
+)
     return util_dot_join(a, b, c)
 
 def util4digit(a, b, c, d):
+    warnings.warn(
+    "util4digit(a, b) is deprecated and will be removed in a future release. "
+    "Use util_dot_join(*args) instead.",
+    DeprecationWarning,
+    stacklevel=2,
+)
     return util_dot_join(a, b, c, d)
 
 def util5digit(a, b, c, d, e):
+    warnings.warn(
+    "util5digit(a, b) is deprecated and will be removed in a future release. "
+    "Use util_dot_join(*args) instead.",
+    DeprecationWarning,
+    stacklevel=2,
+)
     return util_dot_join(a, b, c, d, e)
 
 def util6digit(a, b, c, d, e, f):
+    warnings.warn(
+    "util6digit(a, b) is deprecated and will be removed in a future release. "
+    "Use util_dot_join(*args) instead.",
+    DeprecationWarning,
+    stacklevel=2,
+)
     return util_dot_join(a, b, c, d, e, f)
 
 def stringtolist (a):
@@ -1657,75 +1693,110 @@ def filepath(*parts):
 
 # Legacy-compatible wrappers
 def filepath2(a, b):
+    warnings.warn(
+    "filepath2(a, b) is deprecated and will be removed in a future release. "
+    "Use util_dot_join(*args) instead.",
+    DeprecationWarning,
+    stacklevel=2,
+)
     return filepath(a, b)
 
 def filepath3(a, b, c):
+    warnings.warn(
+    "filepath3(a, b) is deprecated and will be removed in a future release. "
+    "Use util_dot_join(*args) instead.",
+    DeprecationWarning,
+    stacklevel=2,
+)
     return filepath(a, b, c)
 
 def filepath4(a, b, c, d):
+    warnings.warn(
+    "filepath4(a, b) is deprecated and will be removed in a future release. "
+    "Use util_dot_join(*args) instead.",
+    DeprecationWarning,
+    stacklevel=2,
+)
     return filepath(a, b, c, d)
 
 def filepath5(a, b, c, d, e):
+    warnings.warn(
+    "filepath6(a, b) is deprecated and will be removed in a future release. "
+    "Use util_dot_join(*args) instead.",
+    DeprecationWarning,
+    stacklevel=2,
+)
     return filepath(a, b, c, d, e)
 
 def filepath6(a, b, c, d, e, f):
+    warnings.warn(
+    "filepath6(a, b) is deprecated and will be removed in a future release. "
+    "Use util_dot_join(*args) instead.",
+    DeprecationWarning,
+    stacklevel=2,
+)
     return filepath(a, b, c, d, e, f)
 
 def filepath(*parts):
     return os.path.join(*parts)
 
-def util2collapse (a,b):
-    return a + b
+def collapse_strings(*args: Optional[str]) -> str:
+    """
+    Concatenate multiple strings.
 
-#def utilssinglemove (debug1,filename,prodname,imagecode):
-#    if debug1:
-#        print("\tModule#\t\tiosutils")
-#        print("\tSubroutine#\tutilssinglemove")
-#    filepath = filepath2 (prodname,imagecode) 
-#    filemove (filepath, filename)
+    Args:
+        *args: Strings to merge. `None` is allowed and treated as ''.
 
-def utilssinglemove(debug=False, filename=None, prodname=None, imagecode=None):
+    Returns:
+        A single string that is the concatenation of all arguments.
+
+    Raises:
+        TypeError: If any argument is not str or None.
+    """
+    parts: list[str] = []
+    for idx, value in enumerate(args):
+        if value is None:
+            continue   # treat None as empty
+        if not isinstance(value, str):
+            raise TypeError(
+                f"Argument {idx} must be str or None, got {type(value).__name__}"
+            )
+        parts.append(value)
+    return "".join(parts)
+
+
+def util2collapse(a: Optional[str], b: Optional[str]) -> str:
+    """
+    Backward-compatible wrapper for collapse_strings.
+    Accepts exactly two arguments like the original function.
+
+    Emits a DeprecationWarning to encourage migration.
+    """
+    warnings.warn(
+        "util2collapse(a, b) is deprecated and will be removed in a future release. "
+        "Use collapse_strings(*args) instead.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
+    return collapse_strings(a, b)
+
+
+def utilssinglemove(filename=None, prodname=None, imagecode=None):
     if not all([filename, prodname, imagecode]):
         raise ValueError("All of filename, prodname, and imagecode must be provided.")
-
-    if debug:
-        logging.debug("Module - iosutils")
-        logging.debug("Subroutine - utilssinglemove")
-
+    logging.debug("Module: iosutils")
+    logging.debug("Sub:    utilssinglemove")
     final_filepath = filepath(prodname, imagecode)
     filemove(final_filepath, filename)
 
-def utilssingleprodname (debug1,filename,prodname):
-    if debug1:
-        print("\tModule#\t\tiosutils")
-        print("\tSubroutine#\tutilssingleprodname")
+def utilssingleprodname (filename,prodname):
+    logging.debug("Module: iosutils")
+    logging.debug("Sub:    utilssingleprodname")
     filemove (prodname, filename)
 
-#def utils_dev_vf (debug1,filename,prodname,workname):
-#    if debug1:
-#        print("\tModule#\t\tiosutils")
-#        print("\tSubroutine#\tutils_dev_vf")
-#    if prodname == "UNKNOWN":
-#        messageunknowndev()
-#    else:
-#        splitbydot = workname.split(".")
-#        if len(splitbydot) == 2:
-#            version2 = util2digit(splitbydot[0],splitbydot[1])
-#        elif len(splitbydot) == 3:
-#            version2 = util3digit(splitbydot[0],splitbydot[1],splitbydot[2])
-#        elif len(splitbydot) == 4:
-#            version2 = util4digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3])
-#        elif len(splitbydot) == 5:
-#            version2 = util5digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4])
-#        elif len(splitbydot) == 6:
-#            version2 = util6digit(splitbydot[0],splitbydot[1],splitbydot[2],splitbydot[3],splitbydot[4],splitbydot[5])
-#        filepath = filepath2(prodname,version2)
-#        filemove (filepath, filename)
-
-def utils_dev_vf(debug=False, filename=None, prodname=None, workname=None):
-    if debug:
-        print(f"\t[DEBUG] - Module - iosutils")
-        print(f"\t[DEBUG] - Subroutine - utils_dev_vf")
+def utils_dev_vf(filename=None, prodname=None, workname=None):
+    logging.debug("Module: iosutils")
+    logging.debug("Sub:    utils_dev_vf")
 
     if prodname == "UNKNOWN":
         messageunknowndev()
@@ -1748,10 +1819,10 @@ def utils_dev_vf(debug=False, filename=None, prodname=None, workname=None):
     else:
         raise ValueError(f"Unsupported version format in workname: '{workname}'")
 
-def utils_dev_v2_vf (debug1,filename,prodname,workname):
-    if debug1:
-        print("\tModule#\t\tiosutils")
-        print("\tSubroutine#\tutils_dev_v2_vf")
+def utils_dev_v2_vf (filename,prodname,workname):
+    logging.debug("Module: iosutils")
+    logging.debug("Sub:    utils_dev_v2_vf")
+
     if prodname == "UNKNOWN":
         messageunknowndev()
     else:
@@ -1771,10 +1842,9 @@ def utils_dev_v2_vf (debug1,filename,prodname,workname):
         filepath = filepath3(prodname,version2,version3)
         filemove (filepath, filename)
 
-def utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname):
-    if debug1:
-        print("\tModule#\t\tiosutils")
-        print("\tSubroutine#\tutils_dev_v2_vf_imagecode")
+def utils_dev_v2_vf_imagecode (filename,prodname,imagecode,workname):
+    logging.debug("Module: iosutils")
+    logging.debug("Sub:    utils_dev_v2_vf_imagecode")
     if prodname == "UNKNOWN":
         messageunknowndev()
     elif imagecode == "UNKNOWN":
@@ -1793,10 +1863,9 @@ def utils_dev_v2_vf_imagecode (debug1,filename,prodname,imagecode,workname):
         filepath = filepath4(prodname,version2,version3,imagecode)
         filemove (filepath, filename)
 
-def utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname):
-    if debug1:
-        print("\tModule#\t\tiosutils")
-        print("\tSubroutine#\tutils_dev_imagecode_v2_vf")
+def utils_dev_imagecode_v2_vf (filename,prodname,imagecode,workname):
+    logging.debug("Module: iosutils")
+    logging.debug("Sub:    utils_dev_imagecode_v2_vf")
     if prodname == "UNKNOWN":
         messageunknowndev()
     elif imagecode == "UNKNOWN":
@@ -1818,10 +1887,9 @@ def utils_dev_imagecode_v2_vf (debug1,filename,prodname,imagecode,workname):
         filepath = filepath4(prodname,imagecode,version2,version3)
         filemove (filepath, filename)
 
-def utils_dev_imagecode_vf (debug1,filename,prodname,imagecode,workname):
-    if debug1:
-        print("\tModule#\t\tiosutils")
-        print("\tSubroutine#\tutils_dev_imagecode_v2_vf")
+def utils_dev_imagecode_vf (filename,prodname,imagecode,workname):
+    logging.debug("Module: iosutils")
+    logging.debug("Sub:    utils_dev_imagecode_vf")
     if prodname == "UNKNOWN":
         messageunknowndev()
     elif imagecode == "UNKNOWN":
@@ -1839,10 +1907,9 @@ def utils_dev_imagecode_vf (debug1,filename,prodname,imagecode,workname):
         filepath = filepath3(prodname,imagecode,version3)
         filemove (filepath, filename)
 
-def utils_dev_v2_vf_imagecode_dash (debug1,filename,prodname,imagecode,workname):
-    if debug1:
-        print("\tModule#\t\tiosutils")
-        print("\tSubroutine#\tutils_dev_v2_vf_imagecode_dash")
+def utils_dev_v2_vf_imagecode_dash (filename,prodname,imagecode,workname):
+    logging.debug("Module: iosutils")
+    logging.debug("Sub:    utils_dev_v2_vf_imagecode_dash")
     if prodname == "UNKNOWN":
         messageunknowndev()
     elif imagecode == "UNKNOWN":
@@ -1861,10 +1928,9 @@ def utils_dev_v2_vf_imagecode_dash (debug1,filename,prodname,imagecode,workname)
         filepath = filepath4(prodname,version2,version3,imagecode)
         filemove (filepath, filename)
 
-def utils_dev_imagecode_v2_vf_dash (debug1,filename,prodname,imagecode,workname):
-    if debug1:
-        print("\tModule#\t\tiosutils")
-        print("\tSubroutine#\tutils_dev_imagecode_v2_vf_dash")
+def utils_dev_imagecode_v2_vf_dash (filename,prodname,imagecode,workname):
+    logging.debug("Module: iosutils")
+    logging.debug("Sub:    utils_dev_imagecode_v2_vf_dash")
     if prodname == "UNKNOWN":
         messageunknowndev()
     elif imagecode == "UNKNOWN":
@@ -1884,7 +1950,7 @@ def utils_dev_imagecode_v2_vf_dash (debug1,filename,prodname,imagecode,workname)
         filemove (filepath, filename)
 
 def _log_unknown(thing: str):
-    logging.debug(f"Unknown {thing}")
+    logging.warning(f"Unknown {thing}")
 
 def messageunknowndev():
     _log_unknown("Device Type")
@@ -1897,3 +1963,544 @@ def messageunknownfile():
 
 def messageunknownversion():
     _log_unknown("Version")
+
+def is_ios_file(name: str) -> bool:
+#    logging.debug("Sub:    is_ios_file")
+    ios_files = {
+        "2730_rel_note",
+        "Exp_V3_11.axf",
+        "Exp_v10_10.spe",
+        "Release-Notes-V3.12.1",
+        "Release-Notes-V3.12.2",
+        "fw_upgrade.tcl",
+        "portware.2730.ios",
+        "sconvertit0-11.tar",
+        "sconvertit0-12.tar",
+        "sprint_v16904_package.tar",
+        "wconvertit0-11.zip",
+        "wconvertit0-12.zip",
+    }
+
+    ios_prefixes = (
+        "6509neba", "6516agbic", "6548getx", "66748getx",
+        "MC7700", "MC7710", "MC7750",
+        "VA_", "c2900XL", "c2900xl", "c3500XL", "c3500xl",
+        "epld-6548getx", "epld-sup2", "mica-modem-pw",
+        "mica-pw", "sprom", "vdsl.bin",
+    )
+
+    ios_mc_spk_prefixes = ("MC7304", "MC7350", "MC7354", "MC735X")
+
+    return (
+        name in ios_files
+        or name.startswith(ios_prefixes)
+        or (name.startswith(ios_mc_spk_prefixes) and name.endswith("spk"))
+        or (name.startswith("V3_") and name.endswith("axf"))
+        or (name.startswith("VAE2_") and name.endswith("bin"))
+        or (name.startswith("VAEW_") and name.endswith("bin"))
+    )
+
+def is_iosxr_file(name: str) -> bool:
+    logging.debug("Sub:    is_iosxr_file")
+    xr_files = [
+        "xrvr-fullk9-4.3.2.vmdk",
+        "xrvr-full-4.3.2.vmdk",
+        "xrv9k-fullk9-x.qcow2-6.0.0",
+    ]
+
+    xr_prefixes = (
+            "ASR9000", "ASR9K", "ASR9k", "CSM.zip", "Cisco_TMS_", "NCS540", "SP_",
+            "Sightline", "TMS_", "XR12000", "XRV9000", "XRV9K", "asr9k", "comp-asr9k",
+            "csm-", "csm-3.5.2.zip", "csm-4.0.zip", "ddos_edge_protection_controller",
+            "fullk9-R-XRV9000", "iosxrv", "ncs540", "xrd", "xrv9k", "c12k"
+        )
+
+    # Matches files like "3.9.1_asr9k_REC_SMUS_2011-12-12.tar"
+    recsmu_pattern = re.compile(r"^\d+\.\d+\.\d+_asr9k(-p[x]?)?_REC_SMUS_.*\.(tar|tgz)$", re.IGNORECASE)
+
+    return (
+        name in xr_files
+        or name.startswith(xr_prefixes)
+        or recsmu_pattern.match(name)
+    )
+
+def is_server_file(name: str) -> bool:
+#    logging.debug("Sub:    is_server_file")
+    server_files = {
+        "1X0DBIOSv4.8",
+        "1X0SBIOSv4.8",
+        "B57BCMCD_v15.2.4.1.tgz",
+        "B57CiscoCD_T6.4.4.3-57712.zip",
+        "BashFix-update-0-x86_64.tar.gz",
+        "CSCwb00526.sh",
+        "CSCwb00526.sh.zip",
+        "DW_16MB_release_1029.bin",
+        "DW_BIOS.bin.SPA",
+        "DW_Signed_Bios_Image.bin.SPA",
+        "Datacenter_Technology_Pack-1.0.53.ubf",
+        "Datacenter_Technology_Pack_Update_1_Patch-1.0.58.ubf",
+        "GlibcFix-pi22-update-0-x86_64.tar.gz",
+        "InstallerUpdateBE-1.0.5.tar.gz",
+        "Intel_Windows_drv_MR_6.714.18.00_pv.zip",
+        "JeOS_Patch_To_Enable_ASD.zip",
+        "LSI_x64_Signed_Driver_5.2.116.64.zip",
+        "MR_WINDOWS_DRIVER-6.506.02.00-WHQL.zip",
+        "PrimeInfra.pem",
+        "SW_16MB_release_1102.bin",
+        "SW_Signed_Bios_Image.bin.SPA",
+        "Signed_DW_M1M2_BIOS_2.5.0.4.bin.SPA",
+        "Signed_DW_M1M2_BIOS_2.5.0.5.bin.SPA",
+        "Signed_DW_M1M2_BIOS_2.5.0.6.bin.SPA",
+        "Signed_DW_M1M2_Bios_Image_041015.bin.SPA",
+        "Signed_EN_BIOS_1.5.0.4.bin.SPA",
+        "Signed_EN_BIOS_1.5.0.5.bin.SPA",
+        "Signed_EN_BIOS_1.5.0.6.bin.SPA",
+        "Signed_SW_M2_BIOS_1.5.0.6.bin.SPA",
+        "Signed_SW_M2_BIOS_1.5.0.7.bin.SPA",
+        "Signed_SW_M2_BIOS_1.5.0.8.bin.SPA",
+        "Signed_SW_M2_Bios_1.5.0.5.bin.SPA",
+        "UCSEDM3_BIOS_2.4.SPA",
+        "UCSEDM3_BIOS_2.5.SPA",
+        "UCSEDM3_BIOS_2.6.SPA",
+        "UCSE_CIMC_2.3.1.bin",
+        "UCSE_CIMC_2.3.2.bin",
+        "UCSE_CIMC_2.3.3.bin",
+        "UCSE_CIMC_2.3.5.bin",
+        "UCS_docs_20110510.iso",
+        "b2xx-m1-drivers-1.1.1j.iso",
+        "c2xx-m1-utils-1.0.2.iso",
+        "ca_technology_package-2.1.0.0.41.ubf",
+        "cspc28backupscript.zip",
+        "cspc210backupscript.zip",
+        "efi-obd-v12-07-18.diag",
+        "efi-obd-v13-10-15.diag",
+        "efi-obd-v13-7-3.diag",
+        "huu-2.3.1.iso",
+        "huu-2.3.2.iso",
+        "huu-2.3.3.iso",
+        "huu-2.4.1.iso",
+        "huu-3.0.1.iso",
+        "huu-3.1.1.iso",
+        "huu_3.1.2.iso",
+        "huu_3.1.3.iso",
+        "huu_3.1.4.iso",
+        "huu_3.2.6.v3.iso",
+        "intel9.2.3.1023.tar",
+        "operations_center_pi_2_1_2_enable_update.ubf",
+        "pi212_20141118_01.ubf",
+        "pi212_PIGEN_CSCur43834_01.ubf",
+        "readme_10.2.1.ST.1",
+        "rhel-vulnerability-patch-pnp-2.2.0.14.tar.gz",
+        "rste_4.5.0.1335_install.zip",
+        "ucse-huu-2.1.1.iso",
+        "update_pkg-Mar-22-MR-rebuild.bin",
+        "update_pkg-ucse.combined.120808.bin",
+        "update_pkg-ucse.combined.REL.2.2.1.bin",
+        "update_pkg-ucse.combined.REL.2.2.2.bin",
+        "update_pkg-ucse.combined.REL.bin",
+        "Deploy-cisco-dna-center-on-aws-using-aws-marketplace"
+    }
+
+    server_prefixes = (
+        "APIC-EM-", "C200M1-", "CIMC_", "CSLU_Installer", "Cisco-HX-Data-Platform-Installer",
+        "CiscoPI", "CiscoPI3.4.pem", "CiscoPI3.5.pem", "Cisco_ACI", "Collector",
+        "DCNM", "DNAC-", "Device-Pack", "DnacPreCheckASSESMENTUbf", "HX-ESXi",
+        "HX-Kubernetes", "HxClone-HyperV", "HyperFlex-VC-HTML", "HyperFlex-Witness-",
+        "PI", "PI-APL-", "PI-UCS-APL-", "PI-Upgrade-", "PI-VA-", "PNP-GATEWAY-VM-",
+        "SSMS", "SSM_On-Prem", "UCSC-C220-M5-", "UCSC-C240-M5-", "UCSC-C220-M6-",
+        "UCSC-C240-M6-", "UCSC-C220-M7-", "UCSC-C240-M7-", "UCSC-C225-M6-", "UCSC-C225-M8-",
+        "aci-apic", "aci-msft-pkg", "aci-n9000-dk9", "aci-simulator", "aci-vpod", "acisim",
+        "apic-vrealize", "apic_em_update-apic-", "cisco-HX-Data-Platform-Installer",
+        "cisco-prime-pnp", "cisco-prime-pnp-app-k9-", "collector", "dcnm", "delnorte",
+        "delnorte2", "dnac", "esx-msc", "hostUpgrade_v", "hostupgrade_v", "hxcsi",
+        "msc", "pi", "pid-ctlg", "plumas", "plumas2", "pnp-", "ssms", "storfs-packages",
+        "tools-msc", "ucs", "ucs-cxx", "update_pkg-ucse", "vcenter-plugin",
+        "Launchpad-desktop", "DNA_Center_VA", "CIMCS", "cimcs", "CatC", "trustidevcodesigning5",
+        "cml2", "refplat"
+    )
+
+    return (
+        name in server_files
+        or name.startswith(server_prefixes)
+        or (name.startswith("CIMC_") and name.endswith(".bin"))
+    )
+
+def is_security_file(name: str) -> bool:
+#    logging.debug("Sub:    is_security_file")
+    security_files = {
+        "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429-Readme.txt",
+        "ACS-4.1.1.23-CSTacacs-SW-CSCsg97429.zip",
+        "ACS57BasePatch.tar.gz",
+        "APIC_FMC_Remediation_module_1.0.1_7.tgz",
+        "APIC_FMC_Remediation_module_1.0.2_1.tgz",
+        "APIC_FirePOWER_Remediation_Module_2.0.1.1.tgz",
+        "APIC_Secure_Firewall_Remediation_Module_2.0.2.1.tgz",
+        "BOOTX64.EFI",
+        "PIX_to_ASA_1_0.dmg",
+        "PIXtoASA_1_0.zip",
+        "PIXtoASAsetup_1_0.exe",
+        "README-occ-121.rtf",
+        "README_ISE_20_201_21_22",
+        "README_WebAgent.txt",
+        "ReadMe_for_ACS_5.6_Upgrade_Package-txt",
+        "Secure_Workload_Remediation_Module_1.0.3.tgz",
+        "VPN-5.0.00.0340-MSI.exe",
+        "VPNDisable_ServiceProfile.xml",
+        "VPN_Client_Support_Matrix2.txt",
+        "Vista-VPN-Troubleshooting.txt",
+        "WebSecurityCert.zip",
+        "anyconnect_app_selector_1.0.zip",
+        "anyconnect_app_selector_2.0.zip",
+        "cisco_vpn_auth.jar",
+        "citrix_plugin_howto.doc",
+        "cvdm-css-1.0.zip",
+        "cvdm-css-1.0_K9.zip",
+        "fcs-csa-hotfix-5.2.0.238-w2k3-k9-CSM.zip",
+        "fcs-csamc-4.5.1.616-CSA-Policy-Descriptions.zip",
+        "firepower-mibs.zip",
+        "grub.efi",
+        "occ-121.gz",
+        "occ-121.zip",
+        "pnLogAgent_1.1.zip",
+        "pnLogAgent_4-1-3.zip",
+        "pnLogAgent_4-1-3.zip.txt",
+        "pxGrid_Mitigation_Remediation_v1.0.tgz",
+        "rawrite.exe",
+        "rdp_09.11.2012.jar",
+        "release_duration_tool.tar",
+        "vpn30xxboot-4.0.Rel.hex",
+        "webAgent_1-0.zip",
+        "webAgent_1-0.zip.txt",
+        "webAgent_1-1.zip",
+        "webAgent_1-1.zip.txt",
+    }
+
+    security_prefixes = (
+        "128MB.sdf", "256MB.sdf", "5-", "ACS", "Acs", "CSCvn17524", "CUCM-CSA-",
+        "CiscoCM-CSA-", "CiscoCVP-CSA-", "CiscoICM-CSA-", "Cisco-ISE", "Cisco-vISE",
+        "CiscoISE", "CiscoISN-CSA-", "CiscoPA-CSA-", "CiscoUnity-CSA-", "Cisco_FTD",
+        "Cisco_Firepower", "Cisco_Firepower_GEODB", "Cisco_Firepower_SRU",
+        "Cisco_Firepower_Threat", "Cisco_Network_Sensor", "Cisco_Secure_FW_TD_4200",
+        "Cisco_VDB_Fingerprint_Database", "Clean", "FMT-CP-Config-Extractor", "Firepower",
+        "Firepower_Migration_Tool", "Firewall_Migration_Tool", "IDS", "IOS-S", "IPS",
+        "ISE", "PIX", "SNS-35x5", "SNS-35xx", "SNS-36xx", "SNS-37xx", "SSM_On-Prem",
+        "Sourcefire", "UCP", "UTD-STD-SIGNATURE", "VPN3000", "anyconnect",
+        "secure-firewall-posture", "applAcs", "asa", "asasfr", "asdm", "c6svc-fwm-k9",
+        "cisco-asa", "cisco-ftd", "cisco-secure-client", "coeus", "csd", "csm",
+        "csm-maxmind-geolitecity-", "csmars", "external-sso", "fcs-CSM", "fcs-cms",
+        "fcs-csamc", "fcs-csm", "fcs-mcp", "fcs-rme", "ftd", "fwsm_migration", "fxos",
+        "hostscan", "iosxe-utd", "iosxe-utd-ips", "iox-iosxe-utd", "ise", "ise-pic",
+        "pic", "Cisco-ISE-PIC", "lsp-rel-", "mac-spw-dmg", "phoebe", "sampleTransforms",
+        "secapp-ucmk9", "secapp-utd", "thirdparty", "tools-anyconnect",
+        "tools-cisco-secure-client", "upd-pkg-SNS-35x5-cimc", "upd-pkg-SNS-35xx",
+        "upd-pkg-SNS-36xx-cimc", "vpn3002", "vpn3005", "vpnclient", "webagent",
+        "win_spw", "zeus",
+    )
+
+    # Patterns that require both startswith and endswith
+    special_patterns = [
+        ("CSM4", "Service_Pack1.exe"),
+        ("CSM4", "Service_Pack2.exe"),
+        ("IDS-sig-", ".readme.txt"),
+        ("IDS-sig-", ".zip"),
+        ("IOS-S", "-CLI.pkg"),
+        ("IOS-S", ".zip"),
+        ("PIX", ".bin"),
+        ("bh", ".bin"),
+        ("cda", "iso"),
+        ("np", ".bin"),
+        ("pdm", ".bin"),
+        ("pix", ".bin"),
+        ("sg", "adi"),
+        ("sg", "adi-gz"),
+        ("sg", "zip"),
+        ("update-", "-major-K9.zip"),
+    ]
+
+    if name in security_files:
+        return True
+
+    if name.startswith(security_prefixes):
+        return True
+
+    for prefix, suffix in special_patterns:
+        if name.startswith(prefix) and name.endswith(suffix):
+            return True
+
+    return False
+
+def is_iosxe_file(name: str) -> bool:
+#    logging.debug("Sub:    is_iosxe_file")
+
+    iosxe_prefixes = (
+        "C8000-1N", "C8000-2N2S", "C9800-", "CAT3650_WEBAUTH_BUNDLE",
+        "CAT3850_WEBAUTH_BUNDLE", "CW9800H", "CW9800M", "WP7601", "WP7603",
+        "WP76xx", "appqoe", "asr1000", "asr1000rp1", "asr1000rp2", 
+        "asr1000rpx86", "asr1001", "asr1001x", "asr1002", "asr1002x",
+        "asr900rsp1", "asr900rsp2", "asr900rsp3", "asr901", "asr901rsp1",
+        "asr901rsp2", "asr903rsp1", "asr903rsp2", "asr920", "asr920igp",
+        "c1100-ucmk9", "c1100-universalk9", "c1100_gfast_", "c1100_phy_",
+        "c1100tg", "c8000aep", "c8000aes", "c8000be", "c8000v", "c81g2be",
+        "c84g2aes", "c8kg2be", "cat3k_caa", "cat4500es8", "cat9k", "ccg110",
+        "cisco9k_iosxe", "csr1000v", "csr1000v_milplr", "ct5760", "ess3x00",
+        "ie1000", "ie31xx", "ie35xx", "ie3x00", "ie9k", "ie9k_iosxe", 
+        "iosxe-remote-mgmt", "iosxe-sd-avc", "ir1101", "ir8340", "isr1100",
+        "isr4200", "isr4300", "isr4400", "isr4400v2", "s5800", "ttam", 
+        "vg400", "vg420", "vg450", "ie1000", "ASR1K-fpga_prog",
+        "isr-hw-programmables", "nim_vab_phy_fw_",
+    )
+
+    return name.endswith("comp_matrix.xml") or name.startswith(iosxe_prefixes)
+
+def is_nxos_file(name: str) -> bool:
+#    logging.debug("Sub:    is_nxos_file")
+    nxos_files = {
+        "L2-L3_CT.zip",
+        "n3k_bios_release_rn.pdf",
+        "ntp-1.0.1-7.0.3.I2.2d.lib32_n9000.rpm",
+        "ntp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm",
+        "ntp-1.0.2-7.0.3.I2.2e.lib32_n9000.rpm",
+        "nxos.nsqos_lc_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm",
+        "nxos.nsqos_sup_tor-n9k_TOR-1.0.0-7.0.3.I2.2e.lib32_n9000.rpm",
+        "snmp-1.0.1-7.0.3.I2.2e.lib32_n9000.rpm",
+        "upgrade_m500_firmware.tar.gz",
+        "vxlan-2.0.1.0-9.2.3.lib32_n9000.rpm",
+    }
+
+    nxos_prefixes = (
+        "Nexus1000V", "Nexus1000V5", "Nexus1000v",
+        "guestshell", "n1000vh-dk9",
+        "n3000", "n3500", "n4000", "n5000", "n5000_poap_script",
+        "n6000", "n6000_poap_script", "n7000", "n7700",
+        "n9000", "n9000-epld",
+        "nexus-1000v", "nexus9300v", "nexus9500v",
+        "nxos", "nxos64", "nxosv",
+        "oac", "poap_ng", "poap_script", "ssd_c400_upgrade",
+    )
+
+    return name in nxos_files or name.startswith(nxos_prefixes)
+
+def is_rommon_file(name: str) -> bool:
+#    logging.debug("Sub:    is_rommon_file")
+    rommon_files = {
+        "Rommon-123-8r.YH13-notes",
+        "Rommon-124-22r.YB5-notes",
+        "Rommon-151-1r.T4-notes",
+        "Rommon-151-1r.T5-notes",
+        "Rommon-150-1r.M12-notes",
+        "asr900_15_6_43r_s_rommon.pkg",
+        "ASR1000_RM_16_3_2R.bin",
+        "C2400_RM2.symbols.123-7r.T2",
+        "c6840x_rm.bin.SPA.152-02r.SYS2",
+    }
+
+    rommon_substrings = (
+        "srec", "rommon", "ROMMON", "promupgrade", "governator",
+        "C7200_NPEG1_RM", "C7200_NPEG2_RM", "C7200_NPEG1_BOOT_ROM",
+        "c6880x_rm", "cat6000-CPBOOT", "tinyrom"
+    )
+
+    rommon_prefixes = (
+        "firmwareupgrade", "transformer_rm", "sup6t_rm", "asr920-rommon"
+    )
+
+    # Check exact names
+    if name in rommon_files:
+        return True
+
+    # Check substrings
+    if any(sub in name for sub in rommon_substrings):
+        return True
+
+    # Check prefixes
+    if name.startswith(rommon_prefixes):
+        return True
+
+    return False
+
+def is_cat_file(name: str) -> bool:
+#    logging.debug("Sub:    is_cat_file")
+    """
+    Detects if the file belongs to Cat4000/5000/6000 series,
+    extracts product name and image code, and processes it.
+    """
+    cat_image_map = {
+        # cat4000
+        "cat4000.": "sup",
+        "cat4000-cv.": "supcv",
+        "cat4000-k8.": "supk8",
+        "cat4000-k9.": "supk9",
+        # cat5000
+        "cat5000-supg.": "supg",
+        "cat5000-supgk9.": "supgk9",
+        "cat5000-sup.": "sup",
+        "cat5000-sup3.": "supg",
+        "cat5000-sup8m.": "sup8m",
+        "cat5000-atm.": "m",
+        "cat5000-sup3cv.": "sup3cv",
+        "cat5000-sup3cvk9.": "sup3cvk9",
+        "cat5000-sup3k9.": "sup3k9",
+        # cat6000
+        "cat6000-sup.": "sup",
+        "cat6000-supcv.": "supcv",
+        "cat6000-supcvk8.": "supcvk8",
+        "cat6000-supcvk9.": "supcvk9",
+        "cat6000-supk8.": "supk8",
+        "cat6000-supk9.": "supk9",
+        "cat6000-sup2.": "sup2",
+        "cat6000-sup2cv.": "sup2cv",
+        "cat6000-sup2cvk8.": "sup2cvk8",
+        "cat6000-sup2cvk9.": "sup2cvk9",
+        "cat6000-sup2k8.": "sup2k8",
+        "cat6000-sup2k9.": "sup2k9",
+        "cat6000-sup32pfc3cvk8.": "sup32pfc3cvk8",
+        "cat6000-sup32pfc3cvk9.": "sup32pfc3cvk9",
+        "cat6000-sup32pfc3k8.": "sup32pfc3k8",
+        "cat6000-sup32pfc3k9.": "sup32pfc3k9",
+        "cat6000-sup720cvk8.": "sup720cvk8",
+        "cat6000-sup720cvk9.": "sup720cvk9",
+        "cat6000-sup720k8.": "sup720k8",
+        "cat6000-sup720k9.": "sup720k9",
+    }
+
+    for prefix, imagecode in cat_image_map.items():
+        if name.startswith(prefix):
+            # Extract product name: cat4000, cat5000, cat6000
+            prodname = prefix.split("-")[0].rstrip(".")
+            # Remove prefix and .bin extension
+            workname = name.replace(".bin", "").replace(prefix, "")
+            # Call the processing function
+            utils_dev_imagecode_v2_vf_dash(name, prodname, imagecode, workname)
+            return True
+    return False
+
+def nbar(filename: str):
+    logging.debug("Sub:    nbar")
+    """
+    Processes NBAR-related files and moves them according to type and version.
+    """
+    prodname = product("ntwkmgmt")
+    imagecode = imagelookup("nbar")
+
+    # Standardize the base workname by removing common suffixes
+    workname = clean_workname(
+        filename,
+        suffixes=[".pack.zip", ".pack"]
+    )
+
+    # Special cases with long prefixes
+    special_prefixes = [
+        "pp-adv-nam-18-",
+        "pp-adv-nam-61-18-",
+        "pp-adv-csr1000v-153-2-S0a-15-"
+    ]
+
+    for pre in special_prefixes:
+        if filename.startswith(pre):
+            workname = clean_workname(filename, prefixes=[pre], suffixes=[".pack.zip", ".pack"])
+            filepath = filepath3(prodname, imagecode, workname)
+            filemove(filepath, filename)
+            return
+
+    # Default handling using version extracted from the filename
+    splitbydash = workname.split("-")
+    try:
+        myver = splitbydash[6]
+    except IndexError:
+        myver = splitbydash[5]
+
+    filepath = filepath3(prodname, imagecode, myver)
+    filemove(filepath, filename)
+
+def ucspe(filename: str):
+    logging.debug("Sub:    ucspe")
+    """
+    Processes UCSPE-related files and moves them according to type and version.
+    """
+
+
+    prodname = product("ucspe")
+
+    # Special sets for versioned files
+    docs_files = {"ucsm_object_docs.zip", "UCSPE 3.1(2e) 6248 1340 export.txt"}
+    export_files_323e = {"export_6248_ch1_b200m5.xml", "swift_stack_3260_cfg_export.xml"}
+    export_files_412cPE1 = {
+        "export_6248_ch1_b200m5.xml.txt",
+        "swift_stack_3260_cfg_export.xml.txt",
+        "ucspe_6296_chassis1_export.xml.txt",
+        "ucspe_6454_chassis1_export.xml.txt",
+    }
+
+    # Handle PDF files
+    if filename.endswith("pdf"):
+        imagecode = imagelookup("docs")
+        utilssinglemove(filename, prodname, imagecode)
+        return
+
+    # Handle specific version files
+    if filename in docs_files:
+        utilssinglemove(filename, prodname, "3.1.2e")
+        return
+
+    if filename in export_files_323e:
+        utilssinglemove(filename, prodname, "3.2.3e")
+        return
+
+    if filename in export_files_412cPE1:
+        utilssinglemove(filename, prodname, "4.1.2cPE1")
+        return
+
+    # Handle stripped firmware files
+    if filename.startswith("UCSM") and filename.endswith("stripped-firmware.zip"):
+        imagecode = imagelookup("stripped-firmware")
+        workname = clean_workname(
+            filename,
+            prefixes=["UCSM-"],
+            suffixes=["-stripped-firmware.zip"],
+            char_map={"(": ".", ")": ""}
+        )
+        utils_dev_imagecode_vf(filename, prodname, imagecode, workname)
+        return
+
+    # Default handling for UCSPE OVA/ZIP files
+    prefixes = [
+        "UCSPE_", "cimc_emulator-", "Cisco_UCS_Platform_Emulator_v",
+        "Cisco_UCS_Platform_Emulator_", "c220-m4-emu-cimc.",
+        "c240-m4-emu-cimc.", "c460-m4-emu-cimc."
+    ]
+    suffixes = [".ova.zip", ".ova", ".zip", ".73034.361150.7z"]
+    workname = clean_workname(filename, prefixes=prefixes, suffixes=suffixes)
+    utils_dev_vf(filename, prodname, workname)
+
+def clean_workname(filename: str, prefixes=None, suffixes=None, char_map=None) -> str:
+    """
+    Cleans a filename by removing specified prefixes and suffixes and replacing characters.
+    
+    Args:
+        filename (str): The original filename.
+        prefixes (list or tuple): Strings to remove from the start of the filename.
+        suffixes (list or tuple): Strings to remove from the end of the filename.
+        char_map (dict): Optional dictionary mapping characters to replace, e.g., {"(": ".", ")": ""}.
+    
+    Returns:
+        str: The cleaned filename.
+    """
+    workname = filename
+    prefixes = prefixes or []
+    suffixes = suffixes or []
+
+    for pre in prefixes:
+        if workname.startswith(pre):
+            workname = workname[len(pre):]
+
+    for suf in suffixes:
+        if workname.endswith(suf):
+            workname = workname[:-len(suf)]
+
+    if char_map:
+        for old_char, new_char in char_map.items():
+            workname = workname.replace(old_char, new_char)
+
+    return workname
+
+
