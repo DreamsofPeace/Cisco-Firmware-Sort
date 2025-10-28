@@ -241,6 +241,11 @@ def fileprocessorsecurity (filename):
         imagecode = imagelookup("sns37xx")
         sec_ise_bios(filename, prodname, imagecode)
 
+    elif filename.startswith("SNS-38xx-"):
+        prodname = product("ise")
+        imagecode = imagelookup("sns38xx")
+        sec_ise_bios(filename, prodname, imagecode)
+
     elif (
         filename.startswith(("ise-pic", "pic", "Cisco-ISE-PIC"))
         or filename in {"pic-2.2.0.470.SPA.x86_64.iso", "pic-2.4.0.357.SPA.x86_64.iso"}
@@ -543,6 +548,10 @@ def sec_ise_bios(filename, prodname, imagecode):  # ISE BIOS / Firmware
         "4.3.2f": {
             "SNS-36xx-BIOS-4-3-2f_ISE.cap",
             "SNS-36xx-HUU-4.3.2.250045_ISE.iso",
+        },
+        "6.0.1a": {
+            "SNS-38xx-BIOS-6-0-1a_ISE.pkg",
+            "SNS-38xx-HUU-6.0.1.250127_ISE.iso",
         },
     }
 

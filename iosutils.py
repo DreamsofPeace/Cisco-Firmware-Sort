@@ -775,6 +775,7 @@ def imagelookup(imagecode):
         "sns35xx": "SNS-35xx",
         "sns36xx": "SNS-36xx",
         "sns37xx": "SNS-37xx",
+        "sns38xx": "SNS-38xx",
         "solaris": "SOLARIS",
         "sourcefiredev": "SOURCEFIRE-8350",
         "sp1": "SERVICE-PACK-1",
@@ -847,6 +848,7 @@ def imagelookup(imagecode):
         "sy756i": "IP-PLUS-IPSEC-56-ADSL",
         "system": "SYSTEM",
         "system-npe": "SYSTEM-NPE",
+        "systemldpe": "SYSTEM-NO-DTLS",
         "telco": "TELCO-FEATURE-SET",
         "telcoent": "TELCO-PLUS-FEATURE-SET",
         "telcoentk9": "TELCO-PLUS-FEATURE-SET-IPSEC-3DES",
@@ -880,7 +882,7 @@ def imagelookup(imagecode):
         "universalk9_npe_noli": "UNIVERSAL-NPE-NO-LAWFUL-INTERCEPT",
         "universalk9_wlc": "UNIVERSAL-WIRELESS",
         "universalk9azn": "UNIVERSAL-AZURE-CLOUD",
-        "universalk9ldpe": "UNIVERSAL-NPE",
+        "universalk9ldpe": "UNIVERSAL-NO-DTLS",
         "universalk9milplr": "UNIVERSAL-MILITARY",
         "universalk9npe": "UNIVERSAL-NPE",
         "universalk9npe_lite": "UNIVERSAL-LITE-NPE",
@@ -918,7 +920,6 @@ def imagelookup(imagecode):
         "WRLBDG": "WIRELESS-BRIDGE",
         "wt": "ATM-WORKGROUP-TRAFFIC-SHAPING",
         "xsd": "XML-SCHEMA",
-        "xy": "UNKNOWN-FEATURE-SET",
         "y": "IP",
         "y1": "IP",
         "y2": "IP-OSPF-PIM",
@@ -926,6 +927,7 @@ def imagelookup(imagecode):
         "y7": "IP-ADSL",
         "ncs500x-nV": "NCS500x-SATELLITE",
         "vsm": "Virtual Services Module",
+        "iosxe-remote-mgmt": "REMOTE-MANAGEMENT",
     }
     return imagecode_to_subdirectory.get(imagecode, "UNKNOWN")
 
@@ -956,6 +958,7 @@ def product(prodcode):
         "ons15540": "ROUTERS/OPTICAL/ONS-15540",
         "asr1000": "ROUTERS/ASR/ASR-1000",
         "isrg3moduleslte": "ROUTERS/ISRG3/MODULES/LTE",
+        "isrg3modulesdsl": "ROUTERS/ISRG3/MODULES/DSL",
         "iosxeissumatrix": "ROUTERS/IOS-XE-ISSU-MATRIX",
         "iou": "ROUTERS/IOU",
         "asr1000rp1": "ROUTERS/ASR/ASR-1000-RP1",
@@ -1355,8 +1358,8 @@ def product(prodcode):
         "ie2000u": "SWITCHES/INDUSTRIAL-ETHERNET/IE-2000U",
         "ies": "SWITCHES/INDUSTRIAL-ETHERNET/IE-3000",
         "ie3010": "SWITCHES/INDUSTRIAL-ETHERNET/IE-3010",
-        "ie31xx": "SWITCHES/INDUSTRIAL-ETHERNET/IE-3100",
         "ie3x00": "SWITCHES/INDUSTRIAL-ETHERNET/IE-3x00",
+        "ie31xx": "SWITCHES/INDUSTRIAL-ETHERNET/IE-3100",
         "ie35xx": "SWITCHES/INDUSTRIAL-ETHERNET/IE-3500",
         "ie4000": "SWITCHES/INDUSTRIAL-ETHERNET/IE-4000",
         "ie4010": "SWITCHES/INDUSTRIAL-ETHERNET/IE-4010",
@@ -1428,6 +1431,7 @@ def product(prodcode):
         "vg3x0": "VOICE/GATEWAY/VG-310-320",
         "vg350": "VOICE/GATEWAY/VG-350",
         "vg400": "VOICE/GATEWAY/VG-400",
+        "vg4x0": "VOICE/GATEWAY/VG-410",
         "vg420": "VOICE/GATEWAY/VG-420",
         "vg450": "VOICE/GATEWAY/VG-450",
         "vgd": "VOICE/GATEWAY/VGD",
@@ -2194,7 +2198,7 @@ def is_security_file(name: str) -> bool:
         "secapp-ucmk9", "secapp-utd", "thirdparty", "tools-anyconnect",
         "tools-cisco-secure-client", "upd-pkg-SNS-35x5-cimc", "upd-pkg-SNS-35xx",
         "upd-pkg-SNS-36xx-cimc", "vpn3002", "vpn3005", "vpnclient", "webagent",
-        "win_spw", "zeus",
+        "win_spw", "zeus", "SNS-38xx"
     )
 
     # Patterns that require both startswith and endswith
@@ -2246,7 +2250,7 @@ def is_iosxe_file(name: str) -> bool:
         "ie1000", "ie31xx", "ie35xx", "ie3x00", "ie9k", "ie9k_iosxe", 
         "iosxe-remote-mgmt", "iosxe-sd-avc", "ir1101", "ir8340", "isr1100",
         "isr4200", "isr4300", "isr4400", "isr4400v2", "s5800", "ttam", 
-        "vg400", "vg420", "vg450", "ie1000", "ASR1K-fpga_prog",
+        "vg400", "vg420", "vg450", "vg4x0", "ie1000", "ASR1K-fpga_prog",
         "isr-hw-programmables", "nim_vab_phy_fw_",
     )
 
