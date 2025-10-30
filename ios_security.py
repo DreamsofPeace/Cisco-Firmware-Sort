@@ -8,9 +8,88 @@ for name in dir(iosutils):
     if not name.startswith("_"):
         globals()[name] = getattr(iosutils, name)
 
+_LOG = logging.getLogger(__name__)
+
+def process_anyconnect_file(filename, match_result, product_lookup, image_lookup, platform):
+    _LOG.debug("Sub:    process_security_file")
+
+    if not match_result:
+        raise ValueError(f"No match result provided for file: {filename}")
+
+    # --- Normalize via lookup functions
+    productcode     = product(product_lookup)
+    imagecode       = imagelookup(image_lookup)
+    platform_result = imagelookup(platform)
+
+    # --- Extract version properly
+    ver_match = re.search(r'(\d+\.\d+\.\d+(?:\.\d+)?)', filename)
+    if ver_match:
+        full_version = ver_match.group(1)
+        # Split for 2-part and 3-part versions
+        parts = full_version.split('.')
+        version_2 = '.'.join(parts[0:2])           # 5.1
+        version_3 = '.'.join(parts[0:3])           # 5.1.2
+    else:
+        version_2 = "unknown"
+        version_3 = "unknown"
+
+    # --- Build destination path (no SMU/bug ID concept for AnyConnect)
+    dest_path = filepath(productcode, imagecode, platform_result, version_2, version_3)
+
+    # --- Move file to destination
+    filemove(dest_path, filename)
+
 def fileprocessorsecurity (filename):
     logging.debug("Module: ios_security")
     logging.debug("Sub:    fileprocessorsecurity")
+
+    firmware_matching = [
+        #Anyconnect / Cisco Secure Client (Windows)
+        {'prefix': "cisco-secure-client-win-",          'productcode': "anyconnect",  'imagecode': "nvm",            'platform': "windows",  'split_type': "dot",  'suffix': "-nvm-standalone-k9.msi"},
+        {'prefix': "cisco-secure-client-win-",          'productcode': "anyconnect",  'imagecode': "vpnapi",         'platform': "windows",  'split_type': "dot",  'suffix': "-vpnapi.zip"},
+        {'prefix': "cisco-secure-client-win-",          'productcode': "anyconnect",  'imagecode': "client",         'platform': "windows",  'split_type': "dot",  'suffix': "-predeploy-k9.zip"},
+        {'prefix': "cisco-secure-client-win-",          'productcode': "anyconnect",  'imagecode': "client",         'platform': "windows",  'split_type': "dot",  'suffix': "-predeploy-k9.pkg"},
+        {'prefix': "cisco-secure-client-win-",          'productcode': "anyconnect",  'imagecode': "client",         'platform': "windows",  'split_type': "dot",  'suffix': "-webdeploy-k9.pkg"},
+        {'prefix': "cisco-secure-client-win-",          'productcode': "anyconnect",  'imagecode': "isecompliance",  'platform': "windows",  'split_type': "dot",  'suffix': "-isecompliance-predeploy-k9.msi"},
+        {'prefix': "cisco-secure-client-win-",          'productcode': "anyconnect",  'imagecode': "isecompliance",  'platform': "windows",  'split_type': "dot",  'suffix': "-isecompliance-predeploy-k9.pkg"},
+        {'prefix': "cisco-secure-client-win-",          'productcode': "anyconnect",  'imagecode': "isecompliance",  'platform': "windows",  'split_type': "dot",  'suffix': "-isecompliance-webdeploy-k9.pkg"},
+        {'prefix': "cisco-secure-client-win-arm64-",    'productcode': "anyconnect",  'imagecode': "client",         'platform': "windows",  'split_type': "dot",  'suffix': "-webdeploy-k9.pkg"},
+        {'prefix': "cisco-secure-client-win-arm64-",    'productcode': "anyconnect",  'imagecode': "isecompliance",  'platform': "windows",  'split_type': "dot",  'suffix': "-isecompliance-webdeploy-k9.pkg"},
+        #Anyconnect / Cisco Secure Client (MacOS)
+        {'prefix': "cisco-secure-client-macos-",        'productcode': "anyconnect",  'imagecode': "nvm",            'platform': "macos",    'split_type': "dot",  'suffix': "-nvm-standalone.dmg"},
+        {'prefix': "cisco-secure-client-macos-",        'productcode': "anyconnect",  'imagecode': "vpnapi",         'platform': "macos",    'split_type': "dot",  'suffix': "-vpnapi.tar.gz"},
+        {'prefix': "cisco-secure-client-macos-",        'productcode': "anyconnect",  'imagecode': "client",         'platform': "macos",    'split_type': "dot",  'suffix': "-predeploy-k9.dmg"},
+        {'prefix': "cisco-secure-client-macos-",        'productcode': "anyconnect",  'imagecode': "client",         'platform': "macos",    'split_type': "dot",  'suffix': "-webdeploy-k9.pkg"},
+        #Anyconnect / Cisco Secure Client (Linux)
+        {'prefix': "acnvmcollector-",                   'productcode': "anyconnect",  'imagecode': "nvm",            'platform': "linux",    'split_type': "dot",  'suffix': ".zip"},
+        {'prefix': "cisco-secure-client-linux-arm64-",  'productcode': "anyconnect",  'imagecode': "vpnapi",         'platform': "linux",    'split_type': "dot",  'suffix': "-vpnapi.tar.gz"},
+        {'prefix': "cisco-secure-client-linux-arm64-",  'productcode': "anyconnect",  'imagecode': "client",         'platform': "linux",    'split_type': "dot",  'suffix': "-predeploy-deb-k9.tar.gz"},
+        {'prefix': "cisco-secure-client-linux-arm64-",  'productcode': "anyconnect",  'imagecode': "client",         'platform': "linux",    'split_type': "dot",  'suffix': "-predeploy-k9.tar.gz"},
+        {'prefix': "cisco-secure-client-linux-arm64-",  'productcode': "anyconnect",  'imagecode': "client",         'platform': "linux",    'split_type': "dot",  'suffix': "-predeploy-rpm-k9.tar.gz"},
+        {'prefix': "cisco-secure-client-linux-arm64-",  'productcode': "anyconnect",  'imagecode': "client",         'platform': "linux",    'split_type': "dot",  'suffix': "-webdeploy-k9.pkg"},
+        #Anyconnect / Cisco Secure Client (Android)
+        {'prefix': "anyconnect-android-",               'productcode': "anyconnect",  'imagecode': "client",         'platform': "android",  'split_type': "dot",  'suffix': "-release.apk"},
+    ]
+
+
+
+
+
+
+
+
+
+
+    # --- Try firmware matching by prefix/suffix
+    for entry in firmware_matching:
+        if filename.startswith(entry['prefix']) and filename.endswith(entry['suffix']):
+            matchtype   = "firmware"
+            productcode = entry['productcode']
+            imagecode   = entry['imagecode']
+            platform    = entry['platform']
+            process_anyconnect_file(filename, matchtype, productcode, imagecode, platform)
+
+
 
     if (
         filename.startswith("anyconnect") or

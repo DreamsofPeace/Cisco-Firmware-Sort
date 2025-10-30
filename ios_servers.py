@@ -253,7 +253,7 @@ def file_proc_servers (filename):
     filename.startswith ("tools-msc")
     ):
         prodname = product("aci")
-        file_proc_servers_aci(debug1,filename,prodname)
+        file_proc_servers_aci(filename,prodname)
 
     elif (
     filename.startswith ("storfs-packages") or 
@@ -267,14 +267,14 @@ def file_proc_servers (filename):
     filename.startswith ("HxClone-HyperV")
     ):
         prodname = product("hyperflex")
-        file_proc_servers_hyperflex(debug1,filename,prodname)
+        file_proc_servers_hyperflex(filename,prodname)
 
     elif (
     filename.startswith ("DCNM") or 
     filename.startswith ("dcnm")
     ):
         prodname = product("dcnm")
-        file_proc_servers_dcnm(debug1,filename,prodname)
+        file_proc_servers_dcnm(filename,prodname)
 
     elif filename == "readme_10.2.1.ST.1":
         prodname = product("dcnm")
@@ -285,7 +285,7 @@ def file_proc_servers (filename):
     filename.startswith ("apic_em_update-apic-") or 
     filename.startswith ("APIC-EM-")
     ):
-        file_proc_servers_apicem(debug1,filename)
+        file_proc_servers_apicem(filename)
 
     elif (
     filename.startswith ("CIMCS_") or 
